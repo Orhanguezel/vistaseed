@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { defaultLocale } from "@/i18n/routing";
+import { fetchSiteSettings } from "@/lib/site-settings";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -9,14 +12,15 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vistaseed.com";
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8078";
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
+const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
+const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "VistaSeed";
 
-async function fetchGlobalSeo() {
+async function fetchGlobalSeo(locale: string) {
   try {
     const [seoRes, metaRes] = await Promise.all([
-      fetch(`${API_URL}/api/site_settings/site_seo?locale=tr`, { next: { revalidate: 300 } }),
-      fetch(`${API_URL}/api/site_settings/site_meta_default?locale=tr`, { next: { revalidate: 300 } }),
+      fetch(`${API_URL}/api/site_settings/site_seo?locale=${encodeURIComponent(locale)}`, { next: { revalidate: 300 } }),
+      fetch(`${API_URL}/api/site_settings/site_meta_default?locale=${encodeURIComponent(locale)}`, { next: { revalidate: 300 } }),
     ]);
     const seo = seoRes.ok ? ((await seoRes.json())?.value ?? null) : null;
     const meta = metaRes.ok ? ((await metaRes.json())?.value ?? null) : null;
@@ -27,21 +31,25 @@ async function fetchGlobalSeo() {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo, meta } = await fetchGlobalSeo();
+  const locale = defaultLocale;
+  // Fetch branding and SEO in parallel
+  const [branding, { seo, meta }] = await Promise.all([
+    fetchSiteSettings(locale),
+    fetchGlobalSeo(locale)
+  ]);
 
-  const siteName = seo?.site_name ?? "vistaseed";
-  const titleTemplate = seo?.title_template ?? "%s | vistaseed";
-  const titleDefault = meta?.title ?? seo?.title_default ?? "vistaseed — Hizli ve Guvenilir Kargo";
-  const description = meta?.description ?? seo?.description
-    ?? "vistaseed | Turkiye'nin P2P kargo pazaryeri. Guvenilir tasiyicilarla paketini hizli ve uygun fiyata gonder. 81 ilde binlerce aktif tasiyici seni bekliyor.";
+  const siteName = branding.site_name || seo?.site_name || SITE_NAME;
+  const titleTemplate = seo?.title_template || (siteName ? `%s | ${siteName}` : "%s");
+  const titleDefault = meta?.title || seo?.title_default || siteName;
+  const description = meta?.description || seo?.description || branding.site_description || "";
   const keywords = meta?.keywords
     ? meta.keywords.split(",").map((k: string) => k.trim()).filter(Boolean)
-    : ["kargo", "paket takip", "tasiyicilik", "lojistik", "turkiye", "vistaseed", "p2p kargo"];
-  const author = seo?.author ?? "vistaseed";
+    : [];
+  const author = seo?.author || siteName;
 
   const ogImages = seo?.open_graph?.images?.length
     ? seo.open_graph.images.map((img: string) => img.startsWith("/") ? `${SITE_URL}${img}` : img)
-    : [`${SITE_URL}/assets/og-default.png`];
+    : branding.site_logo ? [branding.site_logo] : [];
 
   const twitterCard = seo?.twitter?.card ?? "summary_large_image";
   const twitterSite = seo?.twitter?.site || undefined;
@@ -49,24 +57,23 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: { default: titleDefault, template: titleTemplate },
     description,
-    keywords,
-    authors: [{ name: author }],
-    publisher: author,
+    ...(keywords.length > 0 && { keywords }),
+    ...(author && { authors: [{ name: author }], publisher: author }),
     metadataBase: new URL(SITE_URL),
     icons: {
       icon: [
-        { url: "/assets/logo/favicon.ico" },
-        { url: "/assets/logo/logo.jpeg", type: "image/jpeg" },
+        { url: branding.site_favicon || "/favicon.ico" },
+        { url: branding.site_logo || "/assets/logo/logo.jpeg", type: "image/jpeg" },
       ],
-      shortcut: "/assets/logo/favicon.ico",
-      apple: "/assets/logo/logo.jpeg",
+      shortcut: branding.site_favicon || "/favicon.ico",
+      apple: branding.site_apple_touch || branding.site_logo || "/assets/logo/logo.jpeg",
     },
     openGraph: {
-      siteName,
+      ...(siteName && { siteName }),
       type: "website",
-      locale: "tr_TR",
+      locale,
       url: SITE_URL,
-      images: ogImages,
+      ...(ogImages.length > 0 && { images: ogImages }),
     },
     twitter: {
       card: twitterCard as "summary_large_image",
@@ -75,17 +82,32 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  // Fetch settings to inject dynamic font sizes and theme variables
+  const settings = await fetchSiteSettings(defaultLocale);
+  
   return (
-    <html lang="tr" suppressHydrationWarning className={`${dmSans.variable} font-sans`}>
+    <html
+      lang={defaultLocale}
+      data-brand="vistaseed"
+      suppressHydrationWarning
+      className={`${dmSans.variable} font-sans`}
+      style={{ 
+        // @ts-ignore
+        "--font-size-base": settings.theme_font_size || "16px",
+        "--font-size-scale": settings.theme_font_scale || 1
+      }}
+    >
       <body suppressHydrationWarning>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <NextIntlClientProvider>
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

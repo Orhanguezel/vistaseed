@@ -1,37 +1,93 @@
-// =============================================================
-// FILE: src/modules/dashboard/admin.controller.ts
-// Admin dashboard handlers
-// =============================================================
-import type { FastifyRequest, FastifyReply } from 'fastify';
-import { handleRouteError } from "@/modules/_shared";
-import { repoGetAdminSummary, repoGetRevenueStats, repoGetActivityStats } from './repository';
+import type { FastifyReply, FastifyRequest } from "fastify";
+import { sql } from "drizzle-orm";
 
-/** GET /admin/dashboard/summary */
+import { db } from "@/db/client";
+import { users } from "@agro/shared-backend/modules/auth/schema";
+import { categories } from "@agro/shared-backend/modules/categories/schema";
+import { contact_messages } from "@agro/shared-backend/modules/contact/schema";
+import { customPages } from "@agro/shared-backend/modules/customPages/schema";
+import { emailTemplates } from "@agro/shared-backend/modules/emailTemplates/schema";
+import { galleries } from "@agro/shared-backend/modules/gallery/schema";
+import { library } from "@agro/shared-backend/modules/library/schema";
+import { popups } from "@/modules/popups/schema";
+import { products } from "@agro/shared-backend/modules/products/schema";
+import { referencesTable } from "@agro/shared-backend/modules/references/schema";
+import { siteSettings } from "@agro/shared-backend/modules/siteSettings/schema";
+import { storageAssets } from "@agro/shared-backend/modules/storage/schema";
+import { supportFaqs } from "@/modules/support/schema";
+import { auditRequestLogs } from "@agro/shared-backend/modules/audit/schema";
+import { handleRouteError } from "@agro/shared-backend/modules/_shared";
+
+type DashboardSummaryResponse = {
+  items: Array<{
+    key: string;
+    label: string;
+    count: number;
+  }>;
+};
+
+async function countRows(table: unknown): Promise<number> {
+  const [{ total }] = await db
+    .select({ total: sql<number>`COUNT(*)` })
+    .from(table as never);
+  return Number(total ?? 0);
+}
+
 export async function adminDashboardSummary(_req: FastifyRequest, reply: FastifyReply) {
   try {
-    const items = await repoGetAdminSummary();
-    return reply.send({ items });
-  } catch (e) {
-    return handleRouteError(reply, _req, e, 'admin_dashboard_summary');
-  }
-}
+    const [
+      productsTotal,
+      categoriesTotal,
+      contactsTotal,
+      usersTotal,
+      siteSettingsTotal,
+      storageTotal,
+      emailTemplatesTotal,
+      auditTotal,
+      customPagesTotal,
+      faqsTotal,
+      referencesTotal,
+      libraryTotal,
+      galleryTotal,
+      popupsTotal,
+    ] = await Promise.all([
+      countRows(products),
+      countRows(categories),
+      countRows(contact_messages),
+      countRows(users),
+      countRows(siteSettings),
+      countRows(storageAssets),
+      countRows(emailTemplates),
+      countRows(auditRequestLogs),
+      countRows(customPages),
+      countRows(supportFaqs),
+      countRows(referencesTable),
+      countRows(library),
+      countRows(galleries),
+      countRows(popups),
+    ]);
 
-/** GET /admin/dashboard/stats/revenue */
-export async function adminStatsRevenue(_req: FastifyRequest, reply: FastifyReply) {
-  try {
-    const data = await repoGetRevenueStats();
-    return reply.send(data);
-  } catch (e) {
-    return handleRouteError(reply, _req, e, 'admin_stats_revenue');
-  }
-}
+    const payload: DashboardSummaryResponse = {
+      items: [
+        { key: "products", label: "products", count: productsTotal },
+        { key: "categories", label: "categories", count: categoriesTotal },
+        { key: "contacts", label: "contacts", count: contactsTotal },
+        { key: "users", label: "users", count: usersTotal },
+        { key: "site_settings", label: "site_settings", count: siteSettingsTotal },
+        { key: "storage", label: "storage", count: storageTotal },
+        { key: "email_templates", label: "email_templates", count: emailTemplatesTotal },
+        { key: "audit", label: "audit", count: auditTotal },
+        { key: "custom_pages", label: "custom_pages", count: customPagesTotal },
+        { key: "faqs", label: "faqs", count: faqsTotal },
+        { key: "references", label: "references", count: referencesTotal },
+        { key: "library", label: "library", count: libraryTotal },
+        { key: "gallery", label: "gallery", count: galleryTotal },
+        { key: "popups", label: "popups", count: popupsTotal },
+      ],
+    };
 
-/** GET /admin/dashboard/stats/activity */
-export async function adminStatsActivity(_req: FastifyRequest, reply: FastifyReply) {
-  try {
-    const data = await repoGetActivityStats();
-    return reply.send(data);
-  } catch (e) {
-    return handleRouteError(reply, _req, e, 'admin_stats_activity');
+    return reply.send(payload);
+  } catch (err) {
+    return handleRouteError(reply, _req, err, "dashboard_summary_failed");
   }
 }

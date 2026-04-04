@@ -40,6 +40,8 @@ export interface CategoryDto {
  */
 export interface CategoryListQueryParams {
   q?: string;
+  locale?: string;
+  module_key?: string;
   is_active?: boolean | string;
   is_featured?: boolean | string;
   limit?: number;

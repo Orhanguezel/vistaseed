@@ -1,54 +1,56 @@
 /**
- * vistaseed — Uygulama Route Sabitları
- * Magic string yok — tüm yollar buradan.
+ * Uygulama Route Sabitleri
+ * Jenerik kurumsal site yapisi.
  */
 
 export const ROUTES = {
   home: "/",
 
-  auth: {
-    login:    "/giris",
-    register: "/uye-ol",
-    forgot:         "/sifremi-unuttum",
-    forgotPassword: "/sifremi-unuttum",
-    resetPassword:  "/sifre-sifirla",
+  products: {
+    list:   "/urunler",
+    detail: (slug: string) => `/urunler/${slug}`,
   },
 
-  ilanlar: {
-    list:   "/ilanlar",
-    detail: (id: string) => `/ilanlar/${id}`,
-    yeni:   "/ilanlar/yeni",
+  orders: {
+    list:   "/panel/siparisler",
+    detail: (id: string) => `/panel/siparisler/${id}`,
   },
 
-  takip: "/takip",
+  dealer: {
+    dashboard:    "/bayi-dashboard",
+    finance:      "/bayi/finans",
+    profile:      "/bayi/profil",
+    transactions: "/bayi/hareketler",
+  },
 
   panel: {
-    root:          "/panel",
-    musteri:       "/panel/musteri",
-    odemeSonuc:    "/panel/musteri/odeme-sonuc",
-    tasiyici:      "/panel/tasiyici",
-    cuzdan:        "/panel/cuzdan",
-    bildirimler:   "/panel/bildirimler",
-    profil:        "/panel/profil",
-  },
-
-  ilanVer: "/ilan-ver",
-
-  dashboard: {
-    root:      "/dashboard",
-    ilanlarim: "/dashboard/ilanlarim",
-    siparisler: "/dashboard/siparisler",
-    profil:    "/dashboard/profil",
-    mesajlar:  "/dashboard/mesajlar",
+    root:    "/panel",
+    profile: "/panel/profil",
+    /** Destek talepleri — panel icinde, ana siteye cikmadan */
+    support: "/panel/destek",
   },
 
   static: {
-    hakkinda: "/hakkimizda",
-    iletisim: "/iletisim",
-    destek: "/destek",
-    gizlilik: "/gizlilik-politikasi",
-    kvkk: "/kvkk",
-    kullanim: "/kullanim-kosullari",
-    tasimaKurallari: "/tasima-kurallari",
+    about:    "/hakkimizda",
+    hr:       "/insan-kaynaklari",
+    faq:      "/sss",
+    contact:        "/iletisim",
+    support:        "/destek",
+    privacy:        "/gizlilik-politikasi",
+    kvkk:           "/kvkk",
+    terms:          "/kullanim-kosullari",
+    dealer_login:   "/bayi-girisi",
+    member_login:   "/uye-girisi",
+    dealer_dashboard: "/bayi-dashboard",
+    member_dashboard: "/uye-dashboard",
+    rd_center:      "/arge-merkezi",
+    planting_guide: "/ekim-rehberi",
+    sustainability: "/surdurulebilirlik",
+    knowledge_base: "/bilgi-bankasi",
+    blog: "/blog",
+    references: "/referanslar",
+    compare: "/karsilastirma",
+    dealer_network: "/bayi-agi",
+    bulk_sales: "/toplu-satis",
   },
 } as const;

@@ -1,0 +1,78 @@
+{
+  "header": {
+    "title": "İş İlanları",
+    "description": "Kariyer sayfasında yayınlanacak iş ilanlarını dil bazlı yönetin."
+  },
+  "tabs": {
+    "list": "Liste",
+    "content": "İçerik",
+    "seo": "SEO"
+  },
+  "actions": {
+    "back": "Listeye Dön",
+    "refresh": "Yenile",
+    "create": "Yeni İlan",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "save": "Kaydet"
+  },
+  "table": {
+    "order": "Sıra",
+    "title": "Başlık",
+    "department": "Departman",
+    "location": "Konum",
+    "employmentType": "Çalışma Tipi",
+    "active": "Yayında",
+    "actions": "İşlemler"
+  },
+  "list": {
+    "loading": "İş ilanları yükleniyor...",
+    "empty": "Henüz iş ilanı eklenmedi."
+  },
+  "detail": {
+    "newTitle": "Yeni İş İlanı",
+    "editTitle": "İş İlanını Düzenle",
+    "contentTitle": "İçerik ve Pozisyon Bilgileri",
+    "seoTitle": "SEO Bilgileri"
+  },
+  "form": {
+    "title": "Başlık",
+    "titlePlaceholder": "Pozisyon başlığını girin",
+    "slug": "Slug",
+    "slugPlaceholder": "pozisyon-basligi",
+    "department": "Departman",
+    "departmentPlaceholder": "Örnek: Satış, Üretim, Pazarlama",
+    "location": "Konum",
+    "locationPlaceholder": "Örnek: Ankara / Hibrit",
+    "employmentType": "Çalışma Tipi",
+    "description": "Pozisyon Açıklaması",
+    "descriptionPlaceholder": "Rolün kapsamını, sorumlulukları ve ekibe katkısını yazın.",
+    "requirements": "Aranan Nitelikler",
+    "requirementsPlaceholder": "Beklenen deneyim, yetkinlik ve teknik gereksinimleri yazın.",
+    "displayOrder": "Sıralama",
+    "isActive": "Yayında",
+    "metaTitle": "Meta Başlık",
+    "metaTitlePlaceholder": "Arama sonucunda görünecek başlık",
+    "metaDescription": "Meta Açıklama",
+    "metaDescriptionPlaceholder": "Arama sonucunda görünecek açıklama"
+  },
+  "employmentTypes": {
+    "full_time": "Tam Zamanlı",
+    "part_time": "Yarı Zamanlı",
+    "contract": "Sözleşmeli",
+    "intern": "Staj"
+  },
+  "messages": {
+    "refreshing": "Liste yenileniyor...",
+    "requiredError": "Başlık ve slug zorunludur.",
+    "created": "İş ilanı oluşturuldu.",
+    "updated": "İş ilanı güncellendi.",
+    "deleted": "İş ilanı silindi.",
+    "activated": "İş ilanı yayına alındı.",
+    "deactivated": "İş ilanı yayından kaldırıldı.",
+    "confirmDelete": "\"{title}\" ilanını silmek istediğinize emin misiniz?",
+    "deleteError": "Silme hatası",
+    "updateError": "Güncelleme hatası",
+    "errorPrefix": "Hata"
+  }
+}

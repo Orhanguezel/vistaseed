@@ -8,31 +8,31 @@
 ### 1. Sebze yetistirirken en sik yapilan hata nedir?
 Asiri sulama, dengesiz ve bilincsiz gubre kullanimi, yetersiz gunes isigi ve yanlis ilaclama en yaygin hatalar arasinda yer almaktadir.
 
-### 2. Kacak tohum nedir ve neden kullanilmamalidir?
-Kacak tohum, resmi kayit ve denetimlerden gecmeden satilan ve kaynagi belli olmayan tohumlardir. Dusuk verim, hastalik riski ve duzensiz bitki gelisimine yol acabilir.
+### 2. Kaçak tohum nedir ve neden kullanilmamalidir?
+Kaçak tohum, resmi kayıt ve denetimlerden gecmeden satilan ve kaynağı belli olmayan tohumlardir. Dusuk verim, hastalık riski ve düzensiz bitki gelisimine yol acabilir.
 
-### 3. Sebze tohumlari ne kadar sure saklanabilir?
-Uygun kosullarda acilmamis paketler genellikle 1-2 yil arasinda cimlenme ozelligini korur. Serin, kuru ve karanlik ortamda depolanmasi onerilir.
+### 3. Sebze tohumlari ne kadar süre saklanabilir?
+Uygun koşullarda açılmamış paketler genellikle 1-2 yıl arasinda çimlenme özelliğini korur. Serin, kuru ve karanlık ortamda depolanmasi önerilir.
 
-### 4. Yeni ekilen tohumu ne siklikla sulamaliyim?
+### 4. Yeni ekilen tohumu ne sıklıkla sulamalıyım?
 Cimlenme sirasinda toprak nemli tutulmali ancak camur olacak kadar asiri su verilmemelidir. Sprey kullanimi en guvenli yontemdir.
 
 ### 5. Tohumlar cimlendikten sonra ne yapmaliyim?
-Filizler isik alan yere tasinmali ve 3-4 yaprakli hale geldiklerinde seyreltme veya daha genis alanlara aktarilabilir.
+Filizler ışık alan yere taşınmalı ve 3-4 yapraklı hale geldiklerinde seyreltme veya daha geniş alanlara aktarilabilir.
 
-### 6. Tohumlarin cimlenme orani nedir?
-Vista Seeds urunleri cogu sebze tohumu icin %95-99 araliginda cimlenme oranina sahiptir.
+### 6. Tohumlarin çimlenme orani nedir?
+Vista Seeds urunleri çoğu sebze tohumu için %95-99 aralığında çimlenme oranina sahiptir.
 
 ### 7. Tohumlari ne zaman ekmeliyim?
-Her sebze turunun farkli ekim zamani vardir; urun sayfalarindaki takvime basvurulmasi onerilir.
+Her sebze türünun farkli ekim zamanı vardir; urun sayfalarındaki takvime basvurulmasi önerilir.
 
 ## UI Komponenti
 - Accordion (acilir-kapanir) format
-- Schema.org FAQPage yapilandirmasi (SEO icin)
+- Schema.org FAQPage yapılandırması (SEO için)
 
-## Planlanan Moduller
+## Planlanan Modüller
 - [x] Accordion SSS komponenti
 - [x] FAQPage schema markup
 - [ ] Kategori bazli SSS filtreleme (mevcut sitede yok - eklenebilir)
 - [ ] SSS arama fonksiyonu
-- [ ] Admin panelden SSS yonetimi (CRUD)
+- [ ] Admin panelden SSS yönetimi (CRUD)

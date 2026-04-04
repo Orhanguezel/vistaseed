@@ -2,7 +2,8 @@
 
 ## Proje Genel Bakis
 Mevcut site: https://www.vistaseeds.com.tr/
-Hedef: Yeni mimaride (Next.js + Fastify + Drizzle ORM) tamamen yeniden yazmak.
+Hedef: Yeni mimaride (Next.js 16 + Fastify + Drizzle ORM) tamamen yeniden yazmak.
+Backend proje ismine bağımlı değildir, başka projelerde de kullanılabilir.
 
 ---
 
@@ -11,18 +12,16 @@ Hedef: Yeni mimaride (Next.js + Fastify + Drizzle ORM) tamamen yeniden yazmak.
 | # | Sayfa | Route | Durum |
 |---|-------|-------|-------|
 | 1 | Anasayfa | `/` | Planlanadi |
-| 2 | Hakkimizda | `/hakkimizda` | Planlanadi |
-| 3 | Urunler | `/urunler` | Planlanadi |
-| 4 | Urun Detay | `/urunler/[slug]` | Planlanadi |
-| 5 | Grup Sirketleri | `/grup-sirketlerimiz` | Planlanadi |
-| 6 | Sirket Detay | `/grup-sirketlerimiz/[slug]` | Planlanadi |
-| 7 | Insan Kaynaklari | `/insan-kaynaklari` | Planlanadi |
-| 8 | SSS | `/sss` | Planlanadi |
-| 9 | Iletisim | `/iletisim` | Planlanadi |
+| 2 | Hakkımızda | `/hakkimizda` | Planlanadi |
+| 3 | Ürünler | `/urunler` | Planlanadi |
+| 4 | Ürün Detay | `/urunler/[slug]` | Planlanadi |
+| 5 | İnsan Kaynakları | `/insan-kaynaklari` | Planlandı |
+| 6 | SSS | `/sss` | Planlanadi |
+| 7 | İletişim | `/iletisim` | Planlanadi |
 
 ---
 
-## Frontend Modulleri
+## Frontend Modülleri
 
 ### Ortak Komponentler
 - [ ] Header (sticky, responsive, mobil menu)
@@ -34,137 +33,137 @@ Hedef: Yeni mimaride (Next.js + Fastify + Drizzle ORM) tamamen yeniden yazmak.
 - [ ] SEO Head (meta, schema.org)
 - [ ] Page Hero Banner (her sayfanin baslik bolumu)
 
-### Anasayfa Modulleri
+### Anasayfa Modülleri
 - [ ] Hero Slider
 - [ ] Istatistik Sayaclari (animasyonlu counter)
-- [ ] Temel Degerler Kartlari (4'lu grid)
-- [ ] Neden Bizi Secmelisiniz bolumu
-- [ ] Urun On Izleme Grid (filtrelemeli)
-- [ ] Grup Sirketleri On Izleme
+- [ ] Temel Değerler Kartları (4'lü grid)
+- [ ] Neden Bizi Seçmelisiniz bolumu
+- [ ] Ürün Ön İzleme Grid (filtrelemeli)
 - [ ] Timeline / Tarihce
-- [ ] SSS Accordion On Izleme
+- [ ] SSS Accordion Ön İzleme
 
-### Hakkimizda Modulleri
+### Hakkımızda Modülleri
 - [ ] Sirket Tanitim Blogu
 - [ ] Vizyon & Misyon Kartlari
-- [ ] Temel Degerler
+- [ ] Temel Değerler
 - [ ] Istatistik Sayaclari
 - [ ] Timeline Komponenti
 - [ ] (Yeni) Ekip Tanitimi
 - [ ] (Yeni) Sertifikalar/Belgeler
 
-### Urunler Modulleri
-- [ ] Urun Listesi Grid
-- [ ] Kategori Filtreleme (Isotope tarzda)
-- [ ] Urun Karti Komponenti
-- [ ] Urun Detay Sayfasi
-- [ ] (Yeni) Urun Arama
-- [ ] (Yeni) Urun Karsilastirma
+### Ürünler Modülleri
+- [ ] Ürün Listesi Grid
+- [ ] Kategori Filtreleme
+- [ ] Ürün Karti Komponenti
+- [ ] Ürün Detay Sayfasi
+- [ ] (Yeni) Ürün Arama
 - [ ] (Yeni) PDF Katalog Indirme
 - [ ] (Yeni) Teknik Veri Sayfasi (Datasheet)
 
-### Grup Sirketleri Modulleri
-- [ ] Sirket Kartlari Grid
-- [ ] Sirket Detay Sayfasi
-- [ ] (Yeni) Gorsel Galeri
-- [ ] (Yeni) Konum Haritasi
-
-### Insan Kaynaklari Modulleri
+### İnsan Kaynakları Modülleri
 - [ ] Sayfa Tanitim Metni
 - [ ] Kadro Istatistikleri
 - [ ] Calisma Avantajlari
-- [ ] (Yeni) Acik Pozisyonlar Listesi (dinamik)
-- [ ] (Yeni) Online Basvuru Formu (CV yukleme)
+- [ ] (Yeni) Açık Pozisyonlar Listesi (dinamik)
+- [ ] (Yeni) Online Başvuru Formu (CV yükleme)
 
-### SSS Modulleri
+### SSS Modülleri
 - [ ] Accordion Komponenti
 - [ ] FAQPage Schema Markup
 - [ ] (Yeni) Kategori Filtreleme
 - [ ] (Yeni) Arama Fonksiyonu
 
-### Iletisim Modulleri
-- [ ] Iletisim Bilgileri Kartlari
+### İletişim Modülleri
+- [ ] İletişim Bilgileri Kartlari
 - [ ] Google Maps Entegrasyonu
 - [ ] WhatsApp / Telefon Linkleri
-- [ ] (Yeni) Iletisim Formu
+- [ ] (Yeni) İletişim Formu
 
 ---
 
-## Backend API Endpointleri
+## Backend Modülleri
 
-### Mevcut (Admin Panel'de var)
-- `GET/POST /api/categories` - Urun kategorileri
-- `GET/POST /api/carriers` - Tasiyicilar
-- `GET/POST /api/contacts` - Iletisim mesajlari
-- `GET/POST /api/ilanlar` - Is ilanlari
-- `GET/POST /api/site-settings` - Site ayarlari
-- `GET/POST /api/storage` - Dosya depolama
-- `GET/POST /api/users` - Kullanici yonetimi
+### Kalacak (Jenerik)
+| Modul | Amac |
+|-------|------|
+| `auth` | Kimlik doğrulama, JWT, rol yönetimi |
+| `audit` | HTTP/auth event loglama |
+| `categories` | Kategori yönetimi (i18n) |
+| `contact` | İletişim formu |
+| `customPages` | CMS sayfaları (slug, i18n) |
+| `emailTemplates` | Email sablon yönetimi |
+| `health` | Health check |
+| `mail` | Email gonderim (SMTP) |
+| `notifications` | Bildirim sistemi |
+| `products` | Ürün katalogu (i18n) |
+| `profiles` | Kullanici profilleri |
+| `siteSettings` | Site ayarları (key-value) |
+| `storage` | Dosya yükleme (Cloudinary/local) |
+| `support` | SSS + destek ticket |
+| `telegram` | Telegram bot (opsiyonel) |
+| `theme` | UI tema ayarları |
+| `userRoles` | Rol yönetimi |
 
-### Frontend Icin Gerekli Public API'ler
-- [ ] `GET /api/public/products` - Urun listesi (filtreleme destekli)
-- [ ] `GET /api/public/products/[slug]` - Urun detay
-- [ ] `GET /api/public/categories` - Kategori listesi
-- [ ] `GET /api/public/companies` - Grup sirketleri
-- [ ] `GET /api/public/companies/[slug]` - Sirket detay
-- [ ] `GET /api/public/faq` - SSS listesi
-- [ ] `GET /api/public/jobs` - Acik is ilanlari
-- [ ] `GET /api/public/site-settings` - Site ayarlari (public)
-- [ ] `POST /api/public/contact` - Iletisim formu gonderimi
-- [ ] `POST /api/public/job-application` - Is basvurusu
+### Kaldirilacak (PaketJet Kalintilari)
+- `bookings`, `carriers`, `carrier-bank`, `ilanlar`, `ratings`
+- `withdrawal`, `subscription`, `offer`, `wallet`, `reports`, `dashboard`
 
----
+### Eklenecek (Yeni)
+| Modul | Amac |
+|-------|------|
+| `jobListings` | Is ilanlari (i18n) |
+| `jobApplications` | Is basvurulari (CV yükleme) |
 
-## Veritabani Tablolari (Drizzle ORM)
-
-### Mevcut (Tahmini)
-- `users` - Kullanicilar
-- `categories` - Urun kategorileri
-- `contacts` - Iletisim mesajlari
-- `site_settings` - Site ayarlari
-- `storage` - Medya dosyalari
-- `ilanlar` - Is ilanlari
-
-### Eklenmesi Gereken
-- [ ] `products` - Urunler (slug, isim, aciklama, kategori, gorseller, teknik ozellikler)
-- [ ] `companies` - Grup sirketleri (slug, isim, sektor, aciklama, gorseller)
-- [ ] `faq` - Sikca sorulan sorular (soru, cevap, kategori, sira)
-- [ ] `timeline_events` - Tarihce olaylari (yil, baslik, aciklama)
-- [ ] `job_applications` - Is basvurulari (ad, email, telefon, cv, pozisyon)
-
----
-
-## Mevcut Sitede Olmayip Eklenmesi Onerilen Moduller
-
-1. **Iletisim Formu** - Mevcut sitede form yok, sadece telefon/whatsapp var
-2. **Urun Detay Sayfasi** - Ayri sayfa olarak teknik ozellikler, ekim takvimi
-3. **Online Is Basvuru Formu** - CV yukleme destekli
-4. **Blog / Tarim Rehberi** - SEO icin faydali, tarim ipuclari
-5. **Urun Katalogu PDF** - Indirilebilir dijital katalog
-6. **Coklu Dil Destegi** - Ingilizce / Arapca (ihracat icin)
-7. **Bayi/Distribitor Haritasi** - Satis noktalari gosterimi
-8. **Newsletter** - E-bulten aboneligi
-9. **Musteri Yorumlari / Referanslar** - Guven artirici
+### Public API Endpointleri
+```
+GET    /api/products              — Ürün listesi (filtreleme, pagination)
+GET    /api/products/:slug        — Ürün detay
+GET    /api/categories            — Kategori listesi
+GET    /api/faq                   — SSS listesi
+GET    /api/jobs                  — Aktif is ilanlari
+GET    /api/pages/:slug           — CMS sayfa içeriği
+GET    /api/site-settings/public  — Public site ayarları
+POST   /api/contact               — İletişim formu
+POST   /api/job-applications      — Is basvurusu
+```
 
 ---
 
-## Teknik Mimari Ozeti
+## Veritabani (Drizzle ORM)
+
+### Kalacak Tablolar
+- `users`, `user_roles`, `refresh_tokens`, `profiles`
+- `site_settings`, `categories`, `category_i18n`
+- `products`, `product_i18n`
+- `email_templates`, `custom_pages`, `custom_pages_i18n`
+- `notifications`, `support_faqs`, `support_faqs_i18n`, `support_tickets`
+- `audit_request_logs`, `audit_auth_events`
+- `telegram_inbound_messages`
+
+### Eklenecek Tablolar
+- `job_listings`, `job_listings_i18n`
+- `job_applications`
+
+---
+
+## Teknik Mimari
 
 ```
 Frontend:  Next.js 16 + React 19 + Tailwind v4 + Framer Motion
-Backend:   Fastify + Drizzle ORM + MySQL
+Backend:   Fastify v5 + Bun + Drizzle ORM + MySQL
 Admin:     Mevcut admin_panel (Next.js)
 Medya:     Cloudinary
 Deploy:    Docker + Nginx + PM2 + VPS
+Seed:      JSON seed dosyaları (src/db/seed/data/)
 ```
 
 ---
 
-## Detayli Dokumantasyon Dosyalari
+## Detayli Dokumantasyon
+- [backend-planlama.md](./backend-planlama.md) — Backend faz plani
 - [01-anasayfa.md](./01-anasayfa.md)
 - [02-hakkimizda.md](./02-hakkimizda.md)
 - [03-urunler.md](./03-urunler.md)
-- [04-grup-sirketleri.md](./04-grup-sirketleri.md)
 - [05-insan-kaynaklari.md](./05-insan-kaynaklari.md)
 - [06-sss.md](./06-sss.md)
 - [07-iletisim.md](./07-iletisim.md)

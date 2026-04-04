@@ -27,11 +27,11 @@ rm -rf node_modules/.cache
 ### 3️⃣ START without Turbopack
 ```bash
 cd admin_panel
-npm run dev
+bun run dev
 ```
 
 **DO NOT USE:**
-- ❌ `npm run dev:turbo`
+- ❌ `bun run dev:turbo`
 - ❌ `next dev --turbo`
 - ❌ Any command with `--turbo` flag
 
@@ -46,7 +46,7 @@ These are all Turbopack cache corruption issues.
 
 ## Verification
 
-After starting with `npm run dev`, check your terminal output.
+After starting with `bun run dev`, check your terminal output.
 You should see:
 ```
 ✓ Ready in 2.5s
@@ -58,7 +58,7 @@ You should NOT see:
 ⚡ Turbopack (beta)
 ```
 
-If you see "Turbopack", you're still using it. Stop and restart with `npm run dev`.
+If you see "Turbopack", you're still using it. Stop and restart with `bun run dev`.
 
 ## Need More Help?
 

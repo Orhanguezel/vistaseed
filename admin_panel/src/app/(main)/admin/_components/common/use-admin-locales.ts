@@ -14,6 +14,7 @@ import {
   parseAdminAppLocalesValue,
   toShortAdminLocale,
   uniqAdminLocalesByCode,
+  SITE_SETTINGS_BRAND_PREFIX,
   type AdminLocaleOption,
   type UseAdminLocalesResult,
 } from '@/integrations/shared';
@@ -21,18 +22,23 @@ import {
 export type { AdminLocaleMeta, AdminLocaleOption, UseAdminLocalesResult } from '@/integrations/shared';
 
 export function useAdminLocales(): UseAdminLocalesResult {
+  const prefix = SITE_SETTINGS_BRAND_PREFIX || '';
+  const appLocalesKey = `${prefix}app_locales`;
+  const defaultLocaleKey = `${prefix}default_locale`;
+
   const {
     data: rows,
     isLoading,
     isFetching,
   } = useListSiteSettingsAdminQuery({
-    keys: ['app_locales', 'default_locale'],
+    keys: [appLocalesKey, defaultLocaleKey],
+    locale: '*',
   });
 
   const computed = useMemo(() => {
     const list = rows ?? [];
-    const appRow = list.find((r: any) => r.key === 'app_locales');
-    const defRow = list.find((r: any) => r.key === 'default_locale');
+    const appRow = list.find((r: any) => r.key === appLocalesKey);
+    const defRow = list.find((r: any) => r.key === defaultLocaleKey);
 
     const itemsRaw = parseAdminAppLocalesValue(appRow?.value);
 
@@ -96,9 +102,13 @@ export function useAdminLocales(): UseAdminLocalesResult {
     };
   }, [rows]);
 
-  return {
-    ...computed,
-    loading: isLoading,
-    fetching: isFetching,
-  };
+  const result = useMemo(() => {
+    return {
+      ...computed,
+      loading: isLoading,
+      fetching: isFetching,
+    };
+  }, [computed, isLoading, isFetching]);
+
+  return result;
 }

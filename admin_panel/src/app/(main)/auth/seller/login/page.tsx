@@ -27,8 +27,8 @@ export default function SellerLoginPage() {
               <Image src="/logo/logo-horizontal.svg" alt="vistaseed" fill className="object-contain" />
             </div>
             <div className="space-y-2">
-              <h1 className="font-light text-5xl text-primary-foreground">Satici Girisi</h1>
-              <p className="text-xl text-primary-foreground/80">Magazanizi ve kampanyalarinizi yonetin</p>
+              <h1 className="font-light text-5xl text-primary-foreground">Satıcı Girişi</h1>
+              <p className="text-xl text-primary-foreground/80">Mağazanızı ve kampanyalarınızı yönetin</p>
             </div>
           </div>
         </div>
@@ -37,8 +37,8 @@ export default function SellerLoginPage() {
       <div className="flex w-full items-center justify-center bg-background p-8 lg:w-2/3">
         <div className="w-full max-w-md space-y-10 py-24 lg:py-32">
           <div className="space-y-4 text-center">
-            <div className="font-medium tracking-tight">Satici Hesabina Giris</div>
-            <div className="mx-auto max-w-xl text-muted-foreground">Bu alan sadece satici hesaplari icindir.</div>
+            <div className="font-medium tracking-tight">Satıcı Hesabına Giriş</div>
+            <div className="mx-auto max-w-xl text-muted-foreground">Bu alan sadece satıcı hesapları içindir.</div>
           </div>
 
           <div className="space-y-4">
@@ -49,7 +49,7 @@ export default function SellerLoginPage() {
             <p className="text-center text-muted-foreground text-xs">
               Hesabin yok mu?{' '}
               <Link prefetch={false} href="/auth/seller/register" className="text-primary underline-offset-4 hover:underline">
-                Satici kaydi olustur
+                Satıcı kaydı oluştur
               </Link>
             </p>
           </div>

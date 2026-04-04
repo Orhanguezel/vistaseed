@@ -1,0 +1,95 @@
+{
+  "header": {
+    "title": "Referanslar",
+    "description": "Referanslarınızı listeleyin, düzenleyin ve yönetin."
+  },
+  "tabs": {
+    "list": "Liste",
+    "content": "İçerik",
+    "seo": "SEO",
+    "images": "Görseller"
+  },
+  "filters": {
+    "searchPlaceholder": "Referans adı veya slug ile ara...",
+    "locale": "Dil",
+    "allCategories": "Tüm Kategoriler",
+    "onlyPublished": "Sadece yayında",
+    "onlyFeatured": "Sadece öne çıkan"
+  },
+  "actions": {
+    "create": "Yeni Referans",
+    "edit": "Düzenle",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "refresh": "Yenile",
+    "back": "Geri"
+  },
+  "form": {
+    "title": "Referans Adı",
+    "titlePlaceholder": "Referans adını girin",
+    "slug": "Slug",
+    "slugPlaceholder": "referans-slug",
+    "summary": "Özet",
+    "summaryPlaceholder": "Kısa özet",
+    "content": "İçerik",
+    "contentPlaceholder": "Detaylı içerik",
+    "websiteUrl": "Web Sitesi",
+    "websiteUrlPlaceholder": "https://ornek.com",
+    "category": "Kategori",
+    "categoryPlaceholder": "Kategori seçin",
+    "featuredImage": "Kapak Görseli",
+    "featuredImageAlt": "Görsel Alt Metni",
+    "featuredImageAltPlaceholder": "Görsel alt metni girin",
+    "categoryId": "Kategori ID",
+    "displayOrder": "Sıralama",
+    "isPublished": "Yayında",
+    "isFeatured": "Öne Çıkan",
+    "metaTitle": "Meta Başlık",
+    "metaTitlePlaceholder": "SEO başlık",
+    "metaDescription": "Meta Açıklama",
+    "metaDescriptionPlaceholder": "SEO açıklaması"
+  },
+  "detail": {
+    "newTitle": "Yeni Referans",
+    "editTitle": "Referans Düzenle",
+    "contentTitle": "İçerik Bilgileri",
+    "seoTitle": "SEO Ayarları",
+    "imagesTitle": "Görsel Yönetimi",
+    "imagesDescription": "Kapak ve galeri görselleri storage üzerinden uploads/references klasörüne yüklenir."
+  },
+  "table": {
+    "order": "Sıra",
+    "image": "Görsel",
+    "title": "Başlık",
+    "slug": "Slug",
+    "category": "Kategori",
+    "website": "Web Sitesi",
+    "published": "Yayında",
+    "featured": "Öne Çıkan",
+    "actions": "İşlemler"
+  },
+  "images": {
+    "title": "Referans Görselleri",
+    "add": "Görsel Ekle",
+    "empty": "Henüz görsel eklenmedi.",
+    "deleteConfirm": "Bu görseli silmek istediğinize emin misiniz?",
+    "saveHint": "Görsel değişiklikleri Kaydet ile birlikte referans galerisine yazılır."
+  },
+  "messages": {
+    "created": "Referans oluşturuldu.",
+    "updated": "Referans güncellendi.",
+    "deleted": "Referans silindi.",
+    "imagesSynced": "Referans görselleri güncellendi.",
+    "deleteError": "Silme hatası",
+    "errorPrefix": "Hata",
+    "confirmDelete": "'{title}' referansını silmek istediğinize emin misiniz?",
+    "requiredError": "Referans adı, slug ve içerik zorunludur.",
+    "unknownError": "Bilinmeyen hata."
+  },
+  "list": {
+    "refreshing": "Yenileniyor...",
+    "loading": "Yükleniyor...",
+    "empty": "Referans bulunamadı."
+  }
+}

@@ -1,8 +1,8 @@
 // src/modules/wallet/router.ts
 import type { FastifyInstance } from "fastify";
 import * as controller from "./controller";
-import { requireAuth } from "@/common/middleware/auth";
-import { authSecurity, fromZodSchema, okResponseSchema } from "@/modules/_shared";
+import { requireAuth } from "@agro/shared-backend/middleware/auth";
+import { authSecurity, fromZodSchema, okResponseSchema } from "@agro/shared-backend/modules/_shared";
 import { z } from "zod";
 import { depositSchema, initiateDepositSchema } from "./validation";
 

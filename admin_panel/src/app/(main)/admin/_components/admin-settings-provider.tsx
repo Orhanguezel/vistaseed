@@ -21,6 +21,7 @@ import {
   applyFont,
 } from '@/lib/preferences/layout-utils';
 import { DEFAULT_BRANDING, type AdminBrandingConfig } from '@/config/app-config';
+import { FALLBACK_LOCALE } from '@/i18n/config';
 
 export type AdminPageMeta = Record<string, { title: string; description?: string; metrics?: string[] }>;
 
@@ -82,7 +83,7 @@ export function AdminSettingsProvider({ children }: { children: React.ReactNode 
   configRef.current = config;
 
   // 2. Fetch Page Meta
-  const locale = adminLocale || config?.default_locale || 'tr';
+  const locale = adminLocale || config?.default_locale || FALLBACK_LOCALE;
   const { data: pagesRows, isLoading: pagesLoading } = useListSiteSettingsAdminQuery({
     keys: ['ui_admin_pages'],
     locale,
@@ -129,7 +130,7 @@ export function AdminSettingsProvider({ children }: { children: React.ReactNode 
     dispatch(preferencesActions.syncFromDom({}));
 
     // Zustand sync (UI kontrolleri Zustand okur)
-    if (config.default_locale) {
+    if (config?.default_locale && config.default_locale !== adminLocale) {
       setAdminLocale(config.default_locale);
     }
     if (config.theme) {

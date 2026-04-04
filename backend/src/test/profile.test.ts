@@ -1,6 +1,6 @@
 // test/profile.test.ts — Profil testleri
 import { describe, it, expect, afterAll } from "bun:test";
-import { getTestApp, closeTestApp, registerUser, randomEmail, authHeaders } from "./setup";
+import { getTestApp, closeTestApp, registerUser, randomEmail, authHeaders, apiV1 } from "./setup";
 
 afterAll(closeTestApp);
 
@@ -12,7 +12,7 @@ describe("Profile — Kullanıcı Profili", () => {
 
     const res = await app.inject({
       method: "GET",
-      url: "/api/profiles/me",
+      url: apiV1("/profiles/me"),
       headers: authHeaders(token!),
     });
     
@@ -28,7 +28,7 @@ describe("Profile — Kullanıcı Profili", () => {
 
     const res = await app.inject({
       method: "PUT",
-      url: "/api/profiles/me",
+      url: apiV1("/profiles/me"),
       headers: authHeaders(token!),
       payload: {
         profile: {

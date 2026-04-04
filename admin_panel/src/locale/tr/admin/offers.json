@@ -1,0 +1,106 @@
+{
+  "header": {
+    "title": "Teklifler",
+    "description": "Müşteri teklif kayıtlarını, doküman üretimini ve e-posta gönderimini tek panelden yönetin."
+  },
+  "tabs": {
+    "list": "Liste",
+    "customer": "Müşteri",
+    "pricing": "Fiyatlama",
+    "meta": "Meta",
+    "json": "JSON"
+  },
+  "actions": {
+    "back": "Listeye Dön",
+    "refresh": "Yenile",
+    "create": "Yeni Teklif",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "save": "Kaydet",
+    "generatePdf": "Doküman Üret",
+    "sendEmail": "E-posta Gönder",
+    "sendAll": "Üret ve Gönder"
+  },
+  "filters": {
+    "searchPlaceholder": "Teklif no, müşteri, e-posta ara",
+    "statusAll": "Tüm Durumlar"
+  },
+  "table": {
+    "offerNo": "Teklif No",
+    "customer": "Müşteri",
+    "status": "Durum",
+    "locale": "Dil",
+    "total": "Toplam",
+    "createdAt": "Oluşturma",
+    "actions": "İşlemler"
+  },
+  "list": {
+    "loading": "Teklifler yükleniyor...",
+    "empty": "Henüz teklif kaydı yok."
+  },
+  "detail": {
+    "newTitle": "Yeni Teklif",
+    "editTitle": "Teklifi Düzenle",
+    "customerTitle": "Müşteri ve Talep Bilgileri",
+    "pricingTitle": "Durum ve Tutarlar",
+    "metaTitle": "Ek Bilgiler ve Doküman",
+    "jsonTitle": "Form JSON Verisi",
+    "previewTitle": "Doküman Önizleme",
+    "previewEmpty": "Henüz doküman üretilmedi. Önce \"Doküman Üret\" aksiyonunu kullanın.",
+    "previewPath": "Üretim Yolu",
+    "previewHelp": "Üretilen teklif dosyası PDF olarak /uploads/offers klasörüne yazılır.",
+    "openPreview": "Yeni Sekmede Aç"
+  },
+  "form": {
+    "offerNo": "Teklif No",
+    "status": "Durum",
+    "source": "Kaynak",
+    "locale": "Dil",
+    "countryCode": "Ülke / Bölge",
+    "customerName": "Müşteri Adı",
+    "companyName": "Firma Adı",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "product": "Ürün",
+    "productPlaceholder": "Ürün seçin",
+    "serviceId": "Servis ID",
+    "subject": "Konu",
+    "message": "Mesaj",
+    "currency": "Para Birimi",
+    "netTotal": "Net Tutar",
+    "vatRate": "KDV Oranı",
+    "vatTotal": "KDV Tutarı",
+    "shippingTotal": "Kargo / Lojistik",
+    "grossTotal": "Genel Toplam",
+    "validUntil": "Geçerlilik Tarihi",
+    "adminNotes": "Admin Notu",
+    "pdfUrl": "Doküman URL",
+    "pdfAssetId": "Doküman Asset ID",
+    "emailSentAt": "E-posta Gönderim Tarihi",
+    "consentMarketing": "Pazarlama izni",
+    "consentTerms": "Koşullar onayı",
+    "formData": "Form Verisi JSON"
+  },
+  "statuses": {
+    "new": "Yeni",
+    "in_review": "İncelemede",
+    "quoted": "Teklif Hazır",
+    "sent": "Gönderildi",
+    "accepted": "Onaylandı",
+    "rejected": "Reddedildi",
+    "cancelled": "İptal"
+  },
+  "messages": {
+    "refreshing": "Teklifler yenileniyor...",
+    "requiredError": "Müşteri adı ve e-posta zorunludur.",
+    "jsonError": "Form JSON alanı geçerli değil.",
+    "created": "Teklif oluşturuldu.",
+    "updated": "Teklif güncellendi.",
+    "deleted": "Teklif silindi.",
+    "pdfGenerated": "Teklif dokümanı üretildi.",
+    "emailSent": "Teklif e-postası gönderildi.",
+    "sendCompleted": "Teklif dokümanı üretildi ve e-posta gönderildi.",
+    "confirmDelete": "\"{title}\" teklifini silmek istediğinize emin misiniz?",
+    "errorPrefix": "Hata"
+  }
+}

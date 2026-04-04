@@ -8,6 +8,7 @@ export interface AuthUser {
   phone: string | null;
   email_verified: number | boolean;
   is_active: number | boolean;
+  ecosystem_id?: string | null;
   role: UserRoleName;
 }
 
@@ -31,6 +32,11 @@ export interface AuthMeResponse {
   user: {
     id: string;
     email: string | null;
+    full_name?: string | null;
+    phone?: string | null;
+    email_verified?: number | boolean;
+    is_active?: number | boolean;
+    ecosystem_id?: string | null;
     role: UserRoleName;
   };
 }

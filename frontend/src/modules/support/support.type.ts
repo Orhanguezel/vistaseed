@@ -1,6 +1,9 @@
+/** Backend `support` modulu ile ayni kategori anahtarlari */
+export type SupportCategory = "genel" | "urunler" | "hesap" | "teknik";
+
 export interface SupportFaq {
   id: string;
-  category: "genel" | "kargo" | "odeme" | "hesap" | "teknik";
+  category: SupportCategory;
   display_order: number;
   is_published: number;
   locale: string;
@@ -17,7 +20,7 @@ export interface SupportTicket {
   email: string;
   subject: string;
   message: string;
-  category: "genel" | "kargo" | "odeme" | "hesap" | "teknik";
+  category: SupportCategory;
   status: "open" | "in_progress" | "resolved" | "closed";
   priority: "low" | "normal" | "high" | "urgent";
   admin_note?: string | null;
@@ -27,12 +30,21 @@ export interface SupportTicket {
   updated_at: string;
 }
 
+export interface SupportTicketMessage {
+  id: string;
+  ticket_id: string;
+  sender_type: "user" | "staff";
+  author_id: string | null;
+  body: string;
+  created_at: string;
+}
+
 export interface SupportTicketCreateInput {
   name: string;
   email: string;
   subject: string;
   message: string;
-  category: SupportTicket["category"];
+  category: SupportCategory;
 }
 
 export interface SupportFaqListParams {

@@ -1,17 +1,18 @@
 // src/modules/mail/helpers/service.ts
 import type { Transporter } from "nodemailer";
-import type { BookingMailInput, SendMailInput, WalletMailInput } from "../validation";
-import type { SmtpSettings } from "@/modules/siteSettings";
+import type { SendMailInput } from "../validation";
+import type { SmtpSettings } from "@agro/shared-backend/modules/siteSettings";
 import { z } from "zod";
+import { env } from "@/core/env";
 
-const SITE_NAME = "vistaseed";
+const SITE_NAME = env.SITE_NAME || "Corporate Site";
 
 export function buildMailTransportSignature(cfg: SmtpSettings): string {
   return [cfg.host ?? "", cfg.port ?? "", cfg.username ?? "", cfg.secure ? "1" : "0"].join("|");
 }
 
 export function buildMailFromAddress(smtpCfg: SmtpSettings): string {
-  const fromEmail = smtpCfg.fromEmail || smtpCfg.username || "no-reply@vistaseed.com";
+  const fromEmail = smtpCfg.fromEmail || smtpCfg.username || "no-reply@example.com";
   return smtpCfg.fromName ? `${smtpCfg.fromName} <${fromEmail}>` : fromEmail;
 }
 
@@ -36,11 +37,6 @@ export function wrapMailBody(body: string): string {
   return `<div style="font-family:'DM Sans',system-ui,sans-serif;font-size:14px;color:#0F172A;line-height:1.6;max-width:560px;margin:0 auto;">${body}<p style="margin-top:24px;color:#64748B;font-size:12px;">Bu e-posta ${SITE_NAME} tarafindan gonderilmistir.</p></div>`;
 }
 
-export function formatMailPrice(v: string | number): string {
-  const n = typeof v === "number" ? v : parseFloat(v);
-  return Number.isNaN(n) ? String(v) : `${n.toFixed(2)} TL`;
-}
-
 export function sendMailWithTransport(transporter: Transporter, from: string, data: SendMailInput) {
   return transporter.sendMail({ from, to: data.to, subject: data.subject, text: data.text, html: data.html });
 }
@@ -60,12 +56,13 @@ export const passwordChangedSchema = z.object({
 
 export type PasswordChangedMailInput = z.infer<typeof passwordChangedSchema>;
 
-export function buildBookingRouteLabel(input: Pick<BookingMailInput, "from_city" | "to_city">) {
-  return `${escapeMailHtml(input.from_city)} → ${escapeMailHtml(input.to_city)}`;
-}
+export const depositSuccessMailSchema = z.object({
+  to: z.string().email(),
+  user_name: z.string(),
+  amount: z.string(),
+  new_balance: z.string(),
+});
 
-export function buildCarrierPaymentSubject(input: WalletMailInput) {
-  return `Odeme Aktarildi — ${formatMailPrice(input.amount)}`;
-}
+export type DepositSuccessMailInput = z.infer<typeof depositSuccessMailSchema>;
 
 export { SITE_NAME };

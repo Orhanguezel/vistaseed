@@ -176,10 +176,6 @@ export const tags = [
   'AuditAuthEvent',
   'AuditRequestLog',
   'AuditMetric',
-  'AvailabilityWH',
-  'AvailabilityPlan',
-  'AvailabilitySlots',
-  'AvailabilityCheck',
   'Resource',
   'Resources',
   'CustomPageSlug',
@@ -193,6 +189,13 @@ export const tags = [
   'AdminProductImages',
   'AdminReferences',
   'AdminReferenceImages',
+  'AdminGalleries',
+  'AdminGalleryImages',
+  'AdminLibrary',
+  'AdminLibraryImages',
+  'AdminLibraryFiles',
+  'JobListings',
+  'JobApplications',
   'Articles',
   'Article',
   'ArticleComments',
@@ -201,12 +204,6 @@ export const tags = [
   'NewsSource',
   'NewsSuggestions',
   'NewsSuggestion',
-  'Booking',
-  'Bookings',
-  'Ilan',
-  'Ilanlar',
-  'Carrier',
-  'Carriers'
 ] as const;
 
 export type tag = typeof tags[number];

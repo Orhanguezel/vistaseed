@@ -1,42 +1,42 @@
-# Insan Kaynaklari - Vista Seeds
+# İnsan Kaynakları - Vista Seeds
 
 ## Sayfa URL
 `/insan-kaynaklari`
 
-## Icerik
+## İçerik
 
 ### Kadro Bilgileri
-- 100+ Uzman Kadro (arastirma, gelistirme, kalite kontrol)
-- 250+ Personel (uretim ve operasyon)
-- 300+ toplam calisan
+- 100+ Uzman Kadro (araştırma, geliştirme, kalite kontrol)
+- 250+ Personel (üretim ve operasyon)
+- 300+ toplam çalışan
 
-### Kariyer Firsatlari
-- Profesyonel kariyer gelisimine acik yapi
-- Ar-Ge odakli kurum kulturu
-- Surdurulebilirlik vizyonu
-- Mesleki gelisim egitimleri
+### Kariyer Fırsatları
+- Profesyonel kariyer gelişimine açık yapı
+- Ar-Ge odaklı kurum kültürü
+- Sürdürülebilirlik vizyonu
+- Mesleki gelişim eğitimleri
 
-### Basvuru Bilgileri
-- Guncel ozgecmis gonderimi gerekli
+### Başvuru Bilgileri
+- Güncel özgeçmiş gönderimi gerekli
 - E-posta: info@vistaseeds.com
-- KVKK gizlilik prensipleri dahilinde degerlendirme
+- KVKK gizlilik prensipleri dahilinde değerlendirme
 
 ### Mevcut Durum
-- Acik pozisyon ilani bulunmuyor (genel basvuru formu mevcut)
+- Açık pozisyon ilanı bulunmuyor (genel başvuru formu mevcut)
 
-## Planlanan Moduller
-- [x] Sayfa baslik ve tanitim metni
+## Planlanan Modüller
+- [x] Sayfa başlık ve tanıtım metni
 - [x] Kadro istatistikleri
-- [x] Calisma avantajlari listesi
-- [x] Genel basvuru formu / email yonlendirme
-- [ ] Acik pozisyonlar listesi (dinamik, admin panelden yonetilir)
-- [ ] Online basvuru formu (CV yukleme, kisisel bilgiler)
-- [ ] Departman bazli kadro tanitimi
-- [ ] Calisan deneyimleri / testimonial
+- [x] Çalışma avantajları listesi
+- [x] Genel başvuru formu / email yönlendirme
+- [ ] Açık pozisyonlar listesi (dinamik, admin panelden yönetilir)
+- [ ] Online başvuru formu (CV yükleme, kişisel bilgiler)
+- [ ] Departman bazlı kadro tanıtımı
+- [ ] Çalışan deneyimleri / testimonial
 
 ## Admin Panel Entegrasyonu
-Mevcut admin panelde `ilanlar` modulu zaten var:
-- `/admin/ilanlar` - Is ilanlari yonetimi
-- `/admin/ilanlar/[id]` - Ilan detay duzenleme
+Mevcut admin panelde `ilanlar` modülü zaten var:
+- `/admin/ilanlar` - İş ilanları yönetimi
+- `/admin/ilanlar/[id]` - İlan detay düzenleme
 
-Bu modul frontend'de insan kaynaklari sayfasina bagli olmali.
+Bu modül frontend'de insan kaynakları sayfasına bağlı olmalı.

@@ -1,4 +1,5 @@
 import { normLocaleTag } from '@/i18n';
+import { FALLBACK_LOCALE } from '@/i18n/config';
 import type { SettingValue, SiteSetting } from '@/integrations/shared/site-settings';
 
 export type SiteSettingsTab =
@@ -56,8 +57,6 @@ export const SITE_SETTINGS_GLOBAL_TABS: SiteSettingsTab[] = [
 export const SITE_SETTINGS_GENERAL_KEYS = [
   'app_locales',
   'hero',
-  'hero_video',
-  'hero_config',
   'home_backgrounds',
   'seo_pages',
   'contact_info',
@@ -82,8 +81,6 @@ export const SITE_SETTINGS_DEFAULTS_BY_KEY: Record<SiteSettingsGeneralKey, Setti
     { code: 'en', label: 'English', is_default: false, is_active: true },
   ],
   hero: { video_desktop: '', video_mobile: '', headline_tr: '', headline_en: '' },
-  hero_video: { desktop: '', mobile: '' },
-  hero_config: { headline: '', sub_headline: '', button_text: '', button_link: '' },
   seo_pages: {},
   contact_info: { phone: '', email: '', address: '', company_name: '' },
   socials: { instagram: '', facebook: '', linkedin: '', youtube: '', x: '' },
@@ -109,6 +106,20 @@ export const SITE_SETTINGS_DEFAULTS_BY_KEY: Record<SiteSettingsGeneralKey, Setti
 
 export const SITE_SETTINGS_BRAND = (process.env.NEXT_PUBLIC_SITE_BRAND || 'vistaseed').trim();
 export const SITE_SETTINGS_BRAND_PREFIX = `${SITE_SETTINGS_BRAND}__`;
+
+function buildLocaleOptionLabel(code: string, label?: string): string {
+  const normalizedCode = String(code || '').trim().toLowerCase();
+  const normalizedLabel = String(label || '').trim();
+  if (normalizedLabel) return `${normalizedLabel} (${normalizedCode})`;
+
+  try {
+    const displayNames = new Intl.DisplayNames([FALLBACK_LOCALE], { type: 'language' });
+    const displayName = String(displayNames.of(normalizedCode) || '').trim();
+    if (displayName) return `${displayName} (${normalizedCode})`;
+  } catch {}
+
+  return `${normalizedCode.toUpperCase()} (${normalizedCode})`;
+}
 
 export function isSiteSettingsGlobalTab(tab: SiteSettingsTab): boolean {
   return SITE_SETTINGS_GLOBAL_TABS.includes(tab);
@@ -140,14 +151,20 @@ export function buildSiteSettingsLocalesOptions(
       const code = String(item.code);
       return {
         value: code,
-        label: item.label ? `${item.label} (${code})` : code,
+        label: buildLocaleOptionLabel(code, item.label),
         isDefault: item.is_default === true,
         isActive: true,
       };
     });
 
   if (!mapped.length) {
-    return [{ value: 'tr', label: 'Türkçe (tr)', isDefault: true, isActive: true }];
+    const fallbackLocale = normLocaleTag(FALLBACK_LOCALE) || 'tr';
+    return [{
+      value: fallbackLocale,
+      label: buildLocaleOptionLabel(fallbackLocale),
+      isDefault: true,
+      isActive: true,
+    }];
   }
 
   mapped.sort((a, b) => {
@@ -169,7 +186,7 @@ export function pickInitialSiteSettingsLocale(
   const firstActive = items.find((item) => item?.is_active !== false && item?.code);
   if (firstActive?.code) return String(firstActive.code);
 
-  return 'tr';
+  return normLocaleTag(FALLBACK_LOCALE) || 'tr';
 }
 
 export function summariseSiteSettingsValue(

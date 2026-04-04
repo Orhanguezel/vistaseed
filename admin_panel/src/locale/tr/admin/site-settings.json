@@ -7,7 +7,7 @@
     "smtp": "SMTP / E-posta",
     "cloudinary": "Cloudinary",
     "api": "API",
-    "apiServices": "API & Entegrasyonlar",
+    "apiServices": "API ve Entegrasyonlar",
     "brandMedia": "Logo & Favicon",
     "list": "Liste (Dil)",
     "globalList": "Liste (Global *)",
@@ -165,7 +165,29 @@
     "missingGlobalError": "GLOBAL (*) kayıt bulunamadı. Önce global değer oluşturmalısın.",
     "globalBootstrapSuccess": "Eksik GLOBAL (*) General/UI kayıtları oluşturuldu.",
     "loadingNote": "Global + locale kayıtları çekiliyor.",
-    "deleteTooltip": "İpucu: \"Sil*\" GLOBAL (*) kaydını siler. \"Sil\" seçili locale override'ını siler."
+    "deleteTooltip": "İpucu: \"Sil*\" GLOBAL (*) kaydını siler. \"Sil\" seçili locale override'ını siler.",
+    "keyLabels": {
+      "app_locales": "Uygulama Dilleri",
+      "hero": "Hero İçeriği",
+      "home_backgrounds": "Ana Sayfa Arkaplanları",
+      "seo_pages": "Sayfa SEO Ayarları",
+      "contact_info": "İletişim Bilgileri",
+      "socials": "Sosyal Medya Linkleri",
+      "businessHours": "Çalışma Saatleri",
+      "company_profile": "Şirket Profili",
+      "ui_header": "Üst Menü Metinleri"
+    },
+    "keyDescriptions": {
+      "app_locales": "Aktif dilleri ve varsayılan dili belirleyen locale konfigürasyonu.",
+      "hero": "Ana sayfa hero alanındaki video, başlık ve CTA içeriğini yönetir.",
+      "home_backgrounds": "Ana sayfa bölüm geçişlerinde kullanılan arkaplan görsellerini tutar.",
+      "seo_pages": "Sayfa bazlı başlık, açıklama, OG görseli ve noindex ayarlarını içerir.",
+      "contact_info": "Telefon, e-posta, adres ve benzeri iletişim verilerini yönetir.",
+      "socials": "Frontend üzerinde gösterilecek sosyal medya hesap bağlantılarını tutar.",
+      "businessHours": "Haftalık çalışma günü ve saat aralıklarını tanımlar.",
+      "company_profile": "Şirket adı, slogan ve kurumsal açıklama içeriğini içerir.",
+      "ui_header": "Header navigasyon etiketleri ve CTA buton metnini yönetir."
+    }
   },
   "cloudinary": {
     "title": "Cloudinary / Storage Ayarları",
@@ -527,15 +549,15 @@
     "uiHeader": {
       "description": "Header navigasyon ve CTA label metinleri. Dil bazlı override için locale satırı kullan.",
       "labels": {
-        "navHome": "Menü: Home",
-        "navProducts": "Menü: Products",
-        "navServices": "Menü: Services",
-        "navContact": "Menü: Contact",
-        "ctaLabel": "CTA Label"
+        "navHome": "Menü: Ana Sayfa",
+        "navProducts": "Menü: Ürünler",
+        "navServices": "Menü: Hizmetler",
+        "navContact": "Menü: İletişim",
+        "ctaLabel": "CTA Metni"
       }
     },
     "businessHours": {
-      "description": "Saat formatı HH:MM. \"Closed\" seçilirse gün kapalıdır.",
+      "description": "Saat formatı HH:MM. \"Kapalı\" seçilirse gün kapalıdır.",
       "columns": {
         "day": "Gün",
         "open": "Açılış",
@@ -546,7 +568,7 @@
         "open": "09:00",
         "close": "18:00"
       },
-      "closedLabel": "closed",
+      "closedLabel": "kapalı",
       "addRow": "Satır Ekle",
       "removeRow": "Sil",
       "days": {

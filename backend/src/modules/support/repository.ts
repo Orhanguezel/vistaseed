@@ -1,8 +1,9 @@
 import { randomUUID } from 'crypto';
 import { and, asc, eq, inArray, like, or } from 'drizzle-orm';
 import { db } from '@/db/client';
-import { normalizeLocaleStr, toBool } from '@/modules/_shared';
+import { normalizeLocaleStr, toBool } from '@agro/shared-backend/modules/_shared';
 import { supportFaqs, supportFaqsI18n, supportTickets } from './schema';
+import { repoInsertTicketMessage } from './ticket-messages.repository';
 import type {
   FaqCreateInput,
   FaqListQueryInput,
@@ -106,7 +107,25 @@ export async function repoUpdateFaq(id: string, data: FaqUpdateInput) {
   if (data.question !== undefined) i18nPatch.question = data.question;
   if (data.answer !== undefined) i18nPatch.answer = data.answer;
   if (Object.keys(i18nPatch).length) {
-    await db.update(supportFaqsI18n).set(i18nPatch).where(and(eq(supportFaqsI18n.faq_id, id), eq(supportFaqsI18n.locale, data.locale)));
+    const [existingI18n] = await db
+      .select({ faq_id: supportFaqsI18n.faq_id })
+      .from(supportFaqsI18n)
+      .where(and(eq(supportFaqsI18n.faq_id, id), eq(supportFaqsI18n.locale, data.locale)))
+      .limit(1);
+
+    if (existingI18n) {
+      await db
+        .update(supportFaqsI18n)
+        .set(i18nPatch)
+        .where(and(eq(supportFaqsI18n.faq_id, id), eq(supportFaqsI18n.locale, data.locale)));
+    } else {
+      await db.insert(supportFaqsI18n).values({
+        faq_id: id,
+        locale: data.locale,
+        question: String(i18nPatch.question || ''),
+        answer: String(i18nPatch.answer || ''),
+      });
+    }
   }
 }
 
@@ -166,6 +185,12 @@ export async function repoCreateTicket(data: TicketCreateInput & {
     priority: 'normal',
     ip: data.ip ?? null,
     user_agent: data.user_agent ?? null,
+  });
+  await repoInsertTicketMessage({
+    ticket_id: id,
+    sender_type: 'user',
+    author_id: data.user_id ?? null,
+    body: data.message,
   });
   return repoGetTicketById(id);
 }

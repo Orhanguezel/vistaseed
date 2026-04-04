@@ -2,7 +2,7 @@ const path = require('path');
 
 const appRoot = process.env.ADMIN_PANEL_CWD || __dirname;
 const bindHost = process.env.ADMIN_PANEL_HOST || '127.0.0.1';
-const port = process.env.ADMIN_PANEL_PORT || '3022';
+const port = process.env.ADMIN_PANEL_PORT || '3030';
 const appName = process.env.ADMIN_PANEL_APP_NAME || 'vistaseed-admin-panel';
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
     {
       name: appName,
       cwd: path.resolve(appRoot),
-      script: 'npm',
+      script: 'bun',
       args: `run start -- -p ${port} -H ${bindHost}`,
       interpreter: 'none',
       exec_mode: 'fork',

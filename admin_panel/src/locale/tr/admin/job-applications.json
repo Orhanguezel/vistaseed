@@ -1,0 +1,57 @@
+{
+  "header": {
+    "title": "İş Başvuruları",
+    "description": "Açılan pozisyonlara gelen başvuruları inceleyin ve durumlarını yönetin."
+  },
+  "tabs": {
+    "list": "Liste",
+    "overview": "Başvuru",
+    "review": "Değerlendirme"
+  },
+  "actions": {
+    "back": "Listeye Dön",
+    "refresh": "Yenile",
+    "view": "Görüntüle",
+    "save": "Kaydet",
+    "delete": "Sil"
+  },
+  "table": {
+    "fullName": "Ad Soyad",
+    "jobTitle": "Pozisyon",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "status": "Durum",
+    "actions": "İşlemler"
+  },
+  "detail": {
+    "title": "Başvuru Detayı",
+    "overviewTitle": "Başvuru Bilgileri",
+    "reviewTitle": "Değerlendirme ve Sonuç",
+    "coverLetter": "Ön Yazı",
+    "cvUrl": "CV Dosyası"
+  },
+  "form": {
+    "status": "Durum",
+    "adminNote": "Admin Notu",
+    "adminNotePlaceholder": "Mülakat notu, geri bildirim veya sonraki adımları yazın."
+  },
+  "statuses": {
+    "pending": "Beklemede",
+    "reviewed": "İncelendi",
+    "shortlisted": "Kısa Liste",
+    "rejected": "Reddedildi",
+    "hired": "İşe Alındı"
+  },
+  "list": {
+    "loading": "Başvurular yükleniyor...",
+    "empty": "Henüz başvuru bulunmuyor."
+  },
+  "messages": {
+    "refreshing": "Liste yenileniyor...",
+    "updated": "Başvuru güncellendi.",
+    "deleted": "Başvuru silindi.",
+    "confirmDelete": "Bu başvuruyu silmek istediğinize emin misiniz?",
+    "deleteError": "Silme hatası",
+    "errorPrefix": "Hata"
+  }
+}

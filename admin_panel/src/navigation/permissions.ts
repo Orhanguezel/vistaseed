@@ -2,56 +2,77 @@ export type PanelRole = 'admin' | 'seller';
 
 export type AdminPermissionKey =
   | 'admin.dashboard'
-  | 'admin.ilanlar'
-  | 'admin.bookings'
-  | 'admin.users'
-  | 'admin.carriers'
-  | 'admin.wallets'
+  | 'admin.products'
+  | 'admin.categories'
+  | 'admin.custom_pages'
+  | 'admin.gallery'
+  | 'admin.references'
+  | 'admin.library'
+  | 'admin.support'
+  | 'admin.job_listings'
+  | 'admin.blog'
+  | 'admin.job_applications'
   | 'admin.contacts'
+  | 'admin.email_templates'
+  | 'admin.offers'
+  | 'admin.users'
   | 'admin.site_settings'
   | 'admin.storage'
   | 'admin.theme'
-  | 'admin.email_templates'
   | 'admin.telegram'
   | 'admin.audit'
-  | 'admin.categories'
-  | 'admin.reports';
+  | 'admin.db_admin'
+  | 'admin.popups';
 
 export type AdminNavKey =
   | 'dashboard'
-  | 'ilanlar'
-  | 'bookings'
-  | 'users'
-  | 'carriers'
-  | 'wallets'
+  | 'products'
+  | 'categories'
+  | 'custom_pages'
+  | 'gallery'
+  | 'references'
+  | 'library'
+  | 'support'
+  | 'job_listings'
+  | 'blog'
+  | 'job_applications'
   | 'contacts'
+  | 'email_templates'
+  | 'offers'
+  | 'users'
   | 'site_settings'
   | 'storage'
   | 'theme'
-  | 'email_templates'
   | 'telegram'
   | 'audit'
-  | 'categories'
-  | 'reports';
+  | 'db_admin'
+  | 'popups';
 
 const ADMIN_ONLY: PanelRole[] = ['admin'];
 
 const ADMIN_PERMISSION_ROLE_MAP: Record<AdminPermissionKey, PanelRole[]> = {
   'admin.dashboard': ADMIN_ONLY,
-  'admin.ilanlar': ADMIN_ONLY,
-  'admin.bookings': ADMIN_ONLY,
-  'admin.users': ADMIN_ONLY,
-  'admin.carriers': ADMIN_ONLY,
-  'admin.wallets': ADMIN_ONLY,
+  'admin.products': ADMIN_ONLY,
+  'admin.categories': ADMIN_ONLY,
+  'admin.custom_pages': ADMIN_ONLY,
+  'admin.gallery': ADMIN_ONLY,
+  'admin.references': ADMIN_ONLY,
+  'admin.library': ADMIN_ONLY,
+  'admin.support': ADMIN_ONLY,
+  'admin.job_listings': ADMIN_ONLY,
+  'admin.blog': ADMIN_ONLY,
+  'admin.job_applications': ADMIN_ONLY,
   'admin.contacts': ADMIN_ONLY,
+  'admin.email_templates': ADMIN_ONLY,
+  'admin.offers': ADMIN_ONLY,
+  'admin.users': ADMIN_ONLY,
   'admin.site_settings': ADMIN_ONLY,
   'admin.storage': ADMIN_ONLY,
   'admin.theme': ADMIN_ONLY,
-  'admin.email_templates': ADMIN_ONLY,
   'admin.telegram': ADMIN_ONLY,
   'admin.audit': ADMIN_ONLY,
-  'admin.categories': ADMIN_ONLY,
-  'admin.reports': ADMIN_ONLY,
+  'admin.db_admin': ADMIN_ONLY,
+  'admin.popups': ADMIN_ONLY,
 };
 
 export function canAccessAdminPermission(role: PanelRole, key: AdminPermissionKey): boolean {
@@ -61,20 +82,27 @@ export function canAccessAdminPermission(role: PanelRole, key: AdminPermissionKe
 
 const ADMIN_NAV_PERMISSION_MAP: Partial<Record<AdminNavKey, AdminPermissionKey>> = {
   dashboard: 'admin.dashboard',
-  ilanlar: 'admin.ilanlar',
-  bookings: 'admin.bookings',
-  users: 'admin.users',
-  carriers: 'admin.carriers',
-  wallets: 'admin.wallets',
+  products: 'admin.products',
+  categories: 'admin.categories',
+  custom_pages: 'admin.custom_pages',
+  gallery: 'admin.gallery',
+  references: 'admin.references',
+  library: 'admin.library',
+  support: 'admin.support',
+  job_listings: 'admin.job_listings',
+  blog: 'admin.blog',
+  job_applications: 'admin.job_applications',
   contacts: 'admin.contacts',
+  email_templates: 'admin.email_templates',
+  offers: 'admin.offers',
+  users: 'admin.users',
   site_settings: 'admin.site_settings',
   storage: 'admin.storage',
   theme: 'admin.theme',
-  email_templates: 'admin.email_templates',
   telegram: 'admin.telegram',
   audit: 'admin.audit',
-  categories: 'admin.categories',
-  reports: 'admin.reports',
+  db_admin: 'admin.db_admin',
+  popups: 'admin.popups',
 };
 
 export function getAdminNavRoles(key: AdminNavKey): PanelRole[] {
@@ -85,20 +113,27 @@ export function getAdminNavRoles(key: AdminNavKey): PanelRole[] {
 
 const ADMIN_PERMISSION_PATHS: Record<AdminPermissionKey, string[]> = {
   'admin.dashboard': ['/admin/dashboard'],
-  'admin.ilanlar': ['/admin/ilanlar'],
-  'admin.bookings': ['/admin/bookings'],
-  'admin.users': ['/admin/users'],
-  'admin.carriers': ['/admin/carriers'],
-  'admin.wallets': ['/admin/wallet'],
+  'admin.products': ['/admin/products'],
+  'admin.categories': ['/admin/categories'],
+  'admin.custom_pages': ['/admin/custom-pages'],
+  'admin.gallery': ['/admin/gallery'],
+  'admin.references': ['/admin/references'],
+  'admin.library': ['/admin/library'],
+  'admin.support': ['/admin/support'],
+  'admin.job_listings': ['/admin/job-listings'],
+  'admin.blog': ['/admin/blog'],
+  'admin.job_applications': ['/admin/job-applications'],
   'admin.contacts': ['/admin/contacts'],
+  'admin.email_templates': ['/admin/email-templates'],
+  'admin.offers': ['/admin/offers'],
+  'admin.users': ['/admin/users'],
   'admin.site_settings': ['/admin/site-settings'],
   'admin.storage': ['/admin/storage'],
   'admin.theme': ['/admin/theme'],
-  'admin.email_templates': ['/admin/email-templates'],
   'admin.telegram': ['/admin/telegram'],
   'admin.audit': ['/admin/audit'],
-  'admin.categories': ['/admin/categories'],
-  'admin.reports': ['/admin/reports'],
+  'admin.db_admin': ['/admin/db-admin'],
+  'admin.popups': ['/admin/popups'],
 };
 
 function stripQueryAndHash(pathname: string): string {

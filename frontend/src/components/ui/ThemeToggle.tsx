@@ -2,6 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
 
 export function ThemeToggle({ className }: Props) {
   const { resolvedTheme, setTheme } = useTheme();
+  const t = useTranslations("ThemeToggle");
   const [mounted, setMounted] = useState(false);
 
   // Hydration mismatch önlemek için mounted kontrolü
@@ -24,7 +26,7 @@ export function ThemeToggle({ className }: Props) {
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      aria-label={isDark ? "Açık temaya geç" : "Koyu temaya geç"}
+      aria-label={isDark ? t("toLight") : t("toDark")}
       className={cn(
         "w-8 h-8 flex items-center justify-center rounded-lg text-base",
         "text-muted hover:text-foreground hover:bg-bg-alt transition-colors",

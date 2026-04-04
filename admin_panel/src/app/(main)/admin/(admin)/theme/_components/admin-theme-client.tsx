@@ -1,42 +1,38 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { toast } from 'sonner';
-import { Save, RotateCcw, Palette, Type, CircleDot } from 'lucide-react';
+import * as React from "react";
 
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Separator } from '@/components/ui/separator';
-import { Spinner } from '@/components/ui/spinner';
+import { CircleDot, Palette, RotateCcw, Save, Type } from "lucide-react";
+import { toast } from "sonner";
 
+import { useAdminT } from "@/app/(main)/admin/_components/common/use-admin-t";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
+import { Spinner } from "@/components/ui/spinner";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useGetThemeAdminQuery, useResetThemeAdminMutation, useUpdateThemeAdminMutation } from "@/integrations/hooks";
+import type { ColorTokens, ThemeConfig } from "@/integrations/shared";
 import {
-  useGetThemeAdminQuery,
-  useUpdateThemeAdminMutation,
-  useResetThemeAdminMutation,
-} from '@/integrations/hooks';
-
-import type { ColorTokens, ThemeConfig } from '@/integrations/shared';
-import {
+  groupThemeColorTokens,
   RADIUS_OPTIONS,
   THEME_DARK_MODE_OPTIONS,
   THEME_FONT_BODY_PLACEHOLDER,
   THEME_FONT_HEADING_PLACEHOLDER,
   THEME_RADIUS_PREVIEW_SIZES,
-  groupThemeColorTokens,
   toThemeDraft,
-} from '@/integrations/shared';
-import { useAdminT } from '@/app/(main)/admin/_components/common/use-admin-t';
-import { ColorField } from './color-field';
-import { ThemePreview } from './theme-preview';
+} from "@/integrations/shared";
+
+import { ColorField } from "./color-field";
+import { ThemePreview } from "./theme-preview";
 
 /* ── Main Component ── */
 
 export default function AdminThemeClient() {
-  const t = useAdminT('admin.theme');
+  const t = useAdminT("admin.theme");
   const { data: theme, isLoading } = useGetThemeAdminQuery();
   const [updateTheme, { isLoading: saving }] = useUpdateThemeAdminMutation();
   const [resetTheme, { isLoading: resetting }] = useResetThemeAdminMutation();
@@ -56,7 +52,7 @@ export default function AdminThemeClient() {
   }
 
   const setColor = (key: keyof ColorTokens, val: string) => {
-    setDraft((prev) => prev ? { ...prev, colors: { ...prev.colors, [key]: val } } : prev);
+    setDraft((prev) => (prev ? { ...prev, colors: { ...prev.colors, [key]: val } } : prev));
   };
 
   const handleSave = async () => {
@@ -79,9 +75,9 @@ export default function AdminThemeClient() {
         radius: draft.radius,
         darkMode: draft.darkMode,
       }).unwrap();
-      toast.success(t('saved'));
+      toast.success(t("saved"));
     } catch {
-      toast.error(t('saveError'));
+      toast.error(t("saveError"));
     }
   };
 
@@ -89,9 +85,9 @@ export default function AdminThemeClient() {
     try {
       const result = await resetTheme().unwrap();
       setDraft(toThemeDraft(result));
-      toast.success(t('reset'));
+      toast.success(t("reset"));
     } catch {
-      toast.error(t('resetError'));
+      toast.error(t("resetError"));
     }
   };
 
@@ -105,17 +101,17 @@ export default function AdminThemeClient() {
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-base">{t('title')}</CardTitle>
-              <CardDescription>{t('description')}</CardDescription>
+              <CardTitle className="text-base">{t("title")}</CardTitle>
+              <CardDescription>{t("description")}</CardDescription>
             </div>
             <div className="flex gap-2">
               <Button variant="outline" size="sm" onClick={handleReset} disabled={saving || resetting}>
                 <RotateCcw className="mr-2 size-4" />
-                {t('resetButton')}
+                {t("resetButton")}
               </Button>
               <Button size="sm" onClick={handleSave} disabled={saving || resetting}>
                 <Save className="mr-2 size-4" />
-                {saving ? t('saving') : t('saveButton')}
+                {saving ? t("saving") : t("saveButton")}
               </Button>
             </div>
           </div>
@@ -129,15 +125,15 @@ export default function AdminThemeClient() {
             <TabsList>
               <TabsTrigger value="colors">
                 <Palette className="mr-2 size-4" />
-                {t('colorsTab') }
+                {t("colorsTab")}
               </TabsTrigger>
               <TabsTrigger value="typography">
                 <Type className="mr-2 size-4" />
-                {t('typographyTab') }
+                {t("typographyTab")}
               </TabsTrigger>
               <TabsTrigger value="general">
                 <CircleDot className="mr-2 size-4" />
-                {t('generalTab') }
+                {t("generalTab")}
               </TabsTrigger>
             </TabsList>
 
@@ -151,12 +147,7 @@ export default function AdminThemeClient() {
                   <CardContent>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                       {keys.map((key) => (
-                        <ColorField
-                          key={key}
-                          tokenKey={key}
-                          value={draft.colors[key]}
-                          onChange={setColor}
-                        />
+                        <ColorField key={key} tokenKey={key} value={draft.colors[key]} onChange={setColor} />
                       ))}
                     </div>
                   </CardContent>
@@ -168,30 +159,36 @@ export default function AdminThemeClient() {
             <TabsContent value="typography" className="space-y-4 mt-4">
               <Card>
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-sm">{t('fonts') }</CardTitle>
+                  <CardTitle className="text-sm">{t("fonts")}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <Label>{t('fontHeading') }</Label>
+                    <Label>{t("fontHeading")}</Label>
                     <Input
                       value={draft.typography.fontHeading}
-                      onChange={(e) => setDraft((p) => p ? { ...p, typography: { ...p.typography, fontHeading: e.target.value } } : p)}
+                      onChange={(e) =>
+                        setDraft((p) =>
+                          p ? { ...p, typography: { ...p.typography, fontHeading: e.target.value } } : p,
+                        )
+                      }
                       placeholder={THEME_FONT_HEADING_PLACEHOLDER}
                     />
                     <div className="text-2xl font-bold mt-2" style={{ fontFamily: draft.typography.fontHeading }}>
-                      {t('fontHeadingPreview')}
+                      {t("fontHeadingPreview")}
                     </div>
                   </div>
                   <Separator />
                   <div className="space-y-2">
-                    <Label>{t('fontBody') }</Label>
+                    <Label>{t("fontBody")}</Label>
                     <Input
                       value={draft.typography.fontBody}
-                      onChange={(e) => setDraft((p) => p ? { ...p, typography: { ...p.typography, fontBody: e.target.value } } : p)}
+                      onChange={(e) =>
+                        setDraft((p) => (p ? { ...p, typography: { ...p.typography, fontBody: e.target.value } } : p))
+                      }
                       placeholder={THEME_FONT_BODY_PLACEHOLDER}
                     />
                     <div className="text-sm mt-2" style={{ fontFamily: draft.typography.fontBody }}>
-                      {t('fontBodyPreview')}
+                      {t("fontBodyPreview")}
                     </div>
                   </div>
                 </CardContent>
@@ -202,19 +199,21 @@ export default function AdminThemeClient() {
             <TabsContent value="general" className="space-y-4 mt-4">
               <Card>
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-sm">{t('borderRadius') }</CardTitle>
+                  <CardTitle className="text-sm">{t("borderRadius")}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Select
                     value={draft.radius}
-                    onValueChange={(v) => setDraft((p) => p ? { ...p, radius: v as any } : p)}
+                    onValueChange={(v) => setDraft((p) => (p ? { ...p, radius: v as any } : p))}
                   >
                     <SelectTrigger className="w-64">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
                       {RADIUS_OPTIONS.map((opt) => (
-                        <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+                        <SelectItem key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -238,16 +237,16 @@ export default function AdminThemeClient() {
 
               <Card>
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-sm">{t('darkModeLabel') }</CardTitle>
+                  <CardTitle className="text-sm">{t("darkModeLabel")}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex gap-2">
                     {THEME_DARK_MODE_OPTIONS.map(({ value, icon: Icon, labelKey }) => (
                       <Button
                         key={value}
-                        variant={draft.darkMode === value ? 'default' : 'outline'}
+                        variant={draft.darkMode === value ? "default" : "outline"}
                         size="sm"
-                        onClick={() => setDraft((p) => p ? { ...p, darkMode: value } : p)}
+                        onClick={() => setDraft((p) => (p ? { ...p, darkMode: value } : p))}
                       >
                         <Icon className="mr-2 size-4" />
                         {t(labelKey)}
@@ -264,7 +263,7 @@ export default function AdminThemeClient() {
         <div className="space-y-4">
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm">{t('preview') }</CardTitle>
+              <CardTitle className="text-sm">{t("preview.title")}</CardTitle>
             </CardHeader>
             <CardContent>
               <ThemePreview colors={draft.colors} t={t} />

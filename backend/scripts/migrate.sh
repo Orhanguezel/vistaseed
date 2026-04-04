@@ -1,8 +1,8 @@
 #!/bin/bash
-# vistaseed — Production DB Migration Script
+# Corporate Site — Production DB Migration Script
 # Kullanim:
 #   ./scripts/migrate.sh              # Tum schema SQL'lerini calistir (seed/data yok)
-#   ./scripts/migrate.sh --only=113   # Sadece belirli dosyayi calistir
+#   ./scripts/migrate.sh --only=115   # Sadece belirli dosyayi calistir
 #   ./scripts/migrate.sh --seed       # Schema + seed (sadece ilk kurulum)
 #
 # ONEMLI: Bu script DROP yapmaz. Sadece CREATE IF NOT EXISTS + ALTER yapar.
@@ -16,24 +16,22 @@ cd "$BACKEND_DIR"
 
 # Schema dosyalari (seed haric)
 SCHEMA_FILES=(
-  "10_auth_schema.sql"
-  "60_site_settings_schema.sql"
-  "61_theme_config.sql"
-  "94_storage_assets.sql"
-  "95_contact_messages.sql"
-  "95_integration_settings_seed.sql"
-  "99_wallet_schema.sql"
-  "099_notifications.seed.sql"
-  "104_ilanlar_schema.sql"
-  "105_bookings_schema.sql"
-  "107_ratings_schema.sql"
-  "107_user_roles_vistaseed.sql"
-  "108_audit_schema.sql"
-  "109_categories_schema.sql"
-  "110_email_templates_schema.sql"
-  "111_gallery_schema.sql"
-  "112_telegram_schema.sql"
-  "113_subscription_schema.sql"
+  "001_auth_schema.sql"
+  "004_site_settings_schema.sql"
+  "005_theme_config.sql"
+  "007_storage_assets.sql"
+  "008_contact_messages.sql"
+  "011_notifications_schema_seed.sql"
+  "016_audit_schema.sql"
+  "017_categories_schema.sql"
+  "018_email_templates_schema.sql"
+  "019_gallery_schema.sql"
+  "020_telegram_schema.sql"
+  "028_users_rules_accepted_column.sql"
+  "143_users_ecosystem_id.sql"
+  "115_custom_pages_schema.sql"
+  "116_support_schema.sql"
+  "149_support_ticket_messages.sql"
 )
 
 if [[ "${1:-}" == "--seed" ]]; then

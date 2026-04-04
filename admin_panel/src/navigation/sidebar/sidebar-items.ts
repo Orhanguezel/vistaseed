@@ -1,23 +1,30 @@
 // =============================================================
 // FILE: src/navigation/sidebar/sidebar-items.ts
-// vistaseed — Sidebar navigation (P2P Kargo Pazaryeri)
+// vistaseed — Sidebar navigation (Kurumsal Site)
 // =============================================================
 
 import {
-  BarChart3,
   BookOpen,
+  Briefcase,
   Contact2,
+  Database,
+  FileText,
   FolderTree,
+  GalleryHorizontalEnd,
   HardDrive,
+  HelpCircle,
+  Megaphone,
+  Newspaper,
   LayoutDashboard,
   Mail,
   MessageSquare,
+  Package,
   Palette,
   Send,
   Settings,
-  Truck,
+  ShoppingBag,
+  Star,
   Users,
-  Wallet,
   type LucideIcon,
 } from 'lucide-react';
 import type { TranslateFn } from '@/i18n/translation-utils';
@@ -54,7 +61,7 @@ export type AdminSidebarRole = PanelRole;
 
 export type AdminNavItemKey = AdminNavKey;
 
-export type AdminNavGroupKey = 'general' | 'listings' | 'finance' | 'support' | 'system';
+export type AdminNavGroupKey = 'general' | 'content' | 'hr' | 'communication' | 'users_group' | 'system';
 
 export type AdminNavConfigItem = {
   key: AdminNavItemKey;
@@ -76,51 +83,49 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
     key: 'general',
     items: [
       { key: 'dashboard', url: '/admin/dashboard', icon: LayoutDashboard },
+      { key: 'products', url: '/admin/products', icon: Package },
     ],
   },
   {
     id: 2,
-    key: 'listings',
+    key: 'content',
     items: [
-      { key: 'ilanlar', url: '/admin/ilanlar', icon: Truck },
-      { key: 'bookings', url: '/admin/bookings', icon: BookOpen },
       { key: 'categories', url: '/admin/categories', icon: FolderTree },
+      { key: 'custom_pages', url: '/admin/custom-pages', icon: FileText },
+      { key: 'gallery', url: '/admin/gallery', icon: GalleryHorizontalEnd },
+      { key: 'references', url: '/admin/references', icon: Star },
+      { key: 'library', url: '/admin/library', icon: BookOpen },
+      { key: 'blog', url: '/admin/blog', icon: Newspaper },
+      { key: 'support', url: '/admin/support', icon: HelpCircle },
+      { key: 'popups', url: '/admin/popups', icon: Megaphone },
     ],
   },
   {
     id: 3,
-    key: 'finance',
+    key: 'hr',
     items: [
-      { key: 'users', url: '/admin/users', icon: Users },
-      {
-        key: 'carriers',
-        url: '/admin/carriers',
-        icon: Users,
-      },
-      { key: 'wallets', url: '/admin/wallet', icon: Wallet },
-      {
-        key: 'reports',
-        url: '/admin/dashboard/coming-soon?module=reports',
-        icon: BarChart3,
-        comingSoon: true,
-      },
+      { key: 'job_listings', url: '/admin/job-listings', icon: Briefcase },
+      { key: 'job_applications', url: '/admin/job-applications', icon: ShoppingBag },
     ],
   },
   {
     id: 4,
-    key: 'support',
+    key: 'communication',
     items: [
       { key: 'contacts', url: '/admin/contacts', icon: Contact2 },
-      {
-        key: 'email_templates',
-        url: '/admin/dashboard/coming-soon?module=email-templates',
-        icon: Mail,
-        comingSoon: true,
-      },
+      { key: 'email_templates', url: '/admin/email-templates', icon: Mail },
+      { key: 'offers', url: '/admin/offers', icon: FileText },
     ],
   },
   {
     id: 5,
+    key: 'users_group',
+    items: [
+      { key: 'users', url: '/admin/users', icon: Users },
+    ],
+  },
+  {
+    id: 6,
     key: 'system',
     items: [
       { key: 'site_settings', url: '/admin/site-settings', icon: Settings },
@@ -128,6 +133,7 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
       { key: 'theme', url: '/admin/theme', icon: Palette },
       { key: 'telegram', url: '/admin/telegram', icon: Send },
       { key: 'audit', url: '/admin/audit', icon: MessageSquare },
+      { key: 'db_admin', url: '/admin/db-admin', icon: Database },
     ],
   },
 ];
@@ -142,29 +148,37 @@ export type AdminNavCopy = {
 };
 
 const FALLBACK_GROUP_LABELS: Record<AdminNavGroupKey, string> = {
-  general:  'Genel',
-  listings: 'İlan Yönetimi',
-  finance:  'Kullanıcılar & Finans',
-  support:  'Destek',
-  system:   'Sistem',
+  general: 'Genel',
+  content: 'İçerik',
+  hr: 'İnsan Kaynakları',
+  communication: 'İletişim',
+  users_group: 'Kullanıcılar',
+  system: 'Sistem',
 };
 
 const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   dashboard: 'Dashboard',
-  ilanlar: 'İlanlar',
-  bookings: 'Rezervasyonlar',
+  products: 'Ürünler',
   categories: 'Kategoriler',
-  users: 'Kullanıcılar',
-  carriers: 'Taşıyıcılar',
-  wallets: 'Cüzdanlar',
-  reports: 'Raporlar',
-  contacts: 'İletişim',
+  custom_pages: 'Sayfalar',
+  gallery: 'Galeri',
+  references: 'Referanslar',
+  library: 'Kütüphane',
+  blog: 'Blog',
+  support: 'SSS / Destek',
+  job_listings: 'İş İlanları',
+  job_applications: 'Başvurular',
+  contacts: 'İletişim Mesajları',
   email_templates: 'E-posta Şablonları',
+  offers: 'Teklifler',
+  users: 'Kullanıcılar',
   site_settings: 'Site Ayarları',
-  telegram: 'Telegram',
-  theme: 'Tema',
   storage: 'Depolama',
+  theme: 'Tema',
+  telegram: 'Telegram',
   audit: 'Denetim',
+  db_admin: 'Veritabanı',
+  popups: 'Popup\'lar',
 };
 
 export const ADMIN_NAV_ROUTE_MAP: Record<AdminNavItemKey, string> = adminNavConfig

@@ -1,5 +1,4 @@
 // src/modules/mail/helpers/index.ts
-// Local helper barrel for mail module. Keep explicit; no export *.
 
 export {
   getAuthUserEmail,
@@ -13,14 +12,13 @@ export {
   createMailTransportConfig,
   escapeMailHtml,
   wrapMailBody,
-  formatMailPrice,
   sendMailWithTransport,
   welcomeMailSchema,
   passwordChangedSchema,
-  buildBookingRouteLabel,
-  buildCarrierPaymentSubject,
+  depositSuccessMailSchema,
 } from "./service";
 export type {
   WelcomeMailInput,
   PasswordChangedMailInput,
+  DepositSuccessMailInput,
 } from "./service";

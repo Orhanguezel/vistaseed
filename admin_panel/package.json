@@ -1,11 +1,11 @@
 {
-  "name": "konig-admin",
+  "name": "vistaseed-admin",
   "version": "2.2.0",
   "private": true,
   "scripts": {
     "locales:generate": "node scripts/generate-locales-manifest.mjs",
-    "predev": "npm run locales:generate",
-    "prebuild": "npm run locales:generate",
+    "predev": "bun run locales:generate",
+    "prebuild": "bun run locales:generate",
     "dev": "NODE_OPTIONS='--max-old-space-size=4096' next dev -p 3030",
     "dev:turbo": "next dev --turbo -p 3030",
     "build": "next build",
@@ -23,6 +23,7 @@
     ]
   },
   "dependencies": {
+    "@agro/shared-ui": "workspace:*",
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/modifiers": "^9.0.0",
     "@dnd-kit/sortable": "^10.0.0",
@@ -39,7 +40,7 @@
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.562.0",
-    "next": "~15.1.7",
+    "next": "~16.2.1",
     "next-themes": "^0.4.6",
     "radix-ui": "^1.4.3",
     "react": "^19.2.3",
@@ -72,6 +73,6 @@
     "typescript": "^5.9.3"
   },
   "optionalDependencies": {
-    "@next/swc-linux-x64-gnu": "15.1.12"
+    "@next/swc-linux-x64-gnu": "16.2.1"
   }
 }

@@ -12,7 +12,7 @@ import {
   text,
 } from "drizzle-orm/mysql-core";
 import { sql } from "drizzle-orm";
-import { users } from "../auth/schema";
+import { users } from "@agro/shared-backend/modules/auth/schema";
 
 export const wallets = mysqlTable(
   "wallets",

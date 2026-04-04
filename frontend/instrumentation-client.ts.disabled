@@ -1,0 +1,16 @@
+if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
+  import("@sentry/nextjs").then((Sentry) => {
+    Sentry.init({
+      dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+      environment: process.env.NODE_ENV,
+      tracesSampleRate: 0,
+    });
+  });
+}
+
+export const onRouterTransitionStart = (...args: unknown[]) => {
+  if (!process.env.NEXT_PUBLIC_SENTRY_DSN) return;
+  import("@sentry/nextjs").then((Sentry) => {
+    (Sentry.captureRouterTransitionStart as Function)(...args);
+  });
+};

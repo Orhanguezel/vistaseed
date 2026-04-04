@@ -1,0 +1,179 @@
+{
+  "header": {
+    "title": "Ürünler",
+    "description": "Ürün kataloğunuzu listeleyin, düzenleyin ve yönetin."
+  },
+  "tabs": {
+    "list": "Liste",
+    "content": "İçerik",
+    "seo": "SEO",
+    "images": "Görseller",
+    "faqs": "SSS",
+    "specs": "Özellikler",
+    "reviews": "Değerlendirmeler",
+    "agriculture": "Tarımsal"
+  },
+  "filters": {
+    "searchPlaceholder": "Ürün adı veya slug ile ara...",
+    "locale": "Dil",
+    "allCategories": "Tüm Kategoriler",
+    "onlyActive": "Sadece aktif",
+    "onlyFeatured": "Sadece öne çıkan"
+  },
+  "actions": {
+    "create": "Yeni Ürün",
+    "edit": "Düzenle",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "refresh": "Yenile",
+    "back": "Geri"
+  },
+  "form": {
+    "title": "Ürün Adı",
+    "titlePlaceholder": "Ürün adını girin",
+    "slug": "Slug",
+    "slugPlaceholder": "urun-slug",
+    "description": "Açıklama",
+    "descriptionPlaceholder": "Ürün açıklaması",
+    "price": "Fiyat",
+    "pricePlaceholder": "0.00",
+    "category": "Kategori",
+    "categoryPlaceholder": "Kategori seçin",
+    "subCategory": "Alt Kategori",
+    "subCategoryPlaceholder": "Alt kategori seçin",
+    "productCode": "Ürün Kodu",
+    "productCodePlaceholder": "URN-001",
+    "stockQuantity": "Stok Miktarı",
+    "tags": "Etiketler",
+    "tagsPlaceholder": "Etiket ekleyin",
+    "alt": "Alt Metin",
+    "altPlaceholder": "Görsel alt metni",
+    "displayOrder": "Sıralama",
+    "isActive": "Aktif",
+    "isFeatured": "Öne Çıkan",
+    "metaTitle": "Meta Başlık",
+    "metaTitlePlaceholder": "SEO başlık",
+    "metaDescription": "Meta Açıklama",
+    "metaDescriptionPlaceholder": "SEO açıklaması",
+    "botanicalName": "Botanik ad",
+    "harvestDays": "Hasat süresi (gün)",
+    "minTemp": "Min. sıcaklık (C)",
+    "maxTemp": "Max. sıcaklık (C)",
+    "germinationDays": "Çimlenme (gün)",
+    "seedDepth": "Ekim derinliği (cm)",
+    "rowSpacing": "Sıra arası (cm)",
+    "plantSpacing": "Fide/Bitki arası (cm)",
+    "yieldPerSqm": "Verim (m2 başına)",
+    "waterNeed": "Su ihtiyacı",
+    "sunExposure": "Güneş",
+    "plantingSeasons": "Ekim mevsimleri",
+    "climateZones": "İklim bölgeleri",
+    "soilTypes": "Toprak tipleri",
+    "selectPlaceholder": "Seçin",
+    "none": "Yok",
+    "agEnum": {
+      "season": {
+        "ilkbahar": "İlkbahar",
+        "yaz": "Yaz",
+        "sonbahar": "Sonbahar",
+        "kis": "Kış"
+      },
+      "climate": {
+        "akdeniz": "Akdeniz",
+        "ege": "Ege",
+        "marmara": "Marmara",
+        "ic-anadolu": "İç Anadolu",
+        "karadeniz": "Karadeniz",
+        "dogu-anadolu": "Doğu Anadolu",
+        "guneydogu": "Güneydoğu Anadolu"
+      },
+      "soil": {
+        "kumlu": "Kumlu",
+        "killi": "Killi",
+        "humuslu": "Humuslu",
+        "balikli": "Balçıklı",
+        "torflu": "Torflu"
+      },
+      "water": {
+        "low": "Düşük",
+        "medium": "Orta",
+        "high": "Yüksek"
+      },
+      "sun": {
+        "full": "Tam güneş",
+        "partial": "Yarım gölge",
+        "shade": "Gölge"
+      }
+    }
+  },
+  "detail": {
+    "newTitle": "Yeni Ürün",
+    "editTitle": "Ürün Düzenle"
+  },
+  "table": {
+    "image": "Görsel",
+    "order": "Sıra",
+    "title": "Başlık",
+    "slug": "Slug",
+    "price": "Fiyat",
+    "category": "Kategori",
+    "active": "Aktif",
+    "featured": "Öne Çıkan",
+    "actions": "İşlemler"
+  },
+  "images": {
+    "title": "Ürün Görselleri",
+    "add": "Görsel Ekle",
+    "empty": "Henüz görsel eklenmedi.",
+    "deleteConfirm": "Bu görseli silmek istediğinize emin misiniz?"
+  },
+  "faqs": {
+    "title": "Sıkça Sorulan Sorular",
+    "add": "Soru Ekle",
+    "empty": "Henüz soru eklenmedi.",
+    "question": "Soru",
+    "questionPlaceholder": "Soruyu girin",
+    "answer": "Cevap",
+    "answerPlaceholder": "Cevabı girin",
+    "deleteConfirm": "Bu soruyu silmek istediğinize emin misiniz?"
+  },
+  "specs": {
+    "title": "Teknik Özellikler",
+    "add": "Özellik Ekle",
+    "empty": "Henüz özellik eklenmedi.",
+    "name": "Özellik Adı",
+    "namePlaceholder": "Örneğin: Ağırlık",
+    "value": "Değer",
+    "valuePlaceholder": "Örneğin: 500g",
+    "category": "Kategori",
+    "deleteConfirm": "Bu özelliği silmek istediğinize emin misiniz?"
+  },
+  "reviews": {
+    "title": "Değerlendirmeler",
+    "add": "Değerlendirme Ekle",
+    "empty": "Henüz değerlendirme yok.",
+    "rating": "Puan",
+    "comment": "Yorum",
+    "commentPlaceholder": "Yorumu girin",
+    "customerName": "Müşteri Adı",
+    "customerNamePlaceholder": "Müşteri adını girin",
+    "deleteConfirm": "Bu değerlendirmeyi silmek istediğinize emin misiniz?"
+  },
+  "messages": {
+    "created": "Ürün oluşturuldu.",
+    "updated": "Ürün güncellendi.",
+    "deleted": "Ürün silindi.",
+    "deleteError": "Silme hatası",
+    "errorPrefix": "Hata",
+    "confirmDelete": "'{title}' ürününü silmek istediğinize emin misiniz?",
+    "requiredError": "Ürün adı ve slug zorunludur.",
+    "unknownError": "Bilinmeyen hata."
+  },
+  "list": {
+    "refreshing": "Yenileniyor...",
+    "empty": "Ürün bulunamadı.",
+    "activated": "aktif edildi",
+    "deactivated": "pasif edildi"
+  }
+}

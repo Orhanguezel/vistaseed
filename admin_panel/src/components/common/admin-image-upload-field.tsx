@@ -2,19 +2,16 @@
 
 // =============================================================
 // FILE: src/components/common/admin-image-upload-field.tsx
-// FINAL — Admin Image Upload Field (App Router + shadcn)
-// - Bootstrap yok, inline style minimum (sadece zorunlu yerlerde)
+// Admin Image Upload Field (App Router + shadcn)
 // - Multiple preview: one image per row
 // - Cover cannot be removed
-// - URL truncated + full on hover + copy
-// - previewAspect + previewObjectFit (single preview)
-// - SVG preview support (+ Cloudinary sanitize) + ICO destekli
-// - Cloudinary raw/upload uzantısız => svg sayılmaz
+// - Library batch selection with "Add Selected" button
+// - SVG preview support (+ Cloudinary sanitize) + ICO
 // =============================================================
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { toast } from 'sonner';
-import { Copy, Image as ImageIcon, Library, Upload, Star, Trash2 } from 'lucide-react';
+import { Copy, Image as ImageIcon, Library, Star, Trash2, Upload } from 'lucide-react';
 
 import { useCreateAssetAdminMutation, useListAssetsAdminQuery } from '@/integrations/hooks';
 import { resolveMediaUrl } from '@/lib/media-url';
@@ -23,8 +20,6 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import {
   Dialog,
@@ -35,7 +30,6 @@ import {
 } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
-  ADMIN_IMAGE_LIBRARY_PAGE_SIZE,
   appendUniqueUploadUrls,
   getDisplayUploadUrl,
   getUploadPreviewRatio,
@@ -49,6 +43,9 @@ import { useAdminT } from '@/app/(main)/admin/_components/common/use-admin-t';
 
 export type { AdminImageUploadFieldProps } from '@/integrations/shared/admin-image-upload';
 
+/* ------------------------------------------------------------------ */
+/* URL line with copy button                                          */
+/* ------------------------------------------------------------------ */
 const UrlLine: React.FC<{ url: string; disabled?: boolean }> = ({ url, disabled }) => {
   const t = useAdminT('admin.common.imageUpload');
   const safe = normalizeUploadValue(url);
@@ -87,6 +84,116 @@ const UrlLine: React.FC<{ url: string; disabled?: boolean }> = ({ url, disabled 
   );
 };
 
+/* ------------------------------------------------------------------ */
+/* Client-side image dimension resolver                               */
+/* ------------------------------------------------------------------ */
+function useImageDimensions(
+  assets: Array<{ id: string; url?: string | null; width?: number | null; height?: number | null }>,
+) {
+  const [dims, setDims] = useState<Record<string, { w: number; h: number }>>({});
+
+  useEffect(() => {
+    for (const a of assets) {
+      if (a.width && a.height) continue;
+      const url = normalizeUploadValue(a.url);
+      if (!url || dims[a.id]) continue;
+      const img = new window.Image();
+      img.onload = () => {
+        setDims((prev) => ({ ...prev, [a.id]: { w: img.naturalWidth, h: img.naturalHeight } }));
+      };
+      img.src = url;
+    }
+  }, [assets, dims]);
+
+  return (id: string, dbW?: number | null, dbH?: number | null) => {
+    if (dbW && dbH) return { w: dbW, h: dbH };
+    return dims[id] || null;
+  };
+}
+
+/* ------------------------------------------------------------------ */
+/* Library grid (extracted for useImageDimensions hook)                */
+/* ------------------------------------------------------------------ */
+function LibraryGrid({
+  assets,
+  gallery,
+  librarySelection,
+  multiple,
+  value,
+  busy,
+  onSelect,
+}: {
+  assets: any[];
+  gallery: string[];
+  librarySelection: string[];
+  multiple: boolean;
+  value?: string;
+  busy: boolean;
+  onSelect: (url: string) => void;
+}) {
+  const t = useAdminT('admin.common.imageUpload');
+  const getDims = useImageDimensions(assets);
+
+  return (
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+      {assets.map((asset) => {
+        const rawUrl = asset.url || '';
+        const resolvedUrl = resolveMediaUrl(rawUrl);
+        const normalizedUrl = normalizeUploadValue(rawUrl);
+        const isInGallery = gallery.includes(normalizedUrl);
+        const isInSelection = librarySelection.includes(normalizedUrl);
+        const isSelected = multiple ? isInSelection : value === rawUrl;
+        const dims = getDims(asset.id, asset.width, asset.height);
+
+        return (
+          <button
+            key={asset.id}
+            type="button"
+            onClick={() => onSelect(rawUrl)}
+            disabled={busy || isInGallery}
+            className={cn(
+              'group relative overflow-hidden rounded-lg border transition-all hover:border-primary',
+              isSelected && 'border-primary ring-2 ring-primary/20',
+              isInGallery && 'opacity-50',
+            )}
+          >
+            <AspectRatio ratio={1}>
+              <img
+                src={resolvedUrl}
+                alt={asset.name || 'Asset'}
+                className="size-full object-cover transition-transform group-hover:scale-105"
+              />
+            </AspectRatio>
+            {isInGallery && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                <Badge variant="secondary">{t('library.alreadyAdded') || 'Eklendi'}</Badge>
+              </div>
+            )}
+            {isSelected && !isInGallery && (
+              <div className="absolute inset-0 flex items-center justify-center bg-primary/20">
+                <Badge>{t('library.selected')}</Badge>
+              </div>
+            )}
+            {multiple && isInSelection && (
+              <div className="absolute top-1.5 right-1.5 flex size-5 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">
+                ✓
+              </div>
+            )}
+            {dims && (
+              <div className="pointer-events-none absolute bottom-0 left-0 right-0 bg-black/60 px-2 py-1 text-[10px] text-white opacity-0 transition-opacity group-hover:opacity-100">
+                {dims.w}&times;{dims.h}px
+              </div>
+            )}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Main component                                                     */
+/* ------------------------------------------------------------------ */
 export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
   label,
   helperText,
@@ -116,40 +223,38 @@ export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'upload' | 'library'>('upload');
-  const [libraryPage, setLibraryPage] = useState(1);
-  const libraryOffset = (libraryPage - 1) * ADMIN_IMAGE_LIBRARY_PAGE_SIZE;
+  const [librarySelection, setLibrarySelection] = useState<string[]>([]);
 
-  // Fetch library assets (global storage list: all buckets/folders)
+  // Fetch library assets (all folders, 200 items at once)
   const {
     data: assetsData,
     isLoading: isLoadingAssets,
     isError: isAssetsError,
     error: assetsError,
   } = useListAssetsAdminQuery(
-    { limit: ADMIN_IMAGE_LIBRARY_PAGE_SIZE, offset: libraryOffset, sort: 'created_at', order: 'desc' },
-    { skip: !isModalOpen || activeTab !== 'library' }
+    { limit: 200, sort: 'created_at', order: 'desc' },
+    { skip: !isModalOpen || activeTab !== 'library' },
   );
 
-  useEffect(() => {
-    if (!isModalOpen) {
-      setLibraryPage(1);
+  // Auto-add selected images when modal closes
+  const handleModalOpenChange = (open: boolean) => {
+    if (!open && multiple && librarySelection.length > 0) {
+      if (onChangeMultiple) {
+        onChangeMultiple(appendUniqueUploadUrls(gallery, librarySelection));
+        toast.success(
+          librarySelection.length === 1
+            ? t('messages.imageAdded')
+            : t('messages.multipleImagesUploaded', { count: String(librarySelection.length) }),
+        );
+      }
+      setLibrarySelection([]);
     }
-  }, [isModalOpen]);
-
-  useEffect(() => {
-    if (activeTab !== 'library') {
-      setLibraryPage(1);
-    }
-  }, [activeTab]);
-
-  const libraryTotal = Number(assetsData?.total ?? 0);
-  const libraryPageCount = Math.max(1, Math.ceil(libraryTotal / ADMIN_IMAGE_LIBRARY_PAGE_SIZE));
-  const canPrevPage = libraryPage > 1;
-  const canNextPage = libraryPage < libraryPageCount;
+    setIsModalOpen(open);
+  };
 
   const meta = useMemo(() => toUploadMetadata(metadata), [metadata]);
   const gallery = useMemo(
-    () => (Array.isArray(values) ? values.map(normalizeUploadValue).filter(Boolean) : []),
+    () => (Array.isArray(values) ? [...new Set(values.map(normalizeUploadValue).filter(Boolean))] : []),
     [values],
   );
 
@@ -158,6 +263,7 @@ export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
   const handlePickClick = () => {
     if (busy) return;
     setActiveTab('upload');
+    setLibrarySelection([]);
     setIsModalOpen(true);
   };
 
@@ -165,18 +271,45 @@ export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
     fileInputRef.current?.click();
   };
 
-  const handleSelectFromLibrary = (url: string, assetId?: string | null) => {
+  // In multiple mode: toggle selection. In single mode: select immediately.
+  const handleSelectFromLibrary = (url: string) => {
     if (!url) return;
 
-    if (multiple && onChangeMultiple) {
-      onChangeMultiple(appendUniqueUploadUrls(gallery, [url]));
-      toast.success(t('messages.imageAdded'));
-    } else if (onChange) {
+    if (multiple) {
+      setLibrarySelection((prev) => {
+        const normalized = normalizeUploadValue(url);
+        if (prev.includes(normalized)) {
+          return prev.filter((u) => u !== normalized);
+        }
+        return [...prev, normalized];
+      });
+      return;
+    }
+
+    if (onChange) {
       onChange(url);
-      onSelectAsset?.({ url, assetId: assetId ?? null });
+      toast.success(t('messages.imageSelected'));
+    }
+    setIsModalOpen(false);
+  };
+
+  // Bulk add from library selection
+  const handleAddSelectedFromLibrary = () => {
+    if (!librarySelection.length) return;
+
+    if (onChangeMultiple) {
+      onChangeMultiple(appendUniqueUploadUrls(gallery, librarySelection));
+      toast.success(
+        librarySelection.length === 1
+          ? t('messages.imageAdded')
+          : t('messages.multipleImagesUploaded', { count: String(librarySelection.length) }),
+      );
+    } else if (onChange && librarySelection[0]) {
+      onChange(librarySelection[0]);
       toast.success(t('messages.imageSelected'));
     }
 
+    setLibrarySelection([]);
     setIsModalOpen(false);
   };
 
@@ -187,20 +320,10 @@ export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
 
     if (!multiple) {
       const file = files[0];
-      console.debug('[AdminImageUpload] file selected:', {
-        name: file.name,
-        type: file.type,
-        size: file.size,
-      });
 
-      // SVG dosya için MIME type düzeltmesi
-      // Bazı tarayıcılar SVG'yi doğru MIME ile göndermeyebilir
+      // SVG MIME type fix
       let uploadFile: File = file;
-      if (
-        file.name.toLowerCase().endsWith('.svg') &&
-        file.type !== 'image/svg+xml'
-      ) {
-        console.debug('[AdminImageUpload] fixing SVG MIME type:', file.type, '→ image/svg+xml');
+      if (file.name.toLowerCase().endsWith('.svg') && file.type !== 'image/svg+xml') {
         uploadFile = new File([file], file.name, { type: 'image/svg+xml' });
       }
 
@@ -219,7 +342,6 @@ export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
         toast.success(t('messages.imageUploaded'));
         setIsModalOpen(false);
       } catch (err: any) {
-        console.error('[AdminImageUpload] upload failed:', JSON.stringify(err, null, 2), err);
         const msg =
           err?.data?.error?.message ||
           err?.data?.message ||
@@ -231,16 +353,13 @@ export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
       return;
     }
 
+    // Multiple file upload
     const uploadedUrls: string[] = [];
     let successCount = 0;
 
     for (const file of files) {
-      // SVG dosya için MIME type düzeltmesi
       let uploadFile: File = file;
-      if (
-        file.name.toLowerCase().endsWith('.svg') &&
-        file.type !== 'image/svg+xml'
-      ) {
+      if (file.name.toLowerCase().endsWith('.svg') && file.type !== 'image/svg+xml') {
         uploadFile = new File([file], file.name, { type: 'image/svg+xml' });
       }
 
@@ -264,9 +383,7 @@ export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
           err?.error ||
           err?.message ||
           t('messages.bulkUploadError');
-        toast.error(
-          typeof emsg === 'string' ? emsg : t('messages.bulkUploadError'),
-        );
+        toast.error(typeof emsg === 'string' ? emsg : t('messages.bulkUploadError'));
       }
     }
 
@@ -361,7 +478,6 @@ export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
           </AspectRatio>
         </div>
 
-        {/* Full URL display */}
         <div className="rounded-md border bg-muted/50 p-2">
           <div className="mb-1 text-xs font-medium text-muted-foreground">{t('preview.urlLabel')}</div>
           <code className="block wrap-break-word text-xs font-mono leading-relaxed text-foreground">
@@ -487,13 +603,6 @@ export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
                     </div>
 
                     <UrlLine url={u} disabled={busy} />
-
-                    {!onChangeMultiple ? (
-                      <div className="mt-2 text-xs text-muted-foreground">
-                        {t('gallery.noMultipleNotePrefix')} <code>onChangeMultiple</code>{' '}
-                        {t('gallery.noMultipleNoteSuffix')}
-                      </div>
-                    ) : null}
                   </div>
                 </div>
               </div>
@@ -517,14 +626,14 @@ export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
       </CardHeader>
 
       <CardContent className="space-y-3">
-        <Label className="sr-only">{t('upload.srLabel')}</Label>
-        <Input
-          ref={fileInputRef as any}
+        <label className="sr-only">{t('upload.srLabel')}</label>
+        <input
+          ref={fileInputRef}
           type="file"
           accept="image/*,.svg,.ico"
           multiple={!!multiple}
-          className="hidden"
-          onChange={handleFileChange}
+          style={{ display: 'none' }}
+          onChange={handleFileChange as any}
           disabled={busy}
         />
 
@@ -538,8 +647,8 @@ export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
         {!multiple ? <SinglePreview /> : <MultiPreview />}
 
         {/* Upload/Library Modal */}
-        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-          <DialogContent className="h-[90vh] max-w-[94vw] overflow-y-auto">
+        <Dialog open={isModalOpen} onOpenChange={handleModalOpenChange}>
+          <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>{multiple ? t('upload.multipleButton') : t('upload.singleButton')}</DialogTitle>
               <DialogDescription>
@@ -614,74 +723,61 @@ export const AdminImageUploadField: React.FC<AdminImageUploadFieldProps> = ({
                     </div>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-                    {assetsData.items.map((asset) => {
-                      const rawUrl = asset.url || '';
-                      const resolvedUrl = resolveMediaUrl(rawUrl);
-                      const isSelected = multiple
-                        ? gallery.includes(rawUrl)
-                        : value === rawUrl;
+                  <>
+                    {/* Selection bar */}
+                    {multiple && librarySelection.length > 0 && (
+                      <div className="flex items-center justify-between rounded-lg border bg-primary/5 p-3">
+                        <span className="font-medium text-sm">
+                          {librarySelection.length} {t('library.selectedCount') || 'gorsel secildi'}
+                        </span>
+                        <div className="flex gap-2">
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setLibrarySelection([])}
+                          >
+                            {t('actions.clear') || 'Temizle'}
+                          </Button>
+                          <Button
+                            type="button"
+                            size="sm"
+                            onClick={handleAddSelectedFromLibrary}
+                            disabled={busy}
+                          >
+                            <Upload className="mr-2 size-4" />
+                            {t('actions.addSelected') || 'Ekle'} ({librarySelection.length})
+                          </Button>
+                        </div>
+                      </div>
+                    )}
 
-                      return (
-                        <button
-                          key={asset.id}
+                    <LibraryGrid
+                      assets={assetsData.items}
+                      gallery={gallery}
+                      librarySelection={librarySelection}
+                      multiple={multiple}
+                      value={value}
+                      busy={busy}
+                      onSelect={handleSelectFromLibrary}
+                    />
+
+                    {/* Bottom add button */}
+                    {multiple && librarySelection.length > 0 && (
+                      <div className="flex justify-end pt-2">
+                        <Button
                           type="button"
-                          onClick={() => handleSelectFromLibrary(rawUrl, asset.id)}
+                          size="default"
+                          onClick={handleAddSelectedFromLibrary}
                           disabled={busy}
-                          className={cn(
-                            'group relative overflow-hidden rounded-lg border transition-all hover:border-primary',
-                            isSelected && 'border-primary ring-2 ring-primary/20'
-                          )}
                         >
-                          <AspectRatio ratio={1}>
-                            <img
-                              src={resolvedUrl}
-                              alt={asset.name || 'Asset'}
-                              className="size-full object-cover transition-transform group-hover:scale-105"
-                            />
-                          </AspectRatio>
-                          {isSelected && (
-                            <div className="absolute inset-0 flex items-center justify-center bg-primary/20">
-                              <Badge>{t('library.selected')}</Badge>
-                            </div>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
+                          <Upload className="mr-2 size-4" />
+                          {t('actions.addSelected') || 'Secilenleri Ekle'} ({librarySelection.length})
+                        </Button>
+                      </div>
+                    )}
+                  </>
                 )}
-
-                {!isLoadingAssets && !isAssetsError && libraryTotal > 0 ? (
-                  <div className="mt-4 flex items-center justify-between gap-3 border-t pt-4">
-                    <div className="text-xs text-muted-foreground">
-                      {t('library.pagination', {
-                        total: String(libraryTotal),
-                        page: String(libraryPage),
-                        pageCount: String(libraryPageCount),
-                      })}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        disabled={!canPrevPage}
-                        onClick={() => setLibraryPage((p) => Math.max(1, p - 1))}
-                      >
-                        {t('pagination.previous')}
-                      </Button>
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        disabled={!canNextPage}
-                        onClick={() => setLibraryPage((p) => Math.min(libraryPageCount, p + 1))}
-                      >
-                        {t('pagination.next')}
-                      </Button>
-                    </div>
-                  </div>
-                ) : null}
               </TabsContent>
             </Tabs>
           </DialogContent>

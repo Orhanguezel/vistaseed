@@ -11,11 +11,11 @@ SET time_zone = '+00:00';
 
 CREATE TABLE IF NOT EXISTS users (
   id                CHAR(36)       NOT NULL,
+  ecosystem_id      CHAR(36)       DEFAULT NULL,
   email             VARCHAR(255)   NOT NULL,
   password_hash     VARCHAR(255)   NOT NULL,
   full_name         VARCHAR(255)   DEFAULT NULL,
   phone             VARCHAR(50)    DEFAULT NULL,
-  wallet_balance    DECIMAL(10,2)  NOT NULL DEFAULT 0.00,
   is_active         TINYINT(1)     NOT NULL DEFAULT 1,
   email_verified    TINYINT(1)     NOT NULL DEFAULT 0,
   reset_token             VARCHAR(255)  DEFAULT NULL,
@@ -24,13 +24,14 @@ CREATE TABLE IF NOT EXISTS users (
   updated_at        DATETIME(3)    NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
   last_sign_in_at   DATETIME(3)    DEFAULT NULL,
   PRIMARY KEY (id),
-  UNIQUE KEY users_email_unique (email)
+  UNIQUE KEY users_email_unique (email),
+  KEY users_ecosystem_id_idx (ecosystem_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS user_roles (
   id          CHAR(36)     NOT NULL,
   user_id     CHAR(36)     NOT NULL,
-  role        ENUM('admin','carrier','customer') NOT NULL DEFAULT 'customer',
+  role        ENUM('admin','editor','carrier','customer','dealer') NOT NULL DEFAULT 'customer',
   created_at  DATETIME(3)  NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   PRIMARY KEY (id),
   UNIQUE KEY user_roles_user_id_role_unique (user_id, role),
@@ -72,62 +73,39 @@ CREATE TABLE IF NOT EXISTS profiles (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================================================
--- DEFAULT ADMIN USERS
--- NOT: {{ADMIN_PASSWORD_HASH}} => "admin123" hash'i (runner tarafından üretiliyor)
+-- DEFAULT ADMIN USER
 -- ============================================================================
 
--- 1) ENV tabanlı ana admin (placeholder)
 INSERT INTO users (
   id, email, password_hash, full_name, phone,
-  wallet_balance, is_active, email_verified, created_at, updated_at
+  is_active, email_verified, created_at, updated_at
 ) VALUES (
   '{{ADMIN_ID}}',
   '{{ADMIN_EMAIL}}',
   '{{ADMIN_PASSWORD_HASH}}',
-  'Orhan Güzel',
-  '+905551112233',
-  0.00, 1, 1,
+  'Site Admin',
+  NULL,
+  1, 1,
   CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
 )
 ON DUPLICATE KEY UPDATE
   password_hash  = VALUES(password_hash),
   full_name      = VALUES(full_name),
-  phone          = VALUES(phone),
   is_active      = 1,
   email_verified = 1,
   updated_at     = CURRENT_TIMESTAMP(3);
 
--- ENV admin profile
 INSERT INTO profiles (id, full_name, phone, created_at, updated_at)
-VALUES ('{{ADMIN_ID}}', 'Orhan Güzel', '+905551112233', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3))
+VALUES ('{{ADMIN_ID}}', 'Site Admin', NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3))
 ON DUPLICATE KEY UPDATE
   full_name = VALUES(full_name),
-  phone     = VALUES(phone),
-  updated_at= CURRENT_TIMESTAMP(3);
-
--- Optional: sabit adminler için profile kaydı (id'yi users'tan çekiyoruz)
-
-INSERT INTO profiles (id, full_name, phone, created_at, updated_at)
-SELECT u.id, 'Orhan Güzel', '+905551112233', CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
-FROM users u
-WHERE u.email = 'orhanguzel@gmail.com'
-ON DUPLICATE KEY UPDATE
-  full_name = VALUES(full_name),
-  phone     = VALUES(phone),
   updated_at= CURRENT_TIMESTAMP(3);
 
 -- ============================================================================
--- ADMIN ROLES
+-- ADMIN ROLE
 -- ============================================================================
 
 INSERT IGNORE INTO user_roles (id, user_id, role, created_at)
-SELECT
-  UUID(),
-  u.id,
-  'admin',
-  CURRENT_TIMESTAMP(3)
+SELECT UUID(), u.id, 'admin', CURRENT_TIMESTAMP(3)
 FROM users u
-WHERE u.email IN (
-  '{{ADMIN_EMAIL}}',
-  'orhanguzel@gmail.com'
-);
+WHERE u.email = '{{ADMIN_EMAIL}}';

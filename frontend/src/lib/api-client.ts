@@ -1,4 +1,6 @@
-const BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000").replace(/\/$/, "");
+import { getStoredAccessToken, setStoredAccessToken } from "@/lib/auth-token";
+
+const BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
 
 class ApiError extends Error {
   constructor(
@@ -17,11 +19,13 @@ async function request<T>(
 ): Promise<T> {
   const url = `${BASE_URL}${path}`;
 
+  const bearer = getStoredAccessToken();
   const res = await fetch(url, {
     ...options,
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
+      ...(bearer ? { Authorization: `Bearer ${bearer}` } : {}),
       ...(options.headers ?? {}),
     },
   });
@@ -34,10 +38,8 @@ async function request<T>(
       } catch {}
 
       if (res.status === 401 && typeof window !== "undefined") {
-        localStorage.removeItem("vistaseed-auth");
-        if (!window.location.pathname.startsWith("/giris")) {
-          window.location.href = "/giris?expired=true";
-        }
+        localStorage.removeItem("app-auth");
+        setStoredAccessToken(null);
       }
 
       throw new ApiError(res.status, code, `${res.status} ${code}`);
@@ -49,28 +51,42 @@ async function request<T>(
   return res.json() as Promise<T>;
 }
 
-export const apiGet = <T>(path: string, options?: RequestInit) =>
-  request<T>(path, { ...options, method: "GET" });
+export const apiGet = <T>(path: string, query?: Record<string, any>, options?: RequestInit) => {
+  let fullPath = path;
+  if (query) {
+    const params = new URLSearchParams();
+    Object.entries(query).forEach(([key, value]) => {
+      if (value !== undefined && value !== null) {
+        params.append(key, String(value));
+      }
+    });
+    const qs = params.toString();
+    if (qs) {
+      fullPath += (path.includes("?") ? "&" : "?") + qs;
+    }
+  }
+  return request<T>(fullPath, { ...options, method: "GET" });
+};
 
 export const apiPost = <T>(path: string, body?: unknown, options?: RequestInit) =>
   request<T>(path, {
     ...options,
     method: "POST",
-    body: body !== undefined ? JSON.stringify(body) : undefined,
+    body: (body !== undefined && body !== null) ? JSON.stringify(body) : undefined,
   });
 
 export const apiPatch = <T>(path: string, body?: unknown, options?: RequestInit) =>
   request<T>(path, {
     ...options,
     method: "PATCH",
-    body: body !== undefined ? JSON.stringify(body) : undefined,
+    body: (body !== undefined && body !== null) ? JSON.stringify(body) : undefined,
   });
 
 export const apiPut = <T>(path: string, body?: unknown, options?: RequestInit) =>
   request<T>(path, {
     ...options,
     method: "PUT",
-    body: body !== undefined ? JSON.stringify(body) : undefined,
+    body: (body !== undefined && body !== null) ? JSON.stringify(body) : undefined,
   });
 
 export const apiDelete = <T>(path: string, options?: RequestInit) =>

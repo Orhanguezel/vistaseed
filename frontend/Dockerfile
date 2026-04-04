@@ -1,25 +1,17 @@
-FROM node:20-alpine AS base
+FROM oven/bun:1.2.22-alpine AS deps
 WORKDIR /app
-
-# ─── Dependencies ──────────────────────────────────────────────────────────────
-FROM base AS deps
 RUN apk add --no-cache libc6-compat
-COPY package.json package-lock.json* yarn.lock* pnpm-lock.yaml* ./
-RUN \
-  if [ -f pnpm-lock.yaml ]; then corepack enable && pnpm install --frozen-lockfile; \
-  elif [ -f yarn.lock ]; then yarn install --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
-  else npm install; fi
+COPY package.json bun.lock* ./
+RUN bun install --frozen-lockfile || bun install
 
-# ─── Build ─────────────────────────────────────────────────────────────────────
-FROM base AS builder
+FROM oven/bun:1.2.22-alpine AS builder
+WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN npm run build
+RUN bun run build
 
-# ─── Production ────────────────────────────────────────────────────────────────
-FROM base AS runner
+FROM node:20-alpine AS runner
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 

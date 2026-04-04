@@ -1,0 +1,10 @@
+import GalleryDetailClient from '../_components/gallery-detail-client';
+
+interface Props {
+  params: Promise<{ id: string }>;
+}
+
+export default async function Page({ params }: Props) {
+  const { id } = await params;
+  return <GalleryDetailClient id={id} />;
+}

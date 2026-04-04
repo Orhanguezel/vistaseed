@@ -2,7 +2,7 @@
 
 Gelistirme kurallari icin:
 
-- [ADMIN_PANEL_RULES.md](/home/orhan/Documents/Projeler/vistaseed/admin_panel/ADMIN_PANEL_RULES.md)
+- [ADMIN_PANEL_RULES.md](ADMIN_PANEL_RULES.md)
 
 Ozellikle yeni modül eklerken `shared` zorunlulugu, barrel kullanimi ve endpoint/component icinde helper-type tekrarinin yasak oldugu kurali uygulanir.
 

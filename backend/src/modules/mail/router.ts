@@ -1,6 +1,6 @@
 // src/modules/mail/router.ts
 import type { FastifyInstance } from "fastify";
-import { requireAuth } from "@/common/middleware/auth";
+import { requireAuth } from '@agro/shared-backend/middleware/auth';
 import { sendTestMail, sendMailHandler } from "./controller";
 
 const B = "/mail";

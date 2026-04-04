@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
+  transpilePackages: ['@agro/shared-ui'],
   experimental: {},
   compiler: { removeConsole: process.env.NODE_ENV === 'production' },
   output: 'standalone',
@@ -15,7 +17,7 @@ const nextConfig = {
       {
         protocol: 'http',
         hostname: 'localhost',
-        port: '8078',
+        port: '8083',
         pathname: '/**',
       },
       {

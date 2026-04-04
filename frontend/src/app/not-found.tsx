@@ -10,7 +10,7 @@ export default function NotFound() {
             Aradığınız sayfa bulunamadı
           </h1>
           <p className="max-w-2xl text-sm leading-6 text-muted mb-8">
-            İlgili bağlantı taşınmış, kaldırılmış veya yanlış yazılmış olabilir. vistaseed ana
+            İlgili bağlantı taşınmış, kaldırılmış veya yanlış yazılmış olabilir. site ana
             sayfasına dönerek yeni bir rota başlatabilirsiniz.
           </p>
           <Link

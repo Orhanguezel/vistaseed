@@ -1,6 +1,6 @@
 # Backend Kurallari
 
-Bu dosya vistaseed backend icin zorunlu gelistirme kurallarini tanimlar.
+Bu dosya corporate site backend icin zorunlu gelistirme kurallarini tanimlar.
 
 Amaç:
 
@@ -305,7 +305,7 @@ Kod tamamlanmis sayilmadan once su kontroller yapilir:
 - `any` veya `as any` var mi
 - yeni helper/service/repository mantigi ikinci kopya uretiyor mu
 - yorum basliklari ve dosya adlari guncel mi
-- `npx tsc --noEmit --incremental false --pretty false` temiz mi
+- `bun x tsc --noEmit --incremental false --pretty false` temiz mi
 - `src/test/wallet.test.ts`
 
 Kural:

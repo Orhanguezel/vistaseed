@@ -1,0 +1,24 @@
+# VistaSeed - Turkiye Tohum ve Fide Dijital Platformu
+# https://www.vistaseeds.com.tr
+
+Bu belge, yapay zeka modelleri ve crawler'lar icin VistaSeed platformunun yapisini ve icerigini ozetler.
+
+## Ana Sayfalar
+- / : Anasayfa - VistaSeed tohum ve fide cesitleri, one cikanlar.
+- /urunler : Tum tohum ve tarimsal urun katalogu.
+- /bilgi-bankasi : Tarimsal bilgi bankasi, hastalıklarla mücadele ve bakım rehberleri.
+- /ekim-rehberi : Bolgesel ve mevsimsel ekim takvimi, derinlik ve aralik verileri.
+- /bayi-agi : Turkiye genelindeki yetkili bayi haritasi ve iletisim bilgileri.
+- /hakkimizda : Kurumsal bilgiler, misyon ve vizyon.
+- /iletisim : Iletisim formu ve merkez ofis bilgileri.
+
+## Ekosistem Baglantilari
+- https://www.bereketfide.com.tr : Kardes marka - Fide uretimi ve satis odakli platform.
+- https://agroplatform.com.tr : Tarim dijital ekosistemi (gelecek platform).
+
+## Teknik Veri Paylasimi
+VistaSeed, ekosistem genelinde veri paylasimi icin standart REST API'lar sunar.
+- Content Federation API: /api/v1/ecosystem/content
+
+## Onemli Anahtar Kelimeler
+Tohumculuk, Fide, Tarim Teknolojileri, Ekim Takvimi, Zirai Mücadele, B2B Tarım Pazaryeri.

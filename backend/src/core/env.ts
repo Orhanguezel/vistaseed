@@ -1,6 +1,8 @@
 // src/core/env.ts
 import "dotenv/config";
-import { parseEnvBool, parseEnvInt, parseEnvList } from '@/modules/_shared';
+import { parseEnvBool, parseEnvInt, parseEnvList } from '@agro/shared-backend/modules/_shared';
+
+const RSS_IMPORT_FEEDS = parseEnvList(process.env.RSS_IMPORT_FEEDS);
 
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 const CORS_LIST = parseEnvList(process.env.CORS_ORIGIN);
@@ -15,6 +17,7 @@ export const env = {
   NODE_ENV: process.env.NODE_ENV ?? "development",
   PORT: parseEnvInt(process.env.PORT, 8083),
   SENTRY_DSN: process.env.SENTRY_DSN || '',
+  SITE_NAME: process.env.SITE_NAME || 'Corporate Site',
 
   // Redis
   REDIS_URL: process.env.REDIS_URL || '',
@@ -54,7 +57,7 @@ export const env = {
     port: parseEnvInt(process.env.DB_PORT, 3306),
     user: process.env.DB_USER || "app",
     password: process.env.DB_PASSWORD || "app",
-    name: process.env.DB_NAME || "vistaseed",
+    name: process.env.DB_NAME || "mydb",
   },
 
   // Auth
@@ -78,19 +81,13 @@ export const env = {
   // URLs
   PUBLIC_URL: process.env.PUBLIC_URL || "http://localhost:8083",
   FRONTEND_URL,
+  /** Iyzico callback redirect: `/{locale}/panel/...` icin (hardcode dil yok; varsayilan env) */
+  FRONTEND_DEFAULT_LOCALE: process.env.FRONTEND_DEFAULT_LOCALE || "tr",
 
-  // İyzico
-  IYZICO_API_KEY:          process.env.IYZICO_API_KEY          || "",
-  IYZICO_SECRET_KEY:       process.env.IYZICO_SECRET_KEY       || "",
-  IYZICO_BASE_URL:         process.env.IYZICO_BASE_URL         || "https://sandbox-api.iyzipay.com",
-  IYZICO_SUB_MERCHANT_KEY: process.env.IYZICO_SUB_MERCHANT_KEY || "",
-  IYZICO_TEST_MODE:       parseEnvBool(process.env.IYZICO_TEST_MODE, true),
-
-  // PayTR
-  PAYTR_MERCHANT_ID:   process.env.PAYTR_MERCHANT_ID   || "",
-  PAYTR_MERCHANT_KEY:  process.env.PAYTR_MERCHANT_KEY  || "",
-  PAYTR_MERCHANT_SALT: process.env.PAYTR_MERCHANT_SALT || "",
-  PAYTR_TEST_MODE:     parseEnvBool(process.env.PAYTR_TEST_MODE, true),
+  // AI (Groq)
+  GROQ_API_KEY: process.env.GROQ_API_KEY || '',
+  GROQ_MODEL: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
+  GROQ_API_BASE: process.env.GROQ_API_BASE || 'https://api.groq.com/openai/v1',
 
   // SMTP
   SMTP_HOST: process.env.SMTP_HOST || "",
@@ -99,6 +96,26 @@ export const env = {
   SMTP_USER: process.env.SMTP_USER || "",
   SMTP_PASS: process.env.SMTP_PASS || "",
   MAIL_FROM: process.env.MAIL_FROM || "",
+
+  // Ödeme (cüzdan — İyzico / PayTR; boş bırakılırsa sadece dev/manuel akış)
+  IYZICO_API_KEY: process.env.IYZICO_API_KEY || '',
+  IYZICO_SECRET_KEY: process.env.IYZICO_SECRET_KEY || '',
+  IYZICO_BASE_URL: process.env.IYZICO_BASE_URL || 'https://sandbox-api.iyzipay.com',
+  IYZICO_SUB_MERCHANT_KEY: process.env.IYZICO_SUB_MERCHANT_KEY || '',
+
+  PAYTR_MERCHANT_ID: process.env.PAYTR_MERCHANT_ID || '',
+  PAYTR_MERCHANT_KEY: process.env.PAYTR_MERCHANT_KEY || '',
+  PAYTR_MERCHANT_SALT: process.env.PAYTR_MERCHANT_SALT || '',
+  PAYTR_TEST_MODE: parseEnvBool(process.env.PAYTR_TEST_MODE, true),
+
+  /** Virgulle ayrilmis RSS 2.0 feed URL'leri (blog iceri aktarma) */
+  RSS_IMPORT_FEEDS,
+  RSS_IMPORT_LOCALE: (process.env.RSS_IMPORT_LOCALE || 'tr').trim().toLowerCase() || 'tr',
+  RSS_IMPORT_CATEGORY: (process.env.RSS_IMPORT_CATEGORY || 'haber').trim() || 'haber',
+  RSS_IMPORT_MAX_ITEMS_PER_FEED: parseEnvInt(process.env.RSS_IMPORT_MAX_ITEMS_PER_FEED, 20),
+  /** Ayni feed icin minimum tekrar araligi (ms); MVP bellek ici */
+  RSS_IMPORT_MIN_INTERVAL_MS: parseEnvInt(process.env.RSS_IMPORT_MIN_INTERVAL_MS, 900_000),
+  RSS_IMPORT_USER_AGENT: (process.env.RSS_IMPORT_USER_AGENT || 'VistaSeed-RssImport/1.0').trim(),
 } as const;
 
 export type AppEnv = typeof env;

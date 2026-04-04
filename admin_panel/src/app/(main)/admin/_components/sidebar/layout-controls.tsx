@@ -4,6 +4,8 @@
 
 import { Settings } from "lucide-react";
 
+import { AdminLocaleSelect } from "@/components/common/admin-locale-select";
+import { useAdminLocales } from "@/components/common/use-admin-locales";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -24,12 +26,13 @@ import { THEME_PRESET_OPTIONS, type ThemeMode, type ThemePreset } from "@/lib/pr
 import { applyThemeMode, applyThemePreset } from "@/lib/preferences/theme-utils";
 import { usePreferencesStore } from "@/stores/preferences/preferences-provider";
 import { useAdminSettings } from '../admin-settings-provider';
-import { useAdminTranslations, ADMIN_LOCALE_OPTIONS } from '@/i18n';
+import { useAdminTranslations } from '@/i18n';
 
 export function LayoutControls() {
   const { saveAdminConfig } = useAdminSettings();
   const adminLocale = usePreferencesStore((s) => s.adminLocale);
   const setAdminLocale = usePreferencesStore((s) => s.setAdminLocale);
+  const { localeOptions, defaultLocaleFromDb, loading: localesLoading, fetching: localesFetching, coerceLocale } = useAdminLocales();
   const t = useAdminTranslations(adminLocale || undefined);
   const themeMode = usePreferencesStore((s) => s.themeMode);
   const setThemeMode = usePreferencesStore((s) => s.setThemeMode);
@@ -101,8 +104,10 @@ export function LayoutControls() {
     saveAdminConfig();
   };
 
+  const resolvedAdminLocale = coerceLocale(adminLocale, defaultLocaleFromDb);
+
   const onAdminLocaleChange = (value: string) => {
-    const next = String(value || '').trim();
+    const next = coerceLocale(value, defaultLocaleFromDb);
     if (!next) return;
     setAdminLocale(next);
     persistPreference("admin_locale", next);
@@ -174,18 +179,15 @@ export function LayoutControls() {
 
             <div className="space-y-1">
               <Label className="font-medium text-xs">{t('admin.sidebar.preferences.language')}</Label>
-              <Select value={adminLocale || 'tr'} onValueChange={onAdminLocaleChange}>
-                <SelectTrigger size="sm" className="w-full text-xs">
-                  <SelectValue placeholder={t('admin.sidebar.preferences.languagePlaceholder')} />
-                </SelectTrigger>
-                <SelectContent>
-                  {ADMIN_LOCALE_OPTIONS.map((opt) => (
-                    <SelectItem key={opt.value} className="text-xs" value={opt.value}>
-                      {opt.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <AdminLocaleSelect
+                value={resolvedAdminLocale}
+                onChange={onAdminLocaleChange}
+                options={localeOptions}
+                loading={localesLoading || localesFetching}
+                disabled={localesLoading || localesFetching}
+                label={t('admin.sidebar.preferences.language')}
+                allowEmpty={false}
+              />
             </div>
 
             <div className="space-y-1">

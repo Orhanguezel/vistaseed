@@ -1,6 +1,6 @@
 // test/auth.test.ts — Auth akis testleri
 import { describe, it, expect, afterAll } from "bun:test";
-import { getTestApp, closeTestApp, registerUser, loginUser, randomEmail, authHeaders } from "./setup";
+import { getTestApp, closeTestApp, registerUser, loginUser, randomEmail, authHeaders, apiV1 } from "./setup";
 
 afterAll(closeTestApp);
 
@@ -13,7 +13,7 @@ describe("Auth — Kayit", () => {
     expect(status).toBe(200);
     expect(body.access_token).toBeDefined();
     expect(body.user.email).toBe(email);
-    expect(body.user.role).toBeOneOf(["customer", "carrier", "admin"]);
+    expect(body.user.role).toBeOneOf(["admin", "editor"]);
   });
 
   it("ayni email ile tekrar kayit 409 doner", async () => {
@@ -30,7 +30,7 @@ describe("Auth — Kayit", () => {
     const app = await getTestApp();
     const res = await app.inject({
       method: "POST",
-      url: "/api/auth/signup",
+      url: apiV1("/auth/signup"),
       payload: { password: "Test1234!", rules_accepted: true },
     });
     expect(res.statusCode).toBe(400);
@@ -40,19 +40,19 @@ describe("Auth — Kayit", () => {
     const app = await getTestApp();
     const res = await app.inject({
       method: "POST",
-      url: "/api/auth/signup",
+      url: apiV1("/auth/signup"),
       payload: { email: randomEmail(), password: "Test1234!", rules_accepted: false },
     });
     expect(res.statusCode).toBe(400);
   });
 
-  it("carrier rolu ile kayit yapar", async () => {
+  it("editor rolu ile kayit yapar", async () => {
     const app = await getTestApp();
     const email = randomEmail();
-    const { status, body } = await registerUser(app, { email, password: "Test1234!", role: "carrier" });
+    const { status, body } = await registerUser(app, { email, password: "Test1234!", role: "editor" });
 
     expect(status).toBe(200);
-    expect(body.user.role).toBe("carrier");
+    expect(body.user.role).toBe("editor");
   });
 });
 
@@ -93,7 +93,7 @@ describe("Auth — Me", () => {
 
     const res = await app.inject({
       method: "GET",
-      url: "/api/auth/user",
+      url: apiV1("/auth/user"),
       headers: authHeaders(login.token!),
     });
     // 200 veya 401 (inject token handling farkliligi olabilir)
@@ -107,7 +107,7 @@ describe("Auth — Me", () => {
 
   it("token olmadan 401 doner", async () => {
     const app = await getTestApp();
-    const res = await app.inject({ method: "GET", url: "/api/auth/user" });
+    const res = await app.inject({ method: "GET", url: apiV1("/auth/user") });
     expect(res.statusCode).toBe(401);
   });
 });
@@ -120,7 +120,7 @@ describe("Auth — Sifre Sifirlama", () => {
 
     const res = await app.inject({
       method: "POST",
-      url: "/api/auth/password-reset/request",
+      url: apiV1("/auth/password-reset/request"),
       payload: { email },
     });
     expect(res.statusCode).toBe(200);
@@ -132,7 +132,7 @@ describe("Auth — Sifre Sifirlama", () => {
     const app = await getTestApp();
     const res = await app.inject({
       method: "POST",
-      url: "/api/auth/password-reset/request",
+      url: apiV1("/auth/password-reset/request"),
       payload: { email: "nonexistent@test.com" },
     });
     // Guvenlk icin 200 donmeli (email var mi yok mu belli etmemeli)
