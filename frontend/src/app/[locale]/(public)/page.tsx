@@ -271,8 +271,15 @@ export default async function HomePage({ params }: LocalePageProps) {
     },
   ];
 
+  const lcpImageUrl = sliders[0]?.image;
+
   return (
     <div className="surface-page overflow-hidden">
+      {/* LCP preload — ilk hero slayt görselini fetchpriority=high ile önceden yükle */}
+      {lcpImageUrl && (
+        // @ts-ignore — React 19 / Next.js hoists <link> to <head>
+        <link rel="preload" as="image" href={lcpImageUrl} fetchPriority="high" />
+      )}
       {/* Structured Data — LocalBusiness for homepage (physical presence + brand) */}
       <JsonLd
         type="LocalBusiness"

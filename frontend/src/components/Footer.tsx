@@ -214,7 +214,7 @@ export default async function Footer({
             &copy; {currentYear} {resolvedSiteName}. {resolvedCopyrightText}
           </p>
           <div className="flex items-center gap-3">
-            <span className="text-white/40 text-xs uppercase font-bold tracking-widest">{t("builtBy")}</span>
+            <span className="text-white/65 text-xs uppercase font-bold tracking-widest">{t("builtBy")}</span>
             <a 
               href="https://guezelwebdesign.com" 
               target="_blank" 
