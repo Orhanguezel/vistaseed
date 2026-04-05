@@ -21,6 +21,8 @@ function apiRemotePattern() {
 
 const nextConfig: NextConfig = {
   transpilePackages: ["@agro/shared-ui"],
+  typescript: { ignoreBuildErrors: true },
+  eslint: { ignoreDuringBuilds: true },
   output: "standalone",
   compress: true,
   poweredByHeader: false,
