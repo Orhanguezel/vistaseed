@@ -1,0 +1,17 @@
+{
+  "name": "vistaseed",
+  "private": true,
+  "workspaces": [
+    "packages/shared-backend",
+    "packages/shared-types",
+    "packages/shared-config",
+    "packages/shared-ui",
+    "backend",
+    "frontend",
+    "admin_panel"
+  ],
+  "scripts": {
+    "build:shared": "cd packages/shared-backend && bun x tsc -p tsconfig.build.json",
+    "install:all": "bun install"
+  }
+}

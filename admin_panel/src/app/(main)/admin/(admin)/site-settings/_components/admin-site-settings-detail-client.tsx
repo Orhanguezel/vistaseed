@@ -9,18 +9,13 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 import { RefreshCcw } from 'lucide-react';
+import { AdminLocaleSelect } from '@/components/common/admin-locale-select';
+import { useAdminLocales } from '@/components/common/use-admin-locales';
 
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from '@/components/ui/select';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
 import type { SiteSetting, SettingValue } from '@/integrations/shared';
@@ -40,7 +35,6 @@ import {
   useUpdateSiteSettingAdminMutation,
   useDeleteSiteSettingAdminMutation,
 } from '@/integrations/hooks';
-import { useAdminLocales } from '@/app/(main)/admin/_components/common/use-admin-locales';
 import { useAdminTranslations } from '@/i18n';
 import { usePreferencesStore } from '@/stores/preferences/preferences-provider';
 
@@ -660,22 +654,17 @@ export default function SiteSettingsDetailClient({ id }: { id: string }) {
             </Link>
           </Button>
 
-          <Select
-            value={selectedLocale || ''}
-            onValueChange={(v) => setSelectedLocale(v === '*' ? '*' : toShortSiteSettingsLocale(v))}
-            disabled={busy || !localeOptions.length}
-          >
-            <SelectTrigger className="w-32 sm:w-40">
-              <SelectValue placeholder={t('admin.siteSettings.detail.inline.selectLocale')} />
-            </SelectTrigger>
-            <SelectContent>
-              {localeOptions.map((o) => (
-                <SelectItem key={o.value} value={o.value}>
-                  {o.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <div className="w-32 sm:w-40">
+            <AdminLocaleSelect
+              value={selectedLocale || ''}
+              onChange={(value: string) => setSelectedLocale(value === '*' ? '*' : toShortSiteSettingsLocale(value))}
+              options={localeOptions}
+              loading={isLocalesLoading || isLocalesFetching}
+              disabled={busy || !localeOptions.length}
+              label={t('admin.siteSettings.detail.localeLabel')}
+              allowEmpty={false}
+            />
+          </div>
 
           <Button
             type="button"

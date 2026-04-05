@@ -1,0 +1,1350 @@
+{
+  "Common": {
+    "navigation": {
+      "home": "Startseite",
+      "products": "Produkte",
+      "corporate": "Unternehmen",
+      "about": "Uber uns",
+      "hr": "Karriere",
+      "faq": "FAQ",
+      "contact": "Kontakt",
+      "support": "Support",
+      "privacy": "Datenschutz",
+      "terms": "Nutzungsbedingungen",
+      "kvkk": "KVKK",
+      "blog": "Blog",
+      "references": "Referenzen",
+      "compare": "Vergleichen",
+      "dealerNetwork": "Handler-Netz",
+      "bulkSales": "Grossverkauf"
+    },
+    "actions": {
+      "readMore": "Mehr lesen",
+      "seeAll": "Alle anzeigen",
+      "back": "Zuruck",
+      "close": "Schliessen",
+      "send": "Senden",
+      "loading": "Wird geladen..."
+    },
+    "footer": {
+      "corporate": "Unternehmen",
+      "support": "Support",
+      "legal": "Rechtliches",
+      "products": "Produkte",
+      "allProducts": "Alle Produkte",
+      "copyright": "Alle Rechte vorbehalten."
+    }
+  },
+  "Header": {
+    "productsDescription": "Sehen Sie sich unseren Produktkatalog an und wahlen Sie die passende Sorte fur Ihren Bedarf.",
+    "allProducts": "Alle Produkte",
+    "vegetableSeeds": "Gemusesaatgut",
+    "fieldSeeds": "Ackersaatgut",
+    "rootstockRoute": "Unterlagenlösungen",
+    "greenhouseRoute": "Gewächshausorientierte Sorten",
+    "tswvRoute": "TSWV-tolerante Sorten",
+    "kapiaRoute": "Süße Kapia-Auswahl",
+    "corporateDescription": "Lernen Sie unser Unternehmen, unsere Werte und unsere Geschichte naher kennen.",
+    "rdCenter": "F&E-Zentrum",
+    "sustainability": "Nachhaltigkeit",
+    "knowledgeCenter": "Wissenszentrum",
+    "supportDescription": "Aussaat, Pflege und haufig gestellte Fragen.",
+    "knowledgeBase": "Wissensdatenbank",
+    "plantingGuide": "Anbauleitfaden",
+    "dealerLogin": "Handler-Login",
+    "searchPlaceholder": "Wonach suchen Sie?",
+    "searchLoading": "Produktvorschläge werden geladen...",
+    "searchEmpty": "Keine passenden Produkte gefunden.",
+    "searchResults": "Produktvorschläge",
+    "searchViewAll": "Alle Ergebnisse öffnen",
+    "homeAriaLabel": "Startseite",
+    "searchAriaLabel": "Suche",
+    "menuAriaLabel": "Menu"
+  },
+  "Footer": {
+    "eyebrow": "VISTASEED",
+    "rdCenter": "F&E-Zentrum",
+    "sustainability": "Nachhaltigkeit",
+    "plantingGuide": "Anbauleitfaden",
+    "dealerLogin": "Handler-Login",
+    "vegetableSeeds": "Gemusesaatgut",
+    "fieldSeeds": "Ackersaatgut",
+    "allProducts": "Alle Produkte",
+    "legal": "Rechtliches",
+    "helpTitle": "Wir helfen Ihnen gerne weiter",
+    "faqLink": "unsere haufig gestellten Fragen",
+    "helpDescriptionMiddle": "oder",
+    "contactLink": "kontaktieren Sie uns",
+    "followTitle": "Folgen Sie uns",
+    "copyright": "Alle Rechte vorbehalten.",
+    "builtBy": "Design & Entwicklung"
+  },
+  "ThemeToggle": {
+    "toLight": "Zum hellen Design wechseln",
+    "toDark": "Zum dunklen Design wechseln"
+  },
+  "Sections": {
+    "faqPreview": {
+      "eyebrow": "FAQ",
+      "title": "Häufig gestellte Fragen",
+      "subtitle": "Schnelle Antworten auf häufige Fragen.",
+      "ctaLabel": "Alle Fragen ansehen"
+    },
+    "cta": {
+      "eyebrow": "MACH MIT",
+      "title": "Gemeinsam wachsen",
+      "description": "Von der Produktion bis zur Lieferung stehen wir Ihnen in allen Prozessen als professioneller Losungspartner zur Seite.",
+      "ctaLabel": "Jetzt Kontakt aufnehmen"
+    },
+    "plantingGuide": {
+      "eyebrow": "PFLANZANLEITUNG",
+      "title": "Richtige Zeit, richtige Pflanzung",
+      "subtitle": "Steigern Sie Ihre Produktivität mit Pflanzempfehlungen und Pflegetipps, die für saisonale Zyklen optimiert sind.",
+      "seasons": {
+        "spring": {
+          "label": "Frühling",
+          "months": "März — Mai",
+          "tips": [
+            "Die Bodentemperatur sollte mindestens 15°C betragen.",
+            "Die Vorbereitung der Setzlinge sollte Ende Februar beginnen.",
+            "Die Erstbewässerung sollte leicht und regelmäßig erfolgen."
+          ]
+        },
+        "summer": {
+          "label": "Sommer",
+          "months": "Juni — August",
+          "tips": [
+            "Gegen Hitzestress sollte eine Schattierung erfolgen.",
+            "Die Effizienz sollte durch Tröpfchenbewässerung gesteigert werden.",
+            "Bei der Ernte sollte auf den Reifegrad geachtet werden."
+          ]
+        },
+        "autumn": {
+          "label": "Herbst",
+          "months": "September — November",
+          "tips": [
+            "Idealer Pflanzzeitraum für Wintergemüse.",
+            "Bodenvorbereitung und Düngung sind entscheidend.",
+            "Gegen Frostgefahr sollten frühzeitig Vorsorgemaßnahmen getroffen werden."
+          ]
+        },
+        "winter": {
+          "label": "Winter",
+          "months": "Dezember — Februar",
+          "tips": [
+            "Die Temperaturkontrolle im Gewächshaus ist lebenswichtig.",
+            "Das Feuchtigkeitsgleichgewicht sollte gegen Krankheitsrisiken geschützt werden.",
+            "Der Temperaturunterschied zwischen Tag und Nacht sollte optimiert werden."
+          ]
+        }
+      }
+    },
+    "timeline": {
+      "eyebrow": "UNSERE GESCHICHTE",
+      "title": "Unsere Historie",
+      "subtitle": "Vista Seeds Reise beginnt in der Erde und wachst mit modernster Technologie.",
+      "items": [
+        {
+          "year": "1990",
+          "title": "Grundung",
+          "description": "Die Grundsteine des Unternehmens wurden gelegt."
+        },
+        {
+          "year": "2000",
+          "title": "Wachstum",
+          "description": "Erweiterung neuer Anlagen und des Produktsortiments."
+        },
+        {
+          "year": "2010",
+          "title": "Export",
+          "description": "Erschließung internationaler Markte."
+        },
+        {
+          "year": "2020",
+          "title": "F&E-Zentrum",
+          "description": "Modernes Forschungszentrum nahm den Betrieb auf."
+        },
+        {
+          "year": "2025",
+          "title": "Digitale Transformation",
+          "description": "Integriertes Produktionssystem mit modernster Technologie."
+        }
+      ]
+    },
+    "trustBar": {
+      "items": [
+        {
+          "label": "Zertifiziertes Saatgut",
+          "description": "TUAB genehmigt"
+        },
+        {
+          "label": "Nachhaltig",
+          "description": "Umweltfreundliche Produktion"
+        },
+        {
+          "label": "F&E-orientiert",
+          "description": "Hybridsorten"
+        },
+        {
+          "label": "95%+ Keimung",
+          "description": "Qualitatsgarantie"
+        }
+      ]
+    },
+    "stats": {
+      "items": [
+        {
+          "label": "Globale Reichweite"
+        },
+        {
+          "label": "Produktvielfalt"
+        },
+        {
+          "label": "Jahre Erfahrung"
+        },
+        {
+          "label": "Kundenzufriedenheit"
+        }
+      ]
+    },
+    "values": {
+      "eyebrow": "UNSERE WERTE",
+      "title": "Warum wir?",
+      "subtitle": "Mit unserer klaren Bindung an grundlegende Werte schaffen wir einen Unterschied in der Landwirtschaft.",
+      "items": [
+        {
+          "title": "Hoher Ertrag",
+          "description": "Ertragreiche Saatgutsorten, entwickelt mit modernen Produktionsmethoden."
+        },
+        {
+          "title": "Qualitat und Vertrauen",
+          "description": "All unser Saatgut durchlauft umfassende Qualitatskontrollen."
+        },
+        {
+          "title": "Regionale Anpassung",
+          "description": "Sorten fur unterschiedliche Klima- und Bodenbedingungen."
+        },
+        {
+          "title": "F&E-orientiert",
+          "description": "Hybridzuchtprogramme und kontinuierliche Verbesserungsarbeit."
+        }
+      ]
+    }
+  },
+  "Home": {
+    "hero": {
+      "fallbacks": [
+        {
+          "title": "Der Ertrag des Saatguts beginnt im Boden",
+          "description": "Vista Seed bietet nachhaltigen landwirtschaftlichen Erfolg mit ertragreichen und zuverlassigen Saatgutsorten.",
+          "buttonText": "Produkte entdecken"
+        },
+        {
+          "title": "Saatgut der Zukunft durch Forschung und Entwicklung",
+          "description": "Mit unseren eigenen Selektionen und Hybridsorten schaffen wir Mehrwert fur die Landwirtschaft in der Turkei.",
+          "buttonText": "Uber uns"
+        },
+        {
+          "title": "Zertifiziert und zuverlassig",
+          "description": "Gepruftes Saatgut mit einer Keimrate von uber 95 Prozent.",
+          "buttonText": "FAQ"
+        }
+      ]
+    },
+    "sections": {
+      "trustBar": {
+        "badges": [
+          {
+            "label": "Hoher Ertrag",
+            "description": "Zertifiziertes Saatgut"
+          },
+          {
+            "label": "F&E Fokus",
+            "description": "Lokale Selektion"
+          },
+          {
+            "label": "Echter Geschmack",
+            "description": "100% naturliche Aromen"
+          }
+        ]
+      },
+      "seasonal": {
+        "title": "Unsere saisonalen Empfehlungen",
+        "subtitle": "Entdecken Sie unsere ertragreichsten Sorten fur die aktuelle Saison.",
+        "placeholder": "Unsere {season}-Empfehlungen"
+      },
+      "featured": {
+        "title": "Ausgewahlte Produkte",
+        "subtitle": "Die besten Produkte vom Feld bis auf den Tisch mit Vista Seed Qualitat."
+      },
+      "discovery": {
+        "eyebrow": "Fertige Entdeckungsrouten",
+        "title": "Den Katalog mit vorbereiteten Filtern betreten",
+        "subtitle": "Öffnen Sie mit vorbereiteten Filtern direkt die Sortengruppen für Ihr Produktionssegment.",
+        "cta": "Entdeckung offnen",
+        "items": {
+          "rootstock": {
+            "title": "Unterlagenlosungen",
+            "description": "Offnen Sie unterlagenfokussierte Produkte in einer Ansicht fur veredelte Produktionsplanung."
+          },
+          "greenhouseTswv": {
+            "title": "Gewachshaus + TSWV-Toleranz",
+            "description": "Prufen Sie Sorten fur Gewachshausprogramme mit TSWV-Signalen."
+          },
+          "kapia": {
+            "title": "Susse Kapia-Auswahl",
+            "description": "Wechseln Sie direkt zu sussen Sorten im Kapia-Segment."
+          },
+          "openField": {
+            "title": "Susse Freilandpaprika",
+            "description": "Listen Sie fur Freilandplane geeignete susse Paprika mit einer fertigen Kombination."
+          }
+        }
+      },
+      "ecosystem": {
+        "title": "Inhalte des Okosystems",
+        "subtitle": "Sehen Sie Leitfäden aus der Wissensdatenbank und Kundenreferenzen in einem Fluss und navigieren Sie zu relevanten Seiten.",
+        "knowledgeEyebrow": "Wissensdatenbank",
+        "referenceEyebrow": "Kundenreferenz",
+        "knowledgeCta": "Inhalt offnen",
+        "referenceCta": "Passende Seite offnen"
+      },
+      "faq": {
+        "title": "Haufig gestellte Fragen",
+        "subtitle": "Was Sie uber unsere Produktion und Produkte wissen mochten."
+      },
+      "newsletter": {
+        "title": "Bleiben Sie auf dem Laufenden",
+        "eyebrow": "NEWSLETTER",
+        "description": "Abonnieren Sie unseren Newsletter für neue Sorten, saisonale Tipps und Neuigkeiten.",
+        "buttonLabel": "Abonnieren",
+        "placeholder": "z. B. sie@firma.com",
+        "emailLabel": "E-Mail-Adresse",
+        "successTitle": "Abonnement erfolgreich",
+        "successDesc": "Vielen Dank für Ihre Anmeldung zu unserem Newsletter.",
+        "spamNote": "Wir versprechen keinen Spam. Sie können sich jederzeit abmelden."
+      }
+    },
+    "seasons": {
+      "spring": "Fruhling",
+      "summer": "Sommer",
+      "fall": "Herbst",
+      "winter": "Winter"
+    }
+  },
+  "Products": {
+    "breadcrumb": {
+      "home": "Startseite",
+      "products": "Produkte"
+    },
+    "detail": {
+      "productCode": "Produktcode",
+      "specs": "Technische Daten",
+      "specGroups": {
+        "fruit": "Frucht und Form",
+        "cultivation": "Anbau und Einsatz",
+        "tolerance": "Toleranz und Feldstabilitat",
+        "commercial": "Kommerzielle Vorteile"
+      },
+      "faqs": "Haufig gestellte Fragen",
+      "faqForm": {
+        "title": "Haben Sie eine Frage?",
+        "placeholder": "Schreiben Sie Ihre Frage zum Produkt...",
+        "submit": "Frage senden",
+        "sending": "Wird gesendet...",
+        "success": "Ihre Frage wurde erhalten. Wir melden uns so schnell wie moglich.",
+        "error": "Die Frage konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+        "minLength": "Die Frage muss mindestens 3 Zeichen lang sein."
+      },
+      "reviews": "Kundenbewertungen",
+      "reviewCount": "{count} Bewertungen",
+      "reviewSummary": "Echte Erfahrungsberichte von Erzeugern sowie Einschatzungen zu Nutzung und Ertrag.",
+      "ecosystemKicker": "Okosystem-Verbindungen",
+      "ecosystemTitle": "Ablaufe und Zugange",
+      "ecosystemSubtitle": "Sehen Sie Feldzugang, Grossverkauf und operative Ablaufe rund um dieses Produkt auf den zugehorigen Seiten.",
+      "ecosystemCta": "Ablauf offnen",
+      "relatedKnowledgeKicker": "Wissensdatenbank",
+      "relatedKnowledgeTitle": "Passende Leitfaden und Artikel",
+      "relatedKnowledgeSubtitle": "Technische Inhalte passend zu Ihren Produkt-Tags.",
+      "relatedKnowledgeSeeAll": "Zur Wissensdatenbank",
+      "noReviews": "Noch keine Bewertungen vorhanden.",
+      "noReviewsCta": "Noch keine Bewertungen vorhanden. Schreiben Sie die erste.",
+      "badges": {
+        "hybrid": "F1 Hybrid",
+        "early": "Fruh",
+        "featured": "Empfohlen"
+      },
+      "quickSpecs": {
+        "seedType": "Saatguttyp",
+        "seedTypeFallback": "Premium",
+        "botanical": "Botanischer Name",
+        "certificate": "Zertifikat",
+        "certificateValue": "TUAB-zertifiziert",
+        "climate": "Klimaeignung",
+        "climateValue": "Agais / Marmara / Zentralanatolien",
+        "climateFallback": "Keine Angabe",
+        "planting": "Aussaatzeit",
+        "plantingFallback": "Keine Angabe",
+        "soil": "Bodentyp",
+        "soilFallback": "Keine Angabe",
+        "tempRange": "Temperaturbereich",
+        "tempFallback": "Keine Angabe",
+        "harvest": "Erntefenster",
+        "harvestValue": "Saisonal",
+        "harvestDays": "{days} Tage",
+        "water": "Wasserbedarf",
+        "waterFallback": "—",
+        "sun": "Lichtbedarf",
+        "sunFallback": "—",
+        "days": "Tage"
+      },
+      "agEnum": {
+        "season": {
+          "ilkbahar": "Fruhling",
+          "yaz": "Sommer",
+          "sonbahar": "Herbst",
+          "kis": "Winter"
+        },
+        "climate": {
+          "akdeniz": "Mittelmeer",
+          "ege": "Agais",
+          "marmara": "Marmara",
+          "ic-anadolu": "Zentralanatolien",
+          "karadeniz": "Schwarzmeer",
+          "dogu-anadolu": "Ostanatolien",
+          "guneydogu": "Sudostanatolien"
+        },
+        "soil": {
+          "kumlu": "Sandig",
+          "killi": "Lehmig",
+          "humuslu": "Humusreich",
+          "balikli": "Locker",
+          "torflu": "Torfig"
+        },
+        "water": {
+          "low": "Niedrig",
+          "medium": "Mittel",
+          "high": "Hoch"
+        },
+        "sun": {
+          "full": "Volle Sonne",
+          "partial": "Halbschatten",
+          "shade": "Schatten"
+        }
+      },
+      "ctaPanel": {
+        "title": "Jetzt Angebot anfordern",
+        "subtitle": "Individuelle Konditionen fur Ihr Unternehmen"
+      },
+      "profile": {
+        "eyebrow": "Agrarprofil",
+        "title": "Anbaubedingungen und Feldubersicht",
+        "subtitle": "Lesen Sie die wichtigsten agronomischen Signale fur Planung, Standortpassung und Umweltanforderungen auf einen Blick.",
+        "groups": {
+          "growing": "Anbau",
+          "spacing": "Aussaatmasse",
+          "environment": "Umweltbedingungen"
+        },
+        "fields": {
+          "planting": "Aussaatzeit",
+          "soil": "Bodentyp",
+          "harvest": "Erntefenster",
+          "germination": "Keimung",
+          "seedDepth": "Aussaattiefe",
+          "rowSpacing": "Reihenabstand",
+          "plantSpacing": "Pflanzabstand",
+          "temperature": "Temperaturbereich",
+          "water": "Wasserbedarf",
+          "sun": "Lichtbedarf",
+          "yield": "Ertrag"
+        }
+      },
+      "reviewForm": {
+        "title": "Bewertung abgeben",
+        "namePlaceholder": "Ihr Name",
+        "ratingLabel": "Ihre Bewertung",
+        "commentPlaceholder": "Schreiben Sie Ihre Meinung zum Produkt...",
+        "submit": "Bewertung senden",
+        "sending": "Wird gesendet...",
+        "success": "Ihre Bewertung wurde erhalten und nach Prufung veroffentlicht.",
+        "error": "Die Bewertung konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+        "nameRequired": "Bitte geben Sie Ihren Namen ein.",
+        "commentMin": "Der Kommentar muss mindestens 5 Zeichen lang sein.",
+        "starLabel": "{star} Sterne"
+      },
+      "cta": "Information anfordern",
+      "notFound": "Produkt nicht gefunden",
+      "rating": "Bewertung",
+      "gallery": {
+        "prev": "Vorheriges Bild",
+        "next": "Nachstes Bild",
+        "imageOf": "Bild {current} / {total}"
+      }
+    },
+    "list": {
+      "meta": {
+        "filteredTitle": "{filters} | {title}",
+        "filteredDescription": "Sehen Sie gefilterte Produkte nach {filters} innerhalb von {title}."
+      },
+      "title": "Produktkatalog",
+      "intro": {
+        "default": "Prüfen Sie {count} Produkte in der Ansicht {category}. Sie können den Katalog nach Sorte, Anbaufläche, Geschmacksprofil und Toleranz eingrenzen.",
+        "filtered": "Sie sehen {count} Produkte, die zu diesen Filtern passen: {filters}."
+      },
+      "search": "Nach Produktname oder Code suchen...",
+      "filters": {
+        "type": {
+          "label": "Produkttyp",
+          "options": {
+            "rootstock": "Unterlage",
+            "charleston": "Charleston",
+            "hotThin": "Scharfe dunne",
+            "sweetThin": "Susse dunne",
+            "breakfast": "Fruhstuck",
+            "kapia": "Kapia",
+            "stuffing": "Blockpaprika"
+          }
+        },
+        "cultivation": {
+          "label": "Anbauflache",
+          "options": {
+            "greenhouse": "Gewachshaus",
+            "openField": "Freiland",
+            "highland": "Hochland",
+            "grafted": "Veredelte Produktion"
+          }
+        },
+        "taste": {
+          "label": "Geschmacksprofil",
+          "options": {
+            "sweet": "Suss",
+            "hot": "Scharf"
+          }
+        },
+        "tolerance": {
+          "label": "Toleranz",
+          "options": {
+            "tswv": "TSWV",
+            "tm02": "Tm 0-2",
+            "fon01": "Fon 0,1",
+            "cold": "Kalteleistung"
+          }
+        }
+      },
+      "activeFilters": {
+        "title": "Aktive Filter",
+        "search": "Suche",
+        "category": "Kategorie",
+        "tag": "Tag",
+        "type": "Produkttyp",
+        "cultivation": "Anbaufläche",
+        "taste": "Geschmacksprofil",
+        "tolerance": "Toleranz"
+      },
+      "share": {
+        "action": "Filterlink kopieren",
+        "copied": "Link kopiert.",
+        "error": "Link konnte nicht kopiert werden."
+      },
+      "allCategories": "Alle anzeigen",
+      "noResults": "Keine Produkte entsprechen Ihrer Suche.",
+      "clearFilters": "Filter zurucksetzen",
+      "resultCount": "{count} Produkte gelistet"
+    },
+    "specCategories": {
+      "physical": "Physische Eigenschaften",
+      "material": "Krankheitstoleranz",
+      "service": "Service",
+      "custom": "Anbauinformationen"
+    }
+  },
+  "Compare": {
+    "meta": {
+      "title": "Produktvergleich",
+      "description": "Vergleichen Sie ausgewahlte Produkte nebeneinander nach technischen Daten, Lagerbestand und Kerndaten."
+    },
+    "title": "Produktvergleich",
+    "subtitle": "Prufen Sie mehrere Sorten nebeneinander und erkennen Sie Unterschiede schneller.",
+    "loading": "Vergleichsdaten werden geladen...",
+    "empty": "Wahlen Sie mindestens zwei Produkte fur den Vergleich aus.",
+    "browseProducts": "Zuruck zum Produktkatalog",
+    "clear": "Auswahl leeren",
+    "attribute": "Merkmal",
+    "sections": {
+      "overview": "Ubersicht",
+      "cultivation": "Anbauplan",
+      "environment": "Umweltpassung",
+      "commercial": "Kommerzieller Vergleich"
+    },
+    "remove": "Entfernen",
+    "rowCategory": "Kategorie",
+    "rowPrice": "Preis",
+    "rowStock": "Bestand",
+    "rowRating": "Bewertung",
+    "rowCode": "Produktcode",
+    "rowBotanical": "Botanischer Name",
+    "rowClimate": "Klimazonen",
+    "rowPlanting": "Aussaatzeit",
+    "rowSoil": "Bodentyp",
+    "rowHarvestDays": "Erntezeit (Tage)",
+    "rowTemp": "Temperaturbereich",
+    "rowWater": "Wasserbedarf",
+    "rowSun": "Lichtbedarf",
+    "rowDepth": "Aussaattiefe",
+    "rowYield": "Ertrag (pro m²)",
+    "rowGermination": "Keimung (Tage)",
+    "rowSpacing": "Reihen- / Pflanzabstand (cm)",
+    "fetchError": "Vergleichsdaten konnten nicht geladen werden.",
+    "mismatch": "Einige Produkte konnten nicht hinzugefugt werden, weil sie nicht mehr aktiv sind.",
+    "addToCompare": "Vergleichen",
+    "selected": "Ausgewahlt",
+    "goToCompare": "{count} Produkte vergleichen",
+    "toastAdded": "Produkt wurde zur Vergleichsliste hinzugefugt.",
+    "toastDuplicate": "Dieses Produkt ist bereits in der Liste.",
+    "max": "Es konnen maximal 5 Produkte ausgewahlt werden.",
+    "selectedCount": "{count} Produkte ausgewahlt",
+    "trayHint": "Die Vergleichsseite bietet Tabellen- und mobile Kartenansicht.",
+    "compareNow": "Vergleich offnen"
+  },
+  "Library": {
+    "relatedProducts": {
+      "kicker": "Zugehörige Produkte",
+      "title": "Passende Produkte zu diesem Leitfaden",
+      "seeAll": "Alle anzeigen"
+    },
+    "knowledgeBase": {
+      "title": "Wissensdatenbank",
+      "description": "Umfassende Informationen zu Saatgut, Aussaattechniken und landwirtschaftlicher Unterstutzung.",
+      "heroDescription": "Alle technischen Dokumente, Anbauleitfaden und Supportinhalte, die Ihre landwirtschaftlichen Prozesse begleiten, an einem Ort.",
+      "guidesTitle": "Aussaat- und Pflegeleitfaden",
+      "supportsTitle": "Technischer Support und Losungen",
+      "othersTitle": "Weitere Informationen",
+      "seeAllGuides": "Alle anzeigen",
+      "reviewDetailCta": "Details ansehen",
+      "empty": "Der Wissensdatenbank wurden noch keine Inhalte hinzugefugt.",
+      "breadcrumbHome": "Startseite"
+    },
+    "detail": {
+      "supportBadge": "Technischer Support",
+      "knowledgeBadge": "Wissensdatenbank",
+      "publishedLabel": "Veroffentlicht",
+      "attachmentsTitle": "Angehangte Dateien",
+      "documentFile": "Dokumentdatei",
+      "downloadCta": "Herunterladen",
+      "helpTitle": "Benotigen Sie Hilfe?",
+      "helpDescription": "Wenn Sie die gesuchte Information nicht gefunden haben, konnen Sie sich an unser technisches Team wenden.",
+      "contactCta": "Kontaktieren Sie uns",
+      "backToKnowledgeBase": "Zur Wissensdatenbank",
+      "galleryTitle": "Galerie",
+      "breadcrumbHome": "Startseite",
+      "breadcrumbKnowledge": "Wissensdatenbank"
+    },
+    "guides": {
+      "title": "Aussaat- und Pflegeleitfaden",
+      "description": "Fachkundige Empfehlungen fur Aussaat und Pflege, damit Sie den hochsten Ertrag aus Ihrem Saatgut erzielen.",
+      "heroDescription": "Jedes Saatkorn, das auf den Boden fallt, hat eine Geschichte. Lesen Sie unsere Fachleitfaden fur eine ertragreiche Ernte.",
+      "empty": "Es wurden noch keine Leitfaden hinzugefugt.",
+      "guideBadge": "Expertenleitfaden",
+      "infoBadge": "Info",
+      "fallbackSummary": "Lesen Sie die Aussaat- und Pflegehinweise fur diese Saatgutsorte.",
+      "reviewLink": "Ansehen",
+      "breadcrumbHome": "Startseite"
+    },
+    "guideDetail": {
+      "guideBadge": "Anbauleitfaden",
+      "documentNumber": "Dokumentnr",
+      "downloadTitle": "Datei herunterladen (PDF)",
+      "guideFile": "Leitfadendatei",
+      "documentLabel": "Dokument",
+      "tipTitle": "Expertentipp",
+      "tipBody": "Die Saatgutqualitat bestimmt bis zu 60 % des Ertrags. Lassen Sie vor der Aussaat eine Bodenanalyse durchfuhren und achten Sie auf die richtige Saattiefe.",
+      "backToGuides": "Zuruck zu allen Leitfaden",
+      "galleryTitle": "Galerie",
+      "breadcrumbHome": "Startseite",
+      "breadcrumbGuides": "Anbauleitfaden"
+    }
+  },
+  "FAQ": {
+    "title": "Haufig gestellte Fragen",
+    "description": "Die Antworten auf Ihre Fragen finden Sie hier.",
+    "empty": "Es wurden noch keine FAQ-Eintrage hinzugefugt."
+  },
+  "HR": {
+    "title": "Karriere",
+    "description": "Prufen Sie unsere offenen Stellen, um Teil unseres Teams zu werden. Wir bieten berufliche Entwicklung, eine F&E-Kultur und eine nachhaltige Vision.",
+    "stats": {
+      "expertTeam": "Expertenteam",
+      "totalStaff": "Gesamtpersonal",
+      "employees": "Mitarbeitende"
+    },
+    "whyUsTitle": "Warum wir?",
+    "reasons": [
+      "Berufliche Entwicklung und Karriereplanung",
+      "Innovatives, F&E-orientiertes Arbeitsumfeld",
+      "Vision nachhaltiger Landwirtschaft",
+      "Kontinuierliche Schulungs- und Zertifizierungsprogramme",
+      "Wettbewerbsfahiges Gehalt und Zusatzleistungen"
+    ],
+    "applicationTitle": "Bewerbung",
+    "applicationDescription": "Sie konnen uns Ihren Lebenslauf fur offene Positionen zusenden. Ihre Bewerbungen werden im Rahmen der KVKK bewertet.",
+    "contactCta": "Kontakt aufnehmen"
+  },
+  "Blog": {
+    "meta": {
+      "title": "Blog",
+      "description": "Aktuelle Artikel zu Saatgut, Aussaat und Agrartechnologie."
+    },
+    "ecosystemTitle": "Vom Blog ins Okosystem wechseln",
+    "ecosystemDescription": "Sehen Sie neben Blogbeitragen auch Leitfaden, Inhalte der Wissensdatenbank und operative Ablaufe direkt.",
+    "ecosystemKnowledgeEyebrow": "Technische Inhalte",
+    "ecosystemReferenceEyebrow": "Ablaufe",
+    "ecosystemKnowledgeCta": "Leitfaden offnen",
+    "ecosystemReferenceCta": "Passende Seite offnen",
+    "listTitle": "Blog",
+    "listDescription": "Feld- und Labornotizen, Aussaattipps und Markteinblicke.",
+    "discovery": {
+      "eyebrow": "Fertige Produktrouten",
+      "title": "Vom Artikel zur Produktentdeckung wechseln",
+      "subtitle": "Erreichen Sie fokussierte Produktsegmente uber vorbereitete Filterkombinationen, ohne den Blogfluss zu verlassen.",
+      "cta": "Gefilterte Liste offnen",
+      "items": {
+        "greenhouse": {
+          "title": "Sorten fur das Gewachshaus",
+          "description": "Filtern Sie Produkte fur die Gewachshausplanung mit einem Klick."
+        },
+        "tswv": {
+          "title": "TSWV-orientierte Suche",
+          "description": "Prufen Sie Produkte mit TSWV-Signalen in einem eigenen Fluss."
+        },
+        "breakfast": {
+          "title": "Fruhstuckssegment",
+          "description": "Offnen Sie die Fruhstuckspaprika-Gruppe uber eine gefilterte Katalogansicht."
+        },
+        "rootstock": {
+          "title": "Unterlagenprodukte",
+          "description": "Wechseln Sie direkt zur passenden Gruppe fur Veredelung oder Unterlagenbedarf."
+        }
+      }
+    },
+    "readMore": "Weiterlesen",
+    "empty": "Noch keine Beitrage.",
+    "backToBlog": "Zuruck zum Blog",
+    "rssHint": "Per RSS folgen"
+  },
+  "References": {
+    "list": {
+      "title": "Referenzen",
+      "description": "Prufen Sie Projekt-, Umsetzungs- und Unternehmensreferenzen innerhalb des VistaSeed-Okosystems.",
+      "eyebrow": "Feld- und Projektflachen",
+      "heroDescription": "Durchsuchen Sie migrierte Referenzeintrage, Bildsets und Projektflachen der Quellseite in einem Strom.",
+      "cardKicker": "Referenzeintrag",
+      "detailCta": "Detail offnen",
+      "fallbackSummary": "Diese Referenz stellt derzeit eine Galerie und einen Projekteintrag bereit.",
+      "empty": "Noch keine veroffentlichten Referenzen.",
+      "breadcrumbHome": "Startseite"
+    },
+    "detail": {
+      "eyebrow": "Referenzdetail",
+      "sourceBadge": "Quelllink",
+      "sourceTitle": "Originaleintrag",
+      "sourceDescription": "Sie konnen die Quellseite dieser Referenz auf der aktuellen Unternehmensseite in einem neuen Tab offnen.",
+      "sourceCta": "Quellseite offnen",
+      "backToList": "Zuruck zu den Referenzen",
+      "galleryEyebrow": "Bildset",
+      "galleryTitle": "Galerie",
+      "galleryItem": "Bild",
+      "breadcrumbHome": "Startseite",
+      "breadcrumbList": "Referenzen"
+    }
+  },
+  "DealersNetwork": {
+    "meta": {
+      "title": "Handler-Netz",
+      "description": "Durchsuchen Sie das autorisierte Handler-Netz nach Stadt und Region mit Abdeckungsdichte und Handler-Karten."
+    },
+    "title": "Handler-Netz",
+    "description": "Autorisierte Handler in der Turkei. Filter nach Name, Stadt oder Region.",
+    "searchLabel": "Suche",
+    "searchPlaceholder": "Firmenname",
+    "city": "Stadt",
+    "cityPlaceholder": "z. B. Ankara",
+    "region": "Region",
+    "regionPlaceholder": "z. B. Zentralanatolien",
+    "search": "Anwenden",
+    "clear": "Zurucksetzen",
+    "loading": "Wird geladen...",
+    "fetchError": "Liste konnte nicht geladen werden.",
+    "mapSection": "Karte",
+    "mapTitle": "Regionale Abdeckung",
+    "mapHint": "Abdeckung nach Regionen",
+    "mapEmpty": "Keine Handlerdichte zum Anzeigen vorhanden.",
+    "listSection": "Handlerliste",
+    "listTitle": "Alle Treffer",
+    "listEmpty": "Keine Handler gefunden.",
+    "resultCount": "{count} Handler",
+    "directions": "Route",
+    "whatsapp": "WhatsApp",
+    "discovery": {
+      "eyebrow": "Fertige Produktrouten",
+      "title": "Vom regionalen Netz in den Katalog wechseln",
+      "subtitle": "Nach der Prüfung der Händlerabdeckung können Sie über vorbereitete Filterkombinationen direkt zu passenden Produktgruppen springen.",
+      "cta": "Gefilterte Produkte öffnen",
+      "items": {
+        "greenhouse": {
+          "title": "Gewächshausorientierte Sorten",
+          "description": "Prüfen Sie Produkte, die häufig zu gewächshausorientierten Händlerprogrammen passen."
+        },
+        "openField": {
+          "title": "Freiland-Ablauf",
+          "description": "Öffnen Sie für Freilandpläne geeignete Sorten über ein fertiges Filterset."
+        },
+        "rootstock": {
+          "title": "Unterlagenlösungen",
+          "description": "Wechseln Sie direkt zu Produkten für Veredelung und Unterlagenbedarf."
+        },
+        "tswv": {
+          "title": "Sorten mit TSWV-Signal",
+          "description": "Durchsuchen Sie Produkte mit TSWV-orientierten Signalen in einer Route."
+        }
+      }
+    }
+  },
+  "BulkSales": {
+    "meta": {
+      "title": "Grossverkauf und Genossenschaften",
+      "description": "Anfrage fur Mengenpreise: Genossenschaften, Erzeugerverbaende oder Handelsketten. Formular ausfullen, wir melden uns."
+    },
+    "title": "Grossverkauf und Genossenschaften",
+    "intro": "Wir bieten konditionierte Preise und Logistik fuer grosse Abnahmemengen und Genossenschaftsstrukturen. Senden Sie Ihre Anfrage; unser Team meldet sich zeitnah.",
+    "fields": {
+      "name": "Vor- und Nachname",
+      "company": "Organisation / Firma",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "orgType": "Organisationstyp",
+      "orgTypePlaceholder": "Bitte waehlen",
+      "city": "Stadt",
+      "region": "Region",
+      "volume": "Geschaetztes Volumen",
+      "volumePlaceholder": "z. B. 500 kg, 2 t",
+      "message": "Details zur Anfrage"
+    },
+    "orgTypes": {
+      "cooperative": "Genossenschaft",
+      "producer_union": "Erzeugerverband",
+      "retailer_chain": "Filialist",
+      "exporter": "Exporteur",
+      "other": "Sonstiges"
+    },
+    "consentTermsLead": "Ich stimme der Verarbeitung meiner Daten fuer diese Anfrage gemaess den",
+    "consentTermsLink": "Nutzungsbedingungen",
+    "consentTermsTrail": " zu.",
+    "consentMarketing": "Ich moechte Produktinfos und Kampagnen per E-Mail (optional).",
+    "submit": "Anfrage senden",
+    "sending": "Wird gesendet...",
+    "success": "Ihre Anfrage wurde empfangen. Wir melden uns in Kuerze.",
+    "error": "Senden fehlgeschlagen. Bitte spaeter erneut versuchen."
+  },
+  "Offers": {
+    "meta": {
+      "title": "Angebot anfordern — Grossverkauf",
+      "description": "Kurzprojekte und Mengenabnahme: Fordern Sie ein individuelles Angebot bei unserem Team an."
+    },
+    "title": "Grossverkauf und Firmenanfragen",
+    "description": "Fuer grosse landwirtschaftliche Projekte oder Haendler-Voranfragen fuellen Sie bitte das Formular aus.",
+    "success": "Ihre Anfrage wurde empfangen. Unser Team meldet sich in Kuerze.",
+    "createAnother": "Neue Anfrage erstellen",
+    "responseNote": "Ihre Anfrage wird von unserem Fachteam geprueft und innerhalb von 24 Stunden beantwortet.",
+    "errors": {
+      "submit": "Es ist ein Fehler aufgetreten.",
+      "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
+    },
+    "payload": {
+      "categoryLabel": "Kategorie",
+      "quantityLabel": "Menge",
+      "locationLabel": "Standort",
+      "customerFallback": "Angebotsanfrage",
+      "detailFallback": "details"
+    },
+    "support": {
+      "title": "Corporate-Support",
+      "description": "Technische Projektdetails koennen Sie direkt mit unserem Spezialistenteam klaeren."
+    },
+    "form": {
+      "companyName": "Firma / Organisation",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "category": "Interessenskategorie",
+      "quantity": "Geschaetzte Menge",
+      "location": "Projektstandort (Stadt)",
+      "message": "Details zur Anfrage",
+      "submit": "Angebotsanfrage senden",
+      "submitting": "Wird gesendet...",
+      "placeholder": {
+        "companyName": "z. B. Muster Saatgut GmbH",
+        "email": "mail@firma.de",
+        "phone": "+49 …",
+        "location": "z. B. Ankara",
+        "category": "Bitte waehlen",
+        "quantity": "z. B. 5.000 Stueck / 100 kg",
+        "message": "Beschreiben Sie Ihren Bedarf…"
+      },
+      "categories": {
+        "Vegetable": "Gemuesesaatgut",
+        "Field": "Feldsaatgut",
+        "Hybrid": "Hybridselektionen",
+        "Other": "Sonstiges"
+      }
+    },
+    "trust": {
+      "title": "Vorteile bei VistaSeed",
+      "item1": "Zertifizierte, ertragreiche Sorten",
+      "item2": "Technische Beratung und Support",
+      "item3": "Flexible Zahlungsoptionen",
+      "item4": "Schnelle Logistik in der Turkei"
+    }
+  },
+  "Support": {
+    "badge": "Support Center",
+    "title": "Haufig gestellte Fragen und Supportanfrage",
+    "description": "Sehen Sie sich zuerst den FAQ-Bereich an. Wenn Sie keine Losung finden, erstellen Sie uber das folgende Formular eine Supportanfrage.",
+    "success": "Ihre Supportanfrage wurde erhalten. Unser Team wird sich in Kurze bei Ihnen melden.",
+    "form": {
+      "title": "Supportanfrage erstellen",
+      "chatHint": "Ihre Nachricht geht als Support-Ticket an das Team; wir antworten per E-Mail oder uber Ihr Konto.",
+      "namePlaceholder": "Vor- und Nachname",
+      "emailPlaceholder": "E-Mail",
+      "subjectPlaceholder": "Betreff",
+      "messagePlaceholder": "Beschreiben Sie Ihr Anliegen oder Ihre Anfrage",
+      "submit": "Anfrage senden",
+      "sending": "Wird gesendet...",
+      "categories": {
+        "general": "Allgemein",
+        "products": "Produkte und Bestellungen",
+        "account": "Konto",
+        "technical": "Technik"
+      }
+    }
+  },
+  "Contact": {
+    "meta": {
+      "title": "Kontakt und Support",
+      "description": "Kontaktieren Sie uns uber unsere Kontaktseite und teilen Sie uns Ihre Fragen oder Anmerkungen mit."
+    },
+    "page": {
+      "heroTitle": "Kontaktieren Sie uns",
+      "heroDescription": "Wir sind fur Ihre Fragen, Anmerkungen und geschftlichen Anfragen rund um unsere Saatgut- und Agrarlosungen da.",
+      "success": "Ihre Nachricht wurde erhalten. Unser Team wird sich so schnell wie moglich mit Ihnen in Verbindung setzen.",
+      "contactCards": {
+        "phoneTitle": "Telefon",
+        "emailTitle": "E-Mail",
+        "undefined": "Noch nicht definiert"
+      },
+      "address": {
+        "title": "Adressinformationen",
+        "subtitle": "Zertifiziertes Saatgut-Produktionszentrum",
+        "fallbackCountry": "Turkei"
+      },
+      "form": {
+        "title": "Kontaktformular",
+        "submit": "Nachricht senden",
+        "submitting": "Wird gesendet...",
+        "fields": {
+          "name": {
+            "label": "Vor- und Nachname",
+            "placeholder": "Beispiel: Max Mustermann"
+          },
+          "email": {
+            "label": "E-Mail",
+            "placeholder": "email@beispiel.de"
+          },
+          "phone": {
+            "label": "Telefon",
+            "placeholder": "+49 XXX XXXXXXX"
+          },
+          "subject": {
+            "label": "Betreff",
+            "placeholder": "Woruber mochten Sie sprechen?"
+          },
+          "message": {
+            "label": "Ihre Nachricht",
+            "placeholder": "Sie konnen hier Ihre ausfuhrliche Nachricht schreiben..."
+          }
+        }
+      }
+    }
+  },
+  "About": {
+    "title": "Über Uns",
+    "pageDescription": "Entdecken Sie Vista Seeds' Stellung in der Landwirtschaft, Kernwerte, Tätigkeitsbereiche und Unternehmensgeschichte.",
+    "eyebrow": "Unternehmen",
+    "introKicker": "Geschichte und Grundwerte",
+    "introTitle": "Landwirtschaft, Projekte und digitales Erlebnis auf derselben Grundlage",
+    "visionTitle": "Unsere Vision",
+    "missionTitle": "Unsere Mission",
+    "valuesTitle": "Unsere Grundwerte",
+    "activitiesTitle": "Tätigkeitsbereiche",
+    "timelineTitle": "Unsere Geschichte",
+    "groupCompaniesTitle": "Referenzen",
+    "featureKicker": "Unternehmensgalerie",
+    "featureTitle": "Vom Produkt zur Marke: ausgewählte Bilder",
+    "ecosystemKicker": "Ökosystem-Module",
+    "referencesKicker": "Kundenreferenzen",
+    "timelineKicker": "Unternehmenszeitlinie",
+    "knowledgeKicker": "Technische Inhalte",
+    "knowledgeTitle": "Technische Inhalte und Anbauleitfäden",
+    "referencesCta": "Referenzen ansehen",
+    "contactCta": "Kontakt aufnehmen",
+    "referenceFallback": "Dieser Eintrag wird derzeit als Bild- und Projektreferenz veröffentlicht.",
+    "guideBadge": "Anbauleitfaden",
+    "knowledgeBadge": "Wissensdatenbank",
+    "knowledgeFallback": "Dieser Inhalt ist Teil der Informationsebene, die Produkt- und Feldentscheidungen unterstützt.",
+    "membershipsKicker": "Offizielle Mitgliedschaften und Zertifizierungen",
+    "membershipsTitle": "Organisationen, in denen wir Mitglied sind",
+    "discovery": {
+      "eyebrow": "Zum Produktkatalog",
+      "title": "Die Unternehmensstruktur zusammen mit relevanten Produktclustern sehen",
+      "subtitle": "Führen Sie Produktgruppen, die zu unseren Tätigkeitsbereichen passen, direkt mit vorbereiteten Filtern auf.",
+      "cta": "Passende Produkte öffnen",
+      "items": {
+        "rootstock": {
+          "title": "Unterlagen- und Veredelungslinie",
+          "description": "Sehen Sie unterlagenbezogene Produkte aus dem Produktionsrückgrat in einer gefilterten Ansicht."
+        },
+        "greenhouse": {
+          "title": "Für Gewächshausplanung geeignete Sorten",
+          "description": "Prüfen Sie Sorten, die zur modernen Gewächshausinfrastruktur passen."
+        },
+        "tswv": {
+          "title": "Toleranzorientierte Auswahl",
+          "description": "Trennen Sie Produkte mit Feldresistenz-Signalen schneller heraus."
+        },
+        "kapia": {
+          "title": "Kommerzielles Kapia-Segment",
+          "description": "Wechseln Sie direkt in die süße Kapia-Gruppe für organisierte Nachfrage."
+        }
+      }
+    }
+  },
+  "Auth": {
+    "form": {
+      "emailLabel": "E-Mail-Adresse",
+      "emailPlaceholder": "benutzer@example.com",
+      "passwordLabel": "Passwort",
+      "submit": "Anmelden",
+      "submitting": "Anmeldung lauft...",
+      "forgotPassword": "Passwort vergessen?",
+      "resetRequest": "Zurucksetzungsanfrage senden",
+      "errors": {
+        "unauthorized": "Sie haben keine Berechtigung fur diesen Bereich.",
+        "invalidCredentials": "E-Mail oder Passwort ist falsch.",
+        "generic": "Beim Anmelden ist ein Fehler aufgetreten."
+      }
+    }
+  },
+  "AuthPages": {
+    "dealer": {
+      "metaTitle": "Handler-Login",
+      "metaDescription": "Privater Portal-Login fur Vista Seed Handler. Melden Sie sich mit Ihrem bestehenden Konto an, um Bestellungen und Handlerprozesse zu verwalten.",
+      "title": "Handler-Panel",
+      "subtitle": "Melden Sie sich mit Ihrem Handlerkonto an, um Ihre Vorgange zu verwalten."
+    },
+    "member": {
+      "metaTitle": "Mitglieder-Login",
+      "metaDescription": "Privater Portal-Login fur Vista Seed Nutzer. Melden Sie sich mit Ihrem bestehenden Konto an, um Ihre Historie und Einstellungen zu verwalten.",
+      "title": "Mitglieder-Login",
+      "subtitle": "Melden Sie sich an, um Ihre Vorgange zu verfolgen."
+    }
+  },
+  "Dashboard": {
+    "layout": {
+      "portal": {
+        "dealer": "Handlerportal",
+        "customer": "Kundenbereich"
+      },
+      "limitStatus": "Limitstatus",
+      "nav": {
+        "overview": "Uberblick",
+        "orders": "Meine Bestellungen",
+        "finance": "Finanzstatus",
+        "help": "Support (Nachricht)",
+        "account": "Kontoeinstellungen"
+      },
+      "logout": "Sicher abmelden"
+    },
+    "dealerHome": {
+      "welcome": "Willkommen,",
+      "fallbackName": "Geschaftspartner",
+      "description": "Hier konnen Sie die Leistung Ihres Unternehmens und Ihre Bestellungen verfolgen.",
+      "currentBalance": "Aktueller Saldo",
+      "stats": {
+        "openOrders": {
+          "label": "Offene Bestellungen",
+          "subValue": "Laufend"
+        },
+        "availableLimit": "Verfugbares Limit",
+        "totalSpend": "Gesamteinkauf",
+        "creditUsage": "Kreditnutzung"
+      },
+      "recentOrders": {
+        "title": "Letzte Bestellungen",
+        "viewAll": "Alle anzeigen",
+        "empty": "Sie haben noch keine Bestellungen.",
+        "catalogCta": "Produktkatalog ansehen"
+      },
+      "operations": {
+        "title": "Operativer Status",
+        "creditLimit": "Kreditlimit",
+        "used": "Genutzt",
+        "limit": "Limit"
+      },
+      "support": {
+        "title": "Schneller Support",
+        "description": "Haben Sie ein Problem mit Ihren Bestellungen oder Zahlungen?",
+        "cta": "Supportanfrage erstellen"
+      }
+    },
+    "orderStatus": {
+      "pending": "Ausstehend",
+      "confirmed": "Bestatigt",
+      "processing": "In Bearbeitung",
+      "shipped": "Versandt",
+      "delivered": "Zugestellt",
+      "cancelled": "Storniert"
+    },
+    "memberHome": {
+      "meta": {
+        "title": "Mitgliederbereich",
+        "description": "Privater Konto- und Bestellbereich fur Mitglieder."
+      },
+      "welcome": "Willkommen",
+      "title": "Mitgliederportal",
+      "description": "Verwalten Sie hier Ihre bisherigen Bestellungen und Einstellungen.",
+      "cards": {
+        "profile": {
+          "title": "Profilinformationen",
+          "description": "Aktualisieren Sie Ihre personlichen Daten und Kontaktwunsche.",
+          "cta": "Bearbeiten"
+        },
+        "orders": {
+          "title": "Meine Bestellungen",
+          "description": "Alle von Ihnen gekauften Samen und deren Versandstatus.",
+          "cta": "Ansehen"
+        },
+        "favorites": {
+          "title": "Meine Favoriten",
+          "description": "Produkte, denen Sie folgen, und individuelle Empfehlungen.",
+          "cta": "Auflisten"
+        }
+      },
+      "cta": {
+        "title": "Mitgliedervorteile nutzen",
+        "description": "Erfahren Sie als Erste von neu entwickelten Saatgutsorten und erhalten Sie kostenlose agronomische Unterstutzung von unseren Expertenteams.",
+        "button": "Vorteile entdecken"
+      }
+    },
+    "dealerOrders": {
+      "orderBlockTitle": "Neue Bestellung",
+      "orderBlockDescription": "Mengen eingeben; Betrage werden mit Ihrem Handlerrabatt serverseitig berechnet.",
+      "catalogLoadError": "Produktliste konnte nicht geladen werden. Sitzung prufen und Seite neu laden.",
+      "createSuccess": "Bestellung wurde gespeichert. Sie sehen sie in der Liste unten.",
+      "createError": "Bestellung konnte nicht erstellt werden. Sitzung prufen und erneut versuchen.",
+      "notesLabel": "Bestellhinweis",
+      "notesPlaceholder": "Lieferung oder Produktwunsch (optional, max. 2000 Zeichen)",
+      "paymentTitle": "Zahlung",
+      "payWithCard": "Kreditkarte (Iyzico)",
+      "payWithBank": "Bankuberweisung / EFT",
+      "paymentIyzicoError": "Zahlung konnte nicht gestartet werden. Verbindung oder Iyzico-Konfiguration prufen.",
+      "paymentIyzicoUnavailable": "Iyzico ist in dieser Umgebung nicht konfiguriert (API-Schlussel fehlen).",
+      "paymentBankDone": "Bestellung wartet auf Uberweisung; IBAN bei der Buchhaltung erfragen.",
+      "payWithCredit": "Mit Kreditlimit zahlen",
+      "paymentCreditDone": "Die Bestellung wurde uber Ihr Kreditlimit belastet und bestatigt.",
+      "paymentCreditInsufficient": "Verfugbares Limit reicht nicht. Limit prufen oder andere Zahlungsart wahlen.",
+      "paymentCreditDealerMissing": "Handlerkonto nicht gefunden. Administrator kontaktieren.",
+      "paymentCreditInvalidTotal": "Bestellsumme ist fur die Zahlung ungultig.",
+      "paymentCreditNoItems": "Bestellung ohne Positionen kann nicht bezahlt werden.",
+      "paymentCreditCancelled": "Stornierte Bestellungen konnen nicht bezahlt werden.",
+      "paymentCreditError": "Kreditzahlung fehlgeschlagen. Bitte erneut versuchen.",
+      "loading": "Produkte werden geladen...",
+      "title": "Schnellbestellung",
+      "description": "Prufen Sie unseren Bestand und erstellen Sie Ihre Sammelbestellung.",
+      "searchPlaceholder": "Produkt suchen...",
+      "table": {
+        "product": "Produkt",
+        "unit": "Einheit",
+        "unitPrice": "Einzelpreis",
+        "quantity": "Menge",
+        "amount": "Betrag (Einzug)"
+      },
+      "unknownProductCode": "Produktcode unbekannt",
+      "unitBadge": "Stk.",
+      "empty": "Keine Produkte fur Ihre Suche gefunden.",
+      "summary": {
+        "selectedItems": "Ausgewahlte Positionen",
+        "totalAmount": "Gesamtbetrag"
+      },
+      "submit": "Bestellanfrage erstellen",
+      "alerts": {
+        "minOneItem": "Bitte geben Sie fur mindestens ein Produkt eine Menge ein.",
+        "orderRequested": "Bestellanfrage erstellt!\nGesamtpositionen: {count}\nGeschaftzter Betrag: ₺{total}"
+      }
+    },
+    "finance": {
+      "title": "Finanzstatus und Kontoauszug",
+      "description": "Ihr Kontostand und Ihre bisherigen Finanzbewegungen.",
+      "cards": {
+        "currentBalance": "Aktueller Kontostand",
+        "debtBalance": "Schuldsaldo",
+        "creditBalance": "Guthabensaldo",
+        "creditLimit": "Kreditlimit",
+        "availableLimit": "Verfugbares Limit"
+      },
+      "transactions": {
+        "title": "Kontobewegungen",
+        "empty": "Es sind keine Kontobewegungen vorhanden.",
+        "table": {
+          "date": "Datum",
+          "type": "Transaktionstyp",
+          "description": "Beschreibung",
+          "amount": "Betrag",
+          "balance": "Saldo"
+        },
+        "types": {
+          "order": "Bestellung",
+          "payment": "Zahlung",
+          "adjustment": "Erst./Korr."
+        }
+      }
+    },
+    "profile": {
+      "title": "Kontoeinstellungen",
+      "description": "Aktualisieren Sie Ihre personlichen und Unternehmensdaten.",
+      "loading": "Wird geladen...",
+      "personal": {
+        "title": "Personliche Informationen",
+        "fields": {
+          "fullName": "Vor- und Nachname",
+          "email": "E-Mail",
+          "phone": "Telefon"
+        }
+      },
+      "corporate": {
+        "title": "Unternehmensinformationen",
+        "fields": {
+          "companyName": "Firmenname",
+          "tax": "Finanzamt / Nr.",
+          "address": "Adresse"
+        }
+      },
+      "changePassword": "Passwort andern"
+    },
+    "support": {
+      "title": "Support",
+      "description": "Schreiben Sie dem Team; verfolgen Sie Anfragen ohne das Panel zu verlassen.",
+      "ticketsTitle": "Meine Anfragen",
+      "emptyTickets": "Noch keine Supportanfragen. Erstellen Sie unten eine neue.",
+      "selectTicket": "Wahlen Sie links eine Anfrage fur den Chat.",
+      "newTicketTitle": "Neue Supportanfrage",
+      "namePlaceholder": "Vor- und Nachname",
+      "emailPlaceholder": "E-Mail",
+      "subject": "Betreff",
+      "message": "Nachricht",
+      "category": "Kategorie",
+      "sendTicket": "Anfrage senden",
+      "sending": "Wird gesendet...",
+      "replyPlaceholder": "Antwort schreiben...",
+      "sendReply": "Senden",
+      "loading": "Wird geladen...",
+      "loadError": "Anfragen konnten nicht geladen werden.",
+      "threadError": "Nachrichten konnten nicht geladen werden.",
+      "status": {
+        "open": "Offen",
+        "in_progress": "In Bearbeitung",
+        "resolved": "Gelost",
+        "closed": "Geschlossen"
+      },
+      "categories": {
+        "genel": "Allgemein",
+        "urunler": "Produkte und Bestellungen",
+        "hesap": "Konto",
+        "teknik": "Technik"
+      }
+    },
+    "memberOrders": {
+      "title": "Meine Bestellungen",
+      "description": "Hier konnen Sie alle bisherigen und aktiven Bestellungen einsehen.",
+      "newOrder": "Neue Bestellung erstellen",
+      "details": "Details",
+      "empty": "Sie haben noch keine Bestellungen.",
+      "table": {
+        "orderNo": "Bestellnr.",
+        "date": "Datum",
+        "total": "Gesamt",
+        "status": "Status",
+        "actions": "Aktionen"
+      },
+      "detail": {
+        "title": "Bestelldetails",
+        "back": "Zurück zu Bestellungen",
+        "loadError": "Bestellung konnte nicht geladen werden. Bitte Sitzung prufen.",
+        "notFound": "Bestellung nicht gefunden oder kein Zugriff.",
+        "colProduct": "Produkt",
+        "quantityGram": "Menge (g)",
+        "unitPriceKg": "Einzelpreis (TRY/kg)",
+        "lineTotal": "Zeilensumme",
+        "notes": "Notizen",
+        "paymentMethod": "Zahlungsmethode",
+        "paymentStatus": "Zahlungsstatus",
+        "payStatus": {
+          "unpaid": "Unbezahlt",
+          "pending": "Ausstehend",
+          "paid": "Bezahlt",
+          "failed": "Fehlgeschlagen"
+        },
+        "payMethod": {
+          "iyzico": "Karte (Iyzico)",
+          "bank_transfer": "Bankuberweisung",
+          "dealer_credit": "Handler-Kredit"
+        },
+        "paymentPaidNote": "Diese Bestellung ist als bezahlt markiert.",
+        "paymentHint": "Zu zahlender Betrag: {total}",
+        "availableCredit": "Verfügbares Limit: {amount}",
+        "iyzicoIframeHint": "Nach der Zahlung Seite aktualisieren oder Formular schliessen.",
+        "closeCheckout": "Formular schliessen und aktualisieren"
+      }
+    },
+    "dealerCatalog": {
+      "title": "Produktkatalog und Preisliste",
+      "subtitle": "Listenpreise und Einzelpreise mit Ihrem Handler-Rabatt.",
+      "discountLabel": "Ihr Handler-Rabatt: {rate}%",
+      "searchPlaceholder": "Produkte suchen...",
+      "listView": "Liste",
+      "gridView": "Raster",
+      "colProduct": "Produkt",
+      "colCode": "Code",
+      "colCategory": "Kategorie",
+      "colList": "Liste",
+      "colUnit": "Einheit",
+      "empty": "Keine passenden Produkte.",
+      "loadError": "Katalog konnte nicht geladen werden. Bitte Session prufen."
+    }
+  },
+  "Legal": {
+    "common": {
+      "eyebrow": "Unternehmen",
+      "emptyHtml": "Inhalt nicht gefunden."
+    },
+    "privacy": {
+      "fallbackTitle": "Datenschutz",
+      "fallbackDescription": "Datenschutzerklarung."
+    },
+    "terms": {
+      "fallbackTitle": "Nutzungsbedingungen",
+      "fallbackDescription": "Nutzungsbedingungen."
+    },
+    "kvkk": {
+      "fallbackTitle": "KVKK",
+      "fallbackDescription": "KVKK-Informationshinweis."
+    }
+  }
+}

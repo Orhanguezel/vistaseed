@@ -21,7 +21,9 @@
     "actions": {
       "copy": "Kopyala",
       "setCover": "Kapak yap",
-      "delete": "Sil"
+      "delete": "Sil",
+      "clear": "Temizle",
+      "addSelected": "Seçilenleri Ekle"
     },
     "messages": {
       "urlCopied": "URL kopyalandı.",
@@ -53,7 +55,7 @@
       "cover": "Kapak",
       "svgImageAria": "SVG görsel {index}",
       "svgLoadError": "SVG yüklenemedi.",
-      "imageAlt": "gorsel-{index}",
+      "imageAlt": "görsel-{index}",
       "imageTitle": "Görsel {index}",
       "noMultipleNotePrefix": "Not:",
       "noMultipleNoteSuffix": "verilmediği için galeri parent tarafından yönetilmiyor."
@@ -80,12 +82,21 @@
       "emptyTitle": "Kütüphane boş",
       "emptyDescription": "Henüz yüklenmiş görsel yok. \"Yükle\" sekmesinden görsel yükleyebilirsiniz.",
       "selected": "Seçildi",
-      "pagination": "Toplam {total} görsel, sayfa {page}/{pageCount}"
-    },
-    "pagination": {
-      "previous": "Önceki",
-      "next": "Sonraki"
+      "alreadyAdded": "Eklendi",
+      "selectedCount": "görsel seçildi"
     }
+  },
+  "ai": {
+    "full": "Tam İçerik Oluştur",
+    "enhance": "İçeriği Geliştir",
+    "translate": "Çevir",
+    "generateMeta": "SEO Meta Oluştur",
+    "working": "AI çalışıyor..."
+  },
+  "imagesGallery": {
+    "coverLabel": "Kapak Görseli",
+    "galleryLabel": "Galeri",
+    "cover": "Kapak"
   },
   "richContentEditor": {
     "label": "İçerik",

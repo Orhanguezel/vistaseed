@@ -1,0 +1,85 @@
+{
+  "header": {
+    "title": "Galeri",
+    "description": "Galeri albümlerini listeleyin, düzenleyin ve yönetin."
+  },
+  "tabs": {
+    "list": "Liste",
+    "content": "İçerik",
+    "seo": "SEO",
+    "images": "Görseller"
+  },
+  "filters": {
+    "searchPlaceholder": "Galeri adı veya slug ile ara...",
+    "locale": "Dil",
+    "onlyActive": "Sadece aktif",
+    "onlyFeatured": "Sadece öne çıkan"
+  },
+  "actions": {
+    "create": "Yeni Galeri",
+    "edit": "Düzenle",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "refresh": "Yenile",
+    "back": "Geri"
+  },
+  "form": {
+    "title": "Galeri Adı",
+    "titlePlaceholder": "Galeri adını girin",
+    "slug": "Slug",
+    "slugPlaceholder": "galeri-slug",
+    "description": "Açıklama",
+    "descriptionPlaceholder": "Galeri açıklaması",
+    "moduleKey": "Modül",
+    "moduleKeyPlaceholder": "Modül seçin",
+    "displayOrder": "Sıralama",
+    "isActive": "Aktif",
+    "isFeatured": "Öne Çıkan",
+    "metaTitle": "Meta Başlık",
+    "metaTitlePlaceholder": "SEO başlık",
+    "metaDescription": "Meta Açıklama",
+    "metaDescriptionPlaceholder": "SEO açıklaması"
+  },
+  "detail": {
+    "newTitle": "Yeni Galeri",
+    "editTitle": "Galeri Düzenle",
+    "imagesTitle": "Görsel Yönetimi",
+    "imagesDescription": "Görseller support/gallery klasörüne yüklenir ve support içerikleriyle ortak kullanılabilir."
+  },
+  "table": {
+    "order": "Sıra",
+    "title": "Başlık",
+    "slug": "Slug",
+    "module": "Modül",
+    "active": "Aktif",
+    "featured": "Öne Çıkan",
+    "images": "Görsel",
+    "actions": "İşlemler"
+  },
+  "images": {
+    "title": "Galeri Görselleri",
+    "add": "Görsel Ekle",
+    "empty": "Henüz görsel eklenmedi.",
+    "deleteConfirm": "Bu görseli silmek istediğinize emin misiniz?",
+    "saveHint": "Görsel değişiklikleri Kaydet ile birlikte galeriye yazılır."
+  },
+  "messages": {
+    "created": "Galeri oluşturuldu.",
+    "updated": "Galeri güncellendi.",
+    "deleted": "Galeri silindi.",
+    "imagesSynced": "Galeri görselleri güncellendi.",
+    "aiApplied": "Yapay zeka önerisi forma uygulandı.",
+    "deleteError": "Silme hatası",
+    "errorPrefix": "Hata",
+    "confirmDelete": "'{title}' galerisini silmek istediğinize emin misiniz?",
+    "requiredError": "Galeri adı ve slug zorunludur.",
+    "unknownError": "Bilinmeyen hata."
+  },
+  "list": {
+    "refreshing": "Yenileniyor...",
+    "empty": "Galeri bulunamadı.",
+    "activated": "aktif edildi",
+    "deactivated": "pasif edildi"
+  }
+}

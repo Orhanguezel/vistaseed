@@ -1,4 +1,4 @@
-/* site_settings_schema.sql  — vistaseed */
+/* site_settings_schema.sql — Generic corporate site */
 
 SET NAMES utf8mb4;
 SET time_zone = '+00:00';
@@ -22,13 +22,13 @@ CREATE TABLE `site_settings` (
 -- BRAND / UI
 -- =============================================================
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
-(UUID(), 'brand_name',         '*', '"vistaseed"'),
-(UUID(), 'brand_display_name', '*', '"vistaseed"'),
-(UUID(), 'brand_logo_text',    '*', '"vistaseed"'),
-(UUID(), 'brand_subtitle',     '*', '"P2P Kargo Pazaryeri"'),
-(UUID(), 'brand_tagline',      '*', '"Kargo Göndermek Artık Çok Kolay"'),
+(UUID(), 'brand_name',         '*', '"{{SITE_NAME}}"'),
+(UUID(), 'brand_display_name', '*', '"{{SITE_NAME}}"'),
+(UUID(), 'brand_logo_text',    '*', '"{{SITE_NAME}}"'),
+(UUID(), 'brand_subtitle',     '*', '"Kurumsal Web Sitesi"'),
+(UUID(), 'brand_tagline',      '*', '"Kalite ve Güven"'),
 (UUID(), 'topbar_location',    '*', '"Türkiye"'),
-(UUID(), 'topbar_slogan',      '*', '"Güvenli ve Hızlı P2P Kargo"'),
+(UUID(), 'topbar_slogan',      '*', '"Profesyonel Hizmet Anlayışı"'),
 (UUID(), 'ui_theme',           '*', '{"primaryHex":"#F97316","darkMode":"light","radius":"0.5rem"}'),
 (UUID(), 'site_version',       '*', '"1.0.0"'),
 (UUID(), 'admin_path',         '*', '"/admin"');
@@ -38,24 +38,24 @@ INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 -- =============================================================
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 (UUID(), 'brand_logo',                  '*', '"/uploads/media/logo/logo.jpeg"'),
-(UUID(), 'brand_logo_dark',             '*', '"/uploads/media/logo/logo2.jpeg"'),
-(UUID(), 'brand_logo_icon',             '*', '"/uploads/media/logo/logo4.jpg"'),
-(UUID(), 'brand_logo_icon_transparent', '*', '"/uploads/media/logo/logo4.jpg"'),
-(UUID(), 'brand_logo_icon_192',         '*', '"/uploads/media/logo/logo3.jpg"'),
-(UUID(), 'brand_logo_icon_512',         '*', '"/uploads/media/logo/logo.jpeg"'),
-(UUID(), 'brand_og_image',              '*', '"/uploads/media/logo/logo.jpeg"');
+(UUID(), 'brand_logo_dark',             '*', '"/uploads/media/logo/logo-dark.jpeg"'),
+(UUID(), 'brand_logo_icon',             '*', '"/uploads/media/logo/logo-icon.jpg"'),
+(UUID(), 'brand_logo_icon_transparent', '*', '"/uploads/media/logo/logo-icon.jpg"'),
+(UUID(), 'brand_logo_icon_192',         '*', '"/uploads/media/logo/logo-192.jpg"'),
+(UUID(), 'brand_logo_icon_512',         '*', '"/uploads/media/logo/logo-512.jpg"'),
+(UUID(), 'brand_og_image',              '*', '"/uploads/media/logo/og-image.jpg"');
 
 -- =============================================================
 -- SITE MEDIA (Logo & Favicon)
 -- =============================================================
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
-(UUID(), 'site_logo',             '*', '{"url":"/uploads/media/logo/logo.jpeg","alt":"vistaseed Logo"}'),
-(UUID(), 'site_logo_dark',        '*', '{"url":"/uploads/media/logo/logo2.jpeg","alt":"vistaseed Logo Dark"}'),
-(UUID(), 'site_logo_light',       '*', '{"url":"/uploads/media/logo/logo.jpeg","alt":"vistaseed Logo Light"}'),
-(UUID(), 'site_favicon',          '*', '{"url":"/uploads/media/logo/logo4.jpg","alt":"vistaseed Favicon"}'),
-(UUID(), 'site_apple_touch_icon', '*', '{"url":"/uploads/media/logo/logo3.jpg","alt":"vistaseed Apple Touch"}'),
-(UUID(), 'site_app_icon_512',     '*', '{"url":"/uploads/media/logo/logo.jpeg","alt":"vistaseed Icon 512"}'),
-(UUID(), 'site_og_default_image', '*', '{"url":"/uploads/media/hero/og-default.jpg","alt":"vistaseed - P2P Kargo Pazaryeri"}');
+(UUID(), 'site_logo',             '*', '{"url":"/uploads/media/logo/logo.jpeg","alt":"{{SITE_NAME}} Logo"}'),
+(UUID(), 'site_logo_dark',        '*', '{"url":"/uploads/media/logo/logo-dark.jpeg","alt":"{{SITE_NAME}} Logo Dark"}'),
+(UUID(), 'site_logo_light',       '*', '{"url":"/uploads/media/logo/logo.jpeg","alt":"{{SITE_NAME}} Logo Light"}'),
+(UUID(), 'site_favicon',          '*', '{"url":"/uploads/media/logo/favicon.jpg","alt":"{{SITE_NAME}} Favicon"}'),
+(UUID(), 'site_apple_touch_icon', '*', '{"url":"/uploads/media/logo/apple-touch.jpg","alt":"{{SITE_NAME}} Apple Touch"}'),
+(UUID(), 'site_app_icon_512',     '*', '{"url":"/uploads/media/logo/logo-512.jpg","alt":"{{SITE_NAME}} Icon 512"}'),
+(UUID(), 'site_og_default_image', '*', '{"url":"/uploads/media/hero/og-default.jpg","alt":"{{SITE_NAME}}"}');
 
 -- =============================================================
 -- CONTACT
@@ -63,20 +63,20 @@ INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 (UUID(), 'contact_phone_display',  '*', '"0312 000 00 00"'),
 (UUID(), 'contact_phone_tel',      '*', '"03120000000"'),
-(UUID(), 'contact_email',          '*', '"info@vistaseed.com"'),
-(UUID(), 'contact_to_email',       '*', '"info@vistaseed.com"'),
+(UUID(), 'contact_email',          '*', '"info@example.com"'),
+(UUID(), 'contact_to_email',       '*', '"info@example.com"'),
 (UUID(), 'contact_address',        '*', '"Türkiye"'),
-(UUID(), 'contact_whatsapp_link',  '*', '"https://wa.me/903120000000"');
+(UUID(), 'contact_whatsapp_link',  '*', '""');
 
 -- =============================================================
 -- STORAGE / UPLOAD CONFIG
 -- =============================================================
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 (UUID(), 'storage_driver',             '*', '"local"'),
-(UUID(), 'storage_local_root',         '*', '"/www/wwwroot/vistaseed/uploads"'),
+(UUID(), 'storage_local_root',         '*', '"/app/uploads"'),
 (UUID(), 'storage_local_base_url',     '*', '"/uploads"'),
-(UUID(), 'storage_cdn_public_base',    '*', '"https://cdn.vistaseed.com"'),
-(UUID(), 'storage_public_api_base',    '*', '"https://vistaseed.com/api"'),
+(UUID(), 'storage_cdn_public_base',    '*', '""'),
+(UUID(), 'storage_public_api_base',    '*', '"http://localhost:8083"'),
 (UUID(), 'cloudinary_cloud_name',      '*', '""'),
 (UUID(), 'cloudinary_api_key',         '*', '""'),
 (UUID(), 'cloudinary_api_secret',      '*', '"__SET_IN_ENV__"'),
@@ -89,18 +89,18 @@ INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 (UUID(), 'smtp_host',        '*', '"smtp.example.com"'),
 (UUID(), 'smtp_port',        '*', '587'),
-(UUID(), 'smtp_username',    '*', '"info@vistaseed.com"'),
+(UUID(), 'smtp_username',    '*', '"info@example.com"'),
 (UUID(), 'smtp_password',    '*', '"__SET_IN_ENV__"'),
-(UUID(), 'smtp_from_email',  '*', '"info@vistaseed.com"'),
-(UUID(), 'smtp_from_name',   '*', '"vistaseed"'),
+(UUID(), 'smtp_from_email',  '*', '"info@example.com"'),
+(UUID(), 'smtp_from_name',   '*', '"{{SITE_NAME}}"'),
 (UUID(), 'smtp_ssl',         '*', 'false');
 
 -- =============================================================
 -- HEADER
 -- =============================================================
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
-(UUID(), 'header_info_text',  '*', '"Taşıyıcı ilanlarını keşfet"'),
-(UUID(), 'header_cta_label',  '*', '"KARGO GÖNDER"');
+(UUID(), 'header_info_text',  '*', '"Ürünlerimizi keşfedin"'),
+(UUID(), 'header_cta_label',  '*', '"İLETİŞİM"');
 
 -- =============================================================
 -- HEADER MENU
@@ -110,8 +110,8 @@ INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
   UUID(), 'header_menu', '*',
   '[
     {"title":"ANASAYFA","path":"/","pageKey":"home","type":"link"},
-    {"title":"İLANLAR","path":"/ilanlar","pageKey":"listings","type":"link"},
-    {"title":"KARGO GÖNDER","path":"/ilan-ver","pageKey":"ilan-ver","type":"link"},
+    {"title":"ÜRÜNLER","path":"/urunler","pageKey":"products","type":"link"},
+    {"title":"HAKKIMIZDA","path":"/hakkimizda","pageKey":"about","type":"link"},
     {"title":"KURUMSAL","path":"#","pageKey":"kurumsal","type":"dropdown","itemsKey":"menu_kurumsal"},
     {"title":"İLETİŞİM","path":"/iletisim","pageKey":"contact","type":"link"}
   ]'
@@ -121,9 +121,9 @@ INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 -- FOOTER
 -- =============================================================
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
-(UUID(), 'footer_keywords',    '*', '["P2P Kargo","Taşıyıcı İlanı","Kargo Gönder","Rezervasyon","Güvenli Kargo","vistaseed"]'),
-(UUID(), 'footer_services',    '*', '["Kargo Gönder","İlan Ara","Taşıyıcı Ol"]'),
-(UUID(), 'footer_quick_links', '*', '[{"title":"Anasayfa","path":"/","pageKey":"home"},{"title":"İlanlar","path":"/ilanlar","pageKey":"listings"},{"title":"Kargo Gönder","path":"/ilan-ver","pageKey":"ilan-ver"},{"title":"Hakkımızda","path":"/hakkimizda","pageKey":"about"},{"title":"İletişim","path":"/iletisim","pageKey":"contact"}]');
+(UUID(), 'footer_keywords',    '*', '["Kurumsal","Ürünler","Hizmetler","Kalite"]'),
+(UUID(), 'footer_services',    '*', '["Ürünler","Hizmetler","Destek"]'),
+(UUID(), 'footer_quick_links', '*', '[{"title":"Anasayfa","path":"/","pageKey":"home"},{"title":"Ürünler","path":"/urunler","pageKey":"products"},{"title":"Hakkımızda","path":"/hakkimizda","pageKey":"about"},{"title":"İletişim","path":"/iletisim","pageKey":"contact"}]');
 
 -- =============================================================
 -- MENU (Header dropdown)
@@ -139,102 +139,78 @@ INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 -- =============================================================
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 (UUID(), 'seo_defaults', '*',
- '{"canonicalBase":"https://vistaseed.com","siteName":"vistaseed | Kargo Göndermek Artık Çok Kolay","description":"vistaseed ile taşıyıcı ilanlarına göz at, kargo rezervasyonu yap. Türkiye geneli P2P kargo pazaryeri.","ogLocale":"tr_TR","author":"vistaseed","themeColor":"#F97316","twitterCard":"summary_large_image","robots":"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1","googlebot":"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}'),
+ '{"canonicalBase":"http://localhost:3000","siteName":"{{SITE_NAME}}","description":"{{SITE_NAME}} kurumsal web sitesi.","ogLocale":"tr_TR","author":"{{SITE_NAME}}","themeColor":"#F97316","twitterCard":"summary_large_image","robots":"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1","googlebot":"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}'),
 (UUID(), 'public_base_url',  '*', '"http://localhost:3000"'),
-(UUID(), 'site_title',       '*', '"vistaseed"'),
-(UUID(), 'company_brand',    '*', '{"name":"vistaseed","shortName":"vistaseed"}'),
-(UUID(), 'socials',          '*', '{"instagram":"https://www.instagram.com/vistaseed","facebook":"https://www.facebook.com/vistaseed","twitter":"https://www.twitter.com/vistaseed"}'),
-(UUID(), 'social_facebook_url',  '*', '"https://www.facebook.com/vistaseed"'),
-(UUID(), 'social_instagram_url', '*', '"https://www.instagram.com/vistaseed"'),
-(UUID(), 'social_twitter_url',   '*', '"https://www.twitter.com/vistaseed"'),
-(UUID(), 'seo_social_same_as',  '*', '["https://www.instagram.com/vistaseed","https://www.facebook.com/vistaseed"]'),
+(UUID(), 'site_title',       '*', '"{{SITE_NAME}}"'),
+(UUID(), 'company_brand',    '*', '{"name":"{{SITE_NAME}}","shortName":"{{SITE_NAME}}"}'),
+(UUID(), 'socials',          '*', '{"instagram":"","facebook":"","twitter":""}'),
+(UUID(), 'social_facebook_url',  '*', '""'),
+(UUID(), 'social_instagram_url', '*', '""'),
+(UUID(), 'social_twitter_url',   '*', '""'),
+(UUID(), 'seo_social_same_as',  '*', '[]'),
 (UUID(), 'seo_app_icons', '*',
- '{"appleTouchIcon":"/uploads/media/logo/logo3.jpg","favicon":"/uploads/media/logo/logo4.jpg","faviconSvg":"/uploads/media/logo/logo4.jpg","logoIcon192":"/uploads/media/logo/logo3.jpg","logoIcon512":"/uploads/media/logo/logo.jpeg"}'),
+ '{"appleTouchIcon":"/uploads/media/logo/apple-touch.jpg","favicon":"/uploads/media/logo/favicon.jpg","faviconSvg":"/uploads/media/logo/favicon.svg","logoIcon192":"/uploads/media/logo/logo-192.jpg","logoIcon512":"/uploads/media/logo/logo-512.jpg"}'),
 (UUID(), 'seo_amp_google_client_id_api', '*', '"googleanalytics"');
 
 -- =============================================================
--- SEO SAYFA BAZLI — Her sayfanın kendi SEO ayarları
--- title, description, keywords, ogImage, robots (index/noindex)
+-- SEO SAYFA BAZLI
 -- =============================================================
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 
--- Anasayfa
 (UUID(), 'seo_pages_home', '*',
- '{"title":"vistaseed | Kargo Göndermek Artık Çok Kolay","description":"vistaseed ile taşıyıcı ilanlarına göz at, kargo rezervasyonu yap. Türkiye geneli P2P kargo pazaryeri.","keywords":"vistaseed, kargo gönder, taşıyıcı ilan, p2p kargo, kargo rezervasyon","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
+ '{"title":"{{SITE_NAME}}","description":"{{SITE_NAME}} kurumsal web sitesi.","keywords":"kurumsal, ürünler, hizmetler","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
 
--- İlanlar listesi
-(UUID(), 'seo_pages_listings', '*',
- '{"title":"Taşıma İlanları | vistaseed","description":"Tüm taşıyıcı ilanlarını inceleyin. Güzergah, kapasite ve fiyata göre filtreli arama.","keywords":"taşıyıcı ilanı, kargo ilanı, vistaseed ilanlar, kargo bul","ogImage":"/uploads/media/hero/og-ilanlar.jpg","robots":"index, follow","noIndex":false}'),
+(UUID(), 'seo_pages_products', '*',
+ '{"title":"Ürünler | {{SITE_NAME}}","description":"Ürün katalogumuzu inceleyin.","keywords":"ürünler, katalog","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
 
--- İlan detay (template)
-(UUID(), 'seo_pages_listing_detail', '*',
- '{"titleTemplate":"{{title}} | vistaseed","descriptionTemplate":"{{from_city}} → {{to_city}} güzergahında taşıma ilanı. vistaseed ile güvenli kargo rezervasyonu yapın.","keywordsTemplate":"vistaseed, {{from_city}}, {{to_city}}, kargo, taşıyıcı","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
-
--- İlan ver
-(UUID(), 'seo_pages_ilan_ver', '*',
- '{"title":"İlan Ver | vistaseed","description":"Taşıyıcı olarak müsait kapasitenizi yayınlayın. Güzergah ve tarih belirleyin, kargo taleplerini alın.","keywords":"ilan ver, taşıyıcı ol, kargo ilanı aç, kapasite paylaş","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
-
--- Hakkımızda
 (UUID(), 'seo_pages_about', '*',
- '{"title":"Hakkımızda | vistaseed","description":"vistaseed hakkında bilgi edinin. Türkiye geneli P2P kargo pazaryeri.","keywords":"vistaseed hakkında, p2p kargo nedir","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
+ '{"title":"Hakkımızda | {{SITE_NAME}}","description":"{{SITE_NAME}} hakkında bilgi edinin.","keywords":"hakkımızda, kurumsal","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
 
--- İletişim
 (UUID(), 'seo_pages_contact', '*',
- '{"title":"İletişim | vistaseed","description":"vistaseed ile iletişime geçin. Sorularınız için bize ulaşın.","keywords":"vistaseed iletişim, kargo destek","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
+ '{"title":"İletişim | {{SITE_NAME}}","description":"{{SITE_NAME}} ile iletişime geçin.","keywords":"iletişim, destek","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
 
--- S.S.S.
 (UUID(), 'seo_pages_faq', '*',
- '{"title":"Sıkça Sorulan Sorular | vistaseed","description":"vistaseed hakkında sıkça sorulan sorular ve cevapları. Kargo gönderimi, rezervasyon, ödeme süreçleri.","keywords":"vistaseed sss, kargo soru cevap, nasıl çalışır","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
+ '{"title":"S.S.S. | {{SITE_NAME}}","description":"Sıkça sorulan sorular ve cevapları.","keywords":"sss, sorular","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
 
--- Giriş yap
 (UUID(), 'seo_pages_login', '*',
- '{"title":"Giriş Yap | vistaseed","description":"vistaseed hesabınıza giriş yapın.","keywords":"vistaseed giriş, login","ogImage":"/uploads/media/hero/og-default.jpg","robots":"noindex, follow","noIndex":true}'),
+ '{"title":"Giriş Yap | {{SITE_NAME}}","description":"Hesabınıza giriş yapın.","keywords":"","ogImage":"/uploads/media/hero/og-default.jpg","robots":"noindex, follow","noIndex":true}'),
 
--- Üye ol
 (UUID(), 'seo_pages_register', '*',
- '{"title":"Üye Ol | vistaseed","description":"vistaseed''e üye olun. Taşıyıcı veya müşteri olarak hemen kayıt olun.","keywords":"vistaseed kayıt, üye ol, taşıyıcı kayıt","ogImage":"/uploads/media/hero/og-default.jpg","robots":"noindex, follow","noIndex":true}'),
+ '{"title":"Üye Ol | {{SITE_NAME}}","description":"{{SITE_NAME}} üyesi olun.","keywords":"","ogImage":"/uploads/media/hero/og-default.jpg","robots":"noindex, follow","noIndex":true}'),
 
--- Şifremi unuttum
 (UUID(), 'seo_pages_password_reset', '*',
- '{"title":"Şifremi Unuttum | vistaseed","description":"vistaseed şifre sıfırlama sayfası.","keywords":"vistaseed şifre sıfırlama","ogImage":"/uploads/media/hero/og-default.jpg","robots":"noindex, nofollow","noIndex":true}'),
+ '{"title":"Şifremi Unuttum | {{SITE_NAME}}","description":"Şifre sıfırlama sayfası.","keywords":"","ogImage":"/uploads/media/hero/og-default.jpg","robots":"noindex, nofollow","noIndex":true}'),
 
--- Panel (dashboard — noindex)
-(UUID(), 'seo_pages_panel', '*',
- '{"title":"Panel | vistaseed","description":"vistaseed kullanıcı paneli.","keywords":"","ogImage":"/uploads/media/hero/og-default.jpg","robots":"noindex, nofollow","noIndex":true}'),
-
--- Admin (noindex)
 (UUID(), 'seo_pages_admin', '*',
- '{"title":"Admin Panel | vistaseed","description":"vistaseed yönetim paneli.","keywords":"","ogImage":"/uploads/media/hero/og-default.jpg","robots":"noindex, nofollow","noIndex":true}');
+ '{"title":"Admin Panel | {{SITE_NAME}}","description":"Yönetim paneli.","keywords":"","ogImage":"/uploads/media/hero/og-default.jpg","robots":"noindex, nofollow","noIndex":true}');
 
 -- =============================================================
 -- JSON-LD (Organization)
 -- =============================================================
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 (UUID(), 'seo_local_business', '*',
- '{"@context":"https://schema.org","@type":"Organization","name":"vistaseed","description":"Türkiye geneli P2P kargo pazaryeri. Taşıyıcılar ilan açar, müşteriler kargo yeri satın alır.","url":"https://vistaseed.com","sameAs":["https://www.instagram.com/vistaseed","https://www.facebook.com/vistaseed"]}');
+ '{"@context":"https://schema.org","@type":"Organization","name":"{{SITE_NAME}}","description":"{{SITE_NAME}} kurumsal web sitesi.","url":"http://localhost:3000","sameAs":[]}');
 
 -- =============================================================
 -- HOMEPAGE SETTINGS
 -- =============================================================
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 (UUID(), 'homepage_sections', '*',
- '[{"key":"hero","enabled":true,"order":1,"label":"Hero Bölümü"},{"key":"categories","enabled":true,"order":2,"label":"Tüm Kategoriler"},{"key":"featured","enabled":true,"order":3,"label":"Öne Çıkan İlanlar"},{"key":"recent","enabled":true,"order":4,"label":"Son İlanlar"}]'),
+ '[{"key":"hero","enabled":true,"order":1,"label":"Hero Bölümü"},{"key":"categories","enabled":true,"order":2,"label":"Kategoriler"},{"key":"featured","enabled":true,"order":3,"label":"Öne Çıkan Ürünler"},{"key":"recent","enabled":true,"order":4,"label":"Son Ürünler"}]'),
 
--- Hero bölümü ayarları
 (UUID(), 'homepage_hero', '*',
- '{"title":"Kargo Göndermek Artık Çok Kolay","subtitle":"Taşıyıcı ilanlarına göz at, uygun güzergahı bul, kargo alanını hemen rezerve et.","bgImage":"/uploads/media/hero/hero-bg.jpg","bgImageDark":"/uploads/media/hero/hero-bg-dark.jpg","bgOverlayOpacity":0.6,"ctaLabel":"KARGO GÖNDER","ctaPath":"/ilan-ver","ctaSecondaryLabel":"İLANLARI GÖR","ctaSecondaryPath":"/ilanlar"}'),
+ '{"title":"{{SITE_NAME}}","subtitle":"Profesyonel hizmet ve kaliteli ürünler.","bgImage":"/uploads/media/hero/hero-bg.jpg","bgImageDark":"/uploads/media/hero/hero-bg-dark.jpg","bgOverlayOpacity":0.6,"ctaLabel":"ÜRÜNLER","ctaPath":"/urunler","ctaSecondaryLabel":"İLETİŞİM","ctaSecondaryPath":"/iletisim"}'),
 
--- Hero banner görselleri (slider/carousel)
 (UUID(), 'homepage_banners', '*',
- '[{"image":"/uploads/media/hero/banner-1.jpg","alt":"vistaseed - Güvenli Kargo","link":"/ilanlar","order":1},{"image":"/uploads/media/hero/banner-2.jpg","alt":"Taşıyıcı Ol, Kazan","link":"/ilan-ver","order":2}]');
+ '[]');
 
 -- =============================================================
 -- CTA
 -- =============================================================
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
-(UUID(), 'cta_post_listing_title',    '*', '"Kargo İlanı Ver"'),
-(UUID(), 'cta_post_listing_subtitle', '*', '"Taşıyıcı olarak müsait kapasitenizi saniyeler içinde yayınlayın"'),
-(UUID(), 'cta_post_listing_path',     '*', '"/ilan-ver"');
+(UUID(), 'cta_post_listing_title',    '*', '"Bizimle İletişime Geçin"'),
+(UUID(), 'cta_post_listing_subtitle', '*', '"Sorularınız için bize ulaşın"'),
+(UUID(), 'cta_post_listing_path',     '*', '"/iletisim"');
 
 -- =============================================================
 -- ADMIN UI BRANDING
@@ -247,23 +223,23 @@ INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
     "theme":{"mode":"light","preset":"soft-pop","font":"inter"},
     "layout":{"sidebar_variant":"inset","sidebar_collapsible":"icon","navbar_style":"sticky","content_layout":"full-width"},
     "branding":{
-      "app_name":"vistaseed Admin Panel",
-      "app_copyright":"vistaseed",
+      "app_name":"{{SITE_NAME}} Admin",
+      "app_copyright":"{{SITE_NAME}}",
       "html_lang":"tr",
       "theme_color":"#F97316",
-      "favicon":"/uploads/media/logo/logo4.jpg",
-      "favicon_svg":"/uploads/media/logo/logo4.jpg",
-      "apple_touch_icon":"/uploads/media/logo/logo3.jpg",
+      "favicon":"/uploads/media/logo/favicon.jpg",
+      "favicon_svg":"/uploads/media/logo/favicon.svg",
+      "apple_touch_icon":"/uploads/media/logo/apple-touch.jpg",
       "logo":"/uploads/media/logo/logo.jpeg",
-      "logo_dark":"/uploads/media/logo/logo2.jpeg",
-      "logo_icon":"/uploads/media/logo/logo4.jpg",
+      "logo_dark":"/uploads/media/logo/logo-dark.jpeg",
+      "logo_icon":"/uploads/media/logo/logo-icon.jpg",
       "meta":{
-        "title":"vistaseed Admin Panel",
-        "description":"vistaseed yönetim paneli. Taşıyıcılar, ilanlar, rezervasyonlar ve site ayarları yönetimi.",
-        "og_url":"https://vistaseed.com/admin",
-        "og_title":"vistaseed Admin Panel",
-        "og_description":"vistaseed yönetim paneli ile ilan ve rezervasyon yönetimini merkezi olarak yapın.",
-        "og_image":"/uploads/media/logo/logo.jpeg",
+        "title":"{{SITE_NAME}} Admin",
+        "description":"{{SITE_NAME}} yönetim paneli.",
+        "og_url":"http://localhost:3000/admin",
+        "og_title":"{{SITE_NAME}} Admin",
+        "og_description":"{{SITE_NAME}} yönetim paneli.",
+        "og_image":"/uploads/media/logo/og-image.jpg",
         "twitter_card":"summary_large_image"
       }
     }
@@ -272,27 +248,22 @@ INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 (
   UUID(), 'ui_admin', '*',
   '{
-    "app_name":"vistaseed Admin Panel",
+    "app_name":"{{SITE_NAME}} Admin",
     "app_version":"v1.0.0",
-    "developer_branding":{"name":"vistaseed","url":"https://vistaseed.com","full_name":"vistaseed"},
+    "developer_branding":{"name":"{{SITE_NAME}}","url":"http://localhost:3000","full_name":"{{SITE_NAME}}"},
     "nav":{
       "labels":{
         "general":"Genel / Yönetim",
-        "listings":"İlan Yönetimi",
-        "finance":"Kullanıcılar & Finans",
+        "products":"Ürün Yönetimi",
+        "users":"Kullanıcılar",
         "support":"Destek",
         "system":"Sistem & Ayarlar"
       },
       "items":{
-        "dashboard":"Özet",
-        "ilanlar":"İlanlar",
-        "bookings":"Rezervasyonlar",
         "categories":"Kategoriler",
+        "products":"Ürünler",
         "gallery":"Galeri",
         "users":"Kullanıcılar",
-        "carriers":"Taşıyıcılar",
-        "wallets":"Cüzdanlar",
-        "reports":"Raporlar",
         "contacts":"İletişim Mesajları",
         "email_templates":"E-posta Şablonları",
         "site_settings":"Site Ayarları",

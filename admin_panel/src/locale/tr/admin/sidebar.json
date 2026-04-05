@@ -64,31 +64,35 @@
     "languagePlaceholder": "Dil seçin"
   },
   "groups": {
-    "general": "Genel / Yönetim",
-    "listings": "İlan Yönetimi",
-    "finance": "Kullanıcılar & Finans",
-    "support": "Destek",
-    "content": "İçerik Yönetimi",
-    "integrations": "3. Taraf API Entegrasyonları",
-    "marketing": "Pazarlama",
-    "communication": "İletişim & CRM",
-    "system": "Sistem & Ayarlar"
+    "general": "Genel",
+    "content": "İçerik",
+    "hr": "İnsan Kaynakları",
+    "communication": "İletişim",
+    "users_group": "Kullanıcılar",
+    "system": "Sistem"
   },
   "items": {
     "dashboard": "Dashboard",
-    "ilanlar": "İlanlar",
-    "bookings": "Rezervasyonlar",
+    "products": "Ürünler",
     "categories": "Kategoriler",
-    "users": "Kullanıcılar",
-    "carriers": "Taşıyıcılar",
-    "wallets": "Cüzdanlar",
-    "reports": "Raporlar",
-    "contacts": "İletişim",
+    "custom_pages": "Sayfalar",
+    "gallery": "Galeri",
+    "references": "Referanslar",
+    "library": "Kütüphane",
+    "blog": "Blog",
+    "support": "SSS / Destek",
+    "job_listings": "İş İlanları",
+    "job_applications": "Başvurular",
+    "contacts": "İletişim Mesajları",
     "email_templates": "E-posta Şablonları",
+    "offers": "Teklifler",
+    "users": "Kullanıcılar",
     "site_settings": "Site Ayarları",
     "storage": "Depolama",
     "theme": "Tema",
     "telegram": "Telegram",
-    "audit": "Denetim"
+    "audit": "Denetim",
+    "db_admin": "Veritabanı",
+    "popups": "Popup'lar"
   }
 }

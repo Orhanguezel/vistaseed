@@ -2,8 +2,8 @@ const path = require("path");
 
 const appRoot = process.env.BACKEND_CWD || __dirname;
 const bindHost = process.env.BACKEND_HOST || "127.0.0.1";
-const port = process.env.BACKEND_PORT || "8085";
-const appName = process.env.BACKEND_APP_NAME || "kamanilan-backend";
+const port = process.env.BACKEND_PORT || "8083";
+const appName = process.env.BACKEND_APP_NAME || "corporate-backend";
 
 module.exports = {
   apps: [

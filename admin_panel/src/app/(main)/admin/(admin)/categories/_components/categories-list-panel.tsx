@@ -30,8 +30,8 @@ import {
 } from '@/components/ui/table';
 import { RefreshCw, Plus, Pencil, Trash2, Layers } from 'lucide-react';
 import { useAdminT } from '@/app/(main)/admin/_components/common/use-admin-t';
-import { useAdminLocales } from '@/app/(main)/admin/_components/common/use-admin-locales';
-import { AdminLocaleSelect } from '@/app/(main)/admin/_components/common/admin-locale-select';
+import { useAdminLocales } from '@/components/common/use-admin-locales';
+import { AdminLocaleSelect } from '@/components/common/admin-locale-select';
 import { resolveAdminApiLocale } from '@/i18n/admin-locale';
 import { localeShortClient, localeShortClientOr } from '@/i18n/locale-short-client';
 import { toast } from 'sonner';
@@ -64,6 +64,7 @@ export default function CategoriesListPanel({ initialModuleKey }: { initialModul
     defaultLocaleFromDb,
     loading: localesLoading,
     fetching: localesFetching,
+    coerceLocale,
   } = useAdminLocales();
 
   const apiLocale = React.useMemo(() => {
@@ -72,7 +73,7 @@ export default function CategoriesListPanel({ initialModuleKey }: { initialModul
 
   // Filters
   const [search, setSearch] = React.useState('');
-  const [locale, setLocale] = React.useState(CATEGORY_DEFAULT_LOCALE);
+  const [locale, setLocale] = React.useState('');
   const [moduleKey, setModuleKey] = React.useState(initialModuleKey || '');
   const [showOnlyActive, setShowOnlyActive] = React.useState(false);
   const [showOnlyFeatured, setShowOnlyFeatured] = React.useState(false);
@@ -81,11 +82,11 @@ export default function CategoriesListPanel({ initialModuleKey }: { initialModul
   React.useEffect(() => {
     if (!localeOptions || localeOptions.length === 0) return;
 
-    setLocale((prev) => {
-      if (prev) return prev;
-      return localeShortClientOr(apiLocale, CATEGORY_DEFAULT_LOCALE);
-    });
-  }, [localeOptions, apiLocale]);
+    const next = coerceLocale(locale, localeShortClientOr(apiLocale, CATEGORY_DEFAULT_LOCALE));
+    if (next !== locale) {
+      setLocale(next);
+    }
+  }, [apiLocale, coerceLocale, localeOptions, locale]);
 
   // Effective locale for query
   const effectiveLocale = React.useMemo(() => {
@@ -190,7 +191,7 @@ export default function CategoriesListPanel({ initialModuleKey }: { initialModul
               <div className="w-full lg:w-45">
                 <AdminLocaleSelect
                   value={locale || effectiveLocale}
-                  onChange={(v) => setLocale(v)}
+                  onChange={(v: string) => setLocale(v)}
                   options={adminLocaleOptions}
                   loading={localesLoading || localesFetching}
                   disabled={busy}
@@ -247,6 +248,7 @@ export default function CategoriesListPanel({ initialModuleKey }: { initialModul
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" onClick={handleRefresh} disabled={busy}>
                   <RefreshCw className={`h-4 w-4 ${busy ? 'animate-spin' : ''}`} />
+                  <span className="sr-only">{t('actions.refresh')}</span>
                 </Button>
                 <Button size="sm" onClick={handleCreate} disabled={busy}>
                   <Plus className="h-4 w-4" />
@@ -366,6 +368,8 @@ export default function CategoriesListPanel({ initialModuleKey }: { initialModul
                             size="icon-sm"
                             onClick={() => handleEdit(item)}
                             disabled={busy}
+                            title={t('list.editAction')}
+                            aria-label={t('list.editAction')}
                           >
                             <Pencil className="h-4 w-4" />
                           </Button>
@@ -374,6 +378,8 @@ export default function CategoriesListPanel({ initialModuleKey }: { initialModul
                             size="icon-sm"
                             onClick={() => handleDelete(item)}
                             disabled={busy}
+                            title={t('list.deleteAction')}
+                            aria-label={t('list.deleteAction')}
                           >
                             <Trash2 className="h-4 w-4 text-destructive" />
                           </Button>

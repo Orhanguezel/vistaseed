@@ -1,8 +1,5 @@
 "use client";
 
-import * as Sentry from "@sentry/nextjs";
-import { useEffect } from "react";
-
 export default function GlobalError({
   error,
   reset,
@@ -10,16 +7,13 @@ export default function GlobalError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  useEffect(() => {
-    Sentry.captureException(error);
-  }, [error]);
 
   return (
     <html lang="tr">
       <body className="min-h-screen bg-background text-foreground">
         <div className="min-h-screen flex items-center justify-center px-6 py-16">
           <div className="w-full max-w-xl rounded-3xl border border-border-soft bg-surface shadow-sm p-8 text-center">
-            <p className="text-xs font-semibold tracking-[0.24em] uppercase text-brand mb-3">vistaseed</p>
+            <p className="text-xs font-semibold tracking-[0.24em] uppercase text-brand mb-3">site</p>
             <h1 className="text-3xl font-extrabold tracking-tight mb-3">Bir hata oluştu</h1>
             <p className="text-sm text-muted mb-6">
               Sayfa yüklenirken beklenmeyen bir sorun oluştu. Tekrar deneyin.

@@ -1,0 +1,1357 @@
+{
+  "Common": {
+    "navigation": {
+      "home": "Anasayfa",
+      "products": "Ürünler",
+      "corporate": "Kurumsal",
+      "about": "Hakkımızda",
+      "hr": "İnsan Kaynakları",
+      "faq": "SSS",
+      "contact": "İletişim",
+      "support": "Destek",
+      "privacy": "Gizlilik Politikası",
+      "terms": "Kullanım Koşulları",
+      "kvkk": "KVKK",
+      "blog": "Blog",
+      "references": "Referanslar",
+      "compare": "Karşılaştır",
+      "dealerNetwork": "Bayi ağı",
+      "bulkSales": "Toplu satış"
+    },
+    "actions": {
+      "readMore": "Devamını Oku",
+      "seeAll": "Tümünü Gör",
+      "back": "Geri",
+      "close": "Kapat",
+      "send": "Gönder",
+      "loading": "Yükleniyor..."
+    },
+    "footer": {
+      "corporate": "Kurumsal",
+      "support": "Destek",
+      "legal": "Yasal",
+      "products": "Ürünler",
+      "allProducts": "Tüm Ürünler",
+      "copyright": "Tüm hakları saklıdır."
+    }
+  },
+  "Header": {
+    "productsDescription": "Ürün kataloğumuzu inceleyin, ihtiyacınıza uygun çeşidi seçin.",
+    "allProducts": "Tüm Ürünler",
+    "vegetableSeeds": "Sebze Tohumları",
+    "fieldSeeds": "Tarla Tohumları",
+    "rootstockRoute": "Anaç çözümleri",
+    "greenhouseRoute": "Sera odaklı çeşitler",
+    "tswvRoute": "TSWV toleranslı çeşitler",
+    "kapiaRoute": "Tatlı kapya seçimi",
+    "corporateDescription": "Şirketimizi, değerlerimizi ve tarihçemizi yakından tanıyın.",
+    "rdCenter": "AR-GE Merkezi",
+    "sustainability": "Sürdürülebilirlik",
+    "knowledgeCenter": "Bilgi Merkezi",
+    "supportDescription": "Tohum ekimi, bakımı ve sıkça sorulan sorular.",
+    "knowledgeBase": "Bilgi Bankası",
+    "plantingGuide": "Ekim Rehberi",
+    "dealerLogin": "Bayi Girişi",
+    "searchPlaceholder": "Ne arıyorsunuz?",
+    "searchLoading": "Ürün önerileri yükleniyor...",
+    "searchEmpty": "Eşleşen ürün bulunamadı.",
+    "searchResults": "Ürün önerileri",
+    "searchViewAll": "Tüm sonuçları aç",
+    "homeAriaLabel": "Ana sayfa",
+    "searchAriaLabel": "Ara",
+    "menuAriaLabel": "Menü"
+  },
+  "Footer": {
+    "eyebrow": "VISTASEED",
+    "rdCenter": "AR-GE Merkezi",
+    "sustainability": "Sürdürülebilirlik",
+    "plantingGuide": "Ekim Rehberi",
+    "dealerLogin": "Bayi Girişi",
+    "vegetableSeeds": "Sebze Tohumları",
+    "fieldSeeds": "Tarla Tohumları",
+    "allProducts": "Tüm Ürünler",
+    "legal": "Yasal",
+    "helpTitle": "Size yardımcı olmaktan mutluluk duyarız",
+    "faqLink": "Sıkça sorulan sorularımıza",
+    "helpDescriptionMiddle": "göz atın veya",
+    "contactLink": "bizimle iletişime geçin",
+    "followTitle": "Bizi Takip Edin",
+    "copyright": "Tüm hakları saklıdır.",
+    "builtBy": "Tasarım & Geliştirme"
+  },
+  "ThemeToggle": {
+    "toLight": "Açık temaya geç",
+    "toDark": "Koyu temaya geç"
+  },
+  "Sections": {
+    "faqPreview": {
+      "eyebrow": "MERAK EDİLENLER",
+      "title": "Sıkça Sorulan Sorular",
+      "subtitle": "Merak edilenlere hızlı cevaplar.",
+      "ctaLabel": "Tüm Soruları Gör"
+    },
+    "cta": {
+      "eyebrow": "BİZE KATILIN",
+      "title": "İşbirliği ile Büyüyelim",
+      "description": "Üretimden tedariğe kadar tüm süreçlerde profesyonel çözüm ortağınız olmaya hazırız.",
+      "ctaLabel": "Hemen İletişime Geçin"
+    },
+    "plantingGuide": {
+      "eyebrow": "EKİM REHBERİ",
+      "title": "Doğru Zamanda, Doğru Ekim",
+      "subtitle": "Mevsimsel döngülere göre optimize edilmiş ekim önerileri ve bakım ipuçlarıyla verimliliğinizi artırın.",
+      "seasons": {
+        "spring": {
+          "label": "İlkbahar",
+          "months": "Mart — Mayıs",
+          "tips": [
+            "Toprak sıcaklığı en az 15°C olmalıdır.",
+            "Fide hazırlığı Şubat sonunda başlatılmalı.",
+            "İlk sulama hafif ve düzenli yapılmalıdır."
+          ]
+        },
+        "summer": {
+          "label": "Yaz",
+          "months": "Haziran — Ağustos",
+          "tips": [
+            "Sıcak stresine karşı gölgeleme yapılmalı.",
+            "Damla sulama ile verimlilik arttırılmalı.",
+            "Hasat zamanlarındaki olgunluğa dikkat edilmeli."
+          ]
+        },
+        "autumn": {
+          "label": "Sonbahar",
+          "months": "Eylül — Kasım",
+          "tips": [
+            "Kış sebzeleri için ideal ekim dönemidir.",
+            "Toprak hazırlığı ve gübrelemesi kritiktir.",
+            "Don riskine karşı erkenden önlem alınmalı."
+          ]
+        },
+        "winter": {
+          "label": "Kış",
+          "months": "Aralık — Şubat",
+          "tips": [
+            "Sera içi sıcaklık kontrolü hayati önem taşır.",
+            "Nem dengesi hastalık riskine karşı korunmalı.",
+            "Gece-gündüz sıcaklık farkı optimize edilmeli."
+          ]
+        }
+      }
+    },
+    "timeline": {
+      "eyebrow": "HİKAYEMİZ",
+      "title": "Tarihçemiz",
+      "subtitle": "Vista Seed'in toprakla başlayan ve teknolojiyle büyüyen yolculuğu.",
+      "items": [
+        {
+          "year": "1990",
+          "title": "Kuruluş",
+          "description": "Şirketin temelleri atıldı."
+        },
+        {
+          "year": "2000",
+          "title": "Büyüme",
+          "description": "Yeni tesisler ve ürün yelpazesi genişlemesi."
+        },
+        {
+          "year": "2010",
+          "title": "İhracat",
+          "description": "Uluslararası pazarlara açılış."
+        },
+        {
+          "year": "2020",
+          "title": "AR-GE Merkezi",
+          "description": "Modern araştırma merkezi faaliyete geçti."
+        },
+        {
+          "year": "2025",
+          "title": "Dijital Dönüşüm",
+          "description": "Teknoloji ile entegre üretim sistemi."
+        }
+      ]
+    },
+    "trustBar": {
+      "items": [
+        {
+          "label": "Sertifikalı Tohum",
+          "description": "TUAB onaylı"
+        },
+        {
+          "label": "Sürdürülebilir",
+          "description": "Çevre dostu üretim"
+        },
+        {
+          "label": "AR-GE Odaklı",
+          "description": "Hibrit çeşitler"
+        },
+        {
+          "label": "%95+ Çimlendirme",
+          "description": "Kalite garantisi"
+        }
+      ]
+    },
+    "stats": {
+      "items": [
+        {
+          "label": "Global Erişim"
+        },
+        {
+          "label": "Ürün Çeşidi"
+        },
+        {
+          "label": "Yıllık Deneyim"
+        },
+        {
+          "label": "Müşteri Memnuniyeti"
+        }
+      ]
+    },
+    "values": {
+      "eyebrow": "DEĞERLERİMİZ",
+      "title": "Neden Biz?",
+      "subtitle": "Temel değerlerimize olan bağlılığımızla tarımda fark yaratıyoruz.",
+      "items": [
+        {
+          "title": "Yüksek Verim",
+          "description": "Modern üretim teknikleriyle geliştirilen yüksek verimli tohumlar."
+        },
+        {
+          "title": "Kalite ve Güven",
+          "description": "Tüm tohumlarımız kalite kontrol süreçlerinden geçirilir."
+        },
+        {
+          "title": "Bölgesel Uyum",
+          "description": "Farklı iklim ve toprak koşullarına uygun çeşitler."
+        },
+        {
+          "title": "AR-GE Odaklı",
+          "description": "Hibrit ıslah programları ve sürekli iyileştirme çalışmaları."
+        }
+      ]
+    }
+  },
+  "Home": {
+    "hero": {
+      "fallbacks": [
+        {
+          "title": "Tohumun Bereketi Toprakla Başlar",
+          "description": "Vista Seed, yüksek verimli ve güvenilir tohum çeşitleriyle tarımda sürdürülebilir başarı sunar.",
+          "buttonText": "Ürünleri Keşfet"
+        },
+        {
+          "title": "AR-GE ile Geleceğin Tohumları",
+          "description": "Kendi seleksiyon ve hibrit çeşitlerimizle Türkiye tarımına değer katıyoruz.",
+          "buttonText": "Hakkımızda"
+        },
+        {
+          "title": "Sertifikalı ve Güvenilir",
+          "description": "TUAB onaylı, laboratuvar testli tohumlar. %95 üzerinde çimlendirme oranı.",
+          "buttonText": "SSS"
+        }
+      ]
+    },
+    "sections": {
+      "trustBar": {
+        "badges": [
+          {
+            "label": "Yüksek Verim",
+            "description": "Sertifikalı tohumlar"
+          },
+          {
+            "label": "AR-GE Odaklı",
+            "description": "Yerli seleksiyon"
+          },
+          {
+            "label": "Gerçek Tat",
+            "description": "%100 Doğal aromalar"
+          }
+        ]
+      },
+      "seasonal": {
+        "title": "Bu Mevsim Önerilerimiz",
+        "subtitle": "Sezona uygun en verimli çeşitlerimizi inceleyin.",
+        "placeholder": "{season} Ayı Önerilerimiz"
+      },
+      "featured": {
+        "title": "Öne Çıkan Ürünler",
+        "subtitle": "Vista Seed kalitesiyle tarladan sofraya en iyi ürünler."
+      },
+      "discovery": {
+        "eyebrow": "Hazır keşif rotaları",
+        "title": "Ürün kataloğuna hazır filtrelerle girin",
+        "subtitle": "İlgilendiğiniz üretim segmentine uygun çeşit gruplarını hazır filtrelerle doğrudan açın.",
+        "cta": "Keşfi aç",
+        "items": {
+          "rootstock": {
+            "title": "Anaç çözümleri",
+            "description": "Aşılı üretim planları için anaç odaklı ürünleri tek listede açın."
+          },
+          "greenhouseTswv": {
+            "title": "Sera + TSWV toleransı",
+            "description": "Sera kullanımına uygun ve TSWV sinyali taşıyan çeşitleri hızlı inceleyin."
+          },
+          "kapia": {
+            "title": "Tatlı kapya seçimi",
+            "description": "Kapya segmentindeki tatlı çeşitleri doğrudan filtrelenmiş görün."
+          },
+          "openField": {
+            "title": "Açık tarla tatlı biberleri",
+            "description": "Açık tarla planlarına uygun tatlı biberleri hazır kombinasyonla listeleyin."
+          }
+        }
+      },
+      "ecosystem": {
+        "title": "Ekosistem İçerikleri",
+        "subtitle": "Bilgi bankası rehberleri ile müşteri referanslarını aynı akışta görün ve ilgili sayfalara hızlı geçin.",
+        "knowledgeEyebrow": "Bilgi bankası",
+        "referenceEyebrow": "Müşteri referansı",
+        "knowledgeCta": "İçeriği aç",
+        "referenceCta": "İlgili sayfaya git"
+      },
+      "faq": {
+        "title": "Sıkça Sorulan Sorular",
+        "subtitle": "Üretimimiz ve ürünlerimiz hakkında merak ettikleriniz."
+      },
+      "newsletter": {
+        "title": "Haberdar Olun",
+        "eyebrow": "Gelişmelerden",
+        "description": "Yeni çeşitler, sezonluk ipuçları ve haberler için bültenimize katılın.",
+        "buttonLabel": "Abone Ol",
+        "placeholder": "Örn. mail@sirket.com",
+        "emailLabel": "E-posta Adresiniz",
+        "successTitle": "Aboneliğiniz Onaylandı",
+        "successDesc": "Bülten platformumuza katıldığınız için teşekkür ederiz.",
+        "spamNote": "Spam yapmıyoruz. İstediğiniz zaman listeden ayrılabilirsiniz."
+      }
+    },
+    "seasons": {
+      "spring": "Bahar",
+      "summer": "Yaz",
+      "fall": "Güz",
+      "winter": "Kış"
+    }
+  },
+  "Products": {
+    "breadcrumb": {
+      "home": "Anasayfa",
+      "products": "Ürünler"
+    },
+    "detail": {
+      "productCode": "Ürün Kodu",
+      "specs": "Teknik Özellikler",
+      "specGroups": {
+        "fruit": "Meyve ve form",
+        "cultivation": "Yetiştirme ve kullanım",
+        "tolerance": "Tolerans ve saha dayanımı",
+        "commercial": "Ticari avantajlar"
+      },
+      "faqs": "Sıkça Sorulan Sorular",
+      "faqForm": {
+        "title": "Bir Sorunuz mu Var?",
+        "placeholder": "Ürün hakkındaki sorunuzu yazın...",
+        "submit": "Soruyu Gönder",
+        "sending": "Gönderiliyor...",
+        "success": "Sorunuz alındı! En kısa sürede cevaplanacaktır.",
+        "error": "Soru gönderilemedi, lütfen tekrar deneyin.",
+        "minLength": "Soru en az 3 karakter olmalıdır."
+      },
+      "reviews": "Müşteri Değerlendirmeleri",
+      "reviewCount": "{count} değerlendirme",
+      "reviewSummary": "Yetiştiricilerimizden gelen gerçek kullanıcı deneyimleri ve verim yorumları.",
+      "ecosystemKicker": "Ekosistem bağlantıları",
+      "ecosystemTitle": "Operasyon ve erişim akışları",
+      "ecosystemSubtitle": "Bu ürün etrafındaki saha erişimi, toplu satış ve kurumsal akışları ilgili sayfalardan inceleyin.",
+      "ecosystemCta": "Akışı aç",
+      "relatedKnowledgeKicker": "Bilgi bankası",
+      "relatedKnowledgeTitle": "İlişkili rehber ve içerikler",
+      "relatedKnowledgeSubtitle": "Ürün etiketlerinize göre seçilmiş teknik doküman ve rehberler.",
+      "relatedKnowledgeSeeAll": "Bilgi bankasına git",
+      "noReviews": "Henüz değerlendirme yapılmamış.",
+      "noReviewsCta": "Henüz bir değerlendirme yapılmamış. İlk yorumu siz yapın!",
+      "badges": {
+        "hybrid": "F1 Hibrit",
+        "early": "Erkenci",
+        "featured": "Öne çıkan"
+      },
+      "quickSpecs": {
+        "seedType": "Tohum Türü",
+        "seedTypeFallback": "Premium",
+        "botanical": "Botanik ad",
+        "certificate": "Sertifika",
+        "certificateValue": "TUAB Onaylı",
+        "climate": "İklim Uyumu",
+        "climateValue": "Ege / Marmara / İç Anadolu",
+        "climateFallback": "Belirtilmedi",
+        "planting": "Ekim mevsimi",
+        "plantingFallback": "Belirtilmedi",
+        "soil": "Toprak tipi",
+        "soilFallback": "Belirtilmedi",
+        "tempRange": "Sıcaklık aralığı",
+        "tempFallback": "Belirtilmedi",
+        "harvest": "Hasat Dönemi",
+        "harvestValue": "Sezonluk",
+        "harvestDays": "{days} gün",
+        "water": "Su ihtiyacı",
+        "waterFallback": "—",
+        "sun": "Güneş ihtiyacı",
+        "sunFallback": "—",
+        "days": "gün"
+      },
+      "agEnum": {
+        "season": {
+          "ilkbahar": "İlkbahar",
+          "yaz": "Yaz",
+          "sonbahar": "Sonbahar",
+          "kis": "Kış"
+        },
+        "climate": {
+          "akdeniz": "Akdeniz",
+          "ege": "Ege",
+          "marmara": "Marmara",
+          "ic-anadolu": "İç Anadolu",
+          "karadeniz": "Karadeniz",
+          "dogu-anadolu": "Doğu Anadolu",
+          "guneydogu": "Güneydoğu Anadolu"
+        },
+        "soil": {
+          "kumlu": "Kumlu",
+          "killi": "Killi",
+          "humuslu": "Humuslu",
+          "balikli": "Balıklı",
+          "torflu": "Torflu"
+        },
+        "water": {
+          "low": "Düşük",
+          "medium": "Orta",
+          "high": "Yüksek"
+        },
+        "sun": {
+          "full": "Tam güneş",
+          "partial": "Yarım gölge",
+          "shade": "Gölge"
+        }
+      },
+      "ctaPanel": {
+        "title": "Hemen teklif alın",
+        "subtitle": "Şirketinize özel fiyatlandırma"
+      },
+      "profile": {
+        "eyebrow": "Tarımsal profil",
+        "title": "Yetiştirme koşulları ve saha özeti",
+        "subtitle": "Ekim planlaması, saha uyumu ve çevresel ihtiyaçlar için ürünün temel tarımsal verilerini hızlı okuyun.",
+        "groups": {
+          "growing": "Yetiştirme",
+          "spacing": "Ekim ölçüleri",
+          "environment": "Çevresel ihtiyaç"
+        },
+        "fields": {
+          "planting": "Ekim mevsimi",
+          "soil": "Toprak tipi",
+          "harvest": "Hasat penceresi",
+          "germination": "Çimlenme",
+          "seedDepth": "Ekim derinliği",
+          "rowSpacing": "Sıra arası",
+          "plantSpacing": "Bitki arası",
+          "temperature": "Sıcaklık aralığı",
+          "water": "Su ihtiyacı",
+          "sun": "Güneş ihtiyacı",
+          "yield": "Verim"
+        }
+      },
+      "reviewForm": {
+        "title": "Değerlendirme Yapın",
+        "namePlaceholder": "Adınız",
+        "ratingLabel": "Puanınız",
+        "commentPlaceholder": "Ürün hakkındaki düşüncelerinizi yazın...",
+        "submit": "Değerlendirmeyi Gönder",
+        "sending": "Gönderiliyor...",
+        "success": "Değerlendirmeniz alındı! İncelendikten sonra yayınlanacaktır.",
+        "error": "Değerlendirme gönderilemedi, lütfen tekrar deneyin.",
+        "nameRequired": "Adınızı giriniz.",
+        "commentMin": "Yorum en az 5 karakter olmalıdır.",
+        "starLabel": "{star} yıldız"
+      },
+      "cta": "Bilgi Alın",
+      "notFound": "Ürün bulunamadı",
+      "rating": "Puan",
+      "gallery": {
+        "prev": "Önceki görsel",
+        "next": "Sonraki görsel",
+        "imageOf": "Görsel {current} / {total}"
+      }
+    },
+    "list": {
+      "meta": {
+        "filteredTitle": "{filters} | {title}",
+        "filteredDescription": "{title} içinde {filters} filtrelerine göre daraltılmış ürünleri inceleyin."
+      },
+      "title": "Ürün Kataloğu",
+      "intro": {
+        "default": "{category} görünümünde toplam {count} ürünü inceleyin. Çeşit, yetiştirme alanı, tat profili ve tolerans kırılımlarıyla kataloğu daraltabilirsiniz.",
+        "filtered": "{filters} filtreleriyle eşleşen {count} ürünü listeliyorsunuz."
+      },
+      "search": "Ürün adı veya kodu ile ara...",
+      "filters": {
+        "type": {
+          "label": "Ürün tipi",
+          "options": {
+            "rootstock": "Anaç",
+            "charleston": "Çarliston",
+            "hotThin": "Acı kıl",
+            "sweetThin": "Tatlı kıl",
+            "breakfast": "Kahvaltılık",
+            "kapia": "Kapya",
+            "stuffing": "Dolma"
+          }
+        },
+        "cultivation": {
+          "label": "Yetiştirme alanı",
+          "options": {
+            "greenhouse": "Sera",
+            "openField": "Açık tarla",
+            "highland": "Yayla",
+            "grafted": "Aşılı üretim"
+          }
+        },
+        "taste": {
+          "label": "Tat profili",
+          "options": {
+            "sweet": "Tatlı",
+            "hot": "Acı"
+          }
+        },
+        "tolerance": {
+          "label": "Tolerans",
+          "options": {
+            "tswv": "TSWV",
+            "tm02": "Tm 0-2",
+            "fon01": "Fon 0,1",
+            "cold": "Soğuk performansı"
+          }
+        }
+      },
+      "activeFilters": {
+        "title": "Aktif filtreler",
+        "search": "Arama",
+        "category": "Kategori",
+        "tag": "Etiket",
+        "type": "Ürün tipi",
+        "cultivation": "Yetiştirme alanı",
+        "taste": "Tat profili",
+        "tolerance": "Tolerans"
+      },
+      "share": {
+        "action": "Filtre linkini kopyala",
+        "copied": "Bağlantı kopyalandı.",
+        "error": "Bağlantı kopyalanamadı."
+      },
+      "allCategories": "Tümünü göster",
+      "noResults": "Aramanızla eşleşen ürün bulunamadı.",
+      "clearFilters": "Filtreleri temizle",
+      "resultCount": "{count} ürün listeleniyor"
+    },
+    "specCategories": {
+      "physical": "Fiziksel Özellikler",
+      "material": "Hastalık Toleransı",
+      "service": "Hizmet",
+      "custom": "Yetiştirme Bilgisi"
+    }
+  },
+  "Compare": {
+    "meta": {
+      "title": "Ürün karşılaştırma",
+      "description": "Seçtiğiniz ürünleri teknik özellik, stok ve temel bilgiler bazında yan yana karşılaştırın."
+    },
+    "title": "Ürün karşılaştırma",
+    "subtitle": "Birden fazla çeşidi yan yana görüp farkları hızlıca değerlendirin.",
+    "loading": "Karşılaştırma verileri yükleniyor...",
+    "empty": "Karşılaştırmaya başlamak için en az iki ürün seçin.",
+    "browseProducts": "Ürün kataloğuna dön",
+    "clear": "Seçimi temizle",
+    "attribute": "Özellik",
+    "sections": {
+      "overview": "Genel özet",
+      "cultivation": "Yetiştirme planı",
+      "environment": "Çevresel uyum",
+      "commercial": "Ticari karşılaştırma"
+    },
+    "remove": "Listeden çıkar",
+    "rowCategory": "Kategori",
+    "rowPrice": "Fiyat",
+    "rowStock": "Stok",
+    "rowRating": "Değerlendirme",
+    "rowCode": "Ürün kodu",
+    "rowBotanical": "Botanik ad",
+    "rowClimate": "İklim bölgeleri",
+    "rowPlanting": "Ekim mevsimi",
+    "rowSoil": "Toprak tipi",
+    "rowHarvestDays": "Hasat süresi (gün)",
+    "rowTemp": "Sıcaklık aralığı",
+    "rowWater": "Su ihtiyacı",
+    "rowSun": "Güneş",
+    "rowDepth": "Ekim derinliği",
+    "rowYield": "Verim (m2)",
+    "rowGermination": "Çimlenme (gün)",
+    "rowSpacing": "Sıra / bitki aralığı (cm)",
+    "fetchError": "Karşılaştırma verileri alınamadı.",
+    "mismatch": "Bazı ürünler artık aktif olmadığı için listeye eklenemedi.",
+    "addToCompare": "Karşılaştır",
+    "selected": "Seçildi",
+    "goToCompare": "{count} ürünü karşılaştır",
+    "toastAdded": "Ürün karşılaştırma listesine eklendi.",
+    "toastDuplicate": "Bu ürün zaten listede.",
+    "max": "En fazla 5 ürün seçilebilir.",
+    "selectedCount": "{count} ürün seçildi",
+    "trayHint": "Karşılaştırma sayfasında tablo ve mobil kart görünümü hazır.",
+    "compareNow": "Karşılaştırmayı aç"
+  },
+  "Library": {
+    "relatedProducts": {
+      "kicker": "İlgili Ürünler",
+      "title": "Rehberle Uyumlu Ürünler",
+      "seeAll": "Tümünü Gör"
+    },
+    "knowledgeBase": {
+      "title": "Bilgi Bankası",
+      "description": "Tohumculuk, ekim teknikleri ve tarımsal destek hakkında kapsamlı bilgiler.",
+      "heroDescription": "Tarımsal üretim süreçlerinizde size rehberlik edecek tüm teknik dokümanlar, ekim rehberleri ve destek içerikleri bir arada.",
+      "guidesTitle": "Ekim ve Bakım Rehberleri",
+      "supportsTitle": "Teknik Destek ve Çözümler",
+      "othersTitle": "Diğer Bilgilendirmeler",
+      "seeAllGuides": "Tümünü Gör",
+      "reviewDetailCta": "Detayı İncele",
+      "empty": "Bilgi bankasında henüz kayıtlı içerik bulunmuyor.",
+      "breadcrumbHome": "Anasayfa"
+    },
+    "detail": {
+      "supportBadge": "Teknik Destek",
+      "knowledgeBadge": "Bilgi Bankası",
+      "publishedLabel": "Yayın",
+      "attachmentsTitle": "Ekli Dosyalar",
+      "documentFile": "Doküman Dosyası",
+      "downloadCta": "İndir",
+      "helpTitle": "Yardıma mı İhtiyacınız Var?",
+      "helpDescription": "Aradığınız bilgiye ulaşamadıysanız teknik ekibimizle iletişime geçebilirsiniz.",
+      "contactCta": "Bize Yazın",
+      "backToKnowledgeBase": "Bilgi Bankasına Dön",
+      "galleryTitle": "Galeri",
+      "breadcrumbHome": "Anasayfa",
+      "breadcrumbKnowledge": "Bilgi Bankası"
+    },
+    "guides": {
+      "title": "Ekim ve Bakım Rehberi",
+      "description": "Tohumlarınızdan en yüksek verimi almanız için uzman ekim ve bakım tavsiyeleri.",
+      "heroDescription": "Toprağa düşen her tohumun bir hikâyesi var. Bereketli bir hasat için uzman ekim ve bakım rehberlerimizi inceleyin.",
+      "empty": "Henüz eklenmiş bir rehber bulunmuyor.",
+      "guideBadge": "Uzman Rehberi",
+      "infoBadge": "Bilgi",
+      "fallbackSummary": "Bu tohum türü için ekim ve bakım tavsiyelerini inceleyin.",
+      "reviewLink": "İncele",
+      "breadcrumbHome": "Anasayfa"
+    },
+    "guideDetail": {
+      "guideBadge": "Ekim Rehberi",
+      "documentNumber": "Doküman No",
+      "downloadTitle": "Dosya İndir (PDF)",
+      "guideFile": "Kılavuz Dosyası",
+      "documentLabel": "Doküman",
+      "tipTitle": "Uzman Tavsiyesi",
+      "tipBody": "Tohum kalitesi, hasat veriminin %60'ını belirler. Ekimden önce toprak analizini yaptırmayı ve doğru ekim derinliğini korumayı ihmal etmeyin.",
+      "backToGuides": "Tüm Rehberlere Dön",
+      "galleryTitle": "Galeri",
+      "breadcrumbHome": "Anasayfa",
+      "breadcrumbGuides": "Ekim Rehberi"
+    }
+  },
+  "FAQ": {
+    "title": "Sıkça Sorulan Sorular",
+    "description": "Merak ettiğiniz soruların cevapları burada.",
+    "empty": "Henüz SSS eklenmedi."
+  },
+  "HR": {
+    "title": "İnsan Kaynakları",
+    "description": "Ekibimize katılmak için açık pozisyonları inceleyin. Profesyonel gelişim, AR-GE kültürü ve sürdürülebilir vizyon ile çalışma fırsatı sunuyoruz.",
+    "stats": {
+      "expertTeam": "Uzman Kadro",
+      "totalStaff": "Toplam Personel",
+      "employees": "Çalışan"
+    },
+    "whyUsTitle": "Neden Biz?",
+    "reasons": [
+      "Profesyonel gelişim ve kariyer planlama",
+      "AR-GE odaklı inovatif çalışma ortamı",
+      "Sürdürülebilir tarım vizyonu",
+      "Sürekli eğitim ve sertifika programları",
+      "Rekabetçi ücret ve yan haklar"
+    ],
+    "applicationTitle": "Başvuru",
+    "applicationDescription": "Açık pozisyonlar için özgeçmişinizi bize iletebilirsiniz. Başvurularınız KVKK kapsamında değerlendirilecektir.",
+    "contactCta": "İletişime Geçin"
+  },
+  "Blog": {
+    "meta": {
+      "title": "Blog",
+      "description": "Tohumculuk, ekim ve tarım teknolojileri hakkında güncel yazılar."
+    },
+    "ecosystemTitle": "Blogdan ekosisteme geçin",
+    "ecosystemDescription": "Blog yazılarının yanında rehber, bilgi bankası ve operasyon akışlarını da doğrudan inceleyin.",
+    "ecosystemKnowledgeEyebrow": "Teknik içerik",
+    "ecosystemReferenceEyebrow": "İş akışları",
+    "ecosystemKnowledgeCta": "Rehberi aç",
+    "ecosystemReferenceCta": "İlgili yüzeye git",
+    "listTitle": "Blog",
+    "listDescription": "Saha ve laboratuvar deneyimlerinden notlar, ekim ipuçları ve sektör analizleri.",
+    "discovery": {
+      "eyebrow": "Hazır ürün rotaları",
+      "title": "Yazıdan ürün keşfine geçin",
+      "subtitle": "Blog içeriğinden çıkmadan belirli ürün segmentlerine hazır filtre kombinasyonlarıyla ulaşın.",
+      "cta": "Filtreli listeyi aç",
+      "items": {
+        "greenhouse": {
+          "title": "Sera için uygun çeşitler",
+          "description": "Sera planlamasına uygun ürünleri tek tıkla filtreleyin."
+        },
+        "tswv": {
+          "title": "TSWV odaklı tarama",
+          "description": "TSWV sinyali taşıyan ürünleri ayrı bir akışta inceleyin."
+        },
+        "breakfast": {
+          "title": "Kahvaltılık segment",
+          "description": "Kahvaltılık biber grubunu filtrelenmiş katalogla açın."
+        },
+        "rootstock": {
+          "title": "Anaç ürünleri",
+          "description": "Aşılı üretim veya anaç ihtiyacı için ilgili gruba doğrudan geçin."
+        }
+      }
+    },
+    "readMore": "Devamını oku",
+    "empty": "Henüz yazı bulunmuyor.",
+    "backToBlog": "Bloga dön",
+    "rssHint": "RSS ile takip edin"
+  },
+  "References": {
+    "list": {
+      "title": "Referanslar",
+      "description": "VistaSeed ekosisteminde yer alan proje ve uygulama referanslarını inceleyin.",
+      "eyebrow": "Saha ve proje yüzeyleri",
+      "heroDescription": "Kaynak siteden taşınan referans kayıtlarını, görsel setleri ve proje yüzeylerini tek akışta inceleyin.",
+      "cardKicker": "Referans kaydı",
+      "detailCta": "Detayı aç",
+      "fallbackSummary": "Bu referans için galeri ve proje yüzeyi kaydı görüntüleniyor.",
+      "empty": "Henüz yayınlanmış referans bulunmuyor.",
+      "breadcrumbHome": "Anasayfa"
+    },
+    "detail": {
+      "eyebrow": "Referans detayı",
+      "sourceBadge": "Kaynak bağlantı",
+      "sourceTitle": "Orijinal kayıt",
+      "sourceDescription": "Bu referansın kaynak sayfasını mevcut kurumsal site üzerinde ayrı sekmede açabilirsiniz.",
+      "sourceCta": "Kaynak sayfayı aç",
+      "backToList": "Referanslara dön",
+      "galleryEyebrow": "Görsel seti",
+      "galleryTitle": "Galeri",
+      "galleryItem": "görsel",
+      "breadcrumbHome": "Anasayfa",
+      "breadcrumbList": "Referanslar"
+    }
+  },
+  "DealersNetwork": {
+    "meta": {
+      "title": "Bayi ağı",
+      "description": "VistaSeed yetkili bayileri: şehir ve bölgeye göre arayın, haritadaki kapsama alanını görün."
+    },
+    "title": "Bayi ağı",
+    "description": "Türkiye genelindeki yetkili bayi noktalarımız. İsim, şehir veya bölge ile filtreleyebilirsiniz.",
+    "searchLabel": "Ara",
+    "searchPlaceholder": "Şirket adı",
+    "city": "Şehir",
+    "cityPlaceholder": "Örn. Ankara",
+    "region": "Bölge",
+    "regionPlaceholder": "Örn. İç Anadolu",
+    "search": "Filtrele",
+    "loading": "Yükleniyor...",
+    "fetchError": "Liste alınamadı. Lütfen daha sonra tekrar deneyin.",
+    "mapSection": "Harita",
+    "mapTitle": "Yaklaşık konumlar",
+    "mapHint": "Türkiye (yaklaşık)",
+    "mapEmpty": "Koordinatı olan bayi bulunamadı; liste aşağıda olabilir.",
+    "listSection": "Bayi listesi",
+    "listTitle": "Tüm sonuçlar",
+    "listEmpty": "Kriterlere uygun bayi bulunamadı.",
+    "resultCount": "sonuç",
+    "clear": "Temizle",
+    "directions": "Yol Tarifi",
+    "whatsapp": "WhatsApp",
+    "discovery": {
+      "eyebrow": "Hazır ürün rotaları",
+      "title": "Bölgesel ağdan kataloğa geçin",
+      "subtitle": "Bayi dağılımını inceledikten sonra ilgili ürün grubuna önceden hazırlanmış filtre kombinasyonlarıyla doğrudan ulaşın.",
+      "cta": "Filtreli ürünleri aç",
+      "items": {
+        "greenhouse": {
+          "title": "Sera odaklı çeşitler",
+          "description": "Sera bayilerinin yanında öne çıkan ürünleri tek listede inceleyin."
+        },
+        "openField": {
+          "title": "Açık tarla akışı",
+          "description": "Açık tarla planları için uygun çeşitleri hazır filtreyle açın."
+        },
+        "rootstock": {
+          "title": "Anaç çözümleri",
+          "description": "Aşılı üretim ve anaç ihtiyacına yönelik ürünleri doğrudan görüntüleyin."
+        },
+        "tswv": {
+          "title": "TSWV sinyalli çeşitler",
+          "description": "TSWV tolerans odaklı ürünleri tek akışta tarayın."
+        }
+      }
+    }
+  },
+  "BulkSales": {
+    "meta": {
+      "title": "Toplu satış ve kooperatif",
+      "description": "Kooperatif, üretici birliği veya zincir mağazalar için toplu tohum talebi. Formu doldurun, ekibimiz size dönüş yapsın."
+    },
+    "title": "Toplu satış ve kooperatif",
+    "intro": "Büyük hacimli siparişler ve kooperatif yapıları için özel fiyatlandırma ve lojistik desteği sunuyoruz. Talebinizi iletin; yetkili ekibimiz kısa sürede sizinle iletişime geçer.",
+    "fields": {
+      "name": "Ad Soyad",
+      "company": "Kurum / şirket adı",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "orgType": "Kurum türü",
+      "orgTypePlaceholder": "Seçiniz",
+      "city": "Şehir",
+      "region": "Bölge",
+      "volume": "Tahmini hacim",
+      "volumePlaceholder": "Örn. 500 kg, 2 ton",
+      "message": "Talep detayı"
+    },
+    "orgTypes": {
+      "cooperative": "Kooperatif",
+      "producer_union": "Üretici birliği",
+      "retailer_chain": "Perakende zinciri",
+      "exporter": "İhracatçı",
+      "other": "Diğer"
+    },
+    "consentTermsLead": "Kişisel verilerimin işlenmesine ve",
+    "consentTermsLink": "kullanım koşullarına",
+    "consentTermsTrail": " uygun olarak bu talebin değerlendirilmesi için iletilmesini kabul ediyorum.",
+    "consentMarketing": "Kampanya ve ürün haberleri için elektronik ileti almak istiyorum (isteğe bağlı).",
+    "submit": "Talebi gönder",
+    "sending": "Gönderiliyor...",
+    "success": "Talebiniz alındı. En kısa sürede sizinle iletişime geçeceğiz.",
+    "error": "Gönderilemedi. Lütfen daha sonra tekrar deneyin."
+  },
+  "Offers": {
+    "meta": {
+      "title": "Teklif Al - Toplu Satış",
+      "description": "Kurumsal projeleriniz ve toplu tohum alımlarınız için size özel teklif oluşturalım."
+    },
+    "title": "Toplu Satış ve Kurumsal Talepler",
+    "description": "Büyük ölçekli tarımsal projeler veya bayilik ön talepleri için lütfen formu doldurun.",
+    "success": "Talebiniz başarıyla iletilmiştir. Ekibimiz sizinle en kısa sürede iletişime geçecek.",
+    "createAnother": "Yeni talep oluştur",
+    "responseNote": "Talebiniz uzman ekiplerimiz tarafından incelenerek 24 saat içinde size dönüş yapılacaktır.",
+    "errors": {
+      "submit": "Ops! Bir hata oluştu.",
+      "unexpected": "Beklenmedik bir hata oluştu."
+    },
+    "payload": {
+      "categoryLabel": "Kategori",
+      "quantityLabel": "Miktar",
+      "locationLabel": "Lokasyon",
+      "customerFallback": "Teklif talebi",
+      "detailFallback": "detay"
+    },
+    "support": {
+      "title": "Kurumsal destek hattı",
+      "description": "Projenizle ilgili teknik detayları uzman ekibimizle görüşerek netleştirebilirsiniz."
+    },
+    "form": {
+      "companyName": "Şirket Unvanı / İsim",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "category": "İlgilenilen Kategori",
+      "quantity": "Tahmini Miktar",
+      "location": "Proje Lokasyonu (Şehir)",
+      "message": "Talep Detayları",
+      "submit": "Teklif Talebi Gönder",
+      "submitting": "Gönderiliyor...",
+      "placeholder": {
+        "companyName": "Örn. Aras Tohumculuk",
+        "email": "eposta@sirket.com",
+        "phone": "05XX XXX XX XX",
+        "location": "Örn. Ankara",
+        "category": "Seçiniz",
+        "quantity": "Örn: 5000 adet / 100 kg",
+        "message": "İhtiyaçlarınızı detaylı olarak buraya yazabilirsiniz..."
+      },
+      "categories": {
+        "Vegetable": "Sebze Tohumları",
+        "Field": "Tarla Tohumları",
+        "Hybrid": "Hibrit Seleksiyonlar",
+        "Other": "Diğer"
+      }
+    },
+    "trust": {
+      "title": "VistaSeed Avantajı",
+      "item1": "Sertifikalı ve Yüksek Verimli Tohumlar",
+      "item2": "Teknik Destek ve Danışmanlık",
+      "item3": "Esnek Ödeme Seçenekleri",
+      "item4": "Türkiye Genelinde Hızlı Lojistik"
+    }
+  },
+  "Support": {
+    "badge": "Destek Merkezi",
+    "title": "Sık sorulan sorular ve destek talebi",
+    "description": "Önce SSS bölümüne göz atın. Çözüm bulamazsanız aşağıdaki formdan destek talebi oluşturun.",
+    "success": "Destek talebiniz alındı. Ekibimiz kısa süre içinde size dönüş yapacak.",
+    "form": {
+      "title": "Destek Talebi Oluştur",
+      "chatHint": "Mesajınız yönetim ekibine destek talebi olarak iletilir; e-posta veya panel üzerinden size dönüş yapılır.",
+      "namePlaceholder": "Ad Soyad",
+      "emailPlaceholder": "E-posta",
+      "subjectPlaceholder": "Konu",
+      "messagePlaceholder": "Sorununuzu veya talebinizi yazın",
+      "submit": "Talebi Gönder",
+      "sending": "Gönderiliyor...",
+      "categories": {
+        "general": "Genel",
+        "products": "Ürünler ve sipariş",
+        "account": "Hesap",
+        "technical": "Teknik"
+      }
+    }
+  },
+  "Contact": {
+    "meta": {
+      "title": "İletişim ve Destek",
+      "description": "İletişim sayfamız üzerinden bize ulaşabilir, soru ve görüşlerinizi iletebilirsiniz."
+    },
+    "page": {
+      "heroTitle": "Bize Ulaşın",
+      "heroDescription": "Tohum ve tarım çözümlerimiz hakkında her türlü soru, görüş ve kurumsal talepleriniz için yanınızdayız.",
+      "success": "Mesajınız alındı. Ekibimiz en kısa sürede sizinle iletişime geçecek.",
+      "contactCards": {
+        "phoneTitle": "Telefon",
+        "emailTitle": "E-posta",
+        "undefined": "Henüz tanımlanmadı"
+      },
+      "address": {
+        "title": "Adres Bilgisi",
+        "subtitle": "Sertifikalı Tohum Üretim Merkezi",
+        "fallbackCountry": "Türkiye"
+      },
+      "form": {
+        "title": "İletişim Formu",
+        "submit": "Mesajı Gönder",
+        "submitting": "Gönderiliyor...",
+        "fields": {
+          "name": {
+            "label": "Ad Soyad",
+            "placeholder": "Örn: Ahmet Yılmaz"
+          },
+          "email": {
+            "label": "E-posta",
+            "placeholder": "eposta@adresiniz.com"
+          },
+          "phone": {
+            "label": "Telefon",
+            "placeholder": "05XX XXX XX XX"
+          },
+          "subject": {
+            "label": "Konu",
+            "placeholder": "Ne hakkında görüşmek istersiniz?"
+          },
+          "message": {
+            "label": "Mesajiniz",
+            "placeholder": "Detayli mesajinizi buraya yazabilirsiniz..."
+          }
+        }
+      }
+    }
+  },
+  "About": {
+    "title": "Hakkımızda",
+    "pageDescription": "Vista Seeds'in tarımdaki duruşunu, değerlerini, faaliyet alanlarını ve kurumsal geçmişini keşfedin.",
+    "eyebrow": "Kurumsal",
+    "introKicker": "Tarihçe ve temel değerler",
+    "introTitle": "Tarım, proje ve dijital deneyim aynı omurgada",
+    "visionTitle": "Vizyonumuz",
+    "missionTitle": "Misyonumuz",
+    "valuesTitle": "Temel Değerlerimiz",
+    "activitiesTitle": "Faaliyet Alanları",
+    "timelineTitle": "Tarihçemiz",
+    "groupCompaniesTitle": "Referanslar",
+    "featureKicker": "Kurumsal galeri",
+    "featureTitle": "Üretimden markaya öne çıkan görseller",
+    "ecosystemKicker": "Ekosistem modülleri",
+    "referencesKicker": "Müşteri referansları",
+    "timelineKicker": "Kurumsal gelişim çizgisi",
+    "knowledgeKicker": "Teknik içerik",
+    "knowledgeTitle": "Teknik içerik ve ekim rehberleri",
+    "referencesCta": "Referansları incele",
+    "contactCta": "İletişime geç",
+    "referenceFallback": "Bu kayıt şu anda görsel ve proje referansı olarak yayınlanıyor.",
+    "guideBadge": "Ekim rehberi",
+    "knowledgeBadge": "Bilgi bankası",
+    "knowledgeFallback": "Bu içerik, ürün ve saha kararlarını destekleyen bilgi akışının parçasıdır.",
+    "membershipsKicker": "Resmi üyelikler ve sertifikasyonlar",
+    "membershipsTitle": "Üyesi Olduğumuz Kuruluşlar",
+    "discovery": {
+      "eyebrow": "Ürün kataloğuna geçin",
+      "title": "Kurumsal yapıyı ilgili ürün kümeleriyle birlikte görün",
+      "subtitle": "Faaliyet alanlarımızla örtüşen ürün gruplarını hazır filtrelerle doğrudan listeleyin.",
+      "cta": "İlgili ürünleri aç",
+      "items": {
+        "rootstock": {
+          "title": "Anaç ve aşılı üretim hattı",
+          "description": "Üretim omurgamızla ilişkili anaç ürünlerini doğrudan filtrelenmiş görün."
+        },
+        "greenhouse": {
+          "title": "Sera planına uygun çeşitler",
+          "description": "Modern sera altyapısına uyumlu çeşitleri tek girişte inceleyin."
+        },
+        "tswv": {
+          "title": "Tolerans odaklı seçim",
+          "description": "Saha dayanımı sinyali taşıyan ürünleri hızlıca ayırın."
+        },
+        "kapia": {
+          "title": "Ticari kapya segmenti",
+          "description": "Kurumsal talepte öne çıkan tatlı kapya grubuna doğrudan geçin."
+        }
+      }
+    }
+  },
+  "Auth": {
+    "form": {
+      "emailLabel": "E-Posta Adresi",
+      "emailPlaceholder": "kullanıcı@example.com",
+      "passwordLabel": "Şifre",
+      "submit": "Giriş Yap",
+      "submitting": "Giriş Yapılıyor...",
+      "forgotPassword": "Şifrenizi mi unuttunuz?",
+      "resetRequest": "Sıfırlama Talebi Gönder",
+      "errors": {
+        "unauthorized": "Bu alana giriş yetkiniz bulunmamaktadır.",
+        "invalidCredentials": "E-posta veya şifre hatalı.",
+        "generic": "Giriş yapılırken bir hata oluştu."
+      }
+    }
+  },
+  "AuthPages": {
+    "dealer": {
+      "metaTitle": "Bayi Girişi",
+      "metaDescription": "Vista Seed bayileri için özel portal giriş ekranı. Mevcut hesabınızla giriş yaparak sipariş ve bayi yönetim işlemlerinizi gerçekleştirebilirsiniz.",
+      "title": "Bayi Paneli",
+      "subtitle": "Bayi hesabınızla giriş yaparak işlemlerinizi yönetebilirsiniz."
+    },
+    "member": {
+      "metaTitle": "Üye Girişi",
+      "metaDescription": "Vista Seed kullanıcıları için özel portal giriş ekranı. Mevcut hesabınızla giriş yaparak geçmiş işlemlerinizi ve tercihlerinizi yönetebilirsiniz.",
+      "title": "Üye Girişi",
+      "subtitle": "Hesabınıza giriş yaparak işlemlerinizi takip edin."
+    }
+  },
+  "Dashboard": {
+    "layout": {
+      "portal": {
+        "dealer": "Bayi Portalı",
+        "customer": "Müşteri Paneli"
+      },
+      "limitStatus": "Limit Durumu",
+      "nav": {
+        "overview": "Genel Bakış",
+        "orders": "Siparişlerim",
+        "finance": "Mali Durum",
+        "help": "Destek (mesaj)",
+        "account": "Hesap Ayarları"
+      },
+      "logout": "Güvenli Çıkış"
+    },
+    "dealerHome": {
+      "welcome": "Hoş Geldin,",
+      "fallbackName": "Değerli Ortağımız",
+      "description": "İşletmenizin performansını ve siparişlerini buradan takip edebilirsiniz.",
+      "currentBalance": "Cari Bakiye",
+      "stats": {
+        "openOrders": {
+          "label": "Açık Siparişler",
+          "subValue": "Devam Eden"
+        },
+        "availableLimit": "Kullanılabilir Limit",
+        "totalSpend": "Toplam Alım",
+        "creditUsage": "Kredi Kullanımı"
+      },
+      "recentOrders": {
+        "title": "Son Siparişler",
+        "viewAll": "Tümünü Gör",
+        "empty": "Henüz bir siparişiniz bulunmamaktadır.",
+        "catalogCta": "Ürün Kataloğunu İncele"
+      },
+      "operations": {
+        "title": "Operasyonel Durum",
+        "creditLimit": "Kredi Limiti",
+        "used": "Kullanılan",
+        "limit": "Limit"
+      },
+      "support": {
+        "title": "Hızlı Destek",
+        "description": "Siparişleriniz veya ödemelerinizle ilgili bir sorun mu var?",
+        "cta": "Destek Talebi Oluştur"
+      }
+    },
+    "orderStatus": {
+      "pending": "Beklemede",
+      "confirmed": "Onaylandı",
+      "processing": "Hazırlanıyor",
+      "shipped": "Kargoda",
+      "delivered": "Teslim Edildi",
+      "cancelled": "İptal Edildi"
+    },
+    "memberHome": {
+      "meta": {
+        "title": "Üye Paneli",
+        "description": "Üye kullanıcıları için özel hesap ve sipariş takip ekranı."
+      },
+      "welcome": "Hoş Geldiniz",
+      "title": "Üye Portalı",
+      "description": "Geçmiş siparişlerinizi ve tercihlerinizi buradan yönetebilirsiniz.",
+      "cards": {
+        "profile": {
+          "title": "Profil Bilgileri",
+          "description": "Kişisel bilgilerinizi ve iletişim tercihlerinizi güncelleyin.",
+          "cta": "Düzenle"
+        },
+        "orders": {
+          "title": "Siparişlerim",
+          "description": "Tüm satın aldığınız tohumlar ve sevkiyat durumları.",
+          "cta": "Görüntüle"
+        },
+        "favorites": {
+          "title": "Favorilerim",
+          "description": "Takip ettiğiniz ürünler ve size özel öneriler.",
+          "cta": "Listele"
+        }
+      },
+      "cta": {
+        "title": "Üye Avantajlarından Yararlanın",
+        "description": "Yeni geliştirilen tohum çeşitlerinden ilk siz haberdar olun ve uzman ekiplerimizden ücretsiz agronomik destek alın.",
+        "button": "Ayrıcalıkları Keşfet"
+      }
+    },
+    "dealerOrders": {
+      "orderBlockTitle": "Yeni sipariş",
+      "orderBlockDescription": "Siparişe alınacak satırları işaretleyin; miktarı gram olarak girin. Fiyatlar kg başına (₺/kg); tutar sunucuda bayi indiriminizle doğrulanır.",
+      "catalogLoadError": "Ürün listesi yüklenemedi. Oturumu kontrol edip yenileyin.",
+      "createSuccess": "Siparişiniz alındı. Aşağıdaki listede görebilirsiniz.",
+      "createError": "Sipariş oluşturulamadı. Oturumu kontrol edip tekrar deneyin.",
+      "notesLabel": "Sipariş notu",
+      "notesPlaceholder": "Teslimat veya ürün tercihi (isteğe bağlı, en fazla 2000 karakter)",
+      "paymentTitle": "Ödeme",
+      "payWithCard": "Kredi kartı (Iyzico)",
+      "payWithBank": "Banka havalesi / EFT",
+      "paymentIyzicoError": "Ödeme başlatılamadı. Bağlantıyı veya Iyzico anahtarlarını kontrol edin.",
+      "paymentIyzicoUnavailable": "Iyzico bu ortamda yapılandırılmamış (API anahtarları eksik).",
+      "paymentBankDone": "Sipariş havale ile bekliyor olarak işlendi; dekont için muhasebe ile iletişime geçebilirsiniz.",
+      "payWithCredit": "Kredi limiti ile öde",
+      "paymentCreditDone": "Sipariş kredi limitinizden tahsil edildi ve onaylandı.",
+      "paymentCreditInsufficient": "Kullanılabilir limit yetersiz. Limitinizi veya ödeme yöntemini kontrol edin.",
+      "paymentCreditDealerMissing": "Bayi cari hesabı bulunamadı. Yönetici ile iletişime geçin.",
+      "paymentCreditInvalidTotal": "Sipariş tutarı ödeme için uygun değil.",
+      "paymentCreditNoItems": "Siparişte satır yok; ödeme yapılamaz.",
+      "paymentCreditCancelled": "İptal edilmiş sipariş ödenemez.",
+      "paymentCreditError": "Kredi ile ödeme yapılamadı. Tekrar deneyin.",
+      "loading": "Ürünler Yükleniyor...",
+      "title": "Hızlı Sipariş",
+      "description": "Stoklarımızı inceleyin ve toplu siparişinizi oluşturun.",
+      "searchPlaceholder": "Ürün Ara...",
+      "table": {
+        "select": "Dahil",
+        "selectAria": "{title} — siparişe dahil et",
+        "product": "Ürün",
+        "unit": "Birim",
+        "unitPrice": "Birim fiyat",
+        "unitPriceKg": "Fiyat (₺/kg)",
+        "perKg": "/ kg",
+        "listPerKg": "liste / kg",
+        "quantity": "Adet",
+        "quantityGrams": "Miktar (g)",
+        "gramsHint": "gram",
+        "amount": "Tutar (Tahsil)"
+      },
+      "unknownProductCode": "Ürün Kodu Belirsiz",
+      "unitBadge": "Adet",
+      "empty": "Aradığınız kriterde ürün bulunamadı.",
+      "summary": {
+        "selectedItems": "Seçili satır",
+        "totalAmount": "Toplam Tutar"
+      },
+      "submit": "Sipariş Talebi Oluştur",
+      "alerts": {
+        "minOneItem": "En az bir satırı işaretleyip sıfırdan büyük gram miktarı girin.",
+        "orderRequested": "Sipariş Talep Edildi!\nToplam Kalem: {count}\nTahmini Tutar: ₺{total}"
+      }
+    },
+    "finance": {
+      "title": "Mali Durum ve Ekstre",
+      "description": "Hesap bakiyeniz ve geçmiş finansal hareketleriniz.",
+      "cards": {
+        "currentBalance": "Güncel Cari Bakiye",
+        "debtBalance": "Borç Bakiyesi",
+        "creditBalance": "Alacak Bakiyesi",
+        "creditLimit": "Kredi Limiti",
+        "availableLimit": "Kullanılabilir Limit"
+      },
+      "transactions": {
+        "title": "Cari Hareketler",
+        "empty": "Herhangi bir cari hareket bulunmuyor.",
+        "table": {
+          "date": "Tarih",
+          "type": "İşlem Tipi",
+          "description": "Açıklama",
+          "amount": "Tutar",
+          "balance": "Bakiye"
+        },
+        "types": {
+          "order": "Sipariş",
+          "payment": "Ödeme",
+          "adjustment": "İade/Düz."
+        }
+      }
+    },
+    "profile": {
+      "title": "Hesap Ayarları",
+      "description": "Kişisel ve kurumsal bilgilerinizi güncelleyin.",
+      "loading": "Yükleniyor...",
+      "personal": {
+        "title": "Kişisel Bilgiler",
+        "fields": {
+          "fullName": "Ad Soyad",
+          "email": "E-Posta",
+          "phone": "Telefon"
+        }
+      },
+      "corporate": {
+        "title": "Kurumsal Bilgiler",
+        "fields": {
+          "companyName": "Şirket Unvanı",
+          "tax": "Vergi Dairesi / No",
+          "address": "Adres"
+        }
+      },
+      "changePassword": "Şifre Değiştir"
+    },
+    "support": {
+      "title": "Destek",
+      "description": "Yönetim ekibine mesaj gönderin; taleplerinizi panelden çıkmadan takip edin.",
+      "ticketsTitle": "Taleplerim",
+      "emptyTickets": "Henüz destek talebiniz yok. Aşağıdan yeni talep oluşturabilirsiniz.",
+      "selectTicket": "Sohbeti görmek için soldan bir talep seçin.",
+      "newTicketTitle": "Yeni destek talebi",
+      "namePlaceholder": "Ad Soyad",
+      "emailPlaceholder": "E-posta",
+      "subject": "Konu",
+      "message": "Mesaj",
+      "category": "Kategori",
+      "sendTicket": "Talebi gönder",
+      "sending": "Gönderiliyor...",
+      "replyPlaceholder": "Yanıtınızı yazın...",
+      "sendReply": "Gönder",
+      "loading": "Yükleniyor...",
+      "loadError": "Talepler yüklenemedi.",
+      "threadError": "Mesajlar yüklenemedi.",
+      "status": {
+        "open": "Açık",
+        "in_progress": "İşlemde",
+        "resolved": "Çözüldü",
+        "closed": "Kapalı"
+      },
+      "categories": {
+        "genel": "Genel",
+        "urunler": "Ürünler ve sipariş",
+        "hesap": "Hesap",
+        "teknik": "Teknik"
+      }
+    },
+    "memberOrders": {
+      "title": "Siparişlerim",
+      "description": "Tüm geçmiş ve aktif siparişlerinizi buradan inceleyebilirsiniz.",
+      "newOrder": "Yeni Sipariş Oluştur",
+      "details": "Detaylar",
+      "empty": "Henüz bir siparişiniz bulunmamaktadır.",
+      "table": {
+        "orderNo": "Sipariş No",
+        "date": "Tarih",
+        "total": "Toplam",
+        "status": "Durum",
+        "actions": "İşlemler"
+      },
+      "detail": {
+        "title": "Sipariş detayı",
+        "back": "Siparişlere dön",
+        "loadError": "Sipariş yüklenemedi. Oturumu kontrol edip yenileyin.",
+        "notFound": "Bu sipariş bulunamadı veya erişim yetkiniz yok.",
+        "colProduct": "Ürün",
+        "quantityGram": "Miktar (g)",
+        "unitPriceKg": "Birim (₺/kg)",
+        "lineTotal": "Satır tutarı",
+        "notes": "Notlar",
+        "paymentMethod": "Ödeme yöntemi",
+        "paymentStatus": "Ödeme durumu",
+        "payStatus": {
+          "unpaid": "Ödenmedi",
+          "pending": "Beklemede",
+          "paid": "Ödendi",
+          "failed": "Başarısız"
+        },
+        "payMethod": {
+          "iyzico": "Kredi kartı (Iyzico)",
+          "bank_transfer": "Banka havalesi / EFT",
+          "dealer_credit": "Bayi cari / kredi"
+        },
+        "paymentPaidNote": "Bu sipariş ödenmiş görünüyor.",
+        "paymentHint": "Ödenecek tutar: {total}",
+        "availableCredit": "Kullanılabilir limit: {amount}",
+        "iyzicoIframeHint": "Ödemeyi tamamladıktan sonra durumu görmek için sayfayı yenileyin veya formu kapatın.",
+        "closeCheckout": "Ödeme formunu kapat ve durumu yenile"
+      }
+    },
+    "dealerCatalog": {
+      "title": "Ürün kataloğu ve fiyat listesi",
+      "subtitle": "Liste ve birim fiyatlar kg başına (₺/kg); bayi indiriminiz uygulanmıştır. Sipariş için aşağıdaki tabloda satır seçip gram girin.",
+      "discountLabel": "Bayi indirim oranınız: {rate}%",
+      "searchPlaceholder": "Ürün ara...",
+      "listView": "Liste",
+      "gridView": "Grid",
+      "colProduct": "Ürün",
+      "colCode": "Kod",
+      "colCategory": "Kategori",
+      "colList": "Liste",
+      "colUnit": "Birim (₺/kg)",
+      "empty": "Eşleşen ürün bulunamadı.",
+      "loadError": "Katalog yüklenemedi. Oturumu kontrol edip yenileyin."
+    }
+  },
+  "Legal": {
+    "common": {
+      "eyebrow": "Kurumsal",
+      "emptyHtml": "İçerik bulunamadı."
+    },
+    "privacy": {
+      "fallbackTitle": "Gizlilik Politikası",
+      "fallbackDescription": "Gizlilik politikası."
+    },
+    "terms": {
+      "fallbackTitle": "Kullanım Koşulları",
+      "fallbackDescription": "Kullanım koşulları."
+    },
+    "kvkk": {
+      "fallbackTitle": "KVKK",
+      "fallbackDescription": "KVKK aydınlatma metni."
+    }
+  }
+}

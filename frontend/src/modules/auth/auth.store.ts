@@ -1,30 +1,51 @@
-"use client";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import type { User } from "./auth.type";
+import { persist, createJSONStorage } from "zustand/middleware";
+import { setStoredAccessToken } from "@/lib/auth-token";
+import type { User, UserRole } from "./auth.type";
 
 interface AuthStore {
   user: User | null;
   isAuthenticated: boolean;
-  setUser: (user: User | null) => void;
-  logout: () => void;
+  isLoading: boolean;
+  
+  setAuth: (user: User) => void;
+  clearAuth: () => void;
+  setLoading: (loading: boolean) => void;
+  checkRole: (allowed: UserRole[]) => boolean;
 }
 
 export const useAuthStore = create<AuthStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
       isAuthenticated: false,
+      isLoading: false,
 
-      setUser: (user) =>
-        set({ user, isAuthenticated: !!user }),
+      setAuth: (user: User) => {
+        set({ user, isAuthenticated: true, isLoading: false });
+      },
 
-      logout: () =>
-        set({ user: null, isAuthenticated: false }),
+      clearAuth: () => {
+        set({ user: null, isAuthenticated: false, isLoading: false });
+        setStoredAccessToken(null);
+        if (typeof window !== "undefined") {
+          localStorage.removeItem("app-auth");
+        }
+      },
+
+      setLoading: (isLoading: boolean) => {
+        set({ isLoading });
+      },
+
+      checkRole: (allowed: UserRole[]) => {
+        const { user } = get();
+        if (!user) return false;
+        return allowed.includes(user.role);
+      },
     }),
     {
-      name: "vistaseed-auth",
-      partialize: (s) => ({ user: s.user, isAuthenticated: s.isAuthenticated }),
+      name: "app-auth",
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );

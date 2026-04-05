@@ -1,0 +1,1334 @@
+{
+  "Common": {
+    "navigation": {
+      "home": "Home",
+      "products": "Products",
+      "corporate": "Corporate",
+      "about": "About",
+      "hr": "Careers",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "support": "Support",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use",
+      "kvkk": "KVKK",
+      "blog": "Blog",
+      "references": "References",
+      "compare": "Compare",
+      "dealerNetwork": "Dealer network",
+      "bulkSales": "Bulk sales"
+    },
+    "actions": {
+      "readMore": "Read More",
+      "seeAll": "See All",
+      "back": "Back",
+      "close": "Close",
+      "send": "Send",
+      "loading": "Loading..."
+    },
+    "footer": {
+      "corporate": "Corporate",
+      "support": "Support",
+      "legal": "Legal",
+      "products": "Products",
+      "allProducts": "All Products",
+      "copyright": "All rights reserved."
+    }
+  },
+  "Header": {
+    "productsDescription": "Review our product catalog and choose the right variety for your needs.",
+    "allProducts": "All Products",
+    "vegetableSeeds": "Vegetable Seeds",
+    "fieldSeeds": "Field Seeds",
+    "rootstockRoute": "Rootstock solutions",
+    "greenhouseRoute": "Greenhouse-focused varieties",
+    "tswvRoute": "TSWV-tolerant varieties",
+    "kapiaRoute": "Sweet kapia selection",
+    "corporateDescription": "Get to know our company, values and story more closely.",
+    "rdCenter": "R&D Center",
+    "sustainability": "Sustainability",
+    "knowledgeCenter": "Knowledge Center",
+    "supportDescription": "Seed planting, care and frequently asked questions.",
+    "knowledgeBase": "Knowledge Base",
+    "plantingGuide": "Planting Guide",
+    "dealerLogin": "Dealer Login",
+    "searchPlaceholder": "What are you looking for?",
+    "searchLoading": "Loading product suggestions...",
+    "searchEmpty": "No matching products found.",
+    "searchResults": "Product suggestions",
+    "searchViewAll": "Open all results",
+    "homeAriaLabel": "Home",
+    "searchAriaLabel": "Search",
+    "menuAriaLabel": "Menu"
+  },
+  "Footer": {
+    "rdCenter": "R&D Center",
+    "sustainability": "Sustainability",
+    "plantingGuide": "Planting Guide",
+    "dealerLogin": "Dealer Login",
+    "vegetableSeeds": "Vegetable Seeds",
+    "fieldSeeds": "Field Seeds",
+    "allProducts": "All Products",
+    "legal": "Legal",
+    "helpTitle": "We are happy to help you",
+    "eyebrow": "SUPPORT CENTER",
+    "faqLink": "our frequently asked questions",
+    "helpDescriptionMiddle": "or",
+    "contactLink": "contact us",
+    "followTitle": "Follow Us",
+    "copyright": "All rights reserved.",
+    "builtBy": "Design & Development"
+  },
+  "ThemeToggle": {
+    "toLight": "Switch to light theme",
+    "toDark": "Switch to dark theme"
+  },
+  "Sections": {
+    "faqPreview": {
+      "eyebrow": "FAQ",
+      "title": "Frequently Asked Questions",
+      "subtitle": "Quick answers to common questions.",
+      "ctaLabel": "View All Questions"
+    },
+    "cta": {
+      "eyebrow": "JOIN US",
+      "title": "Let's Grow Together",
+      "description": "We are ready to be your professional solution partner across every step from production to supply.",
+      "ctaLabel": "Contact Us Now"
+    },
+    "plantingGuide": {
+      "eyebrow": "PLANTING GUIDE",
+      "title": "Right Time, Right Planting",
+      "subtitle": "Boost your productivity with planting recommendations and maintenance tips optimized for seasonal cycles.",
+      "seasons": {
+        "spring": {
+          "label": "Spring",
+          "months": "March — May",
+          "tips": [
+            "Soil temperature should be at least 15°C.",
+            "Seedling preparation should start at the end of February.",
+            "Initial irrigation should be light and regular."
+          ]
+        },
+        "summer": {
+          "label": "Summer",
+          "months": "June — August",
+          "tips": [
+            "Shading should be done against heat stress.",
+            "Efficiency should be increased with drip irrigation.",
+            "Attention should be paid to maturity at harvest times."
+          ]
+        },
+        "autumn": {
+          "label": "Autumn",
+          "months": "September — November",
+          "tips": [
+            "Ideal planting period for winter vegetables.",
+            "Soil preparation and fertilization are critical.",
+            "Precautionary measures should be taken early against frost risk."
+          ]
+        },
+        "winter": {
+          "label": "Winter",
+          "months": "December — February",
+          "tips": [
+            "Greenhouse temperature control is vital.",
+            "Moisture balance should be protected against disease risk.",
+            "Day-night temperature difference should be optimized."
+          ]
+        }
+      }
+    },
+    "timeline": {
+      "eyebrow": "OUR STORY",
+      "title": "Our History",
+      "subtitle": "Vista Seed's journey starting from the soil and growing with technology.",
+      "items": [
+        {
+          "year": "1990",
+          "title": "Foundation",
+          "description": "The foundations of the company were laid."
+        },
+        {
+          "year": "2000",
+          "title": "Growth",
+          "description": "Expansion of new facilities and product range."
+        },
+        {
+          "year": "2010",
+          "title": "Export",
+          "description": "Opening to international markets."
+        },
+        {
+          "year": "2020",
+          "title": "R&D Center",
+          "description": "Modern research center became operational."
+        },
+        {
+          "year": "2025",
+          "title": "Digital Transformation",
+          "description": "Integrated production system with technology."
+        }
+      ]
+    },
+    "trustBar": {
+      "items": [
+        {
+          "label": "Certified Seeds",
+          "description": "Approved by TUAB"
+        },
+        {
+          "label": "Sustainable",
+          "description": "Eco-friendly production"
+        },
+        {
+          "label": "R&D Focused",
+          "description": "Hybrid varieties"
+        },
+        {
+          "label": "95%+ Germination",
+          "description": "Quality assurance"
+        }
+      ]
+    },
+    "stats": {
+      "items": [
+        {
+          "label": "Global Reach"
+        },
+        {
+          "label": "Product Varieties"
+        },
+        {
+          "label": "Years of Experience"
+        },
+        {
+          "label": "Customer Satisfaction"
+        }
+      ]
+    },
+    "values": {
+      "eyebrow": "OUR VALUES",
+      "title": "Why Us?",
+      "subtitle": "We make a difference in agriculture through our commitment to core values.",
+      "items": [
+        {
+          "title": "High Yield",
+          "description": "High-yield seed varieties developed with modern production techniques."
+        },
+        {
+          "title": "Quality and Trust",
+          "description": "All our seeds go through comprehensive quality control processes."
+        },
+        {
+          "title": "Regional Adaptation",
+          "description": "Varieties suited to different climates and soil conditions."
+        },
+        {
+          "title": "R&D Driven",
+          "description": "Hybrid breeding programs and continuous improvement studies."
+        }
+      ]
+    }
+  },
+  "Home": {
+    "hero": {
+      "fallbacks": [
+        {
+          "title": "The Abundance of Seeds Begins with Soil",
+          "description": "Vista Seed delivers sustainable agricultural success with high-yield and reliable seed varieties.",
+          "buttonText": "Explore Products"
+        },
+        {
+          "title": "Seeds of the Future through R&D",
+          "description": "We add value to agriculture in Turkey with our own selection and hybrid varieties.",
+          "buttonText": "About Us"
+        },
+        {
+          "title": "Certified and Reliable",
+          "description": "Approved and laboratory-tested seeds with germination rates above 95%.",
+          "buttonText": "FAQ"
+        }
+      ]
+    },
+    "sections": {
+      "trustBar": {
+        "badges": [
+          {
+            "label": "High Yield",
+            "description": "Certified seeds"
+          },
+          {
+            "label": "R&D Focused",
+            "description": "Local selection"
+          },
+          {
+            "label": "Authentic Taste",
+            "description": "100% natural aromas"
+          }
+        ]
+      },
+      "seasonal": {
+        "title": "Our Seasonal Picks",
+        "subtitle": "Review our most productive varieties for the current season.",
+        "placeholder": "Our {season} Picks"
+      },
+      "featured": {
+        "title": "Featured Products",
+        "subtitle": "The best products from field to table with Vista Seed quality."
+      },
+      "discovery": {
+        "eyebrow": "Ready discovery routes",
+        "title": "Enter the catalog through prepared filters",
+        "subtitle": "Open variety groups matching your production segment directly with prepared filters.",
+        "cta": "Open discovery",
+        "items": {
+          "rootstock": {
+            "title": "Rootstock solutions",
+            "description": "Open rootstock-focused products in one view for grafted production planning."
+          },
+          "greenhouseTswv": {
+            "title": "Greenhouse + TSWV tolerance",
+            "description": "Review varieties that fit greenhouse programs and carry TSWV tolerance signals."
+          },
+          "kapia": {
+            "title": "Sweet kapia selection",
+            "description": "Go straight to sweet varieties in the kapia segment."
+          },
+          "openField": {
+            "title": "Open-field sweet peppers",
+            "description": "List sweet pepper options suitable for open-field plans with one ready combination."
+          }
+        }
+      },
+      "ecosystem": {
+        "title": "Ecosystem Content",
+        "subtitle": "Browse knowledge-base guides and customer references in one flow, then navigate to related pages.",
+        "knowledgeEyebrow": "Knowledge base",
+        "referenceEyebrow": "Customer reference",
+        "knowledgeCta": "Open content",
+        "referenceCta": "Open related page"
+      },
+      "faq": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "What you wonder about our production and products."
+      },
+      "newsletter": {
+        "title": "Stay Informed",
+        "eyebrow": "NEWSLETTER",
+        "description": "Join our newsletter for new varieties, seasonal tips and updates.",
+        "buttonLabel": "Subscribe",
+        "placeholder": "e.g. you@company.com",
+        "emailLabel": "Email Address",
+        "successTitle": "Successfully Subscribed",
+        "successDesc": "Thank you for joining our newsletter platform.",
+        "spamNote": "We promise not to spam. You can unsubscribe at any time."
+      }
+    },
+    "seasons": {
+      "spring": "Spring",
+      "summer": "Summer",
+      "fall": "Autumn",
+      "winter": "Winter"
+    }
+  },
+  "Products": {
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Products"
+    },
+    "detail": {
+      "productCode": "Product Code",
+      "specs": "Technical Specifications",
+      "specGroups": {
+        "fruit": "Fruit and form",
+        "cultivation": "Cultivation and usage",
+        "tolerance": "Tolerance and field resilience",
+        "commercial": "Commercial advantages"
+      },
+      "faqs": "Frequently Asked Questions",
+      "faqForm": {
+        "title": "Do You Have a Question?",
+        "placeholder": "Write your question about the product...",
+        "submit": "Send Question",
+        "sending": "Sending...",
+        "success": "Your question has been received. We will respond as soon as possible.",
+        "error": "Question could not be sent, please try again.",
+        "minLength": "The question must be at least 3 characters."
+      },
+      "reviews": "Customer Reviews",
+      "reviewCount": "{count} reviews",
+      "reviewSummary": "Real grower feedback, user experiences and yield observations.",
+      "ecosystemKicker": "Ecosystem links",
+      "ecosystemTitle": "Operations and access flows",
+      "ecosystemSubtitle": "Explore field access, bulk sales, and operational flows around this product through the related pages.",
+      "ecosystemCta": "Open flow",
+      "relatedKnowledgeKicker": "Knowledge base",
+      "relatedKnowledgeTitle": "Related guides and articles",
+      "relatedKnowledgeSubtitle": "Technical documents and guides selected using your product tags.",
+      "relatedKnowledgeSeeAll": "Go to knowledge base",
+      "noReviews": "No reviews yet.",
+      "noReviewsCta": "No reviews yet. Be the first to leave one.",
+      "badges": {
+        "hybrid": "F1 Hybrid",
+        "early": "Early",
+        "featured": "Featured"
+      },
+      "quickSpecs": {
+        "seedType": "Seed Type",
+        "seedTypeFallback": "Premium",
+        "botanical": "Botanical name",
+        "certificate": "Certificate",
+        "certificateValue": "TUAB Approved",
+        "climate": "Climate Fit",
+        "climateValue": "Aegean / Marmara / Central Anatolia",
+        "climateFallback": "Not specified",
+        "planting": "Planting season",
+        "plantingFallback": "Not specified",
+        "soil": "Soil type",
+        "soilFallback": "Not specified",
+        "tempRange": "Temperature range",
+        "tempFallback": "Not specified",
+        "harvest": "Harvest Window",
+        "harvestValue": "Seasonal",
+        "harvestDays": "{days} days",
+        "water": "Water need",
+        "waterFallback": "—",
+        "sun": "Sun exposure",
+        "sunFallback": "—",
+        "days": "days"
+      },
+      "agEnum": {
+        "season": {
+          "ilkbahar": "Spring",
+          "yaz": "Summer",
+          "sonbahar": "Autumn",
+          "kis": "Winter"
+        },
+        "climate": {
+          "akdeniz": "Mediterranean",
+          "ege": "Aegean",
+          "marmara": "Marmara",
+          "ic-anadolu": "Central Anatolia",
+          "karadeniz": "Black Sea",
+          "dogu-anadolu": "Eastern Anatolia",
+          "guneydogu": "Southeastern Anatolia"
+        },
+        "soil": {
+          "kumlu": "Sandy",
+          "killi": "Clay",
+          "humuslu": "Humus-rich",
+          "balikli": "Loamy",
+          "torflu": "Peaty"
+        },
+        "water": {
+          "low": "Low",
+          "medium": "Medium",
+          "high": "High"
+        },
+        "sun": {
+          "full": "Full sun",
+          "partial": "Partial shade",
+          "shade": "Shade"
+        }
+      },
+      "ctaPanel": {
+        "title": "Request a quote now",
+        "subtitle": "Pricing tailored to your organization"
+      },
+      "profile": {
+        "eyebrow": "Agricultural profile",
+        "title": "Growing conditions and field summary",
+        "subtitle": "Scan the key agronomic signals for planning, field fit and environmental requirements at a glance.",
+        "groups": {
+          "growing": "Growing",
+          "spacing": "Planting measurements",
+          "environment": "Environmental fit"
+        },
+        "fields": {
+          "planting": "Planting season",
+          "soil": "Soil type",
+          "harvest": "Harvest window",
+          "germination": "Germination",
+          "seedDepth": "Seed depth",
+          "rowSpacing": "Row spacing",
+          "plantSpacing": "Plant spacing",
+          "temperature": "Temperature range",
+          "water": "Water need",
+          "sun": "Sun exposure",
+          "yield": "Yield"
+        }
+      },
+      "reviewForm": {
+        "title": "Leave a Review",
+        "namePlaceholder": "Your name",
+        "ratingLabel": "Your rating",
+        "commentPlaceholder": "Write your thoughts about the product...",
+        "submit": "Submit Review",
+        "sending": "Sending...",
+        "success": "Your review has been received and will be published after approval.",
+        "error": "Review could not be sent, please try again.",
+        "nameRequired": "Please enter your name.",
+        "commentMin": "The comment must be at least 5 characters.",
+        "starLabel": "{star} stars"
+      },
+      "cta": "Get Information",
+      "notFound": "Product not found",
+      "rating": "Rating",
+      "gallery": {
+        "prev": "Previous image",
+        "next": "Next image",
+        "imageOf": "Image {current} / {total}"
+      }
+    },
+    "list": {
+      "meta": {
+        "filteredTitle": "{filters} | {title}",
+        "filteredDescription": "Browse products filtered by {filters} within {title}."
+      },
+      "title": "Product Catalog",
+      "intro": {
+        "default": "Review {count} products in the {category} view. Narrow the catalog by variety, cultivation area, taste profile, and tolerance signals.",
+        "filtered": "You are viewing {count} products matching these filters: {filters}."
+      },
+      "search": "Search by product name or code...",
+      "filters": {
+        "type": {
+          "label": "Product type",
+          "options": {
+            "rootstock": "Rootstock",
+            "charleston": "Charleston",
+            "hotThin": "Hot thin",
+            "sweetThin": "Sweet thin",
+            "breakfast": "Breakfast",
+            "kapia": "Kapia",
+            "stuffing": "Stuffing"
+          }
+        },
+        "cultivation": {
+          "label": "Cultivation area",
+          "options": {
+            "greenhouse": "Greenhouse",
+            "openField": "Open field",
+            "highland": "Highland",
+            "grafted": "Grafted production"
+          }
+        },
+        "taste": {
+          "label": "Taste profile",
+          "options": {
+            "sweet": "Sweet",
+            "hot": "Hot"
+          }
+        },
+        "tolerance": {
+          "label": "Tolerance",
+          "options": {
+            "tswv": "TSWV",
+            "tm02": "Tm 0-2",
+            "fon01": "Fon 0.1",
+            "cold": "Cold performance"
+          }
+        }
+      },
+      "activeFilters": {
+        "title": "Active filters",
+        "search": "Search",
+        "category": "Category",
+        "tag": "Tag",
+        "type": "Product type",
+        "cultivation": "Cultivation area",
+        "taste": "Taste profile",
+        "tolerance": "Tolerance"
+      },
+      "share": {
+        "action": "Copy filter link",
+        "copied": "Link copied.",
+        "error": "Link could not be copied."
+      },
+      "allCategories": "Show All",
+      "noResults": "No products matched your search.",
+      "clearFilters": "Clear Filters",
+      "resultCount": "{count} products listed"
+    },
+    "specCategories": {
+      "physical": "Physical Properties",
+      "material": "Disease Tolerance",
+      "service": "Service",
+      "custom": "Growing Information"
+    }
+  },
+  "Compare": {
+    "meta": {
+      "title": "Product comparison",
+      "description": "Compare selected seeds side by side: category, price, and specifications."
+    },
+    "title": "Product comparison",
+    "subtitle": "Add up to 5 products to compare price, stock, ratings, and attributes in one table.",
+    "loading": "Loading...",
+    "empty": "Add at least two products. Use \"Add to compare\" on a product page to build your list.",
+    "browseProducts": "Browse products",
+    "addToCompare": "Add to compare",
+    "goToCompare": "Go to compare ({count})",
+    "toastAdded": "Added to list.",
+    "toastDuplicate": "This product is already in the list.",
+    "max": "You can add up to 5 products.",
+    "clear": "Clear list",
+    "remove": "Remove",
+    "attribute": "Attribute",
+    "sections": {
+      "overview": "Overview",
+      "cultivation": "Cultivation plan",
+      "environment": "Environmental fit",
+      "commercial": "Commercial comparison"
+    },
+    "rowCategory": "Category",
+    "rowPrice": "Price",
+    "rowStock": "Stock",
+    "rowRating": "Rating",
+    "rowCode": "Product code",
+    "fetchError": "Could not load products.",
+    "mismatch": "Some products were not found or are no longer published."
+  },
+  "Library": {
+    "relatedProducts": {
+      "kicker": "Related Products",
+      "title": "Products Matched to This Guide",
+      "seeAll": "See All"
+    },
+    "knowledgeBase": {
+      "title": "Knowledge Base",
+      "description": "Comprehensive information about seed production, sowing techniques and agricultural support.",
+      "heroDescription": "All technical documents, cultivation guides and support content that will guide your agricultural production processes are gathered in one place.",
+      "guidesTitle": "Planting and Care Guides",
+      "supportsTitle": "Technical Support and Solutions",
+      "othersTitle": "Other Informational Content",
+      "seeAllGuides": "See All",
+      "reviewDetailCta": "Review Details",
+      "empty": "There is no content in the knowledge base yet.",
+      "breadcrumbHome": "Home"
+    },
+    "detail": {
+      "supportBadge": "Technical Support",
+      "knowledgeBadge": "Knowledge Base",
+      "publishedLabel": "Published",
+      "attachmentsTitle": "Attachments",
+      "documentFile": "Document File",
+      "downloadCta": "Download",
+      "helpTitle": "Need Help?",
+      "helpDescription": "If you could not find the information you need, you can contact our technical team.",
+      "contactCta": "Write to Us",
+      "backToKnowledgeBase": "Back to Knowledge Base",
+      "galleryTitle": "Gallery",
+      "breadcrumbHome": "Home",
+      "breadcrumbKnowledge": "Knowledge base"
+    },
+    "guides": {
+      "title": "Cultivation and Care Guide",
+      "description": "Expert sowing and care recommendations to help you get the highest yield from your seeds.",
+      "heroDescription": "Every seed that meets the soil has a story. Review our expert sowing and care guides for a productive harvest.",
+      "empty": "There are no guides yet.",
+      "guideBadge": "Expert Guide",
+      "infoBadge": "Info",
+      "fallbackSummary": "Review sowing and care recommendations for this seed variety.",
+      "reviewLink": "Review",
+      "breadcrumbHome": "Home"
+    },
+    "guideDetail": {
+      "guideBadge": "Planting Guide",
+      "documentNumber": "Document No",
+      "downloadTitle": "Download File (PDF)",
+      "guideFile": "Guide File",
+      "documentLabel": "Document",
+      "tipTitle": "Expert Tip",
+      "tipBody": "Seed quality determines up to 60% of harvest yield. Do not skip soil analysis before sowing and keep the correct planting depth.",
+      "backToGuides": "Back to All Guides",
+      "galleryTitle": "Gallery",
+      "breadcrumbHome": "Home",
+      "breadcrumbGuides": "Planting guide"
+    }
+  },
+  "FAQ": {
+    "title": "Frequently Asked Questions",
+    "description": "The answers to your questions are here.",
+    "empty": "No FAQ entries have been added yet."
+  },
+  "HR": {
+    "title": "Careers",
+    "description": "Review our open positions to join our team. We offer opportunities for professional growth, an R&D culture and a sustainable vision.",
+    "stats": {
+      "expertTeam": "Expert Team",
+      "totalStaff": "Total Staff",
+      "employees": "Employees"
+    },
+    "whyUsTitle": "Why Us?",
+    "reasons": [
+      "Professional development and career planning",
+      "Innovative R&D-focused working environment",
+      "Sustainable agriculture vision",
+      "Continuous training and certification programs",
+      "Competitive salary and benefits"
+    ],
+    "applicationTitle": "Application",
+    "applicationDescription": "You can send us your resume for open positions. Your applications will be evaluated within the scope of KVKK.",
+    "contactCta": "Get in Touch"
+  },
+  "Blog": {
+    "meta": {
+      "title": "Blog",
+      "description": "Articles on seed science, planting and agricultural technology."
+    },
+    "ecosystemTitle": "Move from blog into the ecosystem",
+    "ecosystemDescription": "Alongside blog posts, review guides, knowledge-base entries, and operational flows directly.",
+    "ecosystemKnowledgeEyebrow": "Technical content",
+    "ecosystemReferenceEyebrow": "Operational flows",
+    "ecosystemKnowledgeCta": "Open guide",
+    "ecosystemReferenceCta": "Open related surface",
+    "listTitle": "Blog",
+    "listDescription": "Field and lab notes, planting tips and sector insights.",
+    "discovery": {
+      "eyebrow": "Ready product routes",
+      "title": "Move from article to product discovery",
+      "subtitle": "Reach focused product segments through prepared filter combinations without leaving the blog flow.",
+      "cta": "Open filtered list",
+      "items": {
+        "greenhouse": {
+          "title": "Greenhouse-suitable varieties",
+          "description": "Filter products that fit greenhouse planning in one click."
+        },
+        "tswv": {
+          "title": "TSWV-focused scan",
+          "description": "Review products that carry TSWV signals in a dedicated flow."
+        },
+        "breakfast": {
+          "title": "Breakfast segment",
+          "description": "Open the breakfast pepper group through a filtered catalog view."
+        },
+        "rootstock": {
+          "title": "Rootstock products",
+          "description": "Jump directly to the relevant group for grafted production or rootstock needs."
+        }
+      }
+    },
+    "readMore": "Read more",
+    "empty": "No posts yet.",
+    "backToBlog": "Back to blog",
+    "rssHint": "Follow via RSS"
+  },
+  "References": {
+    "list": {
+      "title": "References",
+      "description": "Review project, implementation, and group-company references across the VistaSeed ecosystem.",
+      "eyebrow": "Field and project surfaces",
+      "heroDescription": "Browse migrated reference records, visual sets, and project surfaces from the source site in one stream.",
+      "cardKicker": "Reference record",
+      "detailCta": "Open detail",
+      "fallbackSummary": "This reference currently exposes a gallery and project record.",
+      "empty": "No published references yet.",
+      "breadcrumbHome": "Home"
+    },
+    "detail": {
+      "eyebrow": "Reference detail",
+      "sourceBadge": "Source link",
+      "sourceTitle": "Original record",
+      "sourceDescription": "You can open the source page for this reference on the current corporate site in a new tab.",
+      "sourceCta": "Open source page",
+      "backToList": "Back to references",
+      "galleryEyebrow": "Visual set",
+      "galleryTitle": "Gallery",
+      "galleryItem": "image",
+      "breadcrumbHome": "Home",
+      "breadcrumbList": "References"
+    }
+  },
+  "DealersNetwork": {
+    "meta": {
+      "title": "Dealer network",
+      "description": "Browse the authorized dealer network by city and region, with coverage density and dealer cards."
+    },
+    "title": "Dealer network",
+    "description": "Authorized dealers across Turkey. Filter by name, city, or region.",
+    "searchLabel": "Search",
+    "searchPlaceholder": "Company name",
+    "city": "City",
+    "cityPlaceholder": "e.g. Ankara",
+    "region": "Region",
+    "regionPlaceholder": "e.g. Central Anatolia",
+    "search": "Apply",
+    "clear": "Clear",
+    "loading": "Loading...",
+    "fetchError": "Could not load the list. Please try again later.",
+    "mapSection": "Map",
+    "mapTitle": "Regional coverage",
+    "mapHint": "Coverage by region",
+    "mapEmpty": "No dealer density is available to display.",
+    "listSection": "Dealer list",
+    "listTitle": "All results",
+    "listEmpty": "No dealers match your filters.",
+    "resultCount": "{count} dealers",
+    "directions": "Directions",
+    "whatsapp": "WhatsApp",
+    "discovery": {
+      "eyebrow": "Ready product routes",
+      "title": "Move from regional network into the catalog",
+      "subtitle": "After reviewing dealer coverage, jump directly into related product groups through prepared filter combinations.",
+      "cta": "Open filtered products",
+      "items": {
+        "greenhouse": {
+          "title": "Greenhouse-focused varieties",
+          "description": "Review products that commonly align with greenhouse-oriented dealer programs."
+        },
+        "openField": {
+          "title": "Open-field flow",
+          "description": "Open varieties suitable for open-field plans through a ready filter set."
+        },
+        "rootstock": {
+          "title": "Rootstock solutions",
+          "description": "Go directly to products for grafted production and rootstock needs."
+        },
+        "tswv": {
+          "title": "TSWV-signaled varieties",
+          "description": "Scan products with TSWV-focused signals in one route."
+        }
+      }
+    }
+  },
+  "BulkSales": {
+    "meta": {
+      "title": "Bulk sales and cooperatives",
+      "description": "Request volume pricing for cooperatives, producer unions, or retail chains. Submit the form and our team will respond."
+    },
+    "title": "Bulk sales and cooperatives",
+    "intro": "We offer tailored pricing and logistics for large volume orders and cooperative structures. Send your request; our team will contact you shortly.",
+    "fields": {
+      "name": "Full name",
+      "company": "Organization / company",
+      "email": "Email",
+      "phone": "Phone",
+      "orgType": "Organization type",
+      "orgTypePlaceholder": "Select",
+      "city": "City",
+      "region": "Region",
+      "volume": "Estimated volume",
+      "volumePlaceholder": "e.g. 500 kg, 2 tons",
+      "message": "Request details"
+    },
+    "orgTypes": {
+      "cooperative": "Cooperative",
+      "producer_union": "Producer union",
+      "retailer_chain": "Retail chain",
+      "exporter": "Exporter",
+      "other": "Other"
+    },
+    "consentTermsLead": "I agree that my data may be processed for this request in line with the",
+    "consentTermsLink": "terms of use",
+    "consentTermsTrail": ".",
+    "consentMarketing": "I would like to receive product updates and campaigns (optional).",
+    "submit": "Send request",
+    "sending": "Sending...",
+    "success": "Your request has been received. We will contact you shortly.",
+    "error": "Could not send. Please try again later."
+  },
+  "Offers": {
+    "meta": {
+      "title": "Request a quote — bulk sales",
+      "description": "Corporate projects and bulk seed purchases: request a tailored quote from our team."
+    },
+    "title": "Bulk sales and corporate requests",
+    "description": "For large-scale agricultural projects or dealer pre-applications, please complete the form.",
+    "success": "Your request has been received. Our team will contact you shortly.",
+    "createAnother": "Create a new request",
+    "responseNote": "Your request will be reviewed by our specialist teams and we will respond within 24 hours.",
+    "errors": {
+      "submit": "Something went wrong.",
+      "unexpected": "An unexpected error occurred."
+    },
+    "payload": {
+      "categoryLabel": "Category",
+      "quantityLabel": "Quantity",
+      "locationLabel": "Location",
+      "customerFallback": "Quote request",
+      "detailFallback": "details"
+    },
+    "support": {
+      "title": "Corporate support line",
+      "description": "You can clarify technical details of your project with our specialist team."
+    },
+    "form": {
+      "companyName": "Company / organization name",
+      "email": "Email",
+      "phone": "Phone",
+      "category": "Category of interest",
+      "quantity": "Estimated quantity",
+      "location": "Project location (city)",
+      "message": "Request details",
+      "submit": "Send quote request",
+      "submitting": "Sending...",
+      "placeholder": {
+        "companyName": "e.g. Example Seed Co.",
+        "email": "email@company.com",
+        "phone": "+90 …",
+        "location": "e.g. Ankara",
+        "category": "Select",
+        "quantity": "e.g. 5,000 units / 100 kg",
+        "message": "Describe your needs in detail…"
+      },
+      "categories": {
+        "Vegetable": "Vegetable seeds",
+        "Field": "Field seeds",
+        "Hybrid": "Hybrid selections",
+        "Other": "Other"
+      }
+    },
+    "trust": {
+      "title": "Why VistaSeed",
+      "item1": "Certified, high-yield seed varieties",
+      "item2": "Technical support and advisory",
+      "item3": "Flexible payment options",
+      "item4": "Fast logistics across Turkey"
+    }
+  },
+  "Support": {
+    "badge": "Support Center",
+    "title": "Frequently asked questions and support request",
+    "description": "First review the FAQ section. If you cannot find a solution, create a support request using the form below.",
+    "success": "Your support request has been received. Our team will get back to you shortly.",
+    "form": {
+      "title": "Create Support Request",
+      "chatHint": "Your message is sent to the team as a support ticket; we reply by email or through your account.",
+      "namePlaceholder": "Full Name",
+      "emailPlaceholder": "Email",
+      "subjectPlaceholder": "Subject",
+      "messagePlaceholder": "Write your issue or request",
+      "submit": "Send Request",
+      "sending": "Sending...",
+      "categories": {
+        "general": "General",
+        "products": "Products and orders",
+        "account": "Account",
+        "technical": "Technical"
+      }
+    }
+  },
+  "Contact": {
+    "meta": {
+      "title": "Contact and Support",
+      "description": "Reach out to us through our contact page and share your questions or feedback."
+    },
+    "page": {
+      "heroTitle": "Contact Us",
+      "heroDescription": "We are here for your questions, feedback and corporate requests about our seed and agricultural solutions.",
+      "success": "Your message has been received. Our team will contact you as soon as possible.",
+      "contactCards": {
+        "phoneTitle": "Phone",
+        "emailTitle": "Email",
+        "undefined": "Not defined yet"
+      },
+      "address": {
+        "title": "Address Information",
+        "subtitle": "Certified Seed Production Center",
+        "fallbackCountry": "Turkey"
+      },
+      "form": {
+        "title": "Contact Form",
+        "submit": "Send Message",
+        "submitting": "Sending...",
+        "fields": {
+          "name": {
+            "label": "Full Name",
+            "placeholder": "Example: John Doe"
+          },
+          "email": {
+            "label": "Email",
+            "placeholder": "email@example.com"
+          },
+          "phone": {
+            "label": "Phone",
+            "placeholder": "+90 5XX XXX XX XX"
+          },
+          "subject": {
+            "label": "Subject",
+            "placeholder": "What would you like to discuss?"
+          },
+          "message": {
+            "label": "Your Message",
+            "placeholder": "You can write your detailed message here..."
+          }
+        }
+      }
+    }
+  },
+  "About": {
+    "title": "About",
+    "pageDescription": "Discover Vista Seeds' position in agriculture, core values, areas of activity, and corporate history.",
+    "eyebrow": "Corporate",
+    "introKicker": "History and core values",
+    "introTitle": "Agriculture, projects, and digital experience on the same backbone",
+    "visionTitle": "Our Vision",
+    "missionTitle": "Our Mission",
+    "valuesTitle": "Our Core Values",
+    "activitiesTitle": "Areas of Activity",
+    "timelineTitle": "Our Story",
+    "groupCompaniesTitle": "References",
+    "featureKicker": "Corporate gallery",
+    "featureTitle": "Images highlighted from production to brand",
+    "ecosystemKicker": "Ecosystem modules",
+    "referencesKicker": "Customer references",
+    "timelineKicker": "Corporate timeline",
+    "knowledgeKicker": "Technical content",
+    "knowledgeTitle": "Technical content and planting guides",
+    "referencesCta": "Review references",
+    "contactCta": "Contact us",
+    "referenceFallback": "This record is currently published as a visual and project reference.",
+    "guideBadge": "Planting guide",
+    "knowledgeBadge": "Knowledge base",
+    "knowledgeFallback": "This item is part of the information layer that supports product and field decisions.",
+    "membershipsKicker": "Official memberships and certifications",
+    "membershipsTitle": "Organizations We Are Members Of",
+    "discovery": {
+      "eyebrow": "Go to product catalog",
+      "title": "View the corporate structure alongside the related product clusters",
+      "subtitle": "List product groups that align with our areas of activity directly using ready-made filters.",
+      "cta": "Open related products",
+      "items": {
+        "rootstock": {
+          "title": "Rootstock and grafted-production line",
+          "description": "See rootstock products connected to the production backbone in a filtered view."
+        },
+        "greenhouse": {
+          "title": "Varieties suited to greenhouse planning",
+          "description": "Review varieties aligned with the modern greenhouse infrastructure in one entry."
+        },
+        "tswv": {
+          "title": "Tolerance-focused selection",
+          "description": "Separate products that carry field-resilience signals more quickly."
+        },
+        "kapia": {
+          "title": "Commercial kapia segment",
+          "description": "Jump directly into the sweet kapia group often relevant for organized demand."
+        }
+      }
+    }
+  },
+  "Auth": {
+    "form": {
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "user@example.com",
+      "passwordLabel": "Password",
+      "submit": "Sign In",
+      "submitting": "Signing In...",
+      "forgotPassword": "Forgot your password?",
+      "resetRequest": "Send Reset Request",
+      "errors": {
+        "unauthorized": "You do not have permission to access this area.",
+        "invalidCredentials": "Email or password is incorrect.",
+        "generic": "An error occurred while signing in."
+      }
+    }
+  },
+  "AuthPages": {
+    "dealer": {
+      "metaTitle": "Dealer Login",
+      "metaDescription": "Private portal login screen for Vista Seed dealers. Sign in with your existing account to manage orders and dealer operations.",
+      "title": "Dealer Panel",
+      "subtitle": "Sign in with your dealer account to manage your operations."
+    },
+    "member": {
+      "metaTitle": "Member Login",
+      "metaDescription": "Private portal login screen for Vista Seed users. Sign in with your existing account to manage your history and preferences.",
+      "title": "Member Login",
+      "subtitle": "Sign in to your account to track your operations."
+    }
+  },
+  "Dashboard": {
+    "layout": {
+      "portal": {
+        "dealer": "Dealer Portal",
+        "customer": "Customer Panel"
+      },
+      "limitStatus": "Limit Status",
+      "nav": {
+        "overview": "Overview",
+        "orders": "My Orders",
+        "finance": "Financial Status",
+        "help": "Support (message)",
+        "account": "Account Settings"
+      },
+      "logout": "Secure Logout"
+    },
+    "dealerHome": {
+      "welcome": "Welcome,",
+      "fallbackName": "Valued Partner",
+      "description": "You can track your business performance and orders from here.",
+      "currentBalance": "Current Balance",
+      "stats": {
+        "openOrders": {
+          "label": "Open Orders",
+          "subValue": "In Progress"
+        },
+        "availableLimit": "Available Limit",
+        "totalSpend": "Total Purchases",
+        "creditUsage": "Credit Usage"
+      },
+      "recentOrders": {
+        "title": "Recent Orders",
+        "viewAll": "View All",
+        "empty": "You do not have any orders yet.",
+        "catalogCta": "Browse Product Catalog"
+      },
+      "operations": {
+        "title": "Operational Status",
+        "creditLimit": "Credit Limit",
+        "used": "Used",
+        "limit": "Limit"
+      },
+      "support": {
+        "title": "Quick Support",
+        "description": "Do you have an issue related to your orders or payments?",
+        "cta": "Create Support Request"
+      }
+    },
+    "orderStatus": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "processing": "Processing",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    },
+    "memberHome": {
+      "meta": {
+        "title": "Member Panel",
+        "description": "Private account and order tracking area for members."
+      },
+      "welcome": "Welcome",
+      "title": "Member Portal",
+      "description": "Manage your past orders and preferences from here.",
+      "cards": {
+        "profile": {
+          "title": "Profile Information",
+          "description": "Update your personal details and contact preferences.",
+          "cta": "Edit"
+        },
+        "orders": {
+          "title": "My Orders",
+          "description": "All the seeds you purchased and their shipment statuses.",
+          "cta": "View"
+        },
+        "favorites": {
+          "title": "My Favorites",
+          "description": "Products you follow and personalized recommendations.",
+          "cta": "List"
+        }
+      },
+      "cta": {
+        "title": "Enjoy Member Benefits",
+        "description": "Be the first to hear about newly developed seed varieties and get free agronomic support from our expert teams.",
+        "button": "Discover Privileges"
+      }
+    },
+    "dealerOrders": {
+      "orderBlockTitle": "New order",
+      "orderBlockDescription": "Enter quantities; amounts are calculated on the server with your dealer discount.",
+      "catalogLoadError": "Could not load the product list. Check your session and refresh.",
+      "createSuccess": "Your order was created. You can see it in the list below.",
+      "createError": "Could not create the order. Check your session and try again.",
+      "notesLabel": "Order note",
+      "notesPlaceholder": "Delivery or product preference (optional, up to 2000 characters)",
+      "paymentTitle": "Payment",
+      "payWithCard": "Credit card (Iyzico)",
+      "payWithBank": "Bank transfer / EFT",
+      "paymentIyzicoError": "Could not start payment. Check your connection or Iyzico configuration.",
+      "paymentIyzicoUnavailable": "Iyzico is not configured in this environment (missing API keys).",
+      "paymentBankDone": "Your order is marked as awaiting bank transfer; contact accounting for IBAN details.",
+      "payWithCredit": "Pay with credit limit",
+      "paymentCreditDone": "The order was charged to your credit line and confirmed.",
+      "paymentCreditInsufficient": "Available credit is insufficient. Check your limit or choose another payment method.",
+      "paymentCreditDealerMissing": "No dealer account found. Contact your administrator.",
+      "paymentCreditInvalidTotal": "Order total is not valid for payment.",
+      "paymentCreditNoItems": "This order has no line items and cannot be paid.",
+      "paymentCreditCancelled": "Cancelled orders cannot be paid.",
+      "paymentCreditError": "Credit payment failed. Please try again.",
+      "loading": "Products are loading...",
+      "title": "Quick Order",
+      "description": "Review our inventory and create your bulk order.",
+      "searchPlaceholder": "Search Product...",
+      "table": {
+        "product": "Product",
+        "unit": "Unit",
+        "unitPrice": "Unit price",
+        "quantity": "Quantity",
+        "amount": "Amount (Collection)"
+      },
+      "unknownProductCode": "Product Code Unknown",
+      "unitBadge": "Unit",
+      "empty": "No products matched your search.",
+      "summary": {
+        "selectedItems": "Selected Items",
+        "totalAmount": "Total Amount"
+      },
+      "submit": "Create Order Request",
+      "alerts": {
+        "minOneItem": "Please enter a quantity for at least one product.",
+        "orderRequested": "Order request created!\nTotal Items: {count}\nEstimated Amount: ₺{total}"
+      }
+    },
+    "finance": {
+      "title": "Financial Status and Statement",
+      "description": "Your account balance and historical financial movements.",
+      "cards": {
+        "currentBalance": "Current Account Balance",
+        "debtBalance": "Debt Balance",
+        "creditBalance": "Credit Balance",
+        "creditLimit": "Credit Limit",
+        "availableLimit": "Available Limit"
+      },
+      "transactions": {
+        "title": "Account Transactions",
+        "empty": "There are no account transactions.",
+        "table": {
+          "date": "Date",
+          "type": "Transaction Type",
+          "description": "Description",
+          "amount": "Amount",
+          "balance": "Balance"
+        },
+        "types": {
+          "order": "Order",
+          "payment": "Payment",
+          "adjustment": "Refund/Adj."
+        }
+      }
+    },
+    "profile": {
+      "title": "Account Settings",
+      "description": "Update your personal and corporate information.",
+      "loading": "Loading...",
+      "personal": {
+        "title": "Personal Information",
+        "fields": {
+          "fullName": "Full Name",
+          "email": "Email",
+          "phone": "Phone"
+        }
+      },
+      "corporate": {
+        "title": "Corporate Information",
+        "fields": {
+          "companyName": "Company Name",
+          "tax": "Tax Office / No",
+          "address": "Address"
+        }
+      },
+      "changePassword": "Change Password"
+    },
+    "support": {
+      "title": "Support",
+      "description": "Message the team and track your requests without leaving the panel.",
+      "ticketsTitle": "My requests",
+      "emptyTickets": "No support requests yet. Create one below.",
+      "selectTicket": "Select a request on the left to view the thread.",
+      "newTicketTitle": "New support request",
+      "namePlaceholder": "Full name",
+      "emailPlaceholder": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "category": "Category",
+      "sendTicket": "Submit request",
+      "sending": "Sending...",
+      "replyPlaceholder": "Write your reply...",
+      "sendReply": "Send",
+      "loading": "Loading...",
+      "loadError": "Could not load requests.",
+      "threadError": "Could not load messages.",
+      "status": {
+        "open": "Open",
+        "in_progress": "In progress",
+        "resolved": "Resolved",
+        "closed": "Closed"
+      },
+      "categories": {
+        "genel": "General",
+        "urunler": "Products and orders",
+        "hesap": "Account",
+        "teknik": "Technical"
+      }
+    },
+    "memberOrders": {
+      "title": "My Orders",
+      "description": "You can review all your past and active orders here.",
+      "newOrder": "Create New Order",
+      "details": "Details",
+      "empty": "You do not have any orders yet.",
+      "table": {
+        "orderNo": "Order No",
+        "date": "Date",
+        "total": "Total",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "detail": {
+        "title": "Order details",
+        "back": "Back to orders",
+        "loadError": "Could not load the order. Check your session and try again.",
+        "notFound": "This order was not found or you do not have access.",
+        "colProduct": "Product",
+        "quantityGram": "Quantity (g)",
+        "unitPriceKg": "Unit (TRY/kg)",
+        "lineTotal": "Line total",
+        "notes": "Notes",
+        "paymentMethod": "Payment method",
+        "paymentStatus": "Payment status",
+        "payStatus": {
+          "unpaid": "Unpaid",
+          "pending": "Pending",
+          "paid": "Paid",
+          "failed": "Failed"
+        },
+        "payMethod": {
+          "iyzico": "Card (Iyzico)",
+          "bank_transfer": "Bank transfer",
+          "dealer_credit": "Dealer credit"
+        },
+        "paymentPaidNote": "This order is marked as paid.",
+        "paymentHint": "Amount due: {total}",
+        "availableCredit": "Available limit: {amount}",
+        "iyzicoIframeHint": "After completing payment, refresh the page to see the status, or close the form below.",
+        "closeCheckout": "Close payment form and refresh status"
+      }
+    },
+    "dealerCatalog": {
+      "title": "Product catalog and price list",
+      "subtitle": "List prices and unit prices with your dealer discount applied.",
+      "discountLabel": "Your dealer discount rate: {rate}%",
+      "searchPlaceholder": "Search products...",
+      "listView": "List",
+      "gridView": "Grid",
+      "colProduct": "Product",
+      "colCode": "Code",
+      "colCategory": "Category",
+      "colList": "List",
+      "colUnit": "Unit",
+      "empty": "No matching products.",
+      "loadError": "Could not load catalog. Check your session and refresh."
+    }
+  },
+  "Legal": {
+    "common": {
+      "eyebrow": "Corporate",
+      "emptyHtml": "Content not found."
+    },
+    "privacy": {
+      "fallbackTitle": "Privacy Policy",
+      "fallbackDescription": "Privacy policy."
+    },
+    "terms": {
+      "fallbackTitle": "Terms of Use",
+      "fallbackDescription": "Terms of use."
+    },
+    "kvkk": {
+      "fallbackTitle": "KVKK",
+      "fallbackDescription": "KVKK information text."
+    }
+  }
+}

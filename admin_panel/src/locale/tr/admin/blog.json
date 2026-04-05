@@ -1,0 +1,66 @@
+{
+  "header": {
+    "title": "Blog",
+    "description": "Kurumsal blog yazılarını dil bazlı yönetin; RSS ve site blog listesi bu içerikleri kullanır."
+  },
+  "actions": {
+    "create": "Yeni yazı",
+    "rssImport": "RSS içe aktar",
+    "refresh": "Yenile",
+    "save": "Kaydet",
+    "back": "Listeye dön",
+    "edit": "Düzenle",
+    "delete": "Sil"
+  },
+  "list": {
+    "loading": "Yükleniyor...",
+    "empty": "Henüz yazı yok."
+  },
+  "table": {
+    "order": "Sıra",
+    "title": "Başlık",
+    "category": "Kategori",
+    "status": "Durum",
+    "actions": "İşlemler"
+  },
+  "status": {
+    "draft": "Taslak",
+    "published": "Yayında"
+  },
+  "form": {
+    "tabs": {
+      "content": "İçerik",
+      "seo": "SEO"
+    },
+    "category": "Kategori",
+    "author": "Yazar",
+    "imageUrl": "Görsel URL",
+    "slug": "URL slug",
+    "title": "Başlık",
+    "excerpt": "Özet",
+    "content": "İçerik (HTML)",
+    "displayOrder": "Görüntüleme sırası",
+    "publishedAt": "Yayın tarihi",
+    "status": "Durum",
+    "active": "Aktif",
+    "metaTitle": "Meta başlık",
+    "metaDescription": "Meta açıklama"
+  },
+  "detail": {
+    "newTitle": "Yeni blog yazısı",
+    "editTitle": "Blog yazısını düzenle"
+  },
+  "messages": {
+    "rssImportRunning": "RSS kaynakları okunuyor...",
+    "rssImportEmpty": "RSS_IMPORT_FEEDS ortam değişkeninde URL yok; .env içinde virgülle ayırarak ekleyin veya API ile feed_urls gönderin.",
+    "rssImportDone": "{imported} yeni yazı, {skipped} atlandı, {feeds} feed işlendi.",
+    "rssImportError": "RSS içe aktarılamadı",
+    "confirmDelete": "\"{title}\" silinsin mi?",
+    "deleted": "Silindi.",
+    "deleteError": "Silinemedi",
+    "saved": "Kaydedildi.",
+    "saveError": "Kaydedilemedi",
+    "refreshing": "Yenileniyor...",
+    "updateError": "Güncellenemedi"
+  }
+}

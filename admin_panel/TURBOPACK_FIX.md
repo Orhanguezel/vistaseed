@@ -43,19 +43,19 @@ cd admin_panel
 ### Step 2: Verify You're NOT Using Turbopack
 Check your terminal command. It should be:
 ```bash
-npm run dev          # ✅ CORRECT - Uses webpack
+bun run dev          # ✅ CORRECT - Uses webpack
 ```
 
 NOT:
 ```bash
-npm run dev:turbo    # ❌ WRONG - Uses Turbopack
+bun run dev:turbo    # ❌ WRONG - Uses Turbopack
 next dev --turbo     # ❌ WRONG - Uses Turbopack
 ```
 
 ### Step 3: Start Fresh
 ```bash
 cd admin_panel
-npm run dev
+bun run dev
 ```
 
 ## How to Use Going Forward
@@ -63,14 +63,14 @@ npm run dev
 ### Standard Development (RECOMMENDED - USE THIS)
 ```bash
 cd admin_panel
-npm run dev
+bun run dev
 ```
 This uses the stable webpack bundler and will NOT crash.
 
 ### With Turbopack (DO NOT USE - BROKEN)
 ```bash
 cd admin_panel
-npm run dev:turbo
+bun run dev:turbo
 ```
 ⚠️ This is broken and will cause the errors you're seeing.
 
@@ -81,8 +81,8 @@ npm run dev:turbo
 cd admin_panel
 rm -rf node_modules
 rm -rf .next
-rm bun.lock  # or package-lock.json
-bun install  # or npm install
+rm bun.lock  # varsa
+bun install
 ```
 
 ### 2. Update Next.js

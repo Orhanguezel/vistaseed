@@ -1,4 +1,4 @@
--- 95_contact_messages.sql
+-- contact_messages.sql — Schema + generic seed data
 DROP TABLE IF EXISTS `contact_messages`;
 CREATE TABLE `contact_messages` (
   `id`           CHAR(36)     NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE `contact_messages` (
   `subject`      VARCHAR(255) NOT NULL,
   `message`      LONGTEXT     NOT NULL,
 
-  `status`       VARCHAR(32)  NOT NULL DEFAULT 'new', -- 'new' | 'in_progress' | 'closed'
+  `status`       VARCHAR(32)  NOT NULL DEFAULT 'new',
   `is_resolved`  TINYINT(1)   NOT NULL DEFAULT 0,
 
   `admin_note`   VARCHAR(2000) DEFAULT NULL,
@@ -32,24 +32,19 @@ INSERT INTO `contact_messages`
 (`id`,`name`,`email`,`phone`,`subject`,`message`,`status`,`is_resolved`,`admin_note`,`ip`,`user_agent`,`website`,`created_at`,`updated_at`)
 VALUES
 (UUID(),
- 'Ahmet Yılmaz','ahmet@example.com','+90 532 000 00 01','Taşıyıcı ilan süreci hakkında',
- 'Merhaba, taşıyıcı olarak ilan açmak istiyorum. Nasıl başvurabilirim?',
+ 'Ahmet Yılmaz','ahmet@example.com','+90 532 000 00 01','Ürünler hakkında bilgi',
+ 'Merhaba, ürün kataloğunuz hakkında detaylı bilgi almak istiyorum.',
  'new',0,NULL,'203.0.113.11','Mozilla/5.0','', '2024-01-02 10:00:00.000','2024-01-02 10:00:00.000'),
 
 (UUID(),
- 'Ayşe Demir','ayse@example.com','+90 555 111 11 22','Rezervasyon iptali talebi',
- 'İstanbul-Ankara güzergahındaki rezervasyonumu iptal etmek istiyorum. Yardımcı olabilir misiniz?',
- 'in_progress',0,'Müşteri ile iletişime geçildi, iptal işlemi başlatıldı.','198.51.100.5','Mozilla/5.0',NULL,'2024-01-03 12:30:00.000','2024-01-03 12:45:00.000'),
+ 'Ayşe Demir','ayse@example.com','+90 555 111 11 22','İşbirliği teklifi',
+ 'Firmanızla işbirliği yapmak istiyoruz. Detayları görüşmek için bir toplantı ayarlayabilir miyiz?',
+ 'in_progress',0,'Müşteri ile iletişime geçildi.','198.51.100.5','Mozilla/5.0',NULL,'2024-01-03 12:30:00.000','2024-01-03 12:45:00.000'),
 
 (UUID(),
- 'Mehmet Kara','mehmet@example.com','+90 542 222 22 33','Cüzdan bakiyesi yükleme sorunu',
- 'Cüzdanıma bakiye ekleyemiyorum. Ödeme sayfasında hata alıyorum.',
- 'closed',1,'Ödeme sistemi geçici kesintisi giderildi, bildirim gönderildi.','192.0.2.44','Mozilla/5.0',NULL,'2024-01-04 09:15:00.000','2024-01-04 10:00:00.000'),
-
-(UUID(),
- 'Elif Koç','elif@example.com','+90 530 333 33 44','Taşıyıcı hakkında şikayet',
- 'Kargo teslim edildi ancak paketim hasarlı geldi. Taşıyıcıya nasıl itiraz edebilirim?',
- 'new',0,NULL,NULL,NULL,NULL,'2024-01-05 14:20:00.000','2024-01-05 14:20:00.000')
+ 'Mehmet Kara','mehmet@example.com','+90 542 222 22 33','Teknik destek',
+ 'Web sitenizde bir sorun yaşıyorum. Yardımcı olabilir misiniz?',
+ 'closed',1,'Sorun giderildi, bildirim gönderildi.','192.0.2.44','Mozilla/5.0',NULL,'2024-01-04 09:15:00.000','2024-01-04 10:00:00.000')
 ON DUPLICATE KEY UPDATE
  `name`=VALUES(`name`),
  `email`=VALUES(`email`),

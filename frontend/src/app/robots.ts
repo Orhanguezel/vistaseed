@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vistaseed.com";
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,19 +8,19 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: [
-          "/panel/",
-          "/admin/",
-          "/api/",
-          "/sifre-sifirla",
-          "/sifremi-unuttum",
-          "/giris",
-          "/uye-ol",
-          "/_next/",
-          "/*?_rsc=",
-        ],
+        disallow: ["/api/", "/_next/", "/*?_rsc="],
+      },
+      {
+        userAgent: ["GPTBot", "ChatGPT-User", "ClaudeBot", "PerplexityBot", "Google-Extended"],
+        allow: "/",
+        disallow: ["/api/", "/_next/"],
+      },
+      {
+        userAgent: ["Bytespider", "CCBot"],
+        disallow: "/",
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   };
 }

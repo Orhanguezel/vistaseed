@@ -22,9 +22,9 @@ import {
 import { ArrowLeft, Save } from 'lucide-react';
 import { useAdminT } from '@/app/(main)/admin/_components/common/use-admin-t';
 import { usePreferencesStore } from '@/stores/preferences/preferences-provider';
-import { AdminLocaleSelect } from '@/app/(main)/admin/_components/common/admin-locale-select';
+import { AdminLocaleSelect } from '@/components/common/admin-locale-select';
 import { AdminImageUploadField } from '@/app/(main)/admin/_components/common/admin-image-upload-field';
-import { useAdminLocales } from '@/app/(main)/admin/_components/common/use-admin-locales';
+import { useAdminLocales } from '@/components/common/use-admin-locales';
 import { toast } from 'sonner';
 import {
   useGetCategoryAdminQuery,
@@ -56,9 +56,19 @@ export default function CategoryDetailClient({ id }: Props) {
   const isNew = id === 'new';
 
   // Locale management
-  const { localeOptions } = useAdminLocales();
-  const [activeLocale, setActiveLocale] = React.useState<string>(adminLocale || CATEGORY_DEFAULT_LOCALE);
+  const { localeOptions, defaultLocaleFromDb, coerceLocale } = useAdminLocales();
+  const [activeLocale, setActiveLocale] = React.useState<string>(() =>
+    coerceLocale(adminLocale, defaultLocaleFromDb || CATEGORY_DEFAULT_LOCALE),
+  );
   const [activeTab, setActiveTab] = React.useState<CategoryDetailTabKey>('content');
+
+  React.useEffect(() => {
+    const nextLocale = coerceLocale(activeLocale, defaultLocaleFromDb || adminLocale || CATEGORY_DEFAULT_LOCALE);
+    if (nextLocale && nextLocale !== activeLocale) {
+      setActiveLocale(nextLocale);
+      setFormData((prev) => ({ ...prev, locale: nextLocale }));
+    }
+  }, [activeLocale, adminLocale, coerceLocale, defaultLocaleFromDb]);
 
   // RTK Query
   const { data: category, isFetching, refetch } = useGetCategoryAdminQuery(
@@ -147,7 +157,13 @@ export default function CategoryDetailClient({ id }: Props) {
         <CardHeader>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon" onClick={handleBack}>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleBack}
+                title={t('actions.back')}
+                aria-label={t('actions.back')}
+              >
                 <ArrowLeft className="h-4 w-4" />
               </Button>
               <div>
@@ -231,7 +247,7 @@ export default function CategoryDetailClient({ id }: Props) {
 
               {/* Module */}
               <div className="space-y-2">
-                <Label htmlFor="module">{t('table.module')}</Label>
+                <Label htmlFor="module">{t('form.module')}</Label>
                 <Select
                   value={formData.module_key}
                   onValueChange={(v) => handleChange('module_key', v)}
@@ -271,6 +287,7 @@ export default function CategoryDetailClient({ id }: Props) {
                     value={formData.alt}
                     onChange={(e) => handleChange('alt', e.target.value)}
                     disabled={isLoading}
+                    placeholder={t('detail.altPlaceholder')}
                   />
                 </div>
               </div>

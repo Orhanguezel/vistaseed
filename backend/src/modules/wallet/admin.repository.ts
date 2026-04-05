@@ -6,7 +6,7 @@ import { db } from '@/db/client';
 import { randomUUID } from 'crypto';
 import { desc, eq, sql } from 'drizzle-orm';
 import { wallets, walletTransactions, type NewWallet, type NewWalletTransaction } from './schema';
-import { users } from '../auth/schema';
+import { users } from '@agro/shared-backend/modules/auth/schema';
 
 type WalletStatus = NewWallet['status'];
 type WalletPaymentStatus = NewWalletTransaction['payment_status'];

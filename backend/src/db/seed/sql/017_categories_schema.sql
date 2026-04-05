@@ -1,6 +1,5 @@
 -- =============================================================
--- FILE: src/db/seed/sql/109_categories_schema.sql
--- DESCRIPTION: vistaseed — categories + category_i18n tabloları
+-- categories + category_i18n tablolari
 -- =============================================================
 
 SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -42,21 +41,31 @@ CREATE TABLE IF NOT EXISTS `category_i18n` (
     FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- vistaseed kargo kategorileri seed
+-- Genel kurumsal kategoriler (seed)
 INSERT IGNORE INTO `categories` (`id`, `module_key`, `icon`, `is_active`, `is_featured`, `display_order`)
 VALUES
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1', 'ilanlar', 'package',      1, 1, 1),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', 'ilanlar', 'truck',        1, 1, 2),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3', 'ilanlar', 'car',          1, 1, 3),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa4', 'ilanlar', 'box',          1, 0, 4),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa5', 'ilanlar', 'thermometer',  1, 0, 5),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa6', 'ilanlar', 'shield',       1, 0, 6);
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1', 'product', 'package',  1, 1, 1),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', 'product', 'settings', 1, 1, 2),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3', 'product', 'star',     1, 1, 3),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa4', 'product', 'layers',   1, 0, 4);
 
-INSERT IGNORE INTO `category_i18n` (`category_id`, `locale`, `name`, `slug`, `description`)
+INSERT IGNORE INTO `category_i18n` (
+  `category_id`,
+  `locale`,
+  `name`,
+  `slug`,
+  `description`,
+  `alt`,
+  `meta_title`,
+  `meta_description`
+)
 VALUES
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1', 'tr', 'Genel Kargo',        'genel-kargo',       'Her türlü paket ve koli taşıması'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', 'tr', 'Büyük Yük',          'buyuk-yuk',         'Kamyon ve TIR ile büyük yük taşıması'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3', 'tr', 'Minibüs / Minivan',  'minibus-minivan',   'Minibüs veya minivan ile taşıma'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa4', 'tr', 'Koli & Paket',       'koli-paket',        'El bagajı ve küçük paket taşıması'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa5', 'tr', 'Soğuk Zincir',       'soguk-zincir',      'Soğutma gerektiren gıda ve ilaç taşıması'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa6', 'tr', 'Sigortalı Taşıma',   'sigortali-tasima',  'Sigorta güvenceli değerli eşya taşıması');
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1', 'tr', 'Sebze Tohumları', 'sebze-tohumlari', 'VistaSeed sebze tohumu kategorileri.', 'Sebze tohumları kategori görseli', 'Sebze Tohumları | VistaSeed', 'VistaSeed sebze tohumu kategorilerini inceleyin.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', 'tr', 'Biber Çeşitleri', 'biber-cesitleri', 'VistaSeed biber tohumu ve çeşit grupları.', 'Biber çeşitleri kategori görseli', 'Biber Çeşitleri | VistaSeed', 'VistaSeed biber çeşitleri ve tohum grupları.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3', 'tr', 'Öne Çıkan Tohumlar', 'one-cikan-tohumlar', 'Öne çıkan tohum çeşitleri ve sezonluk seçimler.', 'Öne çıkan tohumlar kategori görseli', 'Öne Çıkan Tohumlar | VistaSeed', 'VistaSeed öne çıkan tohum çeşitlerini keşfedin.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa4', 'tr', 'Diğer Çeşitler', 'diger-cesitler', 'Diğer tohum ve ürün kategorileri.', 'Diğer çeşitler kategori görseli', 'Diğer Çeşitler | VistaSeed', 'VistaSeed diğer tohum ve ürün kategorileri.'),
+  -- EN
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1', 'en', 'Vegetable Seeds', 'vegetable-seeds', 'VistaSeed vegetable seed categories.', 'Vegetable seeds category image', 'Vegetable Seeds | VistaSeed', 'Explore VistaSeed vegetable seed categories.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', 'en', 'Pepper Varieties', 'pepper-varieties', 'VistaSeed pepper seed and variety groups.', 'Pepper varieties category image', 'Pepper Varieties | VistaSeed', 'Discover VistaSeed pepper varieties and seed groups.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3', 'en', 'Featured Seeds', 'featured-seeds', 'Featured seed varieties and seasonal selections.', 'Featured seeds category image', 'Featured Seeds | VistaSeed', 'Browse VistaSeed featured seed varieties.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa4', 'en', 'Other Varieties', 'other-varieties', 'Other seed and product categories.', 'Other varieties category image', 'Other Varieties | VistaSeed', 'Browse other seed and product categories from VistaSeed.');

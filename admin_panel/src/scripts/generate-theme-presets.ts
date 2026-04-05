@@ -9,7 +9,7 @@
  *
  * Usage:
  * - During local development, run manually after adding any new theme preset:
- *     npm run generate:presets
+ *     bun run generate:presets
  * - Ensure that each new CSS preset includes `label:` and `value:` comments.
  * - This generation step is currently automated using a Husky pre-push hook.
  * - You may optionally integrate it directly into a build step if preferred.

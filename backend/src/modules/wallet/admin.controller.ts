@@ -3,7 +3,7 @@
 // Admin wallet handlers
 // =============================================================
 import type { FastifyRequest, FastifyReply } from 'fastify';
-import { handleRouteError } from '@/modules/_shared';
+import { handleRouteError } from '@agro/shared-backend/modules/_shared';
 import { adminAdjustSchema, adminStatusSchema, adminTransactionStatusSchema } from './validation';
 import {
   repoAdminListWallets,

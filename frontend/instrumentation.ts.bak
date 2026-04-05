@@ -1,0 +1,16 @@
+export async function register() {
+  if (!process.env.NEXT_PUBLIC_SENTRY_DSN) return;
+
+  const Sentry = await import("@sentry/nextjs");
+  Sentry.init({
+    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+    environment: process.env.NODE_ENV,
+    tracesSampleRate: 0,
+  });
+}
+
+export const onRequestError = async (...args: unknown[]) => {
+  if (!process.env.NEXT_PUBLIC_SENTRY_DSN) return;
+  const Sentry = await import("@sentry/nextjs");
+  (Sentry.captureRequestError as Function)(...args);
+};

@@ -1,6 +1,6 @@
 -- =============================================================
 -- FILE: src/db/seed/sql/111_gallery_schema.sql
--- DESCRIPTION: vistaseed — galleries + gallery_i18n + gallery_images + gallery_image_i18n
+-- DESCRIPTION: galleries + gallery_i18n + gallery_images + gallery_image_i18n
 -- Bağımlılık: 94_storage_assets.sql
 -- =============================================================
 

@@ -1,10 +1,9 @@
 // src/modules/wallet/service.ts
 import { randomUUID } from "crypto";
 import { db } from "@/db/client";
-import { repoInvalidateDashboardCache } from "@/modules/_shared";
 import { eq, sql } from "drizzle-orm";
 import { wallets, walletTransactions } from "./schema";
-import { getOrCreateWallet } from './helpers';
+import { getOrCreateWallet, invalidateWalletCachesForUsers } from './helpers';
 
 /** Müşteriden booking bedeli düş */
 export async function deductForBooking(userId: string, amount: number, bookingId: string): Promise<void> {
@@ -29,7 +28,7 @@ export async function deductForBooking(userId: string, amount: number, bookingId
       transaction_ref: bookingId,
     });
   });
-  await repoInvalidateDashboardCache([userId]);
+  await invalidateWalletCachesForUsers([userId]);
 }
 
 /** Taşıyıcıya teslim sonrası ödeme aktar */
@@ -56,7 +55,7 @@ export async function creditCarrier(carrierId: string, amount: number, bookingId
       transaction_ref: bookingId,
     });
   });
-  await repoInvalidateDashboardCache([carrierId]);
+  await invalidateWalletCachesForUsers([carrierId]);
 }
 
 /** İptal halinde müşteriye iade */
@@ -80,5 +79,5 @@ export async function refundToCustomer(userId: string, amount: number, bookingId
       transaction_ref: bookingId,
     });
   });
-  await repoInvalidateDashboardCache([userId]);
+  await invalidateWalletCachesForUsers([userId]);
 }

@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS `custom_pages` (
   `display_order` INT NOT NULL DEFAULT 0,
   `featured_image` VARCHAR(500) DEFAULT NULL,
   `storage_asset_id` CHAR(36) DEFAULT NULL,
+  `images` JSON DEFAULT (JSON_ARRAY()),
+  `storage_image_ids` JSON DEFAULT (JSON_ARRAY()),
   `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   `updated_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
   PRIMARY KEY (`id`),

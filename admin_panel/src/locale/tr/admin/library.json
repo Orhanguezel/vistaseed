@@ -1,0 +1,123 @@
+{
+  "header": {
+    "title": "Kütüphane",
+    "description": "Kütüphane içeriklerini listeleyin, düzenleyin ve yönetin."
+  },
+  "tabs": {
+    "list": "Liste",
+    "content": "İçerik",
+    "seo": "SEO",
+    "images": "Görseller",
+    "files": "Dosyalar"
+  },
+  "filters": {
+    "searchPlaceholder": "İçerik adı veya slug ile ara...",
+    "locale": "Dil",
+    "allCategories": "Tüm Kategoriler",
+    "allTypes": "Tüm Tipler",
+    "onlyPublished": "Sadece yayında",
+    "onlyFeatured": "Sadece öne çıkan"
+  },
+  "actions": {
+    "create": "Yeni İçerik",
+    "edit": "Düzenle",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "refresh": "Yenile",
+    "back": "Geri"
+  },
+  "form": {
+    "name": "İçerik Adı",
+    "namePlaceholder": "İçerik adını girin",
+    "slug": "Slug",
+    "slugPlaceholder": "icerik-slug",
+    "description": "Açıklama",
+    "descriptionPlaceholder": "İçerik açıklaması",
+    "type": "Tip",
+    "typePlaceholder": "Tip seçin",
+    "category": "Kategori",
+    "categoryPlaceholder": "Kategori seçin",
+    "categoryId": "Kategori ID",
+    "subCategory": "Alt Kategori",
+    "subCategoryPlaceholder": "Alt kategori seçin",
+    "subCategoryId": "Alt Kategori ID",
+    "tags": "Etiketler",
+    "tagsPlaceholder": "Etiket ekleyin",
+    "imageAlt": "Görsel Alt Metni",
+    "fileName": "Dosya Adı",
+    "fileUrl": "Dosya URL",
+    "fileType": "Dosya Tipi",
+    "fileSize": "Dosya Boyutu",
+    "displayOrder": "Sıralama",
+    "isPublished": "Yayında",
+    "featured": "Öne Çıkan",
+    "isActive": "Aktif",
+    "metaTitle": "Meta Başlık",
+    "metaTitlePlaceholder": "SEO başlık",
+    "metaDescription": "Meta Açıklama",
+    "metaDescriptionPlaceholder": "SEO açıklaması",
+    "metaKeywords": "Meta Anahtar Kelimeler",
+    "metaKeywordsPlaceholder": "Anahtar kelimeler"
+  },
+  "detail": {
+    "newTitle": "Yeni İçerik",
+    "editTitle": "İçerik Düzenle",
+    "contentTitle": "İçerik",
+    "seoTitle": "SEO",
+    "imagesTitle": "Görsel Yönetimi",
+    "imagesDescription": "Görseller support/library klasörüne yüklenir ve support içeriklerinde ortak kullanılabilir.",
+    "filesTitle": "Dosya Yönetimi",
+    "filesAfterCreate": "Önce kütüphane kaydını oluşturun, sonra dosya ekleyin.",
+    "addFile": "Yeni Dosya Ekle"
+  },
+  "table": {
+    "order": "Sıra",
+    "image": "Görsel",
+    "name": "Başlık",
+    "slug": "Slug",
+    "type": "Tip",
+    "category": "Kategori",
+    "published": "Yayında",
+    "views": "Görüntüleme",
+    "downloads": "İndirme",
+    "actions": "İşlemler"
+  },
+  "images": {
+    "title": "İçerik Görselleri",
+    "add": "Görsel Ekle",
+    "empty": "Henüz görsel eklenmedi.",
+    "deleteConfirm": "Bu görseli silmek istediğinize emin misiniz?",
+    "saveHint": "Görsel değişiklikleri Kaydet ile birlikte kütüphaneye yazılır."
+  },
+  "files": {
+    "title": "Dosyalar",
+    "add": "Dosya Ekle",
+    "empty": "Henüz dosya eklenmedi.",
+    "name": "Dosya Adı",
+    "namePlaceholder": "Dosya adı",
+    "size": "Boyut",
+    "type": "Tip",
+    "deleteConfirm": "Bu dosyayı silmek istediğinize emin misiniz?"
+  },
+  "messages": {
+    "created": "İçerik oluşturuldu.",
+    "updated": "İçerik güncellendi.",
+    "deleted": "İçerik silindi.",
+    "imagesSynced": "Kütüphane görselleri güncellendi.",
+    "fileAdded": "Dosya eklendi.",
+    "fileDeleted": "Dosya silindi.",
+    "fileAddError": "Dosya ekleme hatası",
+    "fileDeleteError": "Dosya silme hatası",
+    "confirmFileDelete": "Bu dosyayı silmek istediğinize emin misiniz?",
+    "deleteError": "Silme hatası",
+    "errorPrefix": "Hata",
+    "confirmDelete": "'{title}' içeriğini silmek istediğinize emin misiniz?",
+    "requiredError": "İçerik adı ve slug zorunludur.",
+    "unknownError": "Bilinmeyen hata."
+  },
+  "list": {
+    "refreshing": "Yenileniyor...",
+    "empty": "İçerik bulunamadı."
+  }
+}

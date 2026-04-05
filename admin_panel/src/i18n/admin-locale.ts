@@ -6,11 +6,12 @@
 // =============================================================
 
 import { localeShortClient, localeShortClientOr } from './locale-short-client';
+import { FALLBACK_LOCALE } from './config';
 
 export function resolveAdminApiLocale(
   localeOptions?: Array<{ value: string } | { value: string; label?: string }> | null,
   defaultLocaleFromDb?: string | null,
-  fallback = 'tr',
+  fallback = FALLBACK_LOCALE,
 ): string {
   // ✅ Güvenlik kontrolü: localeOptions bir array mi?
   const safeOptions = Array.isArray(localeOptions) ? localeOptions : [];

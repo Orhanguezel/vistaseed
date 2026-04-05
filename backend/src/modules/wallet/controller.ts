@@ -3,19 +3,17 @@ import type { RouteHandler } from "fastify";
 import { randomUUID } from "crypto";
 import { db } from "@/db/client";
 import { wallets, walletTransactions } from "./schema";
-import { users } from "../auth/schema";
+import { users } from "@agro/shared-backend/modules/auth/schema";
 import { and, eq, desc, sql } from "drizzle-orm";
 import { depositSchema, initiateDepositSchema } from "./validation";
-import { getAuthUserId, handleRouteError, repoInvalidateDashboardCache } from "@/modules/_shared";
+import { getAuthUserId, handleRouteError } from "@agro/shared-backend/modules/_shared";
 import { env } from "@/core/env";
 import { createCheckoutForm, retrieveCheckoutForm } from "./iyzico";
 import { createPayTRToken, encodePayTRBasket, verifyPayTRCallback } from "./paytr";
 import { sendDepositSuccessMail } from "../mail/service";
-import { getOrCreateWallet, parseWalletPaging } from './helpers';
+import { getOrCreateWallet, parseWalletPaging, invalidateWalletCachesForUsers } from './helpers';
 
-function getSubMerchantKey(): string {
-  return env.IYZICO_SUB_MERCHANT_KEY;
-}
+const siteLabel = () => env.SITE_NAME || "Site";
 
 /** GET /wallet — get current user's wallet info */
 export const getMyWallet: RouteHandler = async (req, reply) => {
@@ -76,8 +74,8 @@ export const initiateDeposit: RouteHandler = async (req, reply) => {
 
     const conversationId = randomUUID();
     const amountStr = amount.toFixed(2);
-    const nameParts = (user.full_name ?? "vistaseed Kullanıcı").trim().split(" ");
-    const firstName = nameParts[0] ?? "vistaseed";
+    const nameParts = (user.full_name ?? "Kullanıcı").trim().split(" ");
+    const firstName = nameParts[0] ?? siteLabel();
     const lastName = nameParts.slice(1).join(" ") || "Kullanıcı";
 
     // IPv4 normalize — İyzico IPv6 kabul etmiyor
@@ -99,14 +97,14 @@ export const initiateDeposit: RouteHandler = async (req, reply) => {
       transaction_ref: conversationId,
     });
 
-    const callbackUrl = `${env.PUBLIC_URL}/api/wallet/deposit/callback`;
+    const callbackUrl = `${env.PUBLIC_URL}/api/v1/wallet/deposit/callback`;
     const frontendUrl = env.FRONTEND_URL;
 
     // --- CASE: PayTR ---
     if (provider === "paytr") {
       const kurusAmount = Math.round(amount * 100);
       const basket = encodePayTRBasket([
-        ["vistaseed Bakiye Yükleme", amount.toFixed(2), 1]
+        [`${siteLabel()} Bakiye Yükleme`, amount.toFixed(2), 1]
       ]);
 
       const paytrRes = await createPayTRToken({
@@ -120,7 +118,7 @@ export const initiateDeposit: RouteHandler = async (req, reply) => {
         user_phone: user.phone || "05550000000",
         merchant_ok_url: `${frontendUrl}/panel/cuzdan/odeme-sonuc?status=success&amount=${encodeURIComponent(amountStr)}`,
         merchant_fail_url: `${frontendUrl}/panel/cuzdan/odeme-sonuc?status=fail`,
-        merchant_notify_url: `${env.PUBLIC_URL}/api/wallet/deposit/paytr-callback`,
+        merchant_notify_url: `${env.PUBLIC_URL}/api/v1/wallet/deposit/paytr-callback`,
         currency: "TL",
       });
 
@@ -170,7 +168,7 @@ export const initiateDeposit: RouteHandler = async (req, reply) => {
       basketItems: [
         {
           id: txId,
-          name: "vistaseed Bakiye Yükleme",
+          name: `${siteLabel()} Bakiye Yükleme`,
           category1: "Dijital",
           itemType: "VIRTUAL" as const,
           price: amountStr,
@@ -290,7 +288,7 @@ export const iyzicoCallback: RouteHandler = async (req, reply) => {
         .set({ payment_status: "completed" })
         .where(eq(walletTransactions.id, pendingTx!.id));
     });
-    await repoInvalidateDashboardCache([pendingTx.user_id]);
+    await invalidateWalletCachesForUsers([pendingTx.user_id]);
 
     req.log.info({ userId: pendingTx.user_id, amount }, "iyzico_callback: deposit completed");
 
@@ -303,7 +301,7 @@ export const iyzicoCallback: RouteHandler = async (req, reply) => {
         user_name: depositUser.full_name ?? "Kullanıcı",
         amount: pendingTx.amount,
         new_balance: updatedWallet?.balance ?? "0",
-      }).catch((err) => req.log.error(err, "deposit_success_mail_failed"));
+      }).catch((err: unknown) => req.log.error(err, "deposit_success_mail_failed"));
     }
 
     return reply.redirect(
@@ -318,13 +316,17 @@ export const iyzicoCallback: RouteHandler = async (req, reply) => {
 /** POST /wallet/deposit/paytr-callback — PayTR'den gelen sonuç (public) */
 export const payTRDepositCallback: RouteHandler = async (req, reply) => {
   try {
-    const body = req.body as any;
+    const body = req.body;
     if (!verifyPayTRCallback(body)) {
       req.log.warn({ body }, "paytr_deposit_callback: hash mismatch");
       return reply.send("PAYTR: hash mismatch");
     }
 
-    const { merchant_oid, status } = body;
+    if (!body || typeof body !== "object") return reply.send("ERROR");
+    const rec = body as Record<string, unknown>;
+    const merchant_oid = rec.merchant_oid;
+    const status = rec.status;
+    if (typeof merchant_oid !== "string" || typeof status !== "string") return reply.send("ERROR");
     const [pendingTx] = await db.select().from(walletTransactions)
       .where(eq(walletTransactions.transaction_ref, merchant_oid))
       .limit(1);
@@ -344,7 +346,7 @@ export const payTRDepositCallback: RouteHandler = async (req, reply) => {
           .set({ payment_status: "completed" })
           .where(eq(walletTransactions.id, pendingTx.id));
       });
-      await repoInvalidateDashboardCache([pendingTx.user_id]);
+      await invalidateWalletCachesForUsers([pendingTx.user_id]);
 
       // Mail
       const [depositUser] = await db.select().from(users).where(eq(users.id, pendingTx.user_id)).limit(1);
@@ -355,7 +357,7 @@ export const payTRDepositCallback: RouteHandler = async (req, reply) => {
           user_name: depositUser.full_name ?? "Kullanıcı",
           amount: pendingTx.amount,
           new_balance: updatedWallet?.balance ?? "0",
-        }).catch((err) => req.log.error(err, "deposit_success_mail_failed"));
+        }).catch((err: unknown) => req.log.error(err, "deposit_success_mail_failed"));
       }
 
       req.log.info({ userId: pendingTx.user_id, amount }, "paytr_deposit_callback: success");
@@ -398,7 +400,7 @@ export const depositWallet: RouteHandler = async (req, reply) => {
         payment_status: "completed",
       });
     });
-    await repoInvalidateDashboardCache([userId]);
+    await invalidateWalletCachesForUsers([userId]);
 
     const [updated] = await db.select().from(wallets).where(eq(wallets.id, wallet.id)).limit(1);
 
@@ -410,7 +412,7 @@ export const depositWallet: RouteHandler = async (req, reply) => {
         user_name: dUser.full_name ?? "Kullanıcı",
         amount: amount.toFixed(2),
         new_balance: updated?.balance ?? "0",
-      }).catch((err) => req.log.error(err, "deposit_success_mail_failed"));
+      }).catch((err: unknown) => req.log.error(err, "deposit_success_mail_failed"));
     }
 
     return reply.send(updated);

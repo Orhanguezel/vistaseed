@@ -1,61 +1,61 @@
-# Urunler - Vista Seeds
+# Ürünler - Vista Seeds
 
 ## Sayfa URL
 `/urunler`
 
-## Urun Detay URL
+## Ürün Detay URL
 `/urunler/[slug]`
 
 ## Filtreleme Sistemi
-- Isotope tabanli kategori filtreleme
-- Kategoriye gore filtreleme butonlari
+- Isotope tabanlı kategori filtreleme
+- Kategoriye göre filtreleme butonları
 
-## Urun Kategorileri ve Urunler
+## Ürün Kategorileri ve Ürünler
 
-### 1. ANAC (Rootstock)
-| Urun Adi | Tip | Notlar |
+### 1. ANAÇ (Rootstock)
+| Ürün Adı | Tip | Notlar |
 |----------|-----|--------|
-| AVAR     | Anac | Anac cesidi |
+| AVAR     | Anaç | Anaç çeşidi |
 
-### 2. BIBER (Pepper)
-Tumu F1 hibrit cesitler:
+### 2. BİBER (Pepper)
+Tümü F1 hibrit çeşitler:
 
-| Urun Adi     | Tip      | Notlar |
+| Ürün Adı     | Tip      | Notlar |
 |-------------|----------|--------|
 | LUCKY F1    | Hibrit   | - |
 | KIZGIN F1   | Hibrit   | - |
-| PRESTIJ F1  | Hibrit   | - |
-| BIRLIK F1   | Hibrit   | - |
+| PRESTİJ F1  | Hibrit   | - |
+| BİRLİK F1   | Hibrit   | - |
 | CANKAN F1   | Hibrit   | - |
 | TIRPAN F1   | Hibrit   | - |
 | SARAY F1    | Hibrit   | - |
 
-## Urun Karti Yapisi
-Her urun karti icin:
-- Urun gorseli
-- Urun adi
+## Ürün Kartı Yapısı
+Her ürün kartı için:
+- Ürün görseli
+- Ürün adı
 - Kategori etiketi
-- Detay sayfasina link
+- Detay sayfasına link
 
-## Urun Detay Sayfasi (Tahmini Yapisi)
-- Urun gorseli (buyuk)
-- Urun adi ve kategori
-- Teknik ozellikler (adaptasyon, dayaniklilik, verim)
+## Ürün Detay Sayfası (Tahmini Yapısı)
+- Ürün görseli (büyük)
+- Ürün adı ve kategori
+- Teknik özellikler (adaptasyon, dayanıklılık, verim)
 - Ekim takvimi
-- Bakim onerileri
+- Bakım önerileri
 
-## Urun Genel Ozellikleri
-- Adaptasyon kabiliyeti yuksek
-- Hastaliklara dayanikli
-- Ustun nitelikli hibrit tohumlar
-- Tescilli cesitler
+## Ürün Genel Özellikleri
+- Adaptasyon kabiliyeti yüksek
+- Hastalıklara dayanıklı
+- Üstün nitelikli hibrit tohumlar
+- Tescilli çeşitler
 
-## Planlanan Moduller
-- [x] Urun listesi grid gorunumu
+## Planlanan Modüller
+- [x] Ürün listesi grid görünümü
 - [x] Kategori filtreleme
-- [x] Urun karti komponenti
-- [ ] Urun detay sayfasi (ayri sayfa)
-- [ ] Urun arama/search
-- [ ] Urun karsilastirma (mevcut sitede yok - eklenebilir)
-- [ ] Urun PDF/katalog indirme (mevcut sitede yok - eklenebilir)
-- [ ] Teknik veri sayfasi (datasheet) per urun
+- [x] Ürün kartı komponenti
+- [ ] Ürün detay sayfası (ayrı sayfa)
+- [ ] Ürün arama/search
+- [ ] Ürün karşılaştırma (mevcut sitede yok - eklenebilir)
+- [ ] Ürün PDF/katalog indirme (mevcut sitede yok - eklenebilir)
+- [ ] Teknik veri sayfası (datasheet) per ürün

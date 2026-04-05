@@ -9,6 +9,9 @@ import { toast } from 'sonner';
 import { Search, RefreshCcw } from 'lucide-react';
 import { useAdminTranslations } from '@/i18n';
 import { usePreferencesStore } from '@/stores/preferences/preferences-provider';
+import { useAppDispatch } from '@/stores/hooks';
+import { useAdminLocales } from '@/components/common/use-admin-locales';
+import { AdminLocaleSelect } from '@/components/common/admin-locale-select';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -16,14 +19,6 @@ import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 
 import { SiteSettingsList } from './site-settings-list';
 
@@ -41,17 +36,15 @@ import type { SiteSetting } from '@/integrations/shared';
 import {
   SITE_SETTINGS_BRAND,
   SITE_SETTINGS_BRAND_PREFIX,
-  buildSiteSettingsLocalesOptions,
   getErrorMessage,
   isSiteSettingsGlobalTab,
-  pickInitialSiteSettingsLocale,
-  type SiteSettingsLocaleOption,
   type SiteSettingsTab,
 } from '@/integrations/shared';
 import {
   useListSiteSettingsAdminQuery,
   useDeleteSiteSettingAdminMutation,
 } from '@/integrations/hooks';
+import { siteSettingsAdminApi } from '@/integrations/endpoints/admin/site-settings-admin-endpoints';
 
 /* ----------------------------- list panels ----------------------------- */
 
@@ -100,33 +93,17 @@ function ListPanel({
 /* ----------------------------- main component ----------------------------- */
 
 export default function AdminSiteSettingsClient() {
+  const dispatch = useAppDispatch();
   const brand = SITE_SETTINGS_BRAND;
   const brandPrefix = SITE_SETTINGS_BRAND_PREFIX;
   const isScopedBrand = true;
-  const appLocalesKey = `${brandPrefix || ''}app_locales`;
-  const localeSettingsQ = useListSiteSettingsAdminQuery({
-    locale: '*',
-    keys: [appLocalesKey],
-    limit: 20,
-    offset: 0,
-    sort: 'key',
-    order: 'asc',
-  });
-
-  const localeRows = React.useMemo(() => {
-    const row = (localeSettingsQ.data ?? []).find((item) => item.key === appLocalesKey);
-    return Array.isArray(row?.value) ? row.value : [];
-  }, [localeSettingsQ.data, appLocalesKey]);
-
-  const localeOptions: SiteSettingsLocaleOption[] = React.useMemo(
-    () => buildSiteSettingsLocalesOptions(localeRows as any),
-    [localeRows],
-  );
-
-  const initialLocale = React.useMemo(
-    () => pickInitialSiteSettingsLocale(localeRows as any),
-    [localeRows],
-  );
+  const {
+    localeOptions,
+    defaultLocaleFromDb,
+    loading: localesLoading,
+    fetching: localesFetching,
+    coerceLocale,
+  } = useAdminLocales();
 
   const [tab, setTab] = React.useState<SiteSettingsTab>('general');
   const [search, setSearch] = React.useState('');
@@ -141,20 +118,27 @@ export default function AdminSiteSettingsClient() {
   // Otomatik dil seçimi: varsayılan aktif dili kullan
   React.useEffect(() => {
     if (localeTouched) return;
-    if (initialLocale) {
-      setLocale(initialLocale);
+    const nextLocale = coerceLocale(defaultLocaleFromDb);
+    if (nextLocale) {
+      setLocale(nextLocale);
     }
-  }, [initialLocale, localeTouched]);
+  }, [coerceLocale, defaultLocaleFromDb, localeTouched]);
 
   const headerLoading =
-    localeSettingsQ.isFetching ||
-    localeSettingsQ.isLoading;
+    localesFetching ||
+    localesLoading;
 
   const disabled = headerLoading || isDeleting;
 
   const onRefresh = async () => {
     try {
-      await localeSettingsQ.refetch();
+      dispatch(
+        siteSettingsAdminApi.util.invalidateTags([
+          { type: 'SiteSettings', id: 'LIST' },
+          { type: 'SiteSettings', id: 'APP_LOCALES' },
+          { type: 'SiteSettings', id: 'DEFAULT_LOCALE' },
+        ]),
+      );
       toast.success(t('admin.siteSettings.filters.refreshed'));
     } catch (err) {
       toast.error(getErrorMessage(err, t('admin.siteSettings.messages.error')));
@@ -216,34 +200,18 @@ export default function AdminSiteSettingsClient() {
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-xs sm:text-sm">{t('admin.siteSettings.filters.language')}</Label>
-              <Select
-                value={localeReady ? locale : ''}
-                onValueChange={(v) => {
+              <AdminLocaleSelect
+                value={localeReady ? locale : coerceLocale(defaultLocaleFromDb)}
+                onChange={(nextLocale: string) => {
                   setLocaleTouched(true);
-                  setLocale(v);
+                  setLocale(coerceLocale(nextLocale, defaultLocaleFromDb));
                 }}
+                options={localeOptions}
+                loading={localesLoading || localesFetching}
                 disabled={disabled || isGlobalTab}
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue
-                    placeholder={
-                      isGlobalTab
-                        ? t('admin.siteSettings.filters.globalPlaceholder')
-                        : t('admin.siteSettings.filters.selectLanguage')
-                    }
-                  />
-                </SelectTrigger>
-                <SelectContent>
-                  {(localeOptions ?? []).map((o) => (
-                    <SelectItem key={o.value} value={o.value}>
-                      {o.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-
+                label={t('admin.siteSettings.filters.language')}
+                allowEmpty={false}
+              />
             </div>
 
             <div className="flex items-end gap-2">
@@ -266,7 +234,7 @@ export default function AdminSiteSettingsClient() {
                   setSearch('');
                   if (!isGlobalTab) {
                     setLocaleTouched(false);
-                    setLocale(initialLocale);
+                    setLocale(coerceLocale(defaultLocaleFromDb));
                   }
                 }}
                 disabled={disabled}

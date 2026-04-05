@@ -2,7 +2,11 @@
 import 'fastify';
 
 declare module 'fastify' {
-  // Bazı TS kombinasyonlarında bu alanlar tipten "kaybolabiliyor".
+  interface FastifyContextConfig {
+    public?: boolean;
+    rateLimit?: unknown;
+  }
+
   interface FastifyRequest {
     headers: Record<string, string | string[] | undefined>;
     protocol?: string;

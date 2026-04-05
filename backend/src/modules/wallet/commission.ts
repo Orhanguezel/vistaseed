@@ -1,7 +1,7 @@
 // src/modules/wallet/commission.ts
 // Platform komisyon hesaplama servisi
 
-import { repoGetFirstRowByFallback } from "@/modules/siteSettings/repository";
+import { repoGetFirstRowByFallback } from "@agro/shared-backend/modules/siteSettings/repository";
 
 export interface CommissionConfig {
   rate: number;

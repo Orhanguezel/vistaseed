@@ -1,53 +1,74 @@
-# Hakkimizda - Vista Seeds
+# Hakkımızda - VistaSeed
 
 ## Sayfa URL
+
 `/hakkimizda`
 
-## Icerik
+## İçerik
 
-### Sirket Tanitimi
-Vista Tohum, **Atakan Tohum Insaat Muhendislik** sirketi bunyesinde kurulmus bir tohum markasadir. "Tarimin gelecegini sekillendirmek" amaci ile faaliyet gostermektedir.
+### Şirket Tanıtımı
+
+VistaSeed, resmî Vista Seeds kurumsal anlatısını; ürün kataloğu, bilgi bankası, referanslar, toplu satış ve bayi yüzeyi ile birleştiren dijital tarım ekosistemidir.
 
 ### Vizyon
-Yuksek genetik potansiyele sahip, tescilli tohum cesitleriyle ureticilerin verimliligini maksimum seviyeye cikarmak.
+
+Üreticinin doğru çeşidi daha hızlı bulabildiği, teknik bilgiye tek kaynaktan eriştiği ve teklif süreçlerini operasyonel gecikme olmadan yönettiği bir tarım deneyimi kurmak.
 
 ### Misyon
-Tarimda teknoloji ve dogayi bulusturan inovatif cozumlerle, global standartlarda bir marka olmak ve yenilenebilir enerji projelerine entegre buyume gerceklestirmek.
 
-### Faaliyet Alanlari
-- Tohum islahi ve uretimi
-- Tarim, yenilenebilir enerji ve insaat sektorlerinde yatirimlar
-- Bereket Fide ile uretim zinciri destegi
-- Gunes enerjisi santrallari isletimi
-- Konut projeleri (Vista Lagoon, Vista Prestige)
+Sahadan gelen üretim bilgisi ile dijital ürün yönetimini aynı sistemde birleştirerek, tohum ve fide tedarik süreçlerinde daha net, hızlı ve ölçeklenebilir bir altyapı sunmak.
 
-### Temel Degerler
-1. **Yuksek Verimli Tohumlar** - Modern uretim teknikleriyle gelistirilen cesitler
-2. **Kalite ve Guven** - Kati kalite kontrol sureclerinden gecen tohumlar
-3. **Uretici Odaklilik** - Ciftcilerin ihtiyaclarini anlama, sahaya uygun cozumler
-4. **Arastirma ve Gelistirme** - Yeni cesitler gelistirme, surekli iyilesim
+### Faaliyet Alanları
 
-### Istatistikler
-- 100+ Uzman Kadro (Ar-Ge, kalite kontrol)
-- 250+ Personel (uretim ve operasyon)
-- 137.000+ Musteri
+- Ürün kataloğu ve çeşit yönetimi
+- Toplu satış ve kurumsal teklif süreci
+- Bayi ve bölgesel dağıtım ağı
+- Bilgi bankası ve teknik içerik üretimi
+- Bereket Fide üretim akışı ile entegre saha destek modeli
 
-### Tarihsel Gelisim (Timeline)
-| Yil  | Olay |
-|------|------|
-| 1988 | Tarim sektorune ilk adim |
-| 1990 | Sahin Ziraat kurulusu |
-| 2006 | Bereket Fide'nin kurulusu |
-| 2017 | Insaat sektorune giris |
-| 2018 | Tolkan Mimarlik |
-| 2025 | Atakan Tohum ve Vista Seeds kurulusu |
+### Temel Değerler
 
-## Planlanan Moduller
-- [x] Hero banner (sayfa baslik ve gorsel)
-- [x] Sirket tanitim metni
-- [x] Vizyon & Misyon bloklari
-- [x] Temel degerler kartlari
-- [x] Istatistik sayaclari (animasyonlu)
-- [x] Timeline/tarihce komponenti
-- [ ] Ekip tanitimi (mevcut sitede yok - eklenebilir)
-- [ ] Sertifikalar/belgeler bolumu (mevcut sitede yok - eklenebilir)
+1. **Üretim Gerçekliği** - İçerik ve güven sinyallerini doğrulanabilir saha verileri üzerine kurmak
+2. **Planlı Operasyon** - Teklif, sevkiyat ve bayi akışını aynı veri mantığında toplamak
+3. **Teknik İletişim** - Blog, ürün detay ve karşılaştırma yüzeyini karar destek aracı gibi kullanmak
+4. **Sürekli Gelişim** - Üretim modernizasyonu ve iş ortaklığı yapısını dijital tarafta da geliştirmek
+
+### İstatistikler
+
+- 1988 ilk tarım adımı
+- 2006 Bereket Fide kuruluşu
+- 100+ uzman kadro
+- 250+ saha ekibi
+
+### Gelişim Çizgisi (Timeline)
+
+| Yil  | Olay                                  |
+| ---- | ------------------------------------- |
+| 1988 | Tarım sektörüne ilk adım          |
+| 1990 | Şahin Ziraat kuruluşu               |
+| 2006 | Bereket Fide’nin kuruluşu           |
+| 2017 | İnşaat sektörüne giriş           |
+| 2018 | Tolkan Mimarlık                      |
+| 2025 | Atakan Tohum ve Vista Seeds kuruluşu |
+
+### Kaynak Görseller
+
+- `https://www.vistaseeds.com.tr/hakkimizda` sayfasındaki hero görseli yerel storage'a alınır
+- Ana sayfadaki “Tohumun Bereketi”, “Yüksek Verimli Tohumlar”, “Sürdürülebilir Tarım Anlayışı” ve “Kalite ve Güven” görselleri aynı sayfada yüzey kartları olarak kullanılır
+- Tüm görseller `backend/uploads/about/vistaseeds/` altında tutulur ve `storage_assets` üzerinden veritabanına kaydedilir
+
+## Planlanan Modüller
+
+- [X] Hero banner (sayfa başlık ve görsel)
+- [X] Şirket tanıtım metni
+- [X] Vizyon & Misyon bloklari
+- [X] Temel değerler kartları
+- [X] İstatistik sayaçları (animasyonlu)
+- [X] Timeline/tarihçe komponenti
+- [ ] Sertifikalar/belgeler bölümü (mevcut sitede yok - eklenebilir)
+
+## İçerik Notu
+
+- `vistaseeds.com.tr/hakkimizda` ve ana sayfa medya blokları doğrudan kaynak alınır
+- Referans görselleri ve grup şirketleri kayıtları `vistaseeds.com.tr/grup-sirketlerimiz` üzerinden çekilir
+- Kaynak sitede açık olmayan iddialar genişletilmez; mevcut metin ve görseller kontrollü biçimde dijital ekosistem yapısına yerleştirilir

@@ -1,6 +1,6 @@
--- 94_storage_assets.sql — vistaseed local media storage kayıtları
+-- storage_assets.sql — Local media storage kayitlari
 -- provider=local, bucket=default
--- path   = LOCAL_STORAGE_ROOT altındaki göreli yol
+-- path   = LOCAL_STORAGE_ROOT altindaki goreli yol
 -- url    = LOCAL_STORAGE_BASE_URL + '/' + path
 
 SET NAMES utf8mb4;
@@ -134,15 +134,22 @@ VALUES
 ('00009400-0000-4000-8000-000000000088','sp_one.png','default','media/images/sp_one.png','media/images','image/png',92478,'/uploads/media/images/sp_one.png','local','media/images/sp_one.png','image','png'),
 ('00009400-0000-4000-8000-000000000089','sp_two.png','default','media/images/sp_two.png','media/images','image/png',105568,'/uploads/media/images/sp_two.png','local','media/images/sp_two.png','image','png'),
 ('00009400-0000-4000-8000-000000000090','successful.png','default','media/images/successful.png','media/images','image/png',110034,'/uploads/media/images/successful.png','local','media/images/successful.png','image','png'),
--- ── LOGO ────────────────────────────────────────────────────────────────────
-('00009400-0000-4000-8000-000000000091','logo.jpeg','default','media/logo/logo.jpeg','media/logo','image/jpeg',144222,'/uploads/media/logo/logo.jpeg','local','media/logo/logo.jpeg','image','jpg'),
-('00009400-0000-4000-8000-000000000092','logo2.jpeg','default','media/logo/logo2.jpeg','media/logo','image/jpeg',74262,'/uploads/media/logo/logo2.jpeg','local','media/logo/logo2.jpeg','image','jpg'),
-('00009400-0000-4000-8000-000000000093','logo3.jpg','default','media/logo/logo3.jpg','media/logo','image/jpeg',238719,'/uploads/media/logo/logo3.jpg','local','media/logo/logo3.jpg','image','jpg'),
-('00009400-0000-4000-8000-000000000094','logo4.jpg','default','media/logo/logo4.jpg','media/logo','image/jpeg',46872,'/uploads/media/logo/logo4.jpg','local','media/logo/logo4.jpg','image','jpg'),
+-- ── LOGO (uniq_bucket_path: ayni dosya tek kayit) ───────────────────────────
+('00009400-0000-4000-8000-000000000091','vistaseed_logo.png','default','media/logo/vistaseed_logo.png','media/logo','image/png',36772,'/uploads/media/logo/vistaseed_logo.png','local','media/logo/vistaseed_logo.png','image','png'),
 -- ── HERO / OG ─────────────────────────────────────────────────────────────
 ('00009400-0000-4000-8000-000000000095','hero-bg.jpg','default','media/hero/hero-bg.jpg','media/hero','image/jpeg',285000,'/uploads/media/hero/hero-bg.jpg','local','media/hero/hero-bg.jpg','image','jpg'),
 ('00009400-0000-4000-8000-000000000096','hero-bg-dark.jpg','default','media/hero/hero-bg-dark.jpg','media/hero','image/jpeg',195000,'/uploads/media/hero/hero-bg-dark.jpg','local','media/hero/hero-bg-dark.jpg','image','jpg'),
 ('00009400-0000-4000-8000-000000000097','banner-1.jpg','default','media/hero/banner-1.jpg','media/hero','image/jpeg',220000,'/uploads/media/hero/banner-1.jpg','local','media/hero/banner-1.jpg','image','jpg'),
 ('00009400-0000-4000-8000-000000000098','banner-2.jpg','default','media/hero/banner-2.jpg','media/hero','image/jpeg',210000,'/uploads/media/hero/banner-2.jpg','local','media/hero/banner-2.jpg','image','jpg'),
 ('00009400-0000-4000-8000-000000000099','og-default.jpg','default','media/hero/og-default.jpg','media/hero','image/jpeg',180000,'/uploads/media/hero/og-default.jpg','local','media/hero/og-default.jpg','image','jpg'),
-('00009400-0000-4000-8000-000000000100','og-ilanlar.jpg','default','media/hero/og-ilanlar.jpg','media/hero','image/jpeg',175000,'/uploads/media/hero/og-ilanlar.jpg','local','media/hero/og-ilanlar.jpg','image','jpg');
+('00009400-0000-4000-8000-000000000100','og-ilanlar.jpg','default','media/hero/og-ilanlar.jpg','media/hero','image/jpeg',175000,'/uploads/media/hero/og-ilanlar.jpg','local','media/hero/og-ilanlar.jpg','image','jpg'),
+-- ── SLIDER ────────────────────────────────────────────────────────────────
+('00009400-0000-4000-8000-000000000101','slide-1-field-landscape.webp','default','slide/slide-1-field-landscape.webp','slide','image/webp',282004,'/uploads/slide/slide-1-field-landscape.webp','local','slide/slide-1-field-landscape.webp','image','webp'),
+('00009400-0000-4000-8000-000000000102','slide-2-corn-field.webp','default','slide/slide-2-corn-field.webp','slide','image/webp',140604,'/uploads/slide/slide-2-corn-field.webp','local','slide/slide-2-corn-field.webp','image','webp'),
+('00009400-0000-4000-8000-000000000103','slide-3-agriculture.webp','default','slide/slide-3-agriculture.webp','slide','image/webp',184126,'/uploads/slide/slide-3-agriculture.webp','local','slide/slide-3-agriculture.webp','image','webp'),
+('00009400-0000-4000-8000-000000000104','slide-4-hero.webp','default','slide/slide-4-hero.webp','slide','image/webp',176044,'/uploads/slide/slide-4-hero.webp','local','slide/slide-4-hero.webp','image','webp'),
+-- ── ÜYELIK LOGOLARI ───────────────────────────────────────────────────────────
+('00009400-0000-4000-8000-000000000105','atso.png','default','about/memberships/atso.png','about/memberships','image/png',0,'/uploads/about/memberships/atso.png','local','about/memberships/atso.png','image','png'),
+('00009400-0000-4000-8000-000000000106','tarim-bakanligi.png','default','about/memberships/tarim-bakanligi.png','about/memberships','image/png',0,'/uploads/about/memberships/tarim-bakanligi.png','local','about/memberships/tarim-bakanligi.png','image','png'),
+('00009400-0000-4000-8000-000000000107','turktob-dagiticilari.png','default','about/memberships/turktob-dagiticilari.png','about/memberships','image/png',0,'/uploads/about/memberships/turktob-dagiticilari.png','local','about/memberships/turktob-dagiticilari.png','image','png'),
+('00009400-0000-4000-8000-000000000108','tsuab.png','default','about/memberships/tsuab.png','about/memberships','image/png',0,'/uploads/about/memberships/tsuab.png','local','about/memberships/tsuab.png','image','png');

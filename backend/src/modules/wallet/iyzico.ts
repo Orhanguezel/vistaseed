@@ -1,17 +1,17 @@
 // src/modules/wallet/iyzico.ts
-// İyzico Checkout Form entegrasyonu — resmi iyzipay SDK kullanır.
+// İyzico Checkout Form entegrasyonu (SDK: `iyzico-sdk` → kayıt adı `iyzipay`).
 // Marketplace modu destekler (subMerchantKey/subMerchantPrice).
 
-import Iyzipay from "iyzipay";
+import Iyzico from "./iyzico-sdk";
 import { env } from "@/core/env";
 
-// ── Singleton İyzipay instance ──────────────────────────────────────────────
+// ── Singleton İyzico client ─────────────────────────────────────────────────
 
-let _instance: Iyzipay | null = null;
+let _instance: InstanceType<typeof Iyzico> | null = null;
 
-function getIyzipay(): Iyzipay {
+function getIyzicoClient(): InstanceType<typeof Iyzico> {
   if (!_instance) {
-    _instance = new Iyzipay({
+    _instance = new Iyzico({
       apiKey: env.IYZICO_API_KEY,
       secretKey: env.IYZICO_SECRET_KEY,
       uri: env.IYZICO_BASE_URL,
@@ -93,27 +93,27 @@ export interface CheckoutFormDetailResponse {
 
 // ── Public API ────────────────────────────────────────────────────────────────
 
-function promisify<T>(fn: (req: unknown, cb: (err: Error | null, result: T) => void) => void, req: unknown): Promise<T> {
+function promisify<T>(fn: (req: unknown, cb: (err: Error | null, result: unknown) => void) => void, req: unknown): Promise<T> {
   return new Promise((resolve, reject) => {
     fn(req, (err, result) => {
       if (err) return reject(err);
-      resolve(result);
+      resolve(result as T);
     });
   });
 }
 
 export async function createCheckoutForm(req: CheckoutFormInitRequest): Promise<CheckoutFormInitResponse> {
-  const iyzipay = getIyzipay();
+  const client = getIyzicoClient();
   return promisify<CheckoutFormInitResponse>(
-    iyzipay.checkoutFormInitialize.create.bind(iyzipay.checkoutFormInitialize),
+    client.checkoutFormInitialize.create.bind(client.checkoutFormInitialize),
     req,
   );
 }
 
 export async function retrieveCheckoutForm(token: string, conversationId: string): Promise<CheckoutFormDetailResponse> {
-  const iyzipay = getIyzipay();
+  const client = getIyzicoClient();
   return promisify<CheckoutFormDetailResponse>(
-    iyzipay.checkoutFormInitialize.retrieve.bind(iyzipay.checkoutFormInitialize),
+    client.checkoutFormInitialize.retrieve.bind(client.checkoutFormInitialize),
     { locale: "tr", conversationId, token },
   );
 }

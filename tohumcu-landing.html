@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VistaSeed — Geleceğin Tarımı, Bugünün Tohumu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #1a2e1a;
+    --forest-mid: #2d4a2d;
+    --sage: #5a7a5a;
+    --leaf: #3d6b35;
+    --gold: #c8a84e;
+    --gold-light: #e8d490;
+    --wheat: #f5e6c8;
+    --cream: #faf6ee;
+    --earth: #8b6f47;
+    --clay: #a0845c;
+    --white: #ffffff;
+    --text-dark: #1a1a18;
+    --text-mid: #4a4a42;
+    --text-light: #7a7a6e;
+    --border: rgba(26,46,26,0.08);
+    --shadow-sm: 0 2px 8px rgba(26,46,26,0.06);
+    --shadow-md: 0 8px 32px rgba(26,46,26,0.1);
+    --shadow-lg: 0 16px 48px rgba(26,46,26,0.14);
+    --shadow-xl: 0 32px 80px rgba(0,0,0,0.12);
+    --glass: rgba(255, 255, 255, 0.7);
+    --glass-dark: rgba(26, 46, 26, 0.8);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark);
+    background: var(--cream);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: var(--forest);
+    color: var(--wheat);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    padding: 8px 0;
+    font-family: 'Outfit', sans-serif;
+  }
+  .topbar-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar-info { display: flex; gap: 24px; }
+  .topbar a {
+    color: var(--gold-light);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .topbar a:hover { color: var(--white); }
+
+  /* ── NAV ── */
+  .navbar {
+    background: rgba(250,246,238,0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .navbar.scrolled { 
+    background: var(--white);
+    padding: 4px 0;
+    box-shadow: var(--shadow-md);
+  }
+  .nav-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 84px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--forest);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(26,46,26,0.15);
+  }
+  .logo-icon::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--gold);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    top: 8px;
+    left: 11px;
+  }
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.75rem;
+    color: var(--forest);
+    letter-spacing: -0.02em;
+  }
+  .logo-text span {
+    color: var(--gold);
+    font-weight: 400;
+    font-style: italic;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-mid);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+    font-family: 'Outfit', sans-serif;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--forest); }
+  .nav-links a:hover::after { width: 100%; }
+  
+  .nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .btn-outline {
+    padding: 11px 24px;
+    border: 2px solid var(--forest);
+    border-radius: 10px;
+    color: var(--forest);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    background: transparent;
+  }
+  .btn-outline:hover {
+    background: var(--forest);
+    color: var(--wheat);
+  }
+  .btn-primary {
+    padding: 11px 24px;
+    background: var(--forest);
+    border: 2px solid var(--forest);
+    border-radius: 10px;
+    color: var(--wheat);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(26,46,26,0.1);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(26,46,26,0.2);
+    background: var(--forest-mid);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--forest);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    filter: brightness(0.7) contrast(1.1);
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(26,46,26,0.9) 0%, rgba(26,46,26,0.4) 50%, transparent 100%);
+    z-index: 2;
+  }
+  .hero-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 60px;
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+  .hero-content {
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(200,168,78,0.2);
+    border: 1px solid rgba(200,168,78,0.4);
+    padding: 8px 20px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    backdrop-filter: blur(10px);
+  }
+  .hero-badge-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--gold);
+    animation: pulse 2s infinite;
+  }
+  .hero-badge-text {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: 'Outfit', sans-serif;
+  }
+  .hero h1 {
+    font-size: 5rem;
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 32px;
+    letter-spacing: -0.03em;
+    font-weight: 900;
+  }
+  .hero h1 em {
+    color: var(--gold);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .hero-desc {
+    font-size: 1.25rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin-bottom: 48px;
+    max-width: 580px;
+    font-weight: 300;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 20px;
+  }
+  .btn-large {
+    padding: 18px 40px;
+    border-radius: 14px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-hero-primary {
+    background: var(--gold);
+    color: var(--forest);
+    box-shadow: 0 12px 32px rgba(200,168,78,0.3);
+  }
+  .btn-hero-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px rgba(200,168,78,0.4);
+  }
+  .btn-hero-outline {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.3);
+    color: var(--white);
+  }
+  .btn-hero-outline:hover {
+    border-color: var(--white);
+    background: rgba(255,255,255,0.1);
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: var(--white);
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .trust-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--cream);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    color: var(--forest);
+    transition: all 0.3s;
+  }
+  .trust-item:hover .trust-icon { 
+    background: var(--forest); 
+    color: var(--gold);
+    transform: rotateY(180deg);
+  }
+  .trust-info h4 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    color: var(--forest);
+  }
+  .trust-info p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+  }
+
+  /* ── SECTION COMMONS ── */
+  .section { padding: 140px 0; position: relative; }
+  .container { max-width: 1440px; margin: 0 auto; padding: 0 60px; }
+  .section-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: block;
+    font-family: 'Outfit', sans-serif;
+  }
+  .section-title {
+    font-size: 3.5rem;
+    color: var(--forest);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  .section-title em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .section-desc {
+    font-size: 1.15rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin-bottom: 80px;
+  }
+
+  /* ── SEASONAL PICKS ── */
+  .seasonal-picks { background: var(--white); }
+  .picks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .pick-card {
+    display: flex;
+    background: var(--cream);
+    border-radius: 32px;
+    overflow: hidden;
+    height: 480px;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-sm);
+  }
+  .pick-card:hover {
+    transform: translateY(-12px);
+    box-shadow: var(--shadow-xl);
+  }
+  .pick-visual {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .pick-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s ease;
+  }
+  .pick-card:hover .pick-visual img { transform: scale(1.1); }
+  .pick-content {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .pick-season {
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    color: var(--leaf);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+  .pick-title { font-size: 2.2rem; margin-bottom: 16px; color: var(--forest); }
+  .pick-desc { font-size: 1rem; color: var(--text-mid); margin-bottom: 32px; }
+  .btn-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--forest);
+    font-weight: 700;
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    transition: gap 0.3s;
+  }
+  .btn-text:hover { gap: 16px; color: var(--gold); }
+
+  /* ── PRODUCTS GRID ── */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .product-card {
+    background: var(--white);
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    transition: all 0.4s;
+    overflow: hidden;
+    position: relative;
+  }
+  .product-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold-light);
+    box-shadow: var(--shadow-lg);
+  }
+  .product-img {
+    height: 280px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,46,26,0.1), transparent);
+  }
+  .product-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--glass-dark);
+    color: var(--wheat);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    z-index: 2;
+  }
+  .product-body { padding: 40px; }
+  .product-series {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    font-family: 'Outfit', sans-serif;
+  }
+  .product-name { font-size: 1.8rem; margin-bottom: 16px; color: var(--forest); }
+  .product-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    margin-top: 24px;
+  }
+  .p-stat label { display: block; font-size: 0.75rem; color: var(--text-light); margin-bottom: 4px; }
+  .p-stat span { font-weight: 700; color: var(--forest); font-size: 0.95rem; }
+
+  /* ── PLANTING GUIDE ── */
+  .planting-guide { background: var(--forest); color: var(--white); overflow: hidden; }
+  .planting-guide .section-title { color: var(--white); }
+  .guide-tabs {
+    display: flex;
+    gap: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 60px;
+  }
+  .guide-tab {
+    padding: 20px 0;
+    color: rgba(255,255,255,0.4);
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .guide-tab.active { color: var(--gold); }
+  .guide-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gold);
+  }
+  .guide-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .guide-info h3 { font-size: 2.8rem; margin-bottom: 24px; color: var(--white); }
+  .guide-info p { color: rgba(255,255,255,0.6); font-size: 1.1rem; margin-bottom: 40px; }
+  .guide-steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .step-card {
+    background: rgba(255,255,255,0.05);
+    padding: 32px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s;
+  }
+  .step-card:hover { background: rgba(255,255,255,0.08); border-color: var(--gold); }
+  .step-num {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gold);
+    opacity: 0.3;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .step-card h5 { font-size: 1.2rem; margin-bottom: 12px; }
+  .step-card p { font-size: 0.9rem; color: rgba(255,255,255,0.5); }
+
+  /* ── MARQUEE ── */
+  .marquee-section {
+    background: var(--gold);
+    padding: 24px 0;
+    overflow: hidden;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 80px;
+    animation: marquee 40s linear infinite;
+    width: max-content;
+  }
+  .marquee-item {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--forest);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .marquee-item::after { content: '•'; opacity: 0.3; }
+
+  /* ── NEWSLETTER ── */
+  .newsletter-band {
+    background: linear-gradient(135deg, var(--forest) 0%, #122012 100%);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .news-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .news-inner h2 { color: var(--white); font-size: 3rem; margin-bottom: 20px; }
+  .news-inner p { color: rgba(255,255,255,0.6); font-size: 1.1rem; margin-bottom: 48px; }
+  .input-group {
+    display: flex;
+    background: rgba(255,255,255,0.05);
+    padding: 8px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    transition: all 0.3s;
+  }
+  .input-group:focus-within { background: rgba(255,255,255,0.1); border-color: var(--gold); }
+  .input-group input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 0 30px;
+    color: var(--white);
+    font-size: 1rem;
+    outline: none;
+  }
+  .input-group button {
+    background: var(--gold);
+    color: var(--forest);
+    border: none;
+    padding: 16px 36px;
+    border-radius: 100px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .input-group button:hover { background: var(--white); }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--white);
+    padding: 100px 0 40px;
+    color: var(--text-dark);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr;
+    gap: 60px;
+    margin-bottom: 80px;
+  }
+  .footer-brand .logo { margin-bottom: 24px; }
+  .footer-brand p { color: var(--text-mid); font-size: 0.95rem; margin-bottom: 32px; }
+  .footer h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 28px;
+    color: var(--forest);
+  }
+  .footer ul { list-style: none; }
+  .footer ul li { margin-bottom: 14px; }
+  .footer ul a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    transition: color 0.3s;
+  }
+  .footer ul a:hover { color: var(--gold); }
+  .footer-contact h5 { font-size: 1.1rem; margin-bottom: 20px; }
+  .social-links { display: flex; gap: 16px; margin-top: 32px; }
+  .social-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--cream);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--forest);
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+  .social-icon:hover { background: var(--forest); color: var(--gold); transform: translateY(-4px); }
+  
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-light);
+  }
+  .footer-bottom span { font-family: 'Outfit', sans-serif; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(60px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.7; }
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1200px) {
+    .hero h1 { font-size: 4rem; }
+    .footer-grid { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  }
+  @media (max-width: 900px) {
+    .nav-inner { padding: 0 30px; }
+    .nav-links { display: none; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-actions { justify-content: center; }
+    .hero-desc { margin: 0 auto 48px; }
+    .trust-grid { grid-template-columns: repeat(2, 1fr); padding: 0 30px; }
+    .picks-grid { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .guide-content { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 2.8rem; }
+    .section-title { font-size: 2.5rem; }
+    .trust-grid { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .input-group { flex-direction: column; border-radius: 20px; padding: 10px; }
+    .input-group input { padding: 15px 20px; }
+    .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-info">
+      <span>VistaSeed Digital Lab — Tarımda Gelecek Vizyonu</span>
+      <a href="#">📞 +90 312 000 00 00</a>
+    </div>
+    <div class="topbar-info">
+      <a href="#">Bayi Ağı</a>
+      <a href="#">TR / EN</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">Vista<span>Seed</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#products">Ürünler</a></li>
+      <li><a href="#">Ar-Ge Merkezi</a></li>
+      <li><a href="#guide">Ekim Rehberi</a></li>
+      <li><a href="#">Sürdürülebilirlik</a></li>
+      <li><a href="#">Kurumsal</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#" class="btn-outline">Bayi Portalı</a>
+      <a href="#" class="btn-primary">Hızlı İletişim</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="frontend/public/assets/images/spring-hero.png" alt="VistaSeed Spring Field">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        <span class="hero-badge-text">Bahar Sezonu 2026 Hibrit Koleksiyonu</span>
+      </div>
+      <h1>Toprağın<br><em>Sessiz</em> Gücü</h1>
+      <p class="hero-desc">
+        Yeni nesil genetik ıslah teknolojileriyle geliştirilen VistaSeed tohumları, değişen iklim koşullarına tam uyum ve maksimum verim performansı için tasarlandı.
+      </p>
+      <div class="hero-actions">
+        <a href="#products" class="btn-large btn-hero-primary">
+          Ürünleri Keşfedin
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+        <a href="#" class="btn-large btn-hero-outline">Ar-Ge Süreçlerimiz</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-grid">
+    <div class="trust-item">
+      <div class="trust-icon">🛡️</div>
+      <div class="trust-info">
+        <h4>Sertifikalı Tohum</h4>
+        <p>OECD ve ISTA tescilli kalite</p>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🔬</div>
+      <div class="trust-info">
+        <h4>İleri Islah</h4>
+        <p>100% GDO'suz yerli üretim</p>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📈</div>
+      <div class="trust-info">
+        <h4>Yüksek Verim</h4>
+        <p>İklim şoklarına dayanıklı seri</p>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🤝</div>
+      <div class="trust-info">
+        <h4>Teknik Destek</h4>
+        <p>Hasada kadar uzman desteği</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEASONAL PICKS -->
+<section class="section seasonal-picks">
+  <div class="container">
+    <div class="section-label reveal">Önerilen Ürünler</div>
+    <h2 class="section-title reveal">Sezonun <em>Yıldızları</em></h2>
+    <p class="section-desc reveal">Uzman agronomistlerimiz tarafından bu mevsimde maksimum verim almanız için seçilen amiral gemisi çeşitlerimiz.</p>
+    
+    <div class="picks-grid">
+      <div class="pick-card reveal">
+        <div class="pick-visual">
+          <img src="frontend/public/assets/images/corn-seedling.png" alt="Elite Mısır">
+        </div>
+        <div class="pick-content">
+          <span class="pick-season">Bahar Sezonu</span>
+          <h3 class="pick-title">Elite King 700</h3>
+          <p class="pick-desc">Dane mısırda Türkiye verim şampiyonu. Kısa gün periyodunda maksimum koçan doluluğu.</p>
+          <a href="#" class="btn-text">İncele →</a>
+        </div>
+      </div>
+      <div class="pick-card reveal">
+        <div class="pick-visual">
+          <img src="frontend/public/assets/images/tomato-seeds.png" alt="Hibrit Domates">
+        </div>
+        <div class="pick-content">
+          <span class="pick-season">Sera Sezonu</span>
+          <h3 class="pick-title">Red Harvest F1</h3>
+          <p class="pick-desc">Raf ömrü uzun, hastalık dayanımı yüksek hibrit salkım domates serimiz.</p>
+          <a href="#" class="btn-text">İncele →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="products" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-label reveal">Kataloglar</div>
+    <h2 class="section-title reveal">Geniş <em>Ürün</em> Gamı</h2>
+    
+    <div class="products-grid">
+      <!-- Wheat -->
+      <div class="product-card reveal">
+        <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=800&q=80')">
+          <div class="product-badge">Tescilli</div>
+        </div>
+        <div class="product-body">
+          <div class="product-series">Tarla Bitkileri</div>
+          <h3 class="product-name">Hibrit Buğday</h3>
+          <p>Yüksek gluten ve protein kalitesiyle un sanayisinin vazgeçilmez tercihi.</p>
+          <div class="product-stats">
+            <div class="p-stat"><label>Çeşit</label><span>18 Tip</span></div>
+            <div class="p-stat"><label>Dayanım</label><span>Yüksek</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- Sunflower -->
+      <div class="product-card reveal">
+        <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-159742324403d-d19504ba6627?auto=format&fit=crop&w=800&q=80')">
+          <div class="product-badge">Top Seller</div>
+        </div>
+        <div class="product-body">
+          <div class="product-series">Yağlık Bitkiler</div>
+          <h3 class="product-name">Ayçiçeği</h3>
+          <p>Yüksek yağ oranı ve Orobanche parazitine karşı tam dayanıklı hibritler.</p>
+          <div class="product-stats">
+            <div class="p-stat"><label>Çeşit</label><span>12 Tip</span></div>
+            <div class="p-stat"><label>Yağ Oranı</label><span>%48+</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- Vegetable -->
+      <div class="product-card reveal">
+        <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1592419044706-39796d40f98c?auto=format&fit=crop&w=800&q=80')">
+        </div>
+        <div class="product-body">
+          <div class="product-series">Sebze Grubu</div>
+          <h3 class="product-name">Sebze Tohumları</h3>
+          <p>Domatesten bibere, patlıcandan hıyara taze meyve pazarı için elit çeşitler.</p>
+          <div class="product-stats">
+            <div class="p-stat"><label>Çeşit</label><span>45 Tip</span></div>
+            <div class="p-stat"><label>Pazar</label><span>Sera & Açık</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANTING GUIDE -->
+<section class="section planting-guide" id="guide">
+  <div class="container">
+    <div class="section-label reveal">Vista Bilgi Merkezi</div>
+    <h2 class="section-title reveal">Akıllı <em>Ekim</em> Rehberi</h2>
+    
+    <div class="guide-tabs reveal">
+      <div class="guide-tab active">İlkbahar</div>
+      <div class="guide-tab">Yaz</div>
+      <div class="guide-tab">Sonbahar</div>
+      <div class="guide-tab">Kış</div>
+    </div>
+
+    <div class="guide-content">
+      <div class="guide-info reveal">
+        <h3>Baharın Bereketi<br>Doğru Hazırlıkla Başlar</h3>
+        <p>Toprak sıcaklığının 8-10 dereceye ulaştığı an ekim için en kritik dönemdir. VistaSeed agronomistlerinin hazırladığı bahar takvimiyle riskleri minimize edin.</p>
+        <a href="#" class="btn-large btn-hero-primary">Tam Rehberi İndir (PDF)</a>
+      </div>
+      <div class="guide-steps">
+        <div class="step-card reveal">
+          <span class="step-num">01</span>
+          <h5>Toprak Hazırlığı</h5>
+          <p>Potasyum dengesini koruyan özel sürgü teknikleriyle taban gübrelemesi.</p>
+        </div>
+        <div class="step-card reveal">
+          <span class="step-num">02</span>
+          <h5>Tohum Sıklığı</h5>
+          <p>Dekar başına düşen bitki sayısının çeşit bazlı hassas ayarı.</p>
+        </div>
+        <div class="step-card reveal">
+          <span class="step-num">03</span>
+          <h5>İlk Sulama</h5>
+          <p>Çimlenme şokunu önlemek için yapılacak kontrollü can suyu miktarı.</p>
+        </div>
+        <div class="step-card reveal">
+          <span class="step-num">04</span>
+          <h5>Zararlı Kontrolü</h5>
+          <p>İlk yaprak evresinde (V2-V4) dikkat edilmesi gereken fungal riskler.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Yüksek Çimlenme %98+</span>
+    <span class="marquee-item">TÜBİTAK Onaylı Ar-Ge</span>
+    <span class="marquee-item">81 İl Bayi Ağı</span>
+    <span class="marquee-item">İhracat Lideri</span>
+    <span class="marquee-item">Sürdürülebilir Tarım</span>
+    <span class="marquee-item">Hibrit Teknolojisi</span>
+    <span class="marquee-item">Yüksek Çimlenme %98+</span>
+    <span class="marquee-item">TÜBİTAK Onaylı Ar-Ge</span>
+    <span class="marquee-item">81 İl Bayi Ağı</span>
+    <span class="marquee-item">İhracat Lideri</span>
+    <span class="marquee-item">Sürdürülebilir Tarım</span>
+    <span class="marquee-item">Hibrit Teknolojisi</span>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-band">
+  <div class="container">
+    <div class="news-inner">
+      <h2 class="reveal">Bilgiyle <em>Büyüyelim</em></h2>
+      <p class="reveal">Haftalık tarım raporları, pazar analizleri ve yeni çeşit duyuruları için bültenimize abone olun.</p>
+      <div class="input-group reveal">
+        <input type="email" placeholder="E-posta adresinizi girin">
+        <button>Kayıt Ol</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-icon"></div>
+          <div class="logo-text">Vista<span>Seed</span></div>
+        </a>
+        <p>Tarım teknolojilerinde 50 yıllık güvenin adı. Anadolu'nun bereketli mirasını teknolojiyle harmanlayarak geleceğe taşıyoruz.</p>
+        <div class="social-links">
+          <a href="#" class="social-icon">IG</a>
+          <a href="#" class="social-icon">LI</a>
+          <a href="#" class="social-icon">YT</a>
+          <a href="#" class="social-icon">X</a>
+        </div>
+      </div>
+      <div>
+        <h4>Kategoriler</h4>
+        <ul>
+          <li><a href="#">Tarla Bitkileri</a></li>
+          <li><a href="#">Sebze Grubu</a></li>
+          <li><a href="#">Endüstri Bitkileri</a></li>
+          <li><a href="#">Yem Bitkileri</a></li>
+          <li><a href="#">Yeni Çeşitler</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hızlı Menü</h4>
+        <ul>
+          <li><a href="#">Bayi Başvurusu</a></li>
+          <li><a href="#">Ar-Ge Merkezi</a></li>
+          <li><a href="#">İnsan Kaynakları</a></li>
+          <li><a href="#">Hakkımızda</a></li>
+          <li><a href="#">İletişim</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Destek</h4>
+        <ul>
+          <li><a href="#">Ekim Rehberleri</a></li>
+          <li><a href="#">Sertifikalar</a></li>
+          <li><a href="#">SSS</a></li>
+          <li><a href="#">Teknik Ekip</a></li>
+          <li><a href="#">KVKK</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Genel Merkez</h4>
+        <p style="font-size:0.95rem; color:var(--text-mid);">
+          Tarım Organize Bölgesi, No: 124<br>
+          Altındağ, Ankara / Türkiye<br><br>
+          <strong>T:</strong> +90 312 000 00 00<br>
+          <strong>E:</strong> info@vistaseed.com
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 VistaSeed Agricultural Technologies. Tüm hakları saklıdır.</span>
+      <div>
+        <a href="#" style="color:var(--text-light); text-decoration:none; margin-left:20px;">Kullanım Koşulları</a>
+        <a href="#" style="color:var(--text-light); text-decoration:none; margin-left:20px;">Gizlilik Politikası</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Reveal on scroll
+  function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+    for (var i = 0; i < reveals.length; i++) {
+      var windowHeight = window.innerHeight;
+      var elementTop = reveals[i].getBoundingClientRect().top;
+      var elementVisible = 100;
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add("active");
+      }
+    }
+  }
+  window.addEventListener("scroll", reveal);
+  reveal(); // Initial call
+</script>
+
+</body>
+</html>

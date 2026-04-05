@@ -349,9 +349,9 @@ Kurallar:
 
 Kod yazildiktan sonra mumkun oldugunda su kontroller yapilir:
 
-- `npm run locales:generate`
-- `npx tsc --noEmit --incremental false --pretty false`
-- `npm run build`
+- `bun run locales:generate`
+- `bun x tsc --noEmit --incremental false --pretty false`
+- `bun run build`
 
 Not:
 

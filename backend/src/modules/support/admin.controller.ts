@@ -1,5 +1,5 @@
 import type { FastifyReply, FastifyRequest } from 'fastify';
-import { handleRouteError, sendNotFound } from '@/modules/_shared';
+import { handleRouteError, sendNotFound } from '@agro/shared-backend/modules/_shared';
 import {
   faqCreateSchema,
   faqListQuerySchema,
@@ -37,6 +37,18 @@ export async function adminCreateFaq(req: FastifyRequest, reply: FastifyReply) {
     return reply.code(201).send(await repoGetFaqById(id, data.locale));
   } catch (e) {
     return handleRouteError(reply, req, e, 'admin_support_faq_create');
+  }
+}
+
+export async function adminGetFaq(req: FastifyRequest, reply: FastifyReply) {
+  try {
+    const { id } = req.params as { id: string };
+    const params = faqListQuerySchema.pick({ locale: true }).parse(req.query ?? {});
+    const row = await repoGetFaqById(id, params.locale);
+    if (!row) return sendNotFound(reply);
+    return reply.send(row);
+  } catch (e) {
+    return handleRouteError(reply, req, e, 'admin_support_faq_get');
   }
 }
 

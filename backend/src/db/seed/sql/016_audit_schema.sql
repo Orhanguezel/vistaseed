@@ -1,6 +1,6 @@
 -- =============================================================
 -- FILE: src/db/seed/sql/108_audit_schema.sql
--- DESCRIPTION: vistaseed — audit_request_logs + audit_auth_events
+-- DESCRIPTION: audit_request_logs + audit_auth_events
 -- =============================================================
 
 SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;

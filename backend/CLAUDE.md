@@ -1,6 +1,6 @@
-# CLAUDE.md - vistaseed Backend
+# CLAUDE.md - Corporate Site Backend
 
-Bu dosya vistaseed backend icin kisa calisma ozetidir.
+Bu dosya corporate site backend icin kisa calisma ozetidir.
 
 Detayli kurallar:
 
@@ -10,7 +10,7 @@ Detayli kurallar:
 
 ## 1. Proje
 
-Bu servis vistaseed backend API katmanidir.
+Bu servis kurumsal web sitesi backend API katmanidir.
 
 Temel teknik yapi:
 

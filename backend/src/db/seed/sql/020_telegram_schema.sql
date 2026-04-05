@@ -1,6 +1,6 @@
 -- =============================================================
 -- FILE: src/db/seed/sql/112_telegram_schema.sql
--- DESCRIPTION: vistaseed — telegram_inbound_messages tablosu
+-- DESCRIPTION: telegram_inbound_messages tablosu
 -- =============================================================
 
 SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;

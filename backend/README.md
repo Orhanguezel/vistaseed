@@ -1,19 +1,19 @@
-# vistaseed Backend
+# Corporate Site Backend
 
-Bu servis vistaseed projesinin backend API katmanidir.
+Kurumsal web sitesi backend API katmani.
 
 Gelistirme kurallari icin:
 
-- [BACKEND_RULES.md](/home/orhan/Documents/Projeler/vistaseed/backend/BACKEND_RULES.md)
-- [CLAUDE.md](/home/orhan/Documents/Projeler/vistaseed/backend/CLAUDE.md)
+- [BACKEND_RULES.md](BACKEND_RULES.md)
+- [CLAUDE.md](CLAUDE.md)
 
 Temel yapi:
 
 - Bun runtime
-- Fastify
-- MySQL / MariaDB
+- Fastify v5
+- MySQL / MariaDB + Drizzle ORM
 - JWT tabanli auth
-- site settings, ilan, booking, wallet, admin ve audit modulleri
+- Modul bazli yapi (auth, products, categories, contact, support, storage, vb.)
 
 ## Calistirma
 
@@ -28,14 +28,27 @@ cp .env.example .env
 Lokal docker-compose kullanacaksan:
 
 ```bash
-docker compose up -d db
+docker compose up -d vistaseed-db
 ```
 
 Bu compose varsayilan olarak sunlari kullanir:
 
-- `DB_NAME=vistaseed`
+- `DB_NAME=mydb`
 - `DB_USER=app`
 - `DB_PASSWORD=app`
+- Ag: `ecosystem-network`; DB servisi: `vistaseed-db`
+
+API ve DB birlikte (imaj build):
+
+```bash
+docker compose up -d --build
+```
+
+Gelistirme override (`NODE_ENV=development`, DB health daha sik):
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+```
 
 ### 3. Backend'i baslat
 
@@ -43,23 +56,32 @@ Bu compose varsayilan olarak sunlari kullanir:
 bun run dev
 ```
 
-## Sik Gorülen Hata
+## Seed (Veritabani Olusturma)
 
-### `Access denied for user 'app'@'localhost' to database 'vistaseed'`
+```bash
+bun run seed
+```
+
+Bu komut `src/db/seed/sql/` altindaki SQL dosyalarini sirasyla calistirir.
+`{{SITE_NAME}}`, `{{ADMIN_EMAIL}}`, `{{EDITOR_EMAIL}}` gibi placeholder'lar `.env` degerlerinden enjekte edilir.
+
+## Sik Gorülen Hata
+
+### `Access denied for user 'app'@'localhost' to database 'mydb'`
 
 Anlami:
 
-- backend `.env` icinde `DB_USER=app`, `DB_PASSWORD=app`, `DB_NAME=vistaseed` ile acilmaya calisiyor
-- ama MySQL tarafinda bu kullanicinin `vistaseed` veritabanina yetkisi yok
+- backend `.env` icinde `DB_USER=app`, `DB_PASSWORD=app`, `DB_NAME=mydb` ile acilmaya calisiyor
+- ama MySQL tarafinda bu kullanicinin veritabanina yetkisi yok
 
 Iki cozum yolu var.
 
 ### Cozum 1: Kullaniciya yetki ver
 
 ```sql
-CREATE DATABASE IF NOT EXISTS vistaseed;
+CREATE DATABASE IF NOT EXISTS mydb;
 CREATE USER IF NOT EXISTS 'app'@'localhost' IDENTIFIED BY 'app';
-GRANT ALL PRIVILEGES ON vistaseed.* TO 'app'@'localhost';
+GRANT ALL PRIVILEGES ON mydb.* TO 'app'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
@@ -70,16 +92,16 @@ Ornek:
 ```env
 DB_USER=root
 DB_PASSWORD=your_password
-DB_NAME=vistaseed
+DB_NAME=mydb
 ```
 
 ## Env Notlari
 
 Guncel beklenti:
 
-- `src/core/env.ts` fallback olarak `DB_NAME=vistaseed` kullanir
-- local compose `app/app/vistaseed` kombinasyonuna gore ayarlidir
-- `.env.example` bu local gelistirme akisini referans alir
+- `src/core/env.ts` fallback olarak `DB_NAME=mydb` kullanir
+- `.env.example` local gelistirme akisini referans alir
+- `SITE_NAME` env degiskeni seed ve mail sablonlarinda kullanilir
 
 Storage:
 
@@ -104,5 +126,5 @@ bun run dev
 Beklenen:
 
 - server DB'ye baglanir
-- `localhost:8078` uzerinde ayaga kalkar
+- `localhost:8083` uzerinde ayaga kalkar
 - auth ve admin endpoint'leri cevap vermeye baslar

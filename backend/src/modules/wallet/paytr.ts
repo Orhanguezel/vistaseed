@@ -90,9 +90,17 @@ export async function createPayTRToken(data: PayTRTokenRequest): Promise<{ token
 }
 
 /** PayTR Callback doğrulama */
-export function verifyPayTRCallback(body: any): boolean {
+export function verifyPayTRCallback(body: unknown): boolean {
+  if (!body || typeof body !== "object") return false;
+  const b = body as Record<string, unknown>;
+  const merchant_oid = b.merchant_oid;
+  const status = b.status;
+  const total_amount = b.total_amount;
+  const hash = b.hash;
+  if (typeof merchant_oid !== "string" || typeof status !== "string" || typeof total_amount !== "string" || typeof hash !== "string") {
+    return false;
+  }
   const { PAYTR_MERCHANT_KEY, PAYTR_MERCHANT_SALT } = env;
-  const { merchant_oid, status, total_amount, hash } = body;
 
   const hash_str = merchant_oid + PAYTR_MERCHANT_SALT + status + total_amount;
   const expected_hash = crypto

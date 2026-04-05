@@ -1,0 +1,51 @@
+{
+  "title": "VistaSeed",
+  "slug": "vistaseed",
+  "summary": "Corporate seed brand website with product showcase, multilingual-ready content management, and a Fastify-backed admin workflow.",
+  "description": "VistaSeed combines a public-facing Next.js website, an admin panel, and a Fastify API to manage product content, company pages, FAQ, contact flows, and future hiring modules for an agricultural seed brand.",
+  "category": "CORPORATE WEBSITE",
+  "services": [
+    "Frontend Development",
+    "Backend Development",
+    "Admin Panel",
+    "CMS Integration"
+  ],
+  "techs": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Fastify",
+    "MySQL",
+    "Drizzle ORM",
+    "Bun",
+    "Tailwind CSS"
+  ],
+  "features": [
+    "Corporate marketing pages",
+    "Seed product catalog",
+    "Admin-managed content workflow",
+    "Contact and FAQ management",
+    "Career page foundation",
+    "SEO-ready page structure"
+  ],
+  "designHighlights": [
+    "Agriculture-focused brand presentation",
+    "Responsive public site and admin experience",
+    "Structured content planning under doc/"
+  ],
+  "featured": false,
+  "displayOrder": 71,
+  "clientName": "Vista Seeds",
+  "status": "development",
+  "startDate": "2026-03-01",
+  "completeDate": null,
+  "completionTimeLabel": "In active development",
+  "repoUrl": null,
+  "websiteUrl": "https://vistaseed.com.tr",
+  "demoUrl": null,
+  "featuredImage": "/assets/imgs/work/img-3.png",
+  "featuredImageAlt": "VistaSeed corporate website",
+  "resumeTitle": "VistaSeed",
+  "resumeSubtitle": "Corporate Seed Platform",
+  "excludeFromPortfolio": false
+}

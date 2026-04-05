@@ -1,11 +1,11 @@
 // test/category.test.ts — Admin Categories CRUD testleri
 import { describe, it, expect, afterAll } from "bun:test";
-import { getTestApp, closeTestApp, registerAdminUser, registerUser, randomEmail, authHeaders } from "./setup";
+import { getTestApp, closeTestApp, registerAdminUser, registerUser, randomEmail, authHeaders, apiAdmin } from "./setup";
 
 afterAll(closeTestApp);
 
 const CATEGORY_DATA = {
-  module_key: "ilanlar",
+  module_key: "products",
   locale: "tr",
   name: "Test Kategori",
   slug: `test-kategori-${Date.now()}`,
@@ -23,7 +23,7 @@ describe("Categories — Admin Liste", () => {
 
     const res = await app.inject({
       method: "GET",
-      url: "/api/admin/categories/list?locale=tr",
+      url: apiAdmin("/categories/list?locale=tr"),
       headers: authHeaders(token!),
     });
     expect(res.statusCode).toBe(200);
@@ -35,7 +35,7 @@ describe("Categories — Admin Liste", () => {
     const app = await getTestApp();
     const res = await app.inject({
       method: "GET",
-      url: "/api/admin/categories/list?locale=tr",
+      url: apiAdmin("/categories/list?locale=tr"),
     });
     expect(res.statusCode).toBe(401);
   });
@@ -43,11 +43,11 @@ describe("Categories — Admin Liste", () => {
   it("normal kullanici admin list 403 doner", async () => {
     const app = await getTestApp();
     const email = randomEmail();
-    const { token } = await registerUser(app, { email, password: "Test1234!" });
+    const { token } = await registerUser(app, { email, password: "Test1234!", role: "editor" });
 
     const res = await app.inject({
       method: "GET",
-      url: "/api/admin/categories/list?locale=tr",
+      url: apiAdmin("/categories/list?locale=tr"),
       headers: authHeaders(token!),
     });
     expect(res.statusCode).toBe(403);
@@ -62,7 +62,7 @@ describe("Categories — Admin CRUD", () => {
     const slug = `crud-create-${Date.now()}`;
     const res = await app.inject({
       method: "POST",
-      url: "/api/admin/categories",
+      url: apiAdmin("/categories"),
       headers: authHeaders(token!),
       payload: { ...CATEGORY_DATA, slug },
     });
@@ -81,7 +81,7 @@ describe("Categories — Admin CRUD", () => {
     const slug = `crud-get-${Date.now()}`;
     const createRes = await app.inject({
       method: "POST",
-      url: "/api/admin/categories",
+      url: apiAdmin("/categories"),
       headers: authHeaders(token!),
       payload: { ...CATEGORY_DATA, slug },
     });
@@ -90,7 +90,7 @@ describe("Categories — Admin CRUD", () => {
     // Detay al
     const res = await app.inject({
       method: "GET",
-      url: `/api/admin/categories/${created.id}?locale=tr`,
+      url: apiAdmin(`/categories/${created.id}?locale=tr`),
       headers: authHeaders(token!),
     });
     expect(res.statusCode).toBe(200);
@@ -105,7 +105,7 @@ describe("Categories — Admin CRUD", () => {
 
     const res = await app.inject({
       method: "GET",
-      url: "/api/admin/categories/nonexistent-id-12345",
+      url: apiAdmin("/categories/nonexistent-id-12345"),
       headers: authHeaders(token!),
     });
     expect(res.statusCode).toBe(404);
@@ -119,7 +119,7 @@ describe("Categories — Admin CRUD", () => {
     const slug = `crud-update-${Date.now()}`;
     const createRes = await app.inject({
       method: "POST",
-      url: "/api/admin/categories",
+      url: apiAdmin("/categories"),
       headers: authHeaders(token!),
       payload: { ...CATEGORY_DATA, slug },
     });
@@ -128,7 +128,7 @@ describe("Categories — Admin CRUD", () => {
     // Guncelle
     const res = await app.inject({
       method: "PATCH",
-      url: `/api/admin/categories/${created.id}`,
+      url: apiAdmin(`/categories/${created.id}`),
       headers: authHeaders(token!),
       payload: { name: "Guncel Kategori", locale: "tr" },
     });
@@ -145,7 +145,7 @@ describe("Categories — Admin CRUD", () => {
     const slug = `crud-delete-${Date.now()}`;
     const createRes = await app.inject({
       method: "POST",
-      url: "/api/admin/categories",
+      url: apiAdmin("/categories"),
       headers: authHeaders(token!),
       payload: { ...CATEGORY_DATA, slug },
     });
@@ -154,7 +154,7 @@ describe("Categories — Admin CRUD", () => {
     // Sil
     const res = await app.inject({
       method: "DELETE",
-      url: `/api/admin/categories/${created.id}`,
+      url: apiAdmin(`/categories/${created.id}`),
       headers: authHeaders(token!),
     });
     expect(res.statusCode).toBe(200);
@@ -164,7 +164,7 @@ describe("Categories — Admin CRUD", () => {
     // Tekrar get → 404
     const getRes = await app.inject({
       method: "GET",
-      url: `/api/admin/categories/${created.id}?locale=tr`,
+      url: apiAdmin(`/categories/${created.id}?locale=tr`),
       headers: authHeaders(token!),
     });
     expect(getRes.statusCode).toBe(404);
@@ -180,7 +180,7 @@ describe("Categories — Toggle & Reorder", () => {
     const slug = `toggle-active-${Date.now()}`;
     const createRes = await app.inject({
       method: "POST",
-      url: "/api/admin/categories",
+      url: apiAdmin("/categories"),
       headers: authHeaders(token!),
       payload: { ...CATEGORY_DATA, slug, is_active: true },
     });
@@ -189,7 +189,7 @@ describe("Categories — Toggle & Reorder", () => {
     // Deaktif et
     const res = await app.inject({
       method: "PATCH",
-      url: `/api/admin/categories/${created.id}/active`,
+      url: apiAdmin(`/categories/${created.id}/active`),
       headers: authHeaders(token!),
       payload: { is_active: false },
     });
@@ -205,7 +205,7 @@ describe("Categories — Toggle & Reorder", () => {
     const slug = `toggle-featured-${Date.now()}`;
     const createRes = await app.inject({
       method: "POST",
-      url: "/api/admin/categories",
+      url: apiAdmin("/categories"),
       headers: authHeaders(token!),
       payload: { ...CATEGORY_DATA, slug, is_featured: false },
     });
@@ -214,7 +214,7 @@ describe("Categories — Toggle & Reorder", () => {
     // Featured yap
     const res = await app.inject({
       method: "PATCH",
-      url: `/api/admin/categories/${created.id}/featured`,
+      url: apiAdmin(`/categories/${created.id}/featured`),
       headers: authHeaders(token!),
       payload: { is_featured: true },
     });
@@ -232,13 +232,13 @@ describe("Categories — Toggle & Reorder", () => {
     const slug2 = `reorder-b-${Date.now()}`;
     const r1 = await app.inject({
       method: "POST",
-      url: "/api/admin/categories",
+      url: apiAdmin("/categories"),
       headers: authHeaders(token!),
       payload: { ...CATEGORY_DATA, slug: slug1, display_order: 1 },
     });
     const r2 = await app.inject({
       method: "POST",
-      url: "/api/admin/categories",
+      url: apiAdmin("/categories"),
       headers: authHeaders(token!),
       payload: { ...CATEGORY_DATA, slug: slug2, display_order: 2 },
     });
@@ -248,7 +248,7 @@ describe("Categories — Toggle & Reorder", () => {
     // Siralama degistir
     const res = await app.inject({
       method: "POST",
-      url: "/api/admin/categories/reorder",
+      url: apiAdmin("/categories/reorder"),
       headers: authHeaders(token!),
       payload: {
         items: [
@@ -267,7 +267,7 @@ describe("Categories — Toggle & Reorder", () => {
 
     const res = await app.inject({
       method: "POST",
-      url: "/api/admin/categories/reorder",
+      url: apiAdmin("/categories/reorder"),
       headers: authHeaders(token!),
       payload: {},
     });
@@ -283,7 +283,7 @@ describe("Categories — Image", () => {
     const slug = `image-set-${Date.now()}`;
     const createRes = await app.inject({
       method: "POST",
-      url: "/api/admin/categories",
+      url: apiAdmin("/categories"),
       headers: authHeaders(token!),
       payload: { ...CATEGORY_DATA, slug },
     });
@@ -291,7 +291,7 @@ describe("Categories — Image", () => {
 
     const res = await app.inject({
       method: "PATCH",
-      url: `/api/admin/categories/${created.id}/image`,
+      url: apiAdmin(`/categories/${created.id}/image`),
       headers: authHeaders(token!),
       payload: { asset_id: "asset-test-123", alt: "Test gorsel" },
     });

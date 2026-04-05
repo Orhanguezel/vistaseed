@@ -1,4 +1,4 @@
-/* 61_theme_config.sql — vistaseed varsayılan tema (Turuncu & Lacivert) */
+/* theme_config.sql — Generic corporate site default theme */
 
 SET NAMES utf8mb4;
 SET time_zone = '+00:00';
@@ -14,29 +14,25 @@ CREATE TABLE `theme_config` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- =============================================================
--- vistaseed — Varsayılan Tema Konfigürasyonu
--- Renk Kuralı: Turuncu (#F97316) CTA · Lacivert (#0F2340) nav/footer
--- =============================================================
 INSERT INTO `theme_config` (`id`, `is_active`, `config`, `created_at`, `updated_at`) VALUES (
   '00000000-0000-4000-8000-000000000001',
   1,
   '{
     "colors": {
-      "primary":     "#F97316",
-      "secondary":   "#0F2340",
-      "accent":      "#E85D04",
-      "background":  "#FAFAFA",
-      "foreground":  "#111827",
-      "muted":       "#F3F4F6",
-      "mutedFg":     "#6B7280",
-      "border":      "#E5E7EB",
+      "primary":     "#006838",
+      "secondary":   "#0A2B1E",
+      "accent":      "#005230",
+      "background":  "#F6FAF8",
+      "foreground":  "#101E17",
+      "muted":       "#ECF2EE",
+      "mutedFg":     "#697A72",
+      "border":      "#D4DDD8",
       "destructive": "#ef4444",
       "success":     "#22c55e",
-      "navBg":       "#0F2340",
+      "navBg":       "#0A2B1E",
       "navFg":       "#FFFFFF",
-      "footerBg":    "#0F2340",
-      "footerFg":    "#F3F4F6"
+      "footerBg":    "#0A2B1E",
+      "footerFg":    "#E8EDEA"
     },
     "radius":     "0.5rem",
     "fontFamily": "DM Sans, sans-serif",
@@ -69,7 +65,7 @@ INSERT INTO `theme_config` (`id`, `is_active`, `config`, `created_at`, `updated_
         "key":     "featured",
         "enabled": true,
         "order":   3,
-        "label":   "Öne Çıkan İlanlar",
+        "label":   "Öne Çıkan Ürünler",
         "colsLg":  3,
         "colsMd":  2,
         "colsSm":  1,
@@ -79,23 +75,23 @@ INSERT INTO `theme_config` (`id`, `is_active`, `config`, `created_at`, `updated_
         "key":     "recent",
         "enabled": true,
         "order":   4,
-        "label":   "Son İlanlar",
+        "label":   "Son Ürünler",
         "colsLg":  3,
         "colsMd":  2,
         "colsSm":  1,
         "limit":   8
       },
       {
-        "key":     "how_it_works",
+        "key":     "about_preview",
         "enabled": true,
         "order":   5,
-        "label":   "Nasıl Çalışır?"
+        "label":   "Hakkımızda"
       },
       {
-        "key":     "cta_carrier",
+        "key":     "cta",
         "enabled": true,
         "order":   6,
-        "label":   "Taşıyıcı Ol CTA"
+        "label":   "İletişim CTA"
       }
     ],
 
@@ -104,12 +100,12 @@ INSERT INTO `theme_config` (`id`, `is_active`, `config`, `created_at`, `updated_
         "variant":   "default",
         "heroStyle": "static"
       },
-      "listings": {
+      "products": {
         "variant":      "default",
         "defaultView":  "grid",
         "filtersStyle": "sidebar"
       },
-      "listing_detail": {
+      "product_detail": {
         "variant": "default"
       },
       "about":   { "variant": "centered" },

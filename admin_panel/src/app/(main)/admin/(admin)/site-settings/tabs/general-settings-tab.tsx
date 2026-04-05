@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { toast } from 'sonner';
 import { RefreshCcw, Plus, ChevronRight } from 'lucide-react';
 import { useAdminTranslations } from '@/i18n';
+import { FALLBACK_LOCALE } from '@/i18n/config';
 import { usePreferencesStore } from '@/stores/preferences/preferences-provider';
 
 import {
@@ -35,7 +36,7 @@ export type GeneralSettingsTabProps = {
 export const GeneralSettingsTab: React.FC<GeneralSettingsTabProps> = ({ locale, settingPrefix }) => {
   const [updateSetting, { isLoading: isSaving }] = useUpdateSiteSettingAdminMutation();
 
-  const adminLocale = usePreferencesStore((s) => s.adminLocale) || 'tr';
+  const adminLocale = usePreferencesStore((s) => s.adminLocale) || FALLBACK_LOCALE;
   const t = useAdminTranslations(adminLocale || undefined);
 
   const withPrefix = React.useCallback((key: string) => `${settingPrefix || ''}${key}`, [settingPrefix]);

@@ -38,11 +38,11 @@ export const DEFAULT_BRANDING: AdminBrandingConfig = {
   meta: {
     title: 'vistaseed Admin Panel',
     description:
-      'vistaseed yonetim paneli. Tasiyicilar, ilanlar, rezervasyonlar ve site ayarlari yonetimi.',
+      'vistaseed yönetim paneli. Taşıyıcılar, ilanlar, rezervasyonlar ve site ayarları yönetimi.',
     og_url: 'https://vistaseed.com/admin',
     og_title: 'vistaseed Admin Panel',
     og_description:
-      'vistaseed yonetim paneli ile ilan ve rezervasyon yonetimini merkezi olarak yapin.',
+      'vistaseed yönetim paneli ile ilan ve rezervasyon yönetimini merkezi olarak yapın.',
     og_image: '/logo/og-image.png',
     twitter_card: 'summary_large_image',
   },

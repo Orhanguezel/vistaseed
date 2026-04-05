@@ -20,33 +20,16 @@ CREATE TABLE IF NOT EXISTS `notifications` (
 -- =============================================================
 -- NOTIFICATIONS SEED
 -- =============================================================
-SET NAMES utf8mb4;
-SET time_zone = '+00:00';
 
 INSERT INTO `notifications`
-(`id`,
- `user_id`,
- `title`,
- `message`,
- `type`,
- `is_read`,
- `created_at`)
+(`id`, `user_id`, `title`, `message`, `type`, `is_read`, `created_at`)
 VALUES
 (
   '11111111-1111-1111-1111-111111111111',
   '{{ADMIN_ID}}',
   'Hoş geldiniz!',
-  'Hesabınız başarıyla oluşturuldu. İlan yönetimine başlayabilirsiniz.',
+  'Hesabınız başarıyla oluşturuldu. Yönetim panelini kullanmaya başlayabilirsiniz.',
   'system',
-  0,
-  NOW()
-),
-(
-  '22222222-2222-2222-2222-222222222222',
-  '{{ADMIN_ID}}',
-  'İlk ilanınızı yayınlayın',
-  'İlk ilanınızı tamamlayarak vitrinde görünürlüğünüzü artırabilirsiniz.',
-  'custom',
   0,
   NOW()
 )

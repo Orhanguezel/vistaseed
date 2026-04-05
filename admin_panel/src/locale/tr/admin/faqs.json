@@ -1,7 +1,7 @@
 {
   "header": {
-    "title": "FAQ",
-    "description": "FAQ kayıtlarını dil, durum ve arama filtrelerine göre yönetebilirsin.",
+    "title": "SSS",
+    "description": "SSS kayıtlarını dil, durum ve arama filtrelerine göre yönetebilirsin.",
     "filters": {
       "searchLabel": "Arama (q)",
       "searchPlaceholder": "Soru/cevap içinde ara",
@@ -34,7 +34,7 @@
     },
     "actions": {
       "refresh": "Yenile",
-      "create": "Yeni FAQ"
+      "create": "Yeni SSS"
     }
   },
   "list": {
@@ -43,11 +43,11 @@
     "recordCount": "{count} kayıt",
     "saveOrder": "Sıralamayı Kaydet",
     "savingOrder": "Kaydediliyor…",
-    "loading": "FAQ yükleniyor...",
-    "empty": "Henüz kayıtlı FAQ yok.",
+    "loading": "SSS yükleniyor...",
+    "empty": "Henüz kayıtlı SSS yok.",
     "reorderHint": "Sıralama: Yukarı/Aşağı ile taşı, sonra kaydet.",
     "viewNote": "Varsayılan görünüm karttır. Çok büyük ekranlarda (≥ {bp}px) tablo görünümü açılır.",
-    "deleteConfirm": "Bu FAQ kaydını silmek üzeresin.\n\nSoru: {question}\nID: {id}\nSlug: {slug}\n\nDevam etmek istiyor musun?",
+    "deleteConfirm": "Bu SSS kaydını silmek üzeresin.\n\nSoru: {question}\nID: {id}\nSlug: {slug}\n\nDevam etmek istiyor musun?",
     "status": {
       "active": "Aktif",
       "inactive": "Pasif"
@@ -88,8 +88,8 @@
       "jsonReady": "JSON hazır"
     },
     "titles": {
-      "create": "Yeni FAQ Oluştur",
-      "edit": "FAQ Düzenle"
+      "create": "Yeni SSS Oluştur",
+      "edit": "SSS Düzenle"
     },
     "descriptions": {
       "formMode": "Dil, aktiflik, sıralama, soru/cevap ve slug alanlarını doldur.",
@@ -112,14 +112,14 @@
     },
     "notes": {
       "title": "Notlar",
-      "body": "FAQ modülünde görsel/SEO alanı yok. Bu form sadece backend’deki FAQ alanlarını yönetir.",
+      "body": "SSS modülünde görsel/SEO alanı yok. Bu form sadece backend’deki SSS alanlarını yönetir.",
       "jsonTip": "İstersen JSON moduna geçip payload’ı direkt düzenleyebilirsin.",
       "createdAt": "Oluşturulma",
       "updatedAt": "Güncelleme"
     }
   },
   "jsonEditor": {
-    "label": "FAQ JSON (create/update payload)",
+    "label": "SSS JSON (create/update payload)",
     "help": {
       "intro": "Bu JSON, /admin/faqs create/update isteklerine gönderilen payload ile uyumludur.",
       "mainFields": "Başlıca alanlar:",
@@ -129,17 +129,17 @@
   "messages": {
     "orderSaved": "Sıralama kaydedildi.",
     "orderSaveError": "Sıralama kaydedilemedi.",
-    "created": "FAQ oluşturuldu.",
-    "updated": "FAQ güncellendi.",
-    "deleted": "FAQ silindi.",
-    "deleteError": "FAQ silinirken bir hata oluştu.",
+    "created": "SSS oluşturuldu.",
+    "updated": "SSS güncellendi.",
+    "deleted": "SSS silindi.",
+    "deleteError": "SSS silinirken bir hata oluştu.",
     "noRecordForLocale": "Seçilen dil için kayıt bulunamadı; bu dilde yeni içerik oluşturabilirsin.",
     "loadForLocaleError": "Seçilen dil için kayıt yüklenirken bir hata oluştu."
   },
   "errors": {
     "invalidLocale": "Geçerli bir locale seçilmedi. app_locales ve default_locale kontrol edin.",
     "createdButInvalidId": "Oluşturuldu ama id dönmedi/UUID değil. Backend response'u kontrol et.",
-    "missingId": "FAQ verisi yüklenemedi (id yok).",
+    "missingId": "SSS verisi yüklenemedi (id yok).",
     "generic": "İşlem başarısız. Lütfen tekrar deneyin."
   },
   "noLocales": {

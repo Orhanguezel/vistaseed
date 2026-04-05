@@ -1,0 +1,14 @@
+# Geliştirme override — isteğe bağlı
+# Kullanım: docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+#
+# Örnek: DB sağlık kontrolünü sıklaştırır, backend NODE_ENV=development (log seviyesi vb.)
+
+services:
+  vistaseed-db:
+    healthcheck:
+      interval: 5s
+      retries: 24
+
+  vistaseed-backend:
+    environment:
+      NODE_ENV: development

@@ -13,7 +13,7 @@ export {
   normalizeUploadValue,
   sanitizeCloudinarySvgUrl,
   toUploadMetadata,
-} from '@/integrations/shared/admin-image-upload';
+} from "@/integrations/shared/admin-image-upload";
 
 export {
   DEFAULT_JSON_EDITOR_HEIGHT,
@@ -25,7 +25,7 @@ export {
   normalizeLegacyRichHtml,
   parseEditorJson,
   stringifyEditorJson,
-} from '@/integrations/shared/admin-editors';
+} from "@/integrations/shared/admin-editors";
 
 export {
   type AdminLocaleMeta,
@@ -41,14 +41,14 @@ export {
   toAdminLocaleOptions,
   toShortAdminLocale,
   uniqAdminLocalesByCode,
-} from '@/integrations/shared/admin-locales';
+} from "@/integrations/shared/admin-locales";
 
 export {
   ADMIN_TRANSLATIONS_PREFIX,
   ADMIN_UI_COPY_KEY,
   type UseAdminUiCopyResult,
   bindAdminTranslatePrefix,
-} from '@/integrations/shared/admin-hooks';
+} from "@/integrations/shared/admin-hooks";
 
 export {
   CATEGORY_API_FALLBACK_ORIGIN,
@@ -69,7 +69,7 @@ export {
   createEmptyCategoryDetailForm,
   getCategoryApiOrigin,
   mapCategoryToDetailForm,
-} from '@/integrations/shared/categories-config';
+} from "@/integrations/shared/categories-config";
 
 export {
   type ApiOk,
@@ -160,9 +160,9 @@ export {
   type NullableNumber,
   boolTo01,
   ensureArray,
-} from '@/integrations/shared/common';
+} from "@/integrations/shared/common";
 
-export { cleanParams, withQuery } from '@/integrations/shared/api';
+export { cleanParams, withQuery } from "@/integrations/shared/api";
 
 export {
   ACCESS_TOKEN_STORAGE_KEY,
@@ -176,7 +176,7 @@ export {
   redirectToLogin,
   removeBrowserStorage,
   writeBrowserStorage,
-} from '@/integrations/shared/auth-storage';
+} from "@/integrations/shared/auth-storage";
 
 export {
   type FetchResult,
@@ -184,7 +184,7 @@ export {
   type RTKError,
   coerceSerializableFetchErrorData,
   normalizeError,
-} from '@/integrations/shared/errors';
+} from "@/integrations/shared/errors";
 
 export {
   type RequestArgs,
@@ -200,7 +200,7 @@ export {
   normalizeRequestArg,
   resolveBaseUrl,
   trimSlash,
-} from '@/integrations/shared/network';
+} from "@/integrations/shared/network";
 
 export {
   ADMIN_CONTACTS_DEFAULT_FILTERS,
@@ -225,61 +225,87 @@ export {
   getAdminContactStatusKey,
   getAdminContactStatusVariant,
   normalizeContact,
-} from '@/integrations/shared/contacts/index';
-
-export {
-  ADMIN_CARRIERS_ACTIVE_ILAN_OPTIONS,
-  ADMIN_CARRIERS_ACTIVE_OPTIONS,
-  ADMIN_CARRIERS_DEFAULT_FILTERS,
-  ADMIN_CARRIERS_RECENT_LIMIT,
-  CARRIERS_ADMIN_BASE,
-  type AdminCarriersActiveFilter,
-  type AdminCarriersFilters,
-  type AdminCarriersHasIlanFilter,
-  type CarrierDetail,
-  type CarrierDetailBooking,
-  type CarrierDetailBookingDto,
-  type CarrierDetailDto,
-  type CarrierDetailIlan,
-  type CarrierDetailIlanDto,
-  type CarrierDetailRating,
-  type CarrierDetailRatingDto,
-  type CarrierDetailStats,
-  type CarrierDetailStatsDto,
-  type CarrierListItem,
-  type CarrierListItemDto,
-  type CarrierListQueryParams,
-  type CarrierListResponse,
-  type CarrierListResponseDto,
-  buildAdminCarrierDetailHref,
-  buildAdminCarriersListParams,
-  formatAdminCarrierDate,
-  formatAdminCarrierMoney,
-  formatAdminCarrierRating,
-  getAdminCarrierDisplayName,
-  getAdminCarrierStatusKey,
-  getAdminCarrierWalletStatusKey,
-  normalizeCarrierDetail,
-  normalizeCarrierDetailBooking,
-  normalizeCarrierDetailIlan,
-  normalizeCarrierDetailRating,
-  normalizeCarrierDetailStats,
-  normalizeCarrierListItem,
-  normalizeCarrierListResponse,
-} from '@/integrations/shared/carriers/index';
+} from "@/integrations/shared/contacts/index";
 
 export {
   type EmailRow,
   type EmailView,
   toView,
-} from '@/integrations/shared/email/index';
+} from "@/integrations/shared/email/index";
 
 export {
   type ListingBrandCreatePayload,
   type ListingBrandListParams,
   type ListingBrandPatchPayload,
   type ListingBrandView,
-} from '@/integrations/shared/brand/index';
+} from "@/integrations/shared/brand/index";
+
+export {
+  type JobListingDto,
+  type JobListingListQueryParams,
+  type JobListingCreatePayload,
+  type JobListingUpdatePayload,
+  type JobListingReorderPayload,
+  JOB_LISTINGS_ADMIN_BASE,
+  JOB_LISTINGS_DEFAULT_LOCALE,
+  type JobListingDetailTabKey,
+  type JobEmploymentType,
+  type JobListingDetailFormState,
+  buildJobListingPayload,
+  buildJobListingsListQueryParams,
+  createEmptyJobListingDetailForm,
+  mapJobListingToDetailForm,
+} from "@/integrations/shared/job-listings";
+
+export {
+  BLOG_POST_DEFAULT_LOCALE,
+  type BlogCategory,
+  type BlogPostCreatePayload,
+  type BlogPostDto,
+  type BlogPostListQueryParams,
+  type BlogPostUpdatePayload,
+  type BlogRssImportPayload,
+  type BlogRssImportResult,
+  type BlogPostDetailTabKey,
+  type BlogPostFormState,
+  buildBlogPostPayload,
+  buildBlogPostsListQueryParams,
+  createEmptyBlogPostForm,
+  mapBlogPostToForm,
+} from "@/integrations/shared/blog";
+
+export {
+  OFFERS_ADMIN_BASE,
+  OFFER_STATUSES,
+  type OfferStatus,
+  type OfferDto,
+  type OfferListQueryParams,
+  type OfferCreatePayload,
+  type OfferUpdatePayload,
+  type OfferDetailTabKey,
+  type OfferDetailFormState,
+  buildOffersListQueryParams,
+  createEmptyOfferDetailForm,
+  mapOfferToDetailForm,
+  buildOfferPayload,
+} from "@/integrations/shared/offers";
+
+export {
+  buildJobApplicationStatusPayload,
+  buildJobApplicationsListQueryParams,
+  JOB_APPLICATIONS_ADMIN_BASE,
+  JOB_APPLICATIONS_DEFAULT_LOCALE,
+  JOB_APPLICATION_STATUS_OPTIONS,
+  mapJobApplicationToDetailForm,
+  type JobApplicationDetailFormState,
+} from "@/integrations/shared/job-applications";
+
+export type {
+  JobApplicationDto,
+  JobApplicationListQueryParams,
+  JobApplicationStatus,
+  JobApplicationStatusPayload,
+} from "@/integrations/shared/job-applications";
 
 export {
   type CreateNotificationBody,
@@ -294,7 +320,7 @@ export {
   toCreateNotificationBody,
   toNotificationsListQuery,
   toUpdateNotificationBody,
-} from '@/integrations/shared/notifications/index';
+} from "@/integrations/shared/notifications/index";
 
 export {
   type ApiSliderAdmin,
@@ -318,7 +344,7 @@ export {
   normalizeSliderAdmin,
   normalizeSliderPublic,
   toAdminSliderView,
-} from '@/integrations/shared/slider/index';
+} from "@/integrations/shared/slider/index";
 
 export {
   type AdminSiteSetting,
@@ -378,7 +404,7 @@ export {
   resolveAdminSiteSettingKeyArg,
   resolveSiteSettingKeyArg,
   tryParsePublicValue,
-} from '@/integrations/shared/site-settings';
+} from "@/integrations/shared/site-settings";
 
 export {
   coerceSiteSettingsPreviewValue,
@@ -387,7 +413,7 @@ export {
   isSiteSettingsSeoKey,
   parseSiteSettingsRawValue,
   prettyStringifySiteSettingValue,
-} from '@/integrations/shared/site-settings-ui';
+} from "@/integrations/shared/site-settings-ui";
 
 export {
   SITE_SETTINGS_BRAND,
@@ -412,7 +438,7 @@ export {
   normalizeSiteSettingsLocaleRows,
   pickInitialSiteSettingsLocale,
   summariseSiteSettingsValue,
-} from '@/integrations/shared/site-settings-config';
+} from "@/integrations/shared/site-settings-config";
 
 export {
   SITE_SETTINGS_INLINE_SEO_DEFAULT_EXPANDED_KEYS,
@@ -426,7 +452,7 @@ export {
   coerceSiteSettingsInlineSeoValue,
   createEmptySiteSettingsInlineSeoPage,
   extractSiteSettingsInlineSeoPages,
-} from '@/integrations/shared/site-settings-inline-seo-config';
+} from "@/integrations/shared/site-settings-inline-seo-config";
 
 export {
   EMPTY_SITE_SETTINGS_SMTP_FORM,
@@ -438,7 +464,7 @@ export {
   createSiteSettingsSmtpForm,
   getSiteSettingsSmtpErrorMessage,
   mapSiteSettingsToSmtpForm,
-} from '@/integrations/shared/site-settings-smtp-config';
+} from "@/integrations/shared/site-settings-smtp-config";
 
 export {
   EMPTY_SITE_SETTINGS_CLOUDINARY_FORM,
@@ -449,7 +475,7 @@ export {
   createSiteSettingsCloudinaryForm,
   getSiteSettingsCloudinaryErrorMessage,
   mapSiteSettingsToCloudinaryForm,
-} from '@/integrations/shared/site-settings-cloudinary-config';
+} from "@/integrations/shared/site-settings-cloudinary-config";
 
 export {
   EMPTY_SITE_SETTINGS_API_FORM,
@@ -464,7 +490,7 @@ export {
   createSiteSettingsApiForm,
   getSiteSettingsApiErrorMessage,
   mapSiteSettingsToApiForm,
-} from '@/integrations/shared/site-settings-api-config';
+} from "@/integrations/shared/site-settings-api-config";
 
 export {
   SITE_SETTINGS_BRAND_MEDIA_ITEMS,
@@ -475,7 +501,7 @@ export {
   createSiteSettingsBrandMediaData,
   extractSiteSettingsBrandMediaData,
   getSiteSettingsBrandMediaErrorMessage,
-} from '@/integrations/shared/site-settings-brand-media-config';
+} from "@/integrations/shared/site-settings-brand-media-config";
 
 export {
   EMPTY_SITE_SETTINGS_BRANDING_FORM,
@@ -486,7 +512,7 @@ export {
   mergeSiteSettingsBrandingConfig,
   normalizeSiteSettingsBrandingConfig,
   siteSettingsFormToBranding,
-} from '@/integrations/shared/site-settings-branding-config';
+} from "@/integrations/shared/site-settings-branding-config";
 
 export {
   type SiteSettingsStructuredRendererKey,
@@ -496,7 +522,7 @@ export {
   pickInitialSiteSettingsDetailLocale,
   resolveSiteSettingsStructuredRendererKey,
   toShortSiteSettingsLocale,
-} from '@/integrations/shared/site-settings-detail-config';
+} from "@/integrations/shared/site-settings-detail-config";
 
 export {
   type SiteSettingsAdvancedSeo,
@@ -526,7 +552,7 @@ export {
   normalizeSiteSettingsSimpleSeo,
   toSiteSettingsAdvancedSeoObject,
   toStructuredObjectSeed,
-} from '@/integrations/shared/site-settings-structured-config';
+} from "@/integrations/shared/site-settings-structured-config";
 
 export {
   ADMIN_STORAGE_ALL_OPTION,
@@ -561,7 +587,7 @@ export {
   makeCustomError,
   sanitize,
   toQueryParams,
-} from '@/integrations/shared/storage/index';
+} from "@/integrations/shared/storage/index";
 
 export {
   ADMIN_USERS_ALL_ROLES,
@@ -624,7 +650,7 @@ export {
   type MaybeUsersListResponse,
   unwrapAdminUser,
   unwrapAdminUsersList,
-} from '@/integrations/shared/users';
+} from "@/integrations/shared/users";
 
 export {
   EMAIL_TEMPLATES_ADMIN_BASE,
@@ -645,12 +671,12 @@ export {
   normalizeEmailTemplateAdminList,
   toEmailTemplateWriteBody,
   toEmailTemplatesQuery,
-} from '@/integrations/shared/email-templates';
+} from "@/integrations/shared/email-templates";
 
 export {
   type AppLocale,
   parseAppLocales,
-} from '@/integrations/shared/locales/index';
+} from "@/integrations/shared/locales/index";
 
 export {
   ADMIN_DASHBOARD_MODULES,
@@ -667,7 +693,7 @@ export {
   type DashboardSummaryItem,
   type DashboardTrendBucket,
   normalizeDashboardSummary,
-} from '@/integrations/shared/dashboard/index';
+} from "@/integrations/shared/dashboard/index";
 
 export {
   type BlogPageCopy,
@@ -678,21 +704,14 @@ export {
   normalizePricingPageCopy,
   normalizeServicesPageCopy,
   normalizeWorkPageCopy,
-} from '@/integrations/shared/page-copies/index';
+} from "@/integrations/shared/page-copies/index";
 
 export {
   type AdminUiCommonCopy,
   type AdminUiCopy,
   type AdminUiPageCopy,
   normalizeAdminUiCopy,
-} from '@/integrations/shared/admin-ui/index';
-
-export {
-  type KpiRow,
-  type LocationRow,
-  type ReportRole,
-  type UserPerformanceRow,
-} from '@/integrations/shared/reports/index';
+} from "@/integrations/shared/admin-ui/index";
 
 export {
   ADMIN_AUDIT_ALL_VALUE,
@@ -727,7 +746,7 @@ export {
   coerceAuditGeoStats,
   coerceAuditList,
   coerceAuditMetricsDaily,
-} from '@/integrations/shared/audit';
+} from "@/integrations/shared/audit";
 
 export {
   formatTelegramInboundLocalDate,
@@ -766,7 +785,7 @@ export {
   buildTelegramNotificationEventBody,
   normalizeTelegramAutoReplyConfig,
   normalizeTelegramTemplateValue,
-} from '@/integrations/shared/telegram/index';
+} from "@/integrations/shared/telegram/index";
 
 export {
   type CategoryCreatePayload,
@@ -777,7 +796,7 @@ export {
   type CategoryReorderPayload,
   type CategorySetImagePayload,
   type CategoryUpdatePayload,
-} from '@/integrations/shared/categories/index';
+} from "@/integrations/shared/categories/index";
 
 export {
   THEME_ADMIN_BASE,
@@ -806,63 +825,210 @@ export {
   normalizeThemeConfig,
   sanitizeHex,
   toThemeDraft,
-} from '@/integrations/shared/theme';
+} from "@/integrations/shared/theme";
 
 export {
-  ADMIN_BOOKINGS_EMPTY_VALUE,
-  ADMIN_BOOKINGS_ROUTE_SEPARATOR,
-  ADMIN_BOOKINGS_UNKNOWN_CITY,
-  type BookingAdminItem,
-  type BookingAdminListParams,
-  type BookingAdminListResponse,
-  type BookingStatus,
-  type UpdateBookingStatusAdminPayload,
-  formatAdminBookingDate,
-  formatAdminBookingPrice,
-  formatAdminBookingWeight,
-  getAdminBookingRouteLabel,
-  getAdminBookingStatusVariant,
-} from '@/integrations/shared/bookings/index';
+  PRODUCTS_ADMIN_BASE,
+  PRODUCT_DEFAULT_LOCALE,
+  PRODUCT_DEFAULT_ITEM_TYPE,
+  PRODUCT_META_TITLE_LIMIT,
+  PRODUCT_META_DESCRIPTION_LIMIT,
+  PLANTING_SEASON_OPTIONS,
+  CLIMATE_ZONE_OPTIONS,
+  SOIL_TYPE_OPTIONS,
+  WATER_NEED_OPTIONS,
+  SUN_EXPOSURE_OPTIONS,
+  type ItemType,
+  type SpecCategory,
+  type PlantingSeason,
+  type ClimateZone,
+  type SoilType,
+  type WaterNeed,
+  type SunExposure,
+  type ProductDetailTabKey,
+  type ProductDetailFormState,
+  type ProductDto,
+  type ProductListQueryParams,
+  type ProductCreatePayload,
+  type ProductUpdatePayload,
+  type ProductReorderItem,
+  type ProductReorderPayload,
+  type ProductImageDto,
+  type ProductImageCreatePayload,
+  type ProductFaqDto,
+  type ProductFaqCreatePayload,
+  type ProductFaqUpdatePayload,
+  type ProductSpecDto,
+  type ProductSpecCreatePayload,
+  type ProductSpecUpdatePayload,
+  type ProductReviewDto,
+  type ProductReviewCreatePayload,
+  type ProductReviewUpdatePayload,
+  buildProductLocaleOptions,
+  buildProductsListQueryParams,
+  buildProductToastMessage,
+  createEmptyProductDetailForm,
+  formatProductPrice,
+  mapProductToDetailForm,
+} from "@/integrations/shared/products/index";
 
 export {
-  ADMIN_WALLET_LIST_PAGE_SIZE,
-  ADMIN_WALLET_STATUS_BADGE_CLASS,
-  ADMIN_WALLET_TRANSACTIONS_PAGE_SIZE,
-  ADMIN_WALLET_TX_AMOUNT_CLASS,
-  ADMIN_WALLET_TX_STATUS_BADGE_CLASS,
-  ADMIN_WALLET_TX_TYPE_BADGE_CLASS,
-  WALLET_ADMIN_BASE,
-  WALLET_TRANSACTION_ADMIN_BASE,
-  formatAdminWalletAmount,
-  formatAdminWalletDateTime,
-  getAdminWalletSignedAmountPrefix,
-  type WalletAdminView,
-  type WalletAdjustPayload,
-  type WalletListResponse,
-  type WalletStatus,
-  type WalletStatusPayload,
-  type WalletTransactionListResponse,
-  type WalletTransactionsProps,
-  type WalletTransactionView,
-  type WalletTxStatus,
-  type WalletTxStatusPayload,
-  type WalletTxType,
-} from '@/integrations/shared/wallet';
+  CUSTOM_PAGES_ADMIN_BASE,
+  CUSTOM_PAGE_DEFAULT_LOCALE,
+  CUSTOM_PAGE_DEFAULT_MODULE_KEY,
+  type CustomPageDetailTabKey,
+  type CustomPageDetailFormState,
+  type CustomPageDto,
+  type CustomPageListQueryParams,
+  type CustomPageCreatePayload,
+  type CustomPageUpdatePayload,
+  type CustomPageReorderItem,
+  type CustomPageReorderPayload,
+  buildCustomPageLocaleOptions,
+  buildCustomPagesListQueryParams,
+  buildCustomPageToastMessage,
+  createEmptyCustomPageDetailForm,
+  mapCustomPageToDetailForm,
+} from "@/integrations/shared/custom-pages/index";
 
 export {
-  ADMIN_ILANLAR_EMPTY_VALUE,
-  ADMIN_ILANLAR_ROUTE_SEPARATOR,
-  ILANLAR_ADMIN_BASE,
-  formatAdminIlanDate,
-  formatAdminIlanPrice,
-  formatAdminIlanWeight,
-  getAdminIlanRouteLabel,
-  getAdminIlanStatusVariant,
-  type IlanAdminItem,
-  type IlanAdminListParams,
-  type IlanAdminListResponse,
-  type IlanStatus,
-  type UpdateIlanStatusAdminPayload,
-  type VehicleType,
-  buildIlanlarAdminListUrl,
-} from '@/integrations/shared/ilanlar/index';
+  SUPPORT_ADMIN_BASE,
+  SUPPORT_DEFAULT_LOCALE,
+  FAQ_CATEGORY_OPTIONS,
+  TICKET_STATUS_OPTIONS,
+  TICKET_PRIORITY_OPTIONS,
+  type FaqCategory,
+  type TicketStatus,
+  type TicketPriority,
+  type SupportFaqDto,
+  type SupportFaqListQueryParams,
+  type SupportFaqCreatePayload,
+  type SupportFaqUpdatePayload,
+  type SupportFaqReorderItem,
+  type SupportFaqReorderPayload,
+  type SupportTicketDto,
+  type SupportTicketListQueryParams,
+  type SupportTicketUpdatePayload,
+  getTicketStatusVariant,
+  getTicketPriorityVariant,
+  buildSupportFaqsListQueryParams,
+  buildSupportTicketsListQueryParams,
+} from "@/integrations/shared/support/index";
+
+export {
+  GALLERY_ADMIN_BASE,
+  GALLERY_DEFAULT_LOCALE,
+  GALLERY_META_TITLE_LIMIT,
+  GALLERY_META_DESCRIPTION_LIMIT,
+  type GalleryDetailTabKey,
+  type GalleryDetailFormState,
+  type GalleryDto,
+  type GalleryListQueryParams,
+  type GalleryCreatePayload,
+  type GalleryUpdatePayload,
+  type GalleryReorderItem,
+  type GalleryReorderPayload,
+  type GalleryImageDto,
+  type GalleryImageCreatePayload,
+  buildGalleryLocaleOptions,
+  buildGalleryListQueryParams,
+  buildGalleryToastMessage,
+  createEmptyGalleryDetailForm,
+  mapGalleryToDetailForm,
+} from "@/integrations/shared/gallery/index";
+
+export {
+  REFERENCES_ADMIN_BASE,
+  REFERENCE_DEFAULT_LOCALE,
+  REFERENCE_META_TITLE_LIMIT,
+  REFERENCE_META_DESCRIPTION_LIMIT,
+  type ReferenceDetailTabKey,
+  type ReferenceDetailFormState,
+  type ReferenceDto,
+  type ReferenceListQueryParams,
+  type ReferenceCreatePayload,
+  type ReferenceUpdatePayload,
+  type ReferenceReorderItem,
+  type ReferenceReorderPayload,
+  type ReferenceImageDto,
+  type ReferenceImageCreatePayload,
+  buildReferenceLocaleOptions,
+  buildReferencesListQueryParams,
+  buildReferenceToastMessage,
+  createEmptyReferenceDetailForm,
+  mapReferenceToDetailForm,
+} from "@/integrations/shared/references/index";
+
+export {
+  LIBRARY_ADMIN_BASE,
+  LIBRARY_DEFAULT_LOCALE,
+  LIBRARY_META_TITLE_LIMIT,
+  LIBRARY_META_DESCRIPTION_LIMIT,
+  type LibraryDetailTabKey,
+  type LibraryDetailFormState,
+  type LibraryDto,
+  type LibraryListQueryParams,
+  type LibraryCreatePayload,
+  type LibraryUpdatePayload,
+  type LibraryReorderItem,
+  type LibraryReorderPayload,
+  type LibraryImageDto,
+  type LibraryImageCreatePayload,
+  type LibraryFileDto,
+  type LibraryFileCreatePayload,
+  type LibraryFileUpdatePayload,
+  buildLibraryLocaleOptions,
+  buildLibraryListQueryParams,
+  buildLibraryToastMessage,
+  createEmptyLibraryDetailForm,
+  mapLibraryToDetailForm,
+} from "@/integrations/shared/library/index";
+
+export {
+  DB_ADMIN_BASE,
+  DB_ADMIN_MODULE_KEYS,
+  type DbAdminModuleKey,
+  type DbAdminTabKey,
+  type DbImportTabKey,
+  type DbModuleTabKey,
+  type DbSnapshot,
+  type DbSnapshotCreatePayload,
+  type DbImportTextPayload,
+  type DbImportUrlPayload,
+  type DbModuleExportParams,
+  type DbModuleImportPayload,
+  type DbUiExportParams,
+  type DbUiBootstrapPayload,
+  type DbModuleManifestEntry,
+  type DbModuleValidationResult,
+  type DbOperationResult,
+  formatSnapshotSize,
+  formatSnapshotDate,
+  buildDbModuleOptions,
+} from "@/integrations/shared/db-admin/index";
+
+export {
+  POPUPS_ADMIN_BASE,
+  POPUP_DEFAULT_LOCALE,
+  POPUP_TYPE_OPTIONS,
+  POPUP_TEXT_BEHAVIOR_OPTIONS,
+  POPUP_LINK_TARGET_OPTIONS,
+  POPUP_DISPLAY_FREQUENCY_OPTIONS,
+  type PopupType,
+  type PopupTextBehavior,
+  type PopupLinkTarget,
+  type PopupDisplayFrequency,
+  type PopupDetailTabKey,
+  type PopupDetailFormState,
+  type PopupDto,
+  type PopupListQueryParams,
+  type PopupCreatePayload,
+  type PopupUpdatePayload,
+  type PopupReorderPayload,
+  type PopupSetStatusPayload,
+  createEmptyPopupDetailForm,
+  mapPopupToDetailForm,
+  buildPopupsListQueryParams,
+  buildPopupToastMessage,
+  parseTargetPaths,
+} from "@/integrations/shared/popups/index";

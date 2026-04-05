@@ -259,6 +259,6 @@ PR veya commit oncesi su sorular zorunlu kontrol edilir:
 - Tum statik metinler locale JSON uzerinden mi geliyor?
 - Yeni eklenen text key'leri ilgili `src/locale/<lang>/...` modul dosyasina yazildi mi?
 - Sidebar/permission/route/locale key senkronu korundu mu?
-- `npm run build` ve type-check temiz mi?
+- `bun run build` ve type-check temiz mi?
 
 Bu sorulardan herhangi birine problemli cevap veriliyorsa kod tamamlanmis sayilmaz.

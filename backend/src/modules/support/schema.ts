@@ -9,8 +9,8 @@ import {
   varchar,
 } from 'drizzle-orm/mysql-core';
 import { sql } from 'drizzle-orm';
-import { longtext } from '@/modules/_shared';
-import { users } from '@/modules/auth';
+import { longtext } from '@agro/shared-backend/modules/_shared';
+import { users } from '@agro/shared-backend/modules/auth';
 
 export const supportFaqs = mysqlTable(
   'support_faqs',
@@ -39,6 +39,33 @@ export const supportFaqsI18n = mysqlTable(
       foreignColumns: [supportFaqs.id],
       name: 'fk_support_faq_i18n',
     }).onDelete('cascade'),
+  ],
+);
+
+/** `user` = musteri, `staff` = admin panel kullanicisi */
+export const supportTicketMessages = mysqlTable(
+  'support_ticket_messages',
+  {
+    id: char('id', { length: 36 }).primaryKey().notNull(),
+    ticket_id: char('ticket_id', { length: 36 }).notNull(),
+    sender_type: varchar('sender_type', { length: 16 }).notNull(),
+    author_id: char('author_id', { length: 36 }),
+    body: longtext('body').notNull(),
+    created_at: datetime('created_at', { fsp: 3 }).notNull().default(sql`CURRENT_TIMESTAMP(3)`),
+  },
+  (t) => [
+    index('support_ticket_messages_ticket_idx').on(t.ticket_id),
+    index('support_ticket_messages_created_idx').on(t.created_at),
+    foreignKey({
+      columns: [t.ticket_id],
+      foreignColumns: [supportTickets.id],
+      name: 'fk_support_ticket_message_ticket',
+    }).onDelete('cascade'),
+    foreignKey({
+      columns: [t.author_id],
+      foreignColumns: [users.id],
+      name: 'fk_support_ticket_message_author',
+    }).onDelete('set null'),
   ],
 );
 
@@ -78,3 +105,5 @@ export type SupportFaqI18n = typeof supportFaqsI18n.$inferSelect;
 export type NewSupportFaqI18n = typeof supportFaqsI18n.$inferInsert;
 export type SupportTicket = typeof supportTickets.$inferSelect;
 export type NewSupportTicket = typeof supportTickets.$inferInsert;
+export type SupportTicketMessage = typeof supportTicketMessages.$inferSelect;
+export type NewSupportTicketMessage = typeof supportTicketMessages.$inferInsert;

@@ -1,116 +1,89 @@
-/**
- * vistaseed — API path sabitleri
- * api-client.ts NEXT_PUBLIC_API_URL'yi prefix olarak ekler,
- * bu dosya yalnızca path döner: "/api/..."
- */
+const V1 = "/api/v1";
 
 export const API = {
-  auth: {
-    login:    "/api/auth/token",
-    register: "/api/auth/signup",
-    logout:   "/api/auth/logout",
-    me:       "/api/auth/me",
-    refresh:  "/api/auth/refresh",
-    forgotPassword: "/api/auth/password-reset/request",
-    resetPassword:  "/api/auth/password-reset/confirm",
-  },
-
-  ilanlar: {
-    list:   "/api/ilanlar",
-    my:     "/api/ilanlar/my",
-    detail: (id: string) => `/api/ilanlar/${id}`,
-    status: (id: string) => `/api/ilanlar/${id}/status`,
-    photos: (id: string) => `/api/ilanlar/${id}/photos`,
-  },
-
-  bookings: {
-    list:    "/api/bookings",
-    my:      "/api/bookings/my",
-    detail:  (id: string) => `/api/bookings/${id}`,
-    confirm: (id: string) => `/api/bookings/${id}/confirm`,
-    cancel:  (id: string) => `/api/bookings/${id}/cancel`,
-    status:  (id: string) => `/api/bookings/${id}/status`,
-    payInitiate: (id: string) => `/api/bookings/${id}/pay`,
-    bankDetails: "/api/bookings/bank-details",
-  },
-
-  wallet: {
-    get:             "/api/wallet",
-    transactions:    "/api/wallet/transactions",
-    depositInitiate: "/api/wallet/deposit/initiate",
-  },
-
-  notifications: {
-    list:        "/api/notifications",
-    unreadCount: "/api/notifications/unread-count",
-    markAllRead: "/api/notifications/mark-all-read",
-    markRead:    (id: string) => `/api/notifications/${id}`,
-  },
-
-  profiles: {
-    me:     "/api/profiles/me",
-    update: "/api/profiles/me",
-  },
-
-  dashboard: {
-    carrier:  "/api/dashboard/carrier",
-    customer: "/api/dashboard/customer",
-  },
-
-  ratings: {
-    create:         "/api/ratings",
-    byBooking:      (bookingId: string) => `/api/ratings/booking/${bookingId}`,
-    byCarrier:      (carrierId: string) => `/api/ratings/carrier/${carrierId}`,
+  products: {
+    list:       `${V1}/products`,
+    compare:    `${V1}/products/compare`,
+    detail:     (slug: string) => `${V1}/products/${slug}`,
+    categories: `${V1}/categories`,
+    specs:      `${V1}/product_specs`,
+    reviews:    `${V1}/product_reviews`,
+    faqs:       `${V1}/product_faqs`,
+    faqSubmit:  `${V1}/product_faqs/submit`,
+    reviewSubmit: `${V1}/product_reviews/submit`,
   },
 
   siteSettings: {
-    list:       "/api/site_settings",
-    byKey:      (key: string) => `/api/site_settings/${key}`,
-    seoAll:     "/api/site_settings/seo",
-    seoPage:    (pageKey: string) => `/api/site_settings/seo/${pageKey}`,
+    public:  `${V1}/site-settings/public`,
+    seoPage: (pageKey: string) => `${V1}/site-settings/seo/${pageKey}`,
   },
 
   contacts: {
-    create: "/api/contacts",
+    create: `${V1}/contacts`,
   },
 
   customPages: {
-    list: "/api/custom-pages",
-    detail: (id: string) => `/api/custom-pages/${id}`,
-    bySlug: (slug: string) => `/api/custom-pages/by-slug/${slug}`,
+    list:   `${V1}/custom-pages`,
+    detail: (id: string) => `${V1}/custom-pages/${id}`,
+    bySlug: (slug: string) => `${V1}/custom-pages/by-slug/${slug}`,
   },
 
-  carrierBank: {
-    get:     "/api/carrier-bank",
-    upsert:  "/api/carrier-bank",
-    delete:  "/api/carrier-bank",
+  orders: {
+    list:   `${V1}/orders`,
+    detail: (id: string) => `${V1}/orders/${id}`,
+    create: `${V1}/orders`,
+    cancel: (id: string) => `${V1}/orders/${id}/cancel`,
+    paymentIyzicoInit: (id: string) => `${V1}/orders/${encodeURIComponent(id)}/payment/iyzico/initiate`,
+    paymentBankTransfer: (id: string) => `${V1}/orders/${encodeURIComponent(id)}/payment/bank-transfer`,
+    paymentCredit: (id: string) => `${V1}/orders/${encodeURIComponent(id)}/payment/credit`,
   },
 
-  subscription: {
-    plans:    "/api/subscription/plans",
-    plan:     (id: string) => `/api/subscription/plans/${id}`,
-    my:       "/api/subscription/my",
-    purchase: "/api/subscription/purchase",
-    cancel:   "/api/subscription/cancel",
-    history:  "/api/subscription/history",
+  dealer: {
+    profile:      `${V1}/dealer/profile`,
+    balance:      `${V1}/dealer/balance`,
+    transactions: `${V1}/dealer/transactions`,
+    catalog:      `${V1}/dealer/products`,
   },
 
-  withdrawal: {
-    create: "/api/withdrawal",
-    my:     "/api/withdrawal/my",
-  },
-
-  admin: {
-    withdrawals:        "/api/admin/withdrawals",
-    processWithdrawal:  (id: string) => `/api/admin/withdrawals/${id}/process`,
+  dealers: {
+    public: `${V1}/dealers/public`,
   },
 
   support: {
-    faqs: "/api/support/faqs",
-    tickets: "/api/support/tickets",
-    myTickets: "/api/support/tickets/my",
+    faqs:    `${V1}/support/faqs`,
+    tickets: `${V1}/support/tickets`,
+    myTickets: `${V1}/support/tickets/my`,
+    ticketMessages: (ticketId: string) => `${V1}/support/tickets/${ticketId}/messages`,
+  },
+
+  home: {
+    summary: `${V1}/home/summary`,
+  },
+
+  blog: {
+    list: `${V1}/blog`,
+    detail: (slug: string) => `${V1}/blog/${encodeURIComponent(slug)}`,
+    rss: `${V1}/feed/rss`,
+  },
+
+  references: {
+    list: `${V1}/references`,
+    /** Slug ile detay — backend: GET /references/by-slug/:slug */
+    bySlug: (slug: string) => `${V1}/references/by-slug/${encodeURIComponent(slug)}`,
+    byId: (id: string) => `${V1}/references/${encodeURIComponent(id)}`,
+  },
+
+  library: {
+    list: `${V1}/library`,
+    detail: (id: string) => `${V1}/library/${encodeURIComponent(id)}`,
+    bySlug: (slug: string) => `${V1}/library/by-slug/${encodeURIComponent(slug)}`,
+    files: (id: string) => `${V1}/library/${encodeURIComponent(id)}/files`,
+    images: (id: string) => `${V1}/library/${encodeURIComponent(id)}/images`,
+  },
+  
+  offers: {
+    publicCreate: `${V1}/offers/public`,
   },
 } as const;
 
-// Geriye dönük uyumluluk (eski API_ENDPOINTS adını kullanıyorsa)
 export const API_ENDPOINTS = API;

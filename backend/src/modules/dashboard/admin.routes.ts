@@ -1,15 +1,7 @@
-// =============================================================
-// FILE: src/modules/dashboard/admin.routes.ts
-// =============================================================
-import type { FastifyInstance } from 'fastify';
-import { adminDashboardSummary, adminStatsRevenue, adminStatsActivity } from './admin.controller';
+import type { FastifyInstance } from "fastify";
 
-
-
-const B = '/dashboard';
+import { adminDashboardSummary } from "./admin.controller";
 
 export async function registerDashboardAdmin(app: FastifyInstance) {
-  app.get(`${B}/summary`, adminDashboardSummary);
-  app.get(`${B}/stats/revenue`, adminStatsRevenue);
-  app.get(`${B}/stats/activity`, adminStatsActivity);
+  app.get("/dashboard/summary", adminDashboardSummary);
 }

@@ -6,6 +6,7 @@ import type {
   SupportTicket,
   SupportTicketCreateInput,
   SupportTicketListParams,
+  SupportTicketMessage,
 } from "./support.type";
 
 function toQS(params: object) {
@@ -25,5 +26,13 @@ export function createSupportTicket(data: SupportTicketCreateInput) {
 }
 
 export function listMyTickets(params: SupportTicketListParams = {}) {
-  return apiGet<SupportTicket[]>(`${API.support.myTickets}?${toQS(params)}`);
+  return apiGet<SupportTicket[]>(API.support.myTickets, params);
+}
+
+export function listTicketMessages(ticketId: string) {
+  return apiGet<SupportTicketMessage[]>(API.support.ticketMessages(ticketId));
+}
+
+export function postTicketMessage(ticketId: string, body: string) {
+  return apiPost<SupportTicketMessage>(API.support.ticketMessages(ticketId), { body });
 }

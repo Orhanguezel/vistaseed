@@ -10,4 +10,4 @@ export {
   parseAdminWalletPaging,
 } from './admin';
 
-// buildIyzicoAuthHeader removed — using official iyzipay SDK now
+export { invalidateWalletCachesForUsers } from './cache-invalidation';

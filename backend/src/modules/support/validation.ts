@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { LOCALE_LIKE, UUID36, boolLike } from '@/modules/_shared';
+import { LOCALE_LIKE, UUID36, boolLike } from '@agro/shared-backend/modules/_shared';
 
-const supportCategories = ['genel', 'kargo', 'odeme', 'hesap', 'teknik'] as const;
+const supportCategories = ['genel', 'urunler', 'hesap', 'teknik'] as const;
 const ticketStatuses = ['open', 'in_progress', 'resolved', 'closed'] as const;
 const ticketPriorities = ['low', 'normal', 'high', 'urgent'] as const;
 
@@ -57,9 +57,18 @@ export const ticketUpdateSchema = z.object({
   admin_note: z.string().max(10000).optional().nullable(),
 });
 
+export const ticketMessageCreateSchema = z.object({
+  body: z.string().min(1).max(10000),
+});
+
+export const ticketIdParamSchema = z.object({
+  id: UUID36,
+});
+
 export type FaqListQueryInput = z.infer<typeof faqListQuerySchema>;
 export type FaqCreateInput = z.infer<typeof faqCreateSchema>;
 export type FaqUpdateInput = z.infer<typeof faqUpdateSchema>;
 export type TicketCreateInput = z.infer<typeof ticketCreateSchema>;
 export type TicketListQueryInput = z.infer<typeof ticketListQuerySchema>;
 export type TicketUpdateInput = z.infer<typeof ticketUpdateSchema>;
+export type TicketMessageCreateInput = z.infer<typeof ticketMessageCreateSchema>;
