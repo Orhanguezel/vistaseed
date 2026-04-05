@@ -123,6 +123,8 @@ export default async function PublicLayout({
         followTitle={tFooter("followTitle")}
         copyrightText={tFooter("copyright")}
         builtByText={tFooter("builtBy")}
+        contactEmail={settings.contact_email}
+        contactPhone={settings.contact_phone}
         socialFacebook={settings.social_facebook}
         socialInstagram={settings.social_instagram}
         socialTwitter={settings.social_twitter}

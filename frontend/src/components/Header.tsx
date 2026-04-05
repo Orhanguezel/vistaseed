@@ -441,7 +441,7 @@ export default function Header({
               </div>
             )}
             
-            <div className="flex flex-col leading-none">
+            <div className="flex flex-col leading-none" aria-hidden="true">
               <span className="text-xl md:text-2xl lg:text-4xl font-black tracking-tighter text-foreground uppercase transition-all">
                 {siteName || "VISTA SEED"}
               </span>
@@ -467,7 +467,7 @@ export default function Header({
                       ? isTransparent ? "text-white" : "text-brand"
                       : isTransparent
                         ? "text-white/80 hover:text-white hover:bg-white/10"
-                        : "text-muted hover:text-foreground hover:bg-bg-alt/50"
+                        : "text-foreground/75 hover:text-foreground hover:bg-bg-alt/50"
                   }`}
                 >
                   {item.label}

@@ -33,6 +33,8 @@ interface FooterProps {
   socialLinkedin?: string;
   socialYoutube?: string;
   siteSubtitle?: string;
+  contactEmail?: string;
+  contactPhone?: string;
 }
 
 function SocialIcon({ d, href, label }: { d: string; href: string; label: string }) {
@@ -69,6 +71,8 @@ export default async function Footer({
   socialLinkedin,
   socialYoutube,
   siteSubtitle = "",
+  contactEmail = "",
+  contactPhone = "",
 }: FooterProps) {
   const t = await getTranslations({ locale, namespace: "Footer" });
   const cols = columns && columns.length > 0 ? columns : [];
@@ -94,8 +98,8 @@ export default async function Footer({
             </div>
             <div>
               <div className="inline-flex items-center justify-center md:justify-start gap-2 mb-3">
-                <Sparkles className="w-4 h-4 text-brand" />
-                <span className="text-xs font-black uppercase tracking-[0.25em] text-brand">{t("eyebrow")}</span>
+                <Sparkles className="w-4 h-4 text-green-400" />
+                <span className="text-xs font-black uppercase tracking-[0.25em] text-green-400">{t("eyebrow")}</span>
               </div>
               <h3 className="text-2xl md:text-3xl lg:text-4xl font-black text-white tracking-tighter mb-4 leading-tight">
                 {t("helpTitle") || helpTitle}
@@ -157,18 +161,22 @@ export default async function Footer({
               </p>
               
               <div className="space-y-4">
-                <a href="mailto:info@vistaseed.com" className="flex items-center gap-3 group w-fit">
-                  <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand/20 transition-colors">
-                    <Mail className="w-3.5 h-3.5 text-white/70 group-hover:text-brand transition-colors" />
-                  </div>
-                  <span className="text-sm font-medium text-white/70 group-hover:text-white transition-colors">info@vistaseed.com</span>
-                </a>
-                <a href="tel:+908501234567" className="flex items-center gap-3 group w-fit">
-                  <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand/20 transition-colors">
-                    <Phone className="w-3.5 h-3.5 text-white/70 group-hover:text-brand transition-colors" />
-                  </div>
-                  <span className="text-sm font-medium text-white/70 group-hover:text-white transition-colors">+90 (850) 123 45 67</span>
-                </a>
+                {contactEmail && (
+                  <a href={`mailto:${contactEmail}`} className="flex items-center gap-3 group w-fit">
+                    <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand/20 transition-colors">
+                      <Mail className="w-3.5 h-3.5 text-white/70 group-hover:text-brand transition-colors" />
+                    </div>
+                    <span className="text-sm font-medium text-white/70 group-hover:text-white transition-colors">{contactEmail}</span>
+                  </a>
+                )}
+                {contactPhone && (
+                  <a href={`tel:${contactPhone.replace(/\s/g, "")}`} className="flex items-center gap-3 group w-fit">
+                    <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand/20 transition-colors">
+                      <Phone className="w-3.5 h-3.5 text-white/70 group-hover:text-brand transition-colors" />
+                    </div>
+                    <span className="text-sm font-medium text-white/70 group-hover:text-white transition-colors">{contactPhone}</span>
+                  </a>
+                )}
               </div>
             </div>
 

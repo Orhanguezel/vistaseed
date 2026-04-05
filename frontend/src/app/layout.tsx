@@ -41,7 +41,11 @@ export async function generateMetadata(): Promise<Metadata> {
   ]);
 
   const siteName = branding.site_name || seo?.site_name || SITE_NAME;
-  const titleTemplate = seo?.title_template || (siteName ? `%s | ${siteName}` : "%s");
+  // Normalize DB templates: {{title}} → %s, {{SITE_NAME}} → actual site name
+  const rawTemplate = seo?.title_template;
+  const titleTemplate = rawTemplate
+    ? rawTemplate.replace(/\{\{title\}\}/gi, "%s").replace(/\{\{SITE_NAME\}\}/gi, siteName)
+    : (siteName ? `%s | ${siteName}` : "%s");
   const titleDefault = meta?.title || seo?.title_default || siteName;
   const description = meta?.description || seo?.description || branding.site_description || "";
   const keywords = meta?.keywords

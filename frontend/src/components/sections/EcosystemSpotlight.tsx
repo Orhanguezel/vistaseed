@@ -56,7 +56,7 @@ export default function EcosystemSpotlight({
                 >
                   {image && (
                     <div className="h-28 w-28 shrink-0 overflow-hidden rounded-2xl bg-surface-alt">
-                      <img src={image} alt={item.title} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <img src={image} alt={item.title ?? ""} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700" />
                     </div>
                   )}
                   <div className="min-w-0 flex-1">
