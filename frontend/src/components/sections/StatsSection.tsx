@@ -1,6 +1,5 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 
 interface StatItem {
@@ -12,15 +11,9 @@ interface StatsProps {
   items?: StatItem[];
 }
 
-const FALLBACK_STAT_VALUES = ["50+", "200+", "15+", "%100"] as const;
-
 export default function StatsSection({ items }: StatsProps) {
-  const t = useTranslations("Sections.stats");
-  const fallbackStats: StatItem[] = FALLBACK_STAT_VALUES.map((value, index) => ({
-    value,
-    label: t(`items.${index}.label`),
-  }));
-  const stats = items && items.length > 0 ? items : fallbackStats;
+  if (!items || items.length === 0) return null;
+  const stats = items;
 
   return (
     <section className="py-16 border-y border-border/5 bg-surface/50 backdrop-blur-3xl relative overflow-hidden">
