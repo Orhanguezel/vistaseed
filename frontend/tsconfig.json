@@ -23,10 +23,10 @@
       }
     ],
     "paths": {
-      "@agro/shared-config/*": ["../packages/shared-config/*"],
-      "@agro/shared-types": ["../packages/shared-types/index.ts"],
-      "@agro/shared-types/*": ["../packages/shared-types/*"],
-      "@agro/shared-ui/*": ["../packages/shared-ui/*"],
+      "@agro/shared-config/*": ["../../../packages/shared-config/*"],
+      "@agro/shared-types": ["../../../packages/shared-types/index.ts"],
+      "@agro/shared-types/*": ["../../../packages/shared-types/*"],
+      "@agro/shared-ui/*": ["../../../packages/shared-ui/*"],
       "@/*": [
         "./src/*"
       ]

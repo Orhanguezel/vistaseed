@@ -10,7 +10,7 @@ Bu dosya `projects/vistaseed` kökü içindir. VistaSeed, **Tarım Dijital Ekosi
 
 ## 1. Monorepo kökünden ortak paket
 
-Bu repoda backend, `packages/shared-backend` altında derlenmiş kodu kullanır. `build:shared` script’i **yalnızca ekosistem kökünde** (`tarim-dijital-ekosistem/package.json`) tanımlıdır; `backend/` veya `frontend/` içinden çalışmaz.
+Bu repoda backend, monorepo kökündeki `packages/shared-backend` derlemesini kullanır. `build:shared` hem ekosistem kökünde hem `projects/vistaseed/package.json` içinde tanımlıdır; ikisi de aynı `../../packages/shared-backend` hedefine gider.
 
 **A — Ekosistem köküne giderek** (örnek mutlak yol):
 
@@ -27,7 +27,7 @@ cd ~/Documents/Projeler/tarim-dijital-ekosistem/projects/vistaseed
 bun run build:shared
 ```
 
-Bu komut içerde `../..` ile ekosistem köküne çıkıp aynı `build:shared` işlemini çalıştırır.
+Bu komut `../../packages/shared-backend` yoluna (monorepo kökündeki tek ortak `packages/`) gidip TypeScript derlemesini çalıştırır. VistaSeed altında ayrı bir `packages/` klasörü yoktur; tüm projeler `tarim-dijital-ekosistem/packages/` örneğini paylaşır.
 
 **C — Elle** (kökte `package.json` yoksa):
 

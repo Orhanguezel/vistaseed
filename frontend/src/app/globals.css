@@ -1,6 +1,6 @@
 @import "tailwindcss";
 /* Ekosistem ortak layout / marka token’ları — VistaSeed @theme ile birlikte kullanılır */
-@import "../../../packages/shared-config/tailwind-tokens.css";
+@import "../../../../../packages/shared-config/tailwind-tokens.css";
 @plugin "@tailwindcss/typography";
 @source "../**/*.{js,ts,jsx,tsx,mdx}";
 

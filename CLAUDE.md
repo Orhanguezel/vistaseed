@@ -7,7 +7,7 @@ VistaSeed kurumsal web sitesi. Fastify backend + Next.js frontend + Next.js admi
 
 ## @agro/shared-backend Entegrasyonu
 
-Bu proje `@agro/shared-backend` workspace paketini kullanır. 22 ortak modül packages/'tan gelir.
+Bu proje `@agro/shared-backend` workspace paketini kullanır. 28 ortak modül packages/'tan gelir.
 
 ```bash
 # Çalışmaya başlamadan önce (root dizinde):
@@ -23,7 +23,7 @@ cd projects/vistaseed/backend && bun run dev
 - Ortak modül değiştiğinde: root'tan `bun run build:shared` çalıştır
 
 ### Proje-Spesifik Modüller (bu repoda, tam kod)
-dashboard, db_admin, dealerFinance, jobApplications, jobListings, offers, orders, popups, review, slider, support, wallet
+dashboard, db_admin, ecosystem
 
 ## Workspace Haritası
 

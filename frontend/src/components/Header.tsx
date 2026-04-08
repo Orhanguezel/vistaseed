@@ -278,14 +278,13 @@ export default function Header({
   const currentTheme = resolvedTheme || theme;
 
   const getResolvedLogo = () => {
-     if (!logoUrl) return "/uploads/media/logo/logo-light.png";
-     // If it's the default, swap based on theme
-     if (logoUrl.includes("vistaseed_logo.png")) {
-        return currentTheme === "dark" 
-           ? "/uploads/media/logo/logo-dark.png" 
-           : "/uploads/media/logo/logo-light.png";
-     }
-     return logoUrl;
+    if (!logoUrl) return "/uploads/media/logo/logo-light.png";
+    if (logoUrl.includes("vistaseed_logo.png") || logoUrl.includes("vistaseed_logo.webp")) {
+      return currentTheme === "dark"
+        ? "/uploads/media/logo/logo-dark.png"
+        : "/uploads/media/logo/logo-light.png";
+    }
+    return logoUrl;
   };
   const resolvedLogoUrl = getResolvedLogo();
   const isTransparent = false;

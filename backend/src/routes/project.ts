@@ -1,30 +1,21 @@
 import type { FastifyInstance } from 'fastify';
 
-import { registerMail } from '@/modules/mail';
-import { registerSupport, registerSupportAdmin } from '@/modules/support';
-import { registerJobListings } from '@/modules/jobListings/router';
-import { registerJobListingsAdmin } from '@/modules/jobListings/admin.routes';
-import { registerJobApplications } from '@/modules/jobApplications/router';
-import { registerJobApplicationsAdmin } from '@/modules/jobApplications/admin.routes';
-import { registerSlider } from '@/modules/slider/router';
-import { registerSliderAdmin } from '@/modules/slider/admin.routes';
-import { registerReviews } from '@/modules/review/router';
-import { registerReviewsAdmin } from '@/modules/review/admin.routes';
-import { registerPopups } from '@/modules/popups/router';
-import { registerPopupsAdmin } from '@/modules/popups/admin.routes';
-import { registerOffersAdmin } from '@/modules/offers/admin.routes';
-import { registerOffersPublic } from '@/modules/offers/router';
+import { registerMail } from '@agro/shared-backend/modules/mail-api';
+import { registerSupport, registerSupportAdmin } from '@agro/shared-backend/modules/support';
+import { registerJobListings, registerJobListingsAdmin } from '@agro/shared-backend/modules/jobListings';
+import { registerJobApplications, registerJobApplicationsAdmin } from '@agro/shared-backend/modules/jobApplications';
+import { registerSlider, registerSliderAdmin } from '@agro/shared-backend/modules/slider';
+import { registerReviews, registerReviewsAdmin } from '@agro/shared-backend/modules/review';
+import { registerPopups, registerPopupsAdmin } from '@agro/shared-backend/modules/popups';
+import { registerOffersPublic, registerOffersAdmin } from '@agro/shared-backend/modules/offers';
 import { registerDbAdmin } from '@/modules/db_admin/admin.routes';
-import { registerOrders } from '@/modules/orders/router';
-import { registerSellerOrders } from '@/modules/orders/seller.routes';
-import { registerOrdersAdmin } from '@/modules/orders/admin.routes';
-import { registerDealerFinance } from '@/modules/dealerFinance/router';
-import { registerDealerFinanceAdmin } from '@/modules/dealerFinance/admin.routes';
+import { registerOrders, registerSellerOrders, registerOrdersAdmin } from '@agro/shared-backend/modules/orders';
+import { registerDealerFinance, registerDealerFinanceAdmin } from '@agro/shared-backend/modules/dealerFinance';
 import { registerDashboardAdmin } from '@/modules/dashboard/admin.routes';
-import { registerWallet, registerWalletAdmin } from '@/modules/wallet';
-import { registerBlog, registerBlogAdmin } from '@/modules/blog';
+import { registerWallet, registerWalletAdmin } from '@agro/shared-backend/modules/wallet';
+import { registerBlog, registerBlogAdmin } from '@agro/shared-backend/modules/blog';
 import { registerEcosystem } from '@/modules/ecosystem';
-import { registerSellers } from '@/modules/sellers/router';
+import { registerSellers } from '@agro/shared-backend/modules/sellers';
 
 export async function registerProjectPublic(api: FastifyInstance) {
   await registerMail(api);

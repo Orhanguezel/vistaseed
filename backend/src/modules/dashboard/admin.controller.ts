@@ -9,12 +9,12 @@ import { customPages } from "@agro/shared-backend/modules/customPages/schema";
 import { emailTemplates } from "@agro/shared-backend/modules/emailTemplates/schema";
 import { galleries } from "@agro/shared-backend/modules/gallery/schema";
 import { library } from "@agro/shared-backend/modules/library/schema";
-import { popups } from "@/modules/popups/schema";
+import { popups } from "@agro/shared-backend/modules/popups/schema";
 import { products } from "@agro/shared-backend/modules/products/schema";
 import { referencesTable } from "@agro/shared-backend/modules/references/schema";
 import { siteSettings } from "@agro/shared-backend/modules/siteSettings/schema";
 import { storageAssets } from "@agro/shared-backend/modules/storage/schema";
-import { supportFaqs } from "@/modules/support/schema";
+import { supportFaqs } from "@agro/shared-backend/modules/support/schema";
 import { auditRequestLogs } from "@agro/shared-backend/modules/audit/schema";
 import { handleRouteError } from "@agro/shared-backend/modules/_shared";
 

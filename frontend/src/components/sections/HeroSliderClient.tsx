@@ -24,6 +24,7 @@ export default function HeroSliderClient({ slides, interval = 7000 }: HeroSlider
   const [current, setCurrent] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [hasHydrated, setHasHydrated] = useState(false);
   const touchStart = useRef<number | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -42,6 +43,8 @@ export default function HeroSliderClient({ slides, interval = 7000 }: HeroSlider
   );
 
   const next = useCallback(() => goTo(current + 1), [current, goTo]);
+
+  useEffect(() => { setHasHydrated(true); }, []);
 
   useEffect(() => {
     if (count <= 1) return;
@@ -122,9 +125,9 @@ export default function HeroSliderClient({ slides, interval = 7000 }: HeroSlider
 
             {/* Title - Reveal Effect */}
             <div className="relative overflow-hidden">
-              <motion.h1 
+              <motion.h1
                 key={`title-${slide.id}`}
-                initial={{ y: "100%" }}
+                initial={hasHydrated ? { y: "100%" } : false}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
                 className="text-5xl sm:text-7xl md:text-8xl font-black text-white tracking-tighter leading-[0.95] drop-shadow-2xl"

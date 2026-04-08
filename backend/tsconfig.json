@@ -10,9 +10,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@agro/shared-backend/*": ["../packages/shared-backend/dist/*"],
-      "@agro/shared-types": ["../packages/shared-types/index.ts"],
-      "@agro/shared-types/*": ["../packages/shared-types/*"]
+      "@agro/shared-backend": ["../../../packages/shared-backend/package.json"],
+      "@agro/shared-backend/*": ["../../../packages/shared-backend/*"],
+      "@agro/shared-types": ["../../../packages/shared-types/index.ts"],
+      "@agro/shared-types/*": ["../../../packages/shared-types/*"],
+      "drizzle-orm": ["../../../node_modules/drizzle-orm/index.d.ts"],
+      "drizzle-orm/*": ["../../../node_modules/drizzle-orm/*"]
     },
 
     "esModuleInterop": true,
@@ -33,7 +36,7 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
-    "../packages/shared-backend/dist/types.d.ts"
+    "../../../packages/shared-backend/dist/types.d.ts"
   ],
   "exclude": [
     "node_modules",
