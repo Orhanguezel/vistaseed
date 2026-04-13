@@ -139,13 +139,13 @@ export default async function Footer({
             {/* Brand Intro Column */}
             <div className="lg:col-span-2 pr-0 lg:pr-12">
               {(logoUrlDark || logoUrl) && (
-                <div className="mb-10 inline-block bg-white rounded-2xl p-4 shadow-xl">
+                <div className="mb-10 inline-block">
                   <Image
                     src={logoUrlDark || logoUrl}
                     alt={resolvedSiteName}
                     width={180}
                     height={180}
-                    className="w-32 h-auto object-contain"
+                    className="w-36 h-auto object-contain"
                   />
                 </div>
               )}
