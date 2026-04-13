@@ -17,6 +17,7 @@ import library from "./library.json";
 import mail from "./mail.json";
 import notifications from "./notifications.json";
 import offers from "./offers.json";
+import paymentAttempts from "./payment-attempts.json";
 import popups from "./popups.json";
 import products from "./products.json";
 import references from "./references.json";
@@ -49,6 +50,7 @@ const adminMessages = {
   mail: mail,
   notifications: notifications,
   offers: offers,
+  "payment-attempts": paymentAttempts,
   popups: popups,
   products: products,
   references: references,

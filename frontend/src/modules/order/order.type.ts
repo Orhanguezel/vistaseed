@@ -1,6 +1,16 @@
 // src/modules/order/order.type.ts
 
 export type OrderStatus = 'pending' | 'confirmed' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+export type OrderPaymentStatus = 'unpaid' | 'pending' | 'paid' | 'failed' | 'refunded' | (string & {});
+export type OrderPaymentProvider =
+  | 'iyzico'
+  | 'craftgate'
+  | 'nestpay_isbank'
+  | 'halkode'
+  | 'ziraatpay'
+  | 'bank_transfer'
+  | 'dealer_credit'
+  | (string & {});
 
 export interface OrderItem {
   id: string;
@@ -21,8 +31,8 @@ export interface Order {
   total?: string;
   status: OrderStatus;
   notes?: string;
-  payment_method?: string | null;
-  payment_status?: string | null;
+  payment_method?: OrderPaymentProvider | null;
+  payment_status?: OrderPaymentStatus | null;
   created_at: string;
   updated_at: string;
   items?: OrderItem[];
@@ -35,6 +45,18 @@ export interface OrderIyzicoInitResponse {
   token: string;
   conversationId: string;
   amount: number;
+}
+
+export interface OrderCardInitResponse {
+  provider: string;
+  mode?: "html" | "redirect";
+  checkoutFormContent?: string | null;
+  checkoutUrl?: string | null;
+  redirectUrl?: string | null;
+  paymentPageUrl?: string | null;
+  token?: string;
+  conversationId?: string;
+  amount?: number;
 }
 
 export interface CreateOrderData {

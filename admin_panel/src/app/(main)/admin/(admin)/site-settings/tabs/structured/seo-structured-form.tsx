@@ -83,7 +83,7 @@ export const SeoStructuredForm: React.FC<SeoStructuredFormProps> = ({
 
 SeoStructuredForm.displayName = 'SeoStructuredForm';
 
-/* ── Simple SEO Form (vistaseed__seo) ── */
+/* ── Simple SEO Form (vistaseeds__seo) ── */
 
 function SimpleSeoForm({
   value: v,

@@ -62,7 +62,7 @@
     "menuAriaLabel": "Menu"
   },
   "Footer": {
-    "eyebrow": "VISTASEED",
+    "eyebrow": "vistaseeds",
     "rdCenter": "F&E-Zentrum",
     "sustainability": "Nachhaltigkeit",
     "plantingGuide": "Anbauleitfaden",
@@ -734,7 +734,7 @@
   "References": {
     "list": {
       "title": "Referenzen",
-      "description": "Prufen Sie Projekt-, Umsetzungs- und Unternehmensreferenzen innerhalb des VistaSeed-Okosystems.",
+      "description": "Prufen Sie Projekt-, Umsetzungs- und Unternehmensreferenzen innerhalb des vistaseeds-Okosystems.",
       "eyebrow": "Feld- und Projektflachen",
       "heroDescription": "Durchsuchen Sie migrierte Referenzeintrage, Bildsets und Projektflachen der Quellseite in einem Strom.",
       "cardKicker": "Referenzeintrag",
@@ -897,7 +897,7 @@
       }
     },
     "trust": {
-      "title": "Vorteile bei VistaSeed",
+      "title": "Vorteile bei vistaseeds",
       "item1": "Zertifizierte, ertragreiche Sorten",
       "item2": "Technische Beratung und Support",
       "item3": "Flexible Zahlungsoptionen",
@@ -1153,7 +1153,12 @@
       "notesPlaceholder": "Lieferung oder Produktwunsch (optional, max. 2000 Zeichen)",
       "paymentTitle": "Zahlung",
       "payWithCard": "Kreditkarte (Iyzico)",
+      "payWithCardCraftgate": "Kreditkarte (Craftgate)",
+      "payWithCardNestpay": "Kreditkarte (Isbank / NestPay)",
+      "payWithCardHalkode": "Kreditkarte (Halk Ode)",
+      "payWithCardZiraatpay": "Kreditkarte (ZiraatPay)",
       "payWithBank": "Bankuberweisung / EFT",
+      "paymentCardError": "Kartenzahlung konnte nicht gestartet werden. Anbieter-Einstellungen und Verbindung prufen.",
       "paymentIyzicoError": "Zahlung konnte nicht gestartet werden. Verbindung oder Iyzico-Konfiguration prufen.",
       "paymentIyzicoUnavailable": "Iyzico ist in dieser Umgebung nicht konfiguriert (API-Schlussel fehlen).",
       "paymentBankDone": "Bestellung wartet auf Uberweisung; IBAN bei der Buchhaltung erfragen.",
@@ -1303,10 +1308,18 @@
         },
         "payMethod": {
           "iyzico": "Karte (Iyzico)",
+          "craftgate": "Karte (Craftgate)",
+          "nestpay_isbank": "Karte (Isbank / NestPay)",
+          "halkode": "Karte (Halk Ode)",
+          "ziraatpay": "Karte (ZiraatPay)",
           "bank_transfer": "Bankuberweisung",
           "dealer_credit": "Handler-Kredit"
         },
         "paymentPaidNote": "Diese Bestellung ist als bezahlt markiert.",
+        "paymentCardPending": "Kartenzahlung wurde gestartet. Der Status wird nach Abschluss des Callbacks aktualisiert.",
+        "paymentCardRedirecting": "Weiterleitung zum Zahlungsanbieter. Falls nichts passiert, bitte erneut versuchen.",
+        "refreshPaymentStatus": "Status aktualisieren",
+        "retryPayment": "Zahlung erneut starten",
         "paymentHint": "Zu zahlender Betrag: {total}",
         "availableCredit": "Verfügbares Limit: {amount}",
         "iyzicoIframeHint": "Nach der Zahlung Seite aktualisieren oder Formular schliessen.",

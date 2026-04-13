@@ -1,4 +1,4 @@
-# Hakkımızda - VistaSeed
+# Hakkımızda - vistaseeds
 
 ## Sayfa URL
 
@@ -8,7 +8,7 @@
 
 ### Şirket Tanıtımı
 
-VistaSeed, resmî Vista Seeds kurumsal anlatısını; ürün kataloğu, bilgi bankası, referanslar, toplu satış ve bayi yüzeyi ile birleştiren dijital tarım ekosistemidir.
+vistaseeds, resmî Vista Seeds kurumsal anlatısını; ürün kataloğu, bilgi bankası, referanslar, toplu satış ve bayi yüzeyi ile birleştiren dijital tarım ekosistemidir.
 
 ### Vizyon
 

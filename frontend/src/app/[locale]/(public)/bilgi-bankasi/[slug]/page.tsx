@@ -73,7 +73,7 @@ export default async function LibraryDetailPage({ params }: LibraryDetailPagePro
 
   const origin = siteOrigin();
   const pageUrl = `${origin}${toLocalizedPath(`/bilgi-bankasi/${slug}`, locale)}`;
-  const publisherName = settings.site_name || process.env.NEXT_PUBLIC_SITE_NAME || "VistaSeed";
+  const publisherName = settings.site_name || process.env.NEXT_PUBLIC_SITE_NAME || "vistaseeds";
   const logo = settings.site_logo?.trim()
     ? settings.site_logo.startsWith("http")
       ? settings.site_logo

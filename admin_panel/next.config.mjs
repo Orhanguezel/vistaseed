@@ -61,7 +61,7 @@ const nextConfig = {
       return val.endsWith('/api') ? val.slice(0, -4) : val;
     })();
 
-    const base = fromApiUrl || 'https://vistaseed.com';
+    const base = fromApiUrl || 'https://vistaseeds.com.tr';
 
     return [
       {

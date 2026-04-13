@@ -1,6 +1,6 @@
 // =============================================================
 // FILE: src/navigation/sidebar/sidebar-items.ts
-// vistaseed — Sidebar navigation (Kurumsal Site)
+// vistaseeds — Sidebar navigation (Kurumsal Site)
 // =============================================================
 
 import {
@@ -20,6 +20,7 @@ import {
   MessageSquare,
   Package,
   Palette,
+  Receipt,
   Send,
   Settings,
   ShoppingBag,
@@ -129,6 +130,7 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
     key: 'system',
     items: [
       { key: 'site_settings', url: '/admin/site-settings', icon: Settings },
+      { key: 'payment_attempts', url: '/admin/payment-attempts', icon: Receipt },
       { key: 'storage', url: '/admin/storage', icon: HardDrive },
       { key: 'theme', url: '/admin/theme', icon: Palette },
       { key: 'telegram', url: '/admin/telegram', icon: Send },
@@ -171,6 +173,7 @@ const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   contacts: 'İletişim Mesajları',
   email_templates: 'E-posta Şablonları',
   offers: 'Teklifler',
+  payment_attempts: 'Ödeme Denemeleri',
   users: 'Kullanıcılar',
   site_settings: 'Site Ayarları',
   storage: 'Depolama',

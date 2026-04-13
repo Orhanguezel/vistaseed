@@ -1,6 +1,6 @@
 # Admin Panel Kurallari
 
-Bu dosya vistaseed `admin_panel` icin zorunlu gelistirme kurallarini tanimlar. Yeni modül, endpoint, page, component veya helper eklenirken bu kurallara uyulmasi gerekir.
+Bu dosya vistaseeds `admin_panel` icin zorunlu gelistirme kurallarini tanimlar. Yeni modül, endpoint, page, component veya helper eklenirken bu kurallara uyulmasi gerekir.
 
 ## 1. Tekrar Yasak
 

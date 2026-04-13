@@ -7,9 +7,9 @@ SET time_zone = '+00:00';
    SITE MEDIA (Logo & Favicon tab)
    ============================================================= */
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
-  (UUID(), 'site_logo',             '*', '{"url":"/uploads/media/logo/vistaseed_logo.png","alt":"{{SITE_NAME}} Logo"}'),
-  (UUID(), 'site_logo_dark',        '*', '{"url":"/uploads/media/logo/vistaseed_logo.png","alt":"{{SITE_NAME}} Logo Dark"}'),
-  (UUID(), 'site_logo_light',       '*', '{"url":"/uploads/media/logo/vistaseed_logo.png","alt":"{{SITE_NAME}} Logo Light"}'),
+  (UUID(), 'site_logo',             '*', '{"url":"/uploads/media/logo/vistaseeds_logo.png","alt":"{{SITE_NAME}} Logo"}'),
+  (UUID(), 'site_logo_dark',        '*', '{"url":"/uploads/media/logo/vistaseeds_logo.png","alt":"{{SITE_NAME}} Logo Dark"}'),
+  (UUID(), 'site_logo_light',       '*', '{"url":"/uploads/media/logo/vistaseeds_logo.png","alt":"{{SITE_NAME}} Logo Light"}'),
   (UUID(), 'site_favicon',          '*', '{"url":"/uploads/media/logo/favicon.jpg","alt":"{{SITE_NAME}} Favicon"}'),
   (UUID(), 'site_apple_touch_icon', '*', '{"url":"/uploads/media/logo/apple-touch.jpg","alt":"{{SITE_NAME}} Apple Touch"}'),
   (UUID(), 'site_app_icon_512',     '*', '{"url":"/uploads/media/logo/logo-512.jpg","alt":"{{SITE_NAME}} Icon 512"}'),

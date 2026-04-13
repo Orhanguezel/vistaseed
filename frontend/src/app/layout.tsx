@@ -16,7 +16,7 @@ const dmSans = DM_Sans({
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
 const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
 const API_V1 = `${API_URL}/api/v1`;
-const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "VistaSeed";
+const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "vistaseeds";
 
 async function fetchGlobalSeo(locale: string) {
   try {
@@ -101,7 +101,7 @@ export default async function RootLayout({
   return (
     <html
       lang={defaultLocale}
-      data-brand="vistaseed"
+      data-brand="vistaseeds"
       suppressHydrationWarning
       className={`${dmSans.variable} font-sans`}
       style={{ 

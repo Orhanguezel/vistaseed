@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `offers` (
   `id` CHAR(36) NOT NULL,
   `offer_no` VARCHAR(100) NULL,
   `status` VARCHAR(32) NOT NULL DEFAULT 'new',
-  `source` VARCHAR(64) NOT NULL DEFAULT 'vistaseed',
+  `source` VARCHAR(64) NOT NULL DEFAULT 'vistaseeds',
   `locale` VARCHAR(10) NULL,
   `country_code` VARCHAR(80) NULL,
   `customer_name` VARCHAR(255) NOT NULL,

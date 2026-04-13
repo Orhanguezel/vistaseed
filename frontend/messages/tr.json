@@ -62,7 +62,7 @@
     "menuAriaLabel": "Menü"
   },
   "Footer": {
-    "eyebrow": "VISTASEED",
+    "eyebrow": "vistaseeds",
     "rdCenter": "AR-GE Merkezi",
     "sustainability": "Sürdürülebilirlik",
     "plantingGuide": "Ekim Rehberi",
@@ -734,7 +734,7 @@
   "References": {
     "list": {
       "title": "Referanslar",
-      "description": "VistaSeed ekosisteminde yer alan proje ve uygulama referanslarını inceleyin.",
+      "description": "vistaseeds ekosisteminde yer alan proje ve uygulama referanslarını inceleyin.",
       "eyebrow": "Saha ve proje yüzeyleri",
       "heroDescription": "Kaynak siteden taşınan referans kayıtlarını, görsel setleri ve proje yüzeylerini tek akışta inceleyin.",
       "cardKicker": "Referans kaydı",
@@ -760,7 +760,7 @@
   "DealersNetwork": {
     "meta": {
       "title": "Bayi ağı",
-      "description": "VistaSeed yetkili bayileri: şehir ve bölgeye göre arayın, haritadaki kapsama alanını görün."
+      "description": "vistaseeds yetkili bayileri: şehir ve bölgeye göre arayın, haritadaki kapsama alanını görün."
     },
     "title": "Bayi ağı",
     "description": "Türkiye genelindeki yetkili bayi noktalarımız. İsim, şehir veya bölge ile filtreleyebilirsiniz.",
@@ -897,7 +897,7 @@
       }
     },
     "trust": {
-      "title": "VistaSeed Avantajı",
+      "title": "vistaseeds Avantajı",
       "item1": "Sertifikalı ve Yüksek Verimli Tohumlar",
       "item2": "Teknik Destek ve Danışmanlık",
       "item3": "Esnek Ödeme Seçenekleri",
@@ -1153,7 +1153,12 @@
       "notesPlaceholder": "Teslimat veya ürün tercihi (isteğe bağlı, en fazla 2000 karakter)",
       "paymentTitle": "Ödeme",
       "payWithCard": "Kredi kartı (Iyzico)",
+      "payWithCardCraftgate": "Kredi kartı (Craftgate)",
+      "payWithCardNestpay": "Kredi kartı (İş Bankası / NestPay)",
+      "payWithCardHalkode": "Kredi kartı (Halk Öde)",
+      "payWithCardZiraatpay": "Kredi kartı (ZiraatPay)",
       "payWithBank": "Banka havalesi / EFT",
+      "paymentCardError": "Kart ödeme akışı başlatılamadı. Sağlayıcı ayarlarını ve bağlantıyı kontrol edin.",
       "paymentIyzicoError": "Ödeme başlatılamadı. Bağlantıyı veya Iyzico anahtarlarını kontrol edin.",
       "paymentIyzicoUnavailable": "Iyzico bu ortamda yapılandırılmamış (API anahtarları eksik).",
       "paymentBankDone": "Sipariş havale ile bekliyor olarak işlendi; dekont için muhasebe ile iletişime geçebilirsiniz.",
@@ -1310,10 +1315,18 @@
         },
         "payMethod": {
           "iyzico": "Kredi kartı (Iyzico)",
+          "craftgate": "Kredi kartı (Craftgate)",
+          "nestpay_isbank": "Kredi kartı (İş Bankası / NestPay)",
+          "halkode": "Kredi kartı (Halk Öde)",
+          "ziraatpay": "Kredi kartı (ZiraatPay)",
           "bank_transfer": "Banka havalesi / EFT",
           "dealer_credit": "Bayi cari / kredi"
         },
         "paymentPaidNote": "Bu sipariş ödenmiş görünüyor.",
+        "paymentCardPending": "Kart ödeme süreci başlatıldı. Callback tamamlanınca durum otomatik olarak güncellenecektir.",
+        "paymentCardRedirecting": "Ödeme sağlayıcısına yönlendiriliyorsunuz. Yönlendirme olmazsa tekrar deneyin.",
+        "refreshPaymentStatus": "Durumu yenile",
+        "retryPayment": "Ödemeyi tekrar başlat",
         "paymentHint": "Ödenecek tutar: {total}",
         "availableCredit": "Kullanılabilir limit: {amount}",
         "iyzicoIframeHint": "Ödemeyi tamamladıktan sonra durumu görmek için sayfayı yenileyin veya formu kapatın.",
@@ -1353,5 +1366,26 @@
       "fallbackTitle": "KVKK",
       "fallbackDescription": "KVKK aydınlatma metni."
     }
+  },
+  "Frost": {
+    "widgetTitle": "Don Uyarısı",
+    "location": "Konum",
+    "currentTemp": "Anlık sıcaklık",
+    "minTemp": "Min. sıcaklık",
+    "today": "Bugün",
+    "tomorrow": "Yarın",
+    "dayAfter": "Öbür gün",
+    "precipitation": "Yağış",
+    "updatedAt": "Güncellendi",
+    "safe": "Güvenli",
+    "watch": "Dikkatli Ol",
+    "warning": "Uyarı",
+    "danger": "Don Tehlikesi",
+    "safeDesc": "Don riski yok, fide ve tohumlar güvende.",
+    "watchDesc": "Sıcaklık düşüyor, sera ve fideleri izleyin.",
+    "warningDesc": "Don riski var! Fideleri koru altına alın.",
+    "dangerDesc": "Don! Acil koruma tedbirleri alın.",
+    "poweredBy": "Open-Meteo verileri",
+    "loadError": "Hava durumu alınamadı"
   }
 }

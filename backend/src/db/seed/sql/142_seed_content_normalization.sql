@@ -12,19 +12,19 @@ INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`) VALUES
 (UUID(), 'topbar_location', '*', '"Aksu / Antalya"'),
 (UUID(), 'contact_phone_display', '*', '"+90 530 048 41 83"'),
 (UUID(), 'contact_phone_tel', '*', '"05300484183"'),
-(UUID(), 'contact_email', '*', '"info@vistaseed.com.tr"'),
-(UUID(), 'contact_to_email', '*', '"info@vistaseed.com.tr"'),
+(UUID(), 'contact_email', '*', '"info@vistaseeds.com.tr"'),
+(UUID(), 'contact_to_email', '*', '"info@vistaseeds.com.tr"'),
 (UUID(), 'contact_address', '*', '"Fatih Mah. Isparta Yolu 07112 Aksu / Antalya"'),
 (UUID(), 'header_info_text', '*', '"Ürünlerimizi keşfedin"'),
-(UUID(), 'footer_keywords', '*', '["VistaSeed","Tohum","Fide","Bayi Ağı","Toplu Satış"]'),
+(UUID(), 'footer_keywords', '*', '["vistaseeds","Tohum","Fide","Bayi Ağı","Toplu Satış"]'),
 (UUID(), 'footer_services', '*', '["Ürünler","Bilgi Bankası","Teklif","Destek"]'),
 (UUID(), 'footer_quick_links', '*', '[{"title":"Anasayfa","path":"/","pageKey":"home"},{"title":"Ürünler","path":"/urunler","pageKey":"products"},{"title":"Hakkımızda","path":"/hakkimizda","pageKey":"about"},{"title":"İletişim","path":"/iletisim","pageKey":"contact"}]'),
 (UUID(), 'menu_kurumsal', '*', '[{"title":"HAKKIMIZDA","path":"/hakkimizda","pageKey":"about"},{"title":"BLOG","path":"/blog","pageKey":"blog"},{"title":"İLETİŞİM","path":"/iletisim","pageKey":"contact"}]'),
-(UUID(), 'seo_defaults', '*', '{"canonicalBase":"http://localhost:3000","siteName":"{{SITE_NAME}}","description":"VistaSeed tohum, fide, bayi ağı ve teknik içerik ekosistemi.","ogLocale":"tr_TR","author":"{{SITE_NAME}}","themeColor":"#F97316","twitterCard":"summary_large_image","robots":"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1","googlebot":"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}'),
-(UUID(), 'seo_pages_home', '*', '{"title":"{{SITE_NAME}}","description":"VistaSeed tohum, fide, bayi ağı ve teknik içerik ekosistemi.","keywords":"vistaseed, tohum, fide, bayi ağı, antalya","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
-(UUID(), 'seo_pages_products', '*', '{"title":"Ürünler | {{SITE_NAME}}","description":"VistaSeed ürün kataloğunu ve tarımsal metadata detaylarını inceleyin.","keywords":"ürünler, tohum, fide, katalog","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
-(UUID(), 'seo_pages_about', '*', '{"title":"Hakkımızda | {{SITE_NAME}}","description":"VistaSeed ekosistemi ve Bereket Fide üretim altyapısı hakkında bilgi edinin.","keywords":"hakkımızda, vistaseed, bereket fide","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
-(UUID(), 'seo_pages_contact', '*', '{"title":"İletişim | {{SITE_NAME}}","description":"Ürün, bayi ve toplu satış talepleri için VistaSeed ile iletişime geçin.","keywords":"iletişim, teklif, bayi","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
+(UUID(), 'seo_defaults', '*', '{"canonicalBase":"http://localhost:3000","siteName":"{{SITE_NAME}}","description":"vistaseeds tohum, fide, bayi ağı ve teknik içerik ekosistemi.","ogLocale":"tr_TR","author":"{{SITE_NAME}}","themeColor":"#F97316","twitterCard":"summary_large_image","robots":"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1","googlebot":"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}'),
+(UUID(), 'seo_pages_home', '*', '{"title":"{{SITE_NAME}}","description":"vistaseeds tohum, fide, bayi ağı ve teknik içerik ekosistemi.","keywords":"vistaseeds, tohum, fide, bayi ağı, antalya","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
+(UUID(), 'seo_pages_products', '*', '{"title":"Ürünler | {{SITE_NAME}}","description":"vistaseeds ürün kataloğunu ve tarımsal metadata detaylarını inceleyin.","keywords":"ürünler, tohum, fide, katalog","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
+(UUID(), 'seo_pages_about', '*', '{"title":"Hakkımızda | {{SITE_NAME}}","description":"vistaseeds ekosistemi ve Bereket Fide üretim altyapısı hakkında bilgi edinin.","keywords":"hakkımızda, vistaseeds, bereket fide","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
+(UUID(), 'seo_pages_contact', '*', '{"title":"İletişim | {{SITE_NAME}}","description":"Ürün, bayi ve toplu satış talepleri için vistaseeds ile iletişime geçin.","keywords":"iletişim, teklif, bayi","ogImage":"/uploads/media/hero/og-default.jpg","robots":"index, follow","noIndex":false}'),
 (UUID(), 'cta_post_listing_title', '*', '"Bizimle iletişime geçin"'),
 (UUID(), 'cta_post_listing_subtitle', '*', '"Ürün, bayi ve teklif süreçleri için bize ulaşın"')
 ON DUPLICATE KEY UPDATE
@@ -34,8 +34,8 @@ ON DUPLICATE KEY UPDATE
 UPDATE `custom_pages_i18n`
 SET
   `title` = 'Hakkımızda',
-  `content` = '{"html":"<p>VistaSeed, Bereket Fide üretim deneyiminden beslenen dijital tarım ekosistemidir.</p><p>Ürün kataloğu, bilgi bankası ve toplu satış akışlarını tek yapıda birleştirir.</p>"}',
-  `summary` = 'VistaSeed ekosistemi hakkında kurumsal bilgi.',
+  `content` = '{"html":"<p>vistaseeds, Bereket Fide üretim deneyiminden beslenen dijital tarım ekosistemidir.</p><p>Ürün kataloğu, bilgi bankası ve toplu satış akışlarını tek yapıda birleştirir.</p>"}',
+  `summary` = 'vistaseeds ekosistemi hakkında kurumsal bilgi.',
   `meta_title` = 'Hakkımızda | {{SITE_NAME}}',
   `meta_description` = '{{SITE_NAME}} ekosistemi, üretim yaklaşımı ve kurumsal yapısı hakkında bilgi edinin.'
 WHERE `page_id` = '55555555-5555-4555-8555-555555555551' AND `locale` = 'tr';
@@ -69,23 +69,23 @@ WHERE `page_id` = '55555555-5555-4555-8555-555555555554' AND `locale` = 'tr';
 
 UPDATE `custom_pages_i18n`
 SET
-  `title` = 'Neden VistaSeed?',
+  `title` = 'Neden vistaseeds?',
   `content` = '[
     {"icon": "sun", "title": "Üretim Gerçekliği", "description": "Ürün ve içerik dilimizi doğrulanabilir üretim verileri üzerine kuruyoruz."},
     {"icon": "shield", "title": "Planlı Operasyon", "description": "Teklif ve ürün süreçlerini aynı veri mantığı içinde yönetiyoruz."},
     {"icon": "users", "title": "Teknik Yaklaşım", "description": "Sadece tanıtım değil, karar destek sağlayan yüzeyler sunuyoruz."},
     {"icon": "beaker", "title": "Sürekli Gelişim", "description": "Saha deneyimini dijital ürünlere ve içeriklere düzenli olarak taşıyoruz."}
   ]',
-  `summary` = 'Tarımda sürdürülebilir başarı için neden VistaSeed tercih edilmelidir?'
+  `summary` = 'Tarımda sürdürülebilir başarı için neden vistaseeds tercih edilmelidir?'
 WHERE `page_id` = 'neden-biz-uuid-001' AND `locale` = 'tr';
 
 UPDATE `custom_pages_i18n`
 SET
   `title` = 'AR-GE ve Üretim Altyapısı',
-  `content` = '{"html":"<h2>Üretim bilgisini dijital akla dönüştürüyoruz</h2><p>VistaSeed, ürün metadata, içerik ve teklif süreçlerini saha gerçekleriyle hizalayacak şekilde kurgulanmıştır.</p><h3>Odaklarımız</h3><ul><li>Çeşit bilgisi ve teknik yapı</li><li>Ürün karşılaştırma ve karar desteği</li><li>Operasyonel içerik standardizasyonu</li></ul>"}',
-  `summary` = 'VistaSeed ürün ve içerik altyapısının arkasındaki yaklaşım.',
-  `meta_title` = 'AR-GE ve Üretim Altyapısı | VistaSeed',
-  `meta_description` = 'VistaSeed ürün, metadata ve içerik altyapısı hakkında bilgi edinin.'
+  `content` = '{"html":"<h2>Üretim bilgisini dijital akla dönüştürüyoruz</h2><p>vistaseeds, ürün metadata, içerik ve teklif süreçlerini saha gerçekleriyle hizalayacak şekilde kurgulanmıştır.</p><h3>Odaklarımız</h3><ul><li>Çeşit bilgisi ve teknik yapı</li><li>Ürün karşılaştırma ve karar desteği</li><li>Operasyonel içerik standardizasyonu</li></ul>"}',
+  `summary` = 'vistaseeds ürün ve içerik altyapısının arkasındaki yaklaşım.',
+  `meta_title` = 'AR-GE ve Üretim Altyapısı | vistaseeds',
+  `meta_description` = 'vistaseeds ürün, metadata ve içerik altyapısı hakkında bilgi edinin.'
 WHERE `page_id` = 'cp-uuid-arge-001' AND `locale` = 'tr';
 
 UPDATE `custom_pages_i18n`
@@ -93,8 +93,8 @@ SET
   `title` = 'Ekim Rehberi',
   `content` = '{"html":"<h2>Başarılı sezon için doğru başlangıç</h2><p>Ekim öncesi toprak hazırlığı, sulama planı ve ürün bazlı teknik detaylar birlikte değerlendirilmelidir.</p><h3>Temel adımlar</h3><ul><li>Toprak yapısını doğrulayın</li><li>Ekim derinliğini ürün tipine göre belirleyin</li><li>İlk suyu kontrollü verin</li></ul>"}',
   `summary` = 'Ekim ve bakım kararları için kısa saha rehberi.',
-  `meta_title` = 'Ekim Rehberi | VistaSeed',
-  `meta_description` = 'Ekim öncesi hazırlık, sulama ve saha planlaması için VistaSeed rehberi.'
+  `meta_title` = 'Ekim Rehberi | vistaseeds',
+  `meta_description` = 'Ekim öncesi hazırlık, sulama ve saha planlaması için vistaseeds rehberi.'
 WHERE `page_id` = 'cp-uuid-ekim-001' AND `locale` = 'tr';
 
 UPDATE `custom_pages_i18n`
@@ -102,8 +102,8 @@ SET
   `title` = 'Sürdürülebilirlik',
   `content` = '{"html":"<h2>Sürdürülebilirlik bizim için operasyon kalitesidir</h2><p>Enerji, kaynak kullanımı ve saha verimliliği birlikte ele alınmadan kalıcı büyüme mümkün değildir.</p><h3>Önceliklerimiz</h3><p>Verimli kaynak kullanımı, planlı üretim akışı ve sahaya uyumlu dijital süreçler.</p>"}',
   `summary` = 'Sürdürülebilir tarım ve operasyon yaklaşımımız.',
-  `meta_title` = 'Sürdürülebilirlik | VistaSeed',
-  `meta_description` = 'VistaSeed sürdürülebilirlik yaklaşımı ve operasyonel öncelikleri.'
+  `meta_title` = 'Sürdürülebilirlik | vistaseeds',
+  `meta_description` = 'vistaseeds sürdürülebilirlik yaklaşımı ve operasyonel öncelikleri.'
 WHERE `page_id` = 'cp-uuid-surdurul-001' AND `locale` = 'tr';
 
 UPDATE `custom_pages_i18n`
@@ -111,13 +111,13 @@ SET
   `title` = 'Bayi Girişi',
   `content` = '{"html":"<h2>Bayi portalına hoş geldiniz</h2><p>Bayilerimiz için sipariş ve operasyon takibini tek noktada toplayan giriş alanı.</p><div class=\"bg-brand/10 p-8 rounded-2xl text-center my-12 font-bold\">Bayi giriş paneli yakında hizmetinizde...</div>"}',
   `summary` = 'Bayilere özel sipariş ve operasyon portalı.',
-  `meta_title` = 'Bayi Girişi | VistaSeed',
-  `meta_description` = 'VistaSeed bayilerine özel giriş ve işlem alanı.'
+  `meta_title` = 'Bayi Girişi | vistaseeds',
+  `meta_description` = 'vistaseeds bayilerine özel giriş ve işlem alanı.'
 WHERE `page_id` = 'cp-uuid-bayi-001' AND `locale` = 'tr';
 
 UPDATE `support_faqs_i18n`
-SET `question` = 'VistaSeed ne sunuyor?',
-    `answer` = 'VistaSeed; ürün kataloğu, bilgi bankası ve toplu satış süreçlerini tek yapıda toplayan dijital tarım ekosistemidir.'
+SET `question` = 'vistaseeds ne sunuyor?',
+    `answer` = 'vistaseeds; ürün kataloğu, bilgi bankası ve toplu satış süreçlerini tek yapıda toplayan dijital tarım ekosistemidir.'
 WHERE `faq_id` = '66666666-6666-4666-8666-666666666661' AND `locale` = 'tr';
 
 UPDATE `support_faqs_i18n`
@@ -169,7 +169,7 @@ WHERE `job_listing_id` = '77777777-7777-4777-8777-777777777772' AND `locale` = '
 UPDATE `job_applications`
 SET
   `full_name` = 'Ahmet Yılmaz',
-  `cover_letter` = 'Üretim planlama, saha operasyonları ve kalite sistemleri alanında deneyimliyim. VistaSeed ekibine operasyonel disiplin ve süreç iyileştirme katkısı sunabileceğime inanıyorum.'
+  `cover_letter` = 'Üretim planlama, saha operasyonları ve kalite sistemleri alanında deneyimliyim. vistaseeds ekibine operasyonel disiplin ve süreç iyileştirme katkısı sunabileceğime inanıyorum.'
 WHERE `id` = '88888888-8888-4888-8888-888888888881';
 
 UPDATE `product_i18n`

@@ -19,7 +19,7 @@ function getServerApiUrl(): string {
   const pub = (process.env.NEXT_PUBLIC_API_URL || '').trim().replace(/\/+$/, '');
   if (pub) return pub;
 
-  return 'https://vistaseed.com/api';
+  return 'https://vistaseeds.com.tr/api';
 }
 
 /**

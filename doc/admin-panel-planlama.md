@@ -1,6 +1,6 @@
 # Admin Panel Planlama
 
-Bu doküman vistaseed admin panelinin mevcut durumunu analiz eder, PaketJet kalıntıları temizligi ve yeni modüllerin eklenmesi için faz plani sunar.
+Bu doküman vistaseeds admin panelinin mevcut durumunu analiz eder, PaketJet kalıntıları temizligi ve yeni modüllerin eklenmesi için faz plani sunar.
 
 ---
 
@@ -467,7 +467,7 @@ Admin panel:
 **Bağımlılık:** Faz 2
 
 **Isler:**
-1. Dashboard summary endpoint'ini VistaSeed'e uygun metriklere güncelle
+1. Dashboard summary endpoint'ini vistaseeds'e uygun metriklere güncelle
 2. Dashboard karti: Toplam urun sayisi
 3. Dashboard karti: Toplam kategori sayisi
 4. Dashboard karti: İletişim mesaj sayisi (okunmamis)
@@ -482,7 +482,7 @@ Admin panel:
 
 ## 6. Dashboard Endpoint Guncellemesi
 
-Mevcut dashboard endpoint'i PaketJet KPI'larını döndürür. VistaSeed için güncellenecek metrikler:
+Mevcut dashboard endpoint'i PaketJet KPI'larını döndürür. vistaseeds için güncellenecek metrikler:
 
 ```typescript
 // GET /admin/dashboard/summary
@@ -545,7 +545,7 @@ Her yeni modül için aşağıdaki adımlar eksiksiz tamamlanmalidir:
 
 1. **Barrel kirlilik riski:** PaketJet modülleri silinirken `shared.ts` ve `hooks.ts` barrel'larinda orphan export kalmamali. Silme sonrası type-check zorunlu.
 
-2. **Dashboard endpoint bağımlılığı:** Mevcut dashboard admin endpoint'i PaketJet metriklerine bağlı. Backend'de dashboard modülü VistaSeed için güncellenene kadar dashboard sayfası placeholder veya minimal görünümde kalabilir.
+2. **Dashboard endpoint bağımlılığı:** Mevcut dashboard admin endpoint'i PaketJet metriklerine bağlı. Backend'de dashboard modülü vistaseeds için güncellenene kadar dashboard sayfası placeholder veya minimal görünümde kalabilir.
 
 3. **Email templates coming-soon:** Mevcut durumda coming-soon sayfasına bağlanmış. Backend hazır olduğu için Faz 2 sonrası aktif edilebilir.
 

@@ -23,7 +23,7 @@
   "darkModeSystem": "Sistem",
   "preview": {
     "title": "Önizleme",
-    "brandName": "VistaSeed",
+    "brandName": "vistaseeds",
     "navHome": "Ana Sayfa",
     "navProducts": "Ürünler",
     "navContact": "İletişim",
@@ -34,7 +34,7 @@
     "accent": "Vurgu Alanı",
     "darkSection": "Koyu Bölüm",
     "darkSectionText": "Footer veya koyu yüzeylerde yazı kontrastını burada kontrol edin.",
-    "copyright": "© VistaSeed Yönetim Paneli Önizleme"
+    "copyright": "© vistaseeds Yönetim Paneli Önizleme"
   },
   "actions": {
     "refresh": "Yenile",

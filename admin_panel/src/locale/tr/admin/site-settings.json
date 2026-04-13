@@ -255,20 +255,20 @@
       "twitterCard": "Twitter Card Tipi"
     },
     "placeholders": {
-      "appName": "vistaseed Admin",
-      "copyright": "vistaseed",
+      "appName": "vistaseeds Admin",
+      "copyright": "vistaseeds",
       "htmlLang": "tr",
       "themeColor": "#F97316",
-      "ogImage": "/logo/png/vistaseed_logo_512.png",
+      "ogImage": "/logo/png/vistaseeds_logo_512.png",
       "favicon16": "/favicon/favicon-16.png",
       "favicon32": "/favicon/favicon-32.png",
       "appleTouchIcon": "/favicon/apple-touch-icon.png",
-      "metaTitle": "vistaseed Admin",
-      "ogUrl": "https://vistaseed.com/",
-      "metaDescription": "vistaseed yönetim paneli marka ve meta ayarları.",
-      "ogTitle": "vistaseed Admin",
+      "metaTitle": "vistaseeds Admin",
+      "ogUrl": "https://vistaseeds.com.tr/",
+      "metaDescription": "vistaseeds yönetim paneli marka ve meta ayarları.",
+      "ogTitle": "vistaseeds Admin",
       "twitterCard": "summary_large_image",
-      "ogDescription": "vistaseed yönetim paneli sosyal medya önizleme açıklaması."
+      "ogDescription": "vistaseeds yönetim paneli sosyal medya önizleme açıklaması."
     }
   },
   "brandMedia": {
@@ -301,7 +301,7 @@
       "copy": "URL kopyala",
       "urlCopied": "Medya URL'i kopyalandı.",
       "openNewTab": "Yeni sekmede aç",
-      "logoAlt": "vistaseed logosu",
+      "logoAlt": "vistaseeds logosu",
       "labels": {
         "logo_url": "Ana Logo",
         "logo_dark_url": "Koyu Zemin Logo",
@@ -370,7 +370,7 @@
       "placeholders": {
         "providerOrder": "groq,openai,anthropic,grok",
         "googleClientId": "...apps.googleusercontent.com",
-        "cloudinaryFolder": "uploads/vistaseed",
+        "cloudinaryFolder": "uploads/vistaseeds",
         "gtmContainerId": "GTM-XXXXXXX",
         "ga4MeasurementId": "G-XXXXXXXXXX",
         "groqModel": "llama-3.3-70b-versatile",
@@ -472,7 +472,7 @@
       "noindexBadge": "noindex",
       "googlePreview": "Google Önizlemesi",
       "socialPreview": "Sosyal Medya Önizlemesi",
-      "siteName": "vistaseed",
+      "siteName": "vistaseeds",
       "noDescription": "Bu sayfa için henüz açıklama girilmedi.",
       "noOgImage": "Henüz OG görseli yok"
     },
@@ -621,10 +621,10 @@
         "ogImage": "OG Image URL"
       },
       "placeholders": {
-        "siteTitle": "vistaseed | Güvenli Taşıma ve Teslimat",
-        "siteDescription": "vistaseed ile taşıma, rezervasyon ve lojistik süreçlerini hızlıca yönetin.",
+        "siteTitle": "vistaseeds | Güvenli Taşıma ve Teslimat",
+        "siteDescription": "vistaseeds ile taşıma, rezervasyon ve lojistik süreçlerini hızlıca yönetin.",
         "keywords": "lojistik, taşıma, rezervasyon, kurye, paket",
-        "ogImage": "/logo/png/vistaseed_logo_512.png"
+        "ogImage": "/logo/png/vistaseeds_logo_512.png"
       },
       "options": {
         "ogType": {
@@ -647,7 +647,7 @@
         "noIndex": "noindex (arama motorlarından gizle)"
       },
       "placeholders": {
-        "titleTemplate": "%s | vistaseed"
+        "titleTemplate": "%s | vistaseeds"
       },
       "options": {
         "ogType": {

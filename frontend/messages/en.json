@@ -718,7 +718,7 @@
   "References": {
     "list": {
       "title": "References",
-      "description": "Review project, implementation, and group-company references across the VistaSeed ecosystem.",
+      "description": "Review project, implementation, and group-company references across the vistaseeds ecosystem.",
       "eyebrow": "Field and project surfaces",
       "heroDescription": "Browse migrated reference records, visual sets, and project surfaces from the source site in one stream.",
       "cardKicker": "Reference record",
@@ -881,7 +881,7 @@
       }
     },
     "trust": {
-      "title": "Why VistaSeed",
+      "title": "Why vistaseeds",
       "item1": "Certified, high-yield seed varieties",
       "item2": "Technical support and advisory",
       "item3": "Flexible payment options",
@@ -1137,7 +1137,12 @@
       "notesPlaceholder": "Delivery or product preference (optional, up to 2000 characters)",
       "paymentTitle": "Payment",
       "payWithCard": "Credit card (Iyzico)",
+      "payWithCardCraftgate": "Credit card (Craftgate)",
+      "payWithCardNestpay": "Credit card (Isbank / NestPay)",
+      "payWithCardHalkode": "Credit card (Halk Ode)",
+      "payWithCardZiraatpay": "Credit card (ZiraatPay)",
       "payWithBank": "Bank transfer / EFT",
+      "paymentCardError": "Card payment could not be started. Check provider settings and connection.",
       "paymentIyzicoError": "Could not start payment. Check your connection or Iyzico configuration.",
       "paymentIyzicoUnavailable": "Iyzico is not configured in this environment (missing API keys).",
       "paymentBankDone": "Your order is marked as awaiting bank transfer; contact accounting for IBAN details.",
@@ -1287,10 +1292,18 @@
         },
         "payMethod": {
           "iyzico": "Card (Iyzico)",
+          "craftgate": "Card (Craftgate)",
+          "nestpay_isbank": "Card (Isbank / NestPay)",
+          "halkode": "Card (Halk Ode)",
+          "ziraatpay": "Card (ZiraatPay)",
           "bank_transfer": "Bank transfer",
           "dealer_credit": "Dealer credit"
         },
         "paymentPaidNote": "This order is marked as paid.",
+        "paymentCardPending": "Card payment has been started. Status will update after the callback completes.",
+        "paymentCardRedirecting": "Redirecting to the payment provider. If nothing happens, try again.",
+        "refreshPaymentStatus": "Refresh status",
+        "retryPayment": "Retry payment",
         "paymentHint": "Amount due: {total}",
         "availableCredit": "Available limit: {amount}",
         "iyzicoIframeHint": "After completing payment, refresh the page to see the status, or close the form below.",
@@ -1330,5 +1343,26 @@
       "fallbackTitle": "KVKK",
       "fallbackDescription": "KVKK information text."
     }
+  },
+  "Frost": {
+    "widgetTitle": "Frost Warning",
+    "location": "Location",
+    "currentTemp": "Current temp",
+    "minTemp": "Min. temp",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "dayAfter": "Day after",
+    "precipitation": "Precipitation",
+    "updatedAt": "Updated",
+    "safe": "Safe",
+    "watch": "Watch",
+    "warning": "Warning",
+    "danger": "Frost Danger",
+    "safeDesc": "No frost risk. Seedlings and seeds are safe.",
+    "watchDesc": "Temperature dropping. Monitor your greenhouse.",
+    "warningDesc": "Frost risk! Move seedlings to shelter.",
+    "dangerDesc": "Frost! Take emergency protection measures.",
+    "poweredBy": "Powered by Open-Meteo",
+    "loadError": "Could not load weather data"
   }
 }

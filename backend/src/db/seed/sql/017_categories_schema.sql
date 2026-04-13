@@ -60,12 +60,12 @@ INSERT IGNORE INTO `category_i18n` (
   `meta_description`
 )
 VALUES
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1', 'tr', 'Sebze Tohumları', 'sebze-tohumlari', 'VistaSeed sebze tohumu kategorileri.', 'Sebze tohumları kategori görseli', 'Sebze Tohumları | VistaSeed', 'VistaSeed sebze tohumu kategorilerini inceleyin.'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', 'tr', 'Biber Çeşitleri', 'biber-cesitleri', 'VistaSeed biber tohumu ve çeşit grupları.', 'Biber çeşitleri kategori görseli', 'Biber Çeşitleri | VistaSeed', 'VistaSeed biber çeşitleri ve tohum grupları.'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3', 'tr', 'Öne Çıkan Tohumlar', 'one-cikan-tohumlar', 'Öne çıkan tohum çeşitleri ve sezonluk seçimler.', 'Öne çıkan tohumlar kategori görseli', 'Öne Çıkan Tohumlar | VistaSeed', 'VistaSeed öne çıkan tohum çeşitlerini keşfedin.'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa4', 'tr', 'Diğer Çeşitler', 'diger-cesitler', 'Diğer tohum ve ürün kategorileri.', 'Diğer çeşitler kategori görseli', 'Diğer Çeşitler | VistaSeed', 'VistaSeed diğer tohum ve ürün kategorileri.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1', 'tr', 'Sebze Tohumları', 'sebze-tohumlari', 'vistaseeds sebze tohumu kategorileri.', 'Sebze tohumları kategori görseli', 'Sebze Tohumları | vistaseeds', 'vistaseeds sebze tohumu kategorilerini inceleyin.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', 'tr', 'Biber Çeşitleri', 'biber-cesitleri', 'vistaseeds biber tohumu ve çeşit grupları.', 'Biber çeşitleri kategori görseli', 'Biber Çeşitleri | vistaseeds', 'vistaseeds biber çeşitleri ve tohum grupları.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3', 'tr', 'Öne Çıkan Tohumlar', 'one-cikan-tohumlar', 'Öne çıkan tohum çeşitleri ve sezonluk seçimler.', 'Öne çıkan tohumlar kategori görseli', 'Öne Çıkan Tohumlar | vistaseeds', 'vistaseeds öne çıkan tohum çeşitlerini keşfedin.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa4', 'tr', 'Diğer Çeşitler', 'diger-cesitler', 'Diğer tohum ve ürün kategorileri.', 'Diğer çeşitler kategori görseli', 'Diğer Çeşitler | vistaseeds', 'vistaseeds diğer tohum ve ürün kategorileri.'),
   -- EN
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1', 'en', 'Vegetable Seeds', 'vegetable-seeds', 'VistaSeed vegetable seed categories.', 'Vegetable seeds category image', 'Vegetable Seeds | VistaSeed', 'Explore VistaSeed vegetable seed categories.'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', 'en', 'Pepper Varieties', 'pepper-varieties', 'VistaSeed pepper seed and variety groups.', 'Pepper varieties category image', 'Pepper Varieties | VistaSeed', 'Discover VistaSeed pepper varieties and seed groups.'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3', 'en', 'Featured Seeds', 'featured-seeds', 'Featured seed varieties and seasonal selections.', 'Featured seeds category image', 'Featured Seeds | VistaSeed', 'Browse VistaSeed featured seed varieties.'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa4', 'en', 'Other Varieties', 'other-varieties', 'Other seed and product categories.', 'Other varieties category image', 'Other Varieties | VistaSeed', 'Browse other seed and product categories from VistaSeed.');
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1', 'en', 'Vegetable Seeds', 'vegetable-seeds', 'vistaseeds vegetable seed categories.', 'Vegetable seeds category image', 'Vegetable Seeds | vistaseeds', 'Explore vistaseeds vegetable seed categories.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', 'en', 'Pepper Varieties', 'pepper-varieties', 'vistaseeds pepper seed and variety groups.', 'Pepper varieties category image', 'Pepper Varieties | vistaseeds', 'Discover vistaseeds pepper varieties and seed groups.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3', 'en', 'Featured Seeds', 'featured-seeds', 'Featured seed varieties and seasonal selections.', 'Featured seeds category image', 'Featured Seeds | vistaseeds', 'Browse vistaseeds featured seed varieties.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa4', 'en', 'Other Varieties', 'other-varieties', 'Other seed and product categories.', 'Other varieties category image', 'Other Varieties | vistaseeds', 'Browse other seed and product categories from vistaseeds.');

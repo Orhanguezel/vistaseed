@@ -1,6 +1,6 @@
 # Frontend Admin Panel
 
-Bu dokuman, vistaseed admin panel frontend'i icin guncel uygulama standardini ozetler.
+Bu dokuman, vistaseeds admin panel frontend'i icin guncel uygulama standardini ozetler.
 
 Referans dokumanlar:
 
@@ -315,7 +315,7 @@ Not:
 
 ## 17. Sonuc
 
-vistaseed admin panel frontend'i icin dogru calisma modeli:
+vistaseeds admin panel frontend'i icin dogru calisma modeli:
 
 - modül bazli
 - shared-first

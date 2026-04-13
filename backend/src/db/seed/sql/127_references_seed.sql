@@ -62,11 +62,11 @@ VALUES
     'tr',
     'Bereket Fide Üretim Kampüsü',
     'bereket-fide-uretim-kampusu',
-    'VistaSeed anlatısının beslendiği üretim omurgasını, modern sera ve aşı odası kapasitesi üzerinden özetleyen vaka kaydı.',
-    '<p>Bu kayıt, Bereket Fide''nin Antalya Aksu merkezli üretim omurgasını VistaSeed ekosistemi içinde nasıl konumlandırdığımızı gösterir. Modern sera altyapısı, aşı odası kapasitesi ve operasyonel ölçek; ürün, bayi ve teklif yüzeylerindeki güven sinyallerinin ana kaynağıdır.</p><p>Kurumsal içerikte kullanılan kapasite bilgileri, resmi kurumsal verilerle uyumlu olacak şekilde burada referans vaka olarak tutulur.</p>',
+    'vistaseeds anlatısının beslendiği üretim omurgasını, modern sera ve aşı odası kapasitesi üzerinden özetleyen vaka kaydı.',
+    '<p>Bu kayıt, Bereket Fide''nin Antalya Aksu merkezli üretim omurgasını vistaseeds ekosistemi içinde nasıl konumlandırdığımızı gösterir. Modern sera altyapısı, aşı odası kapasitesi ve operasyonel ölçek; ürün, bayi ve teklif yüzeylerindeki güven sinyallerinin ana kaynağıdır.</p><p>Kurumsal içerikte kullanılan kapasite bilgileri, resmi kurumsal verilerle uyumlu olacak şekilde burada referans vaka olarak tutulur.</p>',
     'Bereket Fide üretim kampüsü görseli',
-    'Bereket Fide Üretim Kampüsü | VistaSeed',
-    'Bereket Fide üretim omurgasının VistaSeed ürün ve içerik akışına nasıl bağlandığını özetleyen vaka kaydı.'
+    'Bereket Fide Üretim Kampüsü | vistaseeds',
+    'Bereket Fide üretim omurgasının vistaseeds ürün ve içerik akışına nasıl bağlandığını özetleyen vaka kaydı.'
   ),
   (
     'refi18n-en-0000-0000-000000000001',
@@ -74,11 +74,11 @@ VALUES
     'en',
     'Bereket Fide Production Campus',
     'bereket-fide-production-campus',
-    'A case entry showing the production backbone behind the VistaSeed narrative through greenhouse and grafting-room capacity.',
-    '<p>This record explains how Bereket Fide''s Antalya Aksu production backbone is positioned within the VistaSeed ecosystem. Greenhouse infrastructure, grafting-room capacity, and operational scale are the main trust signals behind product, dealer, and quotation surfaces.</p><p>Capacity figures used in the corporate narrative are kept here as a reference case aligned with official company information.</p>',
+    'A case entry showing the production backbone behind the vistaseeds narrative through greenhouse and grafting-room capacity.',
+    '<p>This record explains how Bereket Fide''s Antalya Aksu production backbone is positioned within the vistaseeds ecosystem. Greenhouse infrastructure, grafting-room capacity, and operational scale are the main trust signals behind product, dealer, and quotation surfaces.</p><p>Capacity figures used in the corporate narrative are kept here as a reference case aligned with official company information.</p>',
     'Bereket Fide production campus visual',
-    'Bereket Fide Production Campus | VistaSeed',
-    'A case entry summarizing how Bereket Fide production operations support VistaSeed content and product surfaces.'
+    'Bereket Fide Production Campus | vistaseeds',
+    'A case entry summarizing how Bereket Fide production operations support vistaseeds content and product surfaces.'
   ),
   (
     'refi18n-tr-0000-0000-000000000002',
@@ -89,7 +89,7 @@ VALUES
     'İletişim, ziyaret ve saha erişim bilgisini tek merkezde toplayan operasyon kaydı.',
     '<p>Antalya Aksu operasyon merkezi; ziyaret planlaması, saha erişimi, bayi yönlendirmesi ve kurumsal iletişim akışının birleştiği ana düğümdür.</p><p>İletişim sayfası, bayi ağı ve toplu satış modülleri bu merkez anlatımı etrafında birbirini tamamlar.</p>',
     'Antalya Aksu operasyon merkezi görseli',
-    'Antalya Aksu Operasyon Merkezi | VistaSeed',
+    'Antalya Aksu Operasyon Merkezi | vistaseeds',
     'İletişim, bayi yönlendirmesi ve saha erişim akışını tek merkezde toplayan operasyon kaydı.'
   ),
   (
@@ -101,7 +101,7 @@ VALUES
     'An operational entry that centralizes contact, visit planning, and field access information.',
     '<p>The Antalya Aksu operations center is the main node where visit planning, field access, dealer routing, and corporate communication flows come together.</p><p>Contact, dealer network, and bulk-sales modules reinforce each other around this operational narrative.</p>',
     'Antalya Aksu operations center visual',
-    'Antalya Aksu Operations Center | VistaSeed',
+    'Antalya Aksu Operations Center | vistaseeds',
     'An operational case that connects contact, dealer routing, and field-access messaging in one center.'
   ),
   (
@@ -113,7 +113,7 @@ VALUES
     'Aşılı fide üretim bilgisinin ürün güveni ve teknik anlatı tarafına nasıl aktarıldığını özetler.',
     '<p>Aşılı fide kapasite programı; yüksek hacimli üretim bilgisinin teknik içerik, ürün karşılaştırma ve saha dili ile nasıl eşleştiğini gösteren iç vaka kaydıdır.</p><p>Bu yüzeyde amaç, kapasite verisini abartılı pazarlama dili yerine operasyonel netlik ile sunmaktır.</p>',
     'Aşılı fide kapasite programı görseli',
-    'Aşılı Fide Kapasite Programı | VistaSeed',
+    'Aşılı Fide Kapasite Programı | vistaseeds',
     'Aşılı fide kapasitesinin ürün güveni ve teknik içerik anlatısına nasıl taşındığını anlatan vaka kaydı.'
   ),
   (
@@ -125,7 +125,7 @@ VALUES
     'Explains how grafted-seedling capacity data is translated into product trust and technical messaging.',
     '<p>This internal case shows how high-volume grafted-seedling production data connects with technical content, product comparison, and field-facing language.</p><p>The goal is to present capacity information with operational clarity rather than exaggerated marketing claims.</p>',
     'Grafted seedling capacity program visual',
-    'Grafted Seedling Capacity Program | VistaSeed',
+    'Grafted Seedling Capacity Program | vistaseeds',
     'An internal case showing how grafted-seedling capacity supports product trust and technical content.'
   ),
   (
@@ -137,7 +137,7 @@ VALUES
     'Bölgesel erişim mantığını, harita ve liste yapısı ile açıklayan dağıtım odaklı referans kaydı.',
     '<p>Bayi ağı modeli; saha erişimi, bölgesel kapsama ve yönlendirme mantığını sade bir arayüz ile görünür kılmak için tasarlanmıştır.</p><p>Bu kayıt, satış öncesi temas noktalarının dijital tarafta nasıl organize edildiğini belgeleyen referans örneğidir.</p>',
     'Bayi ağı görseli',
-    'Bayi Ağı ve Bölgesel Dağıtım Modeli | VistaSeed',
+    'Bayi Ağı ve Bölgesel Dağıtım Modeli | vistaseeds',
     'Bölgesel kapsama ve saha yönlendirmesini dijital olarak görünür kılan bayi ağı referans kaydı.'
   ),
   (
@@ -149,7 +149,7 @@ VALUES
     'A distribution-focused reference entry describing regional access through map and list surfaces.',
     '<p>The dealer-network model is designed to make field access, regional coverage, and routing logic visible through a simple interface.</p><p>This record documents how pre-sales contact points are organized on the digital side.</p>',
     'Dealer network visual',
-    'Dealer Network and Regional Distribution Model | VistaSeed',
+    'Dealer Network and Regional Distribution Model | vistaseeds',
     'A reference entry that makes regional coverage and field routing visible in digital form.'
   ),
   (
@@ -161,7 +161,7 @@ VALUES
     'Kooperatif, bayi ve kurumsal alımlar için teklif sürecini standartlaştıran akış kaydı.',
     '<p>Toplu satış yüzeyi; teklif toplama, ürün bağlama ve operasyon notlarını tek kayıt yapısında birleştirir.</p><p>Bu referans, kurumsal tedarik talebinin ürün ekranlarından teklif yönetimine nasıl aktarıldığını gösterir.</p>',
     'Toplu satış akışı görseli',
-    'Toplu Satış ve Kurumsal Tedarik Akışı | VistaSeed',
+    'Toplu Satış ve Kurumsal Tedarik Akışı | vistaseeds',
     'Toplu satış ve kurumsal teklif sürecini ürün yüzeyi ile birleştiren operasyon kaydı.'
   ),
   (
@@ -173,7 +173,7 @@ VALUES
     'A reference entry that standardizes quotation flow for cooperatives, dealers, and corporate purchases.',
     '<p>The bulk-sales surface combines quotation intake, product linking, and operational notes in one record structure.</p><p>This reference shows how corporate demand moves from product surfaces into quotation management.</p>',
     'Bulk sales flow visual',
-    'Bulk Sales and Corporate Supply Flow | VistaSeed',
+    'Bulk Sales and Corporate Supply Flow | vistaseeds',
     'An operational record connecting bulk-sales demand with product and quotation management.'
   ),
   (
@@ -185,7 +185,7 @@ VALUES
     'Bilgi bankası ile ekim rehberi içeriklerinin karar destek yüzeyi olarak nasıl kullanıldığını anlatır.',
     '<p>Bilgi bankası ve ekim rehberi yayınları; ürün kararını desteklemek, teknik dil birliğini korumak ve saha bilgisini dijital içerik haline getirmek için kullanılır.</p><p>Bu kayıt, blog ve teknik rehber akışlarının ürün detaylarıyla birlikte nasıl çalıştığını özetler.</p>',
     'Bilgi bankası içerik görseli',
-    'Teknik İçerik ve Bilgi Bankası Yayınları | VistaSeed',
+    'Teknik İçerik ve Bilgi Bankası Yayınları | vistaseeds',
     'Bilgi bankası ve teknik rehber içeriklerinin ürün kararını nasıl desteklediğini özetleyen vaka kaydı.'
   ),
   (
@@ -197,7 +197,7 @@ VALUES
     'Explains how knowledge-base and planting-guide content is used as a decision-support surface.',
     '<p>Knowledge-base and planting-guide publications are used to support product decisions, preserve technical language consistency, and convert field knowledge into digital content.</p><p>This record summarizes how blog and guide flows work together with product detail surfaces.</p>',
     'Knowledge-base content visual',
-    'Technical Content and Knowledge-Base Publications | VistaSeed',
+    'Technical Content and Knowledge-Base Publications | vistaseeds',
     'A case entry summarizing how knowledge-base and guide content supports product decisions.'
   )
 ON DUPLICATE KEY UPDATE

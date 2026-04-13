@@ -1,13 +1,13 @@
-# AGENTS.md — VistaSeed
+# AGENTS.md — vistaseeds
 
 ## Proje Özeti
 
-VistaSeed, tohumculuk ve tarım odaklı kurumsal web sitesi projesidir. Kökte public site (`frontend/`), yönetim paneli (`admin_panel/`) ve Fastify backend (`backend/`) birlikte yer alır.
+vistaseeds, tohumculuk ve tarım odaklı kurumsal web sitesi projesidir. Kökte public site (`frontend/`), yönetim paneli (`admin_panel/`) ve Fastify backend (`backend/`) birlikte yer alır.
 
 ## Workspace Haritası
 
 ```
-vistaseed/
+vistaseeds/
 ├── frontend/         Next.js public site
 ├── admin_panel/      Next.js admin panel
 ├── backend/          Fastify v5 API
@@ -39,5 +39,5 @@ cd backend && bun install && bun run dev
 ## Notlar
 
 - `doc/` klasörü bu proje için fiili plan klasörüdür; `docs/` yoksa yeni dosyalar mevcut yapıyla uyumlu eklenmelidir.
-- `admin_panel/package.json` ve kök dokümantasyonda proje adı `VistaSeed` olarak korunmalıdır.
+- `admin_panel/package.json` ve kök dokümantasyonda proje adı `vistaseeds` olarak korunmalıdır.
 - Mimari yeniden tasarım gerektiren büyük kararlar `CLAUDE.md` kapsamındadır.

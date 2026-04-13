@@ -1,4 +1,4 @@
-const STORAGE_KEY = "vistaseed_compare_product_slugs";
+const STORAGE_KEY = "vistaseeds_compare_product_slugs";
 export const COMPARE_MAX = 5;
 
 function readSlugs(): string[] {

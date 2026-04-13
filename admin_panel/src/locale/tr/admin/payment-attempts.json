@@ -1,0 +1,43 @@
+{
+  "header": {
+    "title": "Ödeme Denemeleri",
+    "description": "Ortak ödeme altyapısından gelen girişim kayıtlarını vistaseeds admin içinde izleyin."
+  },
+  "filters": {
+    "search": "Arama",
+    "searchPlaceholder": "Ödeme ref, sipariş id veya hata metni",
+    "provider": "Sağlayıcı",
+    "providerPlaceholder": "craftgate, halkode, iyzico...",
+    "status": "Durum",
+    "statusPlaceholder": "pending, succeeded..."
+  },
+  "actions": {
+    "refresh": "Yenile"
+  },
+  "table": {
+    "createdAt": "Tarih",
+    "provider": "Sağlayıcı",
+    "status": "Durum",
+    "order": "Sipariş",
+    "orderPayment": "Sipariş Ödeme",
+    "amount": "Tutar",
+    "paymentRef": "Payment Ref",
+    "lastError": "Son Hata"
+  },
+  "status": {
+    "pending": "Bekliyor",
+    "succeeded": "Başarılı",
+    "failed": "Başarısız",
+    "expired": "Süresi Doldu"
+  },
+  "states": {
+    "loading": "Yükleniyor...",
+    "empty": "Filtreye uygun ödeme denemesi bulunamadı."
+  },
+  "pagination": {
+    "summary": "Toplam {total} kayıt",
+    "prev": "Önceki",
+    "next": "Sonraki",
+    "page": "Sayfa {current} / {total}"
+  }
+}

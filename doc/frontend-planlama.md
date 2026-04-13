@@ -13,7 +13,7 @@ Frontend'i proje isimlerinden arındırmak, PaketJet kalıntıları temizlemek v
 - [x] PaketJet sayfalarını sil (admin/, panel/, giriş/, uye-ol/, sifremi-unuttum/, sifre-sifirla/)
 - [x] PaketJet modüllerini sil (ilan, booking, carrier-bank, wallet, withdrawal, subscription, rating, notification, dashboard, admin, auth)
 - [x] PaketJet bileşenlerini sil (HeroSearch, IlanCard, PaymentModal, RouteMap, admin/)
-- [x] Hardcoded proje isimlerini temizle (0 "vistaseed" referansı)
+- [x] Hardcoded proje isimlerini temizle (0 "vistaseeds" referansı)
 - [x] config/routes.ts ve config/api-endpoints.ts güncelle
 - [x] lib/api-client.ts storage key generikleştir ("app-auth")
 - [x] next.config.ts image hostname generikleştir (Cloudinary)

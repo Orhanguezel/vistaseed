@@ -44,7 +44,7 @@ VALUES
     'Ahmet Yılmaz',
     'ahmet.yilmaz@example.com',
     '+90 555 111 2233',
-    'Üretim planlama, saha operasyonları ve kalite sistemleri alanında deneyimliyim. VistaSeed ekibine operasyonel disiplin ve süreç iyileştirme katkısı sunabileceğime inanıyorum.',
+    'Üretim planlama, saha operasyonları ve kalite sistemleri alanında deneyimliyim. vistaseeds ekibine operasyonel disiplin ve süreç iyileştirme katkısı sunabileceğime inanıyorum.',
     '/uploads/support/library/support-library-guide.txt',
     'pending',
     NULL

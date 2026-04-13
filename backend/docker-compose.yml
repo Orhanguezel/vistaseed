@@ -1,13 +1,13 @@
-# VistaSeed backend — MariaDB + API
+# vistaseeds backend — MariaDB + API
 # Ağ: ecosystem-network (diğer ekosistem servisleri aynı isimli external ağ ile bağlanabilir)
-# Sadece DB: docker compose up -d vistaseed-db
+# Sadece DB: docker compose up -d vistaseeds-db
 # Tam yığın: docker compose up -d
 # Geliştirme override: docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d
 
 services:
-  vistaseed-db:
+  vistaseeds-db:
     image: mariadb:10.11
-    container_name: vistaseed-mariadb
+    container_name: vistaseeds-mariadb
     restart: unless-stopped
     networks:
       - ecosystem-network
@@ -19,34 +19,34 @@ services:
     ports:
       - "${DB_PORT:-3306}:3306"
     volumes:
-      - vistaseed-db-data:/var/lib/mysql
+      - vistaseeds-db-data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mariadb-admin", "ping", "-h", "127.0.0.1", "-u", "$$MARIADB_USER", "--password=$$MARIADB_PASSWORD"]
       interval: 10s
       timeout: 5s
       retries: 10
 
-  vistaseed-backend:
+  vistaseeds-backend:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: vistaseed-backend
+    container_name: vistaseeds-backend
     restart: unless-stopped
     networks:
       - ecosystem-network
     env_file:
       - .env
     environment:
-      DB_HOST: vistaseed-db
+      DB_HOST: vistaseeds-db
       DB_PORT: 3306
       PORT: ${PORT:-8083}
     ports:
       - "${PORT:-8083}:8083"
     depends_on:
-      vistaseed-db:
+      vistaseeds-db:
         condition: service_healthy
     volumes:
-      - vistaseed-uploads:/app/uploads
+      - vistaseeds-uploads:/app/uploads
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8083/api/health"]
       interval: 30s
@@ -55,8 +55,8 @@ services:
       start_period: 20s
 
 volumes:
-  vistaseed-db-data:
-  vistaseed-uploads:
+  vistaseeds-db-data:
+  vistaseeds-uploads:
 
 networks:
   ecosystem-network:

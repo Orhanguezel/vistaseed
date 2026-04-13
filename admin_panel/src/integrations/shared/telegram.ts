@@ -162,9 +162,9 @@ export function applyTelegramTemplate(template: string, vars: TelegramTemplateVa
 export function buildTelegramPreviewVars(defaultLocaleCode: string): TelegramTemplateVars {
   return {
     customer_name: 'Ayse Yilmaz',
-    customer_email: 'ayse@vistaseed.com',
+    customer_email: 'ayse@vistaseeds.com.tr',
     customer_phone: '+90 532 000 0000',
-    company_name: 'vistaseed Lojistik',
+    company_name: 'vistaseeds Lojistik',
     message: 'Yarin icin kurye rezervasyonu olusturmak istiyorum.',
     created_at: '2026-03-20 10:30:00',
     product_service: 'Sehir ici ekspres teslimat',

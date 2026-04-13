@@ -107,11 +107,11 @@ Bu modüller PaketJet lojistik/kargo pazaryerine aittir ve tamamen kaldırıldı
 - [x] `_shared/time.ts` — `RangeKey`/`TrendBucket` inline tanımlandı (dashboard-admin-types import silindi)
 - [x] `core/env.ts` — Iyzico/PayTR kaldırıldı, `SITE_NAME` eklendi, `DB_NAME` default `"mydb"`
 - [x] `plugins/swagger.ts` — API title env'den okunan `SITE_NAME` ile dinamik
-- [x] `contact/controller.ts` — hardcoded `vistaseed Ekibi` → `SITE_NAME` ile dinamik
-- [x] `mail/controller.ts` — test mail subject'ten vistaseed silindi
+- [x] `contact/controller.ts` — hardcoded `vistaseeds Ekibi` → `SITE_NAME` ile dinamik
+- [x] `mail/controller.ts` — test mail subject'ten vistaseeds silindi
 - [x] `ecosystem.config.cjs` — `kamanilan-backend` → `corporate-backend`
 - [x] `package.json` — `name: "corporate-site-backend"`, iyzipay dependency silindi, lojistik test script'leri silindi
-- [x] Tum TS dosyalarindaki `// vistaseed` yorumları `// corporate-backend` olarak güncellendi
+- [x] Tum TS dosyalarindaki `// vistaseeds` yorumları `// corporate-backend` olarak güncellendi
 - [x] Sync conflict dosyasi silindi
 - [x] Lojistik test dosyaları silindi (booking, carrier, wallet, ilan, dashboard, rating, withdrawal)
 - [x] auth.test.ts, api.test.ts — carrier referanslari editor ile degistirildi

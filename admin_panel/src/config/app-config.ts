@@ -28,21 +28,21 @@ export type AdminBrandingConfig = {
 };
 
 export const DEFAULT_BRANDING: AdminBrandingConfig = {
-  app_name: 'vistaseed Admin Panel',
-  app_copyright: 'vistaseed',
+  app_name: 'vistaseeds Admin Panel',
+  app_copyright: 'vistaseeds',
   html_lang: FALLBACK_LOCALE,
   theme_color: '#F97316',
   favicon_16: '/favicon/favicon.svg',
   favicon_32: '/favicon/favicon.svg',
   apple_touch_icon: '/apple/apple-touch-icon.png',
   meta: {
-    title: 'vistaseed Admin Panel',
+    title: 'vistaseeds Admin Panel',
     description:
-      'vistaseed yönetim paneli. Taşıyıcılar, ilanlar, rezervasyonlar ve site ayarları yönetimi.',
-    og_url: 'https://vistaseed.com/admin',
-    og_title: 'vistaseed Admin Panel',
+      'vistaseeds yönetim paneli. Taşıyıcılar, ilanlar, rezervasyonlar ve site ayarları yönetimi.',
+    og_url: 'https://vistaseeds.com.tr/admin',
+    og_title: 'vistaseeds Admin Panel',
     og_description:
-      'vistaseed yönetim paneli ile ilan ve rezervasyon yönetimini merkezi olarak yapın.',
+      'vistaseeds yönetim paneli ile ilan ve rezervasyon yönetimini merkezi olarak yapın.',
     og_image: '/logo/og-image.png',
     twitter_card: 'summary_large_image',
   },

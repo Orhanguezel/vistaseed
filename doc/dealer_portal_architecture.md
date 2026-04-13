@@ -1,6 +1,6 @@
 # Bayi Portalı (Dealer Portal) Dinamik Mimari Planı
 
-VistaSeed Bayi Portalı'nın sadece bir bilgilendirme ekranı olmaktan çıkıp tam fonksiyonel bir B2B (Business-to-Business) sipariş ve yönetim platformuna dönüşmesi için gereken modüller ve altyapı planı aşağıdadır.
+vistaseeds Bayi Portalı'nın sadece bir bilgilendirme ekranı olmaktan çıkıp tam fonksiyonel bir B2B (Business-to-Business) sipariş ve yönetim platformuna dönüşmesi için gereken modüller ve altyapı planı aşağıdadır.
 
 ## 1. Gerekli Modüller (Backend)
 

@@ -4,9 +4,6 @@
 
 SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- Role ENUM güncelleme (güvenlik için)
-ALTER TABLE user_roles MODIFY COLUMN role ENUM('admin','editor','carrier','customer','dealer') NOT NULL DEFAULT 'customer';
-
 -- 1) BAYİ KAYDI — şifre: DEALER_PASSWORD (varsayılan admin123), bkz. CALISTIRMA.md
 INSERT INTO users (
   id, email, password_hash, full_name, phone,

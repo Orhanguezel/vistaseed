@@ -1,4 +1,4 @@
-# VistaSeed — Ekosistem planı kontrol listesi
+# vistaseeds — Ekosistem planı kontrol listesi
 
 **Kaynak:** `EKOSISTEM-PLAN.md`  
 **İçerik backlog:** `yapilacaklar.md` (P6 özeti aşağıda)  
@@ -121,7 +121,7 @@
 
 ## P3 — Uzun vade (Ay 3–6)
 
-- [x] P3.1 Sipariş / çoklu satıcı hazırlığı — `orders.seller_id` (`138_orders_seller_id.sql`, NULL = VistaSeed), listeler/detayda `seller_name`; admin `PATCH /v1/admin/orders/:id/seller` (atama yalnızca `dealer` rolü); public `GET /v1/sellers/:id` (dealer + aktif kullanıcı). Satıcı dashboard / komisyon / `seller` rolü ayrımı sonraki iterasyon.
+- [x] P3.1 Sipariş / çoklu satıcı hazırlığı — `orders.seller_id` (`138_orders_seller_id.sql`, NULL = vistaseeds), listeler/detayda `seller_name`; admin `PATCH /v1/admin/orders/:id/seller` (atama yalnızca `dealer` rolü); public `GET /v1/sellers/:id` (dealer + aktif kullanıcı). Satıcı dashboard / komisyon / `seller` rolü ayrımı sonraki iterasyon.
 - [x] P3.2 Dealer finance genişletme — `139_dealer_transactions_due_date.sql` (`due_date`); `GET /v1/dealer/finance/summary` + `GET /v1/admin/dealers/:id/finance/summary` (cari + `totals_by_type` + `overdue_count` + `warnings`); işlem listelerinde `due_from`/`due_to`; admin manuel işlemde `due_date`. PDF / Telegram sonraki iterasyon.  
 - [x] P3.3 Ortak paket geçişi (`shared-ui` JsonLd migration done).
 - [x] P3.4 Docker Compose iyileştirme (`ecosystem-network` and healthchecks done).
@@ -132,7 +132,7 @@
 
 - [x] P4.1 Çoklu satıcı (MVP) — `GET /v1/seller/orders`, `GET /v1/seller/orders/:id`, `GET /v1/seller/orders/summary` (yalnızca `dealer` rolü); özet: durum bazlı adet + `platform_commission` oranına göre tahmini komisyon/satıcı payı. Stok (`product_stock`) ve ayrı `seller` rolü sonraki iterasyon.
 - [x] P4.2 Dealer finance — `POST /v1/dealer/finance/send-alerts` (uyarı varken e-posta + Telegram `telegramNotify`; e-posta başarılıysa saatlik cooldown); `GET /v1/dealer/finance/statement.pdf` (pdfkit, son 500 hareket). Otomatik cron yok — sonraki iterasyon.
-- [x] P4.3 Ortak paketler — `shared-config` (`tailwind-tokens` + `data-brand="vistaseed"`), `shared-types` bağımlılığı ve TS path’leri; `shared-ui` + `shared-backend` için aşamalı taşıma.
+- [x] P4.3 Ortak paketler — `shared-config` (`tailwind-tokens` + `data-brand="vistaseeds"`), `shared-types` bağımlılığı ve TS path’leri; `shared-ui` + `shared-backend` için aşamalı taşıma.
 
 ---
 
@@ -146,11 +146,11 @@
 
 **Kaynak (detay + checkbox’lar):** [`yapilacaklar.md`](./yapilacaklar.md)
 
-Özet: VistaSeed’e özel blog, RSS (içe/dışa), referanslar sayfası onarımı, Ar-Ge ve ekim rehberi doldurma, bilgi bankası (Bereket Fide / ortak `library` hizası), `/urunler` kırık görseller, TR karakter kalitesi.
+Özet: vistaseeds’e özel blog, RSS (içe/dışa), referanslar sayfası onarımı, Ar-Ge ve ekim rehberi doldurma, bilgi bankası (Bereket Fide / ortak `library` hizası), `/urunler` kırık görseller, TR karakter kalitesi.
 
 | # | Görev | Codex | Antigravity |
 |---|--------|:-----:|:-----------:|
-| P6.1 | Blog: VistaSeed içerik, RSS dışa, ekosistem RSS içe, haberler stratejisi | ● | ● (okuma, boş durum) |
+| P6.1 | Blog: vistaseeds içerik, RSS dışa, ekosistem RSS içe, haberler stratejisi | ● | ● (okuma, boş durum) |
 | P6.2 | Referanslar: hata gider, grup şirket / harici site içerikleri | ● | ● (kart / logo grid) |
 | P6.3 | Ar-Ge merkezi: premium metin + lab / sürdürülebilirlik görselleri | ● | ● |
 | P6.4 | Ekim rehberi: liste + detay içerik | ● | ● |
@@ -174,7 +174,7 @@
 ## Codex için görev şablonu (kopyala-yapıştır)
 
 ```
-Bağlam: VistaSeed monorepo — projects/vistaseed (Fastify backend, Next frontend/admin).
+Bağlam: vistaseeds monorepo — projects/vistaseeds (Fastify backend, Next frontend/admin).
 Kaynak: EKOSISTEM-PLAN.md + EKOSISTEM-CHECKLIST.md.
 
 Hedef sprint: [P0 / P1 / …] — [madde no, örn. P1.1a]
@@ -197,7 +197,7 @@ Yapılacaklar:
 ## Antigravity (UI/UX) için görev şablonu (kopyala-yapıştır)
 
 ```
-Proje: VistaSeed public site — Next.js, Tailwind v4, mevcut tema token’ları.
+Proje: vistaseeds public site — Next.js, Tailwind v4, mevcut tema token’ları.
 Kaynak: EKOSISTEM-PLAN.md + EKOSISTEM-CHECKLIST.md.
 
 Ekran / özellik: [örn. Blog liste, Bayi ağı harita, Karşılaştırma tablosu]
@@ -219,7 +219,7 @@ Uygulama kodunu Codex’e bırak; sen sadece spesifikasyon ve doğrulama.
 | Alan | Not |
 |------|-----|
 | Backend `dev` | Auth route şemaları `fromZodSchema` ile düzeltildi (shared-backend). |
-| `build:shared` | Monorepo kökü veya `vistaseed/package.json` üzerinden. |
+| `build:shared` | Monorepo kökü veya `vistaseeds/package.json` üzerinden. |
 | Port | Backend 8083; frontend/admin `.env.example` API origin 8083 ile hizalı. Admin prod varsayılanı 3030 olarak dokümanla hizalandı. |
 | Next 16 | Frontend ve admin `next@16.2.1`; production build doğrulandı. |
 | Testler | Backend `src/test/*` suite yeşil. Frontend Vitest `src/i18n/routing.test.ts` + `src/lib/seo.test.ts` ile yeşil. |
@@ -230,7 +230,7 @@ Uygulama kodunu Codex’e bırak; sen sadece spesifikasyon ve doğrulama.
 | Ürün karşılaştırma | `GET /api/v1/products/compare?ids=` (2–5 UUID, `shared-backend`); frontend `/{locale}/karsilastirma`; ürün listesinde seçim barı + detayda listeye ekleme doğrulandı. |
 | Bayi ağı | `GET /api/v1/dealers/public`; `dealer_profiles` + `136` konum alanları; `/{locale}/bayi-agi` filtre + kapsama paneli aktif. Tam inject testi için local DB’de `133` + `136` seedleri gerekli. |
 | Bilgi bankası (P2.1) | Detay: galeri + Article/BreadcrumbList JSON-LD; ürün detay: FAQPage JSON-LD + `LibraryKnowledgeLinks` (etiket → `GET /api/library?q=`). |
-| Ortak paketler (P4.3) | Frontend: `@agro/shared-config` + `@agro/shared-types`; `globals.css` `tailwind-tokens`; `layout.tsx` `data-brand="vistaseed"`. |
+| Ortak paketler (P4.3) | Frontend: `@agro/shared-config` + `@agro/shared-types`; `globals.css` `tailwind-tokens`; `layout.tsx` `data-brand="vistaseeds"`. |
 | Dealer finance (P4.2) | `POST /dealer/finance/send-alerts`, `GET /dealer/finance/statement.pdf`; `pdfkit` bağımlılığı. |
 | Admin toplu uyarı (P5.1) | `POST /admin/dealers/finance/run-alerts` — onaylı bayiler. |
 

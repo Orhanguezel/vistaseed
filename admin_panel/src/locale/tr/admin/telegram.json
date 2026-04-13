@@ -69,7 +69,7 @@
     "enable": "Otomatik Yanıt",
     "enableDesc": "Açıkken gelen mesajlara şablon yanıt gönderilir.",
     "templateLabel": "Yanıt Mesajı (Şablon)",
-    "defaultTemplate": "Mesajiniz icin tesekkur ederiz. vistaseed ekibi en kisa surede size donus yapacaktir.\n\nTalebiniz isleme alindi. Lutfen bu mesaji referans olarak saklayin.\n\n- vistaseed Ekibi",
+    "defaultTemplate": "Mesajiniz icin tesekkur ederiz. vistaseeds ekibi en kisa surede size donus yapacaktir.\n\nTalebiniz isleme alindi. Lutfen bu mesaji referans olarak saklayin.\n\n- vistaseeds Ekibi",
     "modeInfo": "Mod: {mode}. AI modu + prompt/agent config ileride eklenecek.",
     "save": "Kaydet",
     "saving": "Kaydediliyor...",

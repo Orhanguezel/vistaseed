@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS users (
   created_at        DATETIME(3)    NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   updated_at        DATETIME(3)    NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
   last_sign_in_at   DATETIME(3)    DEFAULT NULL,
+  rules_accepted_at DATETIME(3)    DEFAULT NULL,
   PRIMARY KEY (id),
   UNIQUE KEY users_email_unique (email),
   KEY users_ecosystem_id_idx (ecosystem_id)

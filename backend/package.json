@@ -8,6 +8,7 @@
     "start": "node --experimental-specifier-resolution=node dist/index.js",
     "start:bun": "bun dist/index.js",
     "test": "bun test src/test/",
+    "test:payment": "bun test src/test/payment.test.ts",
     "test:auth": "bun test src/test/auth.test.ts",
     "test:api": "bun test src/test/api.test.ts",
     "test:category": "bun test src/test/category.test.ts",

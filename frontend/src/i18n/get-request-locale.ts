@@ -5,7 +5,7 @@ import { defaultLocale, isAppLocale, type AppLocale } from "@/i18n/routing";
 export async function getRequestLocale(): Promise<AppLocale> {
   try {
     const headerList = await headers();
-    const requested = headerList.get("x-vistaseed-locale");
+    const requested = headerList.get("x-vistaseeds-locale");
     return requested && isAppLocale(requested) ? requested : defaultLocale;
   } catch {
     return defaultLocale;

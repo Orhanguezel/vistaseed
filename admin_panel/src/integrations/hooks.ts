@@ -1,7 +1,7 @@
 "use client";
 // =============================================================
 // FILE: src/integrations/hooks.ts
-// Explicit barrel exports for RTK Query hooks (vistaseed)
+// Explicit barrel exports for RTK Query hooks (vistaseeds)
 // =============================================================
 
 // =========================
@@ -128,6 +128,8 @@ export {
   useSendOfferEmailAdminMutation,
   useSendOfferAdminMutation,
 } from "@/integrations/endpoints/admin/offers-admin-endpoints";
+
+export { useListPaymentAttemptsAdminQuery } from "@/integrations/endpoints/admin/payment-attempts-admin-endpoints";
 
 export {
   useListTelegramInboundQuery,

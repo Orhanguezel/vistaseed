@@ -1,10 +1,10 @@
-# VistaSeed - Turkiye Tohum ve Fide Dijital Platformu
+# vistaseeds - Turkiye Tohum ve Fide Dijital Platformu
 # https://www.vistaseeds.com.tr
 
-Bu belge, yapay zeka modelleri ve crawler'lar icin VistaSeed platformunun yapisini ve icerigini ozetler.
+Bu belge, yapay zeka modelleri ve crawler'lar icin vistaseeds platformunun yapisini ve icerigini ozetler.
 
 ## Ana Sayfalar
-- / : Anasayfa - VistaSeed tohum ve fide cesitleri, one cikanlar.
+- / : Anasayfa - vistaseeds tohum ve fide cesitleri, one cikanlar.
 - /urunler : Tum tohum ve tarimsal urun katalogu.
 - /bilgi-bankasi : Tarimsal bilgi bankasi, hastalıklarla mücadele ve bakım rehberleri.
 - /ekim-rehberi : Bolgesel ve mevsimsel ekim takvimi, derinlik ve aralik verileri.
@@ -17,7 +17,7 @@ Bu belge, yapay zeka modelleri ve crawler'lar icin VistaSeed platformunun yapisi
 - https://agroplatform.com.tr : Tarim dijital ekosistemi (gelecek platform).
 
 ## Teknik Veri Paylasimi
-VistaSeed, ekosistem genelinde veri paylasimi icin standart REST API'lar sunar.
+vistaseeds, ekosistem genelinde veri paylasimi icin standart REST API'lar sunar.
 - Content Federation API: /api/v1/ecosystem/content
 
 ## Onemli Anahtar Kelimeler

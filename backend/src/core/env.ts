@@ -109,13 +109,21 @@ export const env = {
   PAYTR_TEST_MODE: parseEnvBool(process.env.PAYTR_TEST_MODE, true),
 
   /** Virgulle ayrilmis RSS 2.0 feed URL'leri (blog iceri aktarma) */
+  // =========================================================
+  // Weather / Frost Warning (Open-Meteo — ücretsiz, API key yok)
+  // =========================================================
+  WEATHER_LAT: parseFloat(process.env.WEATHER_LAT ?? '36.8969'),   // Antalya
+  WEATHER_LON: parseFloat(process.env.WEATHER_LON ?? '30.7133'),   // Antalya
+  WEATHER_LOCATION_NAME: process.env.WEATHER_LOCATION_NAME ?? 'Antalya',
+  WEATHER_TIMEZONE: process.env.WEATHER_TIMEZONE ?? 'Europe/Istanbul',
+
   RSS_IMPORT_FEEDS,
   RSS_IMPORT_LOCALE: (process.env.RSS_IMPORT_LOCALE || 'tr').trim().toLowerCase() || 'tr',
   RSS_IMPORT_CATEGORY: (process.env.RSS_IMPORT_CATEGORY || 'haber').trim() || 'haber',
   RSS_IMPORT_MAX_ITEMS_PER_FEED: parseEnvInt(process.env.RSS_IMPORT_MAX_ITEMS_PER_FEED, 20),
   /** Ayni feed icin minimum tekrar araligi (ms); MVP bellek ici */
   RSS_IMPORT_MIN_INTERVAL_MS: parseEnvInt(process.env.RSS_IMPORT_MIN_INTERVAL_MS, 900_000),
-  RSS_IMPORT_USER_AGENT: (process.env.RSS_IMPORT_USER_AGENT || 'VistaSeed-RssImport/1.0').trim(),
+  RSS_IMPORT_USER_AGENT: (process.env.RSS_IMPORT_USER_AGENT || 'vistaseeds-RssImport/1.0').trim(),
 } as const;
 
 export type AppEnv = typeof env;

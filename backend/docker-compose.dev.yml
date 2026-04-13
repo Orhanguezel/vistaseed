@@ -4,11 +4,11 @@
 # Örnek: DB sağlık kontrolünü sıklaştırır, backend NODE_ENV=development (log seviyesi vb.)
 
 services:
-  vistaseed-db:
+  vistaseeds-db:
     healthcheck:
       interval: 5s
       retries: 24
 
-  vistaseed-backend:
+  vistaseeds-backend:
     environment:
       NODE_ENV: development

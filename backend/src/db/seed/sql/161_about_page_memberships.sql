@@ -1,4 +1,4 @@
--- VistaSeed hakkimizda sayfasi — üyelikler bölümü
+-- vistaseeds hakkimizda sayfasi — üyelikler bölümü
 -- Logoların storage_assets kaydı: 007_storage_assets.sql (ID 105-108)
 -- Logo dosyaları: backend/uploads/about/memberships/*.png (elle konulacak)
 -- Admin panelden değiştirilebilir: site_settings.about_page.memberships
@@ -26,38 +26,10 @@ ON DUPLICATE KEY UPDATE
 
 -- about_page site_settings: memberships bolumu ekleniyor
 -- logo_url degerleri 007_storage_assets.sql'deki url alanlariyla eslesiyor
+-- MariaDB uyumlu: JSON_MERGE_PATCH JSON string'i dogrudan kabul eder, CAST gerekmez.
 UPDATE `site_settings`
-SET `value` = JSON_SET(
+SET `value` = JSON_MERGE_PATCH(
   `value`,
-  '$.memberships',
-  CAST('{
-    "title": "Üyesi Olduğumuz Kuruluşlar",
-    "items": [
-      {
-        "name": "Antalya Ticaret ve Sanayi Odası",
-        "logo_url": "/uploads/about/memberships/atso.png",
-        "website_url": "https://www.atso.org.tr",
-        "description": "ATSO üyesi"
-      },
-      {
-        "name": "T.C. Tarım ve Orman Bakanlığı",
-        "logo_url": "/uploads/about/memberships/tarim-bakanligi.png",
-        "website_url": "https://www.tarimorman.gov.tr",
-        "description": "Ruhsatlı tohum üreticisi ve dağıtıcısı"
-      },
-      {
-        "name": "Tohum Dağıtıcıları Alt Birliği",
-        "logo_url": "/uploads/about/memberships/turktob-dagiticilari.png",
-        "website_url": "https://www.turktob.org.tr",
-        "description": "TÜRKTOB bünyesinde üye"
-      },
-      {
-        "name": "Tohum Sanayicileri ve Üreticileri Alt Birliği",
-        "logo_url": "/uploads/about/memberships/tsuab.png",
-        "website_url": "https://www.turktob.org.tr",
-        "description": "TSÜAB üyesi"
-      }
-    ]
-  }' AS JSON)
+  '{"memberships":{"title":"Üyesi Olduğumuz Kuruluşlar","items":[{"name":"Antalya Ticaret ve Sanayi Odası","logo_url":"/uploads/about/memberships/atso.png","website_url":"https://www.atso.org.tr","description":"ATSO üyesi"},{"name":"T.C. Tarım ve Orman Bakanlığı","logo_url":"/uploads/about/memberships/tarim-bakanligi.png","website_url":"https://www.tarimorman.gov.tr","description":"Ruhsatlı tohum üreticisi ve dağıtıcısı"},{"name":"Tohum Dağıtıcıları Alt Birliği","logo_url":"/uploads/about/memberships/turktob-dagiticilari.png","website_url":"https://www.turktob.org.tr","description":"TÜRKTOB bünyesinde üye"},{"name":"Tohum Sanayicileri ve Üreticileri Alt Birliği","logo_url":"/uploads/about/memberships/tsuab.png","website_url":"https://www.turktob.org.tr","description":"TSÜAB üyesi"}]}}'
 )
 WHERE `key` = 'about_page' AND `locale` = 'tr';

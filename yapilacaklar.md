@@ -1,6 +1,6 @@
-# VistaSeed — yapılacaklar
+# vistaseeds — yapılacaklar
 
-**Konum:** `projects/vistaseed/yapilacaklar.md`  
+**Konum:** `projects/vistaseeds/yapilacaklar.md`  
 **Ekosistem özeti:** `EKOSISTEM-CHECKLIST.md` (P6 tamamlandıysa orada `[x]`).
 
 Bu dosya aktif backlog’tur: **tamamlananlar** arşiv özetidir; **sıradakiler** üzerinde çalışılır.
@@ -29,7 +29,7 @@ Bu dosya aktif backlog’tur: **tamamlananlar** arşiv özetidir; **sıradakiler
 - **“Yeni sipariş” / yönlendirmeler / bakiye** — Önceki maddeler (panel içi CTA, `bayi-dashboard/siparis` redirect, tekrarlayan `fetchBalance` kaldırıldı).
 - **Kredi ile ödeme** — `POST /api/v1/orders/:id/payment/credit` (tek DB transaction: cari `order` satırı + bakiye + sipariş `paid`/`dealer_credit`); panel `DealerOrderForm` üçüncü ödeme seçeneği.
 - **RSS içe alma (MVP)** — `POST /api/v1/admin/blog/rss/import`, `blog_posts.rss_source_url` + `155_blog_posts_rss_source.sql`, env `RSS_IMPORT_*`; admin Blog listesinde «RSS içe aktar».
-- **Sepet kalıcılığı** — `dealer-order-draft-storage.ts` (`localStorage` `vistaseed-dealer-order-draft`), sipariş sonrası temizlenir.
+- **Sepet kalıcılığı** — `dealer-order-draft-storage.ts` (`localStorage` `vistaseeds-dealer-order-draft`), sipariş sonrası temizlenir.
 
 ---
 

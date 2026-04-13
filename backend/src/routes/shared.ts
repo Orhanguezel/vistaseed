@@ -22,6 +22,11 @@ import { registerReferences } from '@agro/shared-backend/modules/references/rout
 import { registerReferencesAdmin } from '@agro/shared-backend/modules/references/admin.routes';
 import { registerLibrary } from '@agro/shared-backend/modules/library/router';
 import { registerLibraryAdmin } from '@agro/shared-backend/modules/library/admin.routes';
+import { registerOrders } from '@agro/shared-backend/modules/orders/router';
+import { registerOrdersAdmin } from '@agro/shared-backend/modules/orders/admin.routes';
+import { registerSellerOrders } from '@agro/shared-backend/modules/orders/seller.routes';
+import { registerDealerFinance } from '@agro/shared-backend/modules/dealerFinance/router';
+import { registerDealerFinanceAdmin } from '@agro/shared-backend/modules/dealerFinance/admin.routes';
 
 export async function registerSharedPublic(api: FastifyInstance) {
   await registerAuth(api);
@@ -40,6 +45,9 @@ export async function registerSharedPublic(api: FastifyInstance) {
   await registerGallery(api);
   await registerReferences(api);
   await registerLibrary(api);
+  await registerOrders(api);
+  await registerSellerOrders(api);
+  await registerDealerFinance(api);
 }
 
 export async function registerSharedAdmin(adminApi: FastifyInstance) {
@@ -49,6 +57,7 @@ export async function registerSharedAdmin(adminApi: FastifyInstance) {
     registerThemeAdmin, registerEmailTemplatesAdmin, registerAuditAdmin,
     registerAuditStream, registerTelegramAdmin, registerProductsAdmin,
     registerGalleryAdmin, registerReferencesAdmin, registerLibraryAdmin,
+    registerOrdersAdmin, registerDealerFinanceAdmin,
   ]) {
     await adminApi.register(reg);
   }

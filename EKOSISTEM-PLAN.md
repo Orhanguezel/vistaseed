@@ -1,14 +1,14 @@
-# VistaSeed — Ekosistem Entegrasyon ve Geliştirme Planı
+# vistaseeds — Ekosistem Entegrasyon ve Geliştirme Planı
 
 **Tarih:** 29 Mart 2026
-**Bağlam:** Tarım Dijital Ekosistem kabul edildi. VistaSeed, ekosistemin iki merkez sitesinden biri olarak yeniden konumlandırılıyor.
+**Bağlam:** Tarım Dijital Ekosistem kabul edildi. vistaseeds, ekosistemin iki merkez sitesinden biri olarak yeniden konumlandırılıyor.
 **Mevcut Durum:** Canlıya hazırlanıyor (`vistaseeds.com.tr`), bayi/üye sistemi mevcut.
 
 > Bu plan mevcut `doc/` altındaki planlama dokümanlarının **üstüne** inşa edilir. Modül planlama ve frontend/backend/admin planlaması devam ederken, ekosistem entegrasyonu paralel yürütülür.
 
 ---
 
-## 1. VistaSeed'in Ekosistem İçerisindeki Rolü
+## 1. vistaseeds'in Ekosistem İçerisindeki Rolü
 
 ```
 EKOSISTEM
@@ -16,7 +16,7 @@ EKOSISTEM
 │   ├── Fide odaklı kurumsal site
 │   ├── İçerik hub'ı (blog -> haber portalı beslemesi)
 │   └── Sera müşteri tabanı -> sera SaaS
-├── VistaSeed (BU PROJE)
+├── vistaseeds (BU PROJE)
 │   ├── Tohum odaklı kurumsal site
 │   ├── Bayi/üye sistemi -> ekosistem auth temeli
 │   ├── Sipariş sistemi -> B2B pazaryeri çekirdeği
@@ -25,12 +25,12 @@ EKOSISTEM
 └── Gelecek Platformlar
     ├── Ziraat Haber Portalı
     ├── Hal Fiyatları
-    ├── Tarım Ansiklopedisi (VistaSeed bilgi bankası evrilir)
+    ├── Tarım Ansiklopedisi (vistaseeds bilgi bankası evrilir)
     ├── Sera SaaS
-    └── B2B Pazaryeri (VistaSeed sipariş sistemi evrilir)
+    └── B2B Pazaryeri (vistaseeds sipariş sistemi evrilir)
 ```
 
-**VistaSeed'in stratejik avantajı:** Bayi dashboard, üye sistemi, sipariş yönetimi ve bilgi bankası zaten mevcut. Bu modüller ekosistem genelinde yeniden kullanımlı en değerli varlıklar.
+**vistaseeds'in stratejik avantajı:** Bayi dashboard, üye sistemi, sipariş yönetimi ve bilgi bankası zaten mevcut. Bu modüller ekosistem genelinde yeniden kullanımlı en değerli varlıklar.
 
 ---
 
@@ -40,7 +40,7 @@ EKOSISTEM
 
 #### 2.1 Next.js 16 Yükseltme
 
-VistaSeed Next.js 15.2'de, Bereketfide 16.1.6'da. Ekosistem tutarlılığı için eşitlenmeli.
+vistaseeds Next.js 15.2'de, Bereketfide 16.1.6'da. Ekosistem tutarlılığı için eşitlenmeli.
 
 - [ ] Frontend: `next@16` + `react@19.2` yukseltme
   - `next.config.ts` syntax degisiklikleri kontrol et
@@ -54,7 +54,7 @@ VistaSeed Next.js 15.2'de, Bereketfide 16.1.6'da. Ekosistem tutarlılığı içi
 
 #### 2.2 Frontend i18n Ekleme (TR/EN/DE)
 
-VistaSeed frontend'i sadece Turkce. Uluslararasi pazar icin ve Bereketfide ile tutarlilik icin i18n eklenmeli.
+vistaseeds frontend'i sadece Turkce. Uluslararasi pazar icin ve Bereketfide ile tutarlilik icin i18n eklenmeli.
 
 - [ ] `next-intl` paketini frontend'e ekle (Bereketfide referans)
 - [ ] Route yapisini `[locale]/` altina tasi:
@@ -85,15 +85,15 @@ Farklı config dosyalarında farklı portlar tanımlı (8078, 8083, 8085). Tek t
 
 #### 2.4 llms.txt Olustur
 
-Bereketfide'de var, VistaSeed'de yok. AI crawler'lar icin kritik.
+Bereketfide'de var, vistaseeds'de yok. AI crawler'lar icin kritik.
 
 - [ ] `frontend/public/llms.txt` dosyası oluştur:
   ```
-  # VistaSeed - Turkiye Tohum ve Fide Dijital Platformu
+  # vistaseeds - Turkiye Tohum ve Fide Dijital Platformu
   # https://www.vistaseeds.com.tr
 
   ## Ana Sayfalar
-  - / : Anasayfa - VistaSeed tohum ve fide cesitleri
+  - / : Anasayfa - vistaseeds tohum ve fide cesitleri
   - /urunler : Ürün kataloğu - tüm tohum çeşitleri
   - /bilgi-bankasi : Tarimsal bilgi bankasi ve rehberler
   - /ekim-rehberi : Bolgesel ekim rehberi ve takvim
@@ -111,7 +111,7 @@ Bereketfide'de var, VistaSeed'de yok. AI crawler'lar icin kritik.
 
 #### 2.5 Blog Bölümü Ekleme
 
-VistaSeed'de blog yok. SEO trafiği ve ekosistem beslemesi için kritik.
+vistaseeds'de blog yok. SEO trafiği ve ekosistem beslemesi için kritik.
 
 - [ ] Frontend: `/blog` route oluştur (liste + detay)
   ```
@@ -174,7 +174,7 @@ Mevcut bilgi bankası ve ekim rehberi güçlü bir temel. Ekosistem için zengin
   - İçerik: tanım, ekim zamanı, toprak tipi, sulama, hastalıklar, hasat
 - [ ] Görseller: ekim adım-adım fotolar, hastalık görüntüleri
 - [ ] Video embed: YouTube içerikleri (eğitim platformu pilot)
-- [ ] Cross-link: her bilgi bankası sayfasında ilgili VistaSeed ürünü + Bereketfide fidesi
+- [ ] Cross-link: her bilgi bankası sayfasında ilgili vistaseeds ürünü + Bereketfide fidesi
 - [ ] JSON-LD: `HowTo`, `Article`, `FAQPage` schema'lari
 - [ ] Bu içerik tarım ansiklopedisinin çekirdeği olacak
 
@@ -206,12 +206,12 @@ Bereketfide ile ayni standart urun semasi kullanilmali.
 
 #### 2.11 Content Federation API
 
-VistaSeed icerigini diger ekosistem platformlarina acan API.
+vistaseeds icerigini diger ekosistem platformlarina acan API.
 
 - [ ] Backend: `/api/v1/ecosystem/content` endpoint'i
   ```typescript
   // GET /api/v1/ecosystem/content
-  // Query: source=vistaseed&type=knowledge&limit=10
+  // Query: source=vistaseeds&type=knowledge&limit=10
   // Response: { items: [{ title, slug, excerpt, image, url, publishedAt }] }
   ```
 - [ ] Desteklenen icerik tipleri:
@@ -225,7 +225,7 @@ VistaSeed icerigini diger ekosistem platformlarina acan API.
 
 #### 2.12 Ortak Auth Hazirlik
 
-VistaSeed'in bayi/uye sistemi ekosistem SSO'sunun temelini olusturacak.
+vistaseeds'in bayi/uye sistemi ekosistem SSO'sunun temelini olusturacak.
 
 - [ ] Mevcut auth modulu incelemesi:
   - users tablosu alanlari: id, email, password_hash, role, full_name
@@ -253,9 +253,9 @@ VistaSeed'in bayi/uye sistemi ekosistem SSO'sunun temelini olusturacak.
 
 #### 2.13 Siparis Sistemi Genisletme (B2B Pazaryeri Hazirlik)
 
-Mevcut siparis sistemi tek satici (VistaSeed) icin tasarlanmis. Coklu satici destegi eklenmeli.
+Mevcut siparis sistemi tek satici (vistaseeds) icin tasarlanmis. Coklu satici destegi eklenmeli.
 
-- [x] orders tablosuna `seller_id` alani ekle (su an implicit VistaSeed)
+- [x] orders tablosuna `seller_id` alani ekle (su an implicit vistaseeds)
 - [x] Satici profil modulu: `/api/v1/sellers/:id` (public, dealer rolü)
 - [x] Satici API (MVP): `GET /seller/orders`, `GET /seller/orders/:id`, `GET /seller/orders/summary` — `dealer` rolü; stok/analitik UI sonraki iterasyon
 - [x] Komisyon tahmini (MVP): `platform_commission` site ayarlari + `wallet/commission` hesabi
@@ -275,18 +275,18 @@ Mevcut `dealerFinance` modulu var. Ekosistem icin genisletilmeli.
 #### 2.15 Ortak Paketlere Gecis
 
 - [x] `packages/shared-types/` — frontend + admin + backend entegrasyonu (ornek: `ProductAgriculturalMetadata`)
-- [x] `packages/shared-config/` — `tailwind-tokens.css` import + `data-brand="vistaseed"` (frontend); TS `extends` sonraki iterasyon
+- [x] `packages/shared-config/` — `tailwind-tokens.css` import + `data-brand="vistaseeds"` (frontend); TS `extends` sonraki iterasyon
 - [ ] `packages/shared-backend/` — Ilk aday: `storage` modulu (Cloudinary) — zaten workspace; proje ozel ince ayar
 - [x] `packages/shared-ui` — Faz 1: `cn` + workspace bagimliligi; Shadcn tam tasima aşamali
 
 #### 2.16 Docker Compose Iyilestirme
 
-VistaSeed'de Docker Compose zaten var. Ekosistem yapisina uygun hale getirilmeli.
+vistaseeds'de Docker Compose zaten var. Ekosistem yapisina uygun hale getirilmeli.
 
 - [x] `docker-compose.yml` guncelle:
-  - Service isimleri: `vistaseed-db`, `vistaseed-backend` (frontend imaji bu dosyada yok; public site ayri compose ile eklenebilir)
+  - Service isimleri: `vistaseeds-db`, `vistaseeds-backend` (frontend imaji bu dosyada yok; public site ayri compose ile eklenebilir)
   - Network: `ecosystem-network` (gelecekte diger servisler katilacak)
-  - Volume isimlendirme: `vistaseed-db-data`, `vistaseed-uploads`
+  - Volume isimlendirme: `vistaseeds-db-data`, `vistaseeds-uploads`
 - [x] Health check: backend `/api/health` + compose `healthcheck` (wget)
 - [x] Dev ortam icin `docker-compose.dev.yml` override
 
@@ -316,26 +316,26 @@ VistaSeed'de Docker Compose zaten var. Ekosistem yapisina uygun hale getirilmeli
 
 ## 4. Bereketfide ile Entegrasyon Noktalari
 
-| Alan | VistaSeed | Bereketfide | Entegrasyon |
+| Alan | vistaseeds | Bereketfide | Entegrasyon |
 |------|-----------|-------------|-------------|
 | Urunler | Tohum cesitleri | Fide cesitleri | Cross-link: "Bu tohumun fidesi" |
 | Bilgi Bankasi | Tohum/ekim odakli | Fide/sera odakli | Ortak ansiklopedi temeli |
 | Blog | Tohum bilimi, piyasa | Sera yonetimi, fide bakimi | RSS cross-besleme |
-| Auth | Bayi + uye sistemi (guclu) | Basit auth | SSO: VistaSeed auth referans |
+| Auth | Bayi + uye sistemi (guclu) | Basit auth | SSO: vistaseeds auth referans |
 | Siparis | Siparis sistemi var | Teklif formu var | B2B pazaryeri temeli |
-| Dashboard | Bayi + uye dashboard | Yok | VistaSeed dashboard referans |
+| Dashboard | Bayi + uye dashboard | Yok | vistaseeds dashboard referans |
 
 ### Cross-Link Ornekleri
 
 ```
-VistaSeed urun sayfasi: "Cherry Domates Tohumu"
+vistaseeds urun sayfasi: "Cherry Domates Tohumu"
   -> Bereketfide: "Cherry Domates Fidesi"
-  -> VistaSeed Bilgi Bankasi: "Cherry Domates Yetistirme Rehberi"
-  -> VistaSeed Ekim Rehberi: "Domates Ekim Takvimi"
+  -> vistaseeds Bilgi Bankasi: "Cherry Domates Yetistirme Rehberi"
+  -> vistaseeds Ekim Rehberi: "Domates Ekim Takvimi"
   -> [Gelecek] Hal Fiyatlari: "Domates Fiyat Trendi"
 
-VistaSeed Bilgi Bankasi: "Domates Cimleme Rehberi"
-  -> VistaSeed: "Domates Tohumu Cesitleri"
+vistaseeds Bilgi Bankasi: "Domates Cimleme Rehberi"
+  -> vistaseeds: "Domates Tohumu Cesitleri"
   -> Bereketfide Blog: "Domates Fidesi Dikimi 5 Hata"
   -> [Gelecek] Ansiklopedi: "Solanum lycopersicum" (ayni icerik genisletilmis)
 ```
@@ -347,7 +347,7 @@ VistaSeed Bilgi Bankasi: "Domates Cimleme Rehberi"
 ### Mevcut Yapiyi Bozmamak Icin Kurallar
 
 1. **Bayi/uye sistemi dokunulmaz.** Yeni ozellikler eklenir, mevcut akislar korunur.
-2. **Siparis sistemi geriye uyumlu.** `seller_id` eklenmesi mevcut siparisleri etkilemez (NULL = VistaSeed).
+2. **Siparis sistemi geriye uyumlu.** `seller_id` eklenmesi mevcut siparisleri etkilemez (NULL = vistaseeds).
 3. **i18n eklerken** mevcut TR route'lar `/tr/` prefix ile calismaya devam etmeli. Redirect'ler zorunlu.
 4. **DB migration'lari** yeni kolon ekleyebilir ama mevcut tablolari silmemeli/rename etmemeli.
 5. **Admin panel degisiklikleri** sidebar'a yeni item ekleyebilir, mevcut navigasyonu bozmamali.
@@ -387,7 +387,7 @@ GET  /api/bilgi-bankasi/by-product/:productId  — Urunle ilgili rehberler
 ### Dosya Yapisi Degisiklikleri
 
 ```
-vistaseed/
+vistaseeds/
 ├── frontend/
 │   ├── src/
 │   │   ├── app/
@@ -436,4 +436,4 @@ vistaseed/
 
 ---
 
-*Bu plan, VistaSeed'in ekosistem icerisindeki stratejik rolunu tanimlar ve somut uygulama adimlari sunar. Mevcut doc/ altindaki modul/frontend/backend planlari bu planla celismez, paralel yurutulur.*
+*Bu plan, vistaseeds'in ekosistem icerisindeki stratejik rolunu tanimlar ve somut uygulama adimlari sunar. Mevcut doc/ altindaki modul/frontend/backend planlari bu planla celismez, paralel yurutulur.*

@@ -1,6 +1,6 @@
-# CLAUDE.md - vistaseed Admin Panel
+# CLAUDE.md - vistaseeds Admin Panel
 
-Bu dosya, vistaseed `admin_panel` icin calisirken izlenecek guncel gelistirme kurallarini ve proje standartlarini toplar.
+Bu dosya, vistaseeds `admin_panel` icin calisirken izlenecek guncel gelistirme kurallarini ve proje standartlarini toplar.
 
 Bu dosya referans niteligindedir. Kod yazarken esas alinacak yapilar:
 
@@ -12,7 +12,7 @@ Bu dosya referans niteligindedir. Kod yazarken esas alinacak yapilar:
 
 ## 1. Proje Durumu
 
-Bu proje vistaseed admin panelidir.
+Bu proje vistaseeds admin panelidir.
 
 Guncel teknik yapi:
 
@@ -27,7 +27,7 @@ Guncel teknik yapi:
 Notlar:
 
 - Eski marka referanslari, generic admin sablonu kalintilari ve whitelist disi modul kalintilari gecerli standart degildir.
-- Bu dokuman sadece mevcut vistaseed yapisini anlatir.
+- Bu dokuman sadece mevcut vistaseeds yapisini anlatir.
 - Burada yazan kurallar kod tabaninda uygulanmis standartlarla uyumlu tutulmalidir.
 
 ## 2. Genel Mimari

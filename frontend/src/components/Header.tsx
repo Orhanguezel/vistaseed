@@ -87,7 +87,7 @@ const BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").re
 export default function Header({
   siteName = "",
   siteSubtitle = "",
-  logoUrl = "/uploads/media/logo/vistaseed_logo.png",
+  logoUrl = "/uploads/media/logo/vistaseeds_logo.png",
 }: HeaderProps) {
   const pathname = usePathname();
   const router = useRouter();
@@ -279,7 +279,7 @@ export default function Header({
 
   const getResolvedLogo = () => {
     if (!logoUrl) return "/uploads/media/logo/logo-light.png";
-    if (logoUrl.includes("vistaseed_logo.png") || logoUrl.includes("vistaseed_logo.webp")) {
+    if (logoUrl.includes("vistaseeds_logo.png") || logoUrl.includes("vistaseeds_logo.webp")) {
       return currentTheme === "dark"
         ? "/uploads/media/logo/logo-dark.png"
         : "/uploads/media/logo/logo-light.png";

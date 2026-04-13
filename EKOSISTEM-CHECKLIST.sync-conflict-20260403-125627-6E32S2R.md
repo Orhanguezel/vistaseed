@@ -1,4 +1,4 @@
-# VistaSeed — Ekosistem planı kontrol listesi
+# vistaseeds — Ekosistem planı kontrol listesi
 
 **Kaynak:** `EKOSISTEM-PLAN.md`  
 **Amaç:** Önceliklere göre ilerleme, araçlar arası görev paylaşımı ve ortak çalışma.
@@ -143,7 +143,7 @@
 ## Codex için görev şablonu (kopyala-yapıştır)
 
 ```
-Bağlam: VistaSeed monorepo — projects/vistaseed (Fastify backend, Next frontend/admin).
+Bağlam: vistaseeds monorepo — projects/vistaseeds (Fastify backend, Next frontend/admin).
 Kaynak: EKOSISTEM-PLAN.md + EKOSISTEM-CHECKLIST.md.
 
 Hedef sprint: [P0 / P1 / …] — [madde no, örn. P1.1a]
@@ -166,7 +166,7 @@ Yapılacaklar:
 ## Antigravity (UI/UX) için görev şablonu (kopyala-yapıştır)
 
 ```
-Proje: VistaSeed public site — Next.js, Tailwind v4, mevcut tema token’ları.
+Proje: vistaseeds public site — Next.js, Tailwind v4, mevcut tema token’ları.
 Kaynak: EKOSISTEM-PLAN.md + EKOSISTEM-CHECKLIST.md.
 
 Ekran / özellik: [örn. Blog liste, Bayi ağı harita, Karşılaştırma tablosu]
@@ -188,7 +188,7 @@ Uygulama kodunu Codex’e bırak; sen sadece spesifikasyon ve doğrulama.
 | Alan | Not |
 |------|-----|
 | Backend `dev` | Auth route şemaları `fromZodSchema` ile düzeltildi (shared-backend). |
-| `build:shared` | Monorepo kökü veya `vistaseed/package.json` üzerinden. |
+| `build:shared` | Monorepo kökü veya `vistaseeds/package.json` üzerinden. |
 | Port | Backend 8083; frontend/admin `.env.example` API origin 8083 ile hizalı. Admin prod varsayılanı 3030 olarak dokümanla hizalandı. |
 | Next 16 | Frontend ve admin `next@16.2.1`; production build doğrulandı. |
 | Testler | Backend `src/test/*` suite yeşil. Frontend Vitest `src/i18n/routing.test.ts` + `src/lib/seo.test.ts` ile yeşil. |

@@ -121,7 +121,7 @@ Sitemap: https://www.vistaseeds.com.tr/sitemap.xml
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "VistaSeed",
+  "name": "vistaseeds",
   "url": "https://www.vistaseeds.com.tr",
   "logo": "https://www.vistaseeds.com.tr/assets/logo/logo.jpeg",
   "sameAs": []
@@ -133,7 +133,7 @@ Sitemap: https://www.vistaseeds.com.tr/sitemap.xml
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "VistaSeed",
+  "name": "vistaseeds",
   "url": "https://www.vistaseeds.com.tr",
   "potentialAction": {
     "@type": "SearchAction",
@@ -225,7 +225,7 @@ Sitemap: https://www.vistaseeds.com.tr/sitemap.xml
 
 ### 6.4 Grup Sirketleri
 
-- VistaSeed (Tohum)
+- vistaseeds (Tohum)
 - Vista Prestige
 - GES Sistemleri (Yenilenebilir enerji)
 - Karasah Business Center
@@ -275,7 +275,7 @@ Sitemap: https://www.vistaseeds.com.tr/sitemap.xml
 
 | Alan | Deger |
 |------|-------|
-| E-posta | info@vistaseed.com |
+| E-posta | info@vistaseeds.com.tr |
 | Telefon | +90 (850) 123 45 67 |
 | Adres | Sertifikali Tohum Uretim Merkezi |
 | Web Tasarim | Guezel Web Design |
@@ -328,7 +328,7 @@ Sitemap: https://www.vistaseeds.com.tr/sitemap.xml
 
 ## 12. Sonuc
 
-VistaSeed, Next.js altyapisi, temiz URL yapisi ve cok dilli destegi ile iyi bir teknik temele sahip. Ancak **AI gorunurlugu**, **structured data** ve **marka otoritesi** alanlarinda ciddi eksiklikler var. Oncelikli olarak meta description, OG tags, Product schema ve llms.txt eklemeleri yapilarak GEO skorunun 52'den 70+ seviyesine cikarilmasi hedeflenmelidir.
+vistaseeds, Next.js altyapisi, temiz URL yapisi ve cok dilli destegi ile iyi bir teknik temele sahip. Ancak **AI gorunurlugu**, **structured data** ve **marka otoritesi** alanlarinda ciddi eksiklikler var. Oncelikli olarak meta description, OG tags, Product schema ve llms.txt eklemeleri yapilarak GEO skorunun 52'den 70+ seviyesine cikarilmasi hedeflenmelidir.
 
 **E-posta guvenligi** acil mudahale gerektirmektedir (SPF/DMARC/DKIM kayitlari eklenmeli).
 

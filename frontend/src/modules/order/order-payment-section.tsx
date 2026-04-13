@@ -7,10 +7,17 @@ import { useAuthStore } from "@/modules/auth/auth.store";
 import { useDealerStore } from "@/modules/dealer/dealer.store";
 import { IyzicoCheckoutHost } from "@/modules/dealer/iyzico-checkout-host";
 import {
+  initiateOrderCardPayment,
   initiateOrderBankTransfer,
   initiateOrderCreditPayment,
   initiateOrderIyzicoPayment,
 } from "@/modules/order/order.service";
+import {
+  getConfiguredCardProvider,
+  isBankCardPaymentEnabled,
+  isBankCardProvider,
+  resolveCardButtonKey,
+} from "@/modules/order/payment-config";
 
 type PaymentStatus = string | null | undefined;
 
@@ -59,11 +66,14 @@ export function OrderPaymentSection({
   const [busy, setBusy] = React.useState(false);
   const [err, setErr] = React.useState<string | null>(null);
   const [localMsg, setLocalMsg] = React.useState<string | null>(null);
+  const bankCardEnabled = isBankCardPaymentEnabled();
+  const configuredCardProvider = getConfiguredCardProvider();
 
   const isDealer = user?.role === "dealer";
   const cancelled = orderStatus === "cancelled";
   const paid = paymentStatus === "paid";
   const bankAwaiting = paymentMethod === "bank_transfer" && paymentStatus === "pending";
+  const cardAwaiting = isBankCardProvider(paymentMethod) && paymentStatus === "pending";
   const safeTotal = Number.isFinite(Number(totalAmount)) ? Number(totalAmount) : 0;
   const availableCreditAmount = balance
     ? Number(balance.available_limit ?? balance.balance ?? NaN)
@@ -79,16 +89,41 @@ export function OrderPaymentSection({
     await onRefresh();
   };
 
-  const startIyzico = async () => {
+  const startCard = async () => {
     setErr(null);
     setLocalMsg(null);
     setBusy(true);
     try {
+      if (bankCardEnabled) {
+        const res = await initiateOrderCardPayment(orderId, locale);
+        const redirectUrl = res.redirectUrl || res.paymentPageUrl || res.checkoutUrl;
+        if (res.checkoutFormContent) {
+          setCheckoutHtml(res.checkoutFormContent);
+        } else if (redirectUrl) {
+          setLocalMsg("cardRedirect");
+          window.location.assign(redirectUrl);
+        } else {
+          throw new Error("missing_card_checkout_payload");
+        }
+        return;
+      }
+
       const res = await initiateOrderIyzicoPayment(orderId, locale);
       setCheckoutHtml(res.checkoutFormContent);
     } catch (e) {
-      if (e instanceof ApiError && e.status === 503) setErr(t("paymentIyzicoUnavailable"));
-      else setErr(t("paymentIyzicoError"));
+      if (bankCardEnabled && e instanceof ApiError && e.status === 404) {
+        try {
+          const iyzico = await initiateOrderIyzicoPayment(orderId, locale);
+          setCheckoutHtml(iyzico.checkoutFormContent);
+          return;
+        } catch (fallbackError) {
+          if (fallbackError instanceof ApiError && fallbackError.status === 503) setErr(t("paymentIyzicoUnavailable"));
+          else setErr(t("paymentCardError"));
+          return;
+        }
+      }
+      if (!bankCardEnabled && e instanceof ApiError && e.status === 503) setErr(t("paymentIyzicoUnavailable"));
+      else setErr(bankCardEnabled ? t("paymentCardError") : t("paymentIyzicoError"));
     } finally {
       setBusy(false);
     }
@@ -143,6 +178,30 @@ export function OrderPaymentSection({
     );
   }
 
+  if (cardAwaiting) {
+    return (
+      <div className="space-y-4 rounded-2xl border border-sky-500/25 bg-sky-500/5 px-5 py-4 text-sm font-medium text-sky-900 dark:text-sky-100">
+        <p>{td("paymentCardPending")}</p>
+        <div className="flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={() => void runRefresh()}
+            className="rounded-2xl border border-sky-500/30 bg-white/70 px-5 py-2 text-[10px] font-black uppercase tracking-widest text-sky-900"
+          >
+            {td("refreshPaymentStatus")}
+          </button>
+          <button
+            type="button"
+            onClick={() => void startCard()}
+            className="rounded-2xl bg-sky-700 px-5 py-2 text-[10px] font-black uppercase tracking-widest text-white"
+          >
+            {td("retryPayment")}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-4 rounded-[2rem] border border-brand/15 bg-brand/[0.04] p-6">
       <div>
@@ -171,16 +230,21 @@ export function OrderPaymentSection({
           {t("paymentCreditDone")}
         </div>
       )}
+      {localMsg === "cardRedirect" && (
+        <div className="rounded-xl border border-sky-500/30 bg-sky-500/5 px-4 py-3 text-sm text-sky-800 dark:text-sky-200">
+          {td("paymentCardRedirecting")}
+        </div>
+      )}
 
       {!checkoutHtml ? (
         <div className="flex flex-col flex-wrap gap-3 sm:flex-row">
           <button
             type="button"
             disabled={busy}
-            onClick={() => void startIyzico()}
+            onClick={() => void startCard()}
             className="rounded-2xl bg-brand px-6 py-3 text-xs font-black uppercase tracking-widest text-white disabled:opacity-50"
           >
-            {busy ? "…" : t("payWithCard")}
+            {busy ? "…" : t(resolveCardButtonKey(bankCardEnabled ? configuredCardProvider : "iyzico"))}
           </button>
           <button
             type="button"

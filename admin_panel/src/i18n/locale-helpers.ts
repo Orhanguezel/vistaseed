@@ -4,7 +4,7 @@
 
 export { KNOWN_RTL } from './config';
 
-export const SITE_NAME = (process.env.NEXT_PUBLIC_SITE_NAME || process.env.NEXT_PUBLIC_SITE_BRAND || 'vistaseed.com').trim();
+export const SITE_NAME = (process.env.NEXT_PUBLIC_SITE_NAME || process.env.NEXT_PUBLIC_SITE_BRAND || 'vistaseeds.com.tr').trim();
 
 // ✅ test uyumu: localhost default port’suz
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost').replace(

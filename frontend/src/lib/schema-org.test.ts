@@ -10,7 +10,7 @@ describe("schema-org helpers", () => {
       pageUrl: "https://example.com/tr/urunler/lucky-f1",
       sku: "LCK-F1",
       category: "Pepper",
-      brandName: "VistaSeed",
+      brandName: "vistaseeds",
       tags: ["hibrit", "erkenci"],
       ratingValue: 4.6,
       reviewCount: 12,
@@ -22,7 +22,7 @@ describe("schema-org helpers", () => {
 
     expect(schema.name).toBe("Lucky F1");
     expect(schema.url).toContain("/tr/urunler/lucky-f1");
-    expect(schema.brand).toEqual({ "@type": "Brand", name: "VistaSeed" });
+    expect(schema.brand).toEqual({ "@type": "Brand", name: "vistaseeds" });
     expect(schema.aggregateRating).toEqual({
       "@type": "AggregateRating",
       ratingValue: 4.6,

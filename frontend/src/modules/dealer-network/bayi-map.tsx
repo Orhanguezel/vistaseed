@@ -10,7 +10,7 @@ const containerStyle = {
   borderRadius: "1.5rem",
 };
 
-// VISTASEED PREMIUM DARK THEME
+// vistaseeds PREMIUM DARK THEME
 const mapOptions: google.maps.MapOptions = {
   styles: [
     { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
@@ -154,7 +154,7 @@ export default function BayiMap({
         <div className="bg-navy-mid/90 backdrop-blur-md border border-white/10 px-4 py-2 rounded-2xl shadow-xl transition-all duration-500 group-hover:bg-brand/90">
           <p className="text-[10px] font-black uppercase tracking-widest text-brand group-hover:text-white transition-colors">{mapHint}</p>
           <p className="text-sm font-bold text-white mt-1">
-            {dealers.length} {dealers.length === 1 ? "Kayıtlı Bayi" : "Noktada VistaSeed"}
+            {dealers.length} {dealers.length === 1 ? "Kayıtlı Bayi" : "Noktada vistaseeds"}
           </p>
         </div>
       </div>

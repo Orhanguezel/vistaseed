@@ -69,7 +69,7 @@ export default async function ReferenceDetailPage({ params }: ReferenceDetailPag
     })),
   );
   const websiteHref = item.website_url?.trim() || null;
-  const siteName = settings.site_name || process.env.NEXT_PUBLIC_SITE_NAME || "VistaSeed";
+  const siteName = settings.site_name || process.env.NEXT_PUBLIC_SITE_NAME || "vistaseeds";
 
   return (
     <div className="surface-page min-h-screen pb-24">

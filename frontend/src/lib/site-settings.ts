@@ -69,7 +69,7 @@ function parseValue(raw: unknown): any {
 
 export async function fetchSiteSettings(locale = "tr"): Promise<SiteSettings> {
   const defaults: SiteSettings = {
-    site_name: process.env.NEXT_PUBLIC_SITE_NAME ?? "VistaSeed",
+    site_name: process.env.NEXT_PUBLIC_SITE_NAME ?? "vistaseeds",
     site_logo: "/assets/logo/logo.jpeg",
     site_logo_dark: "/assets/logo/logo.jpeg",
     site_favicon: "/favicon.ico",
@@ -138,7 +138,7 @@ export async function fetchSiteSettings(locale = "tr"): Promise<SiteSettings> {
     }
 
     // Replace {{SITE_NAME}} placeholder if present
-    const sName = result.site_name || "VistaSeed";
+    const sName = result.site_name || "vistaseeds";
     Object.keys(result).forEach((k) => {
       const key = k as keyof SiteSettings;
       const value = result[key];

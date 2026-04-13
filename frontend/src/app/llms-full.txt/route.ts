@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { API_URL } from "@/lib/site-settings";
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
-const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "VistaSeed";
+const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "vistaseeds";
 
 export const revalidate = 3600;
 
@@ -34,7 +34,7 @@ export async function GET() {
     `- Kurulus: 1990`,
     `- Sektör: Tohumculuk, Fide Uretimi, Tarim Teknolojileri`,
     `- Merkez: Antalya, Turkiye`,
-    `- Grup Sirketleri: VistaSeed (Tohum), Vista Prestige, Bereket Fide, GES Sistemleri, Karasah Business Center`,
+    `- Grup Sirketleri: vistaseeds (Tohum), Vista Prestige, Bereket Fide, GES Sistemleri, Karasah Business Center`,
     `- AR-GE Merkezi: 2020'den beri aktif`,
     `- Ihracat: 2010'dan beri uluslararasi pazarlarda`,
     "",

@@ -8,6 +8,7 @@ import type { DealerCatalogProduct } from "@/modules/dealer/dealer.type";
 import type { DealerSharedCatalogState } from "@/modules/dealer/use-dealer-shared-catalog";
 import {
   createOrder,
+  initiateOrderCardPayment,
   initiateOrderBankTransfer,
   initiateOrderCreditPayment,
   initiateOrderIyzicoPayment,
@@ -17,6 +18,11 @@ import { useDealerStore } from "@/modules/dealer/dealer.store";
 import { resolveImageUrl } from "@/lib/utils";
 import { ApiError } from "@/lib/api-client";
 import { IyzicoCheckoutHost } from "./iyzico-checkout-host";
+import {
+  getConfiguredCardProvider,
+  isBankCardPaymentEnabled,
+  resolveCardButtonKey,
+} from "@/modules/order/payment-config";
 import {
   clearDealerOrderDraft,
   loadDealerOrderDraft,
@@ -55,6 +61,8 @@ export function DealerOrderForm({
   const [paymentBusy, setPaymentBusy] = React.useState(false);
   const [draftHydrated, setDraftHydrated] = React.useState(false);
   const draftLoadedRef = React.useRef(false);
+  const bankCardEnabled = isBankCardPaymentEnabled();
+  const configuredCardProvider = getConfiguredCardProvider();
 
   React.useEffect(() => {
     if (shared) return;
@@ -186,18 +194,45 @@ export function DealerOrderForm({
     }
   };
 
-  const startIyzico = async () => {
+  const startCardPayment = async () => {
     if (!createdOrderId) return;
     setPaymentErr(null);
     setPaymentBusy(true);
     try {
+      if (bankCardEnabled) {
+        const res = await initiateOrderCardPayment(createdOrderId, locale);
+        const redirectUrl = res.redirectUrl || res.paymentPageUrl || res.checkoutUrl;
+        if (res.checkoutFormContent) {
+          setCheckoutHtml(res.checkoutFormContent);
+        } else if (redirectUrl) {
+          window.location.assign(redirectUrl);
+        } else {
+          throw new Error("missing_card_checkout_payload");
+        }
+        return;
+      }
+
       const res = await initiateOrderIyzicoPayment(createdOrderId, locale);
       setCheckoutHtml(res.checkoutFormContent);
     } catch (e) {
-      if (e instanceof ApiError && e.status === 503) {
+      if (bankCardEnabled && e instanceof ApiError && e.status === 404) {
+        try {
+          const iyzico = await initiateOrderIyzicoPayment(createdOrderId, locale);
+          setCheckoutHtml(iyzico.checkoutFormContent);
+          return;
+        } catch (fallbackError) {
+          if (fallbackError instanceof ApiError && fallbackError.status === 503) {
+            setPaymentErr(t("paymentIyzicoUnavailable"));
+          } else {
+            setPaymentErr(t("paymentCardError"));
+          }
+          return;
+        }
+      }
+      if (e instanceof ApiError && e.status === 503 && !bankCardEnabled) {
         setPaymentErr(t("paymentIyzicoUnavailable"));
       } else {
-        setPaymentErr(t("paymentIyzicoError"));
+        setPaymentErr(bankCardEnabled ? t("paymentCardError") : t("paymentIyzicoError"));
       }
     } finally {
       setPaymentBusy(false);
@@ -313,10 +348,10 @@ export function DealerOrderForm({
               <button
                 type="button"
                 disabled={paymentBusy}
-                onClick={() => void startIyzico()}
+                onClick={() => void startCardPayment()}
                 className="px-6 py-3 rounded-2xl bg-brand text-white text-xs font-black uppercase tracking-widest disabled:opacity-50"
               >
-                {paymentBusy ? "…" : t("payWithCard")}
+                {paymentBusy ? "…" : t(resolveCardButtonKey(bankCardEnabled ? configuredCardProvider : "iyzico"))}
               </button>
               <button
                 type="button"

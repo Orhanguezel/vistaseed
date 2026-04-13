@@ -1,6 +1,7 @@
 import { JsonLd } from "@agro/shared-ui/public/seo/JsonLd";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FrostWarningWidgetClient from "@/components/widgets/FrostWarningWidgetClient";
 import { fetchSiteSettings } from "@/lib/site-settings";
 import { getTranslations } from "next-intl/server";
 import { ROUTES } from "@/config/routes";
@@ -61,6 +62,7 @@ export default async function PublicLayout({
 
   return (
     <div className="flex flex-col min-h-screen">
+      <FrostWarningWidgetClient />
       <JsonLd data={organizationSchema} />
       <JsonLd data={webSiteSchema} />
       <Header

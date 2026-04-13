@@ -18,7 +18,7 @@
 
 ### Başvuru Bilgileri
 - Güncel özgeçmiş gönderimi gerekli
-- E-posta: info@vistaseeds.com
+- E-posta: info@vistaseeds.com.tr
 - KVKK gizlilik prensipleri dahilinde değerlendirme
 
 ### Mevcut Durum

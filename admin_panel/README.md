@@ -1,4 +1,4 @@
-# vistaseed Admin Panel
+# vistaseeds Admin Panel
 
 Gelistirme kurallari icin:
 

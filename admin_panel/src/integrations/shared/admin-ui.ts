@@ -99,6 +99,7 @@ const emptyNav: AdminNavCopy = {
     audit:            '',
     db_admin:         '',
     popups:           '',
+    payment_attempts: '',
   },
 };
 
@@ -140,6 +141,7 @@ export function normalizeAdminUiCopy(raw: unknown): AdminUiCopy {
     audit:            uiText(itemsRaw.audit),
     db_admin:         uiText(itemsRaw.db_admin),
     popups:           uiText(itemsRaw.popups),
+    payment_attempts: uiText(itemsRaw.payment_attempts),
   };
 
   const commonRaw = parseJsonObject(o.common);

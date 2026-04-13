@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { API_URL } from "@/lib/site-settings";
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
-const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "VistaSeed";
+const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "vistaseeds";
 
 export const revalidate = 3600;
 

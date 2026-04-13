@@ -33,6 +33,7 @@ export const API = {
     detail: (id: string) => `${V1}/orders/${id}`,
     create: `${V1}/orders`,
     cancel: (id: string) => `${V1}/orders/${id}/cancel`,
+    paymentCardInit: (id: string) => `${V1}/orders/${encodeURIComponent(id)}/payment/card/initiate`,
     paymentIyzicoInit: (id: string) => `${V1}/orders/${encodeURIComponent(id)}/payment/iyzico/initiate`,
     paymentBankTransfer: (id: string) => `${V1}/orders/${encodeURIComponent(id)}/payment/bank-transfer`,
     paymentCredit: (id: string) => `${V1}/orders/${encodeURIComponent(id)}/payment/credit`,

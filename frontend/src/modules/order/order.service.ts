@@ -1,7 +1,13 @@
 // src/modules/order/order.service.ts
 import { apiGet, apiPost, apiPatch } from "@/lib/api-client";
 import { API } from "@/config/api-endpoints";
-import type { Order, OrderListQuery, CreateOrderData, OrderIyzicoInitResponse } from "./order.type";
+import type {
+  Order,
+  OrderListQuery,
+  CreateOrderData,
+  OrderCardInitResponse,
+  OrderIyzicoInitResponse,
+} from "./order.type";
 
 export async function listOrders(query?: OrderListQuery) {
   const res = await apiGet<{
@@ -66,6 +72,11 @@ export async function cancelOrder(id: string) {
 export async function initiateOrderIyzicoPayment(orderId: string, locale?: string) {
   const qs = locale ? `?locale=${encodeURIComponent(locale)}` : "";
   return apiPost<OrderIyzicoInitResponse>(`${API.orders.paymentIyzicoInit(orderId)}${qs}`, {});
+}
+
+export async function initiateOrderCardPayment(orderId: string, locale?: string) {
+  const qs = locale ? `?locale=${encodeURIComponent(locale)}` : "";
+  return apiPost<OrderCardInitResponse>(`${API.orders.paymentCardInit(orderId)}${qs}`, {});
 }
 
 export async function initiateOrderBankTransfer(orderId: string) {

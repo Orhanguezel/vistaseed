@@ -1,4 +1,4 @@
-# LEARNING.md - vistaseed Admin Panel Ogrenimleri
+# LEARNING.md - vistaseeds Admin Panel Ogrenimleri
 
 Bu dosya, projede tekrar tekrar dogrulanan mimari kararlarin kisa ozetidir.
 

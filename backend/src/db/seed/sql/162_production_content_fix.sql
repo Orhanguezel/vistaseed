@@ -1,38 +1,6 @@
 -- 162_production_content_fix.sql
--- Production-level copy fix: "kaynak", "katman", "yüzey", "taşındı" vb.
--- ifadeler kaldırıldı; tüm metinler ürün sayfasına uygun üretime hazır hale getirildi.
--- Direkt çalıştırma: mysql -h 127.0.0.1 -P 3306 -u app -papp vistaseed < 162_production_content_fix.sql
-
--- ── HOMEPAGE FEATURE PANELS ──────────────────────────────────────────────────
-UPDATE `site_settings`
-SET `value` = JSON_SET(
-  `value`,
-  '$.title',    'Üretimden Markaya',
-  '$.subtitle', 'Vista Seeds\'in tohum kalitesi, sürdürülebilir tarım anlayışı ve kurumsal değerlerini yansıtan seçilmiş görseller.'
-)
-WHERE `key` = 'homepage_feature_panels' AND `locale` = 'tr';
-
--- ── HOMEPAGE SECTIONS (values + seasonal_picks_description) ──────────────────
-UPDATE `site_settings`
-SET `value` = JSON_SET(
-  `value`,
-  -- values[0]: "Tescilli ve Güvenilir Çeşitler" — "kaynak sitede" ifadesi kaldırıldı
-  '$.values[0].description',
-  'Yüksek kaliteli, tescilli ve güvenilir çeşit portföyü; ürün sayfalarında filtrelenebilir ve karşılaştırılabilir biçimde sunulur.',
-  -- values[2]: "Güçlü Kurumsal Altyapı" — "görünür kılınır" yerine düz ifade
-  '$.values[2].description',
-  'Tarım, enerji ve mühendislik yatırımlarıyla desteklenen çok yönlü kurumsal yapı.',
-  -- values[3]: "Tarımda Sürekli Gelişim" — "operasyon yüzeylerine taşınır" kaldırıldı
-  '$.values[3].description',
-  'İnovasyon, kalite ve sürdürülebilirlik odaklı büyüme; araştırma ve geliştirme süreçleriyle desteklenir.',
-  -- values[4]: "Sürdürülebilir Gelecek Vizyonu" — "kurumsal anlatının kalıcı unsuru" kaldırıldı
-  '$.values[4].description',
-  'Yenilenebilir enerji ve çevreci üretim anlayışı, tohum üretimi ve çeşit geliştirmede yönlendirici ilkedir.',
-  -- seasonal_picks_description — "resmî ana sayfa anlatısındaki" kaldırıldı
-  '$.seasonal_picks_description',
-  'Mevsime uygun, yüksek verimli ve sertifikalı çeşitlerden özenle seçilmiş ürünler.'
-)
-WHERE `key` = 'homepage_sections' AND `locale` = 'tr';
+-- Production-level copy fix: about_page JSON alanlarında kalan stale ifadelerin
+-- düzeltilmesi. Homepage düzeltmeleri artık kaynak seed 147'de yapıldı.
 
 -- ── ABOUT PAGE ───────────────────────────────────────────────────────────────
 UPDATE `site_settings`

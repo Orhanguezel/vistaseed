@@ -1,5 +1,5 @@
 // Bayi siparis taslagi — secim + gram miktarlari + not
-const STORAGE_KEY = "vistaseed-dealer-order-draft";
+const STORAGE_KEY = "vistaseeds-dealer-order-draft";
 
 type DraftV2 = {
   v: 2;

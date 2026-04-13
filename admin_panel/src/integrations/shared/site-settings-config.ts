@@ -117,7 +117,7 @@ export const SITE_SETTINGS_DEFAULTS_BY_KEY: Record<SiteSettingsGeneralKey, Setti
   },
 };
 
-export const SITE_SETTINGS_BRAND = (process.env.NEXT_PUBLIC_SITE_BRAND || 'vistaseed').trim();
+export const SITE_SETTINGS_BRAND = (process.env.NEXT_PUBLIC_SITE_BRAND || 'vistaseeds').trim();
 export const SITE_SETTINGS_BRAND_PREFIX = `${SITE_SETTINGS_BRAND}__`;
 
 function buildLocaleOptionLabel(code: string, label?: string): string {

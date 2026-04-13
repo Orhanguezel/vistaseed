@@ -120,7 +120,7 @@ export default function HeroSliderClient({ slides, interval = 7000 }: HeroSlider
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand/20 border border-brand/30 backdrop-blur-xl text-[10px] font-black text-white uppercase tracking-[0.3em]"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse shadow-[0_0_8px_rgba(var(--color-brand),0.8)]" />
-              VistaSeed Premium Selection
+              vistaseeds Premium Selection
             </motion.div>
 
             {/* Title - Reveal Effect */}

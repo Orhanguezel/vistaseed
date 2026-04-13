@@ -601,7 +601,7 @@ export default async function ProductDetailPage({ params }: Props) {
 
   const origin = siteOrigin();
   const pageUrl = `${origin}${toLocalizedPath(`/urunler/${slug}`, currentLocale)}`;
-  const siteName = settings.site_name || process.env.NEXT_PUBLIC_SITE_NAME || "VistaSeed";
+  const siteName = settings.site_name || process.env.NEXT_PUBLIC_SITE_NAME || "vistaseeds";
   const breadcrumbLd = buildBreadcrumbJsonLd([
     { name: messages.breadcrumb.home, url: `${origin}${toLocalizedPath(ROUTES.home, currentLocale)}` },
     { name: messages.breadcrumb.products, url: `${origin}${toLocalizedPath(ROUTES.products.list, currentLocale)}` },

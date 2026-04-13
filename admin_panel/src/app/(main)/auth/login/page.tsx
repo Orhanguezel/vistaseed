@@ -30,7 +30,7 @@ export default function Login() {
             <div className="mx-auto size-24 relative">
               <Image
                 src="/logo/logo-horizontal.svg"
-                alt="vistaseed"
+                alt="vistaseeds"
                 fill
                 className="object-contain"
               />

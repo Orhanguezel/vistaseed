@@ -9,13 +9,13 @@ import { registerReviews, registerReviewsAdmin } from '@agro/shared-backend/modu
 import { registerPopups, registerPopupsAdmin } from '@agro/shared-backend/modules/popups';
 import { registerOffersPublic, registerOffersAdmin } from '@agro/shared-backend/modules/offers';
 import { registerDbAdmin } from '@/modules/db_admin/admin.routes';
-import { registerOrders, registerSellerOrders, registerOrdersAdmin } from '@agro/shared-backend/modules/orders';
-import { registerDealerFinance, registerDealerFinanceAdmin } from '@agro/shared-backend/modules/dealerFinance';
 import { registerDashboardAdmin } from '@/modules/dashboard/admin.routes';
+import { registerPaymentAttemptsAdmin } from '@/modules/payment_attempts/admin.routes';
 import { registerWallet, registerWalletAdmin } from '@agro/shared-backend/modules/wallet';
 import { registerBlog, registerBlogAdmin } from '@agro/shared-backend/modules/blog';
 import { registerEcosystem } from '@/modules/ecosystem';
 import { registerSellers } from '@agro/shared-backend/modules/sellers';
+import { registerWeather } from '@/modules/weather/router';
 
 export async function registerProjectPublic(api: FastifyInstance) {
   await registerMail(api);
@@ -27,11 +27,9 @@ export async function registerProjectPublic(api: FastifyInstance) {
   await registerSlider(api);
   await registerReviews(api);
   await registerPopups(api);
-  await registerOrders(api);
-  await registerSellerOrders(api);
-  await registerDealerFinance(api);
   await registerWallet(api);
   await registerSellers(api);
+  await registerWeather(api);
   await api.register(registerEcosystem);
 }
 
@@ -39,8 +37,8 @@ export async function registerProjectAdmin(adminApi: FastifyInstance) {
   for (const reg of [
     registerDashboardAdmin, registerSupportAdmin, registerBlogAdmin, registerJobListingsAdmin,
     registerJobApplicationsAdmin, registerSliderAdmin, registerReviewsAdmin,
-    registerPopupsAdmin, registerOffersAdmin, registerDbAdmin,
-    registerOrdersAdmin, registerDealerFinanceAdmin, registerWalletAdmin,
+    registerPopupsAdmin, registerOffersAdmin, registerPaymentAttemptsAdmin, registerDbAdmin,
+    registerWalletAdmin,
   ]) {
     await adminApi.register(reg);
   }

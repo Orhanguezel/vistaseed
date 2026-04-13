@@ -15,6 +15,7 @@ export type AdminPermissionKey =
   | 'admin.contacts'
   | 'admin.email_templates'
   | 'admin.offers'
+  | 'admin.payment_attempts'
   | 'admin.users'
   | 'admin.site_settings'
   | 'admin.storage'
@@ -39,6 +40,7 @@ export type AdminNavKey =
   | 'contacts'
   | 'email_templates'
   | 'offers'
+  | 'payment_attempts'
   | 'users'
   | 'site_settings'
   | 'storage'
@@ -65,6 +67,7 @@ const ADMIN_PERMISSION_ROLE_MAP: Record<AdminPermissionKey, PanelRole[]> = {
   'admin.contacts': ADMIN_ONLY,
   'admin.email_templates': ADMIN_ONLY,
   'admin.offers': ADMIN_ONLY,
+  'admin.payment_attempts': ADMIN_ONLY,
   'admin.users': ADMIN_ONLY,
   'admin.site_settings': ADMIN_ONLY,
   'admin.storage': ADMIN_ONLY,
@@ -95,6 +98,7 @@ const ADMIN_NAV_PERMISSION_MAP: Partial<Record<AdminNavKey, AdminPermissionKey>>
   contacts: 'admin.contacts',
   email_templates: 'admin.email_templates',
   offers: 'admin.offers',
+  payment_attempts: 'admin.payment_attempts',
   users: 'admin.users',
   site_settings: 'admin.site_settings',
   storage: 'admin.storage',
@@ -126,6 +130,7 @@ const ADMIN_PERMISSION_PATHS: Record<AdminPermissionKey, string[]> = {
   'admin.contacts': ['/admin/contacts'],
   'admin.email_templates': ['/admin/email-templates'],
   'admin.offers': ['/admin/offers'],
+  'admin.payment_attempts': ['/admin/payment-attempts'],
   'admin.users': ['/admin/users'],
   'admin.site_settings': ['/admin/site-settings'],
   'admin.storage': ['/admin/storage'],

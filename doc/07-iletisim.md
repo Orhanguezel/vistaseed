@@ -15,7 +15,7 @@ Cumhuriyet Mahallesi 20021 Sokak No:73 Aksu-ANTALYA, Türkiye
 905327607300 (wa.me linki ile)
 
 ### E-posta
-info@vistaseeds.com
+info@vistaseeds.com.tr
 
 ### Çalışma Saatleri
 Her gün 08:00 - 18:00

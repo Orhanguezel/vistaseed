@@ -1,7 +1,8 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
 import { sql } from "drizzle-orm";
+import type { RowDataPacket } from "mysql2/promise";
 
-import { db } from "@/db/client";
+import { db, pool } from "@/db/client";
 import { users } from "@agro/shared-backend/modules/auth/schema";
 import { categories } from "@agro/shared-backend/modules/categories/schema";
 import { contact_messages } from "@agro/shared-backend/modules/contact/schema";
@@ -33,6 +34,13 @@ async function countRows(table: unknown): Promise<number> {
   return Number(total ?? 0);
 }
 
+async function countPaymentAttempts(): Promise<number> {
+  const [rows] = await pool.query<Array<RowDataPacket & { total: number }>>(
+    "SELECT COUNT(*) AS total FROM payment_attempts",
+  );
+  return Number(rows[0]?.total ?? 0);
+}
+
 export async function adminDashboardSummary(_req: FastifyRequest, reply: FastifyReply) {
   try {
     const [
@@ -50,6 +58,7 @@ export async function adminDashboardSummary(_req: FastifyRequest, reply: Fastify
       libraryTotal,
       galleryTotal,
       popupsTotal,
+      paymentAttemptsTotal,
     ] = await Promise.all([
       countRows(products),
       countRows(categories),
@@ -65,6 +74,7 @@ export async function adminDashboardSummary(_req: FastifyRequest, reply: Fastify
       countRows(library),
       countRows(galleries),
       countRows(popups),
+      countPaymentAttempts(),
     ]);
 
     const payload: DashboardSummaryResponse = {
@@ -83,6 +93,7 @@ export async function adminDashboardSummary(_req: FastifyRequest, reply: Fastify
         { key: "library", label: "library", count: libraryTotal },
         { key: "gallery", label: "gallery", count: galleryTotal },
         { key: "popups", label: "popups", count: popupsTotal },
+        { key: "payment_attempts", label: "payment_attempts", count: paymentAttemptsTotal },
       ],
     };
 

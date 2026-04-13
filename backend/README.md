@@ -28,7 +28,7 @@ cp .env.example .env
 Lokal docker-compose kullanacaksan:
 
 ```bash
-docker compose up -d vistaseed-db
+docker compose up -d vistaseeds-db
 ```
 
 Bu compose varsayilan olarak sunlari kullanir:
@@ -36,7 +36,7 @@ Bu compose varsayilan olarak sunlari kullanir:
 - `DB_NAME=mydb`
 - `DB_USER=app`
 - `DB_PASSWORD=app`
-- Ag: `ecosystem-network`; DB servisi: `vistaseed-db`
+- Ag: `ecosystem-network`; DB servisi: `vistaseeds-db`
 
 API ve DB birlikte (imaj build):
 

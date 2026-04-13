@@ -55,7 +55,7 @@
     "seoPreviewTitleFallback": "Sayfa Başlığı",
     "seoPreviewDescriptionFallback": "Sayfa açıklaması burada görünecek...",
     "seoPreviewSlugFallback": "kategori-slug",
-    "seoPreviewBaseUrl": "vistaseed.com/kategori"
+    "seoPreviewBaseUrl": "vistaseeds.com.tr/kategori"
   },
   "form": {
     "name": "Ad",

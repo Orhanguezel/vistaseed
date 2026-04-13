@@ -145,7 +145,7 @@ export function buildOffersListQueryParams(opts: { q?: string; status?: OfferSta
 
 export function createEmptyOfferDetailForm(): OfferDetailFormState {
   return {
-    source: "vistaseed",
+    source: "vistaseeds",
     locale: "tr",
     country_code: "",
     customer_name: "",
@@ -179,7 +179,7 @@ export function mapOfferToDetailForm(dto: OfferDto): OfferDetailFormState {
   const formData = dto.form_data_parsed ?? dto.form_data ?? {};
 
   return {
-    source: toStr(dto.source || "vistaseed"),
+    source: toStr(dto.source || "vistaseeds"),
     locale: toStr(dto.locale || "tr"),
     country_code: toStr(dto.country_code),
     customer_name: toStr(dto.customer_name),
@@ -220,7 +220,7 @@ export function buildOfferPayload(formData: OfferDetailFormState): OfferCreatePa
   }
 
   return {
-    source: formData.source.trim() || "vistaseed",
+    source: formData.source.trim() || "vistaseeds",
     locale: formData.locale.trim() || null,
     country_code: formData.country_code.trim() || null,
     customer_name: formData.customer_name.trim(),

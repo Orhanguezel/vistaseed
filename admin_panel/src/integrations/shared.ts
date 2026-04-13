@@ -1,6 +1,6 @@
 // =============================================================
 // FILE: src/integrations/shared.ts
-// Explicit barrel exports for active vistaseed modules
+// Explicit barrel exports for active vistaseeds modules
 // =============================================================
 
 export {

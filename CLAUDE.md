@@ -1,8 +1,8 @@
-# CLAUDE.md — VistaSeed (Kurumsal Site)
+# CLAUDE.md — vistaseeds (Kurumsal Site)
 
 ## Proje Özeti
 
-VistaSeed kurumsal web sitesi. Fastify backend + Next.js frontend + Next.js admin panel.
+vistaseeds kurumsal web sitesi. Fastify backend + Next.js frontend + Next.js admin panel.
 İçerikler seed dosyaları ile yönetilir, backend proje ismine bağımlı değildir.
 
 ## @agro/shared-backend Entegrasyonu
@@ -14,7 +14,7 @@ Bu proje `@agro/shared-backend` workspace paketini kullanır. 28 ortak modül pa
 bun install && bun run build:shared
 
 # Sonra proje backend'inde:
-cd projects/vistaseed/backend && bun run dev
+cd projects/vistaseeds/backend && bun run dev
 ```
 
 - Ortak modüller: `src/modules/<modul>/index.ts` -> re-export from `@agro/shared-backend`

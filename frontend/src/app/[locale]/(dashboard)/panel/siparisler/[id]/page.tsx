@@ -9,6 +9,7 @@ import { localePath } from "@/lib/locale-path";
 import { ROUTES } from "@/config/routes";
 import { getOrder } from "@/modules/order/order.service";
 import type { Order } from "@/modules/order/order.type";
+import { isBankCardProvider } from "@/modules/order/payment-config";
 import { OrderPaymentSection } from "@/modules/order/order-payment-section";
 
 function formatTry(n: number) {
@@ -27,7 +28,7 @@ function paymentStatusText(t: (key: string) => string, raw: string | null | unde
 function paymentMethodText(t: (key: string) => string, raw: string | null | undefined) {
   const s = (raw ?? "").trim();
   if (!s) return "—";
-  if (s === "iyzico" || s === "bank_transfer" || s === "dealer_credit") {
+  if (s === "iyzico" || s === "bank_transfer" || s === "dealer_credit" || isBankCardProvider(s)) {
     return t(`payMethod.${s}`);
   }
   return s;

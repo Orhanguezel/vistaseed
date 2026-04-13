@@ -1,6 +1,6 @@
-# VistaSeed
+# vistaseeds
 
-VistaSeed, tohumculuk odaklı kurumsal web deneyimi ve yönetim altyapısı için hazırlanan full-stack projedir. Kökte hem public site (`frontend/`) hem yönetim paneli (`admin_panel/`) hem de Fastify tabanlı API (`backend/`) bulunur.
+vistaseeds, tohumculuk odaklı kurumsal web deneyimi ve yönetim altyapısı için hazırlanan full-stack projedir. Kökte hem public site (`frontend/`) hem yönetim paneli (`admin_panel/`) hem de Fastify tabanlı API (`backend/`) bulunur.
 
 **Canlı:** [vistaseeds.com.tr](https://vistaseeds.com.tr)
 
@@ -10,11 +10,11 @@ VistaSeed, tohumculuk odaklı kurumsal web deneyimi ve yönetim altyapısı içi
 
 ### Desktop — Lighthouse 96 / 100 / 100 / 100
 
-![VistaSeed Desktop](Screenshot%20from%202026-04-05%2021-34-27.png)
+![vistaseeds Desktop](Screenshot%20from%202026-04-05%2021-34-27.png)
 
 ### Mobile
 
-![VistaSeed Mobile](Screenshot%20from%202026-04-05%2021-35-36.png)
+![vistaseeds Mobile](Screenshot%20from%202026-04-05%2021-35-36.png)
 
 ---
 

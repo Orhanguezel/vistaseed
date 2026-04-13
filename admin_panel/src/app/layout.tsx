@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const branding = await fetchBrandingConfig();
 
   return {
-    metadataBase: new URL(branding.meta.og_url || 'https://vistaseed.com'),
+    metadataBase: new URL(branding.meta.og_url || 'https://vistaseeds.com.tr'),
     title: branding.meta.title,
     description: branding.meta.description,
     icons: {

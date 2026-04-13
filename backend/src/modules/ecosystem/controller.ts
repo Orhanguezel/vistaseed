@@ -120,7 +120,7 @@ export async function getContentFederation(req: FastifyRequest, reply: FastifyRe
     }
 
     return reply.send({
-      source: 'vistaseed',
+      source: 'vistaseeds',
       items: items
         .sort((a, b) => new Date(b.publishedAt ?? 0).getTime() - new Date(a.publishedAt ?? 0).getTime())
         .slice(0, l),

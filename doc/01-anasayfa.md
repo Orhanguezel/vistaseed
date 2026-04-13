@@ -1,9 +1,9 @@
-# Anasayfa - VistaSeed
+# Anasayfa - vistaseeds
 
 ## Sayfa Yapısı
 
 ### 1. Header / Navigasyon
-- Logo: VistaSeed (sol)
+- Logo: vistaseeds (sol)
 - Menü öğeleri:
   - Anasayfa
   - Hakkımızda
@@ -16,8 +16,8 @@
 - Mobil hamburger menü
 
 ### 2. Hero Section (Slider)
-- Başlık ekseni: "Modern sera gücü VistaSeed ekosisteminde"
-- Alt başlık: Bereket Fide'nin Antalya Aksu'daki üretim deneyimini, VistaSeed'in ürün/bayi/teklif yüzeyi ile birleştiren kurumsal anlatım
+- Başlık ekseni: "Modern sera gücü vistaseeds ekosisteminde"
+- Alt başlık: Bereket Fide'nin Antalya Aksu'daki üretim deneyimini, vistaseeds'in ürün/bayi/teklif yüzeyi ile birleştiren kurumsal anlatım
 - CTA butonu: "Ürünleri Keşfet"
 - Secondary CTA: "Toplu Satış Talebi"
 - Arka plan: sera, fide ve tarımsal operasyon temalı görsel
@@ -56,7 +56,7 @@
 ### 7. Ekosistem Yapısı Ön İzleme
 - 3 kart
 - Bereket Fide: üretim omurgası
-- VistaSeed: dijital katman
+- vistaseeds: dijital katman
 - Vista Seeds: resmî sitede görünen iş ortaklığı markası
 
 ### 8. Gelişim Çizgisi (Timeline)

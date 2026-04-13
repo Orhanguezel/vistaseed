@@ -59,10 +59,10 @@ VALUES
     'en',
     'About Us',
     'about-us',
-    '{"html":"<p>VistaSeed delivers seed solutions backed by field experience, research, and sustainable production principles.</p><p>We focus on quality, reliability, and long-term grower partnerships.</p>"}',
-    'Corporate overview of VistaSeed.',
+    '{"html":"<p>vistaseeds delivers seed solutions backed by field experience, research, and sustainable production principles.</p><p>We focus on quality, reliability, and long-term grower partnerships.</p>"}',
+    'Corporate overview of vistaseeds.',
     'About Us | {{SITE_NAME}}',
-    'Learn more about VistaSeed, our background, and our production approach.'
+    'Learn more about vistaseeds, our background, and our production approach.'
   ),
   (
     '55555555-5555-4555-8555-555555555552',

@@ -135,7 +135,7 @@ VALUES
 ('00009400-0000-4000-8000-000000000089','sp_two.png','default','media/images/sp_two.png','media/images','image/png',105568,'/uploads/media/images/sp_two.png','local','media/images/sp_two.png','image','png'),
 ('00009400-0000-4000-8000-000000000090','successful.png','default','media/images/successful.png','media/images','image/png',110034,'/uploads/media/images/successful.png','local','media/images/successful.png','image','png'),
 -- ── LOGO (uniq_bucket_path: ayni dosya tek kayit) ───────────────────────────
-('00009400-0000-4000-8000-000000000091','vistaseed_logo.png','default','media/logo/vistaseed_logo.png','media/logo','image/png',36772,'/uploads/media/logo/vistaseed_logo.png','local','media/logo/vistaseed_logo.png','image','png'),
+('00009400-0000-4000-8000-000000000091','vistaseeds_logo.png','default','media/logo/vistaseeds_logo.png','media/logo','image/png',36772,'/uploads/media/logo/vistaseeds_logo.png','local','media/logo/vistaseeds_logo.png','image','png'),
 -- ── HERO / OG ─────────────────────────────────────────────────────────────
 ('00009400-0000-4000-8000-000000000095','hero-bg.jpg','default','media/hero/hero-bg.jpg','media/hero','image/jpeg',285000,'/uploads/media/hero/hero-bg.jpg','local','media/hero/hero-bg.jpg','image','jpg'),
 ('00009400-0000-4000-8000-000000000096','hero-bg-dark.jpg','default','media/hero/hero-bg-dark.jpg','media/hero','image/jpeg',195000,'/uploads/media/hero/hero-bg-dark.jpg','local','media/hero/hero-bg-dark.jpg','image','jpg'),
