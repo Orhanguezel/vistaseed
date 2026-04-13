@@ -440,14 +440,16 @@ export default function Header({
               </div>
             )}
             
-            <div className="flex flex-col leading-none" aria-hidden="true">
-              <span className="text-xl md:text-2xl lg:text-4xl font-black tracking-tighter text-foreground uppercase transition-all">
-                {siteName || "VISTA SEED"}
-              </span>
-              <span className="text-[9px] md:text-[11px] lg:text-sm font-bold tracking-[0.2em] md:tracking-[0.3em] text-brand uppercase mt-1 md:mt-2 lg:mt-3 opacity-80 transition-all">
-                {siteSubtitle || "Üretimden Tedariğe Dijital Ekosistem"}
-              </span>
-            </div>
+            {!resolvedLogoUrl && (
+              <div className="flex flex-col leading-none" aria-hidden="true">
+                <span className="text-xl md:text-2xl lg:text-4xl font-black tracking-tighter text-foreground uppercase transition-all">
+                  {siteName || "VISTA SEED"}
+                </span>
+                <span className="text-[9px] md:text-[11px] lg:text-sm font-bold tracking-[0.2em] md:tracking-[0.3em] text-brand uppercase mt-1 md:mt-2 lg:mt-3 opacity-80 transition-all">
+                  {siteSubtitle || "Üretimden Tedariğe Dijital Ekosistem"}
+                </span>
+              </div>
+            )}
           </Link>
 
           {/* Center: Desktop nav */}
