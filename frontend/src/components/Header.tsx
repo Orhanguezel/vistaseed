@@ -428,14 +428,14 @@ export default function Header({
           {/* Left: Logo + Name */}
           <Link href={localize(ROUTES.home)} aria-label={siteName || homeAriaLabel} className="inline-flex items-center gap-3 md:gap-5 lg:gap-8 shrink-0 py-2 md:py-4 lg:py-6 group transition-all">
             {resolvedLogoUrl && (
-              <div className="flex items-center justify-center h-12 w-12 md:h-16 md:w-16 lg:h-24 lg:w-24 overflow-hidden rounded-xl bg-white/5 transition-transform group-hover:scale-105">
+              <div className="flex items-center h-10 md:h-14 lg:h-20 w-auto overflow-hidden rounded-xl transition-transform group-hover:scale-105">
                 <Image
                   src={resolvedLogoUrl}
                   alt={siteName || "Logo"}
-                  width={140}
-                  height={140}
+                  width={300}
+                  height={74}
                   priority
-                  className="h-full w-full object-contain"
+                  className="h-full w-auto object-contain invert dark:invert-0"
                 />
               </div>
             )}

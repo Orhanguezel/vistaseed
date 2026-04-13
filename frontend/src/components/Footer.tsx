@@ -143,9 +143,9 @@ export default async function Footer({
                   <Image
                     src={logoUrlDark || logoUrl}
                     alt={resolvedSiteName}
-                    width={180}
-                    height={180}
-                    className="w-36 h-auto object-contain"
+                    width={300}
+                    height={74}
+                    className="w-44 h-auto object-contain"
                   />
                 </div>
               )}
