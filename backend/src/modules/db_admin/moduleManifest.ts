@@ -1,5 +1,8 @@
-// Module Manifest — DATA-only import/export allowlist
+// VistaSeeds — DB Admin Module Manifest
+// DATA-only import/export allowlist
 // Tablo isimleri DB'deki gercek isimlerle birebir ayni olmali
+
+import type { ModuleMap } from "@agro/shared-backend/modules/db_admin";
 
 export type ModuleKey =
   | 'products'
@@ -43,7 +46,7 @@ export type ModuleManifest = {
  * tablesInOrder: parent -> i18n -> gallery -> gallery_i18n -> other child
  * truncateInOrder: child -> parent
  */
-export const MODULES: Record<ModuleKey, ModuleManifest> = {
+export const VISTASEEDS_DB_MODULES: ModuleMap = {
   // -------------------------------------------------------------------
   // SITE SETTINGS (locale bazlı)
   // -------------------------------------------------------------------
@@ -271,12 +274,15 @@ export const MODULES: Record<ModuleKey, ModuleManifest> = {
   },
 };
 
+/** Geriye donuk uyumluluk: eski alias */
+export const MODULES = VISTASEEDS_DB_MODULES;
+
 /** Yardımcı: module key doğrula */
 export function isModuleKey(x: unknown): x is ModuleKey {
-  return typeof x === 'string' && (x as string) in MODULES;
+  return typeof x === 'string' && (x as string) in VISTASEEDS_DB_MODULES;
 }
 
 /** Yardımcı: module tablolarını al (kopya) */
 export function getModuleTables(module: ModuleKey): string[] {
-  return [...(MODULES[module]?.tablesInOrder || [])];
+  return [...(VISTASEEDS_DB_MODULES[module]?.tablesInOrder || [])];
 }

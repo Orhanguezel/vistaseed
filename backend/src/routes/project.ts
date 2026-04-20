@@ -8,7 +8,8 @@ import { registerSlider, registerSliderAdmin } from '@agro/shared-backend/module
 import { registerReviews, registerReviewsAdmin } from '@agro/shared-backend/modules/review';
 import { registerPopups, registerPopupsAdmin } from '@agro/shared-backend/modules/popups';
 import { registerOffersPublic, registerOffersAdmin } from '@agro/shared-backend/modules/offers';
-import { registerDbAdmin } from '@/modules/db_admin/admin.routes';
+import { createDbAdminRoutes } from '@agro/shared-backend/modules/db_admin';
+import { VISTASEEDS_DB_MODULES } from '@/modules/db_admin/moduleManifest';
 import { registerDashboardAdmin } from '@/modules/dashboard/admin.routes';
 import { registerPaymentAttemptsAdmin } from '@/modules/payment_attempts/admin.routes';
 import { registerWallet, registerWalletAdmin } from '@agro/shared-backend/modules/wallet';
@@ -37,9 +38,10 @@ export async function registerProjectAdmin(adminApi: FastifyInstance) {
   for (const reg of [
     registerDashboardAdmin, registerSupportAdmin, registerBlogAdmin, registerJobListingsAdmin,
     registerJobApplicationsAdmin, registerSliderAdmin, registerReviewsAdmin,
-    registerPopupsAdmin, registerOffersAdmin, registerPaymentAttemptsAdmin, registerDbAdmin,
+    registerPopupsAdmin, registerOffersAdmin, registerPaymentAttemptsAdmin,
     registerWalletAdmin,
   ]) {
     await adminApi.register(reg);
   }
+  await adminApi.register(createDbAdminRoutes(VISTASEEDS_DB_MODULES));
 }
