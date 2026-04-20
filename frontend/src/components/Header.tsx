@@ -416,12 +416,12 @@ export default function Header({
     <>
       <header className="sticky top-0 z-50 bg-surface border-b border-border/10">
         {/* Main bar */}
-        <div className="max-w-7xl mx-auto px-4 md:px-6 h-20 md:h-28 lg:h-36 flex items-center justify-between transition-all duration-300">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 h-14 md:h-16 lg:h-20 flex items-center justify-between transition-all duration-300">
 
           {/* Left: Logo + Name */}
-          <Link href={localize(ROUTES.home)} aria-label={siteName || homeAriaLabel} className="inline-flex items-center gap-3 md:gap-5 lg:gap-8 shrink-0 py-2 md:py-4 lg:py-6 group transition-all">
+          <Link href={localize(ROUTES.home)} aria-label={siteName || homeAriaLabel} className="inline-flex items-center gap-3 md:gap-5 lg:gap-8 shrink-0 h-full group transition-all">
             {resolvedLogoUrl && (
-              <div className="flex items-center h-10 md:h-14 lg:h-20 w-auto overflow-hidden rounded-xl transition-transform group-hover:scale-105">
+              <div className="flex items-center h-full w-auto transition-transform group-hover:scale-105">
                 <Image
                   src={resolvedLogoUrl}
                   alt={siteName || "Logo"}
@@ -602,7 +602,7 @@ export default function Header({
 
         {/* Mobile nav */}
         {mobileOpen && (
-          <nav className="lg:hidden fixed inset-x-0 bottom-0 top-20 z-50 bg-surface overflow-y-auto border-t border-border/10 animate-in fade-in slide-in-from-top-2 duration-200">
+          <nav className="lg:hidden fixed inset-x-0 bottom-0 top-14 md:top-16 z-50 bg-surface overflow-y-auto border-t border-border/10 animate-in fade-in slide-in-from-top-2 duration-200">
             <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex flex-col gap-0.5">
               {navItems.map((item) => (
                 <div key={item.label}>
