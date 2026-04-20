@@ -490,7 +490,7 @@ export default function Header({
             <button
               type="button"
               onClick={() => setSearchOpen((v) => !v)}
-              className="hidden sm:flex w-10 h-10 items-center justify-center rounded-full text-muted hover:text-brand hover:bg-brand/5 border border-transparent hover:border-brand/10 transition-all duration-300"
+              className="flex w-10 h-10 items-center justify-center rounded-full text-muted hover:text-brand hover:bg-brand/5 border border-transparent hover:border-brand/10 transition-all duration-300"
               aria-label={searchAriaLabel}
             >
               <SearchIcon />
