@@ -98,10 +98,12 @@ export default async function RootLayout({
     fetchAnalyticsConfig(),
   ]);
 
+  const brandSlug = (process.env.NEXT_PUBLIC_SITE_BRAND || SITE_NAME).trim().toLowerCase();
+
   return (
     <html
       lang={defaultLocale}
-      data-brand="vistaseeds"
+      data-brand={brandSlug}
       suppressHydrationWarning
       className={`${dmSans.variable} font-sans`}
       style={{ 

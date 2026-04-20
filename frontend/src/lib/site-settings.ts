@@ -1,6 +1,13 @@
 /**
  * Site Settings — Backend'den site ayarlarini ceker.
  * Kullanim: Header, Footer, Layout gibi yerlerde branding bilgisi icin.
+ *
+ * Keys (site_settings tablosu, locale='*' veya aktif locale):
+ *   site_logo, site_logo_dark, site_logo_light,
+ *   site_favicon, site_apple_touch_icon, site_app_icon_512, site_og_default_image
+ *     -> { url, alt } JSON
+ *   brand_name, site_description, contact_*, social_*, whatsapp_number
+ *     -> string
  */
 
 export const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
@@ -10,8 +17,10 @@ export interface SiteSettings {
   site_name: string;
   site_logo: string;
   site_logo_dark: string;
+  site_logo_light: string;
   site_favicon: string;
   site_apple_touch: string;
+  site_og_image: string;
   site_description: string;
   theme_font_size: string;
   theme_font_scale: number;
@@ -29,12 +38,18 @@ export interface SiteSettings {
   whatsapp_number: string;
 }
 
-const BRANDING_KEYS = [
-  "site_name",
-  "site_title",
+const MEDIA_KEYS = [
   "site_logo",
-  "site_site_logo", // The complex JSON key
-  "site_theme_config", // The new theme config key
+  "site_logo_dark",
+  "site_logo_light",
+  "site_favicon",
+  "site_apple_touch_icon",
+  "site_og_default_image",
+] as const;
+
+const STRING_KEYS = [
+  "brand_name",
+  "site_title",
   "site_description",
   "contact_email",
   "contact_phone",
@@ -48,18 +63,25 @@ const BRANDING_KEYS = [
   "social_linkedin",
   "social_youtube",
   "whatsapp_number",
-];
+] as const;
+
+const JSON_KEYS = ["site_theme_config"] as const;
+
+const ALL_KEYS = [...MEDIA_KEYS, ...STRING_KEYS, ...JSON_KEYS];
 
 interface SettingRow {
   key: string;
+  locale?: string;
   value: unknown;
 }
 
-function parseValue(raw: unknown): any {
-  if (raw === null || raw === undefined) return "";
+function parseValue(raw: unknown): unknown {
+  if (raw === null || raw === undefined) return null;
   if (typeof raw === "string") {
+    const trimmed = raw.trim();
+    if (!trimmed) return "";
     try {
-      return JSON.parse(raw);
+      return JSON.parse(trimmed);
     } catch {
       return raw;
     }
@@ -67,13 +89,32 @@ function parseValue(raw: unknown): any {
   return raw;
 }
 
+function extractMediaUrl(val: unknown): string {
+  if (!val) return "";
+  if (typeof val === "string") return val;
+  if (typeof val === "object" && val !== null) {
+    const url = (val as { url?: unknown }).url;
+    return typeof url === "string" ? url : "";
+  }
+  return "";
+}
+
+function extractStringValue(val: unknown): string {
+  if (val == null) return "";
+  if (typeof val === "string") return val;
+  if (typeof val === "number" || typeof val === "boolean") return String(val);
+  return "";
+}
+
 export async function fetchSiteSettings(locale = "tr"): Promise<SiteSettings> {
   const defaults: SiteSettings = {
     site_name: process.env.NEXT_PUBLIC_SITE_NAME ?? "vistaseeds",
-    site_logo: "/assets/logo/logo.jpeg",
-    site_logo_dark: "/assets/logo/logo.jpeg",
-    site_favicon: "/favicon.ico",
-    site_apple_touch: "/apple-touch-icon.png",
+    site_logo: "",
+    site_logo_dark: "",
+    site_logo_light: "",
+    site_favicon: "",
+    site_apple_touch: "",
+    site_og_image: "",
     site_description: "",
     theme_font_size: "16px",
     theme_font_scale: 1,
@@ -92,63 +133,79 @@ export async function fetchSiteSettings(locale = "tr"): Promise<SiteSettings> {
   };
 
   try {
-    // We fetch with site__ prefix as expected by the backend settings module
-    const keys = BRANDING_KEYS.map(k => `site__${k.replace('site_', '')}`).join(",");
+    const keysParam = ALL_KEYS.join(",");
     const res = await fetch(
-      `${API_V1}/site_settings?key_in=${keys}&locale=${locale}`,
+      `${API_V1}/site_settings?key_in=${encodeURIComponent(keysParam)}&locale=${encodeURIComponent(locale)}`,
       { next: { revalidate: 300 } },
     );
     if (!res.ok) return defaults;
-    const rows: SettingRow[] = await res.json();
-    if (!Array.isArray(rows)) return defaults;
+
+    const body = await res.json();
+    const rows: SettingRow[] = Array.isArray(body)
+      ? body
+      : Array.isArray(body?.data)
+        ? body.data
+        : [];
+    if (!rows.length) return defaults;
 
     const result = { ...defaults };
+
     for (const row of rows) {
-      const dbKey = row.key; // e.g. "site__site_logo"
+      const key = String(row?.key ?? "").trim();
+      if (!key) continue;
       const val = parseValue(row.value);
-      
-      if (dbKey === "site__site_logo") {
-        if (typeof val === "object" && val !== null) {
-          if (val.url) result.site_logo = val.url;
-          if (val.urlDark) result.site_logo_dark = val.urlDark;
-          if (val.favicon) result.site_favicon = val.favicon;
-          if (val.appleTouchIcon) result.site_apple_touch = val.appleTouchIcon;
+
+      switch (key) {
+        case "site_logo":
+          result.site_logo = extractMediaUrl(val);
+          break;
+        case "site_logo_dark":
+          result.site_logo_dark = extractMediaUrl(val);
+          break;
+        case "site_logo_light":
+          result.site_logo_light = extractMediaUrl(val);
+          break;
+        case "site_favicon":
+          result.site_favicon = extractMediaUrl(val);
+          break;
+        case "site_apple_touch_icon":
+          result.site_apple_touch = extractMediaUrl(val);
+          break;
+        case "site_og_default_image":
+          result.site_og_image = extractMediaUrl(val);
+          break;
+        case "brand_name":
+        case "site_title": {
+          const s = extractStringValue(val);
+          if (s) result.site_name = s;
+          break;
         }
-      } else if (dbKey === "site__theme_config") {
-        if (typeof val === "object" && val !== null) {
-          if (val.fontSizeBase) result.theme_font_size = val.fontSizeBase;
-          if (val.fontSizeScale) result.theme_font_scale = val.fontSizeScale;
-        }
-      } else if (dbKey === "site__site_name" || dbKey === "site__site_title") {
-        result.site_name = typeof val === "string" ? val : (val?.value || result.site_name);
-      } else {
-        // Map site__contact_email -> contact_email
-        const mappedKey = dbKey.replace("site__", "contact_").replace("contact_description", "site_description") as keyof SiteSettings;
-        // Search for direct mapping if simple
-        const simpleKey = dbKey.replace("site__", "") as keyof SiteSettings;
-        if (simpleKey in result) (result as any)[simpleKey] = typeof val === "string" ? val : (val?.value || "");
-        else if (mappedKey in result) (result as any)[mappedKey] = typeof val === "string" ? val : (val?.value || "");
-        
-        // Social mapping fix
-        if (dbKey.startsWith("site__social_")) {
-           const sKey = dbKey.replace("site__", "") as keyof SiteSettings;
-           if (sKey in result) (result as any)[sKey] = typeof val === "string" ? val : (val?.value || "");
-        }
+        case "site_description":
+          result.site_description = extractStringValue(val);
+          break;
+        case "site_theme_config":
+          if (val && typeof val === "object") {
+            const cfg = val as { fontSizeBase?: unknown; fontSizeScale?: unknown };
+            if (typeof cfg.fontSizeBase === "string") result.theme_font_size = cfg.fontSizeBase;
+            if (typeof cfg.fontSizeScale === "number") result.theme_font_scale = cfg.fontSizeScale;
+          }
+          break;
+        default:
+          if ((STRING_KEYS as readonly string[]).includes(key)) {
+            (result as Record<string, unknown>)[key] = extractStringValue(val);
+          }
       }
     }
 
     // Replace {{SITE_NAME}} placeholder if present
     const sName = result.site_name || "vistaseeds";
-    Object.keys(result).forEach((k) => {
-      const key = k as keyof SiteSettings;
-      const value = result[key];
-      if (typeof value === "string") {
-        (result as Record<keyof SiteSettings, SiteSettings[keyof SiteSettings]>)[key] =
+    (Object.keys(result) as Array<keyof SiteSettings>).forEach((k) => {
+      const value = result[k];
+      if (typeof value === "string" && value.includes("{{SITE_NAME}}")) {
+        (result as Record<keyof SiteSettings, SiteSettings[keyof SiteSettings]>)[k] =
           value.replace(/{{SITE_NAME}}/g, sName) as SiteSettings[keyof SiteSettings];
       }
     });
-
-    // /uploads yollari tarayicida dogrudan API host'una verilmez; Next rewrites ile ayni origin.
 
     return result;
   } catch {

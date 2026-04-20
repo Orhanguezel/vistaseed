@@ -237,16 +237,13 @@
     "identity": "Kimlik",
     "visual": "Görsel",
     "metaSeo": "Meta / SEO",
+    "mediaHint": "Logo, favicon ve apple-touch görselleri \"Logo & Favicon\" sekmesinden yönetilir.",
     "fields": {
       "appName": "Panel Adı",
       "copyright": "Telif Hakkı Metni",
       "htmlLang": "HTML Dili",
       "htmlLangHelp": "<html lang=\"...\"> özelliği. Ör: de, en, tr",
       "themeColor": "Tema Rengi",
-      "favicon16": "Favicon 16×16",
-      "favicon32": "Favicon 32×32",
-      "appleTouchIcon": "Apple Touch Icon",
-      "ogImage": "OG Görsel",
       "metaTitle": "Meta Başlık",
       "metaDescription": "Meta Açıklama",
       "ogUrl": "OG URL",
@@ -259,10 +256,6 @@
       "copyright": "vistaseeds",
       "htmlLang": "tr",
       "themeColor": "#F97316",
-      "ogImage": "/logo/png/vistaseeds_logo_512.png",
-      "favicon16": "/favicon/favicon-16.png",
-      "favicon32": "/favicon/favicon-32.png",
-      "appleTouchIcon": "/favicon/apple-touch-icon.png",
       "metaTitle": "vistaseeds Admin",
       "ogUrl": "https://vistaseeds.com.tr/",
       "metaDescription": "vistaseeds yönetim paneli marka ve meta ayarları.",
@@ -273,8 +266,9 @@
   },
   "brandMedia": {
     "title": "Logo & Favicon",
-    "description": "Bu sekme dil bağımsızdır. Kayıtlar locale=\"*\" olarak tutulur.",
+    "description": "Her görsel ayrı site_settings anahtarıdır. Değerler {url, alt} formatında saklanır. locale=\"*\" (global).",
     "badge": "Global (locale=*)",
+    "altLabel": "Alt metin",
     "searchPlaceholder": "Key içinde ara (örn: logo, favicon)",
     "labels": {
       "site_logo": "Logo",
@@ -282,15 +276,10 @@
       "site_logo_light": "Logo (Light)",
       "site_favicon": "Favicon",
       "site_apple_touch_icon": "Apple Touch Icon",
-      "site_app_icon_512": "App Icon 512x512",
+      "site_app_icon_512": "App Icon 512×512",
       "site_og_default_image": "Varsayılan OG Görseli"
     },
-    "updated": "{label} güncellendi.",
-    "updateError": "{label} kaydedilirken hata oluştu.",
-    "deleteConfirm": "\"{key}\" ({locale}) silinsin mi?",
-    "deleteError": "Silme sırasında hata oluştu.",
     "inline": {
-      "title": "Logo & Favicon Medyaları",
       "loading": "Medya ayarları yükleniyor...",
       "dirty": "Kaydedilmedi",
       "save": "Kaydet",
@@ -300,14 +289,7 @@
       "noImage": "Görsel yok",
       "copy": "URL kopyala",
       "urlCopied": "Medya URL'i kopyalandı.",
-      "openNewTab": "Yeni sekmede aç",
-      "logoAlt": "vistaseeds logosu",
-      "labels": {
-        "logo_url": "Ana Logo",
-        "logo_dark_url": "Koyu Zemin Logo",
-        "favicon_url": "Favicon",
-        "apple_touch_icon_url": "Apple Touch Icon"
-      }
+      "openNewTab": "Yeni sekmede aç"
     }
   },
   "api": {

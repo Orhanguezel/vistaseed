@@ -13,16 +13,12 @@ export type AdminBrandingConfig = {
   app_copyright: string;
   html_lang: string;
   theme_color: string;
-  favicon_16: string;
-  favicon_32: string;
-  apple_touch_icon: string;
   meta: {
     title: string;
     description: string;
     og_url: string;
     og_title: string;
     og_description: string;
-    og_image: string;
     twitter_card: string;
   };
 };
@@ -32,9 +28,6 @@ export const DEFAULT_BRANDING: AdminBrandingConfig = {
   app_copyright: 'vistaseeds',
   html_lang: FALLBACK_LOCALE,
   theme_color: '#F97316',
-  favicon_16: '/favicon/favicon.svg',
-  favicon_32: '/favicon/favicon.svg',
-  apple_touch_icon: '/apple/apple-touch-icon.png',
   meta: {
     title: 'vistaseeds Admin Panel',
     description:
@@ -43,7 +36,6 @@ export const DEFAULT_BRANDING: AdminBrandingConfig = {
     og_title: 'vistaseeds Admin Panel',
     og_description:
       'vistaseeds yönetim paneli ile ilan ve rezervasyon yönetimini merkezi olarak yapın.',
-    og_image: '/logo/og-image.png',
     twitter_card: 'summary_large_image',
   },
 };

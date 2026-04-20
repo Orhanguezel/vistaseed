@@ -34,28 +34,18 @@ INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 (UUID(), 'admin_path',         '*', '"/admin"');
 
 -- =============================================================
--- BRAND MEDIA (storage_assets URLs)
+-- SITE MEDIA (Logo & Favicon) — admin panelden yönetilir.
+-- Değer formatı: {"url":"...","alt":"..."}. Fiziksel dosya yüklenmeden
+-- önce url boş kalabilir; admin upload sonrası güncellenir.
 -- =============================================================
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
-(UUID(), 'brand_logo',                  '*', '"/uploads/media/logo/logo.jpeg"'),
-(UUID(), 'brand_logo_dark',             '*', '"/uploads/media/logo/logo-dark.jpeg"'),
-(UUID(), 'brand_logo_icon',             '*', '"/uploads/media/logo/logo-icon.jpg"'),
-(UUID(), 'brand_logo_icon_transparent', '*', '"/uploads/media/logo/logo-icon.jpg"'),
-(UUID(), 'brand_logo_icon_192',         '*', '"/uploads/media/logo/logo-192.jpg"'),
-(UUID(), 'brand_logo_icon_512',         '*', '"/uploads/media/logo/logo-512.jpg"'),
-(UUID(), 'brand_og_image',              '*', '"/uploads/media/logo/og-image.jpg"');
-
--- =============================================================
--- SITE MEDIA (Logo & Favicon)
--- =============================================================
-INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
-(UUID(), 'site_logo',             '*', '{"url":"/uploads/media/logo/logo.jpeg","alt":"{{SITE_NAME}} Logo"}'),
-(UUID(), 'site_logo_dark',        '*', '{"url":"/uploads/media/logo/logo-dark.jpeg","alt":"{{SITE_NAME}} Logo Dark"}'),
-(UUID(), 'site_logo_light',       '*', '{"url":"/uploads/media/logo/logo.jpeg","alt":"{{SITE_NAME}} Logo Light"}'),
-(UUID(), 'site_favicon',          '*', '{"url":"/uploads/media/logo/favicon.jpg","alt":"{{SITE_NAME}} Favicon"}'),
-(UUID(), 'site_apple_touch_icon', '*', '{"url":"/uploads/media/logo/apple-touch.jpg","alt":"{{SITE_NAME}} Apple Touch"}'),
-(UUID(), 'site_app_icon_512',     '*', '{"url":"/uploads/media/logo/logo-512.jpg","alt":"{{SITE_NAME}} Icon 512"}'),
-(UUID(), 'site_og_default_image', '*', '{"url":"/uploads/media/hero/og-default.jpg","alt":"{{SITE_NAME}}"}');
+(UUID(), 'site_logo',             '*', '{"url":"/uploads/media/logo/vistaseeds_logo.png","alt":"{{SITE_NAME}} Logo"}'),
+(UUID(), 'site_logo_dark',        '*', '{"url":"/uploads/media/logo/vistaseeds_logo.png","alt":"{{SITE_NAME}} Logo Dark"}'),
+(UUID(), 'site_logo_light',       '*', '{"url":"/uploads/media/logo/vistaseeds_logo.png","alt":"{{SITE_NAME}} Logo Light"}'),
+(UUID(), 'site_favicon',          '*', '{"url":"","alt":"{{SITE_NAME}} Favicon"}'),
+(UUID(), 'site_apple_touch_icon', '*', '{"url":"","alt":"{{SITE_NAME}} Apple Touch"}'),
+(UUID(), 'site_app_icon_512',     '*', '{"url":"","alt":"{{SITE_NAME}} Icon 512"}'),
+(UUID(), 'site_og_default_image', '*', '{"url":"","alt":"{{SITE_NAME}}"}');
 
 -- =============================================================
 -- CONTACT
@@ -148,8 +138,6 @@ INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 (UUID(), 'social_instagram_url', '*', '""'),
 (UUID(), 'social_twitter_url',   '*', '""'),
 (UUID(), 'seo_social_same_as',  '*', '[]'),
-(UUID(), 'seo_app_icons', '*',
- '{"appleTouchIcon":"/uploads/media/logo/apple-touch.jpg","favicon":"/uploads/media/logo/favicon.jpg","faviconSvg":"/uploads/media/logo/favicon.svg","logoIcon192":"/uploads/media/logo/logo-192.jpg","logoIcon512":"/uploads/media/logo/logo-512.jpg"}'),
 (UUID(), 'seo_amp_google_client_id_api', '*', '"googleanalytics"');
 
 -- =============================================================
@@ -227,19 +215,12 @@ INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
       "app_copyright":"{{SITE_NAME}}",
       "html_lang":"tr",
       "theme_color":"#F97316",
-      "favicon":"/uploads/media/logo/favicon.jpg",
-      "favicon_svg":"/uploads/media/logo/favicon.svg",
-      "apple_touch_icon":"/uploads/media/logo/apple-touch.jpg",
-      "logo":"/uploads/media/logo/logo.jpeg",
-      "logo_dark":"/uploads/media/logo/logo-dark.jpeg",
-      "logo_icon":"/uploads/media/logo/logo-icon.jpg",
       "meta":{
         "title":"{{SITE_NAME}} Admin",
         "description":"{{SITE_NAME}} yönetim paneli.",
         "og_url":"http://localhost:3000/admin",
         "og_title":"{{SITE_NAME}} Admin",
         "og_description":"{{SITE_NAME}} yönetim paneli.",
-        "og_image":"/uploads/media/logo/og-image.jpg",
         "twitter_card":"summary_large_image"
       }
     }

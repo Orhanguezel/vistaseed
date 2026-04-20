@@ -493,14 +493,17 @@ export {
 } from "@/integrations/shared/site-settings-api-config";
 
 export {
+  EMPTY_SITE_SETTINGS_BRAND_MEDIA_VALUE,
   SITE_SETTINGS_BRAND_MEDIA_ITEMS,
-  type SiteSettingsBrandMediaData,
-  type SiteSettingsBrandMediaField,
+  SITE_SETTINGS_BRAND_MEDIA_KEYS,
   type SiteSettingsBrandMediaItem,
-  buildSiteSettingsBrandMediaLegacyValue,
-  createSiteSettingsBrandMediaData,
-  extractSiteSettingsBrandMediaData,
+  type SiteSettingsBrandMediaKey,
+  type SiteSettingsBrandMediaMap,
+  type SiteSettingsBrandMediaValue,
+  createEmptySiteSettingsBrandMediaMap,
+  extractSiteSettingsBrandMediaValue,
   getSiteSettingsBrandMediaErrorMessage,
+  mapSiteSettingsListToBrandMediaMap,
 } from "@/integrations/shared/site-settings-brand-media-config";
 
 export {

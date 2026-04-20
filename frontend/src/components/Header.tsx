@@ -40,6 +40,7 @@ interface HeaderProps {
   siteName?: string;
   siteSubtitle?: string;
   logoUrl?: string;
+  logoUrlDark?: string;
 }
 
 interface HeaderSearchSuggestion {
@@ -87,7 +88,8 @@ const BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").re
 export default function Header({
   siteName = "",
   siteSubtitle = "",
-  logoUrl = "/uploads/media/logo/vistaseeds_logo.png",
+  logoUrl = "",
+  logoUrlDark = "",
 }: HeaderProps) {
   const pathname = usePathname();
   const router = useRouter();
@@ -277,16 +279,7 @@ export default function Header({
   const { theme, resolvedTheme } = useTheme();
   const currentTheme = resolvedTheme || theme;
 
-  const getResolvedLogo = () => {
-    if (!logoUrl) return "/uploads/media/logo/logo-light.png";
-    if (logoUrl.includes("vistaseeds_logo.png") || logoUrl.includes("vistaseeds_logo.webp")) {
-      return currentTheme === "dark"
-        ? "/uploads/media/logo/logo-dark.png"
-        : "/uploads/media/logo/logo-light.png";
-    }
-    return logoUrl;
-  };
-  const resolvedLogoUrl = getResolvedLogo();
+  const resolvedLogoUrl = currentTheme === "dark" && logoUrlDark ? logoUrlDark : logoUrl;
   const isTransparent = false;
 
   function resolveSuggestionImage(url?: string | null) {
@@ -435,7 +428,7 @@ export default function Header({
                   width={300}
                   height={74}
                   priority
-                  className="h-full w-auto object-contain invert dark:invert-0"
+                  className="h-full w-auto object-contain"
                 />
               </div>
             )}

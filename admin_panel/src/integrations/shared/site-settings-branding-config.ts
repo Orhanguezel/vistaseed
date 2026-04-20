@@ -6,15 +6,11 @@ export type SiteSettingsBrandingForm = {
   app_copyright: string;
   html_lang: string;
   theme_color: string;
-  favicon_16: string;
-  favicon_32: string;
-  apple_touch_icon: string;
   meta_title: string;
   meta_description: string;
   og_url: string;
   og_title: string;
   og_description: string;
-  og_image: string;
   twitter_card: string;
 };
 
@@ -23,15 +19,11 @@ export const EMPTY_SITE_SETTINGS_BRANDING_FORM: SiteSettingsBrandingForm = {
   app_copyright: '',
   html_lang: '',
   theme_color: '',
-  favicon_16: '',
-  favicon_32: '',
-  apple_touch_icon: '',
   meta_title: '',
   meta_description: '',
   og_url: '',
   og_title: '',
   og_description: '',
-  og_image: '',
   twitter_card: '',
 };
 
@@ -40,10 +32,6 @@ export const SITE_SETTINGS_BRANDING_PLACEHOLDER_KEYS = {
   app_copyright: 'copyright',
   html_lang: 'htmlLang',
   theme_color: 'themeColor',
-  og_image: 'ogImage',
-  favicon_16: 'favicon16',
-  favicon_32: 'favicon32',
-  apple_touch_icon: 'appleTouchIcon',
   meta_title: 'metaTitle',
   og_url: 'ogUrl',
   meta_description: 'metaDescription',
@@ -60,15 +48,11 @@ export function brandingToSiteSettingsForm(
     app_copyright: branding.app_copyright || '',
     html_lang: branding.html_lang || '',
     theme_color: branding.theme_color || '',
-    favicon_16: branding.favicon_16 || '',
-    favicon_32: branding.favicon_32 || '',
-    apple_touch_icon: branding.apple_touch_icon || '',
     meta_title: branding.meta?.title || '',
     meta_description: branding.meta?.description || '',
     og_url: branding.meta?.og_url || '',
     og_title: branding.meta?.og_title || '',
     og_description: branding.meta?.og_description || '',
-    og_image: branding.meta?.og_image || '',
     twitter_card: branding.meta?.twitter_card || '',
   };
 }
@@ -81,16 +65,12 @@ export function siteSettingsFormToBranding(
     app_copyright: trimStr(form.app_copyright),
     html_lang: trimStr(form.html_lang),
     theme_color: trimStr(form.theme_color),
-    favicon_16: trimStr(form.favicon_16),
-    favicon_32: trimStr(form.favicon_32),
-    apple_touch_icon: trimStr(form.apple_touch_icon),
     meta: {
       title: trimStr(form.meta_title),
       description: trimStr(form.meta_description),
       og_url: trimStr(form.og_url),
       og_title: trimStr(form.og_title),
       og_description: trimStr(form.og_description),
-      og_image: trimStr(form.og_image),
       twitter_card: trimStr(form.twitter_card),
     },
   };

@@ -69,6 +69,7 @@ export default async function PublicLayout({
         siteName={settings.site_name}
         siteSubtitle={settings.site_description}
         logoUrl={settings.site_logo}
+        logoUrlDark={settings.site_logo_dark}
       />
       <main className="grow">
         {children}

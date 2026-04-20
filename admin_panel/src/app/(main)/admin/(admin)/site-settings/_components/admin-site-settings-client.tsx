@@ -316,7 +316,7 @@ export default function AdminSiteSettingsClient() {
               </TabsContent>
 
               <TabsContent value="brand_media" className="mt-3 sm:mt-4">
-                <BrandMediaTab locale={locale} settingPrefix={brandPrefix} />
+                <BrandMediaTab locale={locale} />
               </TabsContent>
 
               <TabsContent value="api" className="mt-3 sm:mt-4">

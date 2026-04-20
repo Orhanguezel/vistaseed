@@ -1,70 +1,75 @@
 import { getErrorMessage, toStr, trimStr, tryParseJsonVal, type UnknownRow } from '@/integrations/shared/common';
 
-export type SiteSettingsBrandMediaData = {
-  logo_url: string;
-  logo_alt: string;
-  logo_dark_url: string;
-  favicon_url: string;
-  apple_touch_icon_url: string;
+export type SiteSettingsBrandMediaKey =
+  | 'site_logo'
+  | 'site_logo_dark'
+  | 'site_logo_light'
+  | 'site_favicon'
+  | 'site_apple_touch_icon'
+  | 'site_app_icon_512'
+  | 'site_og_default_image';
+
+export type SiteSettingsBrandMediaValue = {
+  url: string;
+  alt: string;
 };
 
-export type SiteSettingsBrandMediaField = keyof SiteSettingsBrandMediaData;
-
 export type SiteSettingsBrandMediaItem = {
-  field: SiteSettingsBrandMediaField;
+  key: SiteSettingsBrandMediaKey;
   labelKey: string;
-  aspect: '4x3' | '1x1' | '16x9';
-  fit: 'contain' | 'cover';
   folder: string;
 };
 
 export const SITE_SETTINGS_BRAND_MEDIA_ITEMS: SiteSettingsBrandMediaItem[] = [
-  { field: 'logo_url', labelKey: 'logo_url', aspect: '1x1', fit: 'contain', folder: 'logo' },
-  { field: 'logo_dark_url', labelKey: 'logo_dark_url', aspect: '1x1', fit: 'contain', folder: 'logo' },
-  { field: 'favicon_url', labelKey: 'favicon_url', aspect: '1x1', fit: 'contain', folder: 'logo' },
-  { field: 'apple_touch_icon_url', labelKey: 'apple_touch_icon_url', aspect: '1x1', fit: 'contain', folder: 'logo' },
+  { key: 'site_logo',             labelKey: 'site_logo',             folder: 'logo' },
+  { key: 'site_logo_dark',        labelKey: 'site_logo_dark',        folder: 'logo' },
+  { key: 'site_logo_light',       labelKey: 'site_logo_light',       folder: 'logo' },
+  { key: 'site_favicon',          labelKey: 'site_favicon',          folder: 'logo' },
+  { key: 'site_apple_touch_icon', labelKey: 'site_apple_touch_icon', folder: 'logo' },
+  { key: 'site_app_icon_512',     labelKey: 'site_app_icon_512',     folder: 'logo' },
+  { key: 'site_og_default_image', labelKey: 'site_og_default_image', folder: 'hero' },
 ];
 
-const EMPTY_SITE_SETTINGS_BRAND_MEDIA_DATA: SiteSettingsBrandMediaData = {
-  logo_url: '',
-  logo_alt: '',
-  logo_dark_url: '',
-  favicon_url: '',
-  apple_touch_icon_url: '',
+export const SITE_SETTINGS_BRAND_MEDIA_KEYS: SiteSettingsBrandMediaKey[] =
+  SITE_SETTINGS_BRAND_MEDIA_ITEMS.map((i) => i.key);
+
+export const EMPTY_SITE_SETTINGS_BRAND_MEDIA_VALUE: SiteSettingsBrandMediaValue = {
+  url: '',
+  alt: '',
 };
 
-export function createSiteSettingsBrandMediaData(
-  logoAlt = '',
-): SiteSettingsBrandMediaData {
-  return { ...EMPTY_SITE_SETTINGS_BRAND_MEDIA_DATA, logo_alt: logoAlt };
+export type SiteSettingsBrandMediaMap = Record<SiteSettingsBrandMediaKey, SiteSettingsBrandMediaValue>;
+
+export function createEmptySiteSettingsBrandMediaMap(): SiteSettingsBrandMediaMap {
+  return SITE_SETTINGS_BRAND_MEDIA_KEYS.reduce((acc, key) => {
+    acc[key] = { ...EMPTY_SITE_SETTINGS_BRAND_MEDIA_VALUE };
+    return acc;
+  }, {} as SiteSettingsBrandMediaMap);
 }
 
-export function extractSiteSettingsBrandMediaData(
-  raw: unknown,
-  logoAlt: string,
-): SiteSettingsBrandMediaData {
-  const row = raw && typeof raw === 'object' ? (raw as UnknownRow) : {};
-  const source = typeof row.value === 'string' ? tryParseJsonVal(row.value) : row.value ?? raw;
+export function extractSiteSettingsBrandMediaValue(raw: unknown): SiteSettingsBrandMediaValue {
+  const row = raw && typeof raw === 'object' ? (raw as UnknownRow) : null;
+  const source = row && 'value' in row
+    ? (typeof row.value === 'string' ? tryParseJsonVal(row.value) : row.value)
+    : raw;
   const input = source && typeof source === 'object' ? (source as UnknownRow) : {};
-
   return {
-    logo_url: toStr(input.logo_url),
-    logo_alt: trimStr(input.logo_alt) || logoAlt,
-    logo_dark_url: toStr(input.logo_dark_url),
-    favicon_url: toStr(input.favicon_url),
-    apple_touch_icon_url: toStr(input.apple_touch_icon_url),
+    url: toStr(input.url),
+    alt: trimStr(input.alt),
   };
 }
 
-export function buildSiteSettingsBrandMediaLegacyValue(
-  value: SiteSettingsBrandMediaData,
-) {
-  return {
-    logo_url: value.logo_url,
-    logo_alt: value.logo_alt,
-    favicon_url: value.favicon_url,
-    logo_dark_url: value.logo_dark_url,
-  };
+export function mapSiteSettingsListToBrandMediaMap(
+  rows: ReadonlyArray<{ key?: string; value?: unknown } | null | undefined> | null | undefined,
+): SiteSettingsBrandMediaMap {
+  const map = createEmptySiteSettingsBrandMediaMap();
+  if (!rows) return map;
+  for (const row of rows) {
+    const key = String(row?.key ?? '').trim() as SiteSettingsBrandMediaKey;
+    if (!SITE_SETTINGS_BRAND_MEDIA_KEYS.includes(key)) continue;
+    map[key] = extractSiteSettingsBrandMediaValue(row);
+  }
+  return map;
 }
 
 export function getSiteSettingsBrandMediaErrorMessage(err: unknown, fallback: string): string {

@@ -30,23 +30,22 @@ export async function generateMetadata(): Promise<Metadata> {
     description: branding.meta.description,
     icons: {
       icon: [
-        { url: branding.favicon_16, sizes: '16x16', type: 'image/svg+xml' },
-        { url: branding.favicon_32, sizes: '32x32', type: 'image/svg+xml' },
+        { url: '/favicon/favicon-16.svg', sizes: '16x16', type: 'image/svg+xml' },
+        { url: '/favicon/favicon-32.svg', sizes: '32x32', type: 'image/svg+xml' },
+        { url: '/favicon/favicon.ico' },
       ],
-      apple: branding.apple_touch_icon,
+      apple: '/apple/apple-touch-icon.png',
     },
     openGraph: {
       type: 'website',
       url: branding.meta.og_url,
       title: branding.meta.og_title,
       description: branding.meta.og_description,
-      images: [branding.meta.og_image],
     },
     twitter: {
       card: 'summary_large_image',
       title: branding.meta.og_title,
       description: branding.meta.og_description,
-      images: [branding.meta.og_image],
     },
   };
 }

@@ -223,59 +223,11 @@ export const BrandingSettingsTab: React.FC<BrandingSettingsTabProps> = ({ locale
                 )}
               </div>
             </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="branding_og_image">
-                {t('admin.siteSettings.branding.fields.ogImage')}
-              </Label>
-              <Input
-                id="branding_og_image"
-                value={form.og_image}
-                onChange={(e) => handleChange('og_image', e.target.value)}
-                placeholder={t(`admin.siteSettings.branding.placeholders.${SITE_SETTINGS_BRANDING_PLACEHOLDER_KEYS.og_image}`)}
-                disabled={busy}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="branding_favicon_16">
-                {t('admin.siteSettings.branding.fields.favicon16')}
-              </Label>
-              <Input
-                id="branding_favicon_16"
-                value={form.favicon_16}
-                onChange={(e) => handleChange('favicon_16', e.target.value)}
-                placeholder={t(`admin.siteSettings.branding.placeholders.${SITE_SETTINGS_BRANDING_PLACEHOLDER_KEYS.favicon_16}`)}
-                disabled={busy}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="branding_favicon_32">
-                {t('admin.siteSettings.branding.fields.favicon32')}
-              </Label>
-              <Input
-                id="branding_favicon_32"
-                value={form.favicon_32}
-                onChange={(e) => handleChange('favicon_32', e.target.value)}
-                placeholder={t(`admin.siteSettings.branding.placeholders.${SITE_SETTINGS_BRANDING_PLACEHOLDER_KEYS.favicon_32}`)}
-                disabled={busy}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="branding_apple_touch_icon">
-                {t('admin.siteSettings.branding.fields.appleTouchIcon')}
-              </Label>
-              <Input
-                id="branding_apple_touch_icon"
-                value={form.apple_touch_icon}
-                onChange={(e) => handleChange('apple_touch_icon', e.target.value)}
-                placeholder={t(`admin.siteSettings.branding.placeholders.${SITE_SETTINGS_BRANDING_PLACEHOLDER_KEYS.apple_touch_icon}`)}
-                disabled={busy}
-              />
-            </div>
           </div>
+
+          <p className="text-xs text-muted-foreground">
+            {t('admin.siteSettings.branding.mediaHint')}
+          </p>
         </fieldset>
 
         {/* Meta / SEO */}
