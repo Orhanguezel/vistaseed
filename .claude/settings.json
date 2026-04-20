@@ -24,7 +24,13 @@
       "Bash(curl -s -o /dev/null -w 'api-health: %{http_code}\\\\n' https://www.vistaseeds.com.tr/api/health)",
       "Bash(scp /home/orhan/Documents/Projeler/tarim-dijital-ekosistem/projects/vistaseeds/backend/uploads/media/logo/vistaseed_logo_green.png /home/orhan/Documents/Projeler/tarim-dijital-ekosistem/projects/vistaseeds/backend/uploads/media/logo/vistaseed_logo_white.png vps-vistainsaat:/var/www/vistaseed/backend/uploads/media/logo/)",
       "Bash(curl -sI https://www.vistaseeds.com.tr/uploads/media/logo/vistaseed_logo_green.png)",
-      "Bash(curl -sI https://www.vistaseeds.com.tr/uploads/media/logo/vistaseed_logo_white.png)"
+      "Bash(curl -sI https://www.vistaseeds.com.tr/uploads/media/logo/vistaseed_logo_white.png)",
+      "Bash(curl -s \"https://www.vistaseeds.com.tr/api/v1/sliders?locale=tr\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); rows=d if isinstance\\(d,list\\) else d.get\\('data',[]\\); print\\('prod count:', len\\(rows\\)\\); [print\\(i+1, r.get\\('title'\\), '| active:', r.get\\('isActive', r.get\\('is_active'\\)\\)\\) for i,r in enumerate\\(rows\\)]\")",
+      "Bash(curl -sI https://www.vistaseeds.com.tr/uploads/slide/slide-4-hero.webp)",
+      "Bash(curl -s \"https://www.vistaseeds.com.tr/tr\" -o /tmp/home.html)",
+      "Bash(curl -s \"https://www.vistaseeds.com.tr/api/v1/custom-pages/by-slug/arge-merkezi?locale=tr\")",
+      "Bash(python3 -c ' *)"
     ],
     "defaultMode": "bypassPermissions"
   }

@@ -53,7 +53,11 @@ export default async function CustomPageRoute({ params }: CustomPageRouteProps) 
       htmlContent = parsed.html;
     }
   } catch {
-    // raw HTML
+    // Malformed legacy wrapper: {"html":"..."} where inner HTML quotes are
+    // not JSON-escaped. Frontend hic olmasa da eski DB satirlarina karsi savunmaci.
+    const match = /^\s*\{\s*"html"\s*:\s*"([\s\S]*)"\s*\}\s*$/.exec(htmlContent);
+    if (match) htmlContent = match[1];
+    // else: raw HTML, leave as-is
   }
 
   const readingTime = calculateReadingTime(htmlContent);
