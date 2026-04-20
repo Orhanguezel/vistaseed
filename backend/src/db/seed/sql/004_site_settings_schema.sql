@@ -39,13 +39,13 @@ INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 -- önce url boş kalabilir; admin upload sonrası güncellenir.
 -- =============================================================
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
-(UUID(), 'site_logo',             '*', '{"url":"/uploads/media/logo/vistaseeds_logo.png","alt":"{{SITE_NAME}} Logo"}'),
-(UUID(), 'site_logo_dark',        '*', '{"url":"/uploads/media/logo/vistaseeds_logo.png","alt":"{{SITE_NAME}} Logo Dark"}'),
-(UUID(), 'site_logo_light',       '*', '{"url":"/uploads/media/logo/vistaseeds_logo.png","alt":"{{SITE_NAME}} Logo Light"}'),
-(UUID(), 'site_favicon',          '*', '{"url":"","alt":"{{SITE_NAME}} Favicon"}'),
-(UUID(), 'site_apple_touch_icon', '*', '{"url":"","alt":"{{SITE_NAME}} Apple Touch"}'),
-(UUID(), 'site_app_icon_512',     '*', '{"url":"","alt":"{{SITE_NAME}} Icon 512"}'),
-(UUID(), 'site_og_default_image', '*', '{"url":"","alt":"{{SITE_NAME}}"}');
+(UUID(), 'site_logo',             '*', '{"url":"/uploads/media/logo/vistaseeds.jpeg","alt":"{{SITE_NAME}} Logo"}'),
+(UUID(), 'site_logo_dark',        '*', '{"url":"/uploads/media/logo/vistaseeds.jpeg","alt":"{{SITE_NAME}} Logo Dark"}'),
+(UUID(), 'site_logo_light',       '*', '{"url":"/uploads/media/logo/vistaseeds.jpeg","alt":"{{SITE_NAME}} Logo Light"}'),
+(UUID(), 'site_favicon',          '*', '{"url":"/uploads/media/logo/favicon.png","alt":"{{SITE_NAME}} Favicon"}'),
+(UUID(), 'site_apple_touch_icon', '*', '{"url":"/uploads/media/logo/appletouch.png","alt":"{{SITE_NAME}} Apple Touch"}'),
+(UUID(), 'site_app_icon_512',     '*', '{"url":"/uploads/media/logo/favicon.png","alt":"{{SITE_NAME}} Icon 512"}'),
+(UUID(), 'site_og_default_image', '*', '{"url":"/uploads/media/logo/vistaseeds.jpeg","alt":"{{SITE_NAME}}"}');
 
 -- =============================================================
 -- CONTACT
