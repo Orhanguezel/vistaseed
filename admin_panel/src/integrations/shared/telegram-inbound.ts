@@ -6,7 +6,7 @@
 export const TELEGRAM_INBOUND_ADMIN_BASE = '/admin/telegram/inbound';
 export const TELEGRAM_AUTOREPLY_ADMIN_BASE = '/admin/telegram/autoreply';
 export const TELEGRAM_AUTOREPLY_DEFAULT_TEMPLATE =
-  'Vielen Dank für Ihre Nachricht. Wir melden uns so schnell wie möglich bei Ihnen.';
+  'Mesajınız alındı. En kısa sürede size dönüş yapacağız.';
 
 export type TelegramInboundMessage = {
   id: string;

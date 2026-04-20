@@ -200,6 +200,10 @@ export default function Header({
 
   const navItems: NavItem[] = [
     {
+      label: tNav("home"),
+      href: ROUTES.home,
+    },
+    {
       label: tNav("products"),
       href: ROUTES.products.list,
       mega: {
@@ -279,7 +283,12 @@ export default function Header({
   const { theme, resolvedTheme } = useTheme();
   const currentTheme = resolvedTheme || theme;
 
-  const resolvedLogoUrl = currentTheme === "dark" && logoUrlDark ? logoUrlDark : logoUrl;
+  // Use perfectly identical logo files (same size/shape) for seamless theme transition
+  const LOGO_GREEN = "/uploads/media/logo/vistaseed_logo_green.png";
+  const LOGO_WHITE = "/uploads/media/logo/vistaseed_logo_white.png";
+  
+  const resolvedLogoUrl = currentTheme === "dark" ? LOGO_WHITE : LOGO_GREEN;
+
   const isTransparent = false;
 
   function resolveSuggestionImage(url?: string | null) {
@@ -414,39 +423,39 @@ export default function Header({
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-surface border-b border-border/10">
+      <header className="sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-border/50 transition-all duration-300">
         {/* Main bar */}
-        <div className="max-w-7xl mx-auto px-4 md:px-6 h-14 md:h-16 lg:h-20 flex items-center justify-between transition-all duration-300">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 lg:h-24 flex items-center justify-between">
 
           {/* Left: Logo + Name */}
-          <Link href={localize(ROUTES.home)} aria-label={siteName || homeAriaLabel} className="inline-flex items-center gap-3 md:gap-5 lg:gap-8 shrink-0 h-full group transition-all">
+          <Link href={localize(ROUTES.home)} aria-label={siteName || homeAriaLabel} className="inline-flex items-center gap-3 md:gap-4 shrink-0 h-full group transition-all">
             {resolvedLogoUrl && (
-              <div className="flex items-center h-full w-auto transition-transform group-hover:scale-105">
+              <div className="flex items-center h-full py-0 transition-transform duration-500 group-hover:scale-[1.02]">
                 <Image
                   src={resolvedLogoUrl}
                   alt={siteName || "Logo"}
                   width={300}
-                  height={74}
+                  height={80}
                   priority
-                  className="h-full w-auto object-contain"
+                  className="h-full w-auto object-contain transition-all duration-300"
                 />
               </div>
             )}
             
             {!resolvedLogoUrl && (
               <div className="flex flex-col leading-none" aria-hidden="true">
-                <span className="text-xl md:text-2xl lg:text-4xl font-black tracking-tighter text-foreground uppercase transition-all">
+                <span className="text-xl md:text-2xl lg:text-3xl font-black tracking-tighter text-foreground uppercase transition-all">
                   {siteName || "VISTA SEED"}
                 </span>
-                <span className="text-[9px] md:text-[11px] lg:text-sm font-bold tracking-[0.2em] md:tracking-[0.3em] text-brand uppercase mt-1 md:mt-2 lg:mt-3 opacity-80 transition-all">
-                  {siteSubtitle || "Üretimden Tedariğe Dijital Ekosistem"}
+                <span className="text-[9px] md:text-[10px] lg:text-xs font-bold tracking-[0.2em] text-brand uppercase mt-1 opacity-80">
+                  {siteSubtitle || "Digital Ecosystem"}
                 </span>
               </div>
             )}
           </Link>
 
           {/* Center: Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1 ml-8">
+          <nav className="hidden lg:flex items-center gap-2">
             {navItems.map((item) => (
               <div
                 key={item.label}
@@ -456,18 +465,16 @@ export default function Header({
               >
                 <Link
                   href={localize(item.href)}
-                  className={`inline-flex items-center gap-1 px-4 py-2 text-[13px] font-semibold transition-colors rounded-lg ${
+                  className={`inline-flex items-center gap-1.5 px-5 py-2.5 text-[14px] font-bold tracking-tight transition-all rounded-full ${
                     isActive(item.href)
-                      ? isTransparent ? "text-white" : "text-brand"
-                      : isTransparent
-                        ? "text-white/80 hover:text-white hover:bg-white/10"
-                        : "text-foreground/75 hover:text-foreground hover:bg-bg-alt/50"
+                      ? "text-brand bg-brand/5 shadow-sm shadow-brand/10"
+                      : "text-foreground/80 hover:text-brand hover:bg-brand/5"
                   }`}
                 >
                   {item.label}
                   {item.mega && (
                     <ChevronDown
-                      className={`transition-transform duration-200 ${
+                      className={`transition-transform duration-300 ${
                         openMega === item.label ? "rotate-180" : ""
                       }`}
                     />
@@ -478,18 +485,18 @@ export default function Header({
           </nav>
 
           {/* Right: Search + Theme + Hamburger */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
             {/* Search toggle */}
             <button
               type="button"
               onClick={() => setSearchOpen((v) => !v)}
-              className={`hidden sm:flex w-9 h-9 items-center justify-center rounded-full transition-colors ${
-                isTransparent ? "text-white/70 hover:text-white hover:bg-white/10" : "text-muted hover:text-foreground hover:bg-bg-alt"
-              }`}
+              className="hidden sm:flex w-10 h-10 items-center justify-center rounded-full text-muted hover:text-brand hover:bg-brand/5 border border-transparent hover:border-brand/10 transition-all duration-300"
               aria-label={searchAriaLabel}
             >
               <SearchIcon />
             </button>
+
+            <div className="w-[1px] h-6 bg-border/60 mx-1 hidden sm:block" />
 
             <ThemeToggle />
 
@@ -497,13 +504,11 @@ export default function Header({
             <button
               type="button"
               onClick={() => setMobileOpen((v) => !v)}
-              className={`lg:hidden w-9 h-9 flex items-center justify-center rounded-lg transition-colors ${
-                isTransparent ? "text-white hover:bg-white/10" : "text-foreground hover:bg-bg-alt"
-              }`}
+              className="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-bg-alt/50 text-foreground hover:bg-brand/5 hover:text-brand transition-all"
               aria-label={menuAriaLabel}
               aria-expanded={mobileOpen}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 {mobileOpen ? (
                   <>
                     <line x1="18" y1="6" x2="6" y2="18" />
@@ -511,9 +516,9 @@ export default function Header({
                   </>
                 ) : (
                   <>
-                    <line x1="4" y1="6" x2="20" y2="6" />
+                    <line x1="4" y1="7" x2="20" y2="7" />
                     <line x1="4" y1="12" x2="20" y2="12" />
-                    <line x1="4" y1="18" x2="20" y2="18" />
+                    <line x1="4" y1="17" x2="20" y2="17" />
                   </>
                 )}
               </svg>
@@ -523,9 +528,9 @@ export default function Header({
 
         {/* Search bar (slide down) */}
         {searchOpen && (
-          <div className="border-t border-border/10 bg-surface">
-            <div className="max-w-7xl mx-auto px-4 md:px-6 py-3">
-              <form onSubmit={handleSearchSubmit} className="relative max-w-md">
+          <div className="absolute top-full left-0 right-0 bg-surface/95 backdrop-blur-xl border-b border-border/50 animate-in slide-in-from-top-4 duration-300">
+            <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
+              <form onSubmit={handleSearchSubmit} className="relative max-w-2xl mx-auto">
                 <input
                   type="text"
                   placeholder={searchPlaceholder}
@@ -533,9 +538,9 @@ export default function Header({
                   value={searchQuery}
                   onChange={(event) => setSearchQuery(event.target.value)}
                   onKeyDown={handleSearchKeyDown}
-                  className="w-full h-10 pl-10 pr-4 text-sm rounded-lg bg-background border border-border/50 text-foreground placeholder:text-faint outline-none focus:border-brand/40 transition-colors"
+                  className="w-full h-14 pl-12 pr-6 text-base rounded-2xl bg-background border border-border/60 text-foreground placeholder:text-muted focus:border-brand focus:ring-4 focus:ring-brand/5 outline-none transition-all"
                 />
-                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-faint">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">
                   <SearchIcon />
                 </div>
                 {renderSearchSuggestions()}
@@ -547,7 +552,7 @@ export default function Header({
         {/* Mega menu dropdown (desktop) */}
         {openMega && (
           <div
-            className="hidden lg:block absolute left-0 right-0 top-full bg-surface border-t border-border/10 shadow-lg shadow-foreground/5 z-50"
+            className="hidden lg:block absolute left-0 right-0 top-full bg-surface/98 backdrop-blur-xl border-t border-border/40 shadow-[0_20px_50px_rgba(0,0,0,0.1)] z-50 animate-in fade-in slide-in-from-top-2 duration-300"
             onMouseEnter={() => {
               if (closeTimer.current) clearTimeout(closeTimer.current);
             }}
@@ -556,38 +561,49 @@ export default function Header({
             {navItems.filter((n) => n.mega && n.label === openMega).map((item) => {
               const mega = item.mega!;
               return (
-                <div key={item.label} className="max-w-7xl mx-auto px-4 md:px-6 py-8">
-                  <div className="grid grid-cols-[280px_1fr] gap-12">
+                <div key={item.label} className="max-w-7xl mx-auto px-6 py-12">
+                  <div className="grid grid-cols-[320px_1fr] gap-16">
                     {/* Left: Description */}
-                    <div className="space-y-3">
-                      <h3 className="text-lg font-bold text-foreground tracking-tight">
-                        {mega.title}
-                      </h3>
-                      {mega.description && (
-                        <p className="text-sm text-muted leading-relaxed">
-                          {mega.description}
-                        </p>
-                      )}
+                    <div className="space-y-6">
+                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-brand/5 text-brand">
+                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                      </div>
+                      <div className="space-y-2">
+                        <h3 className="text-2xl font-black text-foreground tracking-tight">
+                          {mega.title}
+                        </h3>
+                        {mega.description && (
+                          <p className="text-base text-muted leading-relaxed">
+                            {mega.description}
+                          </p>
+                        )}
+                      </div>
                       {mega.exploreLabel && mega.exploreHref && (
                         <Link
                           href={localize(mega.exploreHref)}
-                          className="inline-block text-sm font-bold text-brand uppercase tracking-widest hover:underline mt-2"
+                          className="inline-flex items-center gap-2 text-sm font-black text-brand uppercase tracking-widest hover:gap-3 transition-all"
                         >
                           {mega.exploreLabel}
+                          <span>→</span>
                         </Link>
                       )}
                     </div>
 
                     {/* Right: Links */}
-                    <div className="flex flex-col gap-0 divide-y divide-border/10">
+                    <div className="grid grid-cols-2 gap-x-8 gap-y-2">
                       {mega.items.map((mi) => (
                         <Link
                           key={mi.label + mi.href}
                           href={localizeItemHref(mi)}
-                          className="group flex items-center justify-between py-3 px-2 text-sm font-medium text-foreground hover:text-brand transition-colors"
+                          className="group flex items-center justify-between py-4 px-4 rounded-2xl hover:bg-brand/5 transition-all underline-offset-4"
                         >
-                          <span>{mi.label}</span>
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-faint group-hover:text-brand transition-colors">
+                          <div className="flex items-center gap-3">
+                            <div className="w-1.5 h-1.5 rounded-full bg-brand/20 group-hover:bg-brand group-hover:scale-150 transition-all" />
+                            <span className="text-base font-semibold text-foreground/80 group-hover:text-brand transition-colors">
+                              {mi.label}
+                            </span>
+                          </div>
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-muted/40 group-hover:text-brand opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all">
                             <polyline points="9 18 15 12 9 6" />
                           </svg>
                         </Link>
@@ -602,34 +618,34 @@ export default function Header({
 
         {/* Mobile nav */}
         {mobileOpen && (
-          <nav className="lg:hidden fixed inset-x-0 bottom-0 top-14 md:top-16 z-50 bg-surface overflow-y-auto border-t border-border/10 animate-in fade-in slide-in-from-top-2 duration-200">
-            <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex flex-col gap-0.5">
+          <nav className="lg:hidden fixed inset-x-0 bottom-0 top-[64px] z-50 bg-surface overflow-y-auto border-t border-border/10 animate-in fade-in slide-in-from-right-4 duration-300">
+            <div className="max-w-7xl mx-auto px-4 py-8 flex flex-col gap-2">
               {navItems.map((item) => (
-                <div key={item.label}>
+                <div key={item.label} className="space-y-1">
                   <Link
                     href={localize(item.href)}
-                    className={`flex items-center justify-between px-3 py-3 rounded-lg text-sm font-semibold transition-colors ${
+                    className={`flex items-center justify-between px-4 py-4 rounded-2xl text-base font-bold transition-all ${
                       isActive(item.href)
-                        ? "text-brand bg-brand/5"
-                        : "text-foreground hover:bg-bg-alt"
+                        ? "text-brand bg-brand/5 border border-brand/10"
+                        : "text-foreground hover:bg-bg-alt border border-transparent"
                     }`}
                   >
                     <span>{item.label}</span>
-                    {item.mega && <ChevronDown className="text-faint" />}
                   </Link>
                   {/* Mobile sub-items */}
                   {item.mega && (
-                    <div className="pl-4 pb-1">
+                    <div className="grid grid-cols-1 gap-1 pl-4 pt-1">
                       {item.mega.items.map((mi) => (
                         <Link
                           key={mi.label + mi.href}
                           href={localizeItemHref(mi)}
-                          className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
+                          className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                             isActive(mi.href)
-                              ? "text-brand"
-                              : "text-muted hover:text-foreground hover:bg-bg-alt"
+                              ? "text-brand bg-brand/5"
+                              : "text-muted hover:text-brand hover:bg-bg-alt"
                           }`}
                         >
+                          <div className="w-1 h-1 rounded-full bg-brand/40" />
                           {mi.label}
                         </Link>
                       ))}
@@ -638,8 +654,7 @@ export default function Header({
                 </div>
               ))}
 
-              {/* Mobile search */}
-              <div className="mt-2 pt-2 border-t border-border/10">
+              <div className="mt-8 pt-8 border-t border-border/50">
                 <form onSubmit={handleSearchSubmit} className="relative">
                   <input
                     type="text"
@@ -647,12 +662,11 @@ export default function Header({
                     value={searchQuery}
                     onChange={(event) => setSearchQuery(event.target.value)}
                     onKeyDown={handleSearchKeyDown}
-                    className="w-full h-10 pl-10 pr-4 text-sm rounded-lg bg-background border border-border/50 text-foreground placeholder:text-faint outline-none"
+                    className="w-full h-14 pl-12 pr-4 text-base rounded-2xl bg-background border border-border/80 text-foreground outline-none focus:border-brand"
                   />
-                  <div className="absolute left-3 top-1/2 -translate-y-1/2 text-faint">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">
                     <SearchIcon />
                   </div>
-                  {renderSearchSuggestions()}
                 </form>
               </div>
             </div>

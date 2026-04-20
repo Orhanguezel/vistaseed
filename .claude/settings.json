@@ -1,5 +1,25 @@
 {
   "permissions": {
+    "allow": [
+      "Bash(../../../node_modules/.bin/tsc --noEmit --incremental false --pretty false)",
+      "Bash(/home/orhan/Documents/Projeler/tarim-dijital-ekosistem/node_modules/.bin/tsc --noEmit --incremental false --pretty false)",
+      "Bash(echo \"EXIT=$?\")",
+      "Bash(ssh -o StrictHostKeyChecking=accept-new vps-vistainsaat \"uname -a && pm2 list 2>&1 | head -30\")",
+      "Bash(scp /home/orhan/Documents/Projeler/tarim-dijital-ekosistem/projects/vistaseeds/backend/uploads/media/logo/vistaseeds.jpeg /home/orhan/Documents/Projeler/tarim-dijital-ekosistem/projects/vistaseeds/backend/uploads/media/logo/favicon.png /home/orhan/Documents/Projeler/tarim-dijital-ekosistem/projects/vistaseeds/backend/uploads/media/logo/appletouch.png vps-vistainsaat:/var/www/vistaseed/backend/uploads/media/logo/)",
+      "Bash(curl -sI https://www.vistaseeds.com.tr/uploads/media/logo/vistaseeds.jpeg)",
+      "Bash(curl -sI https://www.vistaseeds.com.tr/uploads/media/logo/favicon.png)",
+      "Bash(curl -sI https://www.vistaseeds.com.tr/uploads/media/logo/appletouch.png)",
+      "Bash(git reset *)",
+      "Bash(curl -s 'https://www.vistaseeds.com.tr/api/v1/site_settings?key_in=site_logo,site_logo_dark,site_favicon,site_apple_touch_icon,site_og_default_image&locale=tr')",
+      "Bash(python3 -c 'import sys,json; [print\\(r[\"key\"], \"->\", r[\"value\"]\\) for r in json.load\\(sys.stdin\\)]')",
+      "Bash(curl -s -o /dev/null -w 'frontend: %{http_code}\\\\n' https://www.vistaseeds.com.tr/tr)",
+      "Bash(mysql -uapp -papp vistaseed -e \"SHOW TABLES;\")",
+      "Bash(bun run *)",
+      "Bash(echo \"BACKEND=$?\")",
+      "Bash(echo \"ADMIN=$?\")",
+      "Bash(curl -s \"https://www.vistaseeds.com.tr/api/v1/site_settings/homepage_feature_panels?locale=tr\")",
+      "Bash(curl -sI https://www.vistaseeds.com.tr/uploads/homepage/vistaseeds/features/tohumun-bereketi-01KKF1351HG1HJ9VJ2NCNC1EA7.webp)"
+    ],
     "defaultMode": "bypassPermissions"
   }
 }

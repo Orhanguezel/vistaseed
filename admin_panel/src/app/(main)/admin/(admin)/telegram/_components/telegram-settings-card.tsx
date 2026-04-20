@@ -133,6 +133,7 @@ export default function TelegramSettingsCard({ settings, setSettings }: Props) {
               value={settings.telegram_bot_token}
               onChange={(e) => setStr('telegram_bot_token', e.target.value)}
               placeholder={t('settings.botTokenPlaceholder')}
+              autoComplete="new-password"
             />
           </div>
 
@@ -142,6 +143,7 @@ export default function TelegramSettingsCard({ settings, setSettings }: Props) {
               value={settings.telegram_chat_id}
               onChange={(e) => setStr('telegram_chat_id', e.target.value)}
               placeholder={t('settings.chatIdPlaceholder')}
+              autoComplete="off"
             />
           </div>
 
@@ -151,6 +153,7 @@ export default function TelegramSettingsCard({ settings, setSettings }: Props) {
               value={settings.telegram_default_chat_id}
               onChange={(e) => setStr('telegram_default_chat_id', e.target.value)}
               placeholder={t('settings.chatIdPlaceholder')}
+              autoComplete="off"
             />
           </div>
         </div>

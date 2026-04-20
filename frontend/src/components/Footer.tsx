@@ -139,9 +139,9 @@ export default async function Footer({
             {/* Brand Intro Column */}
             <div className="lg:col-span-2 pr-0 lg:pr-12">
               {(logoUrlDark || logoUrl) && (
-                <div className="mb-10 inline-block">
+                <div className="mb-10 inline-block transition-transform hover:scale-105">
                   <Image
-                    src={logoUrlDark || logoUrl}
+                    src="/uploads/media/logo/vistaseed_logo_white.png"
                     alt={resolvedSiteName}
                     width={300}
                     height={74}
@@ -221,7 +221,7 @@ export default async function Footer({
               rel="noopener noreferrer"
               className="text-white/70 text-xs font-black uppercase tracking-wider hover:text-brand transition-colors flex items-center gap-1.5 group"
             >
-              Guezel Web Design
+              GWD
               <Sparkles className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-brand" />
             </a>
           </div>

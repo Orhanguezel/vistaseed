@@ -1,7 +1,8 @@
 {
   "header": {
     "title": "Telegram",
-    "description": "Telegram bildirimlerini ve otomatik yanıtları yapılandırın"
+    "description": "Telegram bildirimlerini ve otomatik yanıtları yapılandırın",
+    "test": "Test Mesajı Gönder"
   },
   "tabs": {
     "settings": "Ayarlar",
