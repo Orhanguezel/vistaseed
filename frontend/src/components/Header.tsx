@@ -616,63 +616,68 @@ export default function Header({
           </div>
         )}
 
-        {/* Mobile nav */}
-        {mobileOpen && (
-          <nav className="lg:hidden fixed inset-x-0 bottom-0 top-[64px] z-50 bg-surface overflow-y-auto border-t border-border/10 animate-in fade-in slide-in-from-right-4 duration-300">
-            <div className="max-w-7xl mx-auto px-4 py-8 flex flex-col gap-2">
-              {navItems.map((item) => (
-                <div key={item.label} className="space-y-1">
-                  <Link
-                    href={localize(item.href)}
-                    className={`flex items-center justify-between px-4 py-4 rounded-2xl text-base font-bold transition-all ${
-                      isActive(item.href)
-                        ? "text-brand bg-brand/5 border border-brand/10"
-                        : "text-foreground hover:bg-bg-alt border border-transparent"
-                    }`}
-                  >
-                    <span>{item.label}</span>
-                  </Link>
-                  {/* Mobile sub-items */}
-                  {item.mega && (
-                    <div className="grid grid-cols-1 gap-1 pl-4 pt-1">
-                      {item.mega.items.map((mi) => (
-                        <Link
-                          key={mi.label + mi.href}
-                          href={localizeItemHref(mi)}
-                          className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                            isActive(mi.href)
-                              ? "text-brand bg-brand/5"
-                              : "text-muted hover:text-brand hover:bg-bg-alt"
-                          }`}
-                        >
-                          <div className="w-1 h-1 rounded-full bg-brand/40" />
-                          {mi.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-
-              <div className="mt-8 pt-8 border-t border-border/50">
-                <form onSubmit={handleSearchSubmit} className="relative">
-                  <input
-                    type="text"
-                    placeholder={searchPlaceholder}
-                    value={searchQuery}
-                    onChange={(event) => setSearchQuery(event.target.value)}
-                    onKeyDown={handleSearchKeyDown}
-                    className="w-full h-14 pl-12 pr-4 text-base rounded-2xl bg-background border border-border/80 text-foreground outline-none focus:border-brand"
-                  />
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">
-                    <SearchIcon />
-                  </div>
-                </form>
-              </div>
-            </div>
-          </nav>
-        )}
       </header>
+
+      {/* Mobile nav — header DISINDA, kendi stacking context'inde */}
+      {mobileOpen && (
+        <nav
+          className="lg:hidden fixed inset-x-0 bottom-0 top-14 md:top-16 z-100 overflow-y-auto border-t border-border/10"
+          style={{ backgroundColor: 'var(--color-surface)' }}
+        >
+          <div className="max-w-7xl mx-auto px-4 py-8 flex flex-col gap-2">
+            {navItems.map((item) => (
+              <div key={item.label} className="space-y-1">
+                <Link
+                  href={localize(item.href)}
+                  onClick={() => setMobileOpen(false)}
+                  className={`flex items-center justify-between px-4 py-4 rounded-2xl text-base font-bold transition-all ${
+                    isActive(item.href)
+                      ? "text-brand bg-brand/5 border border-brand/10"
+                      : "text-foreground hover:bg-bg-alt border border-transparent"
+                  }`}
+                >
+                  <span>{item.label}</span>
+                </Link>
+                {item.mega && (
+                  <div className="grid grid-cols-1 gap-1 pl-4 pt-1">
+                    {item.mega.items.map((mi) => (
+                      <Link
+                        key={mi.label + mi.href}
+                        href={localizeItemHref(mi)}
+                        onClick={() => setMobileOpen(false)}
+                        className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                          isActive(mi.href)
+                            ? "text-brand bg-brand/5"
+                            : "text-muted hover:text-brand hover:bg-bg-alt"
+                        }`}
+                      >
+                        <div className="w-1 h-1 rounded-full bg-brand/40" />
+                        {mi.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+
+            <div className="mt-8 pt-8 border-t border-border/50">
+              <form onSubmit={handleSearchSubmit} className="relative">
+                <input
+                  type="text"
+                  placeholder={searchPlaceholder}
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                  onKeyDown={handleSearchKeyDown}
+                  className="w-full h-14 pl-12 pr-4 text-base rounded-2xl bg-background border border-border/80 text-foreground outline-none focus:border-brand"
+                />
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-muted">
+                  <SearchIcon />
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+      )}
 
       {/* Overlay to close mega menu on click outside */}
       {openMega && (

@@ -108,9 +108,9 @@ export default function HeroSliderClient({ slides, interval = 7000 }: HeroSlider
       </AnimatePresence>
 
       {/* Content overlay */}
-      <div className="absolute inset-0 z-20 flex items-center">
+      <div className="absolute inset-0 z-20 flex items-center pb-40 sm:pb-36 lg:pb-32">
         <div className="max-w-7xl mx-auto px-6 w-full">
-          <div className="max-w-4xl space-y-8">
+          <div className="max-w-4xl space-y-6 sm:space-y-8">
             {/* Badge */}
             <motion.div
               key={`badge-${slide.id}`}
@@ -181,8 +181,8 @@ export default function HeroSliderClient({ slides, interval = 7000 }: HeroSlider
       {/* Navigator — Ultra Premium Glassmorphism */}
       {count > 1 && (
         <div className="absolute inset-x-0 bottom-0 z-40 pointer-events-none">
-          <div className="max-w-7xl mx-auto px-6 pb-16">
-            <div className="flex gap-4 p-3 bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-[2.5rem] pointer-events-auto shadow-2xl">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-6 sm:pb-10 lg:pb-16">
+            <div className="flex gap-2 sm:gap-4 p-2 sm:p-3 bg-white/3 backdrop-blur-2xl border border-white/10 rounded-4xl sm:rounded-[2.5rem] pointer-events-auto shadow-2xl">
               {slides.map((s, i) => (
                 <button
                   key={s.id}
