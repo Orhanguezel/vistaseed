@@ -2,11 +2,11 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { Suspense } from 'react';
 
 import { LoginForm } from '../_components/login-form';
 import { useLocaleContext } from '@/i18n';
+import { AuthBrandLogo } from '@/components/auth/auth-brand-logo';
 
 function LoginFormFallback() {
   return (
@@ -27,13 +27,8 @@ export default function Login() {
       <div className="hidden bg-primary lg:block lg:w-1/3">
         <div className="flex h-full flex-col items-center justify-center p-12 text-center">
           <div className="space-y-6">
-            <div className="mx-auto size-24 relative">
-              <Image
-                src="/logo/logo-horizontal.svg"
-                alt="vistaseeds"
-                fill
-                className="object-contain"
-              />
+            <div className="mx-auto h-24 flex items-center justify-center">
+              <AuthBrandLogo size={96} />
             </div>
             <div className="space-y-2">
               <h1 className="font-light text-5xl text-primary-foreground">
