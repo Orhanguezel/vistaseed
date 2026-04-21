@@ -1363,7 +1363,7 @@
     "watchDesc": "Temperature dropping. Monitor your greenhouse.",
     "warningDesc": "Frost risk! Move seedlings to shelter.",
     "dangerDesc": "Frost! Take emergency protection measures.",
-    "poweredBy": "Powered by Open-Meteo",
+    "poweredBy": "Tarımİklim data",
     "loadError": "Could not load weather data"
   }
 }

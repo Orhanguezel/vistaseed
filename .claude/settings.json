@@ -30,7 +30,9 @@
       "Bash(curl -sI https://www.vistaseeds.com.tr/uploads/slide/slide-4-hero.webp)",
       "Bash(curl -s \"https://www.vistaseeds.com.tr/tr\" -o /tmp/home.html)",
       "Bash(curl -s \"https://www.vistaseeds.com.tr/api/v1/custom-pages/by-slug/arge-merkezi?locale=tr\")",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(curl -s -o /dev/null -w 'arge: %{http_code}\\\\n' https://www.vistaseeds.com.tr/tr/arge-merkezi)",
+      "Bash(curl -s https://www.vistaseeds.com.tr/tr/arge-merkezi)"
     ],
     "defaultMode": "bypassPermissions"
   }

@@ -53,14 +53,14 @@ function worstRisk(risks: FrostRisk[]): FrostRisk {
 // Open-Meteo fetch (ücretsiz, API key gerektirmez)
 // ──────────────────────────────────────────────
 
-async function fetchFrostData(): Promise<FrostResponse> {
-  const lat = env.WEATHER_LAT;
-  const lon = env.WEATHER_LON;
-  const locationName = env.WEATHER_LOCATION_NAME;
+async function fetchFrostData(lat?: number, lon?: number, name?: string): Promise<FrostResponse> {
+  const targetLat = lat ?? env.WEATHER_LAT;
+  const targetLon = lon ?? env.WEATHER_LON;
+  const locationName = name ?? (lat ? 'Detected Location' : env.WEATHER_LOCATION_NAME);
 
   const url = new URL('https://api.open-meteo.com/v1/forecast');
-  url.searchParams.set('latitude', String(lat));
-  url.searchParams.set('longitude', String(lon));
+  url.searchParams.set('latitude', String(targetLat));
+  url.searchParams.set('longitude', String(targetLon));
   url.searchParams.set('current', 'temperature_2m');
   url.searchParams.set('daily', 'temperature_2m_min,temperature_2m_max,precipitation_sum');
   url.searchParams.set('timezone', env.WEATHER_TIMEZONE);
@@ -68,22 +68,14 @@ async function fetchFrostData(): Promise<FrostResponse> {
 
   const res = await fetch(url.toString(), {
     headers: { 'User-Agent': 'vistaseeds-weather/1.0' },
-    signal: AbortSignal.timeout(8000),
+    signal: AbortSignal.timeout(10000),
   });
 
   if (!res.ok) {
     throw new Error(`Open-Meteo API error: ${res.status}`);
   }
 
-  const data = (await res.json()) as {
-    current?: { temperature_2m?: number };
-    daily?: {
-      time?: string[];
-      temperature_2m_min?: number[];
-      temperature_2m_max?: number[];
-      precipitation_sum?: number[];
-    };
-  };
+  const data = (await res.json()) as any;
 
   const current_temp = data.current?.temperature_2m ?? null;
   const times = data.daily?.time ?? [];
@@ -91,7 +83,7 @@ async function fetchFrostData(): Promise<FrostResponse> {
   const maxs = data.daily?.temperature_2m_max ?? [];
   const precips = data.daily?.precipitation_sum ?? [];
 
-  const forecast: DayForecast[] = times.map((date, i) => {
+  const forecast: DayForecast[] = times.map((date: string, i: number) => {
     const min_temp = Math.round((mins[i] ?? 20) * 10) / 10;
     const max_temp = Math.round((maxs[i] ?? 25) * 10) / 10;
     const precipitation_mm = Math.round((precips[i] ?? 0) * 10) / 10;
@@ -113,24 +105,38 @@ async function fetchFrostData(): Promise<FrostResponse> {
 // Handler
 // ──────────────────────────────────────────────
 
-async function frostHandler(_req: FastifyRequest, reply: FastifyReply) {
+async function frostHandler(req: FastifyRequest, reply: FastifyReply) {
+  const query = req.query as { lat?: string; lon?: string };
+  const lat = query.lat ? parseFloat(query.lat) : undefined;
+  const lon = query.lon ? parseFloat(query.lon) : undefined;
+
+  // Use global cache ONLY for the default location (Antalya)
+  const isDefault = !lat && !lon;
   const now = Date.now();
 
-  if (cachedData && now < cacheExpiresAt) {
+  if (isDefault && cachedData && now < cacheExpiresAt) {
     return reply
       .header('Cache-Control', 'public, max-age=1800')
       .header('X-Cache', 'HIT')
       .send({ success: true, data: cachedData });
   }
 
-  const data = await fetchFrostData();
-  cachedData = data;
-  cacheExpiresAt = now + CACHE_TTL_MS;
+  try {
+    const data = await fetchFrostData(lat, lon);
+    
+    if (isDefault) {
+      cachedData = data;
+      cacheExpiresAt = now + CACHE_TTL_MS;
+    }
 
-  return reply
-    .header('Cache-Control', 'public, max-age=1800')
-    .header('X-Cache', 'MISS')
-    .send({ success: true, data });
+    return reply
+      .header('Cache-Control', 'public, max-age=1800')
+      .header('X-Cache', 'MISS')
+      .send({ success: true, data });
+  } catch (err: any) {
+    req.log.error(err);
+    return reply.status(500).send({ success: false, error: 'Weather fetch failed' });
+  }
 }
 
 // ──────────────────────────────────────────────

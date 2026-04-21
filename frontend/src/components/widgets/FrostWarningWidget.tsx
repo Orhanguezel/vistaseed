@@ -68,10 +68,26 @@ export function FrostWarningWidget() {
   const [data, setData] = useState<FrostData | null>(null);
   const [error, setError] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [coords, setCoords] = useState<{ lat: number; lon: number } | null>(null);
+
+  // Get browser location for more accurate frost warning
+  useEffect(() => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => setCoords({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
+        (err) => console.warn('Geolocation failed:', err.message),
+        { enableHighAccuracy: false, timeout: 5000, maximumAge: 600000 }
+      );
+    }
+  }, []);
 
   const fetchData = useCallback(async () => {
     try {
-      const res = await fetch(`${BASE_URL}/api/v1/weather/frost`, { cache: 'no-store' });
+      let url = `${BASE_URL}/api/v1/weather/frost`;
+      if (coords) {
+        url += `?lat=${coords.lat}&lon=${coords.lon}`;
+      }
+      const res = await fetch(url, { cache: 'no-store' });
       if (!res.ok) throw new Error('fetch failed');
       const json = (await res.json()) as { success: boolean; data: FrostData };
       if (json.success && json.data) {
@@ -81,7 +97,7 @@ export function FrostWarningWidget() {
     } catch {
       setError(true);
     }
-  }, []);
+  }, [coords]);
 
   useEffect(() => {
     fetchData();
@@ -162,8 +178,16 @@ export function FrostWarningWidget() {
           </div>
 
           {/* Footer */}
-          <div className={`px-4 py-2 border-t border-white/10 text-[10px] opacity-50 ${styles.text}`}>
-            {t('poweredBy')} · {formatTime(data.updated_at)}
+          <div className={`px-4 py-2 border-t border-white/10 text-[10px] flex justify-between items-center opacity-50 ${styles.text}`}>
+            <span>{t('poweredBy')} · {formatTime(data.updated_at)}</span>
+            <a 
+              href="https://tarimiklim.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-100 transition-opacity underline decoration-white/20"
+            >
+              tarimiklim.com
+            </a>
           </div>
         </div>
       )}
