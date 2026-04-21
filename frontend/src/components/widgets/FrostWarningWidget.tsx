@@ -60,7 +60,9 @@ function dayLabel(date: string, index: number, t: ReturnType<typeof useTranslati
 // Component
 // ──────────────────────────────────────────────
 
-const BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8083').replace(/\/$/, '');
+const BASE_URL = typeof window === 'undefined'
+  ? (process.env.INTERNAL_API_URL ?? 'http://127.0.0.1:8084')
+  : (process.env.NEXT_PUBLIC_API_URL ?? '').replace(/\/$/, '');
 const REFRESH_INTERVAL_MS = 30 * 60 * 1000;
 
 export function FrostWarningWidget() {
