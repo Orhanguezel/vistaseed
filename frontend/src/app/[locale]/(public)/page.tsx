@@ -76,14 +76,14 @@ async function getFallbackSlides(locale: string): Promise<Slide[]> {
     "/assets/hero/slide-4-agriculture.webp",
   ];
 
-  return [0, 1, 2].map((i) => ({
+  return [0, 1, 2, 3].map((i) => ({
     id: `fallback-${i}`,
     title: t(`fallbacks.${i}.title`),
     description: t(`fallbacks.${i}.description`),
     image: images[i] || images[0],
     alt: t(`fallbacks.${i}.title`),
     buttonText: t(`fallbacks.${i}.buttonText`),
-    buttonLink: i === 0 ? "/urunler" : i === 1 ? "/hakkimizda" : "/sss",
+    buttonLink: i === 0 ? "/urunler" : i === 1 ? "/hakkimizda" : i === 2 ? "/sss" : "/iletisim",
   }));
 }
 
