@@ -1464,6 +1464,7 @@
     "warningDesc": "Don riski var! Fideleri koru altına alın.",
     "dangerDesc": "Don! Acil koruma tedbirleri alın.",
     "poweredBy": "Open-Meteo verileri",
+    "useMyLocation": "Konumuma göre güncelle",
     "loadError": "Hava durumu alınamadı"
   }
 }

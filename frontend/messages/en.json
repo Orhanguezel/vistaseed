@@ -1441,6 +1441,7 @@
     "warningDesc": "Frost risk! Move seedlings to shelter.",
     "dangerDesc": "Frost! Take emergency protection measures.",
     "poweredBy": "Tarımİklim data",
+    "useMyLocation": "Update to my location",
     "loadError": "Could not load weather data"
   }
 }

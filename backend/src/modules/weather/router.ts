@@ -35,6 +35,31 @@ const CACHE_TTL_MS = 30 * 60 * 1000;
 const ipGeoCache = new Map<string, { lat: number; lon: number; city: string; expiresAt: number }>();
 const IP_GEO_TTL_MS = 60 * 60 * 1000; // 1 saat
 
+// Reverse geo cache (rounded "lat,lon" → {city, expiresAt})
+const reverseGeoCache = new Map<string, { city: string; expiresAt: number }>();
+
+async function reverseGeocode(lat: number, lon: number): Promise<string | null> {
+  const key = `${lat.toFixed(1)},${lon.toFixed(1)}`;
+  const cached = reverseGeoCache.get(key);
+  if (cached && Date.now() < cached.expiresAt) return cached.city;
+  try {
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=tr&zoom=10`,
+      {
+        headers: { 'User-Agent': 'vistaseeds-weather/1.0' },
+        signal: AbortSignal.timeout(4000),
+      },
+    );
+    if (!res.ok) return null;
+    const data = (await res.json()) as { address?: { city?: string; town?: string; county?: string; province?: string } };
+    const city = data.address?.city ?? data.address?.town ?? data.address?.county ?? data.address?.province ?? null;
+    if (city) reverseGeoCache.set(key, { city, expiresAt: Date.now() + IP_GEO_TTL_MS });
+    return city;
+  } catch {
+    return null;
+  }
+}
+
 async function getLocationFromIp(ip: string): Promise<{ lat: number; lon: number; city: string } | null> {
   if (!ip || ip === '127.0.0.1' || ip === '::1' || ip.startsWith('192.168') || ip.startsWith('10.')) return null;
   const cached = ipGeoCache.get(ip);
@@ -134,10 +159,11 @@ async function frostHandler(req: FastifyRequest, reply: FastifyReply) {
   const lon = query.lon ? parseFloat(query.lon) : undefined;
   const now = Date.now();
 
-  // 1. Tarayıcı koordinat gönderdi → direkt kullan
+  // 1. Tarayıcı koordinat gönderdi → reverse geocode ile şehri çöz
   if (lat !== undefined && lon !== undefined) {
     try {
-      const data = await fetchFrostData(lat, lon);
+      const cityName = await reverseGeocode(lat, lon);
+      const data = await fetchFrostData(lat, lon, cityName ?? undefined);
       return reply.header('Cache-Control', 'no-store').send({ success: true, data });
     } catch (err: unknown) {
       req.log.error(err);

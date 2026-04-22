@@ -71,17 +71,32 @@ export function FrostWarningWidget() {
   const [error, setError] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [coords, setCoords] = useState<{ lat: number; lon: number } | null>(null);
+  const [locating, setLocating] = useState(false);
 
-  // Get browser location for more accurate frost warning
+  const requestLocation = useCallback(() => {
+    if (!('geolocation' in navigator)) return;
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setCoords({ lat: pos.coords.latitude, lon: pos.coords.longitude });
+        setLocating(false);
+      },
+      (err) => {
+        console.warn('Geolocation failed:', err.message);
+        setLocating(false);
+      },
+      { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+    );
+  }, []);
+
+  // Try geolocation on mount (may auto-approve if previously granted)
   useEffect(() => {
     if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => setCoords({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
-        (err) => console.warn('Geolocation failed:', err.message),
-        { enableHighAccuracy: false, timeout: 5000, maximumAge: 600000 }
-      );
+      navigator.permissions?.query({ name: 'geolocation' }).then((result) => {
+        if (result.state === 'granted') requestLocation();
+      }).catch(() => {});
     }
-  }, []);
+  }, [requestLocation]);
 
   const fetchData = useCallback(async () => {
     try {
@@ -179,12 +194,27 @@ export function FrostWarningWidget() {
             })}
           </div>
 
+          {/* Location button */}
+          {'geolocation' in navigator && (
+            <div className="px-4 py-2 border-t border-white/10">
+              <button
+                type="button"
+                onClick={requestLocation}
+                disabled={locating}
+                className={`flex items-center gap-1.5 text-[10px] opacity-60 hover:opacity-100 transition-opacity ${styles.text}`}
+              >
+                <MapPin size={10} />
+                <span>{locating ? '...' : t('useMyLocation')}</span>
+              </button>
+            </div>
+          )}
+
           {/* Footer */}
           <div className={`px-4 py-2 border-t border-white/10 text-[10px] flex justify-between items-center opacity-50 ${styles.text}`}>
             <span>{t('poweredBy')} · {formatTime(data.updated_at)}</span>
-            <a 
-              href="https://tarimiklim.com" 
-              target="_blank" 
+            <a
+              href="https://tarimiklim.com"
+              target="_blank"
               rel="noopener noreferrer"
               className="hover:opacity-100 transition-opacity underline decoration-white/20"
             >
