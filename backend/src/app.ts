@@ -58,8 +58,11 @@ export async function createApp() {
   await app.register(rateLimit, {
     max: 100,
     timeWindow: '1 minute',
-    allowList: (req: { url?: string }) => {
+    allowList: (req: { url?: string; ip?: string }) => {
       const url = req.url || '';
+      const ip = (req as { ip?: string }).ip ?? '';
+      // Localhost build-time fetches are never rate-limited
+      if (ip === '127.0.0.1' || ip === '::1' || ip === '::ffff:127.0.0.1') return true;
       return url.startsWith(uploadsPrefix);
     },
   });

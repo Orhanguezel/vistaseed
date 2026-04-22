@@ -249,6 +249,11 @@
           "title": "Zertifiziert und zuverlassig",
           "description": "Gepruftes Saatgut mit einer Keimrate von uber 95 Prozent.",
           "buttonText": "FAQ"
+        },
+        {
+          "title": "Vision fur nachhaltigen Ackerbau",
+          "description": "Umweltfreundliche Produktionspraktiken und der Schutz naturlicher Ressourcen haben fur uns Prioritat.",
+          "buttonText": "Kontakt"
         }
       ]
     },
@@ -1362,6 +1367,28 @@
       "empty": "Keine passenden Produkte.",
       "loadError": "Katalog konnte nicht geladen werden. Bitte Session prufen."
     }
+  },
+  "Frost": {
+    "widgetTitle": "Frostwarnung",
+    "location": "Standort",
+    "currentTemp": "Aktuelle Temperatur",
+    "minTemp": "Min. Temperatur",
+    "today": "Heute",
+    "tomorrow": "Morgen",
+    "dayAfter": "Übermorgen",
+    "precipitation": "Niederschlag",
+    "updatedAt": "Aktualisiert",
+    "safe": "Sicher",
+    "watch": "Vorsicht",
+    "warning": "Warnung",
+    "danger": "Frostgefahr",
+    "safeDesc": "Kein Frostrisiko, Setzlinge und Samen sind sicher.",
+    "watchDesc": "Temperaturen sinken, Gewächshaus und Setzlinge beobachten.",
+    "warningDesc": "Frostrisiko! Setzlinge schutzen.",
+    "dangerDesc": "Frost! Sofortige Schutzmaßnahmen ergreifen.",
+    "poweredBy": "Open-Meteo Daten",
+    "useMyLocation": "Meinen Standort verwenden",
+    "loadError": "Wetterdaten konnten nicht geladen werden"
   },
   "Legal": {
     "common": {
