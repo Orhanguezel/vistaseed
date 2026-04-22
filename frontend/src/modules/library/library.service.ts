@@ -1,5 +1,5 @@
 import { API } from "@/config/api-endpoints";
-import { API_URL } from "@/lib/site-settings";
+import { getApiUrl } from "@/lib/site-settings";
 import type { LibraryItem, LibraryFile, LibraryImage } from "./library.type";
 
 export async function fetchLibraryList(params: {
@@ -18,7 +18,7 @@ export async function fetchLibraryList(params: {
 
   const query = queryParts.length > 0 ? `?${queryParts.join("&")}` : "";
   try {
-    const res = await fetch(`${API_URL}${API.library.list}${query}`, {
+    const res = await fetch(`${getApiUrl()}${API.library.list}${query}`, {
       next: { revalidate: 300 },
     });
     if (!res.ok) return [];
@@ -30,7 +30,7 @@ export async function fetchLibraryList(params: {
 
 export async function fetchLibraryBySlug(slug: string, locale = "tr"): Promise<LibraryItem | null> {
   try {
-    const res = await fetch(`${API_URL}${API.library.bySlug(slug)}?locale=${locale}`, {
+    const res = await fetch(`${getApiUrl()}${API.library.bySlug(slug)}?locale=${locale}`, {
       next: { revalidate: 300 },
     });
     if (!res.ok) return null;
@@ -42,7 +42,7 @@ export async function fetchLibraryBySlug(slug: string, locale = "tr"): Promise<L
 
 export async function fetchLibraryFiles(id: string): Promise<LibraryFile[]> {
   try {
-    const res = await fetch(`${API_URL}${API.library.files(id)}`, {
+    const res = await fetch(`${getApiUrl()}${API.library.files(id)}`, {
       next: { revalidate: 300 },
     });
     if (!res.ok) return [];
@@ -54,7 +54,7 @@ export async function fetchLibraryFiles(id: string): Promise<LibraryFile[]> {
 
 export async function fetchLibraryImages(id: string, locale = "tr"): Promise<LibraryImage[]> {
   try {
-    const res = await fetch(`${API_URL}${API.library.images(id)}?locale=${locale}`, {
+    const res = await fetch(`${getApiUrl()}${API.library.images(id)}?locale=${locale}`, {
       next: { revalidate: 300 },
     });
     if (!res.ok) return [];

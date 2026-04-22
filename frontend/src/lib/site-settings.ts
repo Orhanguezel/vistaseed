@@ -18,7 +18,6 @@ export function getApiUrl() {
   ).replace(/\/$/, "");
 }
 function getApiV1() { return `${getApiUrl()}/api/v1`; }
-export const API_URL = getApiUrl();
 
 export interface SiteSettings {
   site_name: string;

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { API_URL } from "@/lib/site-settings";
+import { getApiUrl } from "@/lib/site-settings";
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
 const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "vistaseeds";
@@ -80,7 +80,7 @@ export async function GET() {
 
 async function fetchProducts(): Promise<Product[]> {
   try {
-    const res = await fetch(`${API_URL}/api/v1/products?locale=tr&limit=100`);
+    const res = await fetch(`${getApiUrl()}/api/v1/products?locale=tr&limit=100`);
     if (!res.ok) return [];
     const data = await res.json();
     return Array.isArray(data) ? data : data?.data ?? data?.items ?? [];
@@ -89,7 +89,7 @@ async function fetchProducts(): Promise<Product[]> {
 
 async function fetchFaqs(): Promise<Faq[]> {
   try {
-    const res = await fetch(`${API_URL}/api/v1/support/faqs?locale=tr&is_published=true&limit=50`);
+    const res = await fetch(`${getApiUrl()}/api/v1/support/faqs?locale=tr&is_published=true&limit=50`);
     if (!res.ok) return [];
     const data = await res.json();
     return Array.isArray(data) ? data : data?.data ?? data?.items ?? [];

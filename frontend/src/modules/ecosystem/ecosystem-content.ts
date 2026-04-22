@@ -1,7 +1,5 @@
-import { API_URL } from "@/lib/site-settings";
+import { getApiUrl } from "@/lib/site-settings";
 import { resolveImageUrl } from "@/lib/utils";
-
-const BASE_URL = API_URL;
 
 export interface EcosystemReferenceItem {
   id: string;
@@ -36,7 +34,7 @@ export async function fetchReferenceHighlights(locale: string, limit = 3): Promi
       orderDir: "asc",
       is_featured: "true",
     });
-    const res = await fetch(`${BASE_URL}/api/v1/references?${params.toString()}`, {
+    const res = await fetch(`${getApiUrl()}/api/v1/references?${params.toString()}`, {
       next: { revalidate: 300 },
     });
     if (!res.ok) return [];

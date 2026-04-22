@@ -1,5 +1,5 @@
 import { API } from "@/config/api-endpoints";
-import { API_URL } from "@/lib/site-settings";
+import { getApiUrl } from "@/lib/site-settings";
 import type { ReferenceItem } from "./reference.types";
 
 function buildQuery(params: Record<string, string | number | boolean | undefined>) {
@@ -29,7 +29,7 @@ export async function fetchReferenceList(params: {
       sort: params.sort,
       orderDir: params.orderDir,
     });
-    const res = await fetch(`${API_URL}${API.references.list}${query}`, {
+    const res = await fetch(`${getApiUrl()}${API.references.list}${query}`, {
       next: { revalidate: 300 },
     });
     if (!res.ok) return [];
@@ -43,7 +43,7 @@ export async function fetchReferenceList(params: {
 export async function fetchReferenceBySlug(slug: string, locale = "tr"): Promise<ReferenceItem | null> {
   try {
     const query = buildQuery({ locale });
-    const res = await fetch(`${API_URL}${API.references.bySlug(slug)}${query}`, {
+    const res = await fetch(`${getApiUrl()}${API.references.bySlug(slug)}${query}`, {
       next: { revalidate: 300 },
     });
     if (!res.ok) return null;

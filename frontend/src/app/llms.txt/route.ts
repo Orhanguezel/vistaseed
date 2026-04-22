@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { API_URL } from "@/lib/site-settings";
+import { getApiUrl } from "@/lib/site-settings";
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
 const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "vistaseeds";
@@ -9,7 +9,7 @@ export const revalidate = 3600;
 export async function GET() {
   let products: { name: string; slug: string; category_name?: string }[] = [];
   try {
-    const res = await fetch(`${API_URL}/api/v1/products?locale=tr&limit=100`);
+    const res = await fetch(`${getApiUrl()}/api/v1/products?locale=tr&limit=100`);
     if (res.ok) {
       const data = await res.json();
       products = Array.isArray(data) ? data : data?.data ?? data?.items ?? [];

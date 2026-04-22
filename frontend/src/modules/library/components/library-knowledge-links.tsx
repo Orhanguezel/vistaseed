@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Loader2, MoveRight } from "lucide-react";
 import { API } from "@/config/api-endpoints";
-import { API_URL } from "@/lib/site-settings";
+
+const CLIENT_API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "").replace(/\/$/, "");
 import { resolveImageUrl } from "@/lib/utils";
 import { ROUTES } from "@/config/routes";
 import { toLocalizedPath } from "@/i18n/routing";
@@ -34,7 +35,7 @@ export function LibraryKnowledgeLinks({ tags, locale }: { tags: string[]; locale
     }
     const q = tags.slice(0, 4).join(" ");
     const qs = new URLSearchParams({ locale, limit: "8", q });
-    fetch(`${API_URL}${API.library.list}?${qs}`)
+    fetch(`${CLIENT_API_URL}${API.library.list}?${qs}`)
       .then((r) => r.json())
       .then((rows: LibraryRow[]) => {
         const list = Array.isArray(rows) ? rows : [];

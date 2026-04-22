@@ -1185,7 +1185,14 @@
         "unit": "Einheit",
         "unitPrice": "Einzelpreis",
         "quantity": "Menge",
-        "amount": "Betrag (Einzug)"
+        "amount": "Betrag (Einzug)",
+        "select": "Einbeziehen",
+        "selectAria": "{title} — in Bestellung aufnehmen",
+        "unitPriceKg": "Preis (₺/kg)",
+        "perKg": "/ kg",
+        "listPerKg": "Liste / kg",
+        "quantityGrams": "Menge (g)",
+        "gramsHint": "Gramm"
       },
       "unknownProductCode": "Produktcode unbekannt",
       "unitBadge": "Stk.",
@@ -1203,12 +1210,69 @@
     "finance": {
       "title": "Finanzstatus und Kontoauszug",
       "description": "Ihr Kontostand und Ihre bisherigen Finanzbewegungen.",
+      "loading": "Wird geladen…",
+      "downloadPdf": "Kontoauszug herunterladen (PDF)",
+      "pdfWorking": "Wird vorbereitet…",
+      "movements": "Bewegungen",
+      "noMovements": "Keine Bewegungen vorhanden.",
+      "totalsByType": "Summen nach Typ",
+      "meta": "Insgesamt {count} Bewegungen · Uberfällig: {overdue}",
       "cards": {
         "currentBalance": "Aktueller Kontostand",
         "debtBalance": "Schuldsaldo",
         "creditBalance": "Guthabensaldo",
         "creditLimit": "Kreditlimit",
-        "availableLimit": "Verfugbares Limit"
+        "availableLimit": "Verfugbares Limit",
+        "limit": "Kreditlimit",
+        "balance": "Aktueller Saldo",
+        "available": "Verfugbar",
+        "discount": "Rabattsatz"
+      },
+      "col": {
+        "date": "Datum",
+        "type": "Typ",
+        "amount": "Betrag",
+        "balance": "Saldo danach"
+      },
+      "txType": {
+        "order": "Bestellung",
+        "payment": "Zahlung",
+        "adjustment": "Anpassung",
+        "refund": "Erstattung"
+      },
+      "directPayment": {
+        "eyebrow": "Direktzahlung",
+        "title": "Zahlung auf Ihr Konto",
+        "lead": "Sie konnen per Karte zahlen ohne eine Bestellung aufzugeben. Nach erfolgreicher Zahlung wird der Betrag automatisch Ihrem Konto gutgeschrieben.",
+        "amount": "Zahlungsbetrag",
+        "outstanding": "Offener Saldo",
+        "useFullBalance": "Gesamten offenen Saldo verwenden",
+        "hint": "Nach dem Start der Kartenzahlung werden Sie zu einem 3D-Secure-Bildschirm weitergeleitet.",
+        "processing": "Wird verarbeitet…",
+        "cta": "Per Karte bezahlen",
+        "success": "Direktzahlung erfolgreich eingegangen und Ihrem Konto gutgeschrieben.",
+        "redirectHint": "Das Bankfenster wurde unten geoffnet. Folgen Sie den Schritten Ihrer Bank, um die Zahlung abzuschließen."
+      },
+      "warnings": {
+        "low_credit": "Ihr verfugbares Limit ist niedrig.",
+        "overdue_due": "Sie haben uberfällige Einträge."
+      },
+      "errors": {
+        "load": "Übersicht konnte nicht geladen werden.",
+        "pdf": "PDF konnte nicht heruntergeladen werden.",
+        "generic": "Bei der Transaktion ist ein Fehler aufgetreten ({code}).",
+        "invalidAmount": "Bitte geben Sie einen gultigen Zahlungsbetrag ein.",
+        "bank_card_feature_disabled": "Direktzahlung per Karte ist derzeit deaktiviert.",
+        "nestpay_not_configured": "Bankkarten-Einstellungen sind noch nicht abgeschlossen.",
+        "ziraatpay_not_configured": "ZiraatPay-Einstellungen sind noch nicht abgeschlossen.",
+        "craftgate_init_failed": "Kartenzahlungssitzung konnte nicht gestartet werden.",
+        "ziraatpay_init_failed": "ZiraatPay-Sitzung konnte nicht gestartet werden.",
+        "payment_failed": "Zahlung wurde von der Bank abgelehnt.",
+        "hash_mismatch": "Callback-Verifizierung fehlgeschlagen.",
+        "payment_not_found": "Zahlungsdatensatz nicht gefunden.",
+        "amount_exceeds_balance": "Der eingegebene Betrag darf Ihren offenen Saldo nicht uberschreiten.",
+        "no_outstanding_balance": "Es ist kein offener Saldo zum Bezahlen vorhanden.",
+        "invalid_payment_state": "Dieser Zahlungsdatensatz ist nicht mehr verarbeitbar."
       },
       "transactions": {
         "title": "Kontobewegungen",
