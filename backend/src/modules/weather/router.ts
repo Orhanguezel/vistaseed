@@ -31,6 +31,29 @@ let cachedData: FrostResponse | null = null;
 let cacheExpiresAt = 0;
 const CACHE_TTL_MS = 30 * 60 * 1000;
 
+// IP geo cache (ip → {lat, lon, city, expiresAt})
+const ipGeoCache = new Map<string, { lat: number; lon: number; city: string; expiresAt: number }>();
+const IP_GEO_TTL_MS = 60 * 60 * 1000; // 1 saat
+
+async function getLocationFromIp(ip: string): Promise<{ lat: number; lon: number; city: string } | null> {
+  if (!ip || ip === '127.0.0.1' || ip === '::1' || ip.startsWith('192.168') || ip.startsWith('10.')) return null;
+  const cached = ipGeoCache.get(ip);
+  if (cached && Date.now() < cached.expiresAt) return cached;
+  try {
+    const res = await fetch(`http://ip-api.com/json/${ip}?fields=status,city,lat,lon&lang=tr`, {
+      signal: AbortSignal.timeout(3000),
+    });
+    if (!res.ok) return null;
+    const geo = (await res.json()) as { status: string; city?: string; lat?: number; lon?: number };
+    if (geo.status !== 'success' || !geo.lat || !geo.lon) return null;
+    const result = { lat: geo.lat, lon: geo.lon, city: geo.city ?? 'Bilinmiyor' };
+    ipGeoCache.set(ip, { ...result, expiresAt: Date.now() + IP_GEO_TTL_MS });
+    return result;
+  } catch {
+    return null;
+  }
+}
+
 // ──────────────────────────────────────────────
 // Frost risk calculation
 // ──────────────────────────────────────────────
@@ -56,7 +79,7 @@ function worstRisk(risks: FrostRisk[]): FrostRisk {
 async function fetchFrostData(lat?: number, lon?: number, name?: string): Promise<FrostResponse> {
   const targetLat = lat ?? env.WEATHER_LAT;
   const targetLon = lon ?? env.WEATHER_LON;
-  const locationName = name ?? (lat ? 'Detected Location' : env.WEATHER_LOCATION_NAME);
+  const locationName = name ?? env.WEATHER_LOCATION_NAME;
 
   const url = new URL('https://api.open-meteo.com/v1/forecast');
   url.searchParams.set('latitude', String(targetLat));
@@ -109,31 +132,45 @@ async function frostHandler(req: FastifyRequest, reply: FastifyReply) {
   const query = req.query as { lat?: string; lon?: string };
   const lat = query.lat ? parseFloat(query.lat) : undefined;
   const lon = query.lon ? parseFloat(query.lon) : undefined;
-
-  // Use global cache ONLY for the default location (Antalya)
-  const isDefault = !lat && !lon;
   const now = Date.now();
 
-  if (isDefault && cachedData && now < cacheExpiresAt) {
-    return reply
-      .header('Cache-Control', 'public, max-age=1800')
-      .header('X-Cache', 'HIT')
-      .send({ success: true, data: cachedData });
+  // 1. Tarayıcı koordinat gönderdi → direkt kullan
+  if (lat !== undefined && lon !== undefined) {
+    try {
+      const data = await fetchFrostData(lat, lon);
+      return reply.header('Cache-Control', 'no-store').send({ success: true, data });
+    } catch (err: unknown) {
+      req.log.error(err);
+      return reply.status(500).send({ success: false, error: 'Weather fetch failed' });
+    }
+  }
+
+  // 2. Koordinat yok → IP'den konum tespit et
+  const clientIp = (req.headers['x-real-ip'] as string) ||
+    (req.headers['x-forwarded-for'] as string | undefined)?.split(',')[0]?.trim() ||
+    req.ip;
+
+  const ipGeo = await getLocationFromIp(clientIp);
+  if (ipGeo) {
+    try {
+      const data = await fetchFrostData(ipGeo.lat, ipGeo.lon, ipGeo.city);
+      return reply.header('Cache-Control', 'no-store').send({ success: true, data });
+    } catch (err: unknown) {
+      req.log.error(err);
+    }
+  }
+
+  // 3. Fallback: env default (Antalya)
+  if (cachedData && now < cacheExpiresAt) {
+    return reply.header('Cache-Control', 'public, max-age=1800').header('X-Cache', 'HIT').send({ success: true, data: cachedData });
   }
 
   try {
-    const data = await fetchFrostData(lat, lon);
-    
-    if (isDefault) {
-      cachedData = data;
-      cacheExpiresAt = now + CACHE_TTL_MS;
-    }
-
-    return reply
-      .header('Cache-Control', 'public, max-age=1800')
-      .header('X-Cache', 'MISS')
-      .send({ success: true, data });
-  } catch (err: any) {
+    const data = await fetchFrostData();
+    cachedData = data;
+    cacheExpiresAt = now + CACHE_TTL_MS;
+    return reply.header('Cache-Control', 'public, max-age=1800').header('X-Cache', 'MISS').send({ success: true, data });
+  } catch (err: unknown) {
     req.log.error(err);
     return reply.status(500).send({ success: false, error: 'Weather fetch failed' });
   }

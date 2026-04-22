@@ -65,6 +65,9 @@ export function siteSettingsFormToBranding(
     app_copyright: trimStr(form.app_copyright),
     html_lang: trimStr(form.html_lang),
     theme_color: trimStr(form.theme_color),
+    logo_url: '',
+    favicon_url: '',
+    apple_touch_url: '',
     meta: {
       title: trimStr(form.meta_title),
       description: trimStr(form.meta_description),

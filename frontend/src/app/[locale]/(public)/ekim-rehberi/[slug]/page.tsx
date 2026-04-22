@@ -16,7 +16,11 @@ interface GuideDetailPageProps {
   params: Promise<{ locale: string; slug: string }>;
 }
 
-const BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
+const BASE_URL = (
+  process.env.INTERNAL_API_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8083"
+).replace(/\/$/, "");
 
 export async function generateMetadata({ params }: GuideDetailPageProps): Promise<Metadata> {
   const { locale, slug } = await params;

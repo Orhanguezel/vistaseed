@@ -1226,6 +1226,13 @@
       "title": "Kontoeinstellungen",
       "description": "Aktualisieren Sie Ihre personlichen und Unternehmensdaten.",
       "loading": "Wird geladen...",
+      "logo": {
+        "fallbackTitle": "Handlerlogo",
+        "description": "Laden Sie Ihr Firmenlogo hoch, das im Dashboard und in handlerbezogenen Bereichen verwendet wird.",
+        "cta": "Logo hochladen",
+        "uploading": "Wird hochgeladen...",
+        "hint": "PNG / JPG / WEBP · Maximal 2MB"
+      },
       "personal": {
         "title": "Personliche Informationen",
         "fields": {
@@ -1238,11 +1245,24 @@
         "title": "Unternehmensinformationen",
         "fields": {
           "companyName": "Firmenname",
-          "tax": "Finanzamt / Nr.",
-          "address": "Adresse"
+          "taxNumber": "Steuernummer",
+          "taxOffice": "Finanzamt",
+          "city": "Stadt",
+          "region": "Region / Bezirk"
         }
       },
-      "changePassword": "Passwort andern"
+      "actions": {
+        "save": "Speichern",
+        "saving": "Wird gespeichert..."
+      },
+      "messages": {
+        "saveSuccess": "Handlerprofil wurde aktualisiert.",
+        "saveError": "Handlerprofil konnte nicht aktualisiert werden.",
+        "logoSuccess": "Handlerlogo wurde aktualisiert.",
+        "logoError": "Handlerlogo konnte nicht hochgeladen werden.",
+        "logoTooLarge": "Die Logodatei darf nicht größer als 2MB sein.",
+        "dealerOnly": "Dieser Bereich ist nur für Handlerkonten verfügbar."
+      }
     },
     "support": {
       "title": "Support",

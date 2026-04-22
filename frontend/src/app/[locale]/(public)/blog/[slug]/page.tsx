@@ -10,7 +10,11 @@ import type { BlogPostDetail } from "@/modules/blog/blog.types";
 
 export const revalidate = 300;
 
-const BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
+const BASE_URL = (
+  process.env.INTERNAL_API_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8083"
+).replace(/\/$/, "");
 
 async function fetchBlogPost(slug: string, locale: string): Promise<BlogPostDetail | null> {
   try {

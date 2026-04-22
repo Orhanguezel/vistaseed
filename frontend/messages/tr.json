@@ -1203,21 +1203,57 @@
       }
     },
     "finance": {
-      "title": "Mali Durum ve Ekstre",
-      "description": "Hesap bakiyeniz ve geçmiş finansal hareketleriniz.",
+      "title": "Cari / Finans",
+      "description": "Limit, bakiye ve son cari hareketler. Ekstre PDF olarak indirilebilir.",
+      "loading": "Yükleniyor…",
+      "downloadPdf": "Ekstre indir (PDF)",
+      "pdfWorking": "Hazırlanıyor…",
+      "directPayment": {
+        "eyebrow": "Doğrudan ödeme",
+        "title": "Cari hesabınıza ödeme yapın",
+        "lead": "Sipariş oluşturmadan kartla ödeme yapabilirsiniz. Ödeme başarılı olunca cari bakiyenize otomatik olarak işlenir.",
+        "amount": "Ödeme tutarı",
+        "outstanding": "Açık bakiye",
+        "useFullBalance": "Açık bakiyenin tamamını kullan",
+        "hint": "Kartla ödeme başlattığınızda 3D Secure ekranına yönlendirilirsiniz.",
+        "processing": "İşleniyor…",
+        "cta": "Kartla öde",
+        "success": "Doğrudan ödeme başarıyla alındı ve cari bakiyenize işlendi.",
+        "redirectHint": "Banka ekranı aşağıda açıldı. Ödemeyi tamamlamak için bankanın adımlarını izleyin."
+      },
+      "movements": "Hareketler",
+      "noMovements": "Gösterilecek hareket yok.",
+      "totalsByType": "Tiplere göre toplamlar",
+      "meta": "Toplam {count} hareket · Vadesi geçen: {overdue}",
       "cards": {
-        "currentBalance": "Güncel Cari Bakiye",
+        "limit": "Kredi limiti",
+        "balance": "Güncel bakiye",
+        "available": "Kullanılabilir",
+        "discount": "İskonto oranı",
+        "currentBalance": "Güncel Hesap Bakiyesi",
         "debtBalance": "Borç Bakiyesi",
         "creditBalance": "Alacak Bakiyesi",
         "creditLimit": "Kredi Limiti",
         "availableLimit": "Kullanılabilir Limit"
       },
+      "col": {
+        "date": "Tarih",
+        "type": "Tip",
+        "amount": "Tutar",
+        "balance": "Bakiye sonrası"
+      },
+      "txType": {
+        "order": "Sipariş",
+        "payment": "Ödeme",
+        "adjustment": "Düzeltme",
+        "refund": "İade"
+      },
       "transactions": {
-        "title": "Cari Hareketler",
-        "empty": "Herhangi bir cari hareket bulunmuyor.",
+        "title": "Hesap Hareketleri",
+        "empty": "Hesap hareketi bulunmuyor.",
         "table": {
           "date": "Tarih",
-          "type": "İşlem Tipi",
+          "type": "Hareket Tipi",
           "description": "Açıklama",
           "amount": "Tutar",
           "balance": "Bakiye"
@@ -1227,12 +1263,40 @@
           "payment": "Ödeme",
           "adjustment": "İade/Düz."
         }
+      },
+      "warnings": {
+        "low_credit": "Kullanılabilir limitiniz düşük.",
+        "overdue_due": "Vadesi geçmiş kayıtlarınız var."
+      },
+      "errors": {
+        "load": "Özet yüklenemedi.",
+        "pdf": "PDF indirilemedi.",
+        "generic": "İşlem sırasında bir hata oluştu ({code}).",
+        "invalidAmount": "Lütfen geçerli bir ödeme tutarı girin.",
+        "bank_card_feature_disabled": "Kartla doğrudan ödeme şu anda kapalı.",
+        "nestpay_not_configured": "Banka kartı ayarları henüz tamamlanmadı.",
+        "ziraatpay_not_configured": "ZiraatPay ayarları henüz tamamlanmadı.",
+        "craftgate_init_failed": "Kart ödeme oturumu başlatılamadı.",
+        "ziraatpay_init_failed": "ZiraatPay oturumu başlatılamadı.",
+        "payment_failed": "Ödeme banka tarafından başarısız döndü.",
+        "hash_mismatch": "Callback doğrulaması başarısız oldu.",
+        "payment_not_found": "Ödeme kaydı bulunamadı.",
+        "amount_exceeds_balance": "Girdiğiniz tutar açık bakiyenizi aşamaz.",
+        "no_outstanding_balance": "Ödenecek açık bakiyeniz görünmüyor.",
+        "invalid_payment_state": "Bu ödeme kaydı artık işlenebilir durumda değil."
       }
     },
     "profile": {
       "title": "Hesap Ayarları",
       "description": "Kişisel ve kurumsal bilgilerinizi güncelleyin.",
       "loading": "Yükleniyor...",
+      "logo": {
+        "fallbackTitle": "Bayi Logosu",
+        "description": "Dashboard ve bayi alanlarında kullanılacak kurumsal logonuzu yükleyin.",
+        "cta": "Logo Yükle",
+        "uploading": "Yükleniyor...",
+        "hint": "PNG / JPG / WEBP · Maksimum 2MB"
+      },
       "personal": {
         "title": "Kişisel Bilgiler",
         "fields": {
@@ -1245,11 +1309,24 @@
         "title": "Kurumsal Bilgiler",
         "fields": {
           "companyName": "Şirket Unvanı",
-          "tax": "Vergi Dairesi / No",
-          "address": "Adres"
+          "taxNumber": "Vergi Numarası",
+          "taxOffice": "Vergi Dairesi",
+          "city": "Şehir",
+          "region": "Bölge / İlçe"
         }
       },
-      "changePassword": "Şifre Değiştir"
+      "actions": {
+        "save": "Kaydet",
+        "saving": "Kaydediliyor..."
+      },
+      "messages": {
+        "saveSuccess": "Bayi bilgileri güncellendi.",
+        "saveError": "Bayi bilgileri güncellenemedi.",
+        "logoSuccess": "Bayi logosu güncellendi.",
+        "logoError": "Bayi logosu yüklenemedi.",
+        "logoTooLarge": "Logo dosyası 2MB'den büyük olamaz.",
+        "dealerOnly": "Bu alan yalnızca bayi hesaplarında kullanılabilir."
+      }
     },
     "support": {
       "title": "Destek",

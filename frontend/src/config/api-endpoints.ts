@@ -44,6 +44,11 @@ export const API = {
     balance:      `${V1}/dealer/balance`,
     transactions: `${V1}/dealer/transactions`,
     catalog:      `${V1}/dealer/products`,
+    finance: {
+      summary:          `${V1}/dealer/finance/summary`,
+      directPaymentCard:`${V1}/dealer/finance/direct-payment/card/initiate`,
+      statementPdf:     `${V1}/dealer/finance/statement.pdf`,
+    },
   },
 
   dealers: {

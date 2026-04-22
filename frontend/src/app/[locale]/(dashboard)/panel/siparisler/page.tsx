@@ -12,6 +12,7 @@ import { localePath } from "@/lib/locale-path";
 import { DealerCatalogPanel } from "./dealer-catalog-panel";
 import { DealerOrderForm } from "@/modules/dealer/dealer-order-form";
 import { useDealerSharedCatalog } from "@/modules/dealer/use-dealer-shared-catalog";
+import DashboardShell from "@/components/DashboardShell";
 
 function DealerOrdersBlock({ locale }: { locale: string }) {
   const shared = useDealerSharedCatalog(locale);
@@ -42,7 +43,8 @@ export default function OrdersPage() {
     (val || 0).toLocaleString('tr-TR', { style: 'currency', currency: 'TRY' });
 
   return (
-    <div className="space-y-10">
+    <DashboardShell>
+      <div className="space-y-10">
       <header className="flex items-center justify-between pb-8 border-b border-border/10">
          <div>
             <h1 className="text-4xl font-black tracking-tighter text-foreground">{t("title")}</h1>
@@ -103,7 +105,8 @@ export default function OrdersPage() {
            <div className="py-32 text-center text-muted italic font-medium">{t("empty")}</div>
          )}
       </div>
-    </div>
+      </div>
+    </DashboardShell>
   );
 }
 

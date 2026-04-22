@@ -14,6 +14,7 @@ import type {
   SupportTicketCreateInput,
   SupportTicketMessage,
 } from "@/modules/support/support.type";
+import DashboardShell from "@/components/DashboardShell";
 
 const INITIAL: SupportTicketCreateInput = {
   name: "",
@@ -149,7 +150,8 @@ export default function PanelDestekPage() {
   }
 
   return (
-    <div className="max-w-6xl space-y-10">
+    <DashboardShell>
+      <div className="max-w-6xl space-y-10">
       <header className="pb-6 border-b border-border/10">
         <h1 className="text-3xl md:text-4xl font-black tracking-tighter text-foreground">{t("title")}</h1>
         <p className="text-muted text-sm font-medium mt-2">{t("description")}</p>
@@ -303,6 +305,7 @@ export default function PanelDestekPage() {
           </button>
         </form>
       </section>
-    </div>
+      </div>
+    </DashboardShell>
   );
 }

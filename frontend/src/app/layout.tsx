@@ -14,7 +14,11 @@ const dmSans = DM_Sans({
 });
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
-const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
+const API_URL = (
+  process.env.INTERNAL_API_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8083"
+).replace(/\/$/, "");
 const API_V1 = `${API_URL}/api/v1`;
 const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "vistaseeds";
 
@@ -69,10 +73,10 @@ export async function generateMetadata(): Promise<Metadata> {
     icons: {
       icon: [
         { url: branding.site_favicon || "/favicon.ico" },
-        { url: branding.site_logo || "/assets/logo/logo.jpeg", type: "image/jpeg" },
+        { url: branding.site_logo || "/uploads/media/logo/vistaseed_logo.png", type: "image/png" },
       ],
       shortcut: branding.site_favicon || "/favicon.ico",
-      apple: branding.site_apple_touch || branding.site_logo || "/assets/logo/logo.jpeg",
+      apple: branding.site_apple_touch || branding.site_logo || "/uploads/media/logo/appletouch.png",
     },
     openGraph: {
       ...(siteName && { siteName }),

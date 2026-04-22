@@ -21,8 +21,23 @@ import { LocaleProvider } from '@/i18n/locale-provider';
 
 import './globals.css';
 
+function resolveMediaUrl(path: string, base: string): string {
+  if (!path) return '';
+  if (/^https?:\/\//i.test(path)) return path;
+  try {
+    return `${new URL(base).origin}${path.startsWith('/') ? '' : '/'}${path}`;
+  } catch {
+    return path;
+  }
+}
+
 export async function generateMetadata(): Promise<Metadata> {
   const branding = await fetchBrandingConfig();
+  const apiBase = (process.env.PANEL_API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8083').replace(/\/+$/, '');
+
+  const favicon = resolveMediaUrl(branding.favicon_url, apiBase);
+  const appleTouch = resolveMediaUrl(branding.apple_touch_url, apiBase);
+  const logo = resolveMediaUrl(branding.logo_url, apiBase);
 
   return {
     metadataBase: new URL(branding.meta.og_url || 'https://vistaseeds.com.tr'),
@@ -30,11 +45,10 @@ export async function generateMetadata(): Promise<Metadata> {
     description: branding.meta.description,
     icons: {
       icon: [
-        { url: '/favicon/favicon-16.svg', sizes: '16x16', type: 'image/svg+xml' },
-        { url: '/favicon/favicon-32.svg', sizes: '32x32', type: 'image/svg+xml' },
-        { url: '/favicon/favicon.ico' },
+        ...(favicon ? [{ url: favicon }] : []),
+        ...(logo ? [{ url: logo }] : []),
       ],
-      apple: '/apple/apple-touch-icon.png',
+      apple: appleTouch || undefined,
     },
     openGraph: {
       type: 'website',

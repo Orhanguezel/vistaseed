@@ -13,7 +13,11 @@ import ProductDiscoveryLinks, { type DiscoveryItem } from "@/components/sections
 
 export const revalidate = 300;
 
-const BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
+const BASE_URL = (
+  process.env.INTERNAL_API_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8083"
+).replace(/\/$/, "");
 
 async function fetchBlogList(locale: string): Promise<BlogListResponse | null> {
   try {

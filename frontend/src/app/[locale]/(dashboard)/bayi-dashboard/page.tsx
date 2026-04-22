@@ -9,6 +9,7 @@ import { ROUTES } from "@/config/routes";
 import Link from "next/link";
 import { useLocale } from "next-intl";
 import { localePath } from "@/lib/locale-path";
+import DashboardShell from "@/components/DashboardShell";
 
 export default function BayiDashboardPage() {
   const locale = useLocale();
@@ -32,7 +33,8 @@ export default function BayiDashboardPage() {
   const totalSpend = orders.reduce((sum, o) => sum + (o.total_amount || 0), 0);
 
   return (
-    <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <DashboardShell>
+      <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <header className="flex flex-col md:flex-row items-start justify-between gap-8 pb-10 border-b border-border/5">
          <div className="space-y-2">
             <h1 className="text-5xl font-black tracking-tighter text-foreground">
@@ -126,7 +128,8 @@ export default function BayiDashboardPage() {
             </div>
          </div>
       </div>
-    </div>
+      </div>
+    </DashboardShell>
   );
 }
 

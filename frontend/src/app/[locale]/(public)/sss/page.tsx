@@ -17,7 +17,11 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
   });
 }
 
-const BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
+const BASE_URL = (
+  process.env.INTERNAL_API_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8083"
+).replace(/\/$/, "");
 
 interface FaqItem {
   id: string;

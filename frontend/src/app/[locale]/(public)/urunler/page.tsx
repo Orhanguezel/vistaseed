@@ -30,7 +30,11 @@ export async function generateMetadata({ params, searchParams }: LocalePageProps
   return buildProductsMetadata(locale, resolvedSearchParams);
 }
 
-const BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
+const BASE_URL = (
+  process.env.INTERNAL_API_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8083"
+).replace(/\/$/, "");
 async function getProducts(locale: string): Promise<Product[]> {
   try {
     const res = await fetch(`${BASE_URL}${API.products.list}?is_active=true&locale=${locale}&sort=order_num&order=asc`, {

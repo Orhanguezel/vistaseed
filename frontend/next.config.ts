@@ -37,7 +37,11 @@ const nextConfig: NextConfig = {
   serverExternalPackages: [],
   allowedDevOrigins: ["localhost", "127.0.0.1"],
   async rewrites() {
-    const apiUrl = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8083").replace(/\/$/, "");
+    const apiUrl = (
+      process.env.INTERNAL_API_URL ||
+      process.env.NEXT_PUBLIC_API_URL ||
+      "http://localhost:8083"
+    ).replace(/\/$/, "");
     return [
       {
         source: "/api/v1/:path*",

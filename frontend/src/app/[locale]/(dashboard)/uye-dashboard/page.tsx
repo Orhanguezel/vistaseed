@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import DashboardShell from "@/components/DashboardShell";
 
 interface LocalePageProps {
   params: Promise<{ locale: string }>;
@@ -19,7 +20,8 @@ export default async function UyeDashboardPage({ params }: LocalePageProps) {
   const t = await getTranslations({ locale, namespace: "Dashboard.memberHome" });
 
   return (
-    <div className="space-y-10">
+    <DashboardShell>
+      <div className="space-y-10">
       <header className="flex flex-col md:flex-row items-center justify-between gap-6 pb-10 border-b border-border/10">
          <div>
             <h2 className="text-[11px] font-black uppercase tracking-widest text-brand mb-2">{t("welcome")}</h2>
@@ -59,6 +61,7 @@ export default async function UyeDashboardPage({ params }: LocalePageProps) {
          </div>
          <div className="absolute right-[-5%] bottom-[-20%] text-[10rem] opacity-5 group-hover:scale-110 transition-transform duration-1000 select-none">🌱</div>
       </div>
-    </div>
+      </div>
+    </DashboardShell>
   );
 }

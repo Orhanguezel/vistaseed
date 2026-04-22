@@ -46,7 +46,11 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
   });
 }
 
-const BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
+const BASE_URL = (
+  process.env.INTERNAL_API_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8083"
+).replace(/\/$/, "");
 const API_V1 = `${BASE_URL}/api/v1`;
 
 function getCurrentSeasonTag(): string {

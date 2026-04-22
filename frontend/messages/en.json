@@ -1180,14 +1180,50 @@
       }
     },
     "finance": {
-      "title": "Financial Status and Statement",
-      "description": "Your account balance and historical financial movements.",
+      "title": "Account / Finance",
+      "description": "Credit limit, balance and recent ledger entries. Download a PDF statement.",
+      "loading": "Loading…",
+      "downloadPdf": "Download statement (PDF)",
+      "pdfWorking": "Preparing…",
+      "directPayment": {
+        "eyebrow": "Direct payment",
+        "title": "Make a payment to your account",
+        "lead": "Pay by card without creating an order. When payment succeeds, it is automatically applied to your account balance.",
+        "amount": "Payment amount",
+        "outstanding": "Outstanding balance",
+        "useFullBalance": "Use full outstanding balance",
+        "hint": "When you start card payment, you will be redirected to the 3D Secure screen.",
+        "processing": "Processing…",
+        "cta": "Pay by card",
+        "success": "Direct payment was received successfully and applied to your account balance.",
+        "redirectHint": "The bank screen opened below. Follow the bank steps to complete the payment."
+      },
+      "movements": "Transactions",
+      "noMovements": "No transactions to show.",
+      "totalsByType": "Totals by type",
+      "meta": "{count} transactions total · Overdue: {overdue}",
       "cards": {
+        "limit": "Credit limit",
+        "balance": "Current balance",
+        "available": "Available",
+        "discount": "Discount rate",
         "currentBalance": "Current Account Balance",
         "debtBalance": "Debt Balance",
         "creditBalance": "Credit Balance",
         "creditLimit": "Credit Limit",
         "availableLimit": "Available Limit"
+      },
+      "col": {
+        "date": "Date",
+        "type": "Type",
+        "amount": "Amount",
+        "balance": "Balance after"
+      },
+      "txType": {
+        "order": "Order",
+        "payment": "Payment",
+        "adjustment": "Adjustment",
+        "refund": "Refund"
       },
       "transactions": {
         "title": "Account Transactions",
@@ -1204,12 +1240,40 @@
           "payment": "Payment",
           "adjustment": "Refund/Adj."
         }
+      },
+      "warnings": {
+        "low_credit": "Your available credit is low.",
+        "overdue_due": "You have overdue items."
+      },
+      "errors": {
+        "load": "Could not load summary.",
+        "pdf": "Could not download PDF.",
+        "generic": "Something went wrong during the operation ({code}).",
+        "invalidAmount": "Please enter a valid payment amount.",
+        "bank_card_feature_disabled": "Direct card payment is currently disabled.",
+        "nestpay_not_configured": "Bank card settings are not configured yet.",
+        "ziraatpay_not_configured": "ZiraatPay settings are not configured yet.",
+        "craftgate_init_failed": "Could not start the card payment session.",
+        "ziraatpay_init_failed": "Could not start the ZiraatPay session.",
+        "payment_failed": "The bank returned the payment as failed.",
+        "hash_mismatch": "Callback verification failed.",
+        "payment_not_found": "Payment record was not found.",
+        "amount_exceeds_balance": "The entered amount cannot exceed your outstanding balance.",
+        "no_outstanding_balance": "There is no outstanding balance to pay.",
+        "invalid_payment_state": "This payment record is no longer in a payable state."
       }
     },
     "profile": {
       "title": "Account Settings",
       "description": "Update your personal and corporate information.",
       "loading": "Loading...",
+      "logo": {
+        "fallbackTitle": "Dealer Logo",
+        "description": "Upload the corporate logo that will be used across the dashboard and dealer-facing areas.",
+        "cta": "Upload Logo",
+        "uploading": "Uploading...",
+        "hint": "PNG / JPG / WEBP · Maximum 2MB"
+      },
       "personal": {
         "title": "Personal Information",
         "fields": {
@@ -1222,11 +1286,24 @@
         "title": "Corporate Information",
         "fields": {
           "companyName": "Company Name",
-          "tax": "Tax Office / No",
-          "address": "Address"
+          "taxNumber": "Tax Number",
+          "taxOffice": "Tax Office",
+          "city": "City",
+          "region": "Region / District"
         }
       },
-      "changePassword": "Change Password"
+      "actions": {
+        "save": "Save",
+        "saving": "Saving..."
+      },
+      "messages": {
+        "saveSuccess": "Dealer profile updated.",
+        "saveError": "Dealer profile could not be updated.",
+        "logoSuccess": "Dealer logo updated.",
+        "logoError": "Dealer logo could not be uploaded.",
+        "logoTooLarge": "Logo file cannot be larger than 2MB.",
+        "dealerOnly": "This area is only available for dealer accounts."
+      }
     },
     "support": {
       "title": "Support",

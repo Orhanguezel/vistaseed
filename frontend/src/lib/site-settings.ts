@@ -10,7 +10,11 @@
  *     -> string
  */
 
-export const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
+export const API_URL = (
+  process.env.INTERNAL_API_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8083"
+).replace(/\/$/, "");
 const API_V1 = `${API_URL}/api/v1`;
 
 export interface SiteSettings {

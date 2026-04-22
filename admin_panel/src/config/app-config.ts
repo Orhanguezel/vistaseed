@@ -13,6 +13,9 @@ export type AdminBrandingConfig = {
   app_copyright: string;
   html_lang: string;
   theme_color: string;
+  logo_url: string;
+  favicon_url: string;
+  apple_touch_url: string;
   meta: {
     title: string;
     description: string;
@@ -28,6 +31,9 @@ export const DEFAULT_BRANDING: AdminBrandingConfig = {
   app_copyright: 'vistaseeds',
   html_lang: FALLBACK_LOCALE,
   theme_color: '#F97316',
+  logo_url: '/uploads/media/logo/vistaseed_logo.png',
+  favicon_url: '/uploads/media/logo/favicon.png',
+  apple_touch_url: '/uploads/media/logo/appletouch.png',
   meta: {
     title: 'vistaseeds Admin Panel',
     description:

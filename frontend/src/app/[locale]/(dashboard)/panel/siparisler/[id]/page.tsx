@@ -11,6 +11,7 @@ import { getOrder } from "@/modules/order/order.service";
 import type { Order } from "@/modules/order/order.type";
 import { isBankCardProvider } from "@/modules/order/payment-config";
 import { OrderPaymentSection } from "@/modules/order/order-payment-section";
+import DashboardShell from "@/components/DashboardShell";
 
 function formatTry(n: number) {
   return n.toLocaleString("tr-TR", { style: "currency", currency: "TRY" });
@@ -120,7 +121,8 @@ export default function OrderDetailPage() {
   }
 
   return (
-    <div className="space-y-10">
+    <DashboardShell>
+      <div className="space-y-10">
       <div className="flex flex-col gap-4 border-b border-border/10 pb-8 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <Link href={backHref} className="mb-3 inline-block text-[10px] font-black uppercase tracking-widest text-brand hover:underline">
@@ -185,15 +187,16 @@ export default function OrderDetailPage() {
         </div>
       </div>
 
-      <OrderPaymentSection
-        orderId={order.id}
-        locale={locale}
-        orderStatus={order.status}
-        paymentStatus={order.payment_status}
-        paymentMethod={order.payment_method}
-        totalAmount={order.total_amount}
-        onRefresh={reloadOrder}
-      />
-    </div>
+        <OrderPaymentSection
+          orderId={order.id}
+          locale={locale}
+          orderStatus={order.status}
+          paymentStatus={order.payment_status}
+          paymentMethod={order.payment_method}
+          totalAmount={order.total_amount}
+          onRefresh={reloadOrder}
+        />
+      </div>
+    </DashboardShell>
   );
 }

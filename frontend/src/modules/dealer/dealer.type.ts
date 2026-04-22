@@ -4,10 +4,11 @@ export interface DealerProfile {
   id: string;
   user_id: string;
   company_name?: string;
+  logo_url?: string | null;
   tax_number?: string;
   tax_office?: string;
-  address?: string;
-  phone?: string;
+  city?: string | null;
+  region?: string | null;
   credit_limit: number;
   current_balance: number;
   is_active: boolean;
@@ -33,6 +34,41 @@ export interface DealerBalanceResponse {
   credit_limit: number;
   available_limit: number;
 }
+
+export interface FinanceSummary {
+  credit_limit: number;
+  current_balance: number;
+  available: number;
+  discount_rate: number;
+  transaction_count: number;
+  totals_by_type: Record<string, number>;
+  overdue_count: number;
+  warnings: string[];
+}
+
+export interface DealerTransactionRow {
+  id: string;
+  type: string;
+  amount: string;
+  balance_after: string;
+  description: string | null;
+  order_id: string | null;
+  due_date: string | null;
+  created_at: string;
+}
+
+export interface TransactionsListResponse {
+  data: DealerTransactionRow[];
+  total: number;
+  page: number;
+  limit: number;
+}
+
+export type DealerDirectCardInitResponse =
+  | { provider: 'craftgate'; pageUrl: string; checkoutId?: string }
+  | { provider: 'ziraatpay'; pageUrl: string }
+  | { provider: 'nestpay_isbank' | 'halkode' | 'ziraatpay'; formHtml: string }
+  | { provider: 'halkode'; redirectUrl: string };
 
 /** GET /dealer/products */
 export interface DealerCatalogProduct {

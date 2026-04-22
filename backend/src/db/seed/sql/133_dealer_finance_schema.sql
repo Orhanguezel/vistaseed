@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS dealer_profiles (
   id              CHAR(36)        NOT NULL,
   user_id         CHAR(36)        NOT NULL,
   company_name    VARCHAR(255)    DEFAULT NULL,
+  logo_url        VARCHAR(1024)   DEFAULT NULL,
   city            VARCHAR(128)    DEFAULT NULL,
   region          VARCHAR(128)    DEFAULT NULL,
   latitude        DECIMAL(10, 7)  DEFAULT NULL,
