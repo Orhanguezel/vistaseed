@@ -46,12 +46,13 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
   });
 }
 
-const BASE_URL = (
-  process.env.INTERNAL_API_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:8083"
-).replace(/\/$/, "");
-const API_V1 = `${BASE_URL}/api/v1`;
+function getApiBase() {
+  return (
+    process.env.INTERNAL_API_URL ||
+    process.env.NEXT_PUBLIC_API_URL ||
+    "http://localhost:8083"
+  ).replace(/\/$/, "");
+}
 
 function getCurrentSeasonTag(): string {
   const month = new Date().getMonth() + 1; // 1-12
@@ -90,7 +91,7 @@ async function getFallbackSlides(locale: string): Promise<Slide[]> {
 async function getSliders(locale: string): Promise<Slide[]> {
   const fallbackSlides = await getFallbackSlides(locale);
   try {
-    const res = await fetch(`${API_V1}/sliders?locale=${locale}`, {
+    const res = await fetch(`${getApiBase()}/api/v1/sliders?locale=${locale}`, {
       next: { revalidate: 60 },
     });
     if (!res.ok) return fallbackSlides;
@@ -112,7 +113,8 @@ async function getSliders(locale: string): Promise<Slide[]> {
         };
       });
     return mapped.length > 0 ? mapped : fallbackSlides;
-  } catch {
+  } catch (err) {
+    console.error('[getSliders] fetch failed, using fallback:', err);
     return fallbackSlides;
   }
 }
@@ -120,7 +122,7 @@ async function getSliders(locale: string): Promise<Slide[]> {
 async function getFeaturedProducts(locale: string) {
   try {
     const res = await fetch(
-      `${BASE_URL}${API.products.list}?is_active=true&is_featured=true&locale=${locale}&sort=order_num&order=asc&limit=6`,
+      `${getApiBase()}${API.products.list}?is_active=true&is_featured=true&locale=${locale}&sort=order_num&order=asc&limit=6`,
       { next: { revalidate: 300 } },
     );
     if (!res.ok) return [];
@@ -136,7 +138,7 @@ async function getSeasonalProducts(locale: string) {
   try {
     const season = getCurrentSeasonTag();
     const res = await fetch(
-      `${BASE_URL}${API.products.list}?is_active=true&locale=${locale}&tags=${season}&sort=order_num&order=asc&limit=4`,
+      `${getApiBase()}${API.products.list}?is_active=true&locale=${locale}&tags=${season}&sort=order_num&order=asc&limit=4`,
       { next: { revalidate: 300 } },
     );
     if (!res.ok) return [];
@@ -151,7 +153,7 @@ async function getSeasonalProducts(locale: string) {
 async function getFaqs(locale: string) {
   try {
     const res = await fetch(
-      `${BASE_URL}${API.support.faqs}?locale=${locale}&is_published=true&limit=5`,
+      `${getApiBase()}${API.support.faqs}?locale=${locale}&is_published=true&limit=5`,
       { next: { revalidate: 300 } },
     );
     if (!res.ok) return [];

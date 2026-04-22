@@ -10,12 +10,14 @@
  *     -> string
  */
 
-export const API_URL = (
-  process.env.INTERNAL_API_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:8083"
-).replace(/\/$/, "");
-const API_V1 = `${API_URL}/api/v1`;
+export function getApiUrl() {
+  return (
+    process.env.INTERNAL_API_URL ||
+    process.env.NEXT_PUBLIC_API_URL ||
+    "http://localhost:8083"
+  ).replace(/\/$/, "");
+}
+function getApiV1() { return `${getApiUrl()}/api/v1`; }
 
 export interface SiteSettings {
   site_name: string;
@@ -139,7 +141,7 @@ export async function fetchSiteSettings(locale = "tr"): Promise<SiteSettings> {
   try {
     const keysParam = ALL_KEYS.join(",");
     const res = await fetch(
-      `${API_V1}/site_settings?key_in=${encodeURIComponent(keysParam)}&locale=${encodeURIComponent(locale)}`,
+      `${getApiV1()}/site_settings?key_in=${encodeURIComponent(keysParam)}&locale=${encodeURIComponent(locale)}`,
       { next: { revalidate: 300 } },
     );
     if (!res.ok) return defaults;
@@ -247,7 +249,7 @@ export interface AboutPageData {
 export async function fetchHomepageSettings(locale = "tr"): Promise<HomepageData> {
   try {
     const res = await fetch(
-      `${API_V1}/site_settings/homepage?locale=${locale}`,
+      `${getApiV1()}/site_settings/homepage?locale=${locale}`,
       { next: { revalidate: 300 } },
     );
     if (!res.ok) return { hero: null, sections: null, banners: null };
@@ -259,7 +261,7 @@ export async function fetchHomepageSettings(locale = "tr"): Promise<HomepageData
 
 export async function fetchAboutPageData(locale = "tr"): Promise<AboutPageData | null> {
   const fetchLocale = async (targetLocale: string) => {
-    const res = await fetch(`${API_V1}/site_settings/about_page?locale=${encodeURIComponent(targetLocale)}`, {
+    const res = await fetch(`${getApiV1()}/site_settings/about_page?locale=${encodeURIComponent(targetLocale)}`, {
       next: { revalidate: 300 },
     });
     if (!res.ok) return null;
@@ -281,7 +283,7 @@ export async function fetchAboutPageData(locale = "tr"): Promise<AboutPageData |
 
 async function fetchSettingValue<T>(key: string, locale = "tr"): Promise<T | null> {
   try {
-    const res = await fetch(`${API_V1}/site_settings/${key}?locale=${locale}`, {
+    const res = await fetch(`${getApiV1()}/site_settings/${key}?locale=${locale}`, {
       next: { revalidate: 300 },
     });
     if (!res.ok) return null;
@@ -348,8 +350,8 @@ export async function fetchAnalyticsConfig(): Promise<AnalyticsConfig> {
   const result: AnalyticsConfig = { ga4Id: null, gtmId: null };
   try {
     const [ga4Res, gtmRes] = await Promise.all([
-      fetch(`${API_V1}/site_settings/ga4_measurement_id`, { next: { revalidate: 300 } }),
-      fetch(`${API_V1}/site_settings/gtm_container_id`, { next: { revalidate: 300 } }),
+      fetch(`${getApiV1()}/site_settings/ga4_measurement_id`, { next: { revalidate: 300 } }),
+      fetch(`${getApiV1()}/site_settings/gtm_container_id`, { next: { revalidate: 300 } }),
     ]);
     if (ga4Res.ok) {
       const row = await ga4Res.json();
@@ -367,7 +369,7 @@ export async function fetchAnalyticsConfig(): Promise<AnalyticsConfig> {
 
 export async function fetchCustomPageBySlug(slug: string, locale = "tr"): Promise<CustomPageData | null> {
   try {
-    const res = await fetch(`${API_V1}/custom-pages/by-slug/${slug}?locale=${locale}`, {
+    const res = await fetch(`${getApiV1()}/custom-pages/by-slug/${slug}?locale=${locale}`, {
       next: { revalidate: 300 },
     });
     if (!res.ok) return null;

@@ -249,6 +249,11 @@
           "title": "Sertifikalı ve Güvenilir",
           "description": "TUAB onaylı, laboratuvar testli tohumlar. %95 üzerinde çimlendirme oranı.",
           "buttonText": "SSS"
+        },
+        {
+          "title": "Sürdürülebilir Tarım Vizyonu",
+          "description": "Çevre dostu üretim pratikleri ve doğal kaynakların korunması önceliğimizdir.",
+          "buttonText": "İletişim"
         }
       ]
     },
