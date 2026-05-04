@@ -13,7 +13,7 @@ import { useAdminTranslations } from '@/i18n';
 import { usePreferencesStore } from '@/stores/preferences/preferences-provider';
 
 import {
-  useBulkUpsertSiteSettingsAdminMutation,
+  useUpdateSiteSettingAdminMutation,
   useListSiteSettingsAdminQuery,
 } from '@/integrations/hooks';
 import {
@@ -53,7 +53,9 @@ export const BrandMediaTab: React.FC<BrandMediaTabProps> = () => {
     { refetchOnMountOrArgChange: true },
   );
 
-  const [bulkUpsert, { isLoading: isSaving }] = useBulkUpsertSiteSettingsAdminMutation();
+  // bulkUpsert tum app locale'lerine ayri kayit yaziyor (tr/en/de). Brand asset'ler
+  // locale-agnostic oldugundan tek tek update + locale='*' kullaniyoruz.
+  const [updateSetting, { isLoading: isSaving }] = useUpdateSiteSettingAdminMutation();
 
   const serverMap = React.useMemo<SiteSettingsBrandMediaMap>(
     () => mapSiteSettingsListToBrandMediaMap(listQ.data),
@@ -91,16 +93,24 @@ export const BrandMediaTab: React.FC<BrandMediaTabProps> = () => {
   const handleSave = async () => {
     if (!localMap || !isDirty) return;
     try {
-      const items = SITE_SETTINGS_BRAND_MEDIA_KEYS
-        .filter((key) => {
-          const next = localMap[key];
-          const prev = serverMap[key];
-          return next.url !== prev.url || next.alt !== prev.alt;
-        })
-        .map((key) => ({ key, value: localMap[key] }));
+      const changedKeys = SITE_SETTINGS_BRAND_MEDIA_KEYS.filter((key) => {
+        const next = localMap[key];
+        const prev = serverMap[key];
+        return next.url !== prev.url || next.alt !== prev.alt;
+      });
 
-      if (!items.length) return;
-      await bulkUpsert({ items }).unwrap();
+      if (!changedKeys.length) return;
+
+      // Her key icin tek tek update + locale='*' (locale-agnostic brand assets)
+      await Promise.all(
+        changedKeys.map((key) =>
+          updateSetting({
+            key,
+            value: localMap[key],
+            locale: '*',
+          }).unwrap(),
+        ),
+      );
       toast.success(t('admin.siteSettings.brandMedia.inline.saved'));
       await listQ.refetch();
     } catch (err) {
