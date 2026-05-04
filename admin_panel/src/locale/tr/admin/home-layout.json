@@ -1,0 +1,45 @@
+{
+  "title": "Anasayfa Düzeni",
+  "description": "Anasayfa bölümlerini sürükleyerek sırala, aktif/pasif yap, yeni section ekle.",
+  "actions": {
+    "refresh": "Yenile",
+    "create": "Yeni Section",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "configSave": "Config Kaydet",
+    "expand": "Genişlet",
+    "collapse": "Daralt"
+  },
+  "table": {
+    "label": "Etiket",
+    "componentKey": "Component",
+    "slug": "Slug",
+    "order": "Sıra",
+    "active": "Aktif",
+    "passive": "Pasif"
+  },
+  "form": {
+    "labelAdmin": "Etiket (Admin)",
+    "component": "Component",
+    "configJson": "Config (JSON)",
+    "slug": "Slug (a-z, 0-9, _)",
+    "labelPlaceholder": "Yeni Section",
+    "slugPlaceholder": "yeni_section_slug"
+  },
+  "messages": {
+    "loading": "Yükleniyor...",
+    "empty": "Henüz section tanımlanmamış.",
+    "saved": "Kaydedildi",
+    "saveFailed": "Kaydedilemedi",
+    "reorderSaved": "Sıralama güncellendi",
+    "reorderFailed": "Sıralama kaydedilemedi",
+    "createSaved": "Section eklendi",
+    "createFailed": "Section eklenemedi",
+    "deleteConfirm": "\"{label}\" silinsin mi?",
+    "deleteSaved": "Silindi",
+    "deleteFailed": "Silinemedi",
+    "duplicateSlug": "Bu slug zaten kullanımda",
+    "slugRequired": "Slug ve etiket zorunlu",
+    "invalidJson": "Geçersiz JSON"
+  }
+}

@@ -94,6 +94,10 @@
     "telegram": "Telegram",
     "audit": "Denetim",
     "db_admin": "Veritabanı",
-    "popups": "Popup'lar"
+    "popups": "Popup'lar",
+    "home_layout": "Anasayfa Düzeni",
+    "sliders": "Sliderlar",
+    "cache": "Cache Yönetimi",
+    "homepage_content": "Anasayfa İçerikleri"
   }
 }

@@ -112,7 +112,7 @@ function sqlStr(v: string) {
 
 /** SITE_NAME — env'den oku, SQL placeholder'larina enjekte et */
 function getSiteName(): string {
-  return (process.env.SITE_NAME || 'Corporate Site').trim();
+  return (process.env.SITE_NAME || 'Vista Seeds').trim();
 }
 
 /** Dosyayi oku, temizle, tum degiskenleri enjekte et */

@@ -1,6 +1,7 @@
 import audit from "./audit.json";
 import auth from "./auth.json";
 import blog from "./blog.json";
+import cache from "./cache.json";
 import categories from "./categories.json";
 import comingSoon from "./coming-soon.json";
 import common from "./common.json";
@@ -11,6 +12,8 @@ import db from "./db.json";
 import emailTemplates from "./email-templates.json";
 import faqs from "./faqs.json";
 import gallery from "./gallery.json";
+import homeLayout from "./home-layout.json";
+import homepageContent from "./homepage-content.json";
 import jobApplications from "./job-applications.json";
 import jobListings from "./job-listings.json";
 import library from "./library.json";
@@ -23,6 +26,7 @@ import products from "./products.json";
 import references from "./references.json";
 import sidebar from "./sidebar.json";
 import siteSettings from "./site-settings.json";
+import slider from "./slider.json";
 import storage from "./storage.json";
 import support from "./support.json";
 import telegram from "./telegram.json";
@@ -34,6 +38,7 @@ const adminMessages = {
   audit: audit,
   auth: auth,
   blog: blog,
+  cache: cache,
   categories: categories,
   comingSoon: comingSoon,
   common: common,
@@ -44,6 +49,8 @@ const adminMessages = {
   emailTemplates: emailTemplates,
   faqs: faqs,
   gallery: gallery,
+  "home-layout": homeLayout,
+  "homepage-content": homepageContent,
   "job-applications": jobApplications,
   "job-listings": jobListings,
   library: library,
@@ -56,6 +63,7 @@ const adminMessages = {
   references: references,
   sidebar: sidebar,
   siteSettings: siteSettings,
+  slider: slider,
   support: support,
   storage: storage,
   telegram: telegram,

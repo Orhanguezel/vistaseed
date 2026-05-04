@@ -134,20 +134,15 @@ VALUES
 ('00009400-0000-4000-8000-000000000088','sp_one.png','default','media/images/sp_one.png','media/images','image/png',92478,'/uploads/media/images/sp_one.png','local','media/images/sp_one.png','image','png'),
 ('00009400-0000-4000-8000-000000000089','sp_two.png','default','media/images/sp_two.png','media/images','image/png',105568,'/uploads/media/images/sp_two.png','local','media/images/sp_two.png','image','png'),
 ('00009400-0000-4000-8000-000000000090','successful.png','default','media/images/successful.png','media/images','image/png',110034,'/uploads/media/images/successful.png','local','media/images/successful.png','image','png'),
--- ── LOGO (uniq_bucket_path: ayni dosya tek kayit) ───────────────────────────
-('00009400-0000-4000-8000-000000000091','vistaseeds_logo.png','default','media/logo/vistaseeds_logo.png','media/logo','image/png',36772,'/uploads/media/logo/vistaseeds_logo.png','local','media/logo/vistaseeds_logo.png','image','png'),
--- ── HERO / OG ─────────────────────────────────────────────────────────────
-('00009400-0000-4000-8000-000000000095','hero-bg.jpg','default','media/hero/hero-bg.jpg','media/hero','image/jpeg',285000,'/uploads/media/hero/hero-bg.jpg','local','media/hero/hero-bg.jpg','image','jpg'),
-('00009400-0000-4000-8000-000000000096','hero-bg-dark.jpg','default','media/hero/hero-bg-dark.jpg','media/hero','image/jpeg',195000,'/uploads/media/hero/hero-bg-dark.jpg','local','media/hero/hero-bg-dark.jpg','image','jpg'),
-('00009400-0000-4000-8000-000000000097','banner-1.jpg','default','media/hero/banner-1.jpg','media/hero','image/jpeg',220000,'/uploads/media/hero/banner-1.jpg','local','media/hero/banner-1.jpg','image','jpg'),
-('00009400-0000-4000-8000-000000000098','banner-2.jpg','default','media/hero/banner-2.jpg','media/hero','image/jpeg',210000,'/uploads/media/hero/banner-2.jpg','local','media/hero/banner-2.jpg','image','jpg'),
-('00009400-0000-4000-8000-000000000099','og-default.jpg','default','media/hero/og-default.jpg','media/hero','image/jpeg',180000,'/uploads/media/hero/og-default.jpg','local','media/hero/og-default.jpg','image','jpg'),
-('00009400-0000-4000-8000-000000000100','og-ilanlar.jpg','default','media/hero/og-ilanlar.jpg','media/hero','image/jpeg',175000,'/uploads/media/hero/og-ilanlar.jpg','local','media/hero/og-ilanlar.jpg','image','jpg'),
 -- ── SLIDER ────────────────────────────────────────────────────────────────
-('00009400-0000-4000-8000-000000000101','slide-1-field-landscape.webp','default','slide/slide-1-field-landscape.webp','slide','image/webp',282004,'/uploads/slide/slide-1-field-landscape.webp','local','slide/slide-1-field-landscape.webp','image','webp'),
-('00009400-0000-4000-8000-000000000102','slide-2-corn-field.webp','default','slide/slide-2-corn-field.webp','slide','image/webp',140604,'/uploads/slide/slide-2-corn-field.webp','local','slide/slide-2-corn-field.webp','image','webp'),
-('00009400-0000-4000-8000-000000000103','slide-3-agriculture.webp','default','slide/slide-3-agriculture.webp','slide','image/webp',184126,'/uploads/slide/slide-3-agriculture.webp','local','slide/slide-3-agriculture.webp','image','webp'),
-('00009400-0000-4000-8000-000000000104','slide-4-hero.webp','default','slide/slide-4-hero.webp','slide','image/webp',176044,'/uploads/slide/slide-4-hero.webp','local','slide/slide-4-hero.webp','image','webp'),
+('00009400-0000-4000-8000-000000000101','slide-1-field.webp','default','slide/slide-1-field.webp','slide','image/webp',184126,'/uploads/slide/slide-1-field.webp','local','slide/slide-1-field.webp','image','webp'),
+('00009400-0000-4000-8000-000000000102','slide-2-corn.webp','default','slide/slide-2-corn.webp','slide','image/webp',140604,'/uploads/slide/slide-2-corn.webp','local','slide/slide-2-corn.webp','image','webp'),
+('00009400-0000-4000-8000-000000000103','slide-3-hero.webp','default','slide/slide-3-hero.webp','slide','image/webp',176044,'/uploads/slide/slide-3-hero.webp','local','slide/slide-3-hero.webp','image','webp'),
+('00009400-0000-4000-8000-000000000104','slide-4-agriculture.webp','default','slide/slide-4-agriculture.webp','slide','image/webp',282004,'/uploads/slide/slide-4-agriculture.webp','local','slide/slide-4-agriculture.webp','image','webp'),
+('00009400-0000-4000-8000-0000000001a5','slide-5-greenhouse.webp','default','slide/slide-5-greenhouse.webp','slide','image/webp',1067418,'/uploads/slide/slide-5-greenhouse.webp','local','slide/slide-5-greenhouse.webp','image','webp'),
+('00009400-0000-4000-8000-0000000001a6','slide-6-seedlings.webp','default','slide/slide-6-seedlings.webp','slide','image/webp',704616,'/uploads/slide/slide-6-seedlings.webp','local','slide/slide-6-seedlings.webp','image','webp'),
+('00009400-0000-4000-8000-0000000001a7','slide-7-seeds.webp','default','slide/slide-7-seeds.webp','slide','image/webp',895494,'/uploads/slide/slide-7-seeds.webp','local','slide/slide-7-seeds.webp','image','webp'),
+('00009400-0000-4000-8000-0000000001a8','slide-8-landscape.webp','default','slide/slide-8-landscape.webp','slide','image/webp',1002480,'/uploads/slide/slide-8-landscape.webp','local','slide/slide-8-landscape.webp','image','webp'),
 -- ── ÜYELIK LOGOLARI ───────────────────────────────────────────────────────────
 ('00009400-0000-4000-8000-000000000105','atso.png','default','about/memberships/atso.png','about/memberships','image/png',0,'/uploads/about/memberships/atso.png','local','about/memberships/atso.png','image','png'),
 ('00009400-0000-4000-8000-000000000106','tarim-bakanligi.png','default','about/memberships/tarim-bakanligi.png','about/memberships','image/png',0,'/uploads/about/memberships/tarim-bakanligi.png','local','about/memberships/tarim-bakanligi.png','image','png'),

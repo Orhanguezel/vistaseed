@@ -1,4 +1,7 @@
-SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
-
-ALTER TABLE dealer_profiles
-  ADD COLUMN IF NOT EXISTS logo_url VARCHAR(1024) NULL AFTER company_name;
+-- =============================================================
+-- 168 — dealer_profiles.logo_url
+-- NO-OP. Kolon artik 133_dealer_finance_schema.sql icinde
+-- CREATE TABLE tanimina dahil edilmistir (line 7).
+-- ALTER TABLE lokal seed'de yasak (CLAUDE.md). Bu dosya, eski
+-- migration kayitlari kirilmasin diye bos birakildi.
+-- =============================================================

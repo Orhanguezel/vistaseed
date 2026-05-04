@@ -70,13 +70,13 @@ export default function Register() {
               </Link>
             </p>
             <p className="text-center text-muted-foreground text-xs">
-              Satici kaydi icin{' '}
+              Bayi başvurusu için{' '}
               <Link
                 prefetch={false}
                 href="/auth/seller/register"
                 className="text-primary underline-offset-4 hover:underline"
               >
-                satici formuna git
+                bayi formuna git
               </Link>
               .
             </p>

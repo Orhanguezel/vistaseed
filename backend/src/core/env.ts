@@ -17,7 +17,7 @@ export const env = {
   NODE_ENV: process.env.NODE_ENV ?? "development",
   PORT: parseEnvInt(process.env.PORT, 8083),
   SENTRY_DSN: process.env.SENTRY_DSN || '',
-  SITE_NAME: process.env.SITE_NAME || 'Corporate Site',
+  SITE_NAME: process.env.SITE_NAME || 'Vista Seeds',
 
   // Redis
   REDIS_URL: process.env.REDIS_URL || '',

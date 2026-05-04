@@ -300,3 +300,23 @@ export {
   useReorderPopupsAdminMutation,
   useSetPopupStatusAdminMutation,
 } from "@/integrations/endpoints/admin/popups-admin-endpoints";
+
+export {
+  useListHomeSectionsAdminQuery,
+  useGetHomeSectionAdminQuery,
+  useCreateHomeSectionAdminMutation,
+  useUpdateHomeSectionAdminMutation,
+  useDeleteHomeSectionAdminMutation,
+  useReorderHomeSectionsAdminMutation,
+} from "@/integrations/endpoints/admin/home-sections-admin-endpoints";
+
+export {
+  useAdminListSlidesQuery,
+  useAdminGetSlideQuery,
+  useAdminCreateSlideMutation,
+  useAdminUpdateSlideMutation,
+  useAdminDeleteSlideMutation,
+  useAdminReorderSlidesMutation,
+  useAdminSetSlideStatusMutation,
+  useAdminSetSlideImageMutation,
+} from "@/integrations/endpoints/admin/sliders-admin-endpoints";

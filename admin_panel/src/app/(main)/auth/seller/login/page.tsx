@@ -1,7 +1,10 @@
+// src/app/(main)/auth/seller/login/page.tsx
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Suspense } from 'react';
+import { motion } from 'framer-motion';
 
 import { LoginForm } from '../../_components/login-form';
 import { AuthBrandLogo } from '@/components/auth/auth-brand-logo';
@@ -9,51 +12,123 @@ import { AuthBrandLogo } from '@/components/auth/auth-brand-logo';
 function LoginFormFallback() {
   return (
     <div className="space-y-4">
-      <div className="h-10 w-full animate-pulse rounded-md bg-muted" />
-      <div className="h-10 w-full animate-pulse rounded-md bg-muted" />
-      <div className="h-10 w-full animate-pulse rounded-md bg-muted" />
-      <div className="h-10 w-full animate-pulse rounded-md bg-muted" />
+      <div className="h-12 w-full rounded-xl bg-muted/50 animate-pulse" />
+      <div className="h-12 w-full rounded-xl bg-muted/50 animate-pulse" />
+      <div className="h-12 w-full rounded-xl bg-muted/50 animate-pulse" />
+      <div className="h-12 w-full rounded-xl bg-muted/50 animate-pulse" />
     </div>
   );
 }
 
 export default function SellerLoginPage() {
   return (
-    <div className="flex min-h-dvh">
-      <div className="hidden bg-primary lg:block lg:w-1/3">
-        <div className="flex h-full flex-col items-center justify-center p-12 text-center">
-          <div className="space-y-6">
-            <div className="mx-auto h-24 flex items-center justify-center">
-              <AuthBrandLogo size={96} />
+    <div className="flex min-h-screen bg-background overflow-hidden">
+      {/* Sol Panel: Görsel ve Satıcı Mesajı */}
+      <motion.div 
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="hidden relative lg:flex lg:w-1/2 flex-col justify-between p-12 overflow-hidden"
+      >
+        {/* Arka Plan Görseli */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/assets/images/auth/login-bg-alt.webp"
+            alt="Vistaseeds Greenhouse Landscape"
+            fill
+            className="object-cover scale-105"
+            priority
+          />
+          <div className="absolute inset-0 bg-linear-to-tr from-black/80 via-black/40 to-transparent" />
+          <div className="absolute inset-0 backdrop-blur-[2px]" />
+        </div>
+
+        {/* Logo Bölümü */}
+        <div className="relative z-10 flex items-center gap-3">
+          <div className="bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/20 shadow-2xl">
+            <AuthBrandLogo size={48} />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-white font-bold text-xl tracking-tight uppercase">Vistaseeds</span>
+            <span className="text-white/60 text-xs tracking-widest uppercase">Partner Portal</span>
+          </div>
+        </div>
+
+        {/* Alt Bilgi / Tagline */}
+        <div className="relative z-10 max-w-lg">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="space-y-4"
+          >
+            <h2 className="text-white text-5xl font-light leading-tight">
+              Bayi Girişi
+            </h2>
+            <p className="text-white/70 text-lg leading-relaxed">
+              Siparişlerinizi, stoklarınızı ve bayi özel kampanyalarını Vistaseeds Bayi Portalı üzerinden yönetin. 
+              Tohumun bereketini dijital dünyada birlikte büyütelim.
+            </p>
+          </motion.div>
+          
+          <div className="mt-12 flex gap-8 border-l border-white/20 pl-6">
+            <div className="flex flex-col">
+              <span className="text-white font-bold text-2xl">Bayi</span>
+              <span className="text-white/50 text-sm uppercase tracking-tighter">Büyüme Odaklı</span>
             </div>
-            <div className="space-y-2">
-              <h1 className="font-light text-5xl text-primary-foreground">Satıcı Girişi</h1>
-              <p className="text-xl text-primary-foreground/80">Mağazanızı ve kampanyalarınızı yönetin</p>
+            <div className="flex flex-col">
+              <span className="text-white font-bold text-2xl">Realtime</span>
+              <span className="text-white/50 text-sm uppercase tracking-tighter">Sipariş Yönetimi</span>
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="flex w-full items-center justify-center bg-background p-8 lg:w-2/3">
-        <div className="w-full max-w-md space-y-10 py-24 lg:py-32">
-          <div className="space-y-4 text-center">
-            <div className="font-medium tracking-tight">Satıcı Hesabına Giriş</div>
-            <div className="mx-auto max-w-xl text-muted-foreground">Bu alan sadece satıcı hesapları içindir.</div>
+      {/* Sağ Panel: Giriş Formu */}
+      <div className="flex w-full lg:w-1/2 items-center justify-center p-8 bg-linear-to-b from-background to-muted/20">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="w-full max-w-md space-y-10"
+        >
+          {/* Mobil Logo */}
+          <div className="lg:hidden flex justify-center mb-8">
+             <AuthBrandLogo size={64} />
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3 text-center lg:text-left">
+            <h1 className="text-3xl font-bold tracking-tight text-foreground">
+              Bayi Hesabına Giriş
+            </h1>
+            <p className="text-muted-foreground">
+              Lütfen bayi hesabınızla giriş yapın.
+            </p>
+          </div>
+
+          <div className="bg-card/50 backdrop-blur-sm p-8 rounded-3xl border border-border shadow-xl space-y-6">
             <Suspense fallback={<LoginFormFallback />}>
               <LoginForm mode="seller" fallbackNext="/admin/dashboard" />
             </Suspense>
 
-            <p className="text-center text-muted-foreground text-xs">
-              Hesabin yok mu?{' '}
-              <Link prefetch={false} href="/auth/seller/register" className="text-primary underline-offset-4 hover:underline">
-                Satıcı kaydı oluştur
-              </Link>
-            </p>
+            <div className="pt-6 border-t border-border/50">
+              <p className="text-center text-muted-foreground text-xs leading-relaxed">
+                Henüz bir bayi hesabınız yok mu?{' '}
+                <Link
+                  prefetch={false}
+                  href="/auth/seller/register"
+                  className="text-primary font-medium hover:underline underline-offset-4 transition-all"
+                >
+                  Bayi başvurusu oluşturun
+                </Link>
+              </p>
+            </div>
           </div>
-        </div>
+
+          <p className="text-center text-muted-foreground/40 text-[10px] uppercase tracking-[0.2em]">
+            © 2026 Vistaseeds Partner Network
+          </p>
+        </motion.div>
       </div>
     </div>
   );

@@ -15,7 +15,8 @@
     "typecheck": "bun x tsc --noEmit",
     "db:seed": "bun src/db/seed/index.ts",
     "db:seed:nodrop": "bun src/db/seed/index.ts --no-drop",
-    "db:seed:only": "bun src/db/seed/index.ts --only="
+    "db:seed:only": "bun src/db/seed/index.ts --only=",
+    "storage:generate-seed": "bun scripts/generate-storage-seed.ts"
   },
   "dependencies": {
     "@agro/shared-backend": "workspace:*",

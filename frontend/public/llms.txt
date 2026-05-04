@@ -14,7 +14,7 @@ Bu belge, yapay zeka modelleri ve crawler'lar icin vistaseeds platformunun yapis
 
 ## Ekosistem Baglantilari
 - https://www.bereketfide.com.tr : Kardes marka - Fide uretimi ve satis odakli platform.
-- https://agroplatform.com.tr : Tarim dijital ekosistemi (gelecek platform).
+- https://tarvista.com.tr : Tarim dijital ekosistemi (gelecek platform).
 
 ## Teknik Veri Paylasimi
 vistaseeds, ekosistem genelinde veri paylasimi icin standart REST API'lar sunar.

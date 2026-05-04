@@ -23,7 +23,11 @@ export type AdminPermissionKey =
   | 'admin.telegram'
   | 'admin.audit'
   | 'admin.db_admin'
-  | 'admin.popups';
+  | 'admin.popups'
+  | 'admin.home_layout'
+  | 'admin.sliders'
+  | 'admin.cache'
+  | 'admin.homepage_content';
 
 export type AdminNavKey =
   | 'dashboard'
@@ -48,7 +52,11 @@ export type AdminNavKey =
   | 'telegram'
   | 'audit'
   | 'db_admin'
-  | 'popups';
+  | 'popups'
+  | 'home_layout'
+  | 'sliders'
+  | 'cache'
+  | 'homepage_content';
 
 const ADMIN_ONLY: PanelRole[] = ['admin'];
 
@@ -76,6 +84,10 @@ const ADMIN_PERMISSION_ROLE_MAP: Record<AdminPermissionKey, PanelRole[]> = {
   'admin.audit': ADMIN_ONLY,
   'admin.db_admin': ADMIN_ONLY,
   'admin.popups': ADMIN_ONLY,
+  'admin.home_layout': ADMIN_ONLY,
+  'admin.sliders': ADMIN_ONLY,
+  'admin.cache': ADMIN_ONLY,
+  'admin.homepage_content': ADMIN_ONLY,
 };
 
 export function canAccessAdminPermission(role: PanelRole, key: AdminPermissionKey): boolean {
@@ -107,6 +119,10 @@ const ADMIN_NAV_PERMISSION_MAP: Partial<Record<AdminNavKey, AdminPermissionKey>>
   audit: 'admin.audit',
   db_admin: 'admin.db_admin',
   popups: 'admin.popups',
+  home_layout: 'admin.home_layout',
+  sliders: 'admin.sliders',
+  cache: 'admin.cache',
+  homepage_content: 'admin.homepage_content',
 };
 
 export function getAdminNavRoles(key: AdminNavKey): PanelRole[] {
@@ -139,6 +155,10 @@ const ADMIN_PERMISSION_PATHS: Record<AdminPermissionKey, string[]> = {
   'admin.audit': ['/admin/audit'],
   'admin.db_admin': ['/admin/db-admin'],
   'admin.popups': ['/admin/popups'],
+  'admin.home_layout': ['/admin/home-layout'],
+  'admin.sliders': ['/admin/sliders'],
+  'admin.cache': ['/admin/cache'],
+  'admin.homepage_content': ['/admin/homepage-content'],
 };
 
 function stripQueryAndHash(pathname: string): string {

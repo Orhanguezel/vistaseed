@@ -12,6 +12,7 @@ import { createDbAdminRoutes } from '@agro/shared-backend/modules/db_admin';
 import { VISTASEEDS_DB_MODULES } from '@/modules/db_admin/moduleManifest';
 import { registerDashboardAdmin } from '@/modules/dashboard/admin.routes';
 import { registerPaymentAttemptsAdmin } from '@/modules/payment_attempts/admin.routes';
+import { registerHomeLayoutPublic, registerHomeSectionsAdmin } from '@/modules/home_sections';
 import { registerWallet, registerWalletAdmin } from '@agro/shared-backend/modules/wallet';
 import { registerBlog, registerBlogAdmin } from '@agro/shared-backend/modules/blog';
 import { registerEcosystem } from '@/modules/ecosystem';
@@ -31,6 +32,7 @@ export async function registerProjectPublic(api: FastifyInstance) {
   await registerWallet(api);
   await registerSellers(api);
   await registerWeather(api);
+  await registerHomeLayoutPublic(api);
   await api.register(registerEcosystem);
 }
 
@@ -39,7 +41,7 @@ export async function registerProjectAdmin(adminApi: FastifyInstance) {
     registerDashboardAdmin, registerSupportAdmin, registerBlogAdmin, registerJobListingsAdmin,
     registerJobApplicationsAdmin, registerSliderAdmin, registerReviewsAdmin,
     registerPopupsAdmin, registerOffersAdmin, registerPaymentAttemptsAdmin,
-    registerWalletAdmin,
+    registerWalletAdmin, registerHomeSectionsAdmin,
   ]) {
     await adminApi.register(reg);
   }

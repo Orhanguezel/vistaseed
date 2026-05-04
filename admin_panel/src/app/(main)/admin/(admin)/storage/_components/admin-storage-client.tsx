@@ -8,6 +8,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { resolveMediaUrl } from '@/lib/media-url';
 import {
   Plus,
   RefreshCcw,
@@ -429,7 +430,7 @@ export default function AdminStorageClient() {
                         <TableCell>
                           {item.url && item.mime.startsWith('image/') ? (
                             <img
-                              src={item.url}
+                              src={resolveMediaUrl(item.url)}
                               alt={item.name}
                               className="size-10 rounded object-cover"
                             />
@@ -560,7 +561,7 @@ export default function AdminStorageClient() {
 
                       {item.url && item.mime.startsWith('image/') ? (
                         <img
-                          src={item.url}
+                          src={resolveMediaUrl(item.url)}
                           alt={item.name}
                           className="size-20 rounded object-cover"
                         />

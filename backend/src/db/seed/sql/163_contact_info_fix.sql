@@ -1,6 +1,6 @@
 -- 163_contact_info_fix.sql
 -- İletişim bilgilerini ve neden-biz özet metnini üretim değerleriyle günceller.
--- Direkt çalıştırma: mysql -h 127.0.0.1 -P 3306 -u app -papp vistaseeds < 163_contact_info_fix.sql
+-- Direkt çalıştırma: mysql -h 127.0.0.1 -P 3306 -u app -papp Vista Seeds < 163_contact_info_fix.sql
 
 -- ── KONTAKt BİLGİLERİ ────────────────────────────────────────────────────────
 UPDATE `site_settings` SET `value` = '"info@vistaseeds.com.tr"'  WHERE `key` = 'contact_email';

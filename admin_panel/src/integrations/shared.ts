@@ -1035,3 +1035,12 @@ export {
   buildPopupToastMessage,
   parseTargetPaths,
 } from "@/integrations/shared/popups/index";
+
+export {
+  HOME_LAYOUT_COMPONENT_OPTIONS,
+  type HomeLayoutComponentKey,
+  type HomeSectionDto,
+  type HomeSectionCreatePayload,
+  type HomeSectionUpdatePayload,
+  type HomeSectionReorderPayload,
+} from "@/integrations/shared/home-layout";

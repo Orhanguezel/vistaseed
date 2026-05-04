@@ -176,6 +176,7 @@ export const storageAdminApi = baseApi.injectEndpoints({
     >({
       query: () => ({ url: '/admin/storage/_diag/cloud', method: 'GET' }),
     }),
+
   }),
   overrideExisting: true,
 });

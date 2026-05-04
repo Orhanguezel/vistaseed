@@ -13,6 +13,10 @@ import {
   GalleryHorizontalEnd,
   HardDrive,
   HelpCircle,
+  Layers,
+  ImageIcon,
+  Eraser,
+  Home,
   Megaphone,
   Newspaper,
   LayoutDashboard,
@@ -99,6 +103,9 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
       { key: 'blog', url: '/admin/blog', icon: Newspaper },
       { key: 'support', url: '/admin/support', icon: HelpCircle },
       { key: 'popups', url: '/admin/popups', icon: Megaphone },
+      { key: 'home_layout', url: '/admin/home-layout', icon: Layers },
+      { key: 'sliders', url: '/admin/sliders', icon: ImageIcon },
+      { key: 'homepage_content', url: '/admin/homepage-content', icon: Home },
     ],
   },
   {
@@ -136,6 +143,7 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
       { key: 'telegram', url: '/admin/telegram', icon: Send },
       { key: 'audit', url: '/admin/audit', icon: MessageSquare },
       { key: 'db_admin', url: '/admin/db-admin', icon: Database },
+      { key: 'cache', url: '/admin/cache', icon: Eraser },
     ],
   },
 ];
@@ -182,6 +190,10 @@ const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   audit: 'Denetim',
   db_admin: 'Veritabanı',
   popups: 'Popup\'lar',
+  home_layout: 'Anasayfa Düzeni',
+  sliders: 'Sliderlar',
+  cache: 'Cache Yönetimi',
+  homepage_content: 'Anasayfa İçerikleri',
 };
 
 export const ADMIN_NAV_ROUTE_MAP: Record<AdminNavItemKey, string> = adminNavConfig

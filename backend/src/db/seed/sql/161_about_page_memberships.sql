@@ -1,4 +1,4 @@
--- vistaseeds hakkimizda sayfasi — üyelikler bölümü
+-- Vista Seeds hakkimizda sayfasi — üyelikler bölümü
 -- Logoların storage_assets kaydı: 007_storage_assets.sql (ID 105-108)
 -- Logo dosyaları: backend/uploads/about/memberships/*.png (elle konulacak)
 -- Admin panelden değiştirilebilir: site_settings.about_page.memberships

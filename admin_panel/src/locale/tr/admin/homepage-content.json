@@ -1,0 +1,85 @@
+{
+  "title": "Anasayfa İçerikleri",
+  "description": "Anasayfa bölümlerinin metinlerini ve içeriklerini düzenle. Hero, güven sinyalleri, stats, değerler, tarihçe, özellik panelleri, ekim rehberi, bülten.",
+  "actions": {
+    "refresh": "Yenile",
+    "save": "Kaydet",
+    "addStat": "İstatistik Ekle",
+    "addValue": "Değer Ekle",
+    "addTimeline": "Tarihçe Maddesi Ekle",
+    "addBadge": "Güven Sinyali Ekle",
+    "addPanel": "Panel Ekle"
+  },
+  "sections": {
+    "hero": {
+      "title": "Hero (Üst Vitrin)",
+      "description": "Ana sayfa üst bölümü — başlık, vurgu, açıklama, CTA butonları."
+    },
+    "trustBar": {
+      "title": "Güven Sinyalleri",
+      "description": "Hero altındaki güven rozetleri (TUAB, sertifika, vs)."
+    },
+    "stats": {
+      "title": "İstatistikler",
+      "description": "Sayısal göstergeler (örn. 137K+ Müşteri, 35+ Yıllık Deneyim)."
+    },
+    "values": {
+      "title": "Neden Biz / Değerler",
+      "description": "Şirket değerleri ve ayırt edici özellikler bölümü."
+    },
+    "featurePanels": {
+      "title": "Özellik Panelleri",
+      "description": "Üretim, kalite, sürdürülebilirlik gibi öne çıkan görsel panel grupları."
+    },
+    "plantingGuide": {
+      "title": "Ekim Rehberi",
+      "description": "Mevsimlere göre ekim önerileri. Mevsim verileri JSON olarak tutulur."
+    },
+    "timeline": {
+      "title": "Tarihçe / Hikayemiz",
+      "description": "Yıllara göre şirket kilometre taşları."
+    },
+    "seasonal": {
+      "title": "Mevsim Önerileri Başlığı",
+      "description": "Mevsimsel ürün vitrini başlık ve açıklama metni."
+    },
+    "newsletter": {
+      "title": "Bülten Abonelik",
+      "description": "Anasayfadaki bülten kutusu metinleri."
+    }
+  },
+  "fields": {
+    "value": "Değer (örn. 137K+)",
+    "label": "Etiket",
+    "icon": "İkon (lucide adı)",
+    "title": "Başlık",
+    "description": "Açıklama",
+    "year": "Yıl",
+    "imageUrl": "Görsel URL",
+    "imageAlt": "Görsel Alt Metni",
+    "coverImageUrl": "Kapak Görsel URL",
+    "coverImageAlt": "Kapak Görsel Alt Metni",
+    "sectionTitle": "Bölüm Başlığı",
+    "sectionSubtitle": "Bölüm Alt Başlığı",
+    "sectionDescription": "Bölüm Açıklaması",
+    "buttonLabel": "Buton Metni",
+    "placeholder": "Placeholder Metni",
+    "heroTitle": "Başlık (1. Kısım)",
+    "heroHighlight": "Vurgulu Kelime",
+    "heroSuffix": "Başlık Devamı",
+    "heroBadge": "Üst Rozet (örn. 2026 Bahar Sezonu)",
+    "heroSeason": "Sezon (spring/summer/fall/winter)",
+    "ctaLabel": "Birincil Buton Metni",
+    "ctaHref": "Birincil Buton Link",
+    "secondaryLabel": "İkincil Buton Metni",
+    "secondaryHref": "İkincil Buton Link",
+    "seasonsJson": "Mevsim Verileri (JSON)"
+  },
+  "messages": {
+    "saved": "Kaydedildi",
+    "saveFailed": "Kaydedilemedi",
+    "loading": "Yükleniyor...",
+    "emptyArray": "Henüz kayıt eklenmemiş. \"Ekle\" butonuna tıkla.",
+    "jsonHint": "Geçerli JSON yazıldığında otomatik parse edilir. Hatalı JSON yazılırsa sadece görüntüde tutulur, kaydedilmez."
+  }
+}

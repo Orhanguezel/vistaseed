@@ -100,6 +100,10 @@ const emptyNav: AdminNavCopy = {
     db_admin:         '',
     popups:           '',
     payment_attempts: '',
+    home_layout:      '',
+    sliders:          '',
+    cache:            '',
+    homepage_content: '',
   },
 };
 
@@ -142,6 +146,10 @@ export function normalizeAdminUiCopy(raw: unknown): AdminUiCopy {
     db_admin:         uiText(itemsRaw.db_admin),
     popups:           uiText(itemsRaw.popups),
     payment_attempts: uiText(itemsRaw.payment_attempts),
+    home_layout:      uiText(itemsRaw.home_layout),
+    sliders:          uiText(itemsRaw.sliders),
+    cache:            uiText(itemsRaw.cache),
+    homepage_content: uiText(itemsRaw.homepage_content),
   };
 
   const commonRaw = parseJsonObject(o.common);

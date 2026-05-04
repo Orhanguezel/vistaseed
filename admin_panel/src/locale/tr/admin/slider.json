@@ -1,0 +1,69 @@
+{
+  "title": "Slider Yönetimi",
+  "description": "Anasayfa hero slider'larını yönet — görsel, başlık, açıklama, buton ve dil bazlı içerik.",
+  "actions": {
+    "refresh": "Yenile",
+    "create": "Yeni Slider",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "back": "Geri",
+    "uploadImage": "Görsel Yükle",
+    "removeImage": "Görseli Kaldır"
+  },
+  "filters": {
+    "search": "Slider ara...",
+    "locale": "Dil",
+    "allLocales": "Tüm diller",
+    "onlyActive": "Sadece aktif"
+  },
+  "table": {
+    "image": "Görsel",
+    "name": "Başlık",
+    "locale": "Dil",
+    "order": "Sıra",
+    "active": "Aktif",
+    "passive": "Pasif",
+    "featured": "Öne Çıkan",
+    "actions": "İşlemler"
+  },
+  "form": {
+    "tabContent": "İçerik",
+    "tabMedia": "Görsel",
+    "tabSettings": "Ayarlar",
+    "name": "Başlık",
+    "namePlaceholder": "Hero başlık metni",
+    "description": "Açıklama",
+    "descriptionPlaceholder": "Kısa açıklama metni",
+    "alt": "Alt metni (SEO)",
+    "altPlaceholder": "Görsel alt metni",
+    "buttonText": "Buton metni",
+    "buttonTextPlaceholder": "İncele",
+    "buttonLink": "Buton bağlantısı",
+    "buttonLinkPlaceholder": "/urunler",
+    "imageUrl": "Görsel URL",
+    "imageUrlPlaceholder": "https://... veya /uploads/...",
+    "isActive": "Aktif",
+    "featured": "Öne çıkar",
+    "displayOrder": "Sıra"
+  },
+  "messages": {
+    "loading": "Yükleniyor...",
+    "empty": "Henüz slider eklenmemiş.",
+    "saved": "Kaydedildi",
+    "saveFailed": "Kaydedilemedi",
+    "createSaved": "Slider eklendi",
+    "createFailed": "Slider eklenemedi",
+    "deleteConfirm": "\"{name}\" silinsin mi?",
+    "deleteSaved": "Silindi",
+    "deleteFailed": "Silinemedi",
+    "reorderSaved": "Sıralama güncellendi",
+    "reorderFailed": "Sıralama kaydedilemedi",
+    "statusSaved": "Durum güncellendi",
+    "statusFailed": "Durum güncellenemedi",
+    "imageSaved": "Görsel güncellendi",
+    "imageFailed": "Görsel güncellenemedi",
+    "nameRequired": "Başlık zorunlu"
+  }
+}

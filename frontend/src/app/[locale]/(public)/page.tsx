@@ -1,3 +1,4 @@
+import * as React from "react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { getPageMetadata } from "@/lib/seo";
@@ -30,6 +31,7 @@ import CtaSection from "@/components/sections/CtaSection";
 import JsonLd from "@/components/seo/JsonLd";
 import { fetchLibraryList } from "@/modules/library/library.service";
 import { fetchReferenceHighlights } from "@/modules/ecosystem/ecosystem-content";
+import { fetchHomeLayout } from "@/lib/home-layout";
 
 export const revalidate = 300;
 
@@ -92,7 +94,7 @@ async function getSliders(locale: string): Promise<Slide[]> {
   const fallbackSlides = await getFallbackSlides(locale);
   try {
     const res = await fetch(`${getApiBase()}/api/v1/sliders?locale=${locale}`, {
-      next: { revalidate: 60 },
+      next: { revalidate: 300 },
     });
     if (!res.ok) return fallbackSlides;
     const data = await res.json();
@@ -197,6 +199,7 @@ export default async function HomePage({ params }: LocalePageProps) {
     faqs,
     nedenBizPage,
     siteSettings,
+    homeLayout,
   ] = await Promise.all([
     getSliders(locale),
     fetchHomepageSettings(locale),
@@ -211,6 +214,7 @@ export default async function HomePage({ params }: LocalePageProps) {
     getFaqs(locale),
     fetchCustomPageBySlug("neden-biz", locale),
     fetchSiteSettings(locale),
+    fetchHomeLayout(),
   ]);
 
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");
@@ -279,6 +283,77 @@ export default async function HomePage({ params }: LocalePageProps) {
 
   const lcpImageUrl = sliders[0]?.image;
 
+  // Admin panelden yönetilen section haritası — component_key bazlı.
+  // Sıra ve aktif/pasif "home_sections" tablosundan gelen homeLayout array'inden okunur.
+  const sectionsMap: Record<string, React.ReactNode> = {
+    HeroSlider: <HeroSliderClient slides={sliders} />,
+    TrustBar: <TrustBar badges={trustBadges ?? undefined} />,
+    Stats: <StatsSection items={stats} />,
+    SeasonalPicks: (
+      <SeasonalPicks
+        title={(sections as any)?.seasonal_picks_title || placeholder || seasonalTitle}
+        description={(sections as any)?.seasonal_picks_description || seasonalSubtitle}
+        products={seasonalProducts}
+      />
+    ),
+    Values: <ValuesSection title={valuesTitle} subtitle={valuesSubtitle} items={values} />,
+    HomepageFeaturePanels: (
+      <HomepageFeaturePanels
+        title={homepageFeaturePanels?.title}
+        subtitle={homepageFeaturePanels?.subtitle}
+        coverImageUrl={sourcePanelCover}
+        coverImageAlt={homepageFeaturePanels?.cover_image_alt}
+        items={sourcePanelItems}
+      />
+    ),
+    PlantingGuide: (
+      <PlantingGuide
+        title={plantingGuide?.title}
+        description={plantingGuide?.description}
+        seasons={plantingGuide?.seasons}
+      />
+    ),
+    EcosystemSpotlight: (
+      <EcosystemSpotlight
+        locale={locale}
+        title={tHome("sections.ecosystem.title")}
+        subtitle={tHome("sections.ecosystem.subtitle")}
+        labels={{
+          knowledgeEyebrow: tHome("sections.ecosystem.knowledgeEyebrow"),
+          referenceEyebrow: tHome("sections.ecosystem.referenceEyebrow"),
+          knowledgeCta: tHome("sections.ecosystem.knowledgeCta"),
+          referenceCta: tHome("sections.ecosystem.referenceCta"),
+        }}
+        knowledgeItems={ecosystemKnowledge}
+        referenceItems={ecosystemReferences}
+      />
+    ),
+    ProductDiscoveryLinks: (
+      <ProductDiscoveryLinks
+        locale={locale}
+        eyebrow={tHome("sections.discovery.eyebrow")}
+        title={tHome("sections.discovery.title")}
+        subtitle={tHome("sections.discovery.subtitle")}
+        ctaLabel={tHome("sections.discovery.cta")}
+        items={discoveryItems}
+      />
+    ),
+    ProductsPreview: <ProductsPreview products={featuredProducts} />,
+    Timeline: (
+      <TimelineSection items={timeline} title={timelineTitle} subtitle={timelineSubtitle} />
+    ),
+    FaqPreview: <FaqPreview faqs={faqs} />,
+    Newsletter: (
+      <Newsletter
+        title={newsletterConfig?.title || newsletterTitle}
+        description={newsletterConfig?.description || newsletterDescription}
+        buttonLabel={newsletterConfig?.button_label || newsletterButtonLabel}
+        placeholder={newsletterConfig?.placeholder || newsletterPlaceholder}
+      />
+    ),
+    CtaSection: <CtaSection />,
+  };
+
   return (
     <div className="surface-page overflow-hidden">
       {/* LCP preload — ilk hero slayt görselini fetchpriority=high ile önceden yükle */}
@@ -326,87 +401,13 @@ export default async function HomePage({ params }: LocalePageProps) {
       />
 
       <AnimatedSections>
-        {/* 1. Hero Slider */}
-        <HeroSliderClient slides={sliders} />
-
-        {/* 2. Guven Sinyalleri */}
-        <TrustBar badges={trustBadges ?? undefined} />
-
-        {/* 3. Istatistikler */}
-        <StatsSection items={stats} />
-
-        {/* 4. Bu Mevsim Onerileri */}
-        <SeasonalPicks
-          title={(sections as any)?.seasonal_picks_title || placeholder || seasonalTitle}
-          description={(sections as any)?.seasonal_picks_description || seasonalSubtitle}
-          products={seasonalProducts}
-        />
-
-        {/* 5. Temel Değerler (Neden Biz) */}
-        <ValuesSection title={valuesTitle} subtitle={valuesSubtitle} items={values} />
-
-        <HomepageFeaturePanels
-          title={homepageFeaturePanels?.title}
-          subtitle={homepageFeaturePanels?.subtitle}
-          coverImageUrl={sourcePanelCover}
-          coverImageAlt={homepageFeaturePanels?.cover_image_alt}
-          items={sourcePanelItems}
-        />
-
-        {/* 6. Ekim Rehberi */}
-        <PlantingGuide
-          title={plantingGuide?.title}
-          description={plantingGuide?.description}
-          seasons={plantingGuide?.seasons}
-        />
-
-        {/* 7. Ekosistem İçeriği */}
-        <EcosystemSpotlight
-          locale={locale}
-          title={tHome("sections.ecosystem.title")}
-          subtitle={tHome("sections.ecosystem.subtitle")}
-          labels={{
-            knowledgeEyebrow: tHome("sections.ecosystem.knowledgeEyebrow"),
-            referenceEyebrow: tHome("sections.ecosystem.referenceEyebrow"),
-            knowledgeCta: tHome("sections.ecosystem.knowledgeCta"),
-            referenceCta: tHome("sections.ecosystem.referenceCta"),
-          }}
-          knowledgeItems={ecosystemKnowledge}
-          referenceItems={ecosystemReferences}
-        />
-
-        {/* 8. One Cikan Urunler */}
-        <ProductDiscoveryLinks
-          locale={locale}
-          eyebrow={tHome("sections.discovery.eyebrow")}
-          title={tHome("sections.discovery.title")}
-          subtitle={tHome("sections.discovery.subtitle")}
-          ctaLabel={tHome("sections.discovery.cta")}
-          items={discoveryItems}
-        />
-
-        <ProductsPreview products={featuredProducts} />
-
-        {/* 9. Tarihçe */}
-        <TimelineSection 
-          items={timeline} 
-          title={timelineTitle}
-          subtitle={timelineSubtitle}
-        />
-
-        {/* 10. SSS Onizleme */}
-        <FaqPreview faqs={faqs} />
-
-        {/* 11. Newsletter */}
-        <Newsletter
-          title={newsletterConfig?.title || newsletterTitle}
-          description={newsletterConfig?.description || newsletterDescription}
-          buttonLabel={newsletterConfig?.button_label || newsletterButtonLabel}
-          placeholder={newsletterConfig?.placeholder || newsletterPlaceholder}
-        />
-
-        {/* 12. Iletisim CTA */}
-        <CtaSection />
+        {homeLayout
+          .map((s) => {
+            const node = sectionsMap[s.component_key];
+            if (!node) return null;
+            return <React.Fragment key={s.slug}>{node}</React.Fragment>;
+          })
+          .filter(Boolean)}
       </AnimatedSections>
     </div>
   );

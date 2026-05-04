@@ -10,7 +10,8 @@ const toOriginLike = (v: string): string => {
   try {
     const u = new URL(s);
     let out = `${u.protocol}//${u.host}${u.pathname}`.replace(/\/+$/, '');
-    if (out.endsWith('/api')) out = out.slice(0, -4);
+    // Strip versionsuz veya versionlu API suffix'i: /api, /api/v1, /api/v2, ...
+    out = out.replace(/\/api(?:\/v\d+)?$/i, '');
     return trimSlash(out);
   } catch {
     return '';

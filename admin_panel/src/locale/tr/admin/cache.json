@@ -1,0 +1,57 @@
+{
+  "title": "Cache Yönetimi",
+  "description": "Frontend sayfalarının cache'ini temizleyin. İçerik güncellemelerinin anında görünmesini sağlar.",
+  "quickClear": {
+    "title": "Hızlı Temizle",
+    "description": "Belirli bir sayfanın veya tüm sitenin cache'ini temizleyin. Cache temizlendikten sonra sayfa ilk ziyarette yeniden oluşturulur."
+  },
+  "actions": {
+    "clear": "Temizle",
+    "all": {
+      "label": "Tüm Site Cache",
+      "description": "Tüm sayfaların cache'ini temizler. Sayfalar bir sonraki ziyarette yeniden oluşturulur."
+    },
+    "home": {
+      "label": "Ana Sayfa",
+      "description": "Ana sayfanın cache'ini temizler (slider, hero, section düzeni)."
+    },
+    "urunler": {
+      "label": "Ürünler",
+      "description": "Ürün listesi ve detay sayfalarının cache'ini temizler."
+    },
+    "hakkimizda": {
+      "label": "Hakkımızda",
+      "description": "Hakkımızda sayfasının cache'ini temizler."
+    },
+    "bayi": {
+      "label": "Bayi & İK",
+      "description": "Bayi girişi ve insan kaynakları sayfalarının cache'ini temizler."
+    },
+    "sss": {
+      "label": "SSS",
+      "description": "Sıkça sorulan sorular sayfasının cache'ini temizler."
+    },
+    "galeri": {
+      "label": "Galeri",
+      "description": "Galeri sayfasının cache'ini temizler."
+    },
+    "blog": {
+      "label": "Blog",
+      "description": "Blog liste ve yazı sayfalarının cache'ini temizler."
+    },
+    "iletisim": {
+      "label": "İletişim",
+      "description": "İletişim sayfasının cache'ini temizler."
+    }
+  },
+  "info": {
+    "title": "Bilgi",
+    "line1": "Frontend sayfaları varsayılan olarak 5 dakika (300 saniye) boyunca cache'lenir. Cache temizlendiğinde sayfalar bir sonraki ziyarette API'den taze veri çeker.",
+    "line2": "Admin panelden içerik güncelledikten sonra değişikliklerin hemen görünmesini istiyorsanız ilgili sayfanın cache'ini temizleyin."
+  },
+  "messages": {
+    "cleared": "Cache temizlendi",
+    "allCleared": "Tüm site cache temizlendi",
+    "clearFailed": "Cache temizlenemedi"
+  }
+}

@@ -38,12 +38,12 @@ VALUES
     'tr',
     'kurumsal-bilgi-akisi-rehberi',
     'Kurumsal Bilgi Akışı Rehberi',
-    'vistaseeds ekosisteminde ürün, bayi, teklif ve teknik içerik akışını aynı çatı altında yöneten temel operasyon rehberi.',
+    'Vista Seeds ekosisteminde ürün, bayi, teklif ve teknik içerik akışını aynı çatı altında yöneten temel operasyon rehberi.',
     'Kurumsal bilgi akışı kapak görseli',
-    'vistaseeds, bilgi bankası, operasyon, rehber',
-    'Kurumsal Bilgi Akışı Rehberi | vistaseeds',
+    'Vista Seeds, bilgi bankası, operasyon, rehber',
+    'Kurumsal Bilgi Akışı Rehberi | Vista Seeds',
     'Ürün, bayi ağı, toplu satış ve bilgi bankası yüzeylerinin aynı içerik mantığında nasıl yönetildiğini özetleyen rehber.',
-    'vistaseeds, bilgi bankası, operasyon, rehber'
+    'Vista Seeds, bilgi bankası, operasyon, rehber'
   ),
   (
     '88888888-8888-4888-8888-888888888892',
@@ -51,12 +51,12 @@ VALUES
     'en',
     'corporate-content-flow-guide',
     'Corporate Content Flow Guide',
-    'A practical operational guide for managing products, dealer network, quotation flows, and technical content inside the vistaseeds ecosystem.',
+    'A practical operational guide for managing products, dealer network, quotation flows, and technical content inside the Vista Seeds ecosystem.',
     'Corporate content flow cover image',
-    'vistaseeds, knowledge base, operations, guide',
-    'Corporate Content Flow Guide | vistaseeds',
+    'Vista Seeds, knowledge base, operations, guide',
+    'Corporate Content Flow Guide | Vista Seeds',
     'An overview of how products, dealer network, bulk sales, and knowledge-base surfaces are managed within one editorial structure.',
-    'vistaseeds, knowledge base, operations, guide'
+    'Vista Seeds, knowledge base, operations, guide'
   )
 ON DUPLICATE KEY UPDATE
   `slug` = VALUES(`slug`),
@@ -101,10 +101,10 @@ VALUES
     '88888888-8888-4888-8888-888888888881',
     NULL,
     '/uploads/support/library/vistaseeds-kurumsal-bilgi-akisi-rehberi.pdf',
-    'vistaseeds-kurumsal-bilgi-akisi-rehberi.pdf',
+    'Vista Seeds-kurumsal-bilgi-akisi-rehberi.pdf',
     512,
     'application/pdf',
-    '["vistaseeds","knowledge-base","operations","guide"]',
+    '["Vista Seeds","knowledge-base","operations","guide"]',
     0,
     1
   )

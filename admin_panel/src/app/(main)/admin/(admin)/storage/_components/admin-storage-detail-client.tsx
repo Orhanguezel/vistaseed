@@ -8,6 +8,7 @@
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { resolveMediaUrl } from '@/lib/media-url';
 import { ArrowLeft, Save, Trash2, Loader2, Upload, Image as ImageIcon, File } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
@@ -251,7 +252,7 @@ export default function AdminStorageDetailClient({ id }: { id: string }) {
               <div className="flex items-center justify-center rounded-lg border bg-muted p-8">
                 {(previewUrl || existingItem?.url) ? (
                   <img
-                    src={previewUrl || existingItem?.url || ''}
+                    src={previewUrl || resolveMediaUrl(existingItem?.url || '')}
                     alt={t('detail.previewAlt')}
                     className="max-h-96 rounded object-contain"
                   />

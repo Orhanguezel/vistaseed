@@ -60,12 +60,12 @@ INSERT IGNORE INTO `category_i18n` (
   `meta_description`
 )
 VALUES
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1', 'tr', 'Sebze Tohumları', 'sebze-tohumlari', 'vistaseeds sebze tohumu kategorileri.', 'Sebze tohumları kategori görseli', 'Sebze Tohumları | vistaseeds', 'vistaseeds sebze tohumu kategorilerini inceleyin.'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', 'tr', 'Biber Çeşitleri', 'biber-cesitleri', 'vistaseeds biber tohumu ve çeşit grupları.', 'Biber çeşitleri kategori görseli', 'Biber Çeşitleri | vistaseeds', 'vistaseeds biber çeşitleri ve tohum grupları.'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3', 'tr', 'Öne Çıkan Tohumlar', 'one-cikan-tohumlar', 'Öne çıkan tohum çeşitleri ve sezonluk seçimler.', 'Öne çıkan tohumlar kategori görseli', 'Öne Çıkan Tohumlar | vistaseeds', 'vistaseeds öne çıkan tohum çeşitlerini keşfedin.'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa4', 'tr', 'Diğer Çeşitler', 'diger-cesitler', 'Diğer tohum ve ürün kategorileri.', 'Diğer çeşitler kategori görseli', 'Diğer Çeşitler | vistaseeds', 'vistaseeds diğer tohum ve ürün kategorileri.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1', 'tr', 'Sebze Tohumları', 'sebze-tohumlari', 'Vista Seeds sebze tohumu kategorileri.', 'Sebze tohumları kategori görseli', 'Sebze Tohumları | Vista Seeds', 'Vista Seeds sebze tohumu kategorilerini inceleyin.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', 'tr', 'Biber Çeşitleri', 'biber-cesitleri', 'Vista Seeds biber tohumu ve çeşit grupları.', 'Biber çeşitleri kategori görseli', 'Biber Çeşitleri | Vista Seeds', 'Vista Seeds biber çeşitleri ve tohum grupları.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3', 'tr', 'Öne Çıkan Tohumlar', 'one-cikan-tohumlar', 'Öne çıkan tohum çeşitleri ve sezonluk seçimler.', 'Öne çıkan tohumlar kategori görseli', 'Öne Çıkan Tohumlar | Vista Seeds', 'Vista Seeds öne çıkan tohum çeşitlerini keşfedin.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa4', 'tr', 'Diğer Çeşitler', 'diger-cesitler', 'Diğer tohum ve ürün kategorileri.', 'Diğer çeşitler kategori görseli', 'Diğer Çeşitler | Vista Seeds', 'Vista Seeds diğer tohum ve ürün kategorileri.'),
   -- EN
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1', 'en', 'Vegetable Seeds', 'vegetable-seeds', 'vistaseeds vegetable seed categories.', 'Vegetable seeds category image', 'Vegetable Seeds | vistaseeds', 'Explore vistaseeds vegetable seed categories.'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', 'en', 'Pepper Varieties', 'pepper-varieties', 'vistaseeds pepper seed and variety groups.', 'Pepper varieties category image', 'Pepper Varieties | vistaseeds', 'Discover vistaseeds pepper varieties and seed groups.'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3', 'en', 'Featured Seeds', 'featured-seeds', 'Featured seed varieties and seasonal selections.', 'Featured seeds category image', 'Featured Seeds | vistaseeds', 'Browse vistaseeds featured seed varieties.'),
-  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa4', 'en', 'Other Varieties', 'other-varieties', 'Other seed and product categories.', 'Other varieties category image', 'Other Varieties | vistaseeds', 'Browse other seed and product categories from vistaseeds.');
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1', 'en', 'Vegetable Seeds', 'vegetable-seeds', 'Vista Seeds vegetable seed categories.', 'Vegetable seeds category image', 'Vegetable Seeds | Vista Seeds', 'Explore Vista Seeds vegetable seed categories.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', 'en', 'Pepper Varieties', 'pepper-varieties', 'Vista Seeds pepper seed and variety groups.', 'Pepper varieties category image', 'Pepper Varieties | Vista Seeds', 'Discover Vista Seeds pepper varieties and seed groups.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa3', 'en', 'Featured Seeds', 'featured-seeds', 'Featured seed varieties and seasonal selections.', 'Featured seeds category image', 'Featured Seeds | Vista Seeds', 'Browse Vista Seeds featured seed varieties.'),
+  ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa4', 'en', 'Other Varieties', 'other-varieties', 'Other seed and product categories.', 'Other varieties category image', 'Other Varieties | Vista Seeds', 'Browse other seed and product categories from Vista Seeds.');

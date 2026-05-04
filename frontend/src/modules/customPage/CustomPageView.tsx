@@ -6,7 +6,7 @@ interface CustomPageViewProps {
   emptyHtml?: string;
 }
 
-export function CustomPageView({ title, summary, html, eyebrow = "Corporate", emptyHtml = "<p>Content not found.</p>" }: CustomPageViewProps) {
+export function CustomPageView({ title, summary, html, eyebrow = "Vista Seeds", emptyHtml = "<p>Content not found.</p>" }: CustomPageViewProps) {
   // Handle JSON content if provided as {"html": "..."}
   let displayHtml = html ?? emptyHtml;
   if (html && html.trim().startsWith('{')) {

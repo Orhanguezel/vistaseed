@@ -204,6 +204,8 @@ export const tags = [
   'NewsSource',
   'NewsSuggestions',
   'NewsSuggestion',
+  'HomeSection',
+  'HomeSections',
 ] as const;
 
 export type tag = typeof tags[number];
