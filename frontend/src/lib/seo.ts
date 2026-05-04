@@ -63,7 +63,7 @@ function buildLocaleAlternates(locale: string, pathname: string): { canonical: s
  */
 export async function fetchPageSeo(pageKey: string): Promise<PageSeoData | null> {
   try {
-    const res = await fetch(`${API_V1}/site_settings/seo/${pageKey}`, {
+    const res = await fetch(`${API_V1}/site_settings/page-seo/${pageKey}`, {
       next: { revalidate: 300 },
     });
     if (!res.ok) return null;

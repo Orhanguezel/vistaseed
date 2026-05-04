@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { getPageMetadata } from "@/lib/seo";
@@ -178,11 +179,13 @@ export default async function ProductsPage({ params, searchParams }: LocalePageP
           <p className="mt-3 max-w-3xl text-base leading-relaxed text-muted-foreground">{introText}</p>
         </div>
 
-        <ProductFilters
-          products={products}
-          categories={categories}
-          initialFilters={initialFilters}
-        />
+        <Suspense>
+          <ProductFilters
+            products={products}
+            categories={categories}
+            initialFilters={initialFilters}
+          />
+        </Suspense>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ import { registerNotifications } from '@agro/shared-backend/modules/notification
 import { registerAudit, registerAuditAdmin, registerAuditStream } from '@agro/shared-backend/modules/audit';
 import { registerContacts, registerContactsAdmin } from '@agro/shared-backend/modules/contact';
 import { registerCustomPages, registerCustomPagesAdmin } from '@agro/shared-backend/modules/customPages';
-import { registerCategoriesAdmin } from '@agro/shared-backend/modules/categories';
+import { registerCategories, registerCategoriesAdmin } from '@agro/shared-backend/modules/categories';
 import { registerTheme, registerThemeAdmin } from '@agro/shared-backend/modules/theme';
 import { registerTelegram, registerTelegramAdmin } from '@agro/shared-backend/modules/telegram';
 import { registerEmailTemplatesAdmin } from '@agro/shared-backend/modules/emailTemplates/admin.routes';
@@ -41,6 +41,7 @@ export async function registerSharedPublic(api: FastifyInstance) {
   await registerCustomPages(api);
   await registerTheme(api);
   await registerTelegram(api);
+  await registerCategories(api);
   await registerProducts(api);
   await registerGallery(api);
   await registerReferences(api);
