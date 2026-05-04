@@ -154,7 +154,7 @@ INSERT INTO users (
   id, email, password_hash, full_name, phone,
   is_active, email_verified, created_at, updated_at
 ) VALUES (
-  '4f618a8d-6fdb-498c-898a-395d368b2193',
+  'a7000000-0000-4000-8000-000000000002',
   'orhanguzell@gmail.com',
   '$2b$12$QLwQeDNg92FWkJOKWp4VBeu7v2XTwNwZx7y4U0J1MOPjjgHPH68H.',
   'Orhan Guzel',
@@ -170,7 +170,7 @@ ON DUPLICATE KEY UPDATE
   updated_at     = CURRENT_TIMESTAMP(3);
 
 INSERT INTO profiles (id, full_name, phone, created_at, updated_at)
-VALUES ('4f618a8d-6fdb-498c-898a-395d368b2193', 'Orhan Guzel', NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3))
+VALUES ('a7000000-0000-4000-8000-000000000002', 'Orhan Guzel', NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3))
 ON DUPLICATE KEY UPDATE
   full_name = VALUES(full_name),
   updated_at= CURRENT_TIMESTAMP(3);
