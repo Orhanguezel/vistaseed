@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync, writeFileSync, statSync, existsSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync, statSync, lstatSync, existsSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 
 const DIST_DIR = resolve(process.cwd(), 'dist');
@@ -40,6 +40,8 @@ function fixFile(filePath) {
 function walk(dir) {
   for (const name of readdirSync(dir)) {
     const p = join(dir, name);
+    const ls = lstatSync(p);
+    if (ls.isSymbolicLink()) continue;
     const s = statSync(p);
     if (s.isDirectory()) walk(p);
     else if (JS_RE.test(p)) fixFile(p);
