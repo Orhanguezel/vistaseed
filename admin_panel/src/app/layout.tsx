@@ -33,11 +33,18 @@ function resolveMediaUrl(path: string, base: string): string {
 
 export async function generateMetadata(): Promise<Metadata> {
   const branding = await fetchBrandingConfig();
-  const apiBase = (process.env.PANEL_API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8083').replace(/\/+$/, '');
+  // Browser-facing origin (HTML'e gomulur); PANEL_API_URL server-internal
+  // oldugundan favicon/icon link'leri icin uygun degil (127.0.0.1 olur).
+  const browserBase = (
+    process.env.NEXT_PUBLIC_PANEL_API_URL ||
+    process.env.NEXT_PUBLIC_API_URL ||
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    'https://panel.vistaseeds.com.tr'
+  ).replace(/\/+$/, '');
 
-  const favicon = resolveMediaUrl(branding.favicon_url, apiBase);
-  const appleTouch = resolveMediaUrl(branding.apple_touch_url, apiBase);
-  const logo = resolveMediaUrl(branding.logo_url, apiBase);
+  const favicon = resolveMediaUrl(branding.favicon_url, browserBase);
+  const appleTouch = resolveMediaUrl(branding.apple_touch_url, browserBase);
+  const logo = resolveMediaUrl(branding.logo_url, browserBase);
 
   return {
     metadataBase: new URL(branding.meta.og_url || 'https://vistaseeds.com.tr'),

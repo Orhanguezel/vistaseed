@@ -110,3 +110,38 @@ INSERT IGNORE INTO user_roles (id, user_id, role, created_at)
 SELECT UUID(), u.id, 'admin', CURRENT_TIMESTAMP(3)
 FROM users u
 WHERE u.email = '{{ADMIN_EMAIL}}';
+
+-- ============================================================================
+-- EK ADMIN: atakan07sahin@gmail.com (sifre: admin123)
+-- bcrypt hash sabit (deterministik), env'den bagimsiz.
+-- ============================================================================
+
+INSERT INTO users (
+  id, email, password_hash, full_name, phone,
+  is_active, email_verified, created_at, updated_at
+) VALUES (
+  'a7000000-0000-4000-8000-000000000001',
+  'atakan07sahin@gmail.com',
+  '$2b$12$QLwQeDNg92FWkJOKWp4VBeu7v2XTwNwZx7y4U0J1MOPjjgHPH68H.',
+  'Atakan Sahin',
+  NULL,
+  1, 1,
+  CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3)
+)
+ON DUPLICATE KEY UPDATE
+  password_hash  = VALUES(password_hash),
+  full_name      = VALUES(full_name),
+  is_active      = 1,
+  email_verified = 1,
+  updated_at     = CURRENT_TIMESTAMP(3);
+
+INSERT INTO profiles (id, full_name, phone, created_at, updated_at)
+VALUES ('a7000000-0000-4000-8000-000000000001', 'Atakan Sahin', NULL, CURRENT_TIMESTAMP(3), CURRENT_TIMESTAMP(3))
+ON DUPLICATE KEY UPDATE
+  full_name = VALUES(full_name),
+  updated_at= CURRENT_TIMESTAMP(3);
+
+INSERT IGNORE INTO user_roles (id, user_id, role, created_at)
+SELECT UUID(), u.id, 'admin', CURRENT_TIMESTAMP(3)
+FROM users u
+WHERE u.email = 'atakan07sahin@gmail.com';
