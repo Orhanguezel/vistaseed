@@ -8,21 +8,13 @@ import { ROUTES } from "@/config/routes";
 import { toLocalizedPath } from "@/i18n/routing";
 import { addCompareSlug, clearCompareSlugs, getCompareSlugs, removeCompareSlug } from "@/lib/compare-storage";
 import type { Product, ProductCategory } from "../product.type";
-import { applyProductFilters, getAvailableSmartFilters, type ProductFilterValues, type SmartFilterGroup } from "../product-filters";
+import { applyProductFilters, getAvailableSmartFilters, type SmartFilterGroup } from "../product-filters";
 import ProductGrid from "./ProductGrid";
 
 interface ProductFiltersProps {
   products: Product[];
   categories: ProductCategory[];
-  initialFilters?: {
-    search?: string;
-    categoryId?: string;
-    activeTag?: string;
-    selectedType?: string;
-    selectedCultivation?: string;
-    selectedTaste?: string;
-    selectedTolerance?: string;
-  };
+  initialFilters?: Record<string, string>;
 }
 
 type ActiveFilterChip = {
@@ -31,82 +23,44 @@ type ActiveFilterChip = {
   onRemove: () => void;
 };
 
-function buildFilterQuery(values: ProductFilterValues): string {
-  const params = new URLSearchParams();
-  if (values.search.trim()) params.set("q", values.search.trim());
-  if (values.categoryId) params.set("category", values.categoryId);
-  if (values.activeTag) params.set("tag", values.activeTag);
-  if (values.selectedType) params.set("type", values.selectedType);
-  if (values.selectedCultivation) params.set("cultivation", values.selectedCultivation);
-  if (values.selectedTaste) params.set("taste", values.selectedTaste);
-  if (values.selectedTolerance) params.set("tolerance", values.selectedTolerance);
-  return params.toString();
-}
-
-export default function ProductFilters({ products, categories, initialFilters }: ProductFiltersProps) {
+export default function ProductFilters({ products, categories }: ProductFiltersProps) {
   const t = useTranslations("Products.list");
   const compareT = useTranslations("Compare");
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const localePath = pathname ?? "/";
-  const querySearch = searchParams.get("q") ?? "";
-  const queryCategoryId = searchParams.get("category") ?? "";
-  const queryTag = searchParams.get("tag") ?? "";
-  const queryType = searchParams.get("type") ?? "";
-  const queryCultivation = searchParams.get("cultivation") ?? "";
-  const queryTaste = searchParams.get("taste") ?? "";
-  const queryTolerance = searchParams.get("tolerance") ?? "";
-  const [search, setSearch] = useState(initialFilters?.search ?? querySearch);
-  const [categoryId, setCategoryId] = useState(initialFilters?.categoryId ?? queryCategoryId);
-  const [activeTag, setActiveTag] = useState(initialFilters?.activeTag ?? queryTag);
-  const [selectedType, setSelectedType] = useState(initialFilters?.selectedType ?? queryType);
-  const [selectedCultivation, setSelectedCultivation] = useState(initialFilters?.selectedCultivation ?? queryCultivation);
-  const [selectedTaste, setSelectedTaste] = useState(initialFilters?.selectedTaste ?? queryTaste);
-  const [selectedTolerance, setSelectedTolerance] = useState(initialFilters?.selectedTolerance ?? queryTolerance);
+
+  // Filter values read directly from URL — no local state, no effects, no render loop.
+  const categoryId = searchParams.get("category") ?? "";
+  const activeTag = searchParams.get("tag") ?? "";
+  const selectedType = searchParams.get("type") ?? "";
+  const selectedCultivation = searchParams.get("cultivation") ?? "";
+  const selectedTaste = searchParams.get("taste") ?? "";
+  const selectedTolerance = searchParams.get("tolerance") ?? "";
+
+  // Search needs local state so the user can type without navigating on every keystroke.
+  const urlSearch = searchParams.get("q") ?? "";
+  const [searchInput, setSearchInput] = useState(urlSearch);
+  useEffect(() => { setSearchInput(urlSearch); }, [urlSearch]);
+
   const [selectedSlugs, setSelectedSlugs] = useState<string[]>(() => getCompareSlugs());
   const [shareStatus, setShareStatus] = useState<"idle" | "copied" | "error">("idle");
 
-  useEffect(() => {
-    setSearch(querySearch);
-    setCategoryId(queryCategoryId);
-    setActiveTag(queryTag);
-    setSelectedType(queryType);
-    setSelectedCultivation(queryCultivation);
-    setSelectedTaste(queryTaste);
-    setSelectedTolerance(queryTolerance);
-  }, [querySearch, queryCategoryId, queryTag, queryType, queryCultivation, queryTaste, queryTolerance]);
+  function setParam(key: string, value: string) {
+    const params = new URLSearchParams(searchParams.toString());
+    if (value) params.set(key, value);
+    else params.delete(key);
+    const qs = params.toString();
+    router.replace(qs ? `${localePath}?${qs}` : localePath, { scroll: false });
+  }
 
-  // searchParams.toString() — stable string, object ref değişse de aynı URL için aynı değeri üretir.
-  // searchParams (object) yerine string bağımlılığı; router.replace sonrası loop oluşmaz.
-  const currentQueryStr = searchParams.toString();
+  function submitSearch() {
+    setParam("q", searchInput.trim());
+  }
 
-  useEffect(() => {
-    const nextQuery = buildFilterQuery({
-      search,
-      categoryId,
-      activeTag,
-      selectedType,
-      selectedCultivation,
-      selectedTaste,
-      selectedTolerance,
-    });
-
-    if (nextQuery === currentQueryStr) return;
-
-    router.replace(nextQuery ? `${localePath}?${nextQuery}` : localePath, { scroll: false });
-  }, [
-    router,
-    localePath,
-    currentQueryStr,
-    search,
-    categoryId,
-    activeTag,
-    selectedType,
-    selectedCultivation,
-    selectedTaste,
-    selectedTolerance,
-  ]);
+  // Aliases so JSX below stays readable.
+  const search = urlSearch;
 
   /* Tüm benzersiz tag'leri ürünlerden çıkart */
   const allTags = useMemo(() => {
@@ -140,7 +94,7 @@ export default function ProductFilters({ products, categories, initialFilters }:
       chips.push({
         id: "search",
         label: `${t("activeFilters.search")}: ${search.trim()}`,
-        onRemove: () => setSearch(""),
+        onRemove: () => { setSearchInput(""); setParam("q", ""); },
       });
     }
 
@@ -148,7 +102,7 @@ export default function ProductFilters({ products, categories, initialFilters }:
       chips.push({
         id: "category",
         label: `${t("activeFilters.category")}: ${selectedCategory.name}`,
-        onRemove: () => setCategoryId(""),
+        onRemove: () => setParam("category", ""),
       });
     }
 
@@ -156,7 +110,7 @@ export default function ProductFilters({ products, categories, initialFilters }:
       chips.push({
         id: "tag",
         label: `${t("activeFilters.tag")}: ${activeTag}`,
-        onRemove: () => setActiveTag(""),
+        onRemove: () => setParam("tag", ""),
       });
     }
 
@@ -167,12 +121,13 @@ export default function ProductFilters({ products, categories, initialFilters }:
       chips.push({
         id: group.id,
         label: `${t(`activeFilters.${group.id}`)}: ${t(`filters.${group.id}.options.${selectedValue}`)}`,
-        onRemove: () => setSelectedValue(group.id, ""),
+        onRemove: () => setParam(group.id, ""),
       });
     }
 
     return chips;
-  }, [search, categories, categoryId, activeTag, availableSmartFilters, t, selectedType, selectedCultivation, selectedTaste, selectedTolerance]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search, categories, categoryId, activeTag, availableSmartFilters, t, selectedType, selectedCultivation, selectedTaste, selectedTolerance, searchParams]);
 
   const hasFilters = search || categoryId || activeTag || selectedType || selectedCultivation || selectedTaste || selectedTolerance;
   const selectedProducts = useMemo(() => {
@@ -184,14 +139,9 @@ export default function ProductFilters({ products, categories, initialFilters }:
   const compareHref = `${toLocalizedPath(ROUTES.static.compare, localePath.split("/")[1] || "tr")}?slugs=${encodeURIComponent(selectedSlugs.join(","))}`;
 
   function clearAll() {
-    setSearch("");
-    setCategoryId("");
-    setActiveTag("");
-    setSelectedType("");
-    setSelectedCultivation("");
-    setSelectedTaste("");
-    setSelectedTolerance("");
+    setSearchInput("");
     setShareStatus("idle");
+    router.replace(localePath, { scroll: false });
   }
 
   function toggleCompare(productSlug: string) {
@@ -214,13 +164,6 @@ export default function ProductFilters({ products, categories, initialFilters }:
     if (groupId === "cultivation") return selectedCultivation;
     if (groupId === "taste") return selectedTaste;
     return selectedTolerance;
-  }
-
-  function setSelectedValue(groupId: SmartFilterGroup["id"], value: string) {
-    if (groupId === "type") setSelectedType(value);
-    else if (groupId === "cultivation") setSelectedCultivation(value);
-    else if (groupId === "taste") setSelectedTaste(value);
-    else setSelectedTolerance(value);
   }
 
   async function copyShareLink() {
@@ -247,8 +190,10 @@ export default function ProductFilters({ products, categories, initialFilters }:
           <div>
             <input
               type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              onBlur={submitSearch}
+              onKeyDown={(e) => e.key === "Enter" && submitSearch()}
               placeholder={t("search")}
               className="w-full h-10 px-3 text-sm rounded-xl bg-surface border border-border text-foreground placeholder:text-faint outline-none focus:border-brand/40 transition-colors"
             />
@@ -266,7 +211,7 @@ export default function ProductFilters({ products, categories, initialFilters }:
                     <button
                       key={option.id}
                       type="button"
-                      onClick={() => setSelectedValue(group.id, selectedValue === option.id ? "" : option.id)}
+                      onClick={() => setParam(group.id, selectedValue === option.id ? "" : option.id)}
                       className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
                         selectedValue === option.id
                           ? "bg-brand text-white"
@@ -287,7 +232,7 @@ export default function ProductFilters({ products, categories, initialFilters }:
               <div className="space-y-1">
                 <button
                   type="button"
-                  onClick={() => setCategoryId("")}
+                  onClick={() => setParam("category", "")}
                   className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
                     !categoryId ? "bg-brand/10 text-brand font-bold" : "text-foreground hover:bg-bg-alt"
                   }`}
@@ -298,7 +243,7 @@ export default function ProductFilters({ products, categories, initialFilters }:
                   <button
                     key={c.id}
                     type="button"
-                    onClick={() => setCategoryId(c.id)}
+                    onClick={() => setParam("category", c.id)}
                     className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
                       categoryId === c.id ? "bg-brand/10 text-brand font-bold" : "text-foreground hover:bg-bg-alt"
                     }`}
@@ -318,7 +263,7 @@ export default function ProductFilters({ products, categories, initialFilters }:
                   <button
                     key={tag}
                     type="button"
-                    onClick={() => setActiveTag(activeTag === tag ? "" : tag)}
+                    onClick={() => setParam("tag", activeTag === tag ? "" : tag)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
                       activeTag === tag
                         ? "bg-brand text-white"
