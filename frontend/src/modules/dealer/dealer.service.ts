@@ -2,6 +2,7 @@
 import { apiGet, apiPost, apiPut } from "@/lib/api-client";
 import { getStoredAccessToken } from "@/lib/auth-token";
 import { API } from "@/config/api-endpoints";
+import { resolveClientApiBase } from "@/lib/utils";
 import type {
   DealerProfile,
   DealerBalanceResponse,
@@ -61,9 +62,7 @@ export async function postDealerDirectCardInitiate(body: {
 }
 
 export async function downloadFinanceStatementPdf(): Promise<void> {
-  const BASE_URL = (
-    process.env.NEXT_PUBLIC_API_URL || "http://localhost:8083"
-  ).replace(/\/$/, "");
+  const BASE_URL = resolveClientApiBase();
   const bearer = getStoredAccessToken();
   const res = await fetch(`${BASE_URL}${API.dealer.finance.statementPdf}`, {
     credentials: "include",
@@ -80,9 +79,7 @@ export async function downloadFinanceStatementPdf(): Promise<void> {
 }
 
 export async function uploadDealerLogo(file: File): Promise<string> {
-  const BASE_URL = (
-    process.env.NEXT_PUBLIC_API_URL || "http://localhost:8083"
-  ).replace(/\/$/, "");
+  const BASE_URL = resolveClientApiBase();
   const bearer = getStoredAccessToken();
   const formData = new FormData();
   formData.append("file", file);

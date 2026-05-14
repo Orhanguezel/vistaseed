@@ -20,7 +20,7 @@ function apiRemotePattern() {
 }
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@agro/shared-ui"],
+  transpilePackages: ["@agro/shared-ui", "@agro/ecosystem-weather-widget"],
   typescript: { ignoreBuildErrors: true },
   output: "standalone",
   compress: true,
@@ -42,7 +42,16 @@ const nextConfig: NextConfig = {
       process.env.NEXT_PUBLIC_API_URL ||
       "http://localhost:8083"
     ).replace(/\/$/, "");
+    const weatherWidgetApiUrl = (
+      process.env.WEATHER_WIDGET_API_URL ||
+      process.env.NEXT_PUBLIC_WEATHER_WIDGET_API_URL ||
+      "https://tarimiklim.com/api/v1"
+    ).replace(/\/$/, "");
     return [
+      {
+        source: "/weather-widget-api/:path*",
+        destination: `${weatherWidgetApiUrl}/:path*`,
+      },
       {
         source: "/api/v1/:path*",
         destination: `${apiUrl}/api/v1/:path*`,

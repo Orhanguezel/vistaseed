@@ -6,8 +6,9 @@ import { Send, CheckCircle2, ChevronRight, Building2, User, Mail, Phone, MapPin,
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { API } from "@/config/api-endpoints";
+import { resolveClientApiBase } from "@/lib/utils";
 
-const BASE_URL = typeof window !== "undefined" ? "" : (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
+const BASE_URL = resolveClientApiBase();
 const CATEGORY_OPTIONS = ["Vegetable", "Field", "Hybrid", "Other"] as const;
 
 export function OfferForm() {

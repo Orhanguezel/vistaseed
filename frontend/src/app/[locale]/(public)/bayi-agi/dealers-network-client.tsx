@@ -8,8 +8,9 @@ import { API } from "@/config/api-endpoints";
 import BayiMap from "@/modules/dealer-network/bayi-map";
 import type { PublicDealer } from "@/modules/dealer-network/types";
 import { DealerCard, DealerCardSkeleton } from "@/modules/dealer-network/dealer-components";
+import { resolveClientApiBase } from "@/lib/utils";
 
-const BASE_URL = typeof window !== "undefined" ? "" : (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
+const BASE_URL = resolveClientApiBase();
 
 export default function DealersNetworkClient() {
   const t = useTranslations("DealersNetwork");

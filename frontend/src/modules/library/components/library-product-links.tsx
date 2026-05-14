@@ -5,9 +5,9 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { MoveRight, Loader2 } from "lucide-react";
 import { API } from "@/config/api-endpoints";
-import { resolveImageUrl } from "@/lib/utils";
+import { resolveClientApiBase, resolveImageUrl } from "@/lib/utils";
 
-const BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
+const BASE_URL = resolveClientApiBase();
 
 interface Product {
   id: string;

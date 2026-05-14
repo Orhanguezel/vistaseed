@@ -1,10 +1,14 @@
 import { getStoredAccessToken, setStoredAccessToken } from "@/lib/auth-token";
 
-const BASE_URL = (
-  process.env.INTERNAL_API_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:8083"
-).replace(/\/$/, "");
+function resolveApiBase() {
+  if (typeof window !== "undefined") return "";
+
+  return (
+    process.env.INTERNAL_API_URL ||
+    process.env.NEXT_PUBLIC_API_URL ||
+    "http://localhost:8083"
+  ).replace(/\/$/, "");
+}
 
 class ApiError extends Error {
   constructor(
@@ -21,7 +25,7 @@ async function request<T>(
   path: string,
   options: RequestInit = {}
 ): Promise<T> {
-  const url = `${BASE_URL}${path}`;
+  const url = `${resolveApiBase()}${path}`;
 
   const bearer = getStoredAccessToken();
   const res = await fetch(url, {

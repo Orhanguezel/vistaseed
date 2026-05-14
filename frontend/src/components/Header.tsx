@@ -10,7 +10,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { API } from "@/config/api-endpoints";
 import { ROUTES } from "@/config/routes";
 import { getLocaleFromPathname, toLocalizedPath } from "@/i18n/routing";
-import { resolveImageUrl } from "@/lib/utils";
+import { resolveClientApiBase, resolveImageUrl } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -79,7 +79,7 @@ function SearchIcon() {
   );
 }
 
-const BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
+const BASE_URL = resolveClientApiBase();
 
 /* ------------------------------------------------------------------ */
 /*  Component                                                          */

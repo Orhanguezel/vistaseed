@@ -4,6 +4,7 @@ import { fetchCustomPageBySlug } from "@/lib/site-settings";
 import { buildMetadata, getPageMetadata } from "@/lib/seo";
 import JsonLd from "@/components/seo/JsonLd";
 import { defaultLocale, isAppLocale, type AppLocale } from "@/i18n/routing";
+import { resolveImageUrl } from "@/lib/utils";
 import { ChevronRight, Calendar, Clock, Share2 } from "lucide-react";
 import Link from "next/link";
 
@@ -120,7 +121,7 @@ export default async function CustomPageRoute({ params }: CustomPageRouteProps) 
         {page.featured_image && (
           <div className="relative aspect-video rounded-3xl overflow-hidden mb-16 shadow-2xl shadow-brand/10 group">
             <img 
-              src={page.featured_image.startsWith("http") ? page.featured_image : (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8083") + page.featured_image} 
+              src={resolveImageUrl(page.featured_image)}
               alt={page.title}
               className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
             />

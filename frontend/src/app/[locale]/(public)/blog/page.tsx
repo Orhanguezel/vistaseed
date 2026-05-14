@@ -111,7 +111,7 @@ export default async function BlogListPage({ params }: Props) {
             <p className="text-muted-foreground max-w-2xl">{t("listDescription")}</p>
           </div>
           <a
-            href={`${BASE_URL}${API.blog.rss}?locale=${encodeURIComponent(locale)}`}
+            href={`${API.blog.rss}?locale=${encodeURIComponent(locale)}`}
             className="text-sm font-medium text-brand hover:underline"
             target="_blank"
             rel="noopener noreferrer"

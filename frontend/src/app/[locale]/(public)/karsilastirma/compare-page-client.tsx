@@ -15,12 +15,12 @@ import {
   setCompareSlugs,
   COMPARE_MAX,
 } from "@/lib/compare-storage";
-import { resolveImageUrl } from "@/lib/utils";
+import { resolveClientApiBase, resolveImageUrl } from "@/lib/utils";
 import { toLocalizedPath } from "@/i18n/routing";
 import type { AppLocale } from "@/i18n/routing";
 import type { Product } from "@/modules/product/product.type";
 
-const BASE_URL = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083").replace(/\/$/, "");
+const BASE_URL = resolveClientApiBase();
 
 type CompareResponse = { data: Product[]; requested: number; matched: number };
 type CompareSpecGroupKey = "overview" | "cultivation" | "environment" | "commercial";

@@ -45,6 +45,14 @@ export function resolveImageUrl(url: string | null | undefined, fallback = "/ass
   return trimmed.startsWith("/") ? trimmed : fallback;
 }
 
+/**
+ * Browser fetchleri same-origin kalir; Next rewrites /api/v1 ve /uploads
+ * isteklerini backend'e tasir.
+ */
+export function resolveClientApiBase(): string {
+  return "";
+}
+
 const SITE_ORIGIN = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
 
 /** JSON-LD / Open Graph icin mutlak URL (site origin + path). */
