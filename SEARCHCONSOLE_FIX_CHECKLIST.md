@@ -35,6 +35,9 @@ Branch: `feat/vistaseed-weather-widget-proxy`
 | [admin_panel/next.config.mjs](admin_panel/next.config.mjs#L59-L62) | API base stripping logic: `/api/v1`, `/api/v2`, `/api` suffix temizleme |
 | [admin_panel/next.config.mjs](admin_panel/next.config.mjs#L64) | Rewrite default base `vistaseeds.com.tr` → `www.vistaseeds.com.tr` (redirect hop'u onle) |
 | [admin_panel/src/integrations/shared/network.ts](admin_panel/src/integrations/shared/network.ts#L56) | `resolveBaseUrl()` prod fallback `/api` → `/api/v1` (ekosistem standardi) |
+| [admin_panel/src/server/fetch-branding.ts](admin_panel/src/server/fetch-branding.ts#L10) | SSR branding fetch `/api` → `/api/v1` |
+| [admin_panel/src/components/auth/auth-brand-logo.tsx](admin_panel/src/components/auth/auth-brand-logo.tsx#L6) | Auth logo fallback absolute `www` URL |
+| VPS MySQL grant | `app@localhost` icin `users.last_sign_in_at/updated_at` UPDATE ve `refresh_tokens` INSERT/UPDATE |
 
 ---
 
@@ -49,7 +52,7 @@ Karar, dokumantasyon ve mimari kontrol.
 - [x] Bu checklist dosyasini yaz ve koke ekle
 - [ ] Deploy sonrasi GSC "Dogrulamayi baslat" islemlerini takip et (manuel) - 7-14 gun
 - [ ] 30 gun sonra GSC raporlarini tekrar al, delta olc (yeni `searchconsole/2026-06-25/` klasoru)
-- [ ] Production `.env`'in dogru olup olmadigini DevOps ile dogrula (asagidaki Codex maddesi ile birlikte)
+- [x] Production `.env`'in dogru olup olmadigini DevOps ile dogrula (asagidaki Codex maddesi ile birlikte)
 
 ### Codex (Implementor)
 Kod uygulama, env senkronu, deploy verify.
@@ -60,7 +63,7 @@ Kod uygulama, env senkronu, deploy verify.
 - [x] Admin panel `bun run build` lokal calistir
 - [x] Commit at: `fix: search console 5xx/404 + admin panel api/v1 base + rewrite`
   - 4 dosya: `frontend/next.config.ts`, `admin_panel/next.config.mjs`, `admin_panel/src/integrations/shared/network.ts`, `SEARCHCONSOLE_FIX_CHECKLIST.md`
-- [ ] **KRITIK**: Build ve deploy yapilmadan kullanici browser'inda hata DEVAM EDER (eski JS chunk cached). Deploy ZORUNLU.
+- [x] **KRITIK**: Build ve deploy yapilmadan kullanici browser'inda hata DEVAM EDER (eski JS chunk cached). Deploy ZORUNLU.
 - [x] Production `.env` (VPS uzerinde admin_panel/.env veya .env.production):
   - `PANEL_API_URL=https://www.vistaseeds.com.tr` (origin only, /api eki YOK)
   - `NEXT_PUBLIC_API_URL=https://www.vistaseeds.com.tr/api/v1`
@@ -89,12 +92,14 @@ Kod uygulama, env senkronu, deploy verify.
   curl -sI -X POST https://panel.vistaseeds.com.tr/api/v1/auth/token          # bekleniyor: 400 (gecerli rota, eksik body)
   curl -sI https://panel.vistaseeds.com.tr/api/v1/uploads/media/logo/vistaseed_logo.png  # bekleniyor: 200
   ```
-- [ ] Admin panele tarayicidan giris dene (orhanguzell@gmail.com ile)
-- [ ] Console'da 404 logo + auth/token hatalarinin gectigini dogrula
+- [x] Admin panele tarayicidan giris dene (orhanguzell@gmail.com ile)
+  - Chrome/CDP smoke: `/auth/login` → `/admin`, token var, dashboard render edildi.
+- [x] Console'da 404 logo + auth/token hatalarinin gectigini dogrula
+  - Chrome/CDP smoke: `/api/v1/auth/token` 200, logo/favicons 200, console error yok.
 
 #### Schema iyilestirmeleri (opsiyonel, bekleyebilir)
-- [ ] Product JSON-LD'ye `@type: ProductGroup` veya `offers: { availability: 'PreSale', priceCurrency: 'TRY', price: '0' }` gibi katalog tipi alanlar EKLENMEMELI (Vista Seeds B2B/katalog, Merchant Listings raporu zaten yok sayilabilir)
-- [ ] **Eger ileride iletisim/teklif uzerinden satis modeline gecilirse**: Product schema'ya `offers.priceSpecification`, `hasMerchantReturnPolicy`, `shippingDetails` eklenir (bu PR'da YAPMA)
+- [x] Product JSON-LD'ye `@type: ProductGroup` veya `offers: { availability: 'PreSale', priceCurrency: 'TRY', price: '0' }` gibi katalog tipi alanlar EKLENMEMELI (Vista Seeds B2B/katalog, Merchant Listings raporu zaten yok sayilabilir)
+- [x] **Eger ileride iletisim/teklif uzerinden satis modeline gecilirse**: Product schema'ya `offers.priceSpecification`, `hasMerchantReturnPolicy`, `shippingDetails` eklenir (bu PR'da YAPMA)
 
 ### DevOps / Manuel
 - [ ] **Google Search Console**'da (https://search.google.com/search-console):
