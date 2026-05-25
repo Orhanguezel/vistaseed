@@ -130,6 +130,211 @@ Kod uygulama, env senkronu, deploy verify.
 
 - **AGENTS.md** Codex'in bu checklist'i tarayabilmesi icin guncellenebilir (opsiyonel).
 - **CLAUDE.md** kok dosyasi degismedi; bu fix proje-spesifik.
+
+---
+
+# FAZ 2 — Log + Ziyaretci Raporu Bulgulari (2026-05-25)
+
+Kaynak:
+- [reports/vistaseeds-log-raporu-2026-05-25.pdf](reports/vistaseeds-log-raporu-2026-05-25.pdf) (14 gunluk nginx log analizi)
+- [reports/vistaseeds-ziyaretci-raporu-2026-05-25.pdf](reports/vistaseeds-ziyaretci-raporu-2026-05-25.pdf) (8 gunluk kampanya ilk hafta)
+- [reports/vistaseeds-ziyaretci-raporu-2026-05-18.pdf](reports/vistaseeds-ziyaretci-raporu-2026-05-18.pdf) (kampanya baseline)
+
+Faz 1 deploy edildi ve dogrulandi. Bu faz, log analizinden ortaya cikan kalan / yeni sorunlari kapsar.
+
+---
+
+## Tespit Edilen Yeni Sorunlar
+
+### 4xx (kalan 404 kaynaklari, log raporu)
+- **`/tr/urun/<slug>` tekil URL pattern**: 50+ adet 404 (saray-f1, avar, cankan-f1, kizgin-f1, prestij-f1, tirpan-f1, lucky-f1, birlik-f1)
+- **`/tr/grup-sirketlerimiz/<slug>`**: 20+ adet 404 (vista-prestige, vista-lara-villalari, vista-lagoon, vista-sunset, bereket-fide-insaat) — dis kaynaktan yanlis backlink
+- **`/uploads/media/logo/logo-light.png`**: 14 adet 404 — DB'de tanimsiz logo path
+- **`/uploads/slide/slide-1-field.webp`, `/uploads/slide/slide-2-corn.webp`**: 5+ adet 404 — eksik medya
+- **`/de/anbauleitfaden/...`, `/de/referenzen/...`**: 12 adet 404 — DE locale seed eksik
+- **Admin panel `/robots.txt`**: 29 adet 404
+- **Admin panel `/apple-touch-icon.png`**: 2 adet 404
+
+### 5xx (kalan 500 kaynaklari)
+- **`/apple-touch-icon-precomposed.png`**: 12 adet 500 (Next.js bunu uretmiyor, soft 500)
+- **`/en/contact`, `/en/compare`, `/en/products`, `/en/faq`, `/en/about`, `/de/produkte`, `/de/vergleich`, `/de/kontakt`, `/de/faq`, `/de/datenschutz`, `/de/nachhaltigkeit`**: 30+ adet 500 — localizedPathRedirects'de var ama next-intl middleware sirasi nedeniyle 500 doneuyor olabilir
+- **`/api/v1/auth/token`**: 4 adet 500 (yanlis parola denemesi + MySQL refresh_token akisinda yan etki, incelenmeli)
+- **Saldiri probe'lari**: `/.env`, `/.env.local`, `/.env.docker`, `/.env.dev`, `/.git/config`, `/dx.php`, `/p.php`, `/av.php`, `/admin.php`, `/zxz.php`, `/wp-login.php`, `/wp-admin/*`, `/webmail/phpinfo.php`, `/vendor/.env`, `/sitemap.txt`, `/atom.xml` — Next.js 500 doneuyor, nginx tarafinda erken bloklanmali
+
+### Kampanya / Olcum (ziyaretci raporu)
+- **`utm_campaign` etiketi eksik**: Google Ads URL sablonlarinda `{campaignid}` bazli UTM tanimli degil; raporlamada kampanya ayrimi yapilamiyor (sadece gad_campaignid sayisal ID gozukuyor)
+- **3 aktif Google Ads kampanyasi**: `23858139584`, `23862644545`, `23643860570` — isim ve butce dokumantasyonu yok
+
+---
+
+## Yapilacaklar — Gorev Ayrimi
+
+### Claude Code (Mimar / Stratejist)
+- [x] Log + ziyaretci raporlarini analiz et, kalan sorunlari tespit et
+- [x] Bu Faz 2 bolumunu checklist'e ekle
+- [ ] Faz 2 deploy sonrasi 7 gun sonra (2026-06-01) yeni log analizi raporu uret
+- [x] Faz 2 bulgularinin Faz 1 ile birlikte master `SEO/TECHNICAL-DEBT.md` dosyasina cikarilmasini degerlendir (opsiyonel)
+
+### Codex (Implementor) — P0 (Acil)
+> Bu maddeler 50+ adet 404'u tek hamlede coker. Ilk sprint.
+
+#### P0.1 — Eski tekil URL pattern redirect
+- [x] `frontend/next.config.ts` `redirects()` listesine ekle:
+  ```ts
+  {
+    source: '/:locale(tr|en|de)/urun/:slug',
+    destination: '/:locale/urunler/:slug',
+    permanent: true,
+  },
+  ```
+- [x] Deploy ve dogrula:
+  ```bash
+  curl -sI https://www.vistaseeds.com.tr/tr/urun/saray-f1   # bekleniyor: 308 -> /tr/urunler/saray-f1
+  curl -sI https://www.vistaseeds.com.tr/tr/urun/avar       # bekleniyor: 308
+  curl -sI https://www.vistaseeds.com.tr/en/urun/cankan-f1  # bekleniyor: 308
+  ```
+
+#### P0.2 — Yanlis backlink redirect (grup-sirketlerimiz)
+- [x] `frontend/next.config.ts` `redirects()` listesine ekle:
+  ```ts
+  {
+    source: '/:locale(tr|en|de)/grup-sirketlerimiz/:slug',
+    destination: '/:locale/hakkimizda',
+    permanent: true,
+  },
+  ```
+- [x] Deploy ve dogrula:
+  ```bash
+  curl -sI https://www.vistaseeds.com.tr/tr/grup-sirketlerimiz/vista-prestige  # bekleniyor: 308
+  curl -sI https://www.vistaseeds.com.tr/tr/grup-sirketlerimiz/vista-lagoon    # bekleniyor: 308
+  ```
+
+### Codex (Implementor) — P1 (Orta)
+
+#### P1.1 — Eksik static asset'ler
+- [x] `frontend/public/apple-touch-icon.png` ekle (180x180 px, marka logosu uzerinden)
+  - Sonuc: `/apple-touch-icon-precomposed.png` 500'leri durur (Next.js, eksik istekte 500 yerine sessiz 404 doner)
+- [x] `frontend/public/apple-touch-icon-precomposed.png` ekle
+- [x] `admin_panel/public/robots.txt` ekle:
+  ```
+  User-agent: *
+  Disallow: /
+  ```
+- [x] `admin_panel/public/apple-touch-icon.png` ekle (mevcut favicon'dan)
+- [x] Dogrula:
+  ```bash
+  curl -sI https://www.vistaseeds.com.tr/apple-touch-icon-precomposed.png  # 200 veya 404 (500 olmasin)
+  curl -sI https://panel.vistaseeds.com.tr/robots.txt                       # 200
+  curl -sI https://panel.vistaseeds.com.tr/apple-touch-icon.png             # 200
+  ```
+
+#### P1.2 — Nginx tarafinda saldiri probe bloklamasi
+- [x] VPS uzerinde `/etc/nginx/sites-available/vistaseed` icine ekle (server block icinde):
+  ```nginx
+  # Saldiri / scan probe'lari icin erken blok (CPU + log temizligi)
+  location ~ /\.(env|git|svn|hg|bak|sql)        { return 444; }
+  location ~* \.(php|aspx|asp|cgi|jsp)$          { return 444; }
+  location ~* /wp-(admin|login|content|includes) { return 444; }
+  location = /xmlrpc.php                         { return 444; }
+  location = /sitemap.txt                        { return 444; }
+  location = /atom.xml                           { return 444; }
+  ```
+- [x] `nginx -t && systemctl reload nginx`
+- [x] Dogrula:
+  ```bash
+  curl -sI https://www.vistaseeds.com.tr/.env           # bekleniyor: bos yanit (444)
+  curl -sI https://www.vistaseeds.com.tr/wp-login.php   # bekleniyor: bos yanit
+  curl -sI https://www.vistaseeds.com.tr/admin.php      # bekleniyor: bos yanit
+  ```
+- **Not**: 444 nginx'in "no response" kodu; istemci taraftan bakildiginda connection close gibi gorunur. Next.js'e ulasmaz, log gurultusu siyrilir.
+
+#### P1.3 — Eksik medya dosyalari (DB icerik tarafi)
+- [x] DB'de admin panel uzerinden:
+  - `site_settings.site_logo_light` veya kullanilan logo path'lerinin canli dosyaya isaret ettigini dogrula
+  - Eksik slider gorselleri (`slide-1-field.webp`, `slide-2-corn.webp`) ya yeniden yukle ya da slider girisini DB'den temizle
+- [x] **Not**: Bu kod degisikligi degil, icerik girisi. Admin panel uzerinden manuel yapilabilir.
+  - Canli `logo-light.png`, `slide-1-field.webp`, `slide-2-corn.webp` URL'leri 200 donuyor.
+
+### Codex (Implementor) — P2 (Inceleme Gerektirir)
+
+#### P2.1 — `/en/*` ve `/de/*` middleware 500 sorunu
+- [x] `frontend/src/middleware.ts` (veya `i18n/routing.ts`) incele:
+  - `next-intl` middleware'i `redirects()`'ten **once** mi calisiyor?
+  - `localizedPathRedirects` icindeki `/en/contact` -> `/en/iletisim` redirect'i middleware tarafindan locale resolution sirasinda fail mi ediyor?
+- [x] Test sirasi: deploy edilen redirect'ler 25 May 13:28 sonrasi calisiyor mu? Eski log'larda gorulen 500'ler fix oncesi olabilir
+  ```bash
+  curl -sI https://www.vistaseeds.com.tr/en/contact      # bekleniyor: 308 -> /en/iletisim
+  curl -sI https://www.vistaseeds.com.tr/en/compare      # bekleniyor: 308 -> /en/karsilastirma
+  curl -sI https://www.vistaseeds.com.tr/de/vergleich    # bekleniyor: 308 -> /de/karsilastirma
+  curl -sI https://www.vistaseeds.com.tr/de/produkte     # bekleniyor: 308 -> /de/urunler
+  ```
+- [x] Yeni log'larda hala 500 varsa middleware fix gerekli; yoksa olarak isaretleyip kapatabiliriz.
+  - Canli smoke: `/en/contact`, `/en/compare`, `/de/vergleich`, `/de/produkte` 308 donuyor; middleware fix gerekmiyor.
+
+#### P2.2 — `/api/v1/auth/token` 4 adet 500
+- [x] Backend log'larini detayli incele:
+  ```bash
+  ssh vps-vistainsaat 'tail -200 /root/.pm2/logs/vistaseed-backend-error.log; grep "auth/token" /root/.pm2/logs/vistaseed-backend-out.log | tail -30'
+  ```
+- [x] 500 hatasi yanlis sifre denemesi sirasinda mi (rate limit + 401 ile karisik) yoksa MySQL grant disindaki bir akis hatasi mi tespit et
+- [x] Cozum: 401 dondurulmesi gereken durumda 500 dondurmek olmamali; Fastify error handler kontrol edilmeli
+  - Kok neden: MySQL `app@localhost` yetkisi `users.last_sign_in_at/updated_at` UPDATE ve `refresh_tokens` INSERT/UPDATE icin eksikti. Grant sonrasi body eksik POST 400, yanlis sifre 401 donuyor.
+
+### Codex (Implementor) — Olcum / Kampanya
+
+#### M.1 — Google Ads UTM sablonlari ekle
+- [ ] Google Ads hesabinda her kampanya icin "Final URL suffix" veya "Tracking template" alanina ekle:
+  ```
+  utm_source=google_ads&utm_medium=cpc&utm_campaign={campaignid}&utm_content={creative}&utm_term={keyword}
+  ```
+- [x] Kampanya isim eslestirmesi dokumante et (`docs/google-ads-kampanyalar.md` veya benzeri):
+  - `23858139584` -> ? (en aktif kampanya)
+  - `23862644545` -> ?
+  - `23643860570` -> ?
+- [ ] 7 gun sonra log analizinde `utm_campaign` ayriminin gorunup gorunmedigini dogrula
+  - Not: Google Ads arayuzu/hesap erisimi gerektiren UTM uygulama adimi Codex tarafindan tamamlanamaz; takip dokumani eklendi.
+
+### DevOps / Manuel
+
+#### D.1 — Search Console dogrulamalari (FAZ 1'den devam)
+- [ ] Search Console > Sayfalar > Sunucu hatasi (5xx) > **Dogrulamayi baslat**
+- [ ] Search Console > Sayfalar > Bulunamadi (404) > **Dogrulamayi baslat**
+- [ ] Search Console > Gelistirmeler > Breadcrumbs > **Dogrulamayi baslat**
+
+#### D.2 — Yeni redirect'ler sonrasi GSC URL Inspection
+- [ ] P0.1 ve P0.2 deploy edildikten 24 saat sonra:
+  - 2-3 adet `/urun/...` URL'sini GSC URL Inspection ile test et
+  - 2-3 adet `/grup-sirketlerimiz/...` URL'sini test et
+  - Hepsi 308 redirect ile yeni hedeflere gitmeli
+
+#### D.3 — Merchant Center kontrol
+- [ ] Google Merchant Center'da urun listing durumu kontrol edilecek
+  - Vista Seeds katalog/B2B modelinde oldugu icin urun fiyati yok
+  - Merchant Listings raporu kalici olarak "kapat" istegi gonderilebilir VEYA Merchant Center hesabi siteden tamamen kaldirilabilir
+
+---
+
+## Faz 2 Hedef Tablosu
+
+| Metrik | Suanki (25 May) | Hedef (Faz 2 sonrasi) |
+|---|---|---|
+| `/urun/<slug>` 404 | 50+ | 0 (P0.1) |
+| `/grup-sirketlerimiz/*` 404 | 20+ | 0 (P0.2) |
+| Eksik asset 4xx/5xx | 40+ | <5 (P1.1) |
+| Saldiri probe 5xx log gurultusu | 50+ | 0 (P1.2, 444 ile sessiz) |
+| `/en/*`, `/de/*` middleware 500 | 30+ | 0 (P2.1) |
+| Toplam 4xx orani | %2.2 (14 gun) | <%1.0 |
+| Toplam 5xx orani | %2.2 (14 gun) | <%0.5 |
+| Kampanya raporlama netligi | gad_campaignid sayisi | UTM ile isim bazli (M.1) |
+
+---
+
+## Faz 2 Notlari
+
+- **Oncelik mantigi**: P0 dogrudan 404'leri sifirlar (en yuksek etki); P1 ek temizlik; P2 inceleme + dogrulama; M.1 olcum kalitesi (gelir/kampanya analizine etki).
+- **Deploy sirasi**: P0.1 + P0.2 + P1.1 ayni PR'da gidebilir (sadece config + static dosya). P1.2 ayri (nginx config, VPS uzerinde). P2'ler ayri PR.
+- **Faz 2 Beklenen Sure**: 1-2 sprint (P0 birkac saat, P1+P2 1 gun).
+- **AGENTS.md / Codex**: Faz 2 P0/P1 maddeleri Codex'in tek seferde bitirebilecegi maddelerdir; rapor uzerinden direkt komut takip edilebilir.
 - Redirect kurallari Next.js `redirects()` icinde, **build sirasinda statik** olarak derlenir; runtime overhead yok.
 - Admin panel rewrite stripping fix `/api`, `/api/v1`, `/api/v2`, ... her seyi cover ediyor; ileride v2'ye gecince koprulanma sorunu olmayacak.
 - Vista Seeds katalog/B2B modeli sabit oldugu surece Merchant Listings ve Product Snippets raporlari kalici olarak ignore edilebilir.
