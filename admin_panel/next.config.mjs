@@ -58,10 +58,11 @@ const nextConfig = {
         '';
       const val = String(raw || '').trim().replace(/\/+$/, '');
       if (!val) return '';
-      return val.endsWith('/api') ? val.slice(0, -4) : val;
+      // Origin'e indir: /api/v1, /api/v2 ya da /api sonekini at
+      return val.replace(/\/api(\/v\d+)?$/, '');
     })();
 
-    const base = fromApiUrl || 'https://vistaseeds.com.tr';
+    const base = fromApiUrl || 'https://www.vistaseeds.com.tr';
 
     return [
       {

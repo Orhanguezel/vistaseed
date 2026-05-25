@@ -53,7 +53,8 @@ export function resolveBaseUrl(): string {
   }
 
   if (isDev) return guessDevBackend();
-  return '/api';
+  // Ekosistem standardi: tum is endpoint'leri /api/v1 altinda (bkz. CLAUDE.md "API Endpoint Prefix Kurali")
+  return '/api/v1';
 }
 
 export function extractRequestPath(url: string): string {
