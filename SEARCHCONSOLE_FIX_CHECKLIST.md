@@ -102,6 +102,7 @@ Kod uygulama, env senkronu, deploy verify.
 - [x] **Eger ileride iletisim/teklif uzerinden satis modeline gecilirse**: Product schema'ya `offers.priceSpecification`, `hasMerchantReturnPolicy`, `shippingDetails` eklenir (bu PR'da YAPMA)
 
 ### DevOps / Manuel
+- [x] Google panellerinde uygulanacak manuel takip runbook'u eklendi: [docs/google-manuel-takip-runbook.md](docs/google-manuel-takip-runbook.md)
 - [ ] **Google Search Console**'da (https://search.google.com/search-console):
   - Sayfalar > Sunucu hatasi (5xx) > **Dogrulamayi baslat**
   - Sayfalar > Bulunamadi (404) > **Dogrulamayi baslat**
@@ -283,6 +284,7 @@ Faz 1 deploy edildi ve dogrulandi. Bu faz, log analizinden ortaya cikan kalan / 
 ### Codex (Implementor) — Olcum / Kampanya
 
 #### M.1 — Google Ads UTM sablonlari ekle
+- [x] Google Ads manuel uygulama adimlari runbook'a eklendi: [docs/google-manuel-takip-runbook.md](docs/google-manuel-takip-runbook.md)
 - [ ] Google Ads hesabinda her kampanya icin "Final URL suffix" veya "Tracking template" alanina ekle:
   ```
   utm_source=google_ads&utm_medium=cpc&utm_campaign={campaignid}&utm_content={creative}&utm_term={keyword}
@@ -297,17 +299,20 @@ Faz 1 deploy edildi ve dogrulandi. Bu faz, log analizinden ortaya cikan kalan / 
 ### DevOps / Manuel
 
 #### D.1 — Search Console dogrulamalari (FAZ 1'den devam)
+- [x] Manuel Search Console dogrulama adimlari runbook'a eklendi: [docs/google-manuel-takip-runbook.md](docs/google-manuel-takip-runbook.md)
 - [ ] Search Console > Sayfalar > Sunucu hatasi (5xx) > **Dogrulamayi baslat**
 - [ ] Search Console > Sayfalar > Bulunamadi (404) > **Dogrulamayi baslat**
 - [ ] Search Console > Gelistirmeler > Breadcrumbs > **Dogrulamayi baslat**
 
 #### D.2 — Yeni redirect'ler sonrasi GSC URL Inspection
+- [x] URL Inspection ornek URL listesi ve beklenen sonuc runbook'a eklendi: [docs/google-manuel-takip-runbook.md](docs/google-manuel-takip-runbook.md)
 - [ ] P0.1 ve P0.2 deploy edildikten 24 saat sonra:
   - 2-3 adet `/urun/...` URL'sini GSC URL Inspection ile test et
   - 2-3 adet `/grup-sirketlerimiz/...` URL'sini test et
   - Hepsi 308 redirect ile yeni hedeflere gitmeli
 
 #### D.3 — Merchant Center kontrol
+- [x] Merchant Center karar notlari runbook'a eklendi: [docs/google-manuel-takip-runbook.md](docs/google-manuel-takip-runbook.md)
 - [ ] Google Merchant Center'da urun listing durumu kontrol edilecek
   - Vista Seeds katalog/B2B modelinde oldugu icin urun fiyati yok
   - Merchant Listings raporu kalici olarak "kapat" istegi gonderilebilir VEYA Merchant Center hesabi siteden tamamen kaldirilabilir

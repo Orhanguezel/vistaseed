@@ -39,6 +39,7 @@ Tarih: 2026-05-25
 
 ## Manuel / Beklemeli Takip
 
+- Google panellerinde uygulanacak adimlar ayrica [docs/google-manuel-takip-runbook.md](../docs/google-manuel-takip-runbook.md) dosyasinda siralandi.
 - Google Search Console dogrulamalari baslatilmali:
   - Sayfalar > Sunucu hatasi (5xx)
   - Sayfalar > Bulunamadi (404)
