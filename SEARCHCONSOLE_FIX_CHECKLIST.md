@@ -103,6 +103,9 @@ Kod uygulama, env senkronu, deploy verify.
 
 ### DevOps / Manuel
 - [x] Google panellerinde uygulanacak manuel takip runbook'u eklendi: [docs/google-manuel-takip-runbook.md](docs/google-manuel-takip-runbook.md)
+- [x] Faz 2 teknik takip smoke script'i ve 2026-05-25 ara raporu eklendi:
+  - [scripts/vistaseed-seo-followup.sh](scripts/vistaseed-seo-followup.sh)
+  - [reports/vistaseeds-seo-followup-2026-05-25.md](reports/vistaseeds-seo-followup-2026-05-25.md)
 - [ ] **Google Search Console**'da (https://search.google.com/search-console):
   - Sayfalar > Sunucu hatasi (5xx) > **Dogrulamayi baslat**
   - Sayfalar > Bulunamadi (404) > **Dogrulamayi baslat**
@@ -173,6 +176,7 @@ Faz 1 deploy edildi ve dogrulandi. Bu faz, log analizinden ortaya cikan kalan / 
 ### Claude Code (Mimar / Stratejist)
 - [x] Log + ziyaretci raporlarini analiz et, kalan sorunlari tespit et
 - [x] Bu Faz 2 bolumunu checklist'e ekle
+- [x] Faz 2 deploy sonrasi takip icin teknik smoke/log script'i eklendi (`scripts/vistaseed-seo-followup.sh`)
 - [ ] Faz 2 deploy sonrasi 7 gun sonra (2026-06-01) yeni log analizi raporu uret
 - [x] Faz 2 bulgularinin Faz 1 ile birlikte master `SEO/TECHNICAL-DEBT.md` dosyasina cikarilmasini degerlendir (opsiyonel)
 
@@ -248,6 +252,7 @@ Faz 1 deploy edildi ve dogrulandi. Bu faz, log analizinden ortaya cikan kalan / 
   curl -sI https://www.vistaseeds.com.tr/admin.php      # bekleniyor: bos yanit
   ```
 - **Not**: 444 nginx'in "no response" kodu; istemci taraftan bakildiginda connection close gibi gorunur. Next.js'e ulasmaz, log gurultusu siyrilir.
+- **Canli not**: VPS'te `sites-enabled/vistaseed` symlink degil ayri aktif dosya oldugu icin bloklar aktif dosyaya da uygulandi. Backup: `/etc/nginx/sites-enabled/vistaseed.codex-backup-20260525-active-faz2-probe`.
 
 #### P1.3 — Eksik medya dosyalari (DB icerik tarafi)
 - [x] DB'de admin panel uzerinden:

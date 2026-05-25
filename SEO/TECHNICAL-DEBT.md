@@ -31,6 +31,7 @@ Tarih: 2026-05-25
   - PHP/ASP/JSP probe'lari
   - WordPress probe'lari
   - `xmlrpc.php`, `sitemap.txt`, `atom.xml`
+- VPS'te `sites-enabled/vistaseed` symlink degil ayri aktif dosya oldugu icin scan/probe bloklari aktif dosyaya da uygulandi.
 - Canli smoke testlerde localized redirect'ler 308 donuyor; next-intl middleware fix'i gerekmiyor.
 - Auth token akisi yeniden dogrulandi:
   - Eksik body: 400
