@@ -66,8 +66,9 @@ Kod uygulama, env senkronu, deploy verify.
   - `NEXT_PUBLIC_API_URL=https://www.vistaseeds.com.tr/api/v1`
   - `NEXT_PUBLIC_API_BASE_URL=https://www.vistaseeds.com.tr/api/v1`
   - **Dogrulama:** stripping logic'i artik /api/v1 olsa bile origin'e dusuruyor, ama temiz tutmak icin `PANEL_API_URL` mutlaka **origin-only** olmali
-- [ ] `deploy.sh` ile deploy
-- [ ] Deploy sonrasi smoke test (curl):
+- [x] `deploy.sh` ile deploy
+  - Not: VPS working tree'de cok sayida production-local degisiklik oldugu icin `git pull` adimi calistirilmadi; `deploy.sh` build/restart sirasi manuel olarak ayni sekilde calistirildi.
+- [x] Deploy sonrasi smoke test (curl):
   ```bash
   # 5xx fix
   curl -sI https://www.vistaseeds.com.tr/sitemap_index.xml         # bekleniyor: 301
@@ -85,8 +86,8 @@ Kod uygulama, env senkronu, deploy verify.
   curl -sI https://www.vistaseeds.com.tr/wp-admin          # bekleniyor: 301 → /tr
 
   # Admin panel API
-  curl -sI -X POST https://panel.vistaseeds.com.tr/api/auth/token             # bekleniyor: 400 (gecerli rota, eksik body)
-  curl -sI https://panel.vistaseeds.com.tr/uploads/media/logo/vistaseed_logo.png  # bekleniyor: 200
+  curl -sI -X POST https://panel.vistaseeds.com.tr/api/v1/auth/token          # bekleniyor: 400 (gecerli rota, eksik body)
+  curl -sI https://panel.vistaseeds.com.tr/api/v1/uploads/media/logo/vistaseed_logo.png  # bekleniyor: 200
   ```
 - [ ] Admin panele tarayicidan giris dene (orhanguzell@gmail.com ile)
 - [ ] Console'da 404 logo + auth/token hatalarinin gectigini dogrula
