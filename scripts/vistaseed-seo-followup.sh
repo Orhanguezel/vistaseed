@@ -64,7 +64,8 @@ cat <<'MARKDOWN'
 
 MARKDOWN
 
-ssh "$HOST" 'bash -s' <<'REMOTE'
+read_log_summary() {
+  bash -s <<'REMOTE'
 set -euo pipefail
 
 public_logs=(/var/log/nginx/vistaseed.access.log /var/log/nginx/vistaseed.access.log.1 /var/log/nginx/vistaseed.access.log.*.gz)
@@ -112,3 +113,10 @@ printf '```text\n'
 zcat -f "${public_logs[@]}" "${panel_logs[@]}" 2>/dev/null | awk '$9 ~ /^5/ {print $0}' | tail -40
 printf '```\n'
 REMOTE
+}
+
+if [[ "$HOST" == "local" || "$HOST" == "localhost" || "$HOST" == "127.0.0.1" ]]; then
+  read_log_summary
+else
+  ssh "$HOST" "$(declare -f read_log_summary); read_log_summary"
+fi

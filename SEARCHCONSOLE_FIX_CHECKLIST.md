@@ -177,6 +177,7 @@ Faz 1 deploy edildi ve dogrulandi. Bu faz, log analizinden ortaya cikan kalan / 
 - [x] Log + ziyaretci raporlarini analiz et, kalan sorunlari tespit et
 - [x] Bu Faz 2 bolumunu checklist'e ekle
 - [x] Faz 2 deploy sonrasi takip icin teknik smoke/log script'i eklendi (`scripts/vistaseed-seo-followup.sh`)
+- [x] 2026-06-01 takip raporu icin VPS cron zamanlamasi kuruldu: `/etc/cron.d/vistaseed-seo-followup`
 - [ ] Faz 2 deploy sonrasi 7 gun sonra (2026-06-01) yeni log analizi raporu uret
 - [x] Faz 2 bulgularinin Faz 1 ile birlikte master `SEO/TECHNICAL-DEBT.md` dosyasina cikarilmasini degerlendir (opsiyonel)
 

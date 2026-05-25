@@ -47,6 +47,8 @@ Tarih: 2026-05-25
   - Gelistirmeler > Breadcrumbs
 - Faz 2 deploy'dan 24 saat sonra GSC URL Inspection ile eski `/urun/...` ve `/grup-sirketlerimiz/...` URL'leri test edilmeli.
 - 2026-06-01 tarihinde yeni log raporu uretilmeli.
+  - VPS cron zamanlamasi kuruldu: `/etc/cron.d/vistaseed-seo-followup`
+  - Beklenen cikti: `reports/vistaseeds-seo-followup-2026-06-01.md`
 - 2026-06-25 tarihinde yeni Search Console export'u alinip 25 May baseline ile karsilastirilmali.
 - Google Ads Final URL suffix / tracking template hesaba uygulanmali:
   - `utm_source=google_ads&utm_medium=cpc&utm_campaign={campaignid}&utm_content={creative}&utm_term={keyword}`
