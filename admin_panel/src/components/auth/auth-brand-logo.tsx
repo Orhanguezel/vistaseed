@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useSiteLogo } from '@/lib/use-site-logo';
 
-const FALLBACK_URL = '/uploads/media/logo/vistaseed_logo.png';
+const FALLBACK_URL = 'https://www.vistaseeds.com.tr/uploads/media/logo/vistaseed_logo.png';
 const FALLBACK_ALT = 'vistaseeds';
 
 export function AuthBrandLogo({

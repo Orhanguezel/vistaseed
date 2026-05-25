@@ -7,7 +7,7 @@ import { DEFAULT_BRANDING, type AdminBrandingConfig } from '@/config/app-config'
 
 function getServerApiUrl(): string {
   const panel = (process.env.PANEL_API_URL || '').trim().replace(/\/+$/, '');
-  if (panel) return `${panel}/api`;
+  if (panel) return `${panel}/api/v1`;
 
   const base = (process.env.NEXT_PUBLIC_API_BASE_URL || '').trim().replace(/\/+$/, '');
   if (base) return base;
@@ -15,7 +15,7 @@ function getServerApiUrl(): string {
   const pub = (process.env.NEXT_PUBLIC_API_URL || '').trim().replace(/\/+$/, '');
   if (pub) return pub;
 
-  return 'https://vistaseeds.com.tr/api';
+  return 'https://www.vistaseeds.com.tr/api/v1';
 }
 
 function extractMediaUrl(raw: unknown): string {
