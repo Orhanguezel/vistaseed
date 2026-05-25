@@ -130,6 +130,16 @@ const nextConfig: NextConfig = {
         destination: "/:locale/bayi-agi",
         permanent: true,
       },
+      {
+        source: "/:locale(tr|en|de)/urun/:slug",
+        destination: "/:locale/urunler/:slug",
+        permanent: true,
+      },
+      {
+        source: "/:locale(tr|en|de)/grup-sirketlerimiz/:slug",
+        destination: "/:locale/hakkimizda",
+        permanent: true,
+      },
 
       // Soft 404 — e-ticaret/auth kalıntıları (Vista Seeds katalog/B2B, bu sayfalar yok)
       {
