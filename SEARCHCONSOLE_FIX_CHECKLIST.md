@@ -343,6 +343,83 @@ Faz 1 deploy edildi ve dogrulandi. Bu faz, log analizinden ortaya cikan kalan / 
 ## Faz 2 Notlari
 
 - **Oncelik mantigi**: P0 dogrudan 404'leri sifirlar (en yuksek etki); P1 ek temizlik; P2 inceleme + dogrulama; M.1 olcum kalitesi (gelir/kampanya analizine etki).
+
+---
+
+# FAZ 3 — Storage / Urun Resmi Yukleme Fix (2026-05-26)
+
+## Sorun
+Atakan urun resmi yuklerken hata aliyordu. Loglarda 4xx/5xx upload hatasi GORUNMUYOR ama urun resimleri sayfada gozukmuyor.
+
+## Kok Neden (iki kademeli, DB konfig)
+- `site_settings.storage_local_root = "/app/uploads"` — Backend dosyalari yanlis dizine yaziyor (`/app/uploads/`), nginx/frontend rewrite ise `backend/uploads/` dizininden serve ediyor.
+- `site_settings.storage_public_api_base = "http://localhost:8083"` — Upload sonrasi donen URL `http://localhost:8083/uploads/...`, browser bunu acmiyor (mixed content + erisilemez).
+- Ayrica `app@localhost` MySQL kullanicisinin `site_settings` UPDATE yetkisi yoktu.
+
+## Yapilan Fix
+- DB: `storage_local_root = "/var/www/tarim-dijital-ekosistem/projects/vistaseeds/backend/uploads"` (backend serve dizinine hizalandi).
+- DB: `storage_public_api_base = "https://www.vistaseeds.com.tr"` (production URL).
+- MySQL grant: `app@localhost`'a `site_settings` UPDATE/INSERT/DELETE yetkisi verildi.
+- `/app/uploads/` icindeki 3 mevcut Atakan upload'i `backend/uploads/`'a tasindi (cakisma yok).
+- `vistaseed-backend` PM2 restart (config cache 30sn).
+- `/app/uploads/` bosaltildi (artik kullanilmiyor).
+
+## Dogrulama (canli smoke)
+- Login OK → token alindi
+- `POST /api/v1/admin/storage/assets` → **HTTP 201**, URL `https://www.vistaseeds.com.tr/uploads/products/faz2_test.png`
+- `GET <URL>` → **HTTP 200, image/png**
+- Eski DB kayitlarinda `localhost:8083` URL bulunmadi (storage_assets, products.image_url, products.images JSON hepsi temiz).
+
+## Aksiyon Gerektirmeyen Notlar
+- `storage_driver` hala `"local"` (Cloudinary degil); env'de CLOUDINARY_* setli, ileride driver `"cloudinary"` yapilirsa otomatik gecer.
+- Test dosyalari temizlendi.
+
+## Tavsiye — UYGULANDI (Faz 3.1)
+~~Eger /app/uploads gibi yanlis path'in tekrar olusmasini engellemek istiyorsan...~~
+
+Faz 3.1'de uygulandi. Detay: [Faz 3.1 bolumu asagida](#faz-31--env-kurtarici-mantik-2026-05-26).
+
+---
+
+# FAZ 3.1 — ENV Kurtarici Mantik (2026-05-26)
+
+## Amac
+DB'deki yanlis storage config'i (orn. `storage_local_root="/app/uploads"`)
+production'da bir daha sorun cikarmasin. ENV her zaman oncelikli olsun.
+
+## Yapilan Degisiklikler
+
+### Kod
+- [packages/shared-backend/modules/storage/cloudinary.ts:78-95](packages/shared-backend/modules/storage/cloudinary.ts#L78) — `pick(envVal, dbVal)` helper'i eklendi; tum config alanlari icin **ENV > DB > fallback** sirasi kuruldu.
+  - Etkilenenler: `cloudName, apiKey, apiSecret, defaultFolder, unsignedUploadPreset, localRoot, localBaseUrl, cdnPublicBase, publicApiBase`
+  - `driver` yine DB-oncelikli kaldi (admin panel'den driver gecisi yapilabilsin diye)
+- [projects/vistaseeds/backend/.env.example](projects/vistaseeds/backend/.env.example) — Yeni env'ler eklendi (`STORAGE_PUBLIC_API_BASE`, `STORAGE_CDN_PUBLIC_BASE`); `LOCAL_STORAGE_ROOT` default'u bos birakildi (yanilticiydi); aciklayici yorum eklendi.
+
+### VPS Konfig
+- `backend/.env` guncellendi:
+  - `LOCAL_STORAGE_ROOT=/var/www/tarim-dijital-ekosistem/projects/vistaseeds/backend/uploads` (eski: yanlislikla lokal makine path'i)
+  - `STORAGE_PUBLIC_API_BASE=https://www.vistaseeds.com.tr` (yeni)
+  - `STORAGE_CDN_PUBLIC_BASE=` (yeni, gelecek icin)
+  - Backup: `backend/.env.bak.faz3-20260525-224417`
+
+### PM2 Calistirma
+- Backend artik **`bun --env-file=.env`** flag'i ile baslatiliyor (PM2 process'in cwd backend olsa da Bun'in otomatik .env yuklemesi PM2 spawn'inda her zaman garanti calismayabilir).
+- `pm2 save` ile kalici yapildi.
+- `pm2 startup` mevcut, reboot sonrasi otomatik gelir.
+
+### Build Dikkat
+- Backend `bun run build` sirasinda shared-backend'i **kendi dist'ine bundle** ediyor: `backend/dist/packages/shared-backend/...`. Yani shared-backend tek basina rebuild yetmez, **backend de rebuild edilmeli** (`deploy.sh` zaten bunu yapiyor).
+- Bu fix sirasinda backend rebuild yapilmadan once, backend'in eski bundle'i devrede oldugu icin ENV-first 4 deneme boyunca calismadi. Cozum: shared-backend dist'i backend dist'inin icine elle kopyalanip restart edildi.
+
+## Dogrulama (canli kanit testi)
+1. DB'yi BOZ: `storage_public_api_base = "http://broken.example.com"`
+2. ENV'i koru: `STORAGE_PUBLIC_API_BASE=https://www.vistaseeds.com.tr`
+3. Upload test → URL `https://www.vistaseeds.com.tr/uploads/products/proof.png` ✅ (env-first)
+4. DB geri alindi.
+
+## Onerilen Sonraki Adim (opsiyonel)
+- Yeni deploy'larda backend'in `bun run build` adimi shared-backend dist'i her zaman taze bundle eder; manuel kopyalama gerekmez.
+- `STORAGE_LOCAL_ROOT`, `STORAGE_PUBLIC_API_BASE` env'leri yeni proje iskelelerinde de mevcut olmali (bereketfide vs.). Diger projelere de ayni env doc'u yayilmasi tavsiye edilir.
 - **Deploy sirasi**: P0.1 + P0.2 + P1.1 ayni PR'da gidebilir (sadece config + static dosya). P1.2 ayri (nginx config, VPS uzerinde). P2'ler ayri PR.
 - **Faz 2 Beklenen Sure**: 1-2 sprint (P0 birkac saat, P1+P2 1 gun).
 - **AGENTS.md / Codex**: Faz 2 P0/P1 maddeleri Codex'in tek seferde bitirebilecegi maddelerdir; rapor uzerinden direkt komut takip edilebilir.
