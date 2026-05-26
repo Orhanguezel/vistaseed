@@ -420,6 +420,72 @@ production'da bir daha sorun cikarmasin. ENV her zaman oncelikli olsun.
 ## Onerilen Sonraki Adim (opsiyonel)
 - Yeni deploy'larda backend'in `bun run build` adimi shared-backend dist'i her zaman taze bundle eder; manuel kopyalama gerekmez.
 - `STORAGE_LOCAL_ROOT`, `STORAGE_PUBLIC_API_BASE` env'leri yeni proje iskelelerinde de mevcut olmali (bereketfide vs.). Diger projelere de ayni env doc'u yayilmasi tavsiye edilir.
+
+---
+
+# FAZ 3.2 — MySQL GRANT Buyuk Cesitleme (2026-05-26)
+
+## Tetikleyici Hata
+Admin panelden offer silme istegi 500 Internal Server Error veriyordu:
+```
+DELETE /api/v1/admin/offers/99999999-9999-4999-8999-999999999991 → 500
+DELETE /api/v1/admin/offers/99999999-9999-4999-8999-999999999992 → 500
+```
+Backend log:
+```
+DrizzleQueryError: DELETE command denied to user 'app'@'localhost' for table 'offers'
+```
+
+## Kok Neden (cok daha buyukmus)
+`app@localhost` MySQL kullanicisi `vistaseed` DB'sinde **sadece SELECT** yetkisine sahipti. Diger ekosistem DB'lerinde (`bereketfide`, `tarimiklim`, `vistainsaat`, `katalog_creator`) **ALL PRIVILEGES** vardi — yalniz vistaseed asagidaki tablolar icin manuel patch grant'leriyle calisiyordu (Codex onceki fazlarda eklemis):
+- `library*` tablolari → INSERT/UPDATE/DELETE
+- `refresh_tokens` → INSERT/UPDATE
+- `site_settings` → SELECT/INSERT/UPDATE/DELETE
+- `storage_assets` → INSERT/UPDATE/DELETE
+- `users.last_sign_in_at, updated_at` → UPDATE
+
+**Diger TUM TABLOLAR** sadece SELECT idi. Sonuc: vistaseed admin paneli pratikte READ-ONLY calisiyordu. Atakan'in **"urun resmi eklenmiyor"** sorununun gercek kokunden biri de buydu (storage_assets'e yazabildi ama `products.image_url` UPDATE edemedi).
+
+## Etkilenen Tablo/Modul Listesi (READ-ONLY oldugu icin patlayanlar)
+- `offers` — DELETE 500 (tetikleyici)
+- `products`, `product_*` — UPDATE 500 (Atakan'in sorunu)
+- `categories`, `category_i18n`
+- `blog_posts`, `blog_posts_i18n`
+- `custom_pages`, `custom_pages_i18n`
+- `popups`, `popups_i18n`
+- `orders`, `order_items`, `payment_attempts`
+- `notifications`, `contact_messages`
+- `email_templates`, `home_sections`
+- `job_listings`, `job_applications`
+- `dealer_profiles`, `dealer_transactions`
+- `references*`, `reviews*`, `galleries*`
+- Toplam 30+ tablo
+
+## Yapilan Fix (tek SQL)
+```sql
+GRANT ALL PRIVILEGES ON `vistaseed`.* TO 'app'@'localhost';
+FLUSH PRIVILEGES;
+```
+Artik vistaseed DB'si diger ekosistem DB'leriyle ayni standartta yetkili.
+
+## Dogrulama
+- `DELETE /api/v1/admin/offers/<id>` → **204** ✓ (önceden 500)
+- Backend log'da `DrizzleQueryError: ... command denied` artik yok.
+- Eski patch grant'lar (library, refresh_tokens, site_settings, storage_assets, users) hala duruyor — gereksiz ama zarar vermez; istenirse temizlenebilir:
+  ```sql
+  REVOKE ALL ON `vistaseed`.`library_files` FROM 'app'@'localhost';
+  -- ... vb. (gerekmiyor; ALL zaten kapsiyor)
+  ```
+
+## Kalici Garanti
+[backend/src/db/seed/index.ts:48](backend/src/db/seed/index.ts#L48) **zaten** `GRANT ALL PRIVILEGES ON \`${DB.name}\`.* TO '${dbUser}'@'${dbHost}';` icermektedir.
+Yani `bun run db:seed:vistaseeds:fresh` calistirildiginda grant otomatik gelir.
+
+Productionda bu grant'in kaybolma sebebi muhtemelen Codex'in onceki manuel REVOKE'lari veya production DB'sinde seed disinda yapilan elle mudahaledir. Bu fix sonrasi tekrar elle revoke yapilmadigi surece sorun cikmaz.
+
+## Aksiyon Onerisi (cok kritik)
+- **Tum yeni proje iskelelerinde**: Production DB user'i icin `GRANT ALL PRIVILEGES ON db.* TO user@host` mutlaka uygulanmali (init seed scripti zaten yapiyor). Production deploy sonrasi `SHOW GRANTS FOR 'app'@'localhost';` ile ekosistem standardiyla karsilastirma kontrolu yapilmali.
+- Diger ekosistem projelerinde (bereketfide vs.) ayni "kritik tablo READ-ONLY" sorunu olmadigi dogrulandi (ALL PRIVILEGES verili).
 - **Deploy sirasi**: P0.1 + P0.2 + P1.1 ayni PR'da gidebilir (sadece config + static dosya). P1.2 ayri (nginx config, VPS uzerinde). P2'ler ayri PR.
 - **Faz 2 Beklenen Sure**: 1-2 sprint (P0 birkac saat, P1+P2 1 gun).
 - **AGENTS.md / Codex**: Faz 2 P0/P1 maddeleri Codex'in tek seferde bitirebilecegi maddelerdir; rapor uzerinden direkt komut takip edilebilir.
