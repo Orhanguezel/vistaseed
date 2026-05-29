@@ -23,6 +23,8 @@ import type {
   AuditRequestLogsListQueryParams,
   AuditGeoStatsQueryParams,
   AuditGeoStatsResponseDto,
+  AuditGeoCitiesQueryParams,
+  AuditGeoCitiesResponseDto,
   ClearAuditResponse,
   ClearAuditTarget,
 } from '@/integrations/shared';
@@ -82,6 +84,18 @@ export const auditAdminApi = baseApi.injectEndpoints({
       providesTags: [{ type: 'AuditMetric' as const, id: 'GEO' }],
     }),
 
+    getAuditGeoCitiesAdmin: build.query<
+      AuditGeoCitiesResponseDto,
+      AuditGeoCitiesQueryParams | void
+    >({
+      query: (params) => ({
+        url: `${AUDIT_ADMIN_BASE}/geo-cities`,
+        method: 'GET',
+        params: params ?? undefined,
+      }),
+      providesTags: [{ type: 'AuditMetric' as const, id: 'GEO_CITIES' }],
+    }),
+
     clearAuditLogsAdmin: build.mutation<ClearAuditResponse, { target?: ClearAuditTarget }>({
       query: ({ target = 'all' }) => ({
         url: `${AUDIT_ADMIN_BASE}/clear?target=${encodeURIComponent(target)}`,
@@ -102,5 +116,6 @@ export const {
   useListAuditAuthEventsAdminQuery,
   useGetAuditMetricsDailyAdminQuery,
   useGetAuditGeoStatsAdminQuery,
+  useGetAuditGeoCitiesAdminQuery,
   useClearAuditLogsAdminMutation,
 } = auditAdminApi;

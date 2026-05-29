@@ -53,6 +53,7 @@ import {
 
 import { AuditDailyChart } from './audit-daily-chart';
 import { AuditGeoMap } from './audit-geo-map';
+import { AuditTurkeyMap } from './audit-turkey-map';
 import { useAdminT } from '@/app/(main)/admin/_components/common/use-admin-t';
 
 import type {
@@ -70,6 +71,8 @@ import type {
   AnalyticsRetentionResponseDto,
   AnalyticsDeviceDailyResponseDto,
   AnalyticsHeatmapResponseDto,
+  AuditGeoTrafficKind,
+  AuditGeoCitiesResponseDto,
 } from '@/integrations/shared';
 import {
   ADMIN_AUDIT_ALL_VALUE,
@@ -93,6 +96,7 @@ import {
   useListAuditAuthEventsAdminQuery,
   useGetAuditMetricsDailyAdminQuery,
   useGetAuditGeoStatsAdminQuery,
+  useGetAuditGeoCitiesAdminQuery,
   useClearAuditLogsAdminMutation,
   useGetAnalyticsOverviewAdminQuery,
   useGetAnalyticsAdsAttributionAdminQuery,
@@ -110,7 +114,11 @@ export default function AdminAuditClient() {
   const sp = useSearchParams();
   const t = useAdminT('admin.audit');
 
-  const tab = normalizeAdminAuditTab(sp.get('tab'));
+  // Tab geçişi anlık (client-side, history.replaceState) — RSC navigasyonu
+  // yapmaz, takılma olmaz (hal-fiyatlari ile aynı model).
+  const urlTab = normalizeAdminAuditTab(sp.get('tab'));
+  const [tab, setTab] = React.useState(urlTab);
+  React.useEffect(() => setTab(urlTab), [urlTab]);
 
   const q = sp.get('q') ?? '';
   const method = sp.get('method') ?? '';
@@ -133,6 +141,9 @@ export default function AdminAuditClient() {
   const path_prefix = sp.get('path_prefix') ?? '';
 
   const range: AnalyticsRange = sp.get('range') === '30d' ? '30d' : '7d';
+  const geoTraffic = (['human', 'bot'].includes(sp.get('traffic') ?? '')
+    ? sp.get('traffic')
+    : 'all') as AuditGeoTrafficKind;
 
   const limit = toNonNegativeInt(sp.get('limit'), 50) || 50;
   const offset = toNonNegativeInt(sp.get('offset'), 0);
@@ -183,7 +194,7 @@ export default function AdminAuditClient() {
   // initialization" ile tum sayfa cokar (tablar gezilemez).
   const ALL = ADMIN_AUDIT_ALL_VALUE;
 
-  function apply(next: Partial<Record<string, any>>) {
+  function buildAuditUrl(next: Partial<Record<string, any>>) {
     const merged = {
       tab,
       q,
@@ -203,6 +214,7 @@ export default function AdminAuditClient() {
       days,
       path_prefix,
       range,
+      traffic: geoTraffic,
       limit,
       offset,
       ...next,
@@ -223,6 +235,7 @@ export default function AdminAuditClient() {
       sort: merged.sort !== 'created_at' ? merged.sort : undefined,
       orderDir: merged.orderDir !== 'desc' ? merged.orderDir : undefined,
       range: merged.range !== '7d' ? merged.range : undefined,
+      traffic: merged.traffic !== 'all' ? merged.traffic : undefined,
       event: merged.event && merged.event !== ALL ? merged.event : undefined,
       email: merged.email || undefined,
       user_id: merged.user_id || undefined,
@@ -233,11 +246,18 @@ export default function AdminAuditClient() {
       offset: merged.offset || undefined,
     });
 
-    router.push(`/admin/audit${qs}`);
+    return `/admin/audit${qs}`;
   }
 
+  function apply(next: Partial<Record<string, any>>) {
+    router.push(buildAuditUrl(next));
+  }
+
+  // Tab geçişi: local state + history.replaceState → anlık, RSC navigasyonu yok.
   function onTabChange(next: string) {
-    apply({ tab: next, offset: 0 });
+    const nextTab = normalizeAdminAuditTab(next);
+    setTab(nextTab);
+    window.history.replaceState(window.history.state, '', buildAuditUrl({ tab: nextTab, offset: 0 }));
   }
 
   function onSubmitRequests(e: React.FormEvent) {
@@ -416,6 +436,11 @@ export default function AdminAuditClient() {
     { skip: tab !== 'map', refetchOnFocus: true } as any,
   ) as any;
 
+  const geoCitiesQ = useGetAuditGeoCitiesAdminQuery(
+    tab === 'map' ? ({ days: geoParams.days, traffic: geoTraffic } as any) : (undefined as any),
+    { skip: tab !== 'map', refetchOnFocus: true } as any,
+  ) as any;
+
   const overviewQ = useGetAnalyticsOverviewAdminQuery(
     tab === 'general' || tab === 'device' ? ({ range } as any) : (undefined as any),
     { skip: tab !== 'general' && tab !== 'device', refetchOnFocus: true } as any,
@@ -461,6 +486,13 @@ export default function AdminAuditClient() {
   };
   const metricsData = (metricsQ.data as AuditMetricsDailyResponseDto | undefined) ?? { days: [] };
   const geoData = (geoQ.data as AuditGeoStatsResponseDto | undefined) ?? { items: [] };
+  const geoCitiesData = (geoCitiesQ.data as AuditGeoCitiesResponseDto | undefined)?.items ?? [];
+  // LOCAL = sunucu-içi trafik (SSR fetch, health, ETL) — gerçek ziyaretçi değil,
+  // analizden çıkarılır. Boş ülke de gösterilmez.
+  const geoItemsVisible = (geoData.items ?? []).filter(
+    (i) => i.country && i.country !== 'LOCAL',
+  );
+  const geoCitiesTR = geoCitiesData.filter((r) => r.country === 'TR');
   const overviewData = overviewQ.data as AnalyticsOverviewDto | undefined;
   const retentionData = retentionQ.data as AnalyticsRetentionResponseDto | undefined;
   const adsData = adsQ.data as AnalyticsAdsAttributionResponseDto | undefined;
@@ -472,7 +504,8 @@ export default function AdminAuditClient() {
   const reqLoading = reqQ.isLoading || reqQ.isFetching;
   const authLoading = authQ.isLoading || authQ.isFetching;
   const metricsLoading = metricsQ.isLoading || metricsQ.isFetching;
-  const geoLoading = geoQ.isLoading || geoQ.isFetching;
+  const geoLoading =
+    geoQ.isLoading || geoQ.isFetching || geoCitiesQ.isLoading || geoCitiesQ.isFetching;
   const overviewLoading =
     overviewQ.isLoading || overviewQ.isFetching || retentionQ.isLoading || retentionQ.isFetching;
   const adsLoading =
@@ -499,7 +532,10 @@ export default function AdminAuditClient() {
       if (tab === 'requests') await reqQ.refetch();
       if (tab === 'auth') await authQ.refetch();
       if (tab === 'metrics') await metricsQ.refetch();
-      if (tab === 'map') await geoQ.refetch();
+      if (tab === 'map') {
+        await geoQ.refetch();
+        await geoCitiesQ.refetch();
+      }
       if (tab === 'general') {
         await overviewQ.refetch();
         await retentionQ.refetch();
@@ -1300,6 +1336,25 @@ export default function AdminAuditClient() {
 
         {/* ==================== MAP TAB ==================== */}
         <TabsContent value="map" className="space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex rounded-md border bg-muted/30 p-1">
+              {([
+                ['all', t('map.trafficAll')],
+                ['human', t('map.trafficHuman')],
+                ['bot', t('map.trafficBot')],
+              ] as const).map(([value, label]) => (
+                <Button
+                  key={value}
+                  size="sm"
+                  variant={geoTraffic === value ? 'default' : 'ghost'}
+                  onClick={() => apply({ tab: 'map', traffic: value })}
+                  className="h-8"
+                >
+                  {label}
+                </Button>
+              ))}
+            </div>
+          </div>
           <Card>
             <CardHeader>
               <div className="flex flex-wrap items-center justify-between gap-2">
@@ -1324,7 +1379,18 @@ export default function AdminAuditClient() {
                   {getErrorMessage(geoQ.error, t('error'))}
                 </div>
               )}
-              <AuditGeoMap items={geoData.items ?? []} loading={geoLoading} />
+              <AuditGeoMap items={geoItemsVisible} loading={geoLoading} />
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-base">
+                <Globe className="h-4 w-4" /> {t('map.turkeyTitle')}
+              </CardTitle>
+              <CardDescription>{t('map.turkeyDescription')}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <AuditTurkeyMap cities={geoCitiesTR} loading={geoLoading} />
             </CardContent>
           </Card>
         </TabsContent>

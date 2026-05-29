@@ -82,6 +82,7 @@ export {
   useListAuditAuthEventsAdminQuery,
   useGetAuditMetricsDailyAdminQuery,
   useGetAuditGeoStatsAdminQuery,
+  useGetAuditGeoCitiesAdminQuery,
   useClearAuditLogsAdminMutation,
 } from "@/integrations/endpoints/admin/audit-admin-endpoints";
 

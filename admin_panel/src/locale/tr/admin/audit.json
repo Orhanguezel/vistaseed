@@ -117,7 +117,12 @@
   },
   "map": {
     "title": "Coğrafi Dağılım",
-    "description": "Son {days} günün konuma göre istek dağılımı."
+    "description": "Son {days} günün konuma göre istek dağılımı.",
+    "trafficAll": "Tümü",
+    "trafficHuman": "İnsan",
+    "trafficBot": "Bot",
+    "turkeyTitle": "Türkiye Haritası",
+    "turkeyDescription": "Ziyaretçilerin geldiği iller (geoip şehir → il). LOCAL/sunucu-içi trafik hariç."
   },
   "common": {
     "from": "Başlangıç",

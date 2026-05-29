@@ -57,4 +57,8 @@ export {
   type AnalyticsRetentionResponseDto,
   type AnalyticsHeatmapCellDto,
   type AnalyticsHeatmapResponseDto,
+  type AuditGeoTrafficKind,
+  type AuditGeoCityDto,
+  type AuditGeoCitiesResponseDto,
+  type AuditGeoCitiesQueryParams,
 } from '@/integrations/shared/audit-analytics-types';

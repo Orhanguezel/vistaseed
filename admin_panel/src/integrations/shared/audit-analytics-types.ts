@@ -132,3 +132,24 @@ export interface AnalyticsHeatmapResponseDto {
 export type AnalyticsRangeQueryParams = {
   range?: AnalyticsRange;
 };
+
+export type AuditGeoTrafficKind = 'all' | 'human' | 'bot';
+
+export interface AuditGeoCityDto {
+  country: string;
+  city: string;
+  hits: number;
+  uniqueIps: number;
+  botHits: number;
+}
+
+export interface AuditGeoCitiesResponseDto {
+  days: number;
+  traffic: AuditGeoTrafficKind;
+  items: AuditGeoCityDto[];
+}
+
+export type AuditGeoCitiesQueryParams = {
+  days?: number;
+  traffic?: AuditGeoTrafficKind;
+};
