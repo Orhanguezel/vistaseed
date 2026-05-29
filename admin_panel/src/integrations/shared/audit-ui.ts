@@ -1,6 +1,6 @@
 export const ADMIN_AUDIT_ALL_VALUE = '__all__';
 
-export type AdminAuditTabKey = 'general' | 'requests' | 'auth' | 'metrics' | 'device' | 'map';
+export type AdminAuditTabKey = 'general' | 'requests' | 'auth' | 'metrics' | 'ads' | 'device' | 'map';
 export type AdminAuditSortKey = 'created_at' | 'response_time_ms' | 'status_code';
 export type AdminAuditBadgeVariant = 'default' | 'secondary' | 'destructive' | 'outline';
 
@@ -15,7 +15,8 @@ export function normalizeAdminAuditTab(value: string | null): AdminAuditTabKey {
   const s = String(value ?? '').toLowerCase();
   if (s === 'general') return 'general';
   if (s === 'auth') return 'auth';
-  if (s === 'metrics') return 'metrics';
+  if (s === 'metrics' || s === 'daily') return 'metrics';
+  if (s === 'ads') return 'ads';
   if (s === 'device') return 'device';
   if (s === 'map') return 'map';
   return 'requests';

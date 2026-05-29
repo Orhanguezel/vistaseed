@@ -87,7 +87,11 @@ export {
 
 export {
   useGetAnalyticsOverviewAdminQuery,
+  useGetAnalyticsAdsAttributionAdminQuery,
+  useGetAnalyticsAdsDailyAdminQuery,
   useGetAnalyticsDeviceDailyAdminQuery,
+  useGetAnalyticsFunnelAdminQuery,
+  useGetAnalyticsRetentionAdminQuery,
   useGetAnalyticsHeatmapAdminQuery,
 } from "@/integrations/endpoints/admin/analytics-admin-endpoints";
 

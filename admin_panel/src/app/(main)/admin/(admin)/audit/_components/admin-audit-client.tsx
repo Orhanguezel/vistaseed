@@ -24,6 +24,7 @@ import {
   Trash2,
   BarChart3,
   Smartphone,
+  MousePointerClick,
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -63,6 +64,10 @@ import type {
   AuditGeoStatsResponseDto,
   AnalyticsRange,
   AnalyticsOverviewDto,
+  AnalyticsAdsAttributionResponseDto,
+  AnalyticsAdsDailyResponseDto,
+  AnalyticsFunnelResponseDto,
+  AnalyticsRetentionResponseDto,
   AnalyticsDeviceDailyResponseDto,
   AnalyticsHeatmapResponseDto,
 } from '@/integrations/shared';
@@ -90,6 +95,10 @@ import {
   useGetAuditGeoStatsAdminQuery,
   useClearAuditLogsAdminMutation,
   useGetAnalyticsOverviewAdminQuery,
+  useGetAnalyticsAdsAttributionAdminQuery,
+  useGetAnalyticsAdsDailyAdminQuery,
+  useGetAnalyticsFunnelAdminQuery,
+  useGetAnalyticsRetentionAdminQuery,
   useGetAnalyticsDeviceDailyAdminQuery,
   useGetAnalyticsHeatmapAdminQuery,
 } from '@/integrations/hooks';
@@ -412,6 +421,26 @@ export default function AdminAuditClient() {
     { skip: tab !== 'general' && tab !== 'device', refetchOnFocus: true } as any,
   ) as any;
 
+  const retentionQ = useGetAnalyticsRetentionAdminQuery(
+    tab === 'general' ? ({ range } as any) : (undefined as any),
+    { skip: tab !== 'general', refetchOnFocus: true } as any,
+  ) as any;
+
+  const adsQ = useGetAnalyticsAdsAttributionAdminQuery(
+    tab === 'ads' ? ({ range } as any) : (undefined as any),
+    { skip: tab !== 'ads', refetchOnFocus: true } as any,
+  ) as any;
+
+  const adsDailyQ = useGetAnalyticsAdsDailyAdminQuery(
+    tab === 'ads' ? ({ range } as any) : (undefined as any),
+    { skip: tab !== 'ads', refetchOnFocus: true } as any,
+  ) as any;
+
+  const funnelQ = useGetAnalyticsFunnelAdminQuery(
+    tab === 'ads' ? ({ range } as any) : (undefined as any),
+    { skip: tab !== 'ads', refetchOnFocus: true } as any,
+  ) as any;
+
   const deviceDailyQ = useGetAnalyticsDeviceDailyAdminQuery(
     tab === 'device' ? ({ range } as any) : (undefined as any),
     { skip: tab !== 'device', refetchOnFocus: true } as any,
@@ -433,6 +462,10 @@ export default function AdminAuditClient() {
   const metricsData = (metricsQ.data as AuditMetricsDailyResponseDto | undefined) ?? { days: [] };
   const geoData = (geoQ.data as AuditGeoStatsResponseDto | undefined) ?? { items: [] };
   const overviewData = overviewQ.data as AnalyticsOverviewDto | undefined;
+  const retentionData = retentionQ.data as AnalyticsRetentionResponseDto | undefined;
+  const adsData = adsQ.data as AnalyticsAdsAttributionResponseDto | undefined;
+  const adsDailyData = adsDailyQ.data as AnalyticsAdsDailyResponseDto | undefined;
+  const funnelData = funnelQ.data as AnalyticsFunnelResponseDto | undefined;
   const deviceDailyData = deviceDailyQ.data as AnalyticsDeviceDailyResponseDto | undefined;
   const heatmapData = heatmapQ.data as AnalyticsHeatmapResponseDto | undefined;
 
@@ -440,7 +473,10 @@ export default function AdminAuditClient() {
   const authLoading = authQ.isLoading || authQ.isFetching;
   const metricsLoading = metricsQ.isLoading || metricsQ.isFetching;
   const geoLoading = geoQ.isLoading || geoQ.isFetching;
-  const overviewLoading = overviewQ.isLoading || overviewQ.isFetching;
+  const overviewLoading =
+    overviewQ.isLoading || overviewQ.isFetching || retentionQ.isLoading || retentionQ.isFetching;
+  const adsLoading =
+    adsQ.isLoading || adsQ.isFetching || adsDailyQ.isLoading || adsDailyQ.isFetching || funnelQ.isLoading || funnelQ.isFetching;
   const deviceLoading =
     overviewQ.isLoading ||
     overviewQ.isFetching ||
@@ -464,7 +500,15 @@ export default function AdminAuditClient() {
       if (tab === 'auth') await authQ.refetch();
       if (tab === 'metrics') await metricsQ.refetch();
       if (tab === 'map') await geoQ.refetch();
-      if (tab === 'general') await overviewQ.refetch();
+      if (tab === 'general') {
+        await overviewQ.refetch();
+        await retentionQ.refetch();
+      }
+      if (tab === 'ads') {
+        await adsQ.refetch();
+        await adsDailyQ.refetch();
+        await funnelQ.refetch();
+      }
       if (tab === 'device') {
         await overviewQ.refetch();
         await deviceDailyQ.refetch();
@@ -489,7 +533,7 @@ export default function AdminAuditClient() {
   }
 
   const anyLoading =
-    reqLoading || authLoading || metricsLoading || geoLoading || overviewLoading || deviceLoading || isClearing;
+    reqLoading || authLoading || metricsLoading || geoLoading || overviewLoading || adsLoading || deviceLoading || isClearing;
 
   const deviceLabel = (value: string): string => {
     if (value === 'mobile') return t('analytics.deviceMobile');
@@ -531,7 +575,10 @@ export default function AdminAuditClient() {
             <UserCheck className="mr-2 h-4 w-4" /> {t('tabs.auth')}
           </TabsTrigger>
           <TabsTrigger value="metrics">
-            <ShieldCheck className="mr-2 h-4 w-4" /> {t('tabs.metrics')}
+            <ShieldCheck className="mr-2 h-4 w-4" /> {t('tabs.daily')}
+          </TabsTrigger>
+          <TabsTrigger value="ads">
+            <MousePointerClick className="mr-2 h-4 w-4" /> {t('tabs.ads')}
           </TabsTrigger>
           <TabsTrigger value="device">
             <Smartphone className="mr-2 h-4 w-4" /> {t('tabs.device')}
@@ -544,7 +591,7 @@ export default function AdminAuditClient() {
         {/* ==================== GENERAL TAB ==================== */}
         <TabsContent value="general" className="space-y-4">
           <RangeControls range={range} onChange={(next) => apply({ tab: 'general', range: next })} />
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
             <MetricCard
               title={t('analytics.humanTraffic')}
               value={fmtNumber(overviewData?.summary?.humanRequests)}
@@ -556,14 +603,19 @@ export default function AdminAuditClient() {
               sub={t('analytics.totalRequestsSub', { count: fmtNumber(overviewData?.summary?.totalRequests) })}
             />
             <MetricCard
+              title={t('analytics.adsUniqueIps')}
+              value={fmtNumber(overviewData?.summary?.adsUniqueIps)}
+              sub={t('analytics.adsPageviewsSub', { count: fmtNumber(overviewData?.summary?.adsPageviews) })}
+            />
+            <MetricCard
               title={t('analytics.directTraffic')}
               value={fmtPct(overviewData?.summary?.directTrafficPct)}
               sub={t('analytics.returningIpSub', { count: fmtNumber(overviewData?.summary?.returningIps) })}
             />
             <MetricCard
-              title={t('analytics.uniqueIps')}
-              value={fmtNumber(overviewData?.summary?.uniqueIps)}
-              sub={t('analytics.pagesPerVisitorSub', { value: String(overviewData?.summary?.pagesPerVisitor ?? 0) })}
+              title={t('analytics.b2bLikeIps')}
+              value={fmtNumber(overviewData?.summary?.b2bLikeIps)}
+              sub={t('analytics.b2bIntentSub', { count: fmtNumber(overviewData?.summary?.b2bIntentIps) })}
             />
           </div>
           <div className="grid gap-4 xl:grid-cols-3">
@@ -586,6 +638,47 @@ export default function AdminAuditClient() {
               emptyText={t('common.noRecords')}
             />
           </div>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">{t('analytics.retentionTitle')}</CardTitle>
+              <CardDescription>{t('analytics.retentionDescription')}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>{t('analytics.firstDay')}</TableHead>
+                    <TableHead className="text-right">{t('analytics.newIp')}</TableHead>
+                    <TableHead className="text-right">D+1</TableHead>
+                    <TableHead className="text-right">D+3</TableHead>
+                    <TableHead className="text-right">D+7</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {(retentionData?.cohorts ?? []).map((row) => (
+                    <TableRow key={row.date}>
+                      <TableCell>{row.date}</TableCell>
+                      <TableCell className="text-right">{fmtNumber(row.visitors)}</TableCell>
+                      <TableCell className="text-right">
+                        {fmtNumber(row.d1)} <span className="text-muted-foreground">({fmtPct(row.d1Pct)})</span>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        {fmtNumber(row.d3)} <span className="text-muted-foreground">({fmtPct(row.d3Pct)})</span>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        {fmtNumber(row.d7)} <span className="text-muted-foreground">({fmtPct(row.d7Pct)})</span>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                  {!overviewLoading && (retentionData?.cohorts?.length ?? 0) === 0 && (
+                    <TableRow>
+                      <TableCell colSpan={5}>{t('common.noRecords')}</TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
         </TabsContent>
 
         {/* ==================== REQUESTS TAB ==================== */}
@@ -1037,6 +1130,91 @@ export default function AdminAuditClient() {
           </Card>
         </TabsContent>
 
+        {/* ==================== ADS TAB ==================== */}
+        <TabsContent value="ads" className="space-y-4">
+          <RangeControls range={range} onChange={(next) => apply({ tab: 'ads', range: next })} />
+          <div className="grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">{t('analytics.adsAttributionTitle')}</CardTitle>
+                <CardDescription>{t('analytics.adsAttributionDescription')}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>{t('analytics.campaign')}</TableHead>
+                      <TableHead>{t('analytics.sourceMedium')}</TableHead>
+                      <TableHead className="text-right">{t('analytics.pageview')}</TableHead>
+                      <TableHead className="text-right">{t('analytics.uniqueIps')}</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {(adsData?.items ?? []).map((row) => (
+                      <TableRow key={`${row.campaign}-${row.source}-${row.medium}`}>
+                        <TableCell className="font-medium">{row.campaign || '-'}</TableCell>
+                        <TableCell className="text-muted-foreground text-sm">
+                          {row.source || '-'} / {row.medium || '-'}
+                        </TableCell>
+                        <TableCell className="text-right">{fmtNumber(row.pageviews)}</TableCell>
+                        <TableCell className="text-right">{fmtNumber(row.uniqueIps)}</TableCell>
+                      </TableRow>
+                    ))}
+                    {!adsLoading && (adsData?.items?.length ?? 0) === 0 && (
+                      <TableRow>
+                        <TableCell colSpan={4}>{t('common.noRecords')}</TableCell>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+            <SimpleRowsCard
+              title={t('analytics.funnelTitle')}
+              rows={funnelData?.items ?? []}
+              loading={adsLoading}
+              emptyText={t('common.noRecords')}
+            />
+          </div>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">{t('analytics.adsDailyTitle')}</CardTitle>
+              <CardDescription>{t('analytics.adsDailyDescription')}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>{t('analytics.date')}</TableHead>
+                    <TableHead>{t('analytics.campaign')}</TableHead>
+                    <TableHead>{t('analytics.sourceMedium')}</TableHead>
+                    <TableHead className="text-right">{t('analytics.pageview')}</TableHead>
+                    <TableHead className="text-right">{t('analytics.uniqueIps')}</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {(adsDailyData?.items ?? []).map((row) => (
+                    <TableRow key={`${row.date}-${row.campaign}-${row.source}-${row.medium}`}>
+                      <TableCell>{row.date}</TableCell>
+                      <TableCell className="font-medium">{row.campaign || '-'}</TableCell>
+                      <TableCell className="text-muted-foreground text-sm">
+                        {row.source || '-'} / {row.medium || '-'}
+                      </TableCell>
+                      <TableCell className="text-right">{fmtNumber(row.pageviews)}</TableCell>
+                      <TableCell className="text-right">{fmtNumber(row.uniqueIps)}</TableCell>
+                    </TableRow>
+                  ))}
+                  {!adsLoading && (adsDailyData?.items?.length ?? 0) === 0 && (
+                    <TableRow>
+                      <TableCell colSpan={5}>{t('common.noRecords')}</TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
         {/* ==================== DEVICE TAB ==================== */}
         <TabsContent value="device" className="space-y-4">
           <RangeControls range={range} onChange={(next) => apply({ tab: 'device', range: next })} />
@@ -1094,6 +1272,8 @@ export default function AdminAuditClient() {
                     <TableHead>{t('analytics.device')}</TableHead>
                     <TableHead className="text-right">{t('analytics.requests')}</TableHead>
                     <TableHead className="text-right">{t('analytics.uniqueIps')}</TableHead>
+                    <TableHead className="text-right">{t('analytics.adsRequests')}</TableHead>
+                    <TableHead className="text-right">{t('analytics.adsUniqueIps')}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -1103,11 +1283,13 @@ export default function AdminAuditClient() {
                       <TableCell>{deviceLabel(row.device)}</TableCell>
                       <TableCell className="text-right">{fmtNumber(row.requests)}</TableCell>
                       <TableCell className="text-right">{fmtNumber(row.uniqueIps)}</TableCell>
+                      <TableCell className="text-right">{fmtNumber(row.adsRequests)}</TableCell>
+                      <TableCell className="text-right">{fmtNumber(row.adsUniqueIps)}</TableCell>
                     </TableRow>
                   ))}
                   {!deviceLoading && (deviceDailyData?.items?.length ?? 0) === 0 && (
                     <TableRow>
-                      <TableCell colSpan={4}>{t('common.noRecords')}</TableCell>
+                      <TableCell colSpan={6}>{t('common.noRecords')}</TableCell>
                     </TableRow>
                   )}
                 </TableBody>
