@@ -1,4 +1,6 @@
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
+import { getPublicSiteOrigin } from "@/lib/runtime-config";
+
+const SITE_URL = getPublicSiteOrigin();
 
 export function siteOrigin(): string {
   return SITE_URL;

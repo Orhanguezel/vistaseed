@@ -35,3 +35,17 @@ export {
   coerceAuditList,
   coerceAuditMetricsDaily,
 } from '@/integrations/shared/audit-types';
+
+export {
+  ANALYTICS_ADMIN_BASE,
+  type AnalyticsRange,
+  type AnalyticsRangeQueryParams,
+  type AnalyticsSummaryDto,
+  type AnalyticsNameCountDto,
+  type AnalyticsDeviceCountDto,
+  type AnalyticsOverviewDto,
+  type AnalyticsDeviceDailyRowDto,
+  type AnalyticsDeviceDailyResponseDto,
+  type AnalyticsHeatmapCellDto,
+  type AnalyticsHeatmapResponseDto,
+} from '@/integrations/shared/audit-analytics-types';

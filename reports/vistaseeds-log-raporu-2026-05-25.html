@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tr" xml:lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Vista Seeds — Teknik Ekip" />
+  <title>VistaSeeds Log Raporu</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/dev/stdin" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">VistaSeeds Log Raporu</h1>
+<p class="subtitle">Trafik, Hatalar, Bot Aktivitesi</p>
+<p class="author">Vista Seeds — Teknik Ekip</p>
+<p class="date">25 Mayıs 2026</p>
+</header>
+<nav id="TOC" role="doc-toc">
+
+</nav>
+<h1 id="yönetici-özeti">Yönetici Özeti</h1>
+<p>VistaSeeds (<code>www.vistaseeds.com.tr</code>) canlı nginx access
+loglarının 14 günlük analizidir. Veri aralığı: <strong>11 Mayıs 2026 –
+25 Mayıs 2026</strong>. Vhost’lar: <code>www.vistaseeds.com.tr</code>
+(public site) ve <code>panel.vistaseeds.com.tr</code> (admin panel).</p>
+<h2 id="anahtar-sayılar">Anahtar Sayılar</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Metrik</th>
+<th>Değer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Toplam istek (public)</td>
+<td><strong>22,903</strong></td>
+</tr>
+<tr class="even">
+<td>Toplam istek (admin panel)</td>
+<td><strong>777</strong></td>
+</tr>
+<tr class="odd">
+<td>Tekil IP (14 günde)</td>
+<td><strong>896</strong></td>
+</tr>
+<tr class="even">
+<td>Günlük ortalama istek</td>
+<td>~1,636</td>
+</tr>
+<tr class="odd">
+<td>Günlük ortalama tekil ziyaretçi</td>
+<td>~80</td>
+</tr>
+<tr class="even">
+<td>Pik gün</td>
+<td>18 May (4,592 istek, 110 IP)</td>
+</tr>
+<tr class="odd">
+<td>200 OK oranı</td>
+<td><strong>88.9%</strong></td>
+</tr>
+<tr class="even">
+<td>4xx hata oranı</td>
+<td>2.2%</td>
+</tr>
+<tr class="odd">
+<td>5xx hata oranı</td>
+<td>2.2%</td>
+</tr>
+<tr class="even">
+<td>Bot oranı</td>
+<td>11.7%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="genel-değerlendirme">Genel Değerlendirme</h2>
+<ul>
+<li><strong>Sağlık skoru: İyi.</strong> 200 OK oranı %88.9, bu seviyede
+normal kabul edilebilir.</li>
+<li>25 Mayıs 13:28 UTC’de uygulanan <strong>fix paketi</strong> sonrası
+4xx oranı <strong>%2.2 → %0.4</strong>, 5xx oranı <strong>%2.2 →
+%0.3</strong> seviyesine düştü (5x – 7x iyileşme).</li>
+<li>AI crawler erişimi sağlıklı: <strong>ClaudeBot 660</strong> +
+<strong>GPTBot 292</strong> istek, robots.txt izinleri çalışıyor.</li>
+<li>Saldırı/probe trafiği görece düşük, ancak <code>.env</code> /
+<code>.php</code> probe’ları için nginx tarafında erken bloklama
+önerilir.</li>
+<li>Büyüme eğilimi pozitif: 11 May’da 68 günlük tekil IP → 22 May’da 128
+IP (<strong>+88%</strong> iki haftada).</li>
+</ul>
+<h1 id="trafik-genel-bakış">1. Trafik Genel Bakış</h1>
+<h2 id="günlük-istek-dağılımı">1.1 Günlük İstek Dağılımı</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Tarih</th>
+<th style="text-align: right;">İstek</th>
+<th style="text-align: right;">Tekil IP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>11 May</td>
+<td style="text-align: right;">307</td>
+<td style="text-align: right;">68</td>
+</tr>
+<tr class="even">
+<td>12 May</td>
+<td style="text-align: right;">1,270</td>
+<td style="text-align: right;">57</td>
+</tr>
+<tr class="odd">
+<td>13 May</td>
+<td style="text-align: right;">1,012</td>
+<td style="text-align: right;">34</td>
+</tr>
+<tr class="even">
+<td>14 May</td>
+<td style="text-align: right;">1,622</td>
+<td style="text-align: right;">41</td>
+</tr>
+<tr class="odd">
+<td>15 May</td>
+<td style="text-align: right;">565</td>
+<td style="text-align: right;">89</td>
+</tr>
+<tr class="even">
+<td>16 May</td>
+<td style="text-align: right;">627</td>
+<td style="text-align: right;">54</td>
+</tr>
+<tr class="odd">
+<td>17 May</td>
+<td style="text-align: right;">530</td>
+<td style="text-align: right;">34</td>
+</tr>
+<tr class="even">
+<td><strong>18 May</strong></td>
+<td style="text-align: right;"><strong>4,592</strong></td>
+<td style="text-align: right;">110</td>
+</tr>
+<tr class="odd">
+<td>19 May</td>
+<td style="text-align: right;">2,710</td>
+<td style="text-align: right;"><strong>177</strong></td>
+</tr>
+<tr class="even">
+<td>20 May</td>
+<td style="text-align: right;">2,223</td>
+<td style="text-align: right;">99</td>
+</tr>
+<tr class="odd">
+<td>21 May</td>
+<td style="text-align: right;">954</td>
+<td style="text-align: right;">80</td>
+</tr>
+<tr class="even">
+<td>22 May</td>
+<td style="text-align: right;">1,920</td>
+<td style="text-align: right;">128</td>
+</tr>
+<tr class="odd">
+<td>23 May</td>
+<td style="text-align: right;">2,064</td>
+<td style="text-align: right;">118</td>
+</tr>
+<tr class="even">
+<td>24 May</td>
+<td style="text-align: right;">1,125</td>
+<td style="text-align: right;">88</td>
+</tr>
+<tr class="odd">
+<td>25 May (kısmi)</td>
+<td style="text-align: right;">1,382</td>
+<td style="text-align: right;">43</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Yorum:</strong> 18 May’daki pik (4,592 istek) muhtemelen bir
+kampanya veya sosyal medya aktivitesi sonucu. 19-23 May arası ortalama
+günlük istek seviyesi 1,920+ ile stabilize olmuş. 25 May için kısmi gün
+verisi var.</p>
+<h1 id="http-status-code-dağılımı">2. HTTP Status Code Dağılımı</h1>
+<h2 id="public-www.vistaseeds.com.tr">2.1 Public
+(www.vistaseeds.com.tr)</h2>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Code</th>
+<th style="text-align: right;">Sayı</th>
+<th style="text-align: right;">%</th>
+<th>Açıklama</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>200 OK</td>
+<td style="text-align: right;">20,359</td>
+<td style="text-align: right;">88.9%</td>
+<td>Başarılı</td>
+</tr>
+<tr class="even">
+<td>307 Temporary Redirect</td>
+<td style="text-align: right;">1,064</td>
+<td style="text-align: right;">4.6%</td>
+<td>Locale prefix yönlendirmesi (normal)</td>
+</tr>
+<tr class="odd">
+<td>404 Not Found</td>
+<td style="text-align: right;">514</td>
+<td style="text-align: right;">2.2%</td>
+<td>Detay §4</td>
+</tr>
+<tr class="even">
+<td>500 Internal Server Error</td>
+<td style="text-align: right;">496</td>
+<td style="text-align: right;">2.2%</td>
+<td>Detay §5</td>
+</tr>
+<tr class="odd">
+<td>308 Permanent Redirect</td>
+<td style="text-align: right;">197</td>
+<td style="text-align: right;">0.9%</td>
+<td>Yeni 301 fix’leri</td>
+</tr>
+<tr class="even">
+<td>304 Not Modified</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: right;">0.8%</td>
+<td>Tarayıcı cache (iyi)</td>
+</tr>
+<tr class="odd">
+<td>499 Client Closed</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">0.1%</td>
+<td>Mobil bağlantı kopması</td>
+</tr>
+<tr class="even">
+<td>204 No Content</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">0.1%</td>
+<td>Analytics ping vb.</td>
+</tr>
+<tr class="odd">
+<td>502 Bad Gateway</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">0.1%</td>
+<td>Upstream kısa kesinti</td>
+</tr>
+<tr class="even">
+<td>Diğer (400, 401, 206, 201)</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">&lt;0.1%</td>
+<td>Normal</td>
+</tr>
+</tbody>
+</table>
+<h2 id="admin-panel-panel.vistaseeds.com.tr">2.2 Admin Panel
+(panel.vistaseeds.com.tr)</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Code</th>
+<th style="text-align: right;">Sayı</th>
+<th style="text-align: right;">%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>200 OK</td>
+<td style="text-align: right;">487</td>
+<td style="text-align: right;">62.7%</td>
+</tr>
+<tr class="even">
+<td>404 Not Found</td>
+<td style="text-align: right;">258</td>
+<td style="text-align: right;">33.2%</td>
+</tr>
+<tr class="odd">
+<td>307/308 redirect</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">3.4%</td>
+</tr>
+<tr class="even">
+<td>400 / 500</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.6%</td>
+</tr>
+<tr class="odd">
+<td>304 Not Modified</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.1%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Yorum:</strong> Panel’deki 404’lerin büyük çoğunluğu
+<code>/robots.txt</code> ve probe URL’lerinden geliyor. Detay §4.3.</p>
+<h1 id="ziyaretçi-ve-bot-analizi">3. Ziyaretçi ve Bot Analizi</h1>
+<h2 id="insan-vs-bot-trafiği">3.1 İnsan vs Bot Trafiği</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Kategori</th>
+<th style="text-align: right;">İstek</th>
+<th style="text-align: right;">%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>İnsan</strong> (Mozilla, bot olmayan UA)</td>
+<td style="text-align: right;">18,432</td>
+<td style="text-align: right;">80.5%</td>
+</tr>
+<tr class="even">
+<td><strong>Bot</strong></td>
+<td style="text-align: right;">2,683</td>
+<td style="text-align: right;">11.7%</td>
+</tr>
+<tr class="odd">
+<td><strong>Sistem / SSR / cURL</strong> (node, self-call)</td>
+<td style="text-align: right;">1,788</td>
+<td style="text-align: right;">7.8%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="bot-detayı">3.2 Bot Detayı</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Bot</th>
+<th style="text-align: right;">İstek</th>
+<th>Davranış</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Googlebot</td>
+<td style="text-align: right;">725</td>
+<td>Arama motoru indeksleme</td>
+</tr>
+<tr class="even">
+<td>ClaudeBot</td>
+<td style="text-align: right;">660</td>
+<td>AI eğitim/arama (izinli)</td>
+</tr>
+<tr class="odd">
+<td>GPTBot</td>
+<td style="text-align: right;">292</td>
+<td>OpenAI (izinli)</td>
+</tr>
+<tr class="even">
+<td>Bingbot</td>
+<td style="text-align: right;">244</td>
+<td>Microsoft arama</td>
+</tr>
+<tr class="odd">
+<td>AhrefsBot</td>
+<td style="text-align: right;">159</td>
+<td>SEO crawler</td>
+</tr>
+<tr class="even">
+<td>Facebook Externalhit</td>
+<td style="text-align: right;">74</td>
+<td>Sosyal medya OG önizleme</td>
+</tr>
+<tr class="odd">
+<td>BaiduSpider</td>
+<td style="text-align: right;">67</td>
+<td>Çin arama motoru</td>
+</tr>
+<tr class="even">
+<td>SemrushBot</td>
+<td style="text-align: right;">59</td>
+<td>SEO crawler</td>
+</tr>
+<tr class="odd">
+<td>AppleBot</td>
+<td style="text-align: right;">30</td>
+<td>Siri / Spotlight</td>
+</tr>
+<tr class="even">
+<td>Yandex</td>
+<td style="text-align: right;">12</td>
+<td>Rus arama motoru</td>
+</tr>
+<tr class="odd">
+<td>Twitterbot</td>
+<td style="text-align: right;">11</td>
+<td>Twitter kart önizleme</td>
+</tr>
+<tr class="even">
+<td>Bytespider</td>
+<td style="text-align: right;"><strong>1</strong></td>
+<td><strong>robots.txt’de engelli</strong> ✓</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Yorum:</strong> AI crawler trafiği toplam <strong>952
+istek</strong> (ClaudeBot + GPTBot), bu GEO (Generative Engine
+Optimization) açısından sağlıklı. robots.txt’deki izin kuralları
+çalışıyor.</p>
+<h2 id="tekil-ziyaretçi-trendi">3.3 Tekil Ziyaretçi Trendi</h2>
+<p>14 günlük periyotta toplam <strong>896 tekil IP</strong>. Günlük 34 –
+177 tekil ziyaretçi aralığında, ortalama <strong>~80/gün</strong>. Trend
+yükseliş eğiliminde (11 May 68 → 22 May 128, +88%).</p>
+<h1 id="hatalar-detaylı-inceleme">4. 404 Hatalar — Detaylı İnceleme</h1>
+<h2 id="en-çok-404-veren-urller-public">4.1 En Çok 404 Veren URL’ler
+(Public)</h2>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 30%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sıra</th>
+<th>URL</th>
+<th style="text-align: right;">Adet</th>
+<th>Kaynak / Çözüm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>/api/site_settings/ui_admin_config</code></td>
+<td style="text-align: right;">38</td>
+<td>Admin panel SSR v1 olmadan çağrı — <strong>Düzeltildi (commit
+6521dd6)</strong></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>/api/site_settings/site_logo?locale=tr</code></td>
+<td style="text-align: right;">38</td>
+<td>Aynı — Düzeltildi</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>/api/site_settings/site_favicon?locale=tr</code></td>
+<td style="text-align: right;">38</td>
+<td>Aynı — Düzeltildi</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><code>/api/site_settings/site_apple_touch_icon</code></td>
+<td style="text-align: right;">38</td>
+<td>Aynı — Düzeltildi</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><code>/tr/urun/saray-f1</code></td>
+<td style="text-align: right;"><strong>15</strong></td>
+<td>⚠ Eski tekil URL pattern — redirect gerek</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><code>/uploads/media/logo/logo-light.png</code></td>
+<td style="text-align: right;">14</td>
+<td>DB’de tanımsız logo path</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><code>/tr/urun/avar</code></td>
+<td style="text-align: right;">12</td>
+<td>⚠ Aynı tekil pattern</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><code>/tr/urun/cankan-f1</code></td>
+<td style="text-align: right;">6</td>
+<td>⚠ Aynı</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td><code>/tr/urun/kizgin-f1</code>, <code>/prestij-f1</code>,
+<code>/tirpan-f1</code> vb.</td>
+<td style="text-align: right;">10+</td>
+<td>⚠ Aynı</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td><code>/tr/grup-sirketlerimiz/vista-prestige</code> vb.</td>
+<td style="text-align: right;">20+</td>
+<td>⚠ Sitede yok — yanlış backlink (vistainsaat?)</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td><code>/de/anbauleitfaden/...</code>,
+<code>/de/referenzen/...</code></td>
+<td style="text-align: right;">12</td>
+<td>DE locale seed eksik</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td><code>/_next/static/chunks/01hhw9.g.52.b.js</code></td>
+<td style="text-align: right;">4</td>
+<td>Eski JS chunk (tarayıcı cache)</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td><code>/uploads/slide/slide-1-field.webp</code></td>
+<td style="text-align: right;">5</td>
+<td>Eksik medya dosyası</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td><code>/tr/wp-admin/js</code></td>
+<td style="text-align: right;">4</td>
+<td>Bot probe</td>
+</tr>
+</tbody>
+</table>
+<h2 id="üreten-botlar-probes">4.2 404 Üreten Botlar / Probes</h2>
+<p>Otomatik probe trafiği — saldırı denemesi:</p>
+<pre><code>/wp-login.php   /.git/config       /.env  /.env.local
+/.env.docker    /.env.dev          /admin.php
+/webmail/phpinfo.php               /vendor/.env
+/www/.env       /wordpress/.env    /v2/.env  /v3/.env</code></pre>
+<p>Bu URL’ler için <strong>nginx tarafında erken bloklama</strong>
+önerilir (Bölüm §7.D).</p>
+<h2 id="admin-panel-404leri">4.3 Admin Panel 404’leri</h2>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 40%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>URL</th>
+<th style="text-align: right;">Adet</th>
+<th>Çözüm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/robots.txt</code></td>
+<td style="text-align: right;">29</td>
+<td><code>admin_panel/public/robots.txt</code> ekle</td>
+</tr>
+<tr class="even">
+<td><code>/api/auth/token</code></td>
+<td style="text-align: right;">15</td>
+<td>v1 olmadan eski cache — yeni build sonrası durdu</td>
+</tr>
+<tr class="odd">
+<td><code>/uploads/media/logo/vistaseed_logo.png</code></td>
+<td style="text-align: right;">11</td>
+<td>Düzeltildi (rewrite + branding fix)</td>
+</tr>
+<tr class="even">
+<td><code>/uploads/media/logo/favicon.png</code></td>
+<td style="text-align: right;">4</td>
+<td>Aynı</td>
+</tr>
+<tr class="odd">
+<td><code>/auth/login</code></td>
+<td style="text-align: right;">3</td>
+<td>Eski path</td>
+</tr>
+<tr class="even">
+<td><code>/apple-touch-icon.png</code></td>
+<td style="text-align: right;">2</td>
+<td>Eksik dosya</td>
+</tr>
+<tr class="odd">
+<td><code>/.git/config</code></td>
+<td style="text-align: right;">2</td>
+<td>Saldırı probe</td>
+</tr>
+</tbody>
+</table>
+<h1 id="xx-hatalar-detaylı-inceleme">5. 5xx Hatalar — Detaylı
+İnceleme</h1>
+<h2 id="en-çok-5xx-veren-urller">5.1 En Çok 5xx Veren URL’ler</h2>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>URL</th>
+<th style="text-align: right;">Adet</th>
+<th style="text-align: right;">Code</th>
+<th>Kaynak</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/apple-touch-icon-precomposed.png</code></td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">500</td>
+<td>Next.js bunu üretmiyor; soft-500</td>
+</tr>
+<tr class="even">
+<td><code>/sitemap_index.xml</code></td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">500</td>
+<td>WordPress probe — <strong>25 May 14:36+ 308 redirect</strong> ✓</td>
+</tr>
+<tr class="odd">
+<td><code>/en/contact</code></td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">500</td>
+<td>localizedPathRedirects’de var ama 500 — middleware sırası
+incelenmeli</td>
+</tr>
+<tr class="even">
+<td><code>/sitemap.txt</code>, <code>/atom.xml</code></td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">500</td>
+<td>WordPress probe</td>
+</tr>
+<tr class="odd">
+<td><code>/en/compare</code>, <code>/de/vergleich</code></td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">500</td>
+<td>redirect var → middleware sırası şüphesi</td>
+</tr>
+<tr class="even">
+<td><code>/dx.php</code>, <code>/p.php</code>, <code>/av.php</code>,
+<code>/admin.php</code>, <code>/zxz.php</code></td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">500</td>
+<td>Saldırı probe (PHP injection denemesi)</td>
+</tr>
+<tr class="odd">
+<td><code>/.env</code>, <code>/.env.local</code>,
+<code>/.env.docker</code>, <code>/.env.dev</code></td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">500</td>
+<td>Saldırı probe</td>
+</tr>
+<tr class="even">
+<td><code>/api/v1/auth/token</code></td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">500</td>
+<td>MySQL grant öncesi — <strong>Grant verildi</strong> ✓</td>
+</tr>
+<tr class="odd">
+<td><code>/en/products</code>, <code>/de/produkte</code>,
+<code>/en/faq</code>, <code>/de/faq</code></td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">500</td>
+<td>redirect var → middleware sırası incelenmeli</td>
+</tr>
+<tr class="even">
+<td><code>/tr/urunler?_rsc=...</code></td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">502</td>
+<td>Upstream kısa kesinti (anlık)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="xx-trend-analizi">5.2 5xx Trend Analizi</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Periyot</th>
+<th style="text-align: right;">5xx istek</th>
+<th style="text-align: right;">Oran</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>14 günlük toplam</td>
+<td style="text-align: right;">496</td>
+<td style="text-align: right;">2.2%</td>
+</tr>
+<tr class="even">
+<td>Son 1 saat (14:30-15:30 UTC)</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.3%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>İyileşme: 7x.</strong> Kalan 4 adet 500 hatası
+<code>/api/v1/auth/token</code> — bu büyük olasılıkla yanlış şifre
+denemeleri sırasında oluşan bir yan etki (401 ile birlikte 4-4
+dağılım).</p>
+<h1 id="top-20-ip-trafik-kaynakları">6. Top 20 IP — Trafik
+Kaynakları</h1>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 30%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>IP</th>
+<th style="text-align: right;">İstek</th>
+<th>Tanım</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>47.65.178.211</td>
+<td style="text-align: right;">1,632</td>
+<td>TR ISP — kampanya tıklamaları (Google Ads)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>66.249.87.161</td>
+<td style="text-align: right;">774</td>
+<td><strong>Googlebot</strong></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><strong>187.124.166.65</strong></td>
+<td style="text-align: right;">666</td>
+<td><strong>Sunucu kendi IP’si</strong> (Next.js SSR self-call)</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>176.233.29.85</td>
+<td style="text-align: right;">581</td>
+<td>TR ISP — insan</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>66.102.8.130</td>
+<td style="text-align: right;">532</td>
+<td><strong>Google Search Console</strong> verifier</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>66.102.8.131</td>
+<td style="text-align: right;">520</td>
+<td><strong>Google Search Console</strong> verifier</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>66.102.8.129</td>
+<td style="text-align: right;">509</td>
+<td><strong>Google Search Console</strong> verifier</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>47.65.177.60</td>
+<td style="text-align: right;">454</td>
+<td>TR ISP — karışık (insan + curl test)</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>20.226.13.15</td>
+<td style="text-align: right;">440</td>
+<td><strong>Microsoft Azure</strong> (Bingbot/AI crawler)</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>47.65.177.213</td>
+<td style="text-align: right;">307</td>
+<td>TR ISP — insan</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>85.107.108.193</td>
+<td style="text-align: right;">282</td>
+<td>TR ISP</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>176.9.19.245</td>
+<td style="text-align: right;">281</td>
+<td>DE Hetzner — bot</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>78.177.143.20</td>
+<td style="text-align: right;">273</td>
+<td>TR ISP</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>74.125.218.230</td>
+<td style="text-align: right;">252</td>
+<td><strong>Google</strong> infra</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>24.133.49.27</td>
+<td style="text-align: right;">221</td>
+<td>TR ISP</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td>66.249.75.97</td>
+<td style="text-align: right;">217</td>
+<td><strong>Googlebot</strong></td>
+</tr>
+<tr class="odd">
+<td>17</td>
+<td>5.176.8.32</td>
+<td style="text-align: right;">211</td>
+<td>TR ISP</td>
+</tr>
+<tr class="even">
+<td>18</td>
+<td>85.105.31.6</td>
+<td style="text-align: right;">209</td>
+<td>TR ISP</td>
+</tr>
+<tr class="odd">
+<td>19</td>
+<td>176.54.150.7</td>
+<td style="text-align: right;">203</td>
+<td>TR ISP</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>66.249.87.162</td>
+<td style="text-align: right;">198</td>
+<td><strong>Googlebot</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Yorum:</strong> Top 20 IP’nin yaklaşık <strong>%50’si Google
+altyapısı</strong> (bot + Search Console). Bu sağlıklı — Google site’yi
+aktif tarıyor ve doğruluyor. Sunucu self-call (#3) Next.js SSR
+fetch’lerinden kaynaklı, normal davranış.</p>
+<h1 id="aksiyon-planı">7. Aksiyon Planı</h1>
+<h2 id="a-acil-yeni-redirect-eklenmeli-50-adet-404ü-çözer">7.A Acil —
+Yeni Redirect Eklenmeli (≥50 adet 404’ü çözer)</h2>
+<p>Frontend <code>next.config.ts</code> içindeki
+<code>redirects()</code> listesine ekle:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  source<span class="op">:</span> <span class="st">&#39;/:locale(tr|en|de)/urun/:slug&#39;</span><span class="op">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  destination<span class="op">:</span> <span class="st">&#39;/:locale/urunler/:slug&#39;</span><span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  permanent<span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span></span></code></pre></div>
+<p>Bu kural şu URL’leri kurtarır: <code>saray-f1</code> (15),
+<code>avar</code> (12), <code>cankan-f1</code> (6),
+<code>kizgin-f1</code>, <code>prestij-f1</code>, <code>tirpan-f1</code>,
+<code>lucky-f1</code>, <code>birlik-f1</code> vb.</p>
+<h2 id="b-acil-grup-sirketlerimiz-404leri">7.B Acil —
+<code>/grup-sirketlerimiz/*</code> 404’leri</h2>
+<p>Bu URL’ler site’te yok ama dış kaynaktan link almış (muhtemelen
+vistainsaat veya eski içerik). Çözüm: <code>/tr/hakkimizda</code> veya
+<code>/tr/markalar</code>’a 301 yönlendirme.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  source<span class="op">:</span> <span class="st">&#39;/:locale(tr|en|de)/grup-sirketlerimiz/:slug&#39;</span><span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  destination<span class="op">:</span> <span class="st">&#39;/:locale/hakkimizda&#39;</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  permanent<span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span></span></code></pre></div>
+<h2 id="c-orta-eksik-assetler">7.C Orta — Eksik Asset’ler</h2>
+<ul>
+<li><code>frontend/public/apple-touch-icon.png</code> (180×180 px) ekle
+— 12 adet 500’ü çözer.</li>
+<li><code>admin_panel/public/robots.txt</code> ekle (içerik:
+<code>User-agent: *\nDisallow: /</code>) — 29 adet 404’ü çözer.</li>
+<li><code>admin_panel/public/apple-touch-icon.png</code> ekle.</li>
+</ul>
+<h2 id="d-orta-nginx-saldırı-bloklaması">7.D Orta — Nginx Saldırı
+Bloklaması</h2>
+<p><code>/etc/nginx/sites-available/vistaseed</code> içine ekle:</p>
+<pre class="nginx"><code>location ~ /\.(env|git|svn|hg) { return 444; }
+location ~* \.(php|aspx|asp|cgi|jsp)$ { return 444; }
+location ~* /wp-(admin|login|content|includes) { return 444; }
+location = /xmlrpc.php { return 444; }</code></pre>
+<p>Bu, Next.js’e ulaşmadan probe trafiğini düşürür. CPU ve log gürültüsü
+azalır.</p>
+<h2 id="e-düşük-encontact-encompare-devergleich-500-sorunu">7.E Düşük —
+<code>/en/contact</code>, <code>/en/compare</code>,
+<code>/de/vergleich</code> 500 sorunu</h2>
+<p>localizedPathRedirects bu yolları kapsıyor ama log’da 500 görünüyor.
+Olası neden: next-intl middleware redirect’ten önce locale resolution
+çalışıyor. <strong>İnceleme gerekli</strong> — büyük olasılıkla fix
+sonrası çoğu düzeldi, kalan 500’ler eski cache.</p>
+<h2 id="f-düşük-de-locale-içerik-eksiği">7.F Düşük — DE Locale İçerik
+Eksiği</h2>
+<p><code>/de/anbauleitfaden/...</code>, <code>/de/referenzen/...</code>
+404’leri DB’de DE locale içerikleri seed edilmediğini gösteriyor. Sorun
+değil ama uzun vadede DE pazarlama isteniyorsa seed eklenmeli.</p>
+<h1 id="sağlıklı-sinyaller">8. Sağlıklı Sinyaller</h1>
+<ul>
+<li>✓ 200 OK oranı %88.9 — normal</li>
+<li>✓ AI crawler erişimi açık ve aktif (952 istek 14 günde)</li>
+<li>✓ Bytespider engelli, sadece 1 deneme</li>
+<li>✓ Saldırı probe başarısı düşük (1 adet <code>/wp-login.php</code>
+404)</li>
+<li>✓ Trend yukarı yönlü (+88% tekil ziyaretçi 2 haftada)</li>
+<li>✓ Fix sonrası 4xx %5x, 5xx %7x iyileşme</li>
+<li>✓ Google Search Console aktif olarak siteyi doğruluyor (1,561
+istek)</li>
+<li>✓ HTTPS/security header’lar yerinde (X-Frame-Options,
+X-Content-Type-Options)</li>
+</ul>
+<h1 id="sonuç-ve-öneriler">9. Sonuç ve Öneriler</h1>
+<p>Site <strong>sağlıklı durumda</strong>. 25 Mayıs 2026’da uygulanan
+fix paketi (Search Console 5xx/404 + admin panel auth + branding)
+<strong>etkili biçimde çalışıyor</strong>. Kalan problemler:</p>
+<ol type="1">
+<li><strong>Eski tekil URL pattern</strong> (<code>/urun/</code>) — tek
+redirect ile çözülür (50+ 404)</li>
+<li><strong>Yanlış backlink’ler</strong>
+(<code>/grup-sirketlerimiz/*</code>) — redirect veya 410 ile çözülür
+(20+ 404)</li>
+<li><strong>Eksik favicon/robots.txt</strong> — basit dosya ekleme</li>
+<li><strong>Saldırı probe trafiği</strong> — nginx tarafında bloklamak
+CPU/log temizliği sağlar</li>
+</ol>
+<p>Aksiyon önceliği:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Öncelik</th>
+<th>Aksiyon</th>
+<th>Beklenen Etki</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>P0</td>
+<td><code>/urun/</code> → <code>/urunler/</code> redirect</td>
+<td>50+ 404 → 0</td>
+</tr>
+<tr class="even">
+<td>P0</td>
+<td><code>/grup-sirketlerimiz/*</code> → <code>/hakkimizda</code>
+redirect</td>
+<td>20+ 404 → 0</td>
+</tr>
+<tr class="odd">
+<td>P1</td>
+<td>apple-touch-icon + admin robots.txt</td>
+<td>40+ 4xx/5xx → 0</td>
+</tr>
+<tr class="even">
+<td>P1</td>
+<td>Nginx probe bloklaması</td>
+<td>CPU temizliği</td>
+</tr>
+<tr class="odd">
+<td>P2</td>
+<td><code>/en/contact</code> vb. 500 incelemesi</td>
+<td>30+ 5xx → 0</td>
+</tr>
+<tr class="even">
+<td>P3</td>
+<td>DE locale içerik seed</td>
+<td>UX</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Rapor sonu.</strong> Sonraki rapor için önerilen aralık: 30
+gün sonra (24 Haziran 2026), Search Console doğrulama sonuçlarıyla
+birlikte.</p>
+<p><em>Hazırlayan: Vista Seeds Teknik Ekip — 25 Mayıs 2026</em></p>
+</body>
+</html>

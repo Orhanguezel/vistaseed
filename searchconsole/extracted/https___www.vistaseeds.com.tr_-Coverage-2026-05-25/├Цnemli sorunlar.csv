@@ -1,0 +1,9 @@
+Sebep,Kaynak,Doğrulama,Sayfa sayısı
+Bulunamadı (404),Web sitesi,Yok,27
+Sunucu hatası (5xx),Web sitesi,Yok,18
+"""noindex"" etiketi tarafından hariç tutuldu",Web sitesi,Yok,11
+Yönlendirmeli sayfa,Web sitesi,Yok,9
+Kullanıcı tarafından seçilen standart sayfa olmadan kopya,Web sitesi,Yok,1
+Keşfedildi - şu anda dizine eklenmiş değil,Google sistemleri,Yok,23
+Tarandı - şu anda dizine eklenmiş değil,Google sistemleri,Yok,3
+"Kopya, Google kullanıcıdan farklı bir standart sayfa seçti",Google sistemleri,Yok,1

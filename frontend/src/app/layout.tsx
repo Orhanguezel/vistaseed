@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { defaultLocale } from "@/i18n/routing";
 import { fetchSiteSettings, fetchAnalyticsConfig } from "@/lib/site-settings";
+import { getPublicApiV1, getPublicSiteOrigin } from "@/lib/runtime-config";
 import Analytics, { GtmNoscript } from "@/components/seo/Analytics";
 import "./globals.css";
 
@@ -13,14 +14,10 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
-const API_URL = (
-  process.env.INTERNAL_API_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:8083"
-).replace(/\/$/, "");
-const API_V1 = `${API_URL}/api/v1`;
+const SITE_URL = getPublicSiteOrigin();
+const API_V1 = getPublicApiV1();
 const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "vistaseeds";
+const GOOGLE_SITE_VERIFICATION = "967f1x4pD5AKD7ZEFj9nISGfkQGAKsGKte_RbkZCzrM";
 
 async function fetchGlobalSeo(locale: string) {
   try {
@@ -117,6 +114,7 @@ export default async function RootLayout({
       }}
     >
       <head>
+        <meta name="google-site-verification" content={GOOGLE_SITE_VERIFICATION} />
         <Analytics ga4Id={analytics.ga4Id} gtmId={analytics.gtmId} />
       </head>
       <body suppressHydrationWarning>

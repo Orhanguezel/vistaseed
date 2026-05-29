@@ -7,9 +7,10 @@ import BackToTopWidgetClient from "@/components/widgets/BackToTopWidgetClient";
 import FrostWarningWidgetClient from "@/components/widgets/FrostWarningWidgetClient";
 import { ROUTES } from "@/config/routes";
 import { appLocales, type AppLocale } from "@/i18n/routing";
+import { getPublicSiteOrigin } from "@/lib/runtime-config";
 import { fetchSiteSettings } from "@/lib/site-settings";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const SITE_URL = getPublicSiteOrigin();
 
 export function generateStaticParams() {
   return appLocales.map((locale) => ({ locale }));

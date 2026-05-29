@@ -52,5 +52,6 @@ export const ROUTES = {
     compare: "/karsilastirma",
     dealer_network: "/bayi-agi",
     bulk_sales: "/toplu-satis",
+    request_offer: "/teklif-al",
   },
 } as const;

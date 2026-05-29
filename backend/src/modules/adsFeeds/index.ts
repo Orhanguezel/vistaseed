@@ -1,0 +1,1 @@
+export { registerAdsFeeds } from './router';

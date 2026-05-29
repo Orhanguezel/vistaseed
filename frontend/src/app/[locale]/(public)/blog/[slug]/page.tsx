@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { API } from "@/config/api-endpoints";
+import { getServerApiOrigin } from "@/lib/runtime-config";
 import { ROUTES } from "@/config/routes";
 import { buildMetadata } from "@/lib/seo";
 import { toLocalizedPath } from "@/i18n/routing";
@@ -10,11 +11,7 @@ import type { BlogPostDetail } from "@/modules/blog/blog.types";
 
 export const revalidate = 300;
 
-const BASE_URL = (
-  process.env.INTERNAL_API_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:8083"
-).replace(/\/$/, "");
+const BASE_URL = getServerApiOrigin();
 
 async function fetchBlogPost(slug: string, locale: string): Promise<BlogPostDetail | null> {
   try {

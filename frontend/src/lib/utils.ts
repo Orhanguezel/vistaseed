@@ -1,4 +1,5 @@
 export { cn } from "@agro/shared-ui/public/lib/cn";
+import { getPublicSiteOrigin } from "@/lib/runtime-config";
 
 /**
  * Sürücü adını gizler: "Ahmet Hakan" → "A.H."
@@ -53,12 +54,11 @@ export function resolveClientApiBase(): string {
   return "";
 }
 
-const SITE_ORIGIN = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
-
 /** JSON-LD / Open Graph icin mutlak URL (site origin + path). */
 export function absolutePublicAssetUrl(path: string | null | undefined): string | undefined {
   const p = typeof path === "string" ? path.trim() : "";
   if (!p) return undefined;
   if (p.startsWith("http://") || p.startsWith("https://")) return p;
-  return p.startsWith("/") ? `${SITE_ORIGIN}${p}` : `${SITE_ORIGIN}/${p}`;
+  const siteOrigin = getPublicSiteOrigin();
+  return p.startsWith("/") ? `${siteOrigin}${p}` : `${siteOrigin}/${p}`;
 }

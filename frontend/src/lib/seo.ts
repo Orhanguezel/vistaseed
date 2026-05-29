@@ -4,14 +4,10 @@
 import type { Metadata } from "next";
 import { appLocales, toLocalizedPath, type AppLocale } from "@/i18n/routing";
 import { getRequestLocale } from "@/i18n/get-request-locale";
+import { getPublicApiV1, getPublicSiteOrigin } from "@/lib/runtime-config";
 
-const BASE_URL = (
-  process.env.INTERNAL_API_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:8083"
-).replace(/\/$/, "");
-const API_V1 = `${BASE_URL}/api/v1`;
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
+const API_V1 = getPublicApiV1();
+const SITE_URL = getPublicSiteOrigin();
 
 export interface PageSeoData {
   pageKey: string;

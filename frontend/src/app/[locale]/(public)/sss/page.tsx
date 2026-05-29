@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { getPageMetadata } from "@/lib/seo";
 import { API } from "@/config/api-endpoints";
+import { getServerApiOrigin } from "@/lib/runtime-config";
 
 export const revalidate = 300;
 
@@ -17,11 +18,7 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
   });
 }
 
-const BASE_URL = (
-  process.env.INTERNAL_API_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:8083"
-).replace(/\/$/, "");
+const BASE_URL = getServerApiOrigin();
 
 interface FaqItem {
   id: string;

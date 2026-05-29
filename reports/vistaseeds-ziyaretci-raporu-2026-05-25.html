@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <title>VistaSeeds Ziyaretçi ve Kampanya İlk Hafta Raporu</title>
+  <style>
+    @page { size: A4; margin: 18mm 16mm; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: #17231c;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      line-height: 1.45;
+      background: #fff;
+    }
+    .cover {
+      border-bottom: 3px solid #1f8f4d;
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+    }
+    .eyebrow {
+      color: #1f8f4d;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      line-height: 1.15;
+      color: #0f3b22;
+    }
+    h2 {
+      margin: 22px 0 10px;
+      font-size: 17px;
+      color: #0f3b22;
+      border-bottom: 1px solid #d8e5dc;
+      padding-bottom: 5px;
+    }
+    h3 {
+      margin: 14px 0 8px;
+      font-size: 13px;
+      color: #1b4d31;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .meta div, .note, .metric, .callout {
+      border: 1px solid #d8e5dc;
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: #f7fbf8;
+    }
+    .meta strong, .metric strong {
+      display: block;
+      color: #5b6b61;
+      font-size: 10px;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 12px 0 18px;
+    }
+    .metric span {
+      display: block;
+      font-size: 20px;
+      color: #103d25;
+      font-weight: 700;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 14px;
+    }
+    th, td {
+      border: 1px solid #dce7df;
+      padding: 7px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #eaf5ee;
+      color: #123c25;
+      font-size: 11px;
+    }
+    tr:nth-child(even) td { background: #fafdfb; }
+    .chart {
+      margin: 10px 0 18px;
+      border: 1px solid #d8e5dc;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 70px 1fr 48px;
+      gap: 10px;
+      align-items: center;
+      margin: 7px 0;
+    }
+    .bar-track {
+      height: 14px;
+      background: #edf3ef;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar {
+      height: 100%;
+      background: linear-gradient(90deg, #1f8f4d, #64b777);
+      border-radius: 999px;
+    }
+    .bar.paid {
+      background: linear-gradient(90deg, #c2410c, #f59e0b);
+    }
+    .muted { color: #627369; }
+    .good { color: #14733b; font-weight: 700; }
+    .warn { color: #a46200; font-weight: 700; }
+    .delta-up { color: #14733b; font-weight: 700; }
+    .delta-down { color: #a01b1b; font-weight: 700; }
+    ul { margin: 8px 0 12px 18px; padding: 0; }
+    li { margin: 4px 0; }
+    .callout {
+      background: #fff9ea;
+      border-color: #efd38e;
+      margin: 12px 0;
+    }
+    .callout.green {
+      background: #ecfaf1;
+      border-color: #8ed3a8;
+    }
+    .footer {
+      margin-top: 26px;
+      padding-top: 10px;
+      border-top: 1px solid #d8e5dc;
+      color: #6a7a70;
+      font-size: 10px;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <div class="eyebrow">VistaSeeds Dijital Ekosistem · Bölüm 2</div>
+    <h1>Ziyaretçi ve Kampanya İlk Hafta Raporu</h1>
+    <p class="muted">
+      Bu rapor, 18 Mayıs 2026 (kampanya başlangıç günü) ile 25 Mayıs 2026 arasındaki 8 günlük dönemi kapsar.
+      18 Mayıs Ziyaretçi ve Kampanya Başlangıç Raporu'nun devamıdır; o raporda baseline (12-18 Mayıs) ölçülmüş, bu raporda kampanyanın ilk haftası analiz edilmiştir.
+      Veri kaynağı: VistaSeeds canlı nginx erişim logları. Filtreleme: bot, statik dosya, API, _rsc, GTM debug, SSR self-call hariç. Sadece 200 ve 304 yanıtları sayılır.
+    </p>
+    <div class="meta">
+      <div><strong>Rapor tarihi</strong>25 Mayıs 2026</div>
+      <div><strong>Kapsam</strong>18-25 Mayıs 2026 (8 gün)</div>
+      <div><strong>Alan adı</strong>www.vistaseeds.com.tr</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Yönetici Özeti</h2>
+    <div class="summary">
+      <div class="metric"><strong>Toplam temiz sayfa görüntüleme</strong><span>945</span>8 gün</div>
+      <div class="metric"><strong>Tekil ziyaretçi (IP)</strong><span>442</span>8 gün toplamı</div>
+      <div class="metric"><strong>Teklif sayfası ziyareti</strong><span>373</span>kampanya hedef sayfası</div>
+      <div class="metric"><strong>Paid Ads (gclid) inişi</strong><span>358</span>183 tekil IP</div>
+    </div>
+    <div class="callout green">
+      <strong class="good">Kampanya çalışıyor.</strong>
+      Önceki raporda 18 Mayıs'ta sadece <strong>1 adet gclid</strong> ve teklif sayfasında <strong>4 ziyaret</strong> tespit edilmişti.
+      İlk haftada bu rakamlar <strong>358 gclid (×358)</strong> ve <strong>373 teklif ziyareti (×93)</strong> seviyesine çıktı.
+      <code>/tr/teklif-al</code> şu an sitenin <strong>en çok görüntülenen sayfası</strong> olarak ana sayfa <code>/tr</code>'yi geride bıraktı.
+    </div>
+    <p>
+      Önemli ek bulgular:
+    </p>
+    <ul>
+      <li>Tekil ziyaretçi sayısı baseline döneme göre <strong class="delta-up">×3.9 arttı</strong> (113 → 442).</li>
+      <li>Google organik referrer trafiği <strong class="delta-up">×6.5 arttı</strong> (41 → 266 görüntüleme).</li>
+      <li>Instagram bio link UTM (utm_source=ig, utm_medium=social) ile <strong>15 ziyaret / 13 tekil IP</strong> elde edildi.</li>
+      <li>25 Mayıs'ta deploy edilen teknik fix paketinden sonra 4xx oranı <strong>%2.2 → %0.4</strong>, 5xx oranı <strong>%2.2 → %0.3</strong> seviyesine düştü.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Günlük Ziyaretçi Grafiği (18-25 Mayıs)</h2>
+    <div class="chart">
+      <div class="bar-row"><strong>18 May</strong><div class="bar-track"><div class="bar" style="width:100%"></div></div><span>243</span></div>
+      <div class="bar-row"><strong>19 May</strong><div class="bar-track"><div class="bar" style="width:48.1%"></div></div><span>117</span></div>
+      <div class="bar-row"><strong>20 May</strong><div class="bar-track"><div class="bar" style="width:43.2%"></div></div><span>105</span></div>
+      <div class="bar-row"><strong>21 May</strong><div class="bar-track"><div class="bar" style="width:16.5%"></div></div><span>40</span></div>
+      <div class="bar-row"><strong>22 May</strong><div class="bar-track"><div class="bar" style="width:42.0%"></div></div><span>102</span></div>
+      <div class="bar-row"><strong>23 May</strong><div class="bar-track"><div class="bar" style="width:37.0%"></div></div><span>90</span></div>
+      <div class="bar-row"><strong>24 May</strong><div class="bar-track"><div class="bar" style="width:16.5%"></div></div><span>40</span></div>
+      <div class="bar-row"><strong>25 May</strong><div class="bar-track"><div class="bar" style="width:85.6%"></div></div><span>208</span></div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Tarih</th>
+          <th>Sayfa görüntüleme</th>
+          <th>Tekil IP</th>
+          <th>Teklif sayfası</th>
+          <th>Paid (gclid)</th>
+          <th>Bot isteği</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>18 Mayıs 2026</td><td>243</td><td>72</td><td>22</td><td>15</td><td>386</td></tr>
+        <tr><td>19 Mayıs 2026</td><td>117</td><td>81</td><td>73</td><td>67</td><td>189</td></tr>
+        <tr><td>20 Mayıs 2026</td><td>105</td><td>63</td><td>60</td><td>58</td><td>295</td></tr>
+        <tr><td>21 Mayıs 2026</td><td>40</td><td>30</td><td>20</td><td>19</td><td>134</td></tr>
+        <tr><td>22 Mayıs 2026</td><td>102</td><td>64</td><td>60</td><td>64</td><td>402</td></tr>
+        <tr><td>23 Mayıs 2026</td><td>90</td><td>61</td><td>75</td><td>76</td><td>103</td></tr>
+        <tr><td>24 Mayıs 2026</td><td>40</td><td>32</td><td>30</td><td>30</td><td>146</td></tr>
+        <tr><td>25 Mayıs 2026</td><td>208</td><td>39</td><td>33</td><td>29</td><td>187</td></tr>
+        <tr style="font-weight:700;background:#eaf5ee;"><td>8 gün toplam</td><td>945</td><td>442*</td><td>373</td><td>358</td><td>1,842</td></tr>
+      </tbody>
+    </table>
+    <p class="muted" style="font-size:10.5px;margin-top:4px;">
+      * Tekil IP toplamı günlük tekil IP'lerin toplamıdır; gün içi tekrar eden ziyaretçileri bu rakam ayrı sayar.
+      Aralık toplamına göre benzersiz tekil IP daha düşüktür (ortalama ~80/gün baz alındığında ~320-360 aralığında tahmin edilebilir).
+    </p>
+  </section>
+
+  <section>
+    <h2>Trafik ve Sayfa Performansı</h2>
+
+    <h3>En çok görüntülenen sayfalar (18-25 May)</h3>
+    <table>
+      <thead><tr><th>Sıra</th><th>Sayfa</th><th>Görüntüleme</th><th>Not</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><code>/tr/teklif-al</code></td><td><strong>371</strong></td><td>Kampanya hedef sayfası — sitenin en çok ziyaret edileni</td></tr>
+        <tr><td>2</td><td><code>/tr</code></td><td>133</td><td>Ana sayfa</td></tr>
+        <tr><td>3</td><td><code>/tr/urunler</code></td><td>85</td><td>Ürün keşfi</td></tr>
+        <tr><td>4</td><td><code>/tr/iletisim</code></td><td>32</td><td>İletişim niyeti</td></tr>
+        <tr><td>5</td><td><code>/tr/hakkimizda</code></td><td>21</td><td>Kurumsal güven</td></tr>
+        <tr><td>6</td><td><code>/tr/sss</code></td><td>18</td><td>Sık sorulan sorular</td></tr>
+        <tr><td>7</td><td><code>/en/urunler/saray-f1</code></td><td>11</td><td>EN locale ürün detayı (yurtdışı ilgi)</td></tr>
+        <tr><td>8</td><td><code>/tr/urunler/tirpan-f1</code></td><td>8</td><td>Ürün detayı</td></tr>
+        <tr><td>9</td><td><code>/tr/urunler/prestij-f1</code></td><td>8</td><td>Ürün detayı</td></tr>
+        <tr><td>10</td><td><code>/tr/urunler/kizgin-f1</code></td><td>8</td><td>Ürün detayı</td></tr>
+        <tr><td>11</td><td><code>/tr/insan-kaynaklari</code></td><td>7</td><td>Kariyer</td></tr>
+        <tr><td>12</td><td><code>/tr/toplu-satis</code></td><td>6</td><td>B2B sayfası</td></tr>
+        <tr><td>13</td><td><code>/tr/ekim-rehberi</code></td><td>6</td><td>İçerik / blog tipi</td></tr>
+        <tr><td>14</td><td><code>/tr/bayi-agi</code></td><td>6</td><td>Bayi başvurusu</td></tr>
+        <tr><td>15</td><td><code>/tr/kullanim-kosullari</code></td><td>6</td><td>Yasal sayfa</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Trafik kaynakları</h3>
+    <table>
+      <thead><tr><th>Kaynak sinyali</th><th>Sayfa görüntüleme</th><th>Tekil IP</th><th>Önceki dönem</th></tr></thead>
+      <tbody>
+        <tr><td>Google referrer (organik)</td><td>266</td><td>115</td><td>41 ↑×6.5</td></tr>
+        <tr><td><strong>Paid Ads (gclid)</strong></td><td><strong>358</strong></td><td><strong>183</strong></td><td>1 ↑×358</td></tr>
+        <tr><td>Direkt / boş referrer</td><td>526</td><td>176</td><td>372 ↑×1.4</td></tr>
+        <tr><td>Instagram (referrer + UTM)</td><td>15</td><td>13</td><td>6 ↑×2.5</td></tr>
+        <tr><td>YouTube referrer</td><td>22</td><td>-</td><td>0</td></tr>
+        <tr><td>Facebook referrer</td><td>20</td><td>-</td><td>0</td></tr>
+      </tbody>
+    </table>
+
+    <h3>UTM kampanya etiketleri</h3>
+    <table>
+      <thead><tr><th>Etiket</th><th>Sayı</th><th>Yorum</th></tr></thead>
+      <tbody>
+        <tr><td><code>utm_source=ig</code></td><td>15</td><td>Instagram bio link</td></tr>
+        <tr><td><code>utm_medium=social</code></td><td>15</td><td>Sosyal medya kanalı</td></tr>
+        <tr><td><code>utm_campaign=*</code></td><td>0</td><td>⚠ Kampanya etiketi tanımlı değil — Google Ads otomatik etiketleme (gclid) kullanılıyor</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Paid Ads (Google Ads) Detayı</h2>
+    <div class="chart">
+      <div class="bar-row"><strong>18 May</strong><div class="bar-track"><div class="bar paid" style="width:19.7%"></div></div><span>15</span></div>
+      <div class="bar-row"><strong>19 May</strong><div class="bar-track"><div class="bar paid" style="width:88.2%"></div></div><span>67</span></div>
+      <div class="bar-row"><strong>20 May</strong><div class="bar-track"><div class="bar paid" style="width:76.3%"></div></div><span>58</span></div>
+      <div class="bar-row"><strong>21 May</strong><div class="bar-track"><div class="bar paid" style="width:25.0%"></div></div><span>19</span></div>
+      <div class="bar-row"><strong>22 May</strong><div class="bar-track"><div class="bar paid" style="width:84.2%"></div></div><span>64</span></div>
+      <div class="bar-row"><strong>23 May</strong><div class="bar-track"><div class="bar paid" style="width:100%"></div></div><span>76</span></div>
+      <div class="bar-row"><strong>24 May</strong><div class="bar-track"><div class="bar paid" style="width:39.5%"></div></div><span>30</span></div>
+      <div class="bar-row"><strong>25 May</strong><div class="bar-track"><div class="bar paid" style="width:38.2%"></div></div><span>29</span></div>
+    </div>
+    <table>
+      <thead><tr><th>Tarih</th><th>gclid inişi</th><th>Tekil IP</th><th>IP başına ortalama</th></tr></thead>
+      <tbody>
+        <tr><td>18 Mayıs</td><td>15</td><td>12</td><td>1.25</td></tr>
+        <tr><td>19 Mayıs</td><td>67</td><td>46</td><td>1.46</td></tr>
+        <tr><td>20 Mayıs</td><td>58</td><td>40</td><td>1.45</td></tr>
+        <tr><td>21 Mayıs</td><td>19</td><td>16</td><td>1.19</td></tr>
+        <tr><td>22 Mayıs</td><td>64</td><td>42</td><td>1.52</td></tr>
+        <tr><td>23 Mayıs</td><td>76</td><td>52</td><td>1.46</td></tr>
+        <tr><td>24 Mayıs</td><td>30</td><td>25</td><td>1.20</td></tr>
+        <tr><td>25 Mayıs</td><td>29</td><td>25</td><td>1.16</td></tr>
+      </tbody>
+    </table>
+    <p>
+      Gözlenen kampanya ID'leri (gad_campaignid parametresinden):
+      <code>23858139584</code>, <code>23862644545</code>, <code>23643860570</code>.
+      Üç farklı aktif kampanya tespit edildi.
+    </p>
+    <p class="muted" style="font-size:11px;">
+      IP başına 1.16-1.52 ortalama, kullanıcıların kampanyaya 1 kez tıklayıp sayfaya çoğunlukla 1 kez girdiğini gösteriyor.
+      Bu sağlıklı bir CTR davranışıdır; tekrar tıklama (yanlışlıkla veya kafa karışıklığı) düşük.
+    </p>
+  </section>
+
+  <section>
+    <h2>Önceki Dönemle Karşılaştırma</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Metrik</th>
+          <th>12-18 Mayıs (baseline)</th>
+          <th>18-25 Mayıs (ilk hafta)</th>
+          <th>Değişim</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Toplam temiz görüntüleme</td><td>620</td><td>945</td><td class="delta-up">+52.4%</td></tr>
+        <tr><td>Tekil IP (toplam)</td><td>113</td><td>442</td><td class="delta-up">×3.9</td></tr>
+        <tr><td><strong>/tr/teklif-al görüntüleme</strong></td><td>4</td><td><strong>373</strong></td><td class="delta-up"><strong>×93</strong></td></tr>
+        <tr><td><strong>Paid Ads (gclid) inişi</strong></td><td>1</td><td><strong>358</strong></td><td class="delta-up"><strong>×358</strong></td></tr>
+        <tr><td>Google organik referrer</td><td>41</td><td>266</td><td class="delta-up">×6.5</td></tr>
+        <tr><td>Instagram UTM</td><td>6</td><td>15</td><td class="delta-up">×2.5</td></tr>
+        <tr><td>Bot trafiği</td><td>~1,458</td><td>1,842</td><td>+26%</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Teknik Sağlık Notları (25 Mayıs Deploy Sonrası)</h2>
+    <div class="callout green">
+      <strong class="good">Sağlık metrikleri belirgin iyileşti.</strong>
+      25 Mayıs 13:28 UTC'de uygulanan teknik fix paketi sonrasında son 1 saatlik canlı log durumu:
+      <strong>4xx oranı %0.4</strong> (önceki %2.2'den ↓), <strong>5xx oranı %0.3</strong> (önceki %2.2'den ↓).
+    </div>
+    <ul>
+      <li>Search Console'da görülen <strong>18 sayfa 5xx</strong> (<code>/sitemap_index.xml</code>, <code>/sitemap-0.xml</code>) için 301 redirect eklendi.</li>
+      <li>Search Console'da görülen <strong>27 sayfa 404</strong> (eski <code>/urunler/kategori/*</code>, <code>/kategori/*</code>, <code>/blog/kategori/*</code> URL'leri) için 301 redirect eklendi.</li>
+      <li>Soft 404 olan auth/sepet kalıntı sayfaları (<code>/login</code>, <code>/profile</code>, <code>/sepet</code>, <code>/checkout</code>, <code>/wp-admin</code>) yeni hedeflere yönlendirildi.</li>
+      <li>Admin panel <code>/api/auth/token</code> 404 sorunu giderildi: <code>resolveBaseUrl()</code> prod fallback <code>/api</code> → <code>/api/v1</code> ve rewrite stripping mantığı düzeltildi.</li>
+      <li>Admin panel logo yolu (<code>/uploads/media/logo/vistaseed_logo.png</code>) 404'leri çözüldü.</li>
+      <li>Backend için VPS MySQL <code>app@localhost</code> hesabına eksik UPDATE / INSERT yetkileri verildi (refresh_token akışı sorunsuz çalıştı).</li>
+    </ul>
+
+    <h3>Henüz çözülmemiş tespitler</h3>
+    <ul>
+      <li>Eski tekil URL pattern: <code>/tr/urun/&lt;slug&gt;</code> (50+ adet 404) — redirect kuralı önerildi, henüz eklenmedi.</li>
+      <li>Sitede mevcut olmayan <code>/tr/grup-sirketlerimiz/*</code> URL'leri (20+ adet 404) — dış kaynaktan yanlış backlink, redirect veya 410 önerildi.</li>
+      <li><code>apple-touch-icon-precomposed.png</code> eksik (12 adet 500); admin panel <code>robots.txt</code> eksik (29 adet 404).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Sonraki Takip Planı</h2>
+    <ul>
+      <li><strong>30 Mayıs:</strong> Haftalık takip raporu (18-30 Mayıs özet, ilk 2 hafta kampanya performansı).</li>
+      <li><strong>1-7 Haziran:</strong> Google Search Console'da doğrulamayı başlat sonuçları (5xx, 404, Breadcrumbs) — beklenen: 5xx 18 → 0, 404 27 → &lt;5.</li>
+      <li>Google Ads tarafında gösterim, tıklama, ortalama BPC ve dönüşüm oranı metriklerini bu rapora entegre et.</li>
+      <li><code>utm_campaign</code> etiketi eksik — Google Ads URL şablonlarına <code>{campaignid}</code> bazlı UTM eklenmesi önerilir (raporlama netliği için).</li>
+      <li>Merchant Center ürün listing durumu kontrol edilecek (rapor: katalog/B2B modeli sabit, Merchant Listings raporu ignore edilebilir).</li>
+      <li>24 Haziran 2026: 30 günlük tam dönem ölçümü (yeni GSC export'u ile).</li>
+    </ul>
+  </section>
+
+  <div class="footer">
+    Rapor kaynağı: VistaSeeds canlı nginx erişim logları, 18-25 Mayıs 2026.
+    Filtreleme: bot, statik dosya, API çağrıları, /_next, /uploads, /storage, /favicon, /sitemap, /noise.png, /.well-known, _rsc=,
+    gtm_latency, SSR self-call (187.124.166.65) ve 2xx-3xx olmayan yanıtlar hariç tutulmuştur.
+    Önceki rapor: vistaseeds-ziyaretci-raporu-2026-05-18.pdf
+  </div>
+</body>
+</html>

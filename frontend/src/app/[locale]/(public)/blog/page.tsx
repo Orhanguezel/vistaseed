@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { API } from "@/config/api-endpoints";
+import { getServerApiOrigin } from "@/lib/runtime-config";
 import { ROUTES } from "@/config/routes";
 import { getPageMetadata } from "@/lib/seo";
 import { toLocalizedPath } from "@/i18n/routing";
@@ -13,11 +14,7 @@ import ProductDiscoveryLinks, { type DiscoveryItem } from "@/components/sections
 
 export const revalidate = 300;
 
-const BASE_URL = (
-  process.env.INTERNAL_API_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:8083"
-).replace(/\/$/, "");
+const BASE_URL = getServerApiOrigin();
 
 async function fetchBlogList(locale: string): Promise<BlogListResponse | null> {
   try {

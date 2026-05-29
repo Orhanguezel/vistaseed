@@ -18,6 +18,7 @@ import { registerBlog, registerBlogAdmin } from '@agro/shared-backend/modules/bl
 import { registerEcosystem } from '@/modules/ecosystem';
 import { registerSellers } from '@agro/shared-backend/modules/sellers';
 import { registerWeather } from '@/modules/weather/router';
+import { registerAdsFeeds } from '@/modules/adsFeeds';
 
 export async function registerProjectPublic(api: FastifyInstance) {
   await registerMail(api);
@@ -33,6 +34,7 @@ export async function registerProjectPublic(api: FastifyInstance) {
   await registerSellers(api);
   await registerWeather(api);
   await registerHomeLayoutPublic(api);
+  await registerAdsFeeds(api);
   await api.register(registerEcosystem);
 }
 

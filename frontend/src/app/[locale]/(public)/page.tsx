@@ -11,6 +11,7 @@ import {
   fetchSiteSettings,
   fetchHomepageFeaturePanels,
 } from "@/lib/site-settings";
+import { getPublicSiteOrigin, getServerApiOrigin } from "@/lib/runtime-config";
 import { API } from "@/config/api-endpoints";
 
 import AnimatedSections from "@/components/sections/AnimatedSections";
@@ -49,11 +50,7 @@ export async function generateMetadata({ params }: LocalePageProps): Promise<Met
 }
 
 function getApiBase() {
-  return (
-    process.env.INTERNAL_API_URL ||
-    process.env.NEXT_PUBLIC_API_URL ||
-    "http://localhost:8083"
-  ).replace(/\/$/, "");
+  return getServerApiOrigin();
 }
 
 function getCurrentSeasonTag(): string {
@@ -217,7 +214,7 @@ export default async function HomePage({ params }: LocalePageProps) {
     fetchHomeLayout(),
   ]);
 
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");
+  const siteUrl = getPublicSiteOrigin();
   const siteName = siteSettings.site_name || process.env.NEXT_PUBLIC_SITE_NAME || "Website";
   const siteLogo = siteSettings.site_logo
     ? (siteSettings.site_logo.startsWith("http") ? siteSettings.site_logo : `${siteUrl}${siteSettings.site_logo}`)
@@ -280,8 +277,6 @@ export default async function HomePage({ params }: LocalePageProps) {
       query: { cultivation: "openField", taste: "sweet" },
     },
   ];
-
-  const lcpImageUrl = sliders[0]?.image;
 
   // Admin panelden yönetilen section haritası — component_key bazlı.
   // Sıra ve aktif/pasif "home_sections" tablosundan gelen homeLayout array'inden okunur.
@@ -356,11 +351,6 @@ export default async function HomePage({ params }: LocalePageProps) {
 
   return (
     <div className="surface-page overflow-hidden">
-      {/* LCP preload — ilk hero slayt görselini fetchpriority=high ile önceden yükle */}
-      {lcpImageUrl && (
-        // @ts-ignore — React 19 / Next.js hoists <link> to <head>
-        <link rel="preload" as="image" href={lcpImageUrl} fetchPriority="high" />
-      )}
       {/* Structured Data — LocalBusiness for homepage (physical presence + brand) */}
       <JsonLd
         type="LocalBusiness"

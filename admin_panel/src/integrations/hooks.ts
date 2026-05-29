@@ -86,6 +86,12 @@ export {
 } from "@/integrations/endpoints/admin/audit-admin-endpoints";
 
 export {
+  useGetAnalyticsOverviewAdminQuery,
+  useGetAnalyticsDeviceDailyAdminQuery,
+  useGetAnalyticsHeatmapAdminQuery,
+} from "@/integrations/endpoints/admin/analytics-admin-endpoints";
+
+export {
   useListSiteSettingsAdminQuery,
   useGetSiteSettingAdminByKeyQuery,
   useGetAppLocalesAdminQuery,

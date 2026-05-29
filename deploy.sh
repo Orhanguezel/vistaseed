@@ -1,11 +1,14 @@
 #!/bin/bash
 set -e
-cd /var/www/vistaseed
+
+MONOREPO_ROOT="${MONOREPO_ROOT:-/var/www/tarim-dijital-ekosistem}"
+PROJECT_ROOT="$MONOREPO_ROOT/projects/vistaseeds"
+cd "$PROJECT_ROOT"
 
 echo "=== [1/7] shared-backend güncelle ==="
-cd /var/www/packages
+cd "$MONOREPO_ROOT"
 git pull origin main
-cd /var/www/vistaseed
+cd "$PROJECT_ROOT"
 
 echo "=== [2/7] vistaseed repo güncelle ==="
 git pull origin main

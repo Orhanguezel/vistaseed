@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { getPageMetadata } from "@/lib/seo";
 import { API } from "@/config/api-endpoints";
+import { getServerApiOrigin } from "@/lib/runtime-config";
 import ProductFilters from "@/modules/product/components/ProductFilters";
 import { applyProductFilters, findCategoryName } from "@/modules/product/product-filters";
 import type { Product, ProductCategory } from "@/modules/product/product.type";
@@ -31,11 +32,7 @@ export async function generateMetadata({ params, searchParams }: LocalePageProps
   return buildProductsMetadata(locale, resolvedSearchParams);
 }
 
-const BASE_URL = (
-  process.env.INTERNAL_API_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:8083"
-).replace(/\/$/, "");
+const BASE_URL = getServerApiOrigin();
 async function getProducts(locale: string): Promise<Product[]> {
   try {
     const res = await fetch(`${BASE_URL}${API.products.list}?is_active=true&locale=${locale}&sort=order_num&order=asc`, {

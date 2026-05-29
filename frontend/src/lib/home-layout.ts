@@ -5,6 +5,8 @@
 // API erişilemezse veya boşsa default sıra (DEFAULT_HOME_LAYOUT) kullanılır.
 // =============================================================
 
+import { getPublicApiV1 } from "@/lib/runtime-config";
+
 export interface HomeLayoutSection {
   slug: string;
   component_key: string;
@@ -32,17 +34,9 @@ export const DEFAULT_HOME_LAYOUT: HomeLayoutSection[] = [
   { slug: 'cta', component_key: 'CtaSection', order_index: 140, is_active: 1, config: null },
 ];
 
-function getApiBase(): string {
-  return (
-    process.env.INTERNAL_API_URL ||
-    process.env.NEXT_PUBLIC_API_URL ||
-    'http://localhost:8083'
-  ).replace(/\/$/, '');
-}
-
 export async function fetchHomeLayout(): Promise<HomeLayoutSection[]> {
   try {
-    const res = await fetch(`${getApiBase()}/api/v1/home/layout`, {
+    const res = await fetch(`${getPublicApiV1()}/home/layout`, {
       next: { revalidate: 300 },
     });
     if (!res.ok) return DEFAULT_HOME_LAYOUT;

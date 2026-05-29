@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <title>VistaSeeds Ziyaretçi ve Kampanya Başlangıç Raporu</title>
+  <style>
+    @page { size: A4; margin: 18mm 16mm; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: #17231c;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      line-height: 1.45;
+      background: #fff;
+    }
+    .cover {
+      border-bottom: 3px solid #1f8f4d;
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+    }
+    .eyebrow {
+      color: #1f8f4d;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      line-height: 1.15;
+      color: #0f3b22;
+    }
+    h2 {
+      margin: 22px 0 10px;
+      font-size: 17px;
+      color: #0f3b22;
+      border-bottom: 1px solid #d8e5dc;
+      padding-bottom: 5px;
+    }
+    h3 {
+      margin: 14px 0 8px;
+      font-size: 13px;
+      color: #1b4d31;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .meta div, .note, .metric, .callout {
+      border: 1px solid #d8e5dc;
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: #f7fbf8;
+    }
+    .meta strong, .metric strong {
+      display: block;
+      color: #5b6b61;
+      font-size: 10px;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 12px 0 18px;
+    }
+    .metric span {
+      display: block;
+      font-size: 20px;
+      color: #103d25;
+      font-weight: 700;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 14px;
+    }
+    th, td {
+      border: 1px solid #dce7df;
+      padding: 7px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #eaf5ee;
+      color: #123c25;
+      font-size: 11px;
+    }
+    tr:nth-child(even) td { background: #fafdfb; }
+    .chart {
+      margin: 10px 0 18px;
+      border: 1px solid #d8e5dc;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 70px 1fr 48px;
+      gap: 10px;
+      align-items: center;
+      margin: 7px 0;
+    }
+    .bar-track {
+      height: 14px;
+      background: #edf3ef;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar {
+      height: 100%;
+      background: linear-gradient(90deg, #1f8f4d, #64b777);
+      border-radius: 999px;
+    }
+    .muted { color: #627369; }
+    .good { color: #14733b; font-weight: 700; }
+    .warn { color: #a46200; font-weight: 700; }
+    ul { margin: 8px 0 12px 18px; padding: 0; }
+    li { margin: 4px 0; }
+    .callout {
+      background: #fff9ea;
+      border-color: #efd38e;
+      margin: 12px 0;
+    }
+    .footer {
+      margin-top: 26px;
+      padding-top: 10px;
+      border-top: 1px solid #d8e5dc;
+      color: #6a7a70;
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <div class="eyebrow">VistaSeeds Dijital Ekosistem</div>
+    <h1>Ziyaretçi Grafikleri ve Kampanya Başlangıç Raporu</h1>
+    <p class="muted">
+      Bu rapor, 12 Mayıs 2026 - 18 Mayıs 2026 tarihleri arasındaki canlı nginx erişim loglarından hazırlanmıştır.
+      GA4 kurulumu 18 Mayıs 2026 tarihinde tamamlandığı için geçmiş hafta analizinde ana kaynak server loglarıdır.
+    </p>
+    <div class="meta">
+      <div><strong>Rapor tarihi</strong>18 Mayıs 2026</div>
+      <div><strong>Kapsam</strong>Son 7 gün</div>
+      <div><strong>Alan adı</strong>www.vistaseeds.com.tr</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Yönetici Özeti</h2>
+    <div class="summary">
+      <div class="metric"><strong>Toplam temiz sayfa görüntüleme</strong><span>620</span></div>
+      <div class="metric"><strong>En yüksek gün</strong><span>276</span>17 Mayıs</div>
+      <div class="metric"><strong>Teklif sayfası</strong><span>4</span>18 Mayıs</div>
+      <div class="metric"><strong>Paid Ads izi</strong><span>1</span>gclid inişi</div>
+    </div>
+    <p>
+      18 Mayıs tarihinde yeni kampanya sonrasında <strong>/tr/teklif-al</strong> sayfasına ilk ücretli trafik izi gelmiştir.
+      Bu rapor kampanya başlangıç baseline'ı olarak kullanılabilir. 24 saat sonra aynı kırılım tekrar alınarak artış ve kalite kontrolü yapılmalıdır.
+    </p>
+  </section>
+
+  <section>
+    <h2>Son 7 Gün Ziyaretçi Grafiği</h2>
+    <div class="chart">
+      <div class="bar-row"><strong>12 May</strong><div class="bar-track"><div class="bar" style="width:15.6%"></div></div><span>43</span></div>
+      <div class="bar-row"><strong>13 May</strong><div class="bar-track"><div class="bar" style="width:15.6%"></div></div><span>43</span></div>
+      <div class="bar-row"><strong>14 May</strong><div class="bar-track"><div class="bar" style="width:34.1%"></div></div><span>94</span></div>
+      <div class="bar-row"><strong>15 May</strong><div class="bar-track"><div class="bar" style="width:9.8%"></div></div><span>27</span></div>
+      <div class="bar-row"><strong>16 May</strong><div class="bar-track"><div class="bar" style="width:19.9%"></div></div><span>55</span></div>
+      <div class="bar-row"><strong>17 May</strong><div class="bar-track"><div class="bar" style="width:100%"></div></div><span>276</span></div>
+      <div class="bar-row"><strong>18 May</strong><div class="bar-track"><div class="bar" style="width:29.7%"></div></div><span>82</span></div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Tarih</th>
+          <th>Sayfa görüntüleme</th>
+          <th>Tekil ziyaretçi/IP</th>
+          <th>Bot sayfa isteği</th>
+          <th>Teklif sayfası</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>12 Mayıs 2026</td><td>43</td><td>23</td><td>124</td><td>0</td></tr>
+        <tr><td>13 Mayıs 2026</td><td>43</td><td>6</td><td>61</td><td>0</td></tr>
+        <tr><td>14 Mayıs 2026</td><td>94</td><td>10</td><td>76</td><td>0</td></tr>
+        <tr><td>15 Mayıs 2026</td><td>27</td><td>10</td><td>63</td><td>0</td></tr>
+        <tr><td>16 Mayıs 2026</td><td>55</td><td>25</td><td>46</td><td>0</td></tr>
+        <tr><td>17 Mayıs 2026</td><td>276</td><td>12</td><td>35</td><td>0</td></tr>
+        <tr><td>18 Mayıs 2026</td><td>82</td><td>27</td><td>1053</td><td>4</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Trafik ve Sayfa Performansı</h2>
+    <h3>En çok görüntülenen sayfalar</h3>
+    <table>
+      <thead><tr><th>Sayfa</th><th>Görüntüleme</th><th>Not</th></tr></thead>
+      <tbody>
+        <tr><td>/tr</td><td>100</td><td>Ana sayfa</td></tr>
+        <tr><td>/</td><td>72</td><td>Kök URL, genellikle /tr yönlendirmesi ile birlikte okunmalı</td></tr>
+        <tr><td>/tr/urunler</td><td>70</td><td>Ürün keşfi için ana sayfa</td></tr>
+        <tr><td>/tr/hakkimizda</td><td>32</td><td>Kurumsal güven sayfası</td></tr>
+        <tr><td>/tr/sss</td><td>24</td><td>Sık sorulan sorular</td></tr>
+        <tr><td>/tr/iletisim</td><td>22</td><td>İletişim niyeti</td></tr>
+        <tr><td>/tr/teklif-al</td><td>4</td><td>Kampanya hedef sayfası</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Trafik kaynakları</h3>
+    <table>
+      <thead><tr><th>Kaynak sinyali</th><th>Sayfa görüntüleme</th><th>Tekil IP</th></tr></thead>
+      <tbody>
+        <tr><td>Google referrer</td><td>41</td><td>25</td></tr>
+        <tr><td>Paid Ads / gclid</td><td>1</td><td>1</td></tr>
+        <tr><td>Instagram UTM</td><td>6</td><td>2</td></tr>
+        <tr><td>Direkt / boş referrer</td><td>372</td><td>48</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Kampanya Başlangıç Durumu</h2>
+    <div class="callout">
+      <strong class="good">İlk ücretli trafik izi alındı.</strong>
+      18 Mayıs 2026 15:46 UTC civarında <strong>/tr/teklif-al</strong> sayfasına <strong>gclid</strong> parametresi ile iniş görülmüştür.
+      Bu, Google Ads ölçüm hattının ve landing page erişiminin çalıştığını gösterir.
+    </div>
+    <ul>
+      <li>Kampanya hedef sayfası: <strong>/tr/teklif-al</strong></li>
+      <li>18 Mayıs teklif sayfası temiz görüntüleme: <strong>4</strong></li>
+      <li>Paid landing sinyali: <strong>1</strong></li>
+      <li>GA4/GTM kurulumu tamamlandı: <strong>G-RT30LYX1PB</strong> ve <strong>GTM-5R4M7HP9</strong></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Teknik Sağlık Notları</h2>
+    <ul>
+      <li>EN/DE eski lokalize URL'ler 308 yönlendirmeleriyle çalışan URL'lere bağlandı.</li>
+      <li>Sitemap blog limit hatası giderildi; teklif ve iade sayfaları sitemap'e dahil edildi.</li>
+      <li>PHP scanner istekleri nginx seviyesinde 404'e çevrildi.</li>
+      <li>Eksik logo yolu canlı dosya ile uyumlu hale getirildi.</li>
+      <li>GA4 gerçek zamanlı raporda page_view, first_visit, session_start ve scroll eventleri görünmeye başladı.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Sonraki Takip Planı</h2>
+    <ul>
+      <li>24 saat sonra aynı rapor yenilenecek.</li>
+      <li>/tr/teklif-al ziyaretleri ve gclid ile gelen paid trafik karşılaştırılacak.</li>
+      <li>Google Ads gösterim, tıklama, arama terimleri ve maliyet metrikleri eklenecek.</li>
+      <li>Merchant Center ürün onay durumları kontrol edilecek.</li>
+      <li>Yeni 404/500 hata oluşup oluşmadığı tekrar incelenecek.</li>
+    </ul>
+  </section>
+
+  <div class="footer">
+    Rapor kaynağı: VistaSeeds canlı nginx erişim logları, 12-18 Mayıs 2026. Filtreleme: bot, statik dosya, API, _rsc ve GTM debug trafiği hariç tutulmuştur.
+  </div>
+</body>
+</html>

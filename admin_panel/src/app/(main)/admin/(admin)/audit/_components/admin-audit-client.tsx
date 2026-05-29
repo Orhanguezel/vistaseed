@@ -22,6 +22,8 @@ import {
   Loader2,
   Globe,
   Trash2,
+  BarChart3,
+  Smartphone,
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -59,6 +61,10 @@ import type {
   AuditListResponse,
   AuditMetricsDailyResponseDto,
   AuditGeoStatsResponseDto,
+  AnalyticsRange,
+  AnalyticsOverviewDto,
+  AnalyticsDeviceDailyResponseDto,
+  AnalyticsHeatmapResponseDto,
 } from '@/integrations/shared';
 import {
   ADMIN_AUDIT_ALL_VALUE,
@@ -83,6 +89,9 @@ import {
   useGetAuditMetricsDailyAdminQuery,
   useGetAuditGeoStatsAdminQuery,
   useClearAuditLogsAdminMutation,
+  useGetAnalyticsOverviewAdminQuery,
+  useGetAnalyticsDeviceDailyAdminQuery,
+  useGetAnalyticsHeatmapAdminQuery,
 } from '@/integrations/hooks';
 
 /* ----------------------------- component ----------------------------- */
@@ -113,6 +122,8 @@ export default function AdminAuditClient() {
 
   const days = String(toNonNegativeInt(sp.get('days'), 14) || 14);
   const path_prefix = sp.get('path_prefix') ?? '';
+
+  const range: AnalyticsRange = sp.get('range') === '30d' ? '30d' : '7d';
 
   const limit = toNonNegativeInt(sp.get('limit'), 50) || 50;
   const offset = toNonNegativeInt(sp.get('offset'), 0);
@@ -158,6 +169,11 @@ export default function AdminAuditClient() {
   React.useEffect(() => setDaysText(days), [days]);
   React.useEffect(() => setPathPrefixText(path_prefix), [path_prefix]);
 
+  // NOT: useMemo factory'leri (authParams) render sirasinda calisir; bu sabit
+  // onlardan ONCE tanimlanmali, aksi halde TDZ -> "Cannot access 'ALL' before
+  // initialization" ile tum sayfa cokar (tablar gezilemez).
+  const ALL = ADMIN_AUDIT_ALL_VALUE;
+
   function apply(next: Partial<Record<string, any>>) {
     const merged = {
       tab,
@@ -177,6 +193,7 @@ export default function AdminAuditClient() {
       ip,
       days,
       path_prefix,
+      range,
       limit,
       offset,
       ...next,
@@ -196,6 +213,7 @@ export default function AdminAuditClient() {
       req_ip: merged.req_ip || undefined,
       sort: merged.sort !== 'created_at' ? merged.sort : undefined,
       orderDir: merged.orderDir !== 'desc' ? merged.orderDir : undefined,
+      range: merged.range !== '7d' ? merged.range : undefined,
       event: merged.event && merged.event !== ALL ? merged.event : undefined,
       email: merged.email || undefined,
       user_id: merged.user_id || undefined,
@@ -389,6 +407,21 @@ export default function AdminAuditClient() {
     { skip: tab !== 'map', refetchOnFocus: true } as any,
   ) as any;
 
+  const overviewQ = useGetAnalyticsOverviewAdminQuery(
+    tab === 'general' || tab === 'device' ? ({ range } as any) : (undefined as any),
+    { skip: tab !== 'general' && tab !== 'device', refetchOnFocus: true } as any,
+  ) as any;
+
+  const deviceDailyQ = useGetAnalyticsDeviceDailyAdminQuery(
+    tab === 'device' ? ({ range } as any) : (undefined as any),
+    { skip: tab !== 'device', refetchOnFocus: true } as any,
+  ) as any;
+
+  const heatmapQ = useGetAnalyticsHeatmapAdminQuery(
+    tab === 'device' ? ({ range } as any) : (undefined as any),
+    { skip: tab !== 'device', refetchOnFocus: true } as any,
+  ) as any;
+
   const reqData = (reqQ.data as AuditListResponse<AuditRequestLogDto> | undefined) ?? {
     items: [],
     total: 0,
@@ -399,11 +432,22 @@ export default function AdminAuditClient() {
   };
   const metricsData = (metricsQ.data as AuditMetricsDailyResponseDto | undefined) ?? { days: [] };
   const geoData = (geoQ.data as AuditGeoStatsResponseDto | undefined) ?? { items: [] };
+  const overviewData = overviewQ.data as AnalyticsOverviewDto | undefined;
+  const deviceDailyData = deviceDailyQ.data as AnalyticsDeviceDailyResponseDto | undefined;
+  const heatmapData = heatmapQ.data as AnalyticsHeatmapResponseDto | undefined;
 
   const reqLoading = reqQ.isLoading || reqQ.isFetching;
   const authLoading = authQ.isLoading || authQ.isFetching;
   const metricsLoading = metricsQ.isLoading || metricsQ.isFetching;
   const geoLoading = geoQ.isLoading || geoQ.isFetching;
+  const overviewLoading = overviewQ.isLoading || overviewQ.isFetching;
+  const deviceLoading =
+    overviewQ.isLoading ||
+    overviewQ.isFetching ||
+    deviceDailyQ.isLoading ||
+    deviceDailyQ.isFetching ||
+    heatmapQ.isLoading ||
+    heatmapQ.isFetching;
 
   const reqTotal = reqData.total ?? 0;
   const authTotal = authData.total ?? 0;
@@ -411,8 +455,6 @@ export default function AdminAuditClient() {
   const canPrev = offset > 0;
   const canNextReq = offset + limit < reqTotal;
   const canNextAuth = offset + limit < authTotal;
-
-  const ALL = ADMIN_AUDIT_ALL_VALUE;
 
   const [clearAuditLogs, { isLoading: isClearing }] = useClearAuditLogsAdminMutation();
 
@@ -422,6 +464,12 @@ export default function AdminAuditClient() {
       if (tab === 'auth') await authQ.refetch();
       if (tab === 'metrics') await metricsQ.refetch();
       if (tab === 'map') await geoQ.refetch();
+      if (tab === 'general') await overviewQ.refetch();
+      if (tab === 'device') {
+        await overviewQ.refetch();
+        await deviceDailyQ.refetch();
+        await heatmapQ.refetch();
+      }
       toast.success(t('refreshed'));
     } catch (err) {
       toast.error(getErrorMessage(err, t('error')));
@@ -440,7 +488,16 @@ export default function AdminAuditClient() {
     }
   }
 
-  const anyLoading = reqLoading || authLoading || metricsLoading || geoLoading || isClearing;
+  const anyLoading =
+    reqLoading || authLoading || metricsLoading || geoLoading || overviewLoading || deviceLoading || isClearing;
+
+  const deviceLabel = (value: string): string => {
+    if (value === 'mobile') return t('analytics.deviceMobile');
+    if (value === 'tablet') return t('analytics.deviceTablet');
+    return t('analytics.deviceDesktop');
+  };
+
+  const weekdayLabel = (value: number): string => t(`analytics.wd.${value}`, undefined, String(value));
 
   return (
     <div className="space-y-6">
@@ -464,6 +521,9 @@ export default function AdminAuditClient() {
 
       <Tabs value={tab} onValueChange={onTabChange}>
         <TabsList>
+          <TabsTrigger value="general">
+            <BarChart3 className="mr-2 h-4 w-4" /> {t('tabs.general')}
+          </TabsTrigger>
           <TabsTrigger value="requests">
             <Activity className="mr-2 h-4 w-4" /> {t('tabs.requests')}
           </TabsTrigger>
@@ -473,10 +533,60 @@ export default function AdminAuditClient() {
           <TabsTrigger value="metrics">
             <ShieldCheck className="mr-2 h-4 w-4" /> {t('tabs.metrics')}
           </TabsTrigger>
+          <TabsTrigger value="device">
+            <Smartphone className="mr-2 h-4 w-4" /> {t('tabs.device')}
+          </TabsTrigger>
           <TabsTrigger value="map">
             <Globe className="mr-2 h-4 w-4" /> {t('tabs.map')}
           </TabsTrigger>
         </TabsList>
+
+        {/* ==================== GENERAL TAB ==================== */}
+        <TabsContent value="general" className="space-y-4">
+          <RangeControls range={range} onChange={(next) => apply({ tab: 'general', range: next })} />
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            <MetricCard
+              title={t('analytics.humanTraffic')}
+              value={fmtNumber(overviewData?.summary?.humanRequests)}
+              sub={t('analytics.pageviewsSub', { count: fmtNumber(overviewData?.summary?.pageviews) })}
+            />
+            <MetricCard
+              title={t('analytics.botTraffic')}
+              value={fmtNumber(overviewData?.summary?.botRequests)}
+              sub={t('analytics.totalRequestsSub', { count: fmtNumber(overviewData?.summary?.totalRequests) })}
+            />
+            <MetricCard
+              title={t('analytics.directTraffic')}
+              value={fmtPct(overviewData?.summary?.directTrafficPct)}
+              sub={t('analytics.returningIpSub', { count: fmtNumber(overviewData?.summary?.returningIps) })}
+            />
+            <MetricCard
+              title={t('analytics.uniqueIps')}
+              value={fmtNumber(overviewData?.summary?.uniqueIps)}
+              sub={t('analytics.pagesPerVisitorSub', { value: String(overviewData?.summary?.pagesPerVisitor ?? 0) })}
+            />
+          </div>
+          <div className="grid gap-4 xl:grid-cols-3">
+            <SimpleRowsCard
+              title={t('analytics.topLandingPages')}
+              rows={overviewData?.topLandingPages ?? []}
+              loading={overviewLoading}
+              emptyText={t('common.noRecords')}
+            />
+            <SimpleRowsCard
+              title={t('analytics.topReferrers')}
+              rows={overviewData?.topReferrers ?? []}
+              loading={overviewLoading}
+              emptyText={t('common.noRecords')}
+            />
+            <SimpleRowsCard
+              title={t('analytics.deviceBreakdown')}
+              rows={(overviewData?.devices ?? []).map((row) => ({ name: deviceLabel(row.device), count: row.count }))}
+              loading={overviewLoading}
+              emptyText={t('common.noRecords')}
+            />
+          </div>
+        </TabsContent>
 
         {/* ==================== REQUESTS TAB ==================== */}
         <TabsContent value="requests" className="space-y-4">
@@ -927,6 +1037,85 @@ export default function AdminAuditClient() {
           </Card>
         </TabsContent>
 
+        {/* ==================== DEVICE TAB ==================== */}
+        <TabsContent value="device" className="space-y-4">
+          <RangeControls range={range} onChange={(next) => apply({ tab: 'device', range: next })} />
+          <div className="grid gap-4 xl:grid-cols-[0.8fr_1.2fr]">
+            <SimpleRowsCard
+              title={t('analytics.deviceBreakdown')}
+              rows={(overviewData?.devices ?? []).map((row) => ({ name: deviceLabel(row.device), count: row.count }))}
+              loading={deviceLoading}
+              emptyText={t('common.noRecords')}
+            />
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">{t('analytics.heatmapTitle')}</CardTitle>
+                <CardDescription>{t('analytics.heatmapDescription')}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>{t('analytics.weekday')}</TableHead>
+                      <TableHead>{t('analytics.hour')}</TableHead>
+                      <TableHead className="text-right">{t('analytics.humans')}</TableHead>
+                      <TableHead className="text-right">{t('analytics.uniqueIps')}</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {(heatmapData?.items ?? []).slice(0, 24).map((row) => (
+                      <TableRow key={`${row.weekday}-${row.hour}`}>
+                        <TableCell>{weekdayLabel(row.weekday)}</TableCell>
+                        <TableCell>{String(row.hour).padStart(2, '0')}:00</TableCell>
+                        <TableCell className="text-right">{fmtNumber(row.humans)}</TableCell>
+                        <TableCell className="text-right">{fmtNumber(row.uniqueIps)}</TableCell>
+                      </TableRow>
+                    ))}
+                    {!deviceLoading && (heatmapData?.items?.length ?? 0) === 0 && (
+                      <TableRow>
+                        <TableCell colSpan={4}>{t('common.noRecords')}</TableCell>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </div>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">{t('analytics.deviceDailyTitle')}</CardTitle>
+              <CardDescription>{t('analytics.deviceDailyDescription')}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>{t('analytics.date')}</TableHead>
+                    <TableHead>{t('analytics.device')}</TableHead>
+                    <TableHead className="text-right">{t('analytics.requests')}</TableHead>
+                    <TableHead className="text-right">{t('analytics.uniqueIps')}</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {(deviceDailyData?.items ?? []).map((row) => (
+                    <TableRow key={`${row.date}-${row.device}`}>
+                      <TableCell>{row.date}</TableCell>
+                      <TableCell>{deviceLabel(row.device)}</TableCell>
+                      <TableCell className="text-right">{fmtNumber(row.requests)}</TableCell>
+                      <TableCell className="text-right">{fmtNumber(row.uniqueIps)}</TableCell>
+                    </TableRow>
+                  ))}
+                  {!deviceLoading && (deviceDailyData?.items?.length ?? 0) === 0 && (
+                    <TableRow>
+                      <TableCell colSpan={4}>{t('common.noRecords')}</TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
         {/* ==================== MAP TAB ==================== */}
         <TabsContent value="map" className="space-y-4">
           <Card>
@@ -959,5 +1148,79 @@ export default function AdminAuditClient() {
         </TabsContent>
       </Tabs>
     </div>
+  );
+}
+
+/* ----------------------------- helpers ----------------------------- */
+
+function fmtNumber(value: number | undefined): string {
+  return new Intl.NumberFormat('tr-TR').format(value ?? 0);
+}
+
+function fmtPct(value: number | undefined): string {
+  return `${(value ?? 0).toLocaleString('tr-TR', { maximumFractionDigits: 1 })}%`;
+}
+
+function RangeControls({ range, onChange }: { range: AnalyticsRange; onChange: (range: AnalyticsRange) => void }) {
+  const t = useAdminT('admin.audit');
+  return (
+    <div className="flex justify-end">
+      <div className="flex rounded-md border bg-muted/30 p-1">
+        {(['7d', '30d'] as const).map((item) => (
+          <Button
+            key={item}
+            size="sm"
+            variant={range === item ? 'default' : 'ghost'}
+            onClick={() => onChange(item)}
+            className="h-8"
+          >
+            {item === '7d' ? t('analytics.range7d') : t('analytics.range30d')}
+          </Button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function MetricCard({ title, value, sub }: { title: string; value: string; sub?: string }) {
+  return (
+    <Card>
+      <CardHeader>
+        <CardDescription>{title}</CardDescription>
+        <CardTitle className="text-2xl">{value}</CardTitle>
+        {sub ? <div className="text-muted-foreground text-xs">{sub}</div> : null}
+      </CardHeader>
+    </Card>
+  );
+}
+
+function SimpleRowsCard({
+  title,
+  rows,
+  loading,
+  emptyText,
+}: {
+  title: string;
+  rows: Array<{ name: string; count: number }>;
+  loading?: boolean;
+  emptyText: string;
+}) {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-base">{title}</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-2">
+        {rows.map((row) => (
+          <div key={row.name} className="flex items-center justify-between gap-3 rounded-lg border px-3 py-2 text-sm">
+            <span className="min-w-0 truncate">{row.name || '-'}</span>
+            <Badge variant="outline">{fmtNumber(row.count)}</Badge>
+          </div>
+        ))}
+        {!loading && rows.length === 0 ? (
+          <p className="text-muted-foreground text-sm">{emptyText}</p>
+        ) : null}
+      </CardContent>
+    </Card>
   );
 }

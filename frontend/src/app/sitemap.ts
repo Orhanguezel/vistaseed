@@ -1,12 +1,9 @@
 import type { MetadataRoute } from "next";
 import { appLocales, toLocalizedPath } from "@/i18n/routing";
+import { getPublicApiV1, getPublicSiteOrigin } from "@/lib/runtime-config";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-const BASE_URL = (
-  process.env.INTERNAL_API_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:8083"
-).replace(/\/$/, "");
+const SITE_URL = getPublicSiteOrigin();
+const API_V1 = getPublicApiV1();
 
 interface ProductSitemapItem {
   slug: string;
@@ -22,7 +19,7 @@ async function fetchBlogPostsForSitemap(): Promise<BlogSitemapItem[]> {
   const primaryLocale = appLocales[0] ?? "tr";
   try {
     const res = await fetch(
-      `${BASE_URL}/api/v1/blog?limit=500&page=1&locale=${encodeURIComponent(primaryLocale)}`,
+      `${API_V1}/blog?limit=50&page=1&locale=${encodeURIComponent(primaryLocale)}`,
       { next: { revalidate: 3600 } },
     );
     if (!res.ok) return [];
@@ -41,7 +38,7 @@ async function fetchActiveProducts(): Promise<ProductSitemapItem[]> {
   const primaryLocale = appLocales[0] ?? "tr";
 
   try {
-    const res = await fetch(`${BASE_URL}/api/v1/products?limit=500&is_active=true&locale=${encodeURIComponent(primaryLocale)}`, {
+    const res = await fetch(`${API_V1}/products?limit=500&is_active=true&locale=${encodeURIComponent(primaryLocale)}`, {
       next: { revalidate: 3600 },
     });
     if (!res.ok) return [];
@@ -69,9 +66,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/karsilastirma", changeFrequency: "monthly" as const, priority: 0.55 },
     { path: "/bayi-agi", changeFrequency: "monthly" as const, priority: 0.55 },
     { path: "/toplu-satis", changeFrequency: "monthly" as const, priority: 0.55 },
+    { path: "/teklif-al", changeFrequency: "monthly" as const, priority: 0.8 },
     { path: "/sss", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/iletisim", changeFrequency: "monthly" as const, priority: 0.5 },
     { path: "/gizlilik-politikasi", changeFrequency: "yearly" as const, priority: 0.3 },
+    { path: "/iade-politikasi", changeFrequency: "yearly" as const, priority: 0.3 },
     { path: "/kullanim-kosullari", changeFrequency: "yearly" as const, priority: 0.3 },
   ];
 

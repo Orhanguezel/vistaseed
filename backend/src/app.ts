@@ -5,6 +5,7 @@ import cookie from '@fastify/cookie';
 import multipart from '@fastify/multipart';
 import rateLimit from '@fastify/rate-limit';
 import fastifyStatic from '@fastify/static';
+import type { FastifyStaticOptions } from '@fastify/static';
 import type { FastifyInstance } from 'fastify';
 
 import authPlugin from './plugins/authPlugin';
@@ -19,6 +20,13 @@ import { requestLoggerPlugin } from '@agro/shared-backend/modules/audit/requestL
 import { getStorageSettings } from '@agro/shared-backend/modules/siteSettings';
 import { registerAllRoutes } from './routes';
 import { parseCorsOrigins, pickUploadsRoot, pickUploadsPrefix } from './app.helpers';
+
+const setUploadSeoHeaders: NonNullable<FastifyStaticOptions['setHeaders']> = (res, filePath) => {
+  const normalizedPath = filePath.replace(/\\/g, '/');
+  if (normalizedPath.includes('/offers/') || normalizedPath.includes('/support/library/')) {
+    res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');
+  }
+};
 
 export async function createApp() {
   const { default: buildFastify } =
@@ -86,6 +94,7 @@ export async function createApp() {
     root: pickUploadsRoot(storageSettings?.localRoot),
     prefix: pickUploadsPrefix(storageSettings?.localBaseUrl),
     decorateReply: false,
+    setHeaders: setUploadSeoHeaders,
   });
 
   // ── Content parsers ────────────────────────────────────────────────────────

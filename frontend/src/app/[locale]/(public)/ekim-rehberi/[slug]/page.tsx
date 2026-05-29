@@ -8,6 +8,7 @@ import { JsonLd } from "@agro/shared-ui/public/seo/JsonLd";
 import { fetchSiteSettings } from "@/lib/site-settings";
 import { toLocalizedPath } from "@/i18n/routing";
 import { absolutePublicAssetUrl, resolveImageUrl } from "@/lib/utils";
+import { getServerApiOrigin } from "@/lib/runtime-config";
 import { LibraryProductLinks } from "@/modules/library/components/library-product-links";
 import { LibraryImageGallery } from "@/modules/library/components/library-image-gallery";
 import { buildArticleJsonLd, buildBreadcrumbJsonLd, siteOrigin } from "@/lib/schema-org";
@@ -16,11 +17,7 @@ interface GuideDetailPageProps {
   params: Promise<{ locale: string; slug: string }>;
 }
 
-const BASE_URL = (
-  process.env.INTERNAL_API_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:8083"
-).replace(/\/$/, "");
+const BASE_URL = getServerApiOrigin();
 
 export async function generateMetadata({ params }: GuideDetailPageProps): Promise<Metadata> {
   const { locale, slug } = await params;

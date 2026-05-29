@@ -1,13 +1,9 @@
 import { getStoredAccessToken, setStoredAccessToken } from "@/lib/auth-token";
+import { getServerApiOrigin } from "@/lib/runtime-config";
 
 function resolveApiBase() {
   if (typeof window !== "undefined") return "";
-
-  return (
-    process.env.INTERNAL_API_URL ||
-    process.env.NEXT_PUBLIC_API_URL ||
-    "http://localhost:8083"
-  ).replace(/\/$/, "");
+  return getServerApiOrigin();
 }
 
 class ApiError extends Error {

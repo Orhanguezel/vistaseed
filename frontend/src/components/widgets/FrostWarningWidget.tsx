@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { Snowflake, Thermometer, ChevronUp, ChevronDown, MapPin, Droplets } from 'lucide-react';
+import { getClientApiOrigin, getServerApiOrigin } from '@/lib/runtime-config';
 
 // ──────────────────────────────────────────────
 // Types
@@ -62,8 +63,8 @@ function dayLabel(date: string, index: number, t: ReturnType<typeof useTranslati
 
 const REFRESH_INTERVAL_MS = 30 * 60 * 1000;
 const BASE_URL = typeof window === 'undefined'
-  ? (process.env.INTERNAL_API_URL ?? 'http://127.0.0.1:8084')
-  : (process.env.NEXT_PUBLIC_API_URL ?? '').replace(/\/$/, '');
+  ? getServerApiOrigin()
+  : getClientApiOrigin();
 
 export function FrostWarningWidget() {
   const t = useTranslations('Frost');

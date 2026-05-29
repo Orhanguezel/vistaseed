@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { getApiUrl } from "@/lib/site-settings";
+import { getPublicSiteOrigin } from "@/lib/runtime-config";
 
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
+const SITE_URL = getPublicSiteOrigin();
 const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME ?? "vistaseeds";
 
 export const revalidate = 3600;

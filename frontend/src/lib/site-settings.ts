@@ -1,3 +1,5 @@
+import { getServerApiOrigin } from "@/lib/runtime-config";
+
 /**
  * Site Settings — Backend'den site ayarlarini ceker.
  * Kullanim: Header, Footer, Layout gibi yerlerde branding bilgisi icin.
@@ -11,11 +13,7 @@
  */
 
 export function getApiUrl() {
-  return (
-    process.env.INTERNAL_API_URL ||
-    process.env.NEXT_PUBLIC_API_URL ||
-    "http://localhost:8083"
-  ).replace(/\/$/, "");
+  return getServerApiOrigin();
 }
 function getApiV1() { return `${getApiUrl()}/api/v1`; }
 

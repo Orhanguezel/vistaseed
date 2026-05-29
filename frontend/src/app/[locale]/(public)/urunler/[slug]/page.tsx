@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { ROUTES } from "@/config/routes";
 import { API } from "@/config/api-endpoints";
+import { getServerApiOrigin } from "@/lib/runtime-config";
 import { buildMetadata } from "@/lib/seo";
 import { resolveImageUrl } from "@/lib/utils";
 import { toLocalizedPath } from "@/i18n/routing";
@@ -22,11 +23,7 @@ import { fetchReferenceHighlights, resolveEcosystemImage, resolveEcosystemRefere
 
 export const revalidate = 300;
 
-const BASE_URL = (
-  process.env.INTERNAL_API_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:8083"
-).replace(/\/$/, "");
+const BASE_URL = getServerApiOrigin();
 
 type ProductDetailMessages = {
   breadcrumb: {
