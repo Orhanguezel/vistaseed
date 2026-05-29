@@ -23,6 +23,11 @@ CREATE TABLE IF NOT EXISTS `audit_request_logs` (
   `error_message`    VARCHAR(512)    DEFAULT NULL,
   `error_code`       VARCHAR(64)     DEFAULT NULL,
   `request_body`     LONGTEXT        DEFAULT NULL,
+  `gclid`            VARCHAR(255)    DEFAULT NULL,
+  `utm_source`       VARCHAR(255)    DEFAULT NULL,
+  `utm_medium`       VARCHAR(255)    DEFAULT NULL,
+  `utm_campaign`     VARCHAR(255)    DEFAULT NULL,
+  `utm_content`      VARCHAR(255)    DEFAULT NULL,
   `created_at`       DATETIME(3)     NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
   PRIMARY KEY (`id`),
   KEY `audit_request_logs_created_idx` (`created_at`),
@@ -30,7 +35,9 @@ CREATE TABLE IF NOT EXISTS `audit_request_logs` (
   KEY `audit_request_logs_path_idx`    (`path`),
   KEY `audit_request_logs_ip_idx`      (`ip`),
   KEY `audit_request_logs_status_idx`  (`status_code`),
-  KEY `audit_request_logs_method_idx`  (`method`)
+  KEY `audit_request_logs_method_idx`  (`method`),
+  KEY `audit_request_logs_gclid_idx`     (`gclid`),
+  KEY `audit_request_logs_utm_source_idx` (`utm_source`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `audit_auth_events` (
