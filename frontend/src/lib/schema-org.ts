@@ -50,11 +50,15 @@ export function buildArticleJsonLd(input: {
 }
 
 export function buildBreadcrumbJsonLd(items: { name: string; url: string }[]) {
+  // Boş/eksik isimli item'lar Google'da "name belirtilmelidir" hatası verir.
+  // Çevirisi gelmemiş veya kategori adı boş gelen item'ları ele, pozisyonları yeniden numaralandır.
+  const validItems = items.filter((it) => Boolean(it.name?.trim()) && Boolean(it.url));
+
   return {
-    itemListElement: items.map((it, i) => ({
+    itemListElement: validItems.map((it, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      name: it.name,
+      name: it.name.trim(),
       item: it.url,
     })),
   };
@@ -96,8 +100,28 @@ export function buildProductJsonLd(input: {
   tags?: string[];
   ratingValue?: number | null;
   reviewCount?: number | null;
+  price?: number | null;
+  currency?: string;
+  inStock?: boolean;
   additionalProperties?: { name: string; value: string }[];
 }) {
+  const availability = `https://schema.org/${input.inStock === false ? "OutOfStock" : "InStock"}`;
+  // Google "offers/review/aggregateRating belirtilmelidir" hatasını önlemek için her ürüne offer ekle.
+  // Fiyat varsa fiyatlı offer, yoksa teklif modeli için fiyatsız (availability + url) offer.
+  const offers = input.price && input.price > 0
+    ? {
+        "@type": "Offer",
+        price: Number(input.price.toFixed(2)),
+        priceCurrency: input.currency ?? "TRY",
+        availability,
+        url: input.pageUrl,
+      }
+    : {
+        "@type": "Offer",
+        priceCurrency: input.currency ?? "TRY",
+        availability,
+        url: input.pageUrl,
+      };
   return {
     name: input.name,
     ...(input.description && { description: input.description }),
@@ -115,6 +139,7 @@ export function buildProductJsonLd(input: {
     },
     ...(input.category && { category: input.category }),
     ...(input.tags?.length && { keywords: input.tags.join(", ") }),
+    offers,
     ...(input.ratingValue && input.reviewCount
       ? {
           aggregateRating: {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildProductJsonLd } from "./schema-org";
+import { buildBreadcrumbJsonLd, buildProductJsonLd } from "./schema-org";
 
 describe("schema-org helpers", () => {
   it("builds product schema with aggregate rating and properties", () => {
@@ -14,6 +14,9 @@ describe("schema-org helpers", () => {
       tags: ["hibrit", "erkenci"],
       ratingValue: 4.6,
       reviewCount: 12,
+      price: 120,
+      currency: "TRY",
+      inStock: true,
       additionalProperties: [
         { name: "Adaptation", value: "Aegean" },
         { name: "Harvest", value: "Seasonal" },
@@ -27,8 +30,46 @@ describe("schema-org helpers", () => {
       "@type": "AggregateRating",
       ratingValue: 4.6,
       reviewCount: 12,
+      bestRating: 5,
+      worstRating: 1,
+    });
+    expect(schema.offers).toEqual({
+      "@type": "Offer",
+      price: 120,
+      priceCurrency: "TRY",
+      availability: "https://schema.org/InStock",
+      url: "https://example.com/tr/urunler/lucky-f1",
     });
     expect(schema.additionalProperty).toHaveLength(2);
     expect(schema.keywords).toContain("hibrit");
+  });
+
+  it("emits a price-less offer when no price is provided", () => {
+    const schema = buildProductJsonLd({
+      name: "Quote Only F1",
+      pageUrl: "https://example.com/tr/urunler/quote-only-f1",
+      brandName: "vistaseeds",
+      inStock: false,
+    });
+
+    expect(schema.offers).toEqual({
+      "@type": "Offer",
+      priceCurrency: "TRY",
+      availability: "https://schema.org/OutOfStock",
+      url: "https://example.com/tr/urunler/quote-only-f1",
+    });
+    expect(schema.aggregateRating).toBeUndefined();
+  });
+
+  it("drops breadcrumb items with empty names and renumbers positions", () => {
+    const schema = buildBreadcrumbJsonLd([
+      { name: "Ana Sayfa", url: "https://example.com/tr" },
+      { name: "  ", url: "https://example.com/tr/urunler?category=" },
+      { name: "Domates", url: "https://example.com/tr/urunler/domates" },
+    ]);
+
+    expect(schema.itemListElement).toHaveLength(2);
+    expect(schema.itemListElement[0]).toMatchObject({ position: 1, name: "Ana Sayfa" });
+    expect(schema.itemListElement[1]).toMatchObject({ position: 2, name: "Domates" });
   });
 });

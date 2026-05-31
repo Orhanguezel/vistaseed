@@ -622,6 +622,9 @@ export default async function ProductDetailPage({ params }: Props) {
     tags: product.tags,
     ratingValue: product.review_count > 0 ? product.rating : null,
     reviewCount: product.review_count > 0 ? product.review_count : null,
+    price: product.price ?? null,
+    currency: process.env.NEXT_PUBLIC_DEFAULT_CURRENCY,
+    inStock: product.stock_quantity > 0,
     additionalProperties: specs.slice(0, 12).map((spec) => ({
       name: spec.name,
       value: spec.value,
