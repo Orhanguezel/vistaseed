@@ -7,6 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { API } from "@/config/api-endpoints";
 import { ROUTES } from "@/config/routes";
 import { getLocaleFromPathname, toLocalizedPath } from "@/i18n/routing";
@@ -497,6 +498,8 @@ export default function Header({
             </button>
 
             <div className="w-[1px] h-6 bg-border/60 mx-1 hidden sm:block" />
+
+            <LanguageSwitcher />
 
             <ThemeToggle />
 

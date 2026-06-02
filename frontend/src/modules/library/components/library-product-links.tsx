@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { MoveRight, Loader2 } from "lucide-react";
 import { API } from "@/config/api-endpoints";
+import { localePath } from "@/lib/locale-path";
 import { resolveClientApiBase, resolveImageUrl } from "@/lib/utils";
 
 const BASE_URL = resolveClientApiBase();
@@ -68,7 +69,7 @@ export function LibraryProductLinks({ tags, locale }: LibraryProductLinksProps) 
           <h2 className="text-3xl font-black tracking-tighter text-foreground">{t("title")}</h2>
         </div>
         <Link 
-          href={`/${locale}/urunler`}
+          href={localePath(locale, "/urunler")}
           className="group flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-brand transition-colors"
         >
           {t("seeAll")}
@@ -80,7 +81,7 @@ export function LibraryProductLinks({ tags, locale }: LibraryProductLinksProps) 
         {products.map((p) => (
           <Link 
             key={p.id} 
-            href={`/${locale}/urunler/${p.slug}`}
+            href={localePath(locale, `/urunler/${p.slug}`)}
             className="group flex flex-col surface-elevated overflow-hidden hover:border-brand/40 transition-all p-4 rounded-3xl"
           >
             <div className="relative aspect-square rounded-2xl overflow-hidden mb-4 bg-surface-alt">

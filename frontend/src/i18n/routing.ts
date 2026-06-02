@@ -4,10 +4,17 @@ export const appLocales = ["tr", "en", "de"] as const;
 export type AppLocale = (typeof appLocales)[number];
 export const defaultLocale: AppLocale = "tr";
 
+/** Dil değiştirici için merkezi etiketler (endonim) — hard-code yerine config kaynağı. */
+export const localeLabels: Record<AppLocale, { native: string; short: string }> = {
+  tr: { native: "Türkçe", short: "TR" },
+  en: { native: "English", short: "EN" },
+  de: { native: "Deutsch", short: "DE" },
+};
+
 export const routing = defineRouting({
   locales: appLocales,
   defaultLocale: defaultLocale,
-  localePrefix: "always",
+  localePrefix: "as-needed",
   pathnames: {
     "/": "/",
     "/urunler": "/urunler",
@@ -47,12 +54,19 @@ export function getLocaleFromPathname(pathname: string): AppLocale {
   return first && isAppLocale(first) ? first : defaultLocale;
 }
 
+export function localePrefix(locale: string): string {
+  const safeLocale = isAppLocale(locale) ? locale : defaultLocale;
+  // `localePrefix: "as-needed"` → default locale (tr) URL'leri öneksizdir.
+  return safeLocale === defaultLocale ? "" : `/${safeLocale}`;
+}
+
 export function toLocalizedPath(pathname: string, locale: string): string {
   const safeLocale = isAppLocale(locale) ? locale : defaultLocale;
+  const prefix = localePrefix(safeLocale);
   const normalizedPathname = pathname.startsWith("/") ? pathname : `/${pathname}`;
 
   if (normalizedPathname === "/") {
-    return `/${safeLocale}`;
+    return prefix || "/";
   }
 
   const matchedPathname = Object.keys(routing.pathnames)
@@ -60,7 +74,7 @@ export function toLocalizedPath(pathname: string, locale: string): string {
     .find((candidate) => normalizedPathname === candidate || normalizedPathname.startsWith(`${candidate}/`));
 
   if (!matchedPathname) {
-    return `/${safeLocale}${normalizedPathname}`;
+    return `${prefix}${normalizedPathname}`;
   }
 
   const localizedEntry = routing.pathnames[matchedPathname as Pathnames];
@@ -68,5 +82,5 @@ export function toLocalizedPath(pathname: string, locale: string): string {
     typeof localizedEntry === "string" ? localizedEntry : (localizedEntry[safeLocale] ?? matchedPathname);
   const suffix = normalizedPathname.slice(matchedPathname.length);
 
-  return `/${safeLocale}${localizedBase}${suffix}`;
+  return `${prefix}${localizedBase}${suffix}`;
 }

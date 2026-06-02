@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
+import { getLocale } from "next-intl/server";
 import { ThemeProvider } from "@/providers/theme-provider";
-import { defaultLocale } from "@/i18n/routing";
 import { fetchSiteSettings, fetchAnalyticsConfig } from "@/lib/site-settings";
 import { getPublicApiV1, getPublicSiteOrigin } from "@/lib/runtime-config";
 import Analytics, { GtmNoscript } from "@/components/seo/Analytics";
@@ -34,7 +34,7 @@ async function fetchGlobalSeo(locale: string) {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const locale = defaultLocale;
+  const locale = await getLocale();
   // Fetch branding and SEO in parallel
   const [branding, { seo, meta }] = await Promise.all([
     fetchSiteSettings(locale),
@@ -94,8 +94,9 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const locale = await getLocale();
   const [settings, analytics] = await Promise.all([
-    fetchSiteSettings(defaultLocale),
+    fetchSiteSettings(locale),
     fetchAnalyticsConfig(),
   ]);
 
@@ -103,7 +104,7 @@ export default async function RootLayout({
 
   return (
     <html
-      lang={defaultLocale}
+      lang={locale}
       data-brand={brandSlug}
       suppressHydrationWarning
       className={`${dmSans.variable} font-sans`}

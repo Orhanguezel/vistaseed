@@ -7,6 +7,7 @@ import BackToTopWidgetClient from "@/components/widgets/BackToTopWidgetClient";
 import FrostWarningWidgetClient from "@/components/widgets/FrostWarningWidgetClient";
 import { ROUTES } from "@/config/routes";
 import { appLocales, type AppLocale } from "@/i18n/routing";
+import { localePath } from "@/lib/locale-path";
 import { getPublicSiteOrigin } from "@/lib/runtime-config";
 import { fetchSiteSettings } from "@/lib/site-settings";
 
@@ -73,7 +74,7 @@ export default async function LocaleLayout({
     url: SITE_URL,
     potentialAction: {
       "@type": "SearchAction",
-      target: `${SITE_URL}/${currentLocale}/urunler?q={search_term_string}`,
+      target: `${SITE_URL}${localePath(currentLocale, "/urunler")}?q={search_term_string}`,
       "query-input": "required name=search_term_string",
     },
   };
@@ -135,11 +136,11 @@ export default async function LocaleLayout({
         helpTitle={tFooter("helpTitle")}
         helpDescription={
           <>
-            <a href={`/${currentLocale}${ROUTES.static.faq}`} className="text-white/70 underline hover:text-white">
+            <a href={localePath(currentLocale, ROUTES.static.faq)} className="text-white/70 underline hover:text-white">
               {tFooter("faqLink")}
             </a>{" "}
             {tFooter("helpDescriptionMiddle")}{" "}
-            <a href={`/${currentLocale}${ROUTES.static.contact}`} className="text-white/70 underline hover:text-white">
+            <a href={localePath(currentLocale, ROUTES.static.contact)} className="text-white/70 underline hover:text-white">
               {tFooter("contactLink")}
             </a>.
           </>

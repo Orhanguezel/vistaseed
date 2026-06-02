@@ -1,13 +1,17 @@
 import { defaultLocale, isAppLocale, type AppLocale } from "@/i18n/routing";
 
-/** `/panel/...` gibi yolları `/${locale}/panel/...` yapar; zaten locale varsa dokunmaz. */
+/**
+ * `/panel/...` gibi yolları aktif locale ile önekler; zaten locale varsa dokunmaz.
+ * `localePrefix: "as-needed"` → varsayılan dil (tr) öneksizdir.
+ */
 export function localePath(locale: string, path: string): string {
   if (!path.startsWith("/")) return path;
   const first = path.split("/").filter(Boolean)[0];
   if (first && isAppLocale(first)) return path;
   const loc = isAppLocale(locale) ? locale : defaultLocale;
-  if (path === "/") return `/${loc}`;
-  return `/${loc}${path}`;
+  const prefix = loc === defaultLocale ? "" : `/${loc}`;
+  if (path === "/") return prefix || "/";
+  return `${prefix}${path}`;
 }
 
 /** `usePathname()` çıktısından locale segmentini çıkarır (`/tr/panel/...` → `/panel/...`). */
