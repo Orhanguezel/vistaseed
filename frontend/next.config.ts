@@ -86,12 +86,12 @@ const nextConfig: NextConfig = {
       })),
       {
         source: "/teklif",
-        destination: "/teklif-al",
+        destination: "/tr/teklif-al",
         permanent: true,
       },
       {
         source: "/tr/teklif",
-        destination: "/teklif-al",
+        destination: "/tr/teklif-al",
         permanent: true,
       },
       {
@@ -179,15 +179,9 @@ const nextConfig: NextConfig = {
       },
 
       // WordPress prob'ları
-      { source: "/wp-admin", destination: "/", permanent: true },
-      { source: "/wp-admin/:path*", destination: "/", permanent: true },
-      { source: "/wp-login.php", destination: "/", permanent: true },
-
-      // `localePrefix: "as-needed"` geçişi — eski /tr/* URL'leri öneksiz forma 301'le.
-      // Bu kural en SONDA durur; üstteki özel /tr/... kuralları (teklif, legacy kategori)
-      // önce eşleşir, ardından kalan tüm /tr/* yolları buradan temizlenir.
-      { source: "/tr", destination: "/", permanent: true },
-      { source: "/tr/:path*", destination: "/:path*", permanent: true },
+      { source: "/wp-admin", destination: "/tr", permanent: true },
+      { source: "/wp-admin/:path*", destination: "/tr", permanent: true },
+      { source: "/wp-login.php", destination: "/tr", permanent: true },
     ];
   },
   async headers() {

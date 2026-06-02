@@ -2,18 +2,15 @@ import { describe, expect, it } from "vitest";
 import { defaultLocale, toLocalizedPath } from "./routing";
 
 describe("i18n routing", () => {
-  it("keeps the default locale home unprefixed (as-needed)", () => {
-    expect(toLocalizedPath("/", defaultLocale)).toBe("/");
-  });
-
-  it("keeps default-locale public paths unprefixed", () => {
-    expect(toLocalizedPath("/urunler", defaultLocale)).toBe("/urunler");
-    expect(toLocalizedPath("/teklif-al", defaultLocale)).toBe("/teklif-al");
-  });
-
-  it("prefixes non-default locale home", () => {
+  it("prefixes locale for home (always)", () => {
+    expect(toLocalizedPath("/", defaultLocale)).toBe(`/${defaultLocale}`);
     expect(toLocalizedPath("/", "en")).toBe("/en");
     expect(toLocalizedPath("/", "de")).toBe("/de");
+  });
+
+  it("prefixes default-locale public paths", () => {
+    expect(toLocalizedPath("/urunler", defaultLocale)).toBe("/tr/urunler");
+    expect(toLocalizedPath("/teklif-al", defaultLocale)).toBe("/tr/teklif-al");
   });
 
   it("localizes known public paths", () => {

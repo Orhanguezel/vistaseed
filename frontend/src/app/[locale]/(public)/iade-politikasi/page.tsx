@@ -23,7 +23,7 @@ const content = {
       <h2>İade Kargo Ücreti</h2>
       <p>Kusurlu, hasarlı veya hatalı gönderilen ürünlerde iade kargo süreci Vista Seeds tarafından yönlendirilir. Müşteri tercihine bağlı iade taleplerinde kargo ücreti müşteriye ait olabilir.</p>
       <h2>İletişim</h2>
-      <p>İade ve değişim talepleri için <a href="/iletisim">iletişim sayfamızdan</a> Vista Seeds ekibine ulaşabilirsiniz.</p>
+      <p>İade ve değişim talepleri için <a href="/tr/iletisim">iletişim sayfamızdan</a> Vista Seeds ekibine ulaşabilirsiniz.</p>
     `,
   },
   en: {

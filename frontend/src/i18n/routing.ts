@@ -14,7 +14,7 @@ export const localeLabels: Record<AppLocale, { native: string; short: string }> 
 export const routing = defineRouting({
   locales: appLocales,
   defaultLocale: defaultLocale,
-  localePrefix: "as-needed",
+  localePrefix: "always",
   pathnames: {
     "/": "/",
     "/urunler": "/urunler",
@@ -56,8 +56,8 @@ export function getLocaleFromPathname(pathname: string): AppLocale {
 
 export function localePrefix(locale: string): string {
   const safeLocale = isAppLocale(locale) ? locale : defaultLocale;
-  // `localePrefix: "as-needed"` → default locale (tr) URL'leri öneksizdir.
-  return safeLocale === defaultLocale ? "" : `/${safeLocale}`;
+  // `localePrefix: "always"` → tüm diller (tr dahil) URL önekli.
+  return `/${safeLocale}`;
 }
 
 export function toLocalizedPath(pathname: string, locale: string): string {
@@ -66,7 +66,7 @@ export function toLocalizedPath(pathname: string, locale: string): string {
   const normalizedPathname = pathname.startsWith("/") ? pathname : `/${pathname}`;
 
   if (normalizedPathname === "/") {
-    return prefix || "/";
+    return prefix;
   }
 
   const matchedPathname = Object.keys(routing.pathnames)
