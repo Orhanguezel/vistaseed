@@ -5,11 +5,14 @@
 SET NAMES utf8mb4;
 
 DELETE FROM `storage_assets`
-WHERE `bucket` = 'default'
-  AND `path` IN (
+WHERE `path` IN (
     'products/vs_test_upload.png','products/clean_test.png','products/faz3_test.png',
     'products/faz3_v2.png','products/final_test.png','products/proof.png',
     'products/dbg.png','products/faz2_test.png'
+  )
+  AND `name` IN (
+    'vs_test_upload.png','clean_test.png','faz3_test.png','faz3_v2.png',
+    'final_test.png','proof.png','dbg.png','faz2_test.png'
   );
 
 UPDATE `storage_assets` SET `size` = 132536, `width` = 512, `height` = 512, `updated_at` = NOW(3)
