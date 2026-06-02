@@ -56,7 +56,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const ogImages = seo?.open_graph?.images?.length
     ? seo.open_graph.images.map((img: string) => img.startsWith("/") ? `${SITE_URL}${img}` : img)
-    : branding.site_logo ? [branding.site_logo] : [];
+    : branding.site_og_image
+      ? [branding.site_og_image.startsWith("http") ? branding.site_og_image : `${SITE_URL}${branding.site_og_image}`]
+      : [];
 
   const twitterCard = seo?.twitter?.card ?? "summary_large_image";
   const twitterSite = seo?.twitter?.site || undefined;
@@ -69,11 +71,12 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(SITE_URL),
     icons: {
       icon: [
-        { url: branding.site_favicon || "/favicon.ico" },
-        { url: branding.site_logo || "/uploads/media/logo/vistaseed_logo.png", type: "image/png" },
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+        { url: branding.site_favicon || "/icon-512.png", type: "image/png" },
       ],
       shortcut: branding.site_favicon || "/favicon.ico",
-      apple: branding.site_apple_touch || branding.site_logo || "/uploads/media/logo/appletouch.png",
+      apple: branding.site_apple_touch || "/apple-touch-icon.png",
     },
     openGraph: {
       ...(siteName && { siteName }),
