@@ -1,7 +1,7 @@
 -- 163_products_live_enrich_apply.sql
--- CANLI (zaten seed'li) DB icin idempotent urun guncellemesi.
--- DROP YOK, products DELETE YOK. Sadece UPDATE + UPSERT; specs/images bu 8 urun icin
--- tazelenir (inbound FK yok). Aciklamalardaki ';' nedeniyle tirnak-duyarli uretildi. 2026-06-04.
+-- CANLI (zaten seed'li) DB icin idempotent urun guncellemesi (tr/en/de).
+-- DROP YOK, products DELETE YOK. UPDATE + UPSERT; specs/images bu 8 urun icin tazelenir.
+-- Tirnak-duyarli uretim; tum product_specs bloklari (tr/en/enrich/de) dahil. 2026-06-04.
 SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- 1) storage_assets (idempotent)
@@ -59,7 +59,7 @@ INSERT INTO `product_i18n` (`product_id`, `locale`, `title`, `slug`, `descriptio
 ('pppppppp-0001-4000-8000-000000000008', 'de', 'SARAY F1 Blockpaprika', 'saray-f1', 'SARAY F1 ist eine professionelle Blockpaprikasorte (zum Füllen) mit mittelkräftiger Pflanzenstruktur für den Anbau im Gewächshaus und Freiland. Die TSWV-Toleranz unterstützt eine sicherere Produktion bei Krankheitsdruck. Dunkelgrüne, dickschalige Früchte mit 3-4 Lappen bieten eine lange Haltbarkeit und hohe Transportfestigkeit für den kommerziellen Handel.', 'SARAY F1 Blockpaprika Produktbild', '["Paprika", "f1", "Hybride", "Blockpaprika", "dickschalig", "Gewächshaus", "Freiland"]', 'SARAY F1 Blockpaprika Samen | Vista Seeds', 'SARAY F1 Blockpaprika; dunkelgrün, dickschalig, 3-4 Lappen, TSWV-Toleranz für Gewächshaus und Freiland.')
 ON DUPLICATE KEY UPDATE `title`=VALUES(`title`), `slug`=VALUES(`slug`), `description`=VALUES(`description`), `alt`=VALUES(`alt`), `tags`=VALUES(`tags`), `meta_title`=VALUES(`meta_title`), `meta_description`=VALUES(`meta_description`);
 
--- 4) product_specs: bu urunlerin tum spec'lerini tazele
+-- 4) product_specs: bu urunlerin TUM spec'lerini tazele (tr/en/de)
 DELETE FROM `product_specs` WHERE `product_id` LIKE 'pppppppp-0001-4000-8000-%';
 INSERT INTO `product_specs` (`id`, `product_id`, `locale`, `name`, `value`, `category`, `order_num`) VALUES
 -- AVAR
@@ -248,6 +248,91 @@ INSERT INTO `product_specs` (`id`, `product_id`, `locale`, `name`, `value`, `cat
 ('ssssssss-0002-4000-8000-000000000076', 'pppppppp-0001-4000-8000-000000000008', 'en', 'Sowing Depth (general culture)', '0.5-1 cm', 'custom', 12),
 ('ssssssss-0002-4000-8000-000000000077', 'pppppppp-0001-4000-8000-000000000008', 'en', 'Spacing (general culture)', '70-90 cm between rows, 40-50 cm in row', 'custom', 13),
 ('ssssssss-0002-4000-8000-000000000078', 'pppppppp-0001-4000-8000-000000000008', 'en', 'Light Requirement', 'Full sun', 'custom', 14);
+INSERT INTO `product_specs` (`id`, `product_id`, `locale`, `name`, `value`, `category`, `order_num`) VALUES
+('ssssssss-00de-4000-8000-000000000001', 'pppppppp-0001-4000-8000-000000000001', 'de', 'Wurzelkraft', 'Sehr hoch', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000002', 'pppppppp-0001-4000-8000-000000000001', 'de', 'Anpassung', 'Breiter Klimabereich', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000003', 'pppppppp-0001-4000-8000-000000000001', 'de', 'Verwendung', 'Veredelungsunterlage', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000004', 'pppppppp-0001-4000-8000-000000000001', 'de', 'Botanischer Name', 'Cucurbita maxima × Cucurbita moschata', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000005', 'pppppppp-0001-4000-8000-000000000001', 'de', 'Keimdauer (allgemeine Kultur)', '5-10 Tage (Boden 25-30°C)', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000006', 'pppppppp-0001-4000-8000-000000000001', 'de', 'Saattiefe (allgemeine Kultur)', '1,5-2 cm', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000007', 'pppppppp-0001-4000-8000-000000000001', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000008', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Fruchttyp', 'Charliston', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000009', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Fruchtlänge', '21-23 cm', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000010', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Anbau', 'Herbst, Einzelanbau, Hochland', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000011', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Krankheitstoleranz', 'TSWV, Tm:0-2', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000012', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Geschmack', '100% Süß', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000013', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Kälteleistung', 'Hoch', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000014', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Botanischer Name', 'Capsicum annuum', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000015', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Keimdauer (allgemeine Kultur)', '7-14 Tage (Boden 24-30°C)', 'custom', 8),
+('ssssssss-00de-4000-8000-000000000016', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Saattiefe (allgemeine Kultur)', '0,5-1 cm', 'custom', 9),
+('ssssssss-00de-4000-8000-000000000017', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Pflanzabstand (allgemeine Kultur)', 'Reihenabstand 70-90 cm, in der Reihe 40-50 cm', 'custom', 10),
+('ssssssss-00de-4000-8000-000000000018', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 11),
+('ssssssss-00de-4000-8000-000000000019', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Fruchttyp', 'Scharfe Spitzpaprika', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000020', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Fruchtlänge', '23-25 cm', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000021', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Krankheitstoleranz', 'TSWV', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000022', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Anbau', 'Herbst, Frühjahr / Gewächshaus, Freiland', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000023', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Geschmack', 'Scharf', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000024', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Botanischer Name', 'Capsicum annuum', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000025', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Keimdauer (allgemeine Kultur)', '7-14 Tage (Boden 24-30°C)', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000026', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Saattiefe (allgemeine Kultur)', '0,5-1 cm', 'custom', 8),
+('ssssssss-00de-4000-8000-000000000027', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Pflanzabstand (allgemeine Kultur)', 'Reihenabstand 70-90 cm, in der Reihe 40-50 cm', 'custom', 9),
+('ssssssss-00de-4000-8000-000000000028', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 10),
+('ssssssss-00de-4000-8000-000000000029', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Fruchttyp', 'Süße Spitzpaprika', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000030', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Fruchtlänge', '22-24 cm', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000031', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Krankheitstoleranz', 'TSWV', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000032', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Anbau', 'Herbst, Einzelanbau / Gewächshaus', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000033', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Geschmack', '100% Süß', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000034', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Kälteleistung', 'Hoch', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000035', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Botanischer Name', 'Capsicum annuum', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000036', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Keimdauer (allgemeine Kultur)', '7-14 Tage (Boden 24-30°C)', 'custom', 8),
+('ssssssss-00de-4000-8000-000000000037', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Saattiefe (allgemeine Kultur)', '0,5-1 cm', 'custom', 9),
+('ssssssss-00de-4000-8000-000000000038', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Pflanzabstand (allgemeine Kultur)', 'Reihenabstand 70-90 cm, in der Reihe 40-50 cm', 'custom', 10),
+('ssssssss-00de-4000-8000-000000000039', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 11),
+('ssssssss-00de-4000-8000-000000000040', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Fruchttyp', 'Türkische Frühstückspaprika', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000041', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Fruchtlänge', '16-18 cm', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000042', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Krankheitstoleranz', 'TSWV, Tm:0-2', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000043', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Anbau', 'Herbst, Einzelanbau / Gewächshaus', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000044', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Schale', 'Dünnschalig, frühreif', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000045', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Kälteleistung', 'Hoch', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000046', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Botanischer Name', 'Capsicum annuum', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000047', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Keimdauer (allgemeine Kultur)', '7-14 Tage (Boden 24-30°C)', 'custom', 8),
+('ssssssss-00de-4000-8000-000000000048', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Saattiefe (allgemeine Kultur)', '0,5-1 cm', 'custom', 9),
+('ssssssss-00de-4000-8000-000000000049', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Pflanzabstand (allgemeine Kultur)', 'Reihenabstand 70-90 cm, in der Reihe 40-50 cm', 'custom', 10),
+('ssssssss-00de-4000-8000-000000000050', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 11),
+('ssssssss-00de-4000-8000-000000000051', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Fruchttyp', 'Kapia-Paprika', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000052', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Fruchtlänge', '18-20 cm', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000053', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Krankheitstoleranz', 'TSWV', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000054', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Anbau', 'Herbst, Frühjahr / Gewächshaus, Freiland', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000055', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Geschmack', '100% Süß', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000056', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Farbe', 'Dunkelrot', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000057', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Botanischer Name', 'Capsicum annuum', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000058', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Keimdauer (allgemeine Kultur)', '7-14 Tage (Boden 24-30°C)', 'custom', 8),
+('ssssssss-00de-4000-8000-000000000059', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Saattiefe (allgemeine Kultur)', '0,5-1 cm', 'custom', 9),
+('ssssssss-00de-4000-8000-000000000060', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Pflanzabstand (allgemeine Kultur)', 'Reihenabstand 70-90 cm, in der Reihe 40-50 cm', 'custom', 10),
+('ssssssss-00de-4000-8000-000000000061', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 11),
+('ssssssss-00de-4000-8000-000000000062', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Fruchttyp', 'Kapia-Paprika', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000063', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Fruchtlänge', '19-21 cm', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000064', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Krankheitstoleranz', 'TSWV', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000065', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Anbau', 'Herbst, Frühjahr / Gewächshaus', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000066', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Geschmack', '100% Süß', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000067', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Farbe', 'Dunkelrot', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000068', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Eigenschaft', 'Platzt nicht (kein Cracking)', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000069', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Botanischer Name', 'Capsicum annuum', 'custom', 8),
+('ssssssss-00de-4000-8000-000000000070', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Keimdauer (allgemeine Kultur)', '7-14 Tage (Boden 24-30°C)', 'custom', 9),
+('ssssssss-00de-4000-8000-000000000071', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Saattiefe (allgemeine Kultur)', '0,5-1 cm', 'custom', 10),
+('ssssssss-00de-4000-8000-000000000072', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Pflanzabstand (allgemeine Kultur)', 'Reihenabstand 70-90 cm, in der Reihe 40-50 cm', 'custom', 11),
+('ssssssss-00de-4000-8000-000000000073', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 12),
+('ssssssss-00de-4000-8000-000000000074', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Fruchttyp', 'Blockpaprika (zum Füllen)', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000075', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Anzahl Lappen', '3-4 Lappen', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000076', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Krankheitstoleranz', 'TSWV', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000077', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Anbau', 'Herbst, Frühjahr / Gewächshaus, Freiland', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000078', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Schale', 'Dickschalig', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000079', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Farbe', 'Dunkelgrün', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000080', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Botanischer Name', 'Capsicum annuum', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000081', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Keimdauer (allgemeine Kultur)', '7-14 Tage (Boden 24-30°C)', 'custom', 8),
+('ssssssss-00de-4000-8000-000000000082', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Saattiefe (allgemeine Kultur)', '0,5-1 cm', 'custom', 9),
+('ssssssss-00de-4000-8000-000000000083', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Pflanzabstand (allgemeine Kultur)', 'Reihenabstand 70-90 cm, in der Reihe 40-50 cm', 'custom', 10),
+('ssssssss-00de-4000-8000-000000000084', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 11);
 
 -- 5) product_images: birincil gorselleri tazele
 DELETE FROM `product_images` WHERE `product_id` LIKE 'pppppppp-0001-4000-8000-%';
