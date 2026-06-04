@@ -198,36 +198,14 @@ UPDATE `categories` SET `is_active` = 0 WHERE `id` IN (
 INSERT INTO `storage_assets`
   (`id`, `name`, `bucket`, `path`, `folder`, `mime`, `size`, `url`, `provider`, `provider_public_id`, `provider_resource_type`, `provider_format`)
 VALUES
--- LUCKY F1 - Charliston (5 görsel)
-('00009400-0000-4000-8000-000000000201','lucky-f1-charliston-01.jpeg','default','products/lucky-f1-charliston-01.jpeg','products','image/jpeg',146398,'/uploads/products/lucky-f1-charliston-01.jpeg','local','products/lucky-f1-charliston-01.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000202','lucky-f1-charliston-02.jpeg','default','products/lucky-f1-charliston-02.jpeg','products','image/jpeg',267360,'/uploads/products/lucky-f1-charliston-02.jpeg','local','products/lucky-f1-charliston-02.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000203','lucky-f1-charliston-03.jpeg','default','products/lucky-f1-charliston-03.jpeg','products','image/jpeg',205303,'/uploads/products/lucky-f1-charliston-03.jpeg','local','products/lucky-f1-charliston-03.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000204','lucky-f1-charliston-04.jpeg','default','products/lucky-f1-charliston-04.jpeg','products','image/jpeg',211174,'/uploads/products/lucky-f1-charliston-04.jpeg','local','products/lucky-f1-charliston-04.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000205','lucky-f1-charliston-05.jpeg','default','products/lucky-f1-charliston-05.jpeg','products','image/jpeg',196557,'/uploads/products/lucky-f1-charliston-05.jpeg','local','products/lucky-f1-charliston-05.jpeg','image','jpeg'),
--- BİRLİK F1 - Üçburun (1 görsel)
-('00009400-0000-4000-8000-000000000206','birlik-f1-ucburun-01.jpeg','default','products/birlik-f1-ucburun-01.jpeg','products','image/jpeg',156745,'/uploads/products/birlik-f1-ucburun-01.jpeg','local','products/birlik-f1-ucburun-01.jpeg','image','jpeg'),
--- SARAY F1 - Dolma (5 görsel)
-('00009400-0000-4000-8000-000000000207','saray-f1-dolma-01.jpeg','default','products/saray-f1-dolma-01.jpeg','products','image/jpeg',76003,'/uploads/products/saray-f1-dolma-01.jpeg','local','products/saray-f1-dolma-01.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000208','saray-f1-dolma-02.jpeg','default','products/saray-f1-dolma-02.jpeg','products','image/jpeg',243361,'/uploads/products/saray-f1-dolma-02.jpeg','local','products/saray-f1-dolma-02.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000209','saray-f1-dolma-03.jpeg','default','products/saray-f1-dolma-03.jpeg','products','image/jpeg',107384,'/uploads/products/saray-f1-dolma-03.jpeg','local','products/saray-f1-dolma-03.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000210','saray-f1-dolma-04.jpeg','default','products/saray-f1-dolma-04.jpeg','products','image/jpeg',246754,'/uploads/products/saray-f1-dolma-04.jpeg','local','products/saray-f1-dolma-04.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000211','saray-f1-dolma-05.jpeg','default','products/saray-f1-dolma-05.jpeg','products','image/jpeg',214651,'/uploads/products/saray-f1-dolma-05.jpeg','local','products/saray-f1-dolma-05.jpeg','image','jpeg'),
--- PRESTİJ F1 - Tatlı Kıl (2 görsel)
-('00009400-0000-4000-8000-000000000212','prestij-f1-tatli-kil-01.jpeg','default','products/prestij-f1-tatli-kil-01.jpeg','products','image/jpeg',115344,'/uploads/products/prestij-f1-tatli-kil-01.jpeg','local','products/prestij-f1-tatli-kil-01.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000213','prestij-f1-tatli-kil-02.jpeg','default','products/prestij-f1-tatli-kil-02.jpeg','products','image/jpeg',185574,'/uploads/products/prestij-f1-tatli-kil-02.jpeg','local','products/prestij-f1-tatli-kil-02.jpeg','image','jpeg'),
--- KIZGIN F1 - Acı Kıl (3 görsel)
-('00009400-0000-4000-8000-000000000214','kizgin-f1-aci-kil-01.jpeg','default','products/kizgin-f1-aci-kil-01.jpeg','products','image/jpeg',66271,'/uploads/products/kizgin-f1-aci-kil-01.jpeg','local','products/kizgin-f1-aci-kil-01.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000215','kizgin-f1-aci-kil-02.jpeg','default','products/kizgin-f1-aci-kil-02.jpeg','products','image/jpeg',66271,'/uploads/products/kizgin-f1-aci-kil-02.jpeg','local','products/kizgin-f1-aci-kil-02.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000216','kizgin-f1-aci-kil-03.jpeg','default','products/kizgin-f1-aci-kil-03.jpeg','products','image/jpeg',239905,'/uploads/products/kizgin-f1-aci-kil-03.jpeg','local','products/kizgin-f1-aci-kil-03.jpeg','image','jpeg'),
--- TIRPAN F1 - Kapya (4 görsel)
-('00009400-0000-4000-8000-000000000217','tirpan-f1-kapya-01.jpeg','default','products/tirpan-f1-kapya-01.jpeg','products','image/jpeg',98686,'/uploads/products/tirpan-f1-kapya-01.jpeg','local','products/tirpan-f1-kapya-01.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000218','tirpan-f1-kapya-02.jpeg','default','products/tirpan-f1-kapya-02.jpeg','products','image/jpeg',128580,'/uploads/products/tirpan-f1-kapya-02.jpeg','local','products/tirpan-f1-kapya-02.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000219','tirpan-f1-kapya-03.jpeg','default','products/tirpan-f1-kapya-03.jpeg','products','image/jpeg',150639,'/uploads/products/tirpan-f1-kapya-03.jpeg','local','products/tirpan-f1-kapya-03.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000220','tirpan-f1-kapya-04.jpeg','default','products/tirpan-f1-kapya-04.jpeg','products','image/jpeg',150681,'/uploads/products/tirpan-f1-kapya-04.jpeg','local','products/tirpan-f1-kapya-04.jpeg','image','jpeg'),
--- CANKAN F1 - Kapya (3 görsel)
-('00009400-0000-4000-8000-000000000221','cankan-f1-kapya-01.jpeg','default','products/cankan-f1-kapya-01.jpeg','products','image/jpeg',89118,'/uploads/products/cankan-f1-kapya-01.jpeg','local','products/cankan-f1-kapya-01.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000222','cankan-f1-kapya-02.jpeg','default','products/cankan-f1-kapya-02.jpeg','products','image/jpeg',194905,'/uploads/products/cankan-f1-kapya-02.jpeg','local','products/cankan-f1-kapya-02.jpeg','image','jpeg'),
-('00009400-0000-4000-8000-000000000223','cankan-f1-kapya-03.jpeg','default','products/cankan-f1-kapya-03.jpeg','products','image/jpeg',174322,'/uploads/products/cankan-f1-kapya-03.jpeg','local','products/cankan-f1-kapya-03.jpeg','image','jpeg');
+('14909400-0000-4000-8000-000000000001','avar-rootstock-01.webp','default','products/avar-rootstock-01.webp','products','image/webp',262110,'/uploads/products/avar-rootstock-01.webp','local','products/avar-rootstock-01.webp','image','webp'),
+('15009400-0000-4000-8000-000000000001','lucky-f1-source-01.webp','default','products/lucky-f1-source-01.webp','products','image/webp',85338,'/uploads/products/lucky-f1-source-01.webp','local','products/lucky-f1-source-01.webp','image','webp'),
+('15009400-0000-4000-8000-000000000002','kizgin-f1-source-01.webp','default','products/kizgin-f1-source-01.webp','products','image/webp',140266,'/uploads/products/kizgin-f1-source-01.webp','local','products/kizgin-f1-source-01.webp','image','webp'),
+('15009400-0000-4000-8000-000000000003','prestij-f1-source-01.webp','default','products/prestij-f1-source-01.webp','products','image/webp',84064,'/uploads/products/prestij-f1-source-01.webp','local','products/prestij-f1-source-01.webp','image','webp'),
+('15009400-0000-4000-8000-000000000004','birlik-f1-source-01.webp','default','products/birlik-f1-source-01.webp','products','image/webp',244032,'/uploads/products/birlik-f1-source-01.webp','local','products/birlik-f1-source-01.webp','image','webp'),
+('15009400-0000-4000-8000-000000000005','cankan-f1-source-01.webp','default','products/cankan-f1-source-01.webp','products','image/webp',49440,'/uploads/products/cankan-f1-source-01.webp','local','products/cankan-f1-source-01.webp','image','webp'),
+('15009400-0000-4000-8000-000000000006','tirpan-f1-source-01.webp','default','products/tirpan-f1-source-01.webp','products','image/webp',55574,'/uploads/products/tirpan-f1-source-01.webp','local','products/tirpan-f1-source-01.webp','image','webp'),
+('15009400-0000-4000-8000-000000000007','saray-f1-source-01.webp','default','products/saray-f1-source-01.webp','products','image/webp',45884,'/uploads/products/saray-f1-source-01.webp','local','products/saray-f1-source-01.webp','image','webp');
 
 -- =============================================================
 -- SEED: 8 ürün (1 ANAC + 7 BIBER)
@@ -237,137 +215,58 @@ VALUES
 -- ANAC  = aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1
 -- BIBER = aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2
 
-INSERT INTO `products` (`id`, `item_type`, `category_id`, `price`, `image_url`, `storage_asset_id`, `images`, `storage_image_ids`, `is_active`, `is_featured`, `order_num`, `product_code`) VALUES
-('pppppppp-0001-4000-8000-000000000001', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1', '1250.00', NULL, NULL, '[]', '[]', 1, 1, 1, 'VS-ANAC-001'),
-('pppppppp-0001-4000-8000-000000000002', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', '850.00', '/uploads/products/lucky-f1-charliston-01.jpeg', '00009400-0000-4000-8000-000000000201', '["/uploads/products/lucky-f1-charliston-01.jpeg","/uploads/products/lucky-f1-charliston-02.jpeg","/uploads/products/lucky-f1-charliston-03.jpeg","/uploads/products/lucky-f1-charliston-04.jpeg","/uploads/products/lucky-f1-charliston-05.jpeg"]', '["00009400-0000-4000-8000-000000000201","00009400-0000-4000-8000-000000000202","00009400-0000-4000-8000-000000000203","00009400-0000-4000-8000-000000000204","00009400-0000-4000-8000-000000000205"]', 1, 1, 2, 'VS-BIB-001'),
-('pppppppp-0001-4000-8000-000000000003', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', '820.00', '/uploads/products/kizgin-f1-aci-kil-01.jpeg', '00009400-0000-4000-8000-000000000214', '["/uploads/products/kizgin-f1-aci-kil-01.jpeg","/uploads/products/kizgin-f1-aci-kil-02.jpeg","/uploads/products/kizgin-f1-aci-kil-03.jpeg"]', '["00009400-0000-4000-8000-000000000214","00009400-0000-4000-8000-000000000215","00009400-0000-4000-8000-000000000216"]', 1, 1, 3, 'VS-BIB-002'),
-('pppppppp-0001-4000-8000-000000000004', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', '840.00', '/uploads/products/prestij-f1-tatli-kil-01.jpeg', '00009400-0000-4000-8000-000000000212', '["/uploads/products/prestij-f1-tatli-kil-01.jpeg","/uploads/products/prestij-f1-tatli-kil-02.jpeg"]', '["00009400-0000-4000-8000-000000000212","00009400-0000-4000-8000-000000000213"]', 1, 1, 4, 'VS-BIB-003'),
-('pppppppp-0001-4000-8000-000000000005', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', '780.00', '/uploads/products/birlik-f1-ucburun-01.jpeg', '00009400-0000-4000-8000-000000000206', '["/uploads/products/birlik-f1-ucburun-01.jpeg"]', '["00009400-0000-4000-8000-000000000206"]', 1, 1, 5, 'VS-BIB-004'),
-('pppppppp-0001-4000-8000-000000000006', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', '860.00', '/uploads/products/cankan-f1-kapya-01.jpeg', '00009400-0000-4000-8000-000000000221', '["/uploads/products/cankan-f1-kapya-01.jpeg","/uploads/products/cankan-f1-kapya-02.jpeg","/uploads/products/cankan-f1-kapya-03.jpeg"]', '["00009400-0000-4000-8000-000000000221","00009400-0000-4000-8000-000000000222","00009400-0000-4000-8000-000000000223"]', 1, 1, 6, 'VS-BIB-005'),
-('pppppppp-0001-4000-8000-000000000007', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', '870.00', '/uploads/products/tirpan-f1-kapya-01.jpeg', '00009400-0000-4000-8000-000000000217', '["/uploads/products/tirpan-f1-kapya-01.jpeg","/uploads/products/tirpan-f1-kapya-02.jpeg","/uploads/products/tirpan-f1-kapya-03.jpeg","/uploads/products/tirpan-f1-kapya-04.jpeg"]', '["00009400-0000-4000-8000-000000000217","00009400-0000-4000-8000-000000000218","00009400-0000-4000-8000-000000000219","00009400-0000-4000-8000-000000000220"]', 1, 1, 7, 'VS-BIB-006'),
-('pppppppp-0001-4000-8000-000000000008', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', '800.00', '/uploads/products/saray-f1-dolma-01.jpeg', '00009400-0000-4000-8000-000000000207', '["/uploads/products/saray-f1-dolma-01.jpeg","/uploads/products/saray-f1-dolma-02.jpeg","/uploads/products/saray-f1-dolma-03.jpeg","/uploads/products/saray-f1-dolma-04.jpeg","/uploads/products/saray-f1-dolma-05.jpeg"]', '["00009400-0000-4000-8000-000000000207","00009400-0000-4000-8000-000000000208","00009400-0000-4000-8000-000000000209","00009400-0000-4000-8000-000000000210","00009400-0000-4000-8000-000000000211"]', 1, 1, 8, 'VS-BIB-007');
+INSERT INTO `products` (`id`, `item_type`, `category_id`, `price`, `image_url`, `storage_asset_id`, `images`, `storage_image_ids`, `is_active`, `is_featured`, `order_num`, `product_code`, `botanical_name`, `planting_seasons`, `water_need`, `sun_exposure`) VALUES
+('pppppppp-0001-4000-8000-000000000001', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1', '1250.00', '/uploads/products/avar-rootstock-01.webp', '14909400-0000-4000-8000-000000000001', '["/uploads/products/avar-rootstock-01.webp"]', '["14909400-0000-4000-8000-000000000001"]', 1, 1, 1, 'VS-ANAC-001', 'Cucurbita maxima × Cucurbita moschata', '[]', 'Orta', 'Tam güneş'),
+('pppppppp-0001-4000-8000-000000000002', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', '850.00', 'https://www.vistaseeds.com.tr/uploads/uploads/products/525C9BB8-18F9-4C2B-B5BD-0BD9E296E293.png', '15009400-0000-4000-8000-000000000001', '["https://www.vistaseeds.com.tr/uploads/uploads/products/525C9BB8-18F9-4C2B-B5BD-0BD9E296E293.png"]', '["15009400-0000-4000-8000-000000000001"]', 1, 1, 2, 'VS-BIB-001', 'Capsicum annuum', '["sonbahar"]', 'Orta', 'Tam güneş'),
+('pppppppp-0001-4000-8000-000000000003', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', '820.00', '/uploads/products/kizgin-f1-source-01.webp', '15009400-0000-4000-8000-000000000002', '["/uploads/products/kizgin-f1-source-01.webp"]', '["15009400-0000-4000-8000-000000000002"]', 1, 1, 3, 'VS-BIB-002', 'Capsicum annuum', '["ilkbahar", "sonbahar"]', 'Orta', 'Tam güneş'),
+('pppppppp-0001-4000-8000-000000000004', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', '840.00', 'https://www.vistaseeds.com.tr/uploads/uploads/products/07CF9486-7623-45AF-B851-C971E1FA5780.png', '15009400-0000-4000-8000-000000000003', '["https://www.vistaseeds.com.tr/uploads/uploads/products/07CF9486-7623-45AF-B851-C971E1FA5780.png"]', '["15009400-0000-4000-8000-000000000003"]', 1, 1, 4, 'VS-BIB-003', 'Capsicum annuum', '["sonbahar"]', 'Orta', 'Tam güneş'),
+('pppppppp-0001-4000-8000-000000000005', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', '780.00', '/uploads/products/birlik-f1-source-01.webp', '15009400-0000-4000-8000-000000000004', '["/uploads/products/birlik-f1-source-01.webp"]', '["15009400-0000-4000-8000-000000000004"]', 1, 1, 5, 'VS-BIB-004', 'Capsicum annuum', '["sonbahar"]', 'Orta', 'Tam güneş'),
+('pppppppp-0001-4000-8000-000000000006', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', '860.00', 'https://www.vistaseeds.com.tr/uploads/uploads/products/Ads_z_tasar_m.jpg', '15009400-0000-4000-8000-000000000005', '["https://www.vistaseeds.com.tr/uploads/uploads/products/Ads_z_tasar_m.jpg"]', '["15009400-0000-4000-8000-000000000005"]', 1, 1, 6, 'VS-BIB-005', 'Capsicum annuum', '["ilkbahar", "sonbahar"]', 'Orta', 'Tam güneş'),
+('pppppppp-0001-4000-8000-000000000007', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', '870.00', 'https://www.vistaseeds.com.tr/uploads/uploads/products/Ads_z_tasar_m.png', '15009400-0000-4000-8000-000000000006', '["https://www.vistaseeds.com.tr/uploads/uploads/products/Ads_z_tasar_m.png"]', '["15009400-0000-4000-8000-000000000006"]', 1, 1, 7, 'VS-BIB-006', 'Capsicum annuum', '["ilkbahar", "sonbahar"]', 'Orta', 'Tam güneş'),
+('pppppppp-0001-4000-8000-000000000008', 'product', 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2', '800.00', 'https://www.vistaseeds.com.tr/uploads/uploads/products/Untitled_design.jpg', '15009400-0000-4000-8000-000000000007', '["https://www.vistaseeds.com.tr/uploads/uploads/products/Untitled_design.jpg"]', '["15009400-0000-4000-8000-000000000007"]', 1, 1, 8, 'VS-BIB-007', 'Capsicum annuum', '["ilkbahar", "sonbahar"]', 'Orta', 'Tam güneş');
 
 -- =============================================================
 -- SEED: product_i18n (TR)
 -- =============================================================
 
 INSERT INTO `product_i18n` (`product_id`, `locale`, `title`, `slug`, `description`, `alt`, `tags`, `meta_title`, `meta_description`) VALUES
-('pppppppp-0001-4000-8000-000000000001', 'tr', 'AVAR', 'avar',
- 'AVAR anaç çeşidi, güçlü kök yapısı ve yüksek adaptasyon kabiliyeti ile öne çıkar. Farklı toprak ve iklim koşullarında üstün performans gösterir. Dayanıklı kök sistemi sayesinde aşılı bitkilere güçlü bir temel sağlar.',
- 'AVAR anaç tohumu',
- '["anaç","rootstock","dayanıklı","adaptasyon"]',
- 'AVAR Anaç Çeşidi | Vista Seeds',
- 'AVAR anaç çeşidi - güçlü kök yapısı, yüksek adaptasyon, dayanıklı kök sistemi. Vista Seeds tescilli tohum.'),
-
-('pppppppp-0001-4000-8000-000000000002', 'tr', 'LUCKY F1 Charliston Biber', 'lucky-f1',
- 'Meyve uzunluğu 21-23 cm. Güz, tek ekim ve yayla yetiştiriciliğine uygundur. TSWV ve Tm:0-2''ye toleranslıdır. Meyve rengi parlak, koyu yeşil renkli charliston biberdir. Meyve eti orta kalın, yüzeyi pürüzsüzdür. Soğuk performansı yüksektir. Meyve kalitesi mükemmel, raf ömrü uzundur. Meyvesi %100 tatlıdır.',
- 'LUCKY F1 charliston biber tohumu',
- '["biber","f1","hibrit","charliston","tatlı","sera","yayla","bahar","yaz"]',
- 'LUCKY F1 Charliston Biber Tohumu | Vista Seeds',
- 'LUCKY F1 charliston biber - 21-23 cm, parlak koyu yeşil, TSWV toleranslı, %100 tatlı, soğuk performansı yüksektir.'),
-
-('pppppppp-0001-4000-8000-000000000003', 'tr', 'KIZGIN F1 Acı Kıl Biber', 'kizgin-f1',
- 'Meyve uzunluğu 23-25 cm. Güz ve bahar yetiştiriciliğine uygundur. Sera ve açık tarla yetiştiriciliğine uygundur. TSWV''ye toleranslıdır. Bitki yapısı güçlü kıl biber formundadır. Meyveleri yeşil ve düz meyve yapısına sahiptir. Meyveleri acıdır.',
- 'KIZGIN F1 acı kıl biber tohumu',
- '["biber","f1","hibrit","acı","kıl-biber","sera","açık-tarla","bahar","güz"]',
- 'KIZGIN F1 Acı Kıl Biber Tohumu | Vista Seeds',
- 'KIZGIN F1 acı kıl biber - 23-25 cm, TSWV toleranslı, güçlü bitki yapısı, sera ve açık tarla uyumlu.'),
-
-('pppppppp-0001-4000-8000-000000000004', 'tr', 'PRESTİJ F1 Tatlı Kıl Biber', 'prestij-f1',
- 'Meyve uzunluğu 22-24 cm. Güz ve tek ekim yetiştiriciliğine uygundur. Sera yetiştiriciliğine uygundur. TSWV''ye toleranslıdır. Bitki yapısı güçlü kıl biber formundadır. Meyveleri yeşil ve düz meyve şekline sahiptir. Soğuk performansı yüksektir. Meyveleri %100 tatlıdır.',
- 'PRESTİJ F1 tatlı kıl biber tohumu',
- '["biber","f1","hibrit","tatlı","kıl-biber","sera","soğuk-performansı","bahar","kış"]',
- 'PRESTİJ F1 Tatlı Kıl Biber Tohumu | Vista Seeds',
- 'PRESTİJ F1 tatlı kıl biber - 22-24 cm, TSWV toleranslı, %100 tatlı, soğuk performansı yüksek.'),
-
-('pppppppp-0001-4000-8000-000000000005', 'tr', 'BİRLİK F1 Üçburun Biber', 'birlik-f1',
- 'Meyve uzunluğu 16-18 cm. Güz ve tek ekim yetiştiriciliğine uygundur. Sera yetiştiriciliğine uygundur. TSWV ve Tm: 0-2''ye toleranslıdır. Bitki yapısı güçlü Türk tipi kahvaltılık biber formundadır. Meyveleri parlak, yeşil renkli, ince kabuklu ve erkencidir. Soğuk performansı yüksektir.',
- 'BİRLİK F1 üçburun biber tohumu',
- '["biber","f1","hibrit","üçburun","kahvaltılık","sera","erkenci","bahar"]',
- 'BİRLİK F1 Üçburun Biber Tohumu | Vista Seeds',
- 'BİRLİK F1 üçburun biber - 16-18 cm, Türk tipi kahvaltılık, TSWV toleranslı, ince kabuklu ve erkenci.'),
-
-('pppppppp-0001-4000-8000-000000000006', 'tr', 'CANKAN F1 Kapya Biber', 'cankan-f1',
- 'Meyve uzunluğu 18-20 cm. Güz ve bahar yetiştiriciliğine uygundur. Sera ve açık tarla yetiştiriciliğine uygundur. TSWV''ye toleranslıdır. Bitki yapısı güçlü kapya biber formundadır. Meyveleri koyu kırmızı renkli, düz ve konik şekillidir. Adaptasyon kabiliyeti yüksektir. Meyveleri %100 tatlıdır.',
- 'CANKAN F1 kapya biber tohumu',
- '["biber","f1","hibrit","kapya","kırmızı","sera","açık-tarla"]',
- 'CANKAN F1 Kapya Biber Tohumu | Vista Seeds',
- 'CANKAN F1 kapya biber - 18-20 cm, koyu kırmızı, TSWV toleranslı, %100 tatlı, yüksek adaptasyon.'),
-
-('pppppppp-0001-4000-8000-000000000007', 'tr', 'TIRPAN F1 Kapya Biber', 'tirpan-f1',
- 'Meyve uzunluğu 19-21 cm. Güz ve bahar yetiştiriciliğine uygundur. Sera yetiştiriciliğine uygundur. TSWV''ye toleranslıdır. Bitki yapısı güçlü kapya biber formundadır. Meyveleri koyu kırmızı renkli, düz ve konik şekillidir. Sıcak tutumu çok iyi olup çatlama ve cracking yapmaz. Adaptasyon kabiliyeti yüksektir. Meyveleri %100 tatlıdır.',
- 'TIRPAN F1 kapya biber tohumu',
- '["biber","f1","hibrit","kapya","kırmızı","sera","çatlama-yapmaz"]',
- 'TIRPAN F1 Kapya Biber Tohumu | Vista Seeds',
- 'TIRPAN F1 kapya biber - 19-21 cm, koyu kırmızı, TSWV toleranslı, %100 tatlı, çatlama yapmaz.'),
-
-('pppppppp-0001-4000-8000-000000000008', 'tr', 'SARAY F1 Dolma Biber', 'saray-f1',
- 'Güz ve bahar yetiştiriciliğine uygundur. Sera ve açık tarla yetiştiriciliğine uygundur. TSWV''ye toleranslıdır. Bitki yapısı orta güçlü dolma biber formundadır. Meyveleri koyu yeşil renkli ve kalın kabukludur. Meyveleri 3-4 lobludur.',
- 'SARAY F1 dolma biber tohumu',
- '["biber","f1","hibrit","dolma","kalın-kabuk","sera","açık-tarla"]',
- 'SARAY F1 Dolma Biber Tohumu | Vista Seeds',
- 'SARAY F1 dolma biber - koyu yeşil, kalın kabuklu, 3-4 loblu, TSWV toleranslı, sera ve açık tarla uyumlu.');
+('pppppppp-0001-4000-8000-000000000001', 'tr', 'AVAR', 'avar', 'AVAR; Cucurbita maxima × Cucurbita moschata hibriti bir anaç çeşididir. Özellikle karpuz, kavun ve hıyar yetiştiriciliğinde güçlü ve güvenilir bir kök anaç olarak kullanılır. Güçlü kök yapısı, yüksek dirençli kök sistemi ve Fon 0,1 toleransı sayesinde aşılı üretimde güvenilir performans sunar.', 'AVAR ürün görseli', '["anaç", "rootstock", "dayanıklı", "adaptasyon"]', 'AVAR Anaç Çeşidi | Vista Seeds', 'AVAR anaç; Cucurbita maxima × Cucurbita moschata hibriti, güçlü kök yapısı ve Fon 0,1 toleransı ile karpuz, kavun ve hıyar için uygundur.'),
+('pppppppp-0001-4000-8000-000000000002', 'tr', 'LUCKY F1 Charliston Biber', 'lucky-f1', 'LUCKY F1; parlak koyu yeşil rengi, 21-23 cm uzunluğunda düzgün ve pürüzsüz meyve yapısı ile yüksek pazar kalitesi sunan profesyonel çarliston biber çeşididir. Güz, tek ekim ve yayla yetiştiriciliğine uygundur. TSWV ve Tm 0-2 toleransı, orta-kalın meyve eti, yüksek soğuk performansı, uzun raf ömrü ve %100 tatlı lezzeti ile ticari üretimde öne çıkar.', 'LUCKY F1 Charliston Biber ürün görseli', '["biber", "f1", "hibrit", "charliston", "tatlı", "sera", "yayla", "bahar", "yaz"]', 'LUCKY F1 Charliston Biber Tohumu | Vista Seeds', 'LUCKY F1 çarliston biber; 21-23 cm meyve boyu, TSWV ve Tm 0-2 toleransı, yüksek soğuk performansı ve %100 tatlı yapısıyla öne çıkar.'),
+('pppppppp-0001-4000-8000-000000000003', 'tr', 'KIZGIN F1 Acı Kıl Biber', 'kizgin-f1', 'KIZGIN F1; sera ve açık tarla yetiştiriciliğine uygun, 23-25 cm meyve boyuna sahip profesyonel acı kıl biber çeşididir. Güçlü bitki yapısı, TSWV toleransı, ideal yeşil rengi, pürüzsüz düz şekli ve yüksek acılık oranı ile ticari üretimde güvenilir sonuç verir.', 'KIZGIN F1 Acı Kıl Biber ürün görseli', '["biber", "f1", "hibrit", "acı", "kıl-biber", "sera", "açık-tarla", "bahar", "güz"]', 'KIZGIN F1 Acı Kıl Biber Tohumu | Vista Seeds', 'KIZGIN F1 acı kıl biber; 23-25 cm meyve boyu, TSWV toleransı ve güçlü bitki yapısıyla sera ve açık tarla üretimine uygundur.'),
+('pppppppp-0001-4000-8000-000000000004', 'tr', 'PRESTİJ F1 Tatlı Kıl Biber', 'prestij-f1', 'PRESTİJ F1; sera yetiştiriciliğine uygun, 22-24 cm meyve boyuna sahip güçlü yapıda profesyonel tatlı kıl biber çeşididir. Yüksek soğuk performansı ve TSWV toleransı ile zorlu koşullarda dahi verimliliğini korur. Düz, yeşil ve kılçıksız meyve yapısıyla pazar değeri yüksek çeşitler arasında yer alır.', 'PRESTİJ F1 Tatlı Kıl Biber ürün görseli', '["biber", "f1", "hibrit", "tatlı", "kıl-biber", "sera", "soğuk-performansı", "bahar", "kış"]', 'PRESTİJ F1 Tatlı Kıl Biber Tohumu | Vista Seeds', 'PRESTİJ F1 tatlı kıl biber; 22-24 cm meyve boyu, TSWV toleransı ve yüksek soğuk performansı ile sera yetiştiriciliği için uygundur.'),
+('pppppppp-0001-4000-8000-000000000005', 'tr', 'BİRLİK F1 Üçburun Biber', 'birlik-f1', 'BİRLİK F1; sera yetiştiriciliğine uygun, güçlü bitki yapısına sahip profesyonel kahvaltılık biber çeşididir. 16-18 cm boyunda, ince kabuklu ve parlak yeşil meyveleriyle yüksek pazar değeri sunar. Soğuk performansı ve TSWV ile Tm: 0-2 toleransı sayesinde üretim risklerini azaltır; erkenci yapısı ile kazancı destekler.', 'BİRLİK F1 Üçburun Biber ürün görseli', '["biber", "f1", "hibrit", "üçburun", "kahvaltılık", "sera", "erkenci", "bahar"]', 'BİRLİK F1 Üçburun Biber Tohumu | Vista Seeds', 'BİRLİK F1 kahvaltılık biber; 16-18 cm meyve boyu, TSWV ve Tm: 0-2 toleransı, yüksek soğuk performansı ve erkenci yapısıyla öne çıkar.'),
+('pppppppp-0001-4000-8000-000000000006', 'tr', 'CANKAN F1 Kapya Biber', 'cankan-f1', 'CANKAN F1; sera ve açık tarla üretimine uygun, güçlü bitki yapısına sahip profesyonel kapya biber çeşididir. 18-20 cm uzunluğundaki pürüzsüz ve koyu kırmızı meyveleriyle dikkat çeker. TSWV toleransı, yüksek uyum yeteneği ve %100 tatlı lezzeti sayesinde farklı iklim koşullarında güvenilir ticari performans sunar.', 'CANKAN F1 Kapya Biber ürün görseli', '["biber", "f1", "hibrit", "kapya", "kırmızı", "sera", "açık-tarla"]', 'CANKAN F1 Kapya Biber Tohumu | Vista Seeds', 'CANKAN F1 kapya biber; 18-20 cm meyve boyu, TSWV toleransı, yüksek adaptasyon ve %100 tatlı lezzetiyle öne çıkar.'),
+('pppppppp-0001-4000-8000-000000000007', 'tr', 'TIRPAN F1 Kapya Biber', 'tirpan-f1', 'TIRPAN F1; sera yetiştiriciliğine uygun, 19-21 cm boyunda koyu kırmızı ve %100 tatlı meyvelere sahip profesyonel kapya biber çeşididir. Yüksek sıcaklıklarda dahi güçlü meyve tutumu sağlar. Çatlama ve cracking yapmayan pürüzsüz meyve yapısı, TSWV toleransı ve yüksek adaptasyonu ile ticari üretimde güven verir.', 'TIRPAN F1 Kapya Biber ürün görseli', '["biber", "f1", "hibrit", "kapya", "kırmızı", "sera", "çatlama-yapmaz"]', 'TIRPAN F1 Kapya Biber Tohumu | Vista Seeds', 'TIRPAN F1 kapya biber; 19-21 cm meyve boyu, TSWV toleransı, yüksek adaptasyon ve çatlama yapmayan kaliteli meyve yapısıyla öne çıkar.'),
+('pppppppp-0001-4000-8000-000000000008', 'tr', 'SARAY F1 Dolma Biber', 'saray-f1', 'SARAY F1; sera ve açık tarla yetiştiriciliğine uygun, orta güçlü yapıda profesyonel dolma biber çeşididir. TSWV toleransı sayesinde hastalık baskısına karşı daha güvenlidir. 3-4 loblu, koyu yeşil ve kalın kabuklu meyveleri uzun raf ömrü ve yüksek nakliye dayanımı sağlayarak ticari değerini korur.', 'SARAY F1 Dolma Biber ürün görseli', '["biber", "f1", "hibrit", "dolma", "kalın-kabuk", "sera", "açık-tarla"]', 'SARAY F1 Dolma Biber Tohumu | Vista Seeds', 'SARAY F1 dolma biber; 3-4 loblu, koyu yeşil, kalın kabuklu meyve yapısı ve TSWV toleransı ile sera ve açık tarla üretimine uygundur.');
 
 -- =============================================================
 -- SEED: product_i18n (EN)
 -- =============================================================
 
 INSERT INTO `product_i18n` (`product_id`, `locale`, `title`, `slug`, `description`, `alt`, `tags`, `meta_title`, `meta_description`) VALUES
-('pppppppp-0001-4000-8000-000000000001', 'en', 'AVAR', 'avar',
- 'AVAR rootstock variety stands out with its strong root structure and high adaptability. It shows superior performance in different soil and climate conditions. Thanks to its durable root system, it provides a strong foundation for grafted plants.',
- 'AVAR rootstock seed',
- '["rootstock","durable","adaptation","grafting"]',
- 'AVAR Rootstock Variety | Vista Seeds',
- 'AVAR rootstock variety - strong root structure, high adaptation, durable root system.'),
+('pppppppp-0001-4000-8000-000000000001', 'en', 'AVAR', 'avar', 'AVAR is a Cucurbita maxima × Cucurbita moschata hybrid rootstock. It is used as a strong and reliable rootstock especially in watermelon, melon and cucumber cultivation. Its vigorous root system, highly resilient roots and Fusarium oxysporum f. sp. niveum race 0,1 tolerance provide dependable performance in grafted production.', 'AVAR product image', '["rootstock", "durable", "adaptation", "grafting"]', 'AVAR Rootstock Variety | Vista Seeds', 'AVAR rootstock is a Cucurbita maxima × Cucurbita moschata hybrid with strong roots and Fon 0,1 tolerance for watermelon, melon and cucumber.'),
+('pppppppp-0001-4000-8000-000000000002', 'en', 'LUCKY F1 Charleston Pepper', 'lucky-f1', 'LUCKY F1 is a professional Charleston pepper variety with bright dark green color and a smooth, uniform fruit structure of 21-23 cm, offering high market quality. It is suitable for autumn, single-cycle and highland cultivation. TSWV and Tm 0-2 tolerance, medium-thick flesh, strong cold performance, long shelf life and 100% sweet taste make it a strong commercial choice.', 'LUCKY F1 Charleston Pepper product image', '["pepper", "f1", "hybrid", "charleston", "sweet", "greenhouse", "highland"]', 'LUCKY F1 Charleston Pepper Seed | Vista Seeds', 'LUCKY F1 Charleston pepper offers 21-23 cm fruits, TSWV and Tm 0-2 tolerance, strong cold performance and a 100% sweet profile.'),
+('pppppppp-0001-4000-8000-000000000003', 'en', 'KIZGIN F1 Hot Thin Pepper', 'kizgin-f1', 'KIZGIN F1 is a professional hot thin pepper variety suitable for greenhouse and open-field cultivation, with a fruit length of 23-25 cm. Its strong plant structure, TSWV tolerance, ideal green color, smooth straight shape and high pungency deliver reliable commercial performance.', 'KIZGIN F1 Hot Thin Pepper product image', '["pepper", "f1", "hybrid", "hot", "thin-pepper", "greenhouse", "open-field"]', 'KIZGIN F1 Hot Thin Pepper Seed | Vista Seeds', 'KIZGIN F1 hot thin pepper offers 23-25 cm fruits, TSWV tolerance and strong plant vigor for greenhouse and open-field production.'),
+('pppppppp-0001-4000-8000-000000000004', 'en', 'PRESTIJ F1 Sweet Thin Pepper', 'prestij-f1', 'PRESTIJ F1 is a professional sweet thin pepper variety with a strong plant structure and 22-24 cm fruits, suitable for greenhouse cultivation. Its high cold performance and TSWV tolerance help maintain productivity under challenging conditions. The straight, green and smooth fruit structure supports high market value.', 'PRESTIJ F1 Sweet Thin Pepper product image', '["pepper", "f1", "hybrid", "sweet", "thin-pepper", "greenhouse", "cold-performance"]', 'PRESTIJ F1 Sweet Thin Pepper Seed | Vista Seeds', 'PRESTIJ F1 sweet thin pepper offers 22-24 cm fruits, TSWV tolerance and strong cold performance for greenhouse cultivation.'),
+('pppppppp-0001-4000-8000-000000000005', 'en', 'BIRLIK F1 Turkish Breakfast Pepper', 'birlik-f1', 'BIRLIK F1 is a professional breakfast pepper variety suitable for greenhouse cultivation with a strong plant structure. Its 16-18 cm fruits are thin-skinned, bright green and highly marketable. Strong cold performance together with TSWV and Tm: 0-2 tolerance reduces risk, while its early habit supports higher returns.', 'BIRLIK F1 Turkish Breakfast Pepper product image', '["pepper", "f1", "hybrid", "breakfast", "turkish", "greenhouse", "early"]', 'BIRLIK F1 Turkish Breakfast Pepper Seed | Vista Seeds', 'BIRLIK F1 breakfast pepper features 16-18 cm fruits, TSWV and Tm: 0-2 tolerance, strong cold performance and early maturity.'),
+('pppppppp-0001-4000-8000-000000000006', 'en', 'CANKAN F1 Kapia Pepper', 'cankan-f1', 'CANKAN F1 is a professional kapia pepper variety with strong plant structure, suitable for greenhouse and open-field production. Its 18-20 cm fruits are smooth, dark red and highly attractive. TSWV tolerance, high adaptability and a 100% sweet taste provide reliable commercial performance across different climates.', 'CANKAN F1 Kapia Pepper product image', '["pepper", "f1", "hybrid", "kapia", "red", "greenhouse", "open-field"]', 'CANKAN F1 Kapia Pepper Seed | Vista Seeds', 'CANKAN F1 kapia pepper offers 18-20 cm fruits, TSWV tolerance, high adaptability and a 100% sweet taste.'),
+('pppppppp-0001-4000-8000-000000000007', 'en', 'TIRPAN F1 Kapia Pepper', 'tirpan-f1', 'TIRPAN F1 is a professional kapia pepper variety for greenhouse cultivation with 19-21 cm dark red fruits and a 100% sweet taste. It maintains strong fruit set even at high temperatures. Its smooth fruit structure resists cracking, while TSWV tolerance and high adaptability deliver confidence in commercial production.', 'TIRPAN F1 Kapia Pepper product image', '["pepper", "f1", "hybrid", "kapia", "red", "greenhouse", "no-cracking"]', 'TIRPAN F1 Kapia Pepper Seed | Vista Seeds', 'TIRPAN F1 kapia pepper offers 19-21 cm fruits, TSWV tolerance, high adaptability and crack-resistant fruit quality.'),
+('pppppppp-0001-4000-8000-000000000008', 'en', 'SARAY F1 Stuffing Pepper', 'saray-f1', 'SARAY F1 is a professional stuffing pepper variety with medium-strong plant structure, suitable for greenhouse and open-field cultivation. Its TSWV tolerance supports safer production under disease pressure. Dark green, thick-skinned fruits with 3-4 lobes offer long shelf life and strong transport durability for commercial trade.', 'SARAY F1 Stuffing Pepper product image', '["pepper", "f1", "hybrid", "stuffing", "thick-skin", "greenhouse", "open-field"]', 'SARAY F1 Stuffing Pepper Seed | Vista Seeds', 'SARAY F1 stuffing pepper offers 3-4 lobed dark green fruits, thick skin and TSWV tolerance for greenhouse and open-field production.');
 
-('pppppppp-0001-4000-8000-000000000002', 'en', 'LUCKY F1 Charleston Pepper', 'lucky-f1',
- 'Fruit length 21-23 cm. Suitable for autumn, single planting and highland cultivation. Tolerant to TSWV, Tm:0-2. Bright, dark green colored charleston pepper. Medium thick fruit flesh with smooth surface. High cold performance. Excellent fruit quality with long shelf life. 100% sweet fruits.',
- 'LUCKY F1 charleston pepper seed',
- '["pepper","f1","hybrid","charleston","sweet","greenhouse","highland"]',
- 'LUCKY F1 Charleston Pepper Seed | Vista Seeds',
- 'LUCKY F1 charleston pepper - 21-23 cm, bright dark green, TSWV tolerant, 100% sweet, high cold performance.'),
+-- =============================================================
+-- SEED: product_i18n (DE)
+-- =============================================================
 
-('pppppppp-0001-4000-8000-000000000003', 'en', 'KIZGIN F1 Hot Thin Pepper', 'kizgin-f1',
- 'Fruit length 23-25 cm. Suitable for autumn and spring cultivation. Suitable for greenhouse and open field cultivation. Tolerant to TSWV. Strong plant structure thin pepper. Fruits are green with straight fruit shape. Fruits are hot.',
- 'KIZGIN F1 hot thin pepper seed',
- '["pepper","f1","hybrid","hot","thin-pepper","greenhouse","open-field"]',
- 'KIZGIN F1 Hot Thin Pepper Seed | Vista Seeds',
- 'KIZGIN F1 hot thin pepper - 23-25 cm, TSWV tolerant, strong plant structure, greenhouse and open field.'),
+INSERT INTO `product_i18n` (`product_id`, `locale`, `title`, `slug`, `description`, `alt`, `tags`, `meta_title`, `meta_description`) VALUES
+('pppppppp-0001-4000-8000-000000000001', 'de', 'AVAR', 'avar', 'AVAR ist eine Veredelungsunterlage aus der Hybride Cucurbita maxima × Cucurbita moschata. Sie wird vor allem im Wassermelonen-, Melonen- und Gurkenanbau als starke und zuverlässige Unterlage eingesetzt. Das kräftige Wurzelsystem, die sehr widerstandsfähigen Wurzeln und die Toleranz gegen Fusarium oxysporum f. sp. niveum Rasse 0,1 sorgen für eine verlässliche Leistung in der Veredelungsproduktion.', 'AVAR Produktbild', '["Unterlage", "rootstock", "widerstandsfähig", "Anpassung", "Veredelung"]', 'AVAR Unterlage | Vista Seeds', 'AVAR Unterlage; Hybride Cucurbita maxima × Cucurbita moschata, kräftiges Wurzelsystem und Fon-0,1-Toleranz für Wassermelone, Melone und Gurke.'),
+('pppppppp-0001-4000-8000-000000000002', 'de', 'LUCKY F1 Charliston-Paprika', 'lucky-f1', 'LUCKY F1 ist eine professionelle Charliston-Paprikasorte mit leuchtend dunkelgrüner Farbe und glatter, gleichmäßiger Fruchtstruktur von 21-23 cm und hoher Marktqualität. Sie eignet sich für den Herbst-, Einzelanbau und den Anbau im Hochland. TSWV- und Tm-0-2-Toleranz, mitteldickes Fruchtfleisch, hohe Kälteleistung, lange Haltbarkeit und ein zu 100% süßer Geschmack machen sie zur starken kommerziellen Wahl.', 'LUCKY F1 Charliston-Paprika Produktbild', '["Paprika", "f1", "Hybride", "Charliston", "süß", "Gewächshaus", "Hochland"]', 'LUCKY F1 Charliston-Paprika Samen | Vista Seeds', 'LUCKY F1 Charliston-Paprika; 21-23 cm, TSWV- und Tm-0-2-Toleranz, hohe Kälteleistung und zu 100% süßer Geschmack.'),
+('pppppppp-0001-4000-8000-000000000003', 'de', 'KIZGIN F1 Scharfe Spitzpaprika', 'kizgin-f1', 'KIZGIN F1 ist eine professionelle scharfe Spitzpaprikasorte für den Anbau im Gewächshaus und Freiland mit einer Fruchtlänge von 23-25 cm. Die kräftige Pflanzenstruktur, die TSWV-Toleranz, die ideale grüne Farbe, die glatte gerade Form und die hohe Schärfe sorgen für eine zuverlässige kommerzielle Leistung.', 'KIZGIN F1 Scharfe Spitzpaprika Produktbild', '["Paprika", "f1", "Hybride", "scharf", "Spitzpaprika", "Gewächshaus", "Freiland"]', 'KIZGIN F1 Scharfe Spitzpaprika Samen | Vista Seeds', 'KIZGIN F1 scharfe Spitzpaprika; 23-25 cm, TSWV-Toleranz und kräftige Pflanzenstruktur für Gewächshaus und Freiland.'),
+('pppppppp-0001-4000-8000-000000000004', 'de', 'PRESTIJ F1 Süße Spitzpaprika', 'prestij-f1', 'PRESTIJ F1 ist eine professionelle süße Spitzpaprikasorte mit kräftiger Pflanzenstruktur und 22-24 cm langen Früchten für den Gewächshausanbau. Die hohe Kälteleistung und die TSWV-Toleranz helfen, die Produktivität auch unter schwierigen Bedingungen zu erhalten. Die gerade, grüne und glatte Fruchtstruktur unterstützt einen hohen Marktwert.', 'PRESTIJ F1 Süße Spitzpaprika Produktbild', '["Paprika", "f1", "Hybride", "süß", "Spitzpaprika", "Gewächshaus", "Kälteleistung"]', 'PRESTIJ F1 Süße Spitzpaprika Samen | Vista Seeds', 'PRESTIJ F1 süße Spitzpaprika; 22-24 cm, TSWV-Toleranz und hohe Kälteleistung für den Gewächshausanbau.'),
+('pppppppp-0001-4000-8000-000000000005', 'de', 'BIRLIK F1 Türkische Frühstückspaprika', 'birlik-f1', 'BIRLIK F1 ist eine professionelle türkische Frühstückspaprikasorte für den Gewächshausanbau mit kräftiger Pflanzenstruktur. Ihre 16-18 cm langen Früchte sind dünnschalig, leuchtend grün und sehr gut vermarktbar. Die hohe Kälteleistung zusammen mit der TSWV- und Tm-0-2-Toleranz senkt das Risiko, während die Frühreife höhere Erträge unterstützt.', 'BIRLIK F1 Türkische Frühstückspaprika Produktbild', '["Paprika", "f1", "Hybride", "Frühstückspaprika", "türkisch", "Gewächshaus", "frühreif"]', 'BIRLIK F1 Türkische Frühstückspaprika Samen | Vista Seeds', 'BIRLIK F1 türkische Frühstückspaprika; 16-18 cm, TSWV- und Tm-0-2-Toleranz, dünnschalig und frühreif.'),
+('pppppppp-0001-4000-8000-000000000006', 'de', 'CANKAN F1 Kapia-Paprika', 'cankan-f1', 'CANKAN F1 ist eine professionelle Kapia-Paprikasorte mit kräftiger Pflanzenstruktur für die Produktion im Gewächshaus und Freiland. Ihre 18-20 cm langen Früchte sind glatt, dunkelrot und sehr attraktiv. TSWV-Toleranz, hohe Anpassungsfähigkeit und ein zu 100% süßer Geschmack sorgen für eine zuverlässige kommerzielle Leistung in unterschiedlichen Klimazonen.', 'CANKAN F1 Kapia-Paprika Produktbild', '["Paprika", "f1", "Hybride", "Kapia", "rot", "Gewächshaus", "Freiland"]', 'CANKAN F1 Kapia-Paprika Samen | Vista Seeds', 'CANKAN F1 Kapia-Paprika; 18-20 cm, TSWV-Toleranz, hohe Anpassungsfähigkeit und zu 100% süßer Geschmack.'),
+('pppppppp-0001-4000-8000-000000000007', 'de', 'TIRPAN F1 Kapia-Paprika', 'tirpan-f1', 'TIRPAN F1 ist eine professionelle Kapia-Paprikasorte für den Gewächshausanbau mit 19-21 cm langen, dunkelroten Früchten und einem zu 100% süßen Geschmack. Sie sorgt auch bei hohen Temperaturen für einen starken Fruchtansatz. Die glatte Fruchtstruktur ist platzfest, während TSWV-Toleranz und hohe Anpassungsfähigkeit Sicherheit in der kommerziellen Produktion bieten.', 'TIRPAN F1 Kapia-Paprika Produktbild', '["Paprika", "f1", "Hybride", "Kapia", "rot", "Gewächshaus", "platzfest"]', 'TIRPAN F1 Kapia-Paprika Samen | Vista Seeds', 'TIRPAN F1 Kapia-Paprika; 19-21 cm, TSWV-Toleranz, hohe Anpassungsfähigkeit und platzfeste Fruchtqualität.'),
+('pppppppp-0001-4000-8000-000000000008', 'de', 'SARAY F1 Blockpaprika', 'saray-f1', 'SARAY F1 ist eine professionelle Blockpaprikasorte (zum Füllen) mit mittelkräftiger Pflanzenstruktur für den Anbau im Gewächshaus und Freiland. Die TSWV-Toleranz unterstützt eine sicherere Produktion bei Krankheitsdruck. Dunkelgrüne, dickschalige Früchte mit 3-4 Lappen bieten eine lange Haltbarkeit und hohe Transportfestigkeit für den kommerziellen Handel.', 'SARAY F1 Blockpaprika Produktbild', '["Paprika", "f1", "Hybride", "Blockpaprika", "dickschalig", "Gewächshaus", "Freiland"]', 'SARAY F1 Blockpaprika Samen | Vista Seeds', 'SARAY F1 Blockpaprika; dunkelgrün, dickschalig, 3-4 Lappen, TSWV-Toleranz für Gewächshaus und Freiland.');
 
-('pppppppp-0001-4000-8000-000000000004', 'en', 'PRESTIJ F1 Sweet Thin Pepper', 'prestij-f1',
- 'Fruit length 22-24 cm. Suitable for autumn and single planting cultivation. Suitable for greenhouse cultivation. Tolerant to TSWV. Strong plant structure thin pepper. Fruits are green with straight fruit shape. High cold performance. 100% sweet fruits.',
- 'PRESTIJ F1 sweet thin pepper seed',
- '["pepper","f1","hybrid","sweet","thin-pepper","greenhouse","cold-performance"]',
- 'PRESTIJ F1 Sweet Thin Pepper Seed | Vista Seeds',
- 'PRESTIJ F1 sweet thin pepper - 22-24 cm, TSWV tolerant, 100% sweet, high cold performance.'),
-
-('pppppppp-0001-4000-8000-000000000005', 'en', 'BIRLIK F1 Turkish Breakfast Pepper', 'birlik-f1',
- 'Fruit length 16-18 cm. Suitable for autumn and single planting cultivation. Suitable for greenhouse cultivation. Tolerant to TSWV, Tm: 0-2. Strong plant structure Turkish type breakfast pepper. Fruits are bright, green colored, thin-skinned and early maturing. High cold performance.',
- 'BIRLIK F1 breakfast pepper seed',
- '["pepper","f1","hybrid","breakfast","turkish","greenhouse","early"]',
- 'BIRLIK F1 Turkish Breakfast Pepper Seed | Vista Seeds',
- 'BIRLIK F1 breakfast pepper - 16-18 cm, Turkish type, TSWV tolerant, thin-skinned, early maturing.'),
-
-('pppppppp-0001-4000-8000-000000000006', 'en', 'CANKAN F1 Kapia Pepper', 'cankan-f1',
- 'Fruit length 18-20 cm. Suitable for autumn and spring cultivation. Suitable for greenhouse and open field cultivation. Tolerant to TSWV. Strong plant structure kapia pepper. Fruits are dark red colored, straight and conical shaped. High adaptation capability. 100% sweet fruits.',
- 'CANKAN F1 kapia pepper seed',
- '["pepper","f1","hybrid","kapia","red","greenhouse","open-field"]',
- 'CANKAN F1 Kapia Pepper Seed | Vista Seeds',
- 'CANKAN F1 kapia pepper - 18-20 cm, dark red, TSWV tolerant, 100% sweet, high adaptation.'),
-
-('pppppppp-0001-4000-8000-000000000007', 'en', 'TIRPAN F1 Kapia Pepper', 'tirpan-f1',
- 'Fruit length 19-21 cm. Suitable for autumn and spring cultivation. Suitable for greenhouse cultivation. Tolerant to TSWV. Strong plant structure kapia pepper. Fruits are dark red colored, straight and conical shaped. Excellent heat retention, no cracking. High adaptation capability. 100% sweet fruits.',
- 'TIRPAN F1 kapia pepper seed',
- '["pepper","f1","hybrid","kapia","red","greenhouse","no-cracking"]',
- 'TIRPAN F1 Kapia Pepper Seed | Vista Seeds',
- 'TIRPAN F1 kapia pepper - 19-21 cm, dark red, TSWV tolerant, 100% sweet, no cracking.'),
-
-('pppppppp-0001-4000-8000-000000000008', 'en', 'SARAY F1 Stuffing Pepper', 'saray-f1',
- 'Suitable for autumn and spring cultivation. Suitable for greenhouse and open field cultivation. Tolerant to TSWV. Medium-strong plant structure stuffing pepper. Fruits are dark green colored with thick skin. Fruits have 3-4 lobes.',
- 'SARAY F1 stuffing pepper seed',
- '["pepper","f1","hybrid","stuffing","thick-skin","greenhouse","open-field"]',
- 'SARAY F1 Stuffing Pepper Seed | Vista Seeds',
- 'SARAY F1 stuffing pepper - dark green, thick-skinned, 3-4 lobed, TSWV tolerant, greenhouse and open field.');
 
 -- =============================================================
 -- SEED: product_specs (TR) - her ürün için 3-4 spec
@@ -486,6 +385,216 @@ INSERT INTO `product_specs` (`id`, `product_id`, `locale`, `name`, `value`, `cat
 ('ssssssss-0001-4000-8000-000000000143', 'pppppppp-0001-4000-8000-000000000008', 'en', 'Cultivation', 'Autumn, Spring / Greenhouse, Open Field', 'custom', 4),
 ('ssssssss-0001-4000-8000-000000000144', 'pppppppp-0001-4000-8000-000000000008', 'en', 'Skin', 'Thick-skinned', 'physical', 5),
 ('ssssssss-0001-4000-8000-000000000145', 'pppppppp-0001-4000-8000-000000000008', 'en', 'Color', 'Dark green', 'physical', 6);
+
+-- =============================================================
+-- SEED: product_specs zenginleştirme (botanik adı + tip-genel kültür)
+-- =============================================================
+
+-- Zenginleştirme: botanik adı (kaynaklı) + tip-genel kültür bilgisi (Capsicum annuum / kabak anacı).
+-- 'genel kültür' notu: çeşide özel değil, biber/anaç tipi için standart referans değerlerdir.
+INSERT INTO `product_specs` (`id`, `product_id`, `locale`, `name`, `value`, `category`, `order_num`) VALUES
+('ssssssss-0002-4000-8000-000000000001', 'pppppppp-0001-4000-8000-000000000001', 'tr', 'Botanik Adı', 'Cucurbita maxima × Cucurbita moschata', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000002', 'pppppppp-0001-4000-8000-000000000001', 'tr', 'Çıkış Süresi (genel kültür)', '5-10 gün (toprak 25-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000003', 'pppppppp-0001-4000-8000-000000000001', 'tr', 'Ekim Derinliği (genel kültür)', '1,5-2 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000004', 'pppppppp-0001-4000-8000-000000000001', 'tr', 'Işık İhtiyacı', 'Tam güneş', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000005', 'pppppppp-0001-4000-8000-000000000001', 'en', 'Botanical Name', 'Cucurbita maxima × Cucurbita moschata', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000006', 'pppppppp-0001-4000-8000-000000000001', 'en', 'Germination (general culture)', '5-10 days (soil 25-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000007', 'pppppppp-0001-4000-8000-000000000001', 'en', 'Sowing Depth (general culture)', '1.5-2 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000008', 'pppppppp-0001-4000-8000-000000000001', 'en', 'Light Requirement', 'Full sun', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000009', 'pppppppp-0001-4000-8000-000000000002', 'tr', 'Botanik Adı', 'Capsicum annuum', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000010', 'pppppppp-0001-4000-8000-000000000002', 'tr', 'Çıkış Süresi (genel kültür)', '7-14 gün (toprak 24-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000011', 'pppppppp-0001-4000-8000-000000000002', 'tr', 'Ekim Derinliği (genel kültür)', '0,5-1 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000012', 'pppppppp-0001-4000-8000-000000000002', 'tr', 'Dikim Aralığı (genel kültür)', 'Sıra arası 70-90 cm, sıra üzeri 40-50 cm', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000013', 'pppppppp-0001-4000-8000-000000000002', 'tr', 'Işık İhtiyacı', 'Tam güneş', 'custom', 14),
+('ssssssss-0002-4000-8000-000000000014', 'pppppppp-0001-4000-8000-000000000002', 'en', 'Botanical Name', 'Capsicum annuum', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000015', 'pppppppp-0001-4000-8000-000000000002', 'en', 'Germination (general culture)', '7-14 days (soil 24-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000016', 'pppppppp-0001-4000-8000-000000000002', 'en', 'Sowing Depth (general culture)', '0.5-1 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000017', 'pppppppp-0001-4000-8000-000000000002', 'en', 'Spacing (general culture)', '70-90 cm between rows, 40-50 cm in row', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000018', 'pppppppp-0001-4000-8000-000000000002', 'en', 'Light Requirement', 'Full sun', 'custom', 14),
+('ssssssss-0002-4000-8000-000000000019', 'pppppppp-0001-4000-8000-000000000003', 'tr', 'Botanik Adı', 'Capsicum annuum', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000020', 'pppppppp-0001-4000-8000-000000000003', 'tr', 'Çıkış Süresi (genel kültür)', '7-14 gün (toprak 24-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000021', 'pppppppp-0001-4000-8000-000000000003', 'tr', 'Ekim Derinliği (genel kültür)', '0,5-1 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000022', 'pppppppp-0001-4000-8000-000000000003', 'tr', 'Dikim Aralığı (genel kültür)', 'Sıra arası 70-90 cm, sıra üzeri 40-50 cm', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000023', 'pppppppp-0001-4000-8000-000000000003', 'tr', 'Işık İhtiyacı', 'Tam güneş', 'custom', 14),
+('ssssssss-0002-4000-8000-000000000024', 'pppppppp-0001-4000-8000-000000000003', 'en', 'Botanical Name', 'Capsicum annuum', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000025', 'pppppppp-0001-4000-8000-000000000003', 'en', 'Germination (general culture)', '7-14 days (soil 24-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000026', 'pppppppp-0001-4000-8000-000000000003', 'en', 'Sowing Depth (general culture)', '0.5-1 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000027', 'pppppppp-0001-4000-8000-000000000003', 'en', 'Spacing (general culture)', '70-90 cm between rows, 40-50 cm in row', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000028', 'pppppppp-0001-4000-8000-000000000003', 'en', 'Light Requirement', 'Full sun', 'custom', 14),
+('ssssssss-0002-4000-8000-000000000029', 'pppppppp-0001-4000-8000-000000000004', 'tr', 'Botanik Adı', 'Capsicum annuum', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000030', 'pppppppp-0001-4000-8000-000000000004', 'tr', 'Çıkış Süresi (genel kültür)', '7-14 gün (toprak 24-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000031', 'pppppppp-0001-4000-8000-000000000004', 'tr', 'Ekim Derinliği (genel kültür)', '0,5-1 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000032', 'pppppppp-0001-4000-8000-000000000004', 'tr', 'Dikim Aralığı (genel kültür)', 'Sıra arası 70-90 cm, sıra üzeri 40-50 cm', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000033', 'pppppppp-0001-4000-8000-000000000004', 'tr', 'Işık İhtiyacı', 'Tam güneş', 'custom', 14),
+('ssssssss-0002-4000-8000-000000000034', 'pppppppp-0001-4000-8000-000000000004', 'en', 'Botanical Name', 'Capsicum annuum', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000035', 'pppppppp-0001-4000-8000-000000000004', 'en', 'Germination (general culture)', '7-14 days (soil 24-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000036', 'pppppppp-0001-4000-8000-000000000004', 'en', 'Sowing Depth (general culture)', '0.5-1 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000037', 'pppppppp-0001-4000-8000-000000000004', 'en', 'Spacing (general culture)', '70-90 cm between rows, 40-50 cm in row', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000038', 'pppppppp-0001-4000-8000-000000000004', 'en', 'Light Requirement', 'Full sun', 'custom', 14),
+('ssssssss-0002-4000-8000-000000000039', 'pppppppp-0001-4000-8000-000000000005', 'tr', 'Botanik Adı', 'Capsicum annuum', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000040', 'pppppppp-0001-4000-8000-000000000005', 'tr', 'Çıkış Süresi (genel kültür)', '7-14 gün (toprak 24-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000041', 'pppppppp-0001-4000-8000-000000000005', 'tr', 'Ekim Derinliği (genel kültür)', '0,5-1 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000042', 'pppppppp-0001-4000-8000-000000000005', 'tr', 'Dikim Aralığı (genel kültür)', 'Sıra arası 70-90 cm, sıra üzeri 40-50 cm', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000043', 'pppppppp-0001-4000-8000-000000000005', 'tr', 'Işık İhtiyacı', 'Tam güneş', 'custom', 14),
+('ssssssss-0002-4000-8000-000000000044', 'pppppppp-0001-4000-8000-000000000005', 'en', 'Botanical Name', 'Capsicum annuum', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000045', 'pppppppp-0001-4000-8000-000000000005', 'en', 'Germination (general culture)', '7-14 days (soil 24-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000046', 'pppppppp-0001-4000-8000-000000000005', 'en', 'Sowing Depth (general culture)', '0.5-1 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000047', 'pppppppp-0001-4000-8000-000000000005', 'en', 'Spacing (general culture)', '70-90 cm between rows, 40-50 cm in row', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000048', 'pppppppp-0001-4000-8000-000000000005', 'en', 'Light Requirement', 'Full sun', 'custom', 14),
+('ssssssss-0002-4000-8000-000000000049', 'pppppppp-0001-4000-8000-000000000006', 'tr', 'Botanik Adı', 'Capsicum annuum', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000050', 'pppppppp-0001-4000-8000-000000000006', 'tr', 'Çıkış Süresi (genel kültür)', '7-14 gün (toprak 24-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000051', 'pppppppp-0001-4000-8000-000000000006', 'tr', 'Ekim Derinliği (genel kültür)', '0,5-1 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000052', 'pppppppp-0001-4000-8000-000000000006', 'tr', 'Dikim Aralığı (genel kültür)', 'Sıra arası 70-90 cm, sıra üzeri 40-50 cm', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000053', 'pppppppp-0001-4000-8000-000000000006', 'tr', 'Işık İhtiyacı', 'Tam güneş', 'custom', 14),
+('ssssssss-0002-4000-8000-000000000054', 'pppppppp-0001-4000-8000-000000000006', 'en', 'Botanical Name', 'Capsicum annuum', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000055', 'pppppppp-0001-4000-8000-000000000006', 'en', 'Germination (general culture)', '7-14 days (soil 24-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000056', 'pppppppp-0001-4000-8000-000000000006', 'en', 'Sowing Depth (general culture)', '0.5-1 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000057', 'pppppppp-0001-4000-8000-000000000006', 'en', 'Spacing (general culture)', '70-90 cm between rows, 40-50 cm in row', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000058', 'pppppppp-0001-4000-8000-000000000006', 'en', 'Light Requirement', 'Full sun', 'custom', 14),
+('ssssssss-0002-4000-8000-000000000059', 'pppppppp-0001-4000-8000-000000000007', 'tr', 'Botanik Adı', 'Capsicum annuum', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000060', 'pppppppp-0001-4000-8000-000000000007', 'tr', 'Çıkış Süresi (genel kültür)', '7-14 gün (toprak 24-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000061', 'pppppppp-0001-4000-8000-000000000007', 'tr', 'Ekim Derinliği (genel kültür)', '0,5-1 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000062', 'pppppppp-0001-4000-8000-000000000007', 'tr', 'Dikim Aralığı (genel kültür)', 'Sıra arası 70-90 cm, sıra üzeri 40-50 cm', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000063', 'pppppppp-0001-4000-8000-000000000007', 'tr', 'Işık İhtiyacı', 'Tam güneş', 'custom', 14),
+('ssssssss-0002-4000-8000-000000000064', 'pppppppp-0001-4000-8000-000000000007', 'en', 'Botanical Name', 'Capsicum annuum', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000065', 'pppppppp-0001-4000-8000-000000000007', 'en', 'Germination (general culture)', '7-14 days (soil 24-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000066', 'pppppppp-0001-4000-8000-000000000007', 'en', 'Sowing Depth (general culture)', '0.5-1 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000067', 'pppppppp-0001-4000-8000-000000000007', 'en', 'Spacing (general culture)', '70-90 cm between rows, 40-50 cm in row', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000068', 'pppppppp-0001-4000-8000-000000000007', 'en', 'Light Requirement', 'Full sun', 'custom', 14),
+('ssssssss-0002-4000-8000-000000000069', 'pppppppp-0001-4000-8000-000000000008', 'tr', 'Botanik Adı', 'Capsicum annuum', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000070', 'pppppppp-0001-4000-8000-000000000008', 'tr', 'Çıkış Süresi (genel kültür)', '7-14 gün (toprak 24-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000071', 'pppppppp-0001-4000-8000-000000000008', 'tr', 'Ekim Derinliği (genel kültür)', '0,5-1 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000072', 'pppppppp-0001-4000-8000-000000000008', 'tr', 'Dikim Aralığı (genel kültür)', 'Sıra arası 70-90 cm, sıra üzeri 40-50 cm', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000073', 'pppppppp-0001-4000-8000-000000000008', 'tr', 'Işık İhtiyacı', 'Tam güneş', 'custom', 14),
+('ssssssss-0002-4000-8000-000000000074', 'pppppppp-0001-4000-8000-000000000008', 'en', 'Botanical Name', 'Capsicum annuum', 'custom', 10),
+('ssssssss-0002-4000-8000-000000000075', 'pppppppp-0001-4000-8000-000000000008', 'en', 'Germination (general culture)', '7-14 days (soil 24-30°C)', 'custom', 11),
+('ssssssss-0002-4000-8000-000000000076', 'pppppppp-0001-4000-8000-000000000008', 'en', 'Sowing Depth (general culture)', '0.5-1 cm', 'custom', 12),
+('ssssssss-0002-4000-8000-000000000077', 'pppppppp-0001-4000-8000-000000000008', 'en', 'Spacing (general culture)', '70-90 cm between rows, 40-50 cm in row', 'custom', 13),
+('ssssssss-0002-4000-8000-000000000078', 'pppppppp-0001-4000-8000-000000000008', 'en', 'Light Requirement', 'Full sun', 'custom', 14);
+
+-- =============================================================
+-- SEED: product_specs (DE)
+-- =============================================================
+
+INSERT INTO `product_specs` (`id`, `product_id`, `locale`, `name`, `value`, `category`, `order_num`) VALUES
+('ssssssss-00de-4000-8000-000000000001', 'pppppppp-0001-4000-8000-000000000001', 'de', 'Wurzelkraft', 'Sehr hoch', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000002', 'pppppppp-0001-4000-8000-000000000001', 'de', 'Anpassung', 'Breiter Klimabereich', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000003', 'pppppppp-0001-4000-8000-000000000001', 'de', 'Verwendung', 'Veredelungsunterlage', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000004', 'pppppppp-0001-4000-8000-000000000001', 'de', 'Botanischer Name', 'Cucurbita maxima × Cucurbita moschata', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000005', 'pppppppp-0001-4000-8000-000000000001', 'de', 'Keimdauer (allgemeine Kultur)', '5-10 Tage (Boden 25-30°C)', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000006', 'pppppppp-0001-4000-8000-000000000001', 'de', 'Saattiefe (allgemeine Kultur)', '1,5-2 cm', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000007', 'pppppppp-0001-4000-8000-000000000001', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000008', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Fruchttyp', 'Charliston', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000009', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Fruchtlänge', '21-23 cm', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000010', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Anbau', 'Herbst, Einzelanbau, Hochland', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000011', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Krankheitstoleranz', 'TSWV, Tm:0-2', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000012', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Geschmack', '100% Süß', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000013', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Kälteleistung', 'Hoch', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000014', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Botanischer Name', 'Capsicum annuum', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000015', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Keimdauer (allgemeine Kultur)', '7-14 Tage (Boden 24-30°C)', 'custom', 8),
+('ssssssss-00de-4000-8000-000000000016', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Saattiefe (allgemeine Kultur)', '0,5-1 cm', 'custom', 9),
+('ssssssss-00de-4000-8000-000000000017', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Pflanzabstand (allgemeine Kultur)', 'Reihenabstand 70-90 cm, in der Reihe 40-50 cm', 'custom', 10),
+('ssssssss-00de-4000-8000-000000000018', 'pppppppp-0001-4000-8000-000000000002', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 11),
+('ssssssss-00de-4000-8000-000000000019', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Fruchttyp', 'Scharfe Spitzpaprika', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000020', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Fruchtlänge', '23-25 cm', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000021', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Krankheitstoleranz', 'TSWV', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000022', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Anbau', 'Herbst, Frühjahr / Gewächshaus, Freiland', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000023', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Geschmack', 'Scharf', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000024', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Botanischer Name', 'Capsicum annuum', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000025', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Keimdauer (allgemeine Kultur)', '7-14 Tage (Boden 24-30°C)', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000026', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Saattiefe (allgemeine Kultur)', '0,5-1 cm', 'custom', 8),
+('ssssssss-00de-4000-8000-000000000027', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Pflanzabstand (allgemeine Kultur)', 'Reihenabstand 70-90 cm, in der Reihe 40-50 cm', 'custom', 9),
+('ssssssss-00de-4000-8000-000000000028', 'pppppppp-0001-4000-8000-000000000003', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 10),
+('ssssssss-00de-4000-8000-000000000029', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Fruchttyp', 'Süße Spitzpaprika', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000030', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Fruchtlänge', '22-24 cm', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000031', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Krankheitstoleranz', 'TSWV', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000032', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Anbau', 'Herbst, Einzelanbau / Gewächshaus', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000033', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Geschmack', '100% Süß', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000034', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Kälteleistung', 'Hoch', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000035', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Botanischer Name', 'Capsicum annuum', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000036', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Keimdauer (allgemeine Kultur)', '7-14 Tage (Boden 24-30°C)', 'custom', 8),
+('ssssssss-00de-4000-8000-000000000037', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Saattiefe (allgemeine Kultur)', '0,5-1 cm', 'custom', 9),
+('ssssssss-00de-4000-8000-000000000038', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Pflanzabstand (allgemeine Kultur)', 'Reihenabstand 70-90 cm, in der Reihe 40-50 cm', 'custom', 10),
+('ssssssss-00de-4000-8000-000000000039', 'pppppppp-0001-4000-8000-000000000004', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 11),
+('ssssssss-00de-4000-8000-000000000040', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Fruchttyp', 'Türkische Frühstückspaprika', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000041', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Fruchtlänge', '16-18 cm', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000042', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Krankheitstoleranz', 'TSWV, Tm:0-2', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000043', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Anbau', 'Herbst, Einzelanbau / Gewächshaus', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000044', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Schale', 'Dünnschalig, frühreif', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000045', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Kälteleistung', 'Hoch', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000046', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Botanischer Name', 'Capsicum annuum', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000047', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Keimdauer (allgemeine Kultur)', '7-14 Tage (Boden 24-30°C)', 'custom', 8),
+('ssssssss-00de-4000-8000-000000000048', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Saattiefe (allgemeine Kultur)', '0,5-1 cm', 'custom', 9),
+('ssssssss-00de-4000-8000-000000000049', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Pflanzabstand (allgemeine Kultur)', 'Reihenabstand 70-90 cm, in der Reihe 40-50 cm', 'custom', 10),
+('ssssssss-00de-4000-8000-000000000050', 'pppppppp-0001-4000-8000-000000000005', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 11),
+('ssssssss-00de-4000-8000-000000000051', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Fruchttyp', 'Kapia-Paprika', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000052', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Fruchtlänge', '18-20 cm', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000053', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Krankheitstoleranz', 'TSWV', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000054', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Anbau', 'Herbst, Frühjahr / Gewächshaus, Freiland', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000055', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Geschmack', '100% Süß', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000056', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Farbe', 'Dunkelrot', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000057', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Botanischer Name', 'Capsicum annuum', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000058', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Keimdauer (allgemeine Kultur)', '7-14 Tage (Boden 24-30°C)', 'custom', 8),
+('ssssssss-00de-4000-8000-000000000059', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Saattiefe (allgemeine Kultur)', '0,5-1 cm', 'custom', 9),
+('ssssssss-00de-4000-8000-000000000060', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Pflanzabstand (allgemeine Kultur)', 'Reihenabstand 70-90 cm, in der Reihe 40-50 cm', 'custom', 10),
+('ssssssss-00de-4000-8000-000000000061', 'pppppppp-0001-4000-8000-000000000006', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 11),
+('ssssssss-00de-4000-8000-000000000062', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Fruchttyp', 'Kapia-Paprika', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000063', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Fruchtlänge', '19-21 cm', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000064', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Krankheitstoleranz', 'TSWV', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000065', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Anbau', 'Herbst, Frühjahr / Gewächshaus', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000066', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Geschmack', '100% Süß', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000067', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Farbe', 'Dunkelrot', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000068', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Eigenschaft', 'Platzt nicht (kein Cracking)', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000069', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Botanischer Name', 'Capsicum annuum', 'custom', 8),
+('ssssssss-00de-4000-8000-000000000070', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Keimdauer (allgemeine Kultur)', '7-14 Tage (Boden 24-30°C)', 'custom', 9),
+('ssssssss-00de-4000-8000-000000000071', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Saattiefe (allgemeine Kultur)', '0,5-1 cm', 'custom', 10),
+('ssssssss-00de-4000-8000-000000000072', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Pflanzabstand (allgemeine Kultur)', 'Reihenabstand 70-90 cm, in der Reihe 40-50 cm', 'custom', 11),
+('ssssssss-00de-4000-8000-000000000073', 'pppppppp-0001-4000-8000-000000000007', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 12),
+('ssssssss-00de-4000-8000-000000000074', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Fruchttyp', 'Blockpaprika (zum Füllen)', 'custom', 1),
+('ssssssss-00de-4000-8000-000000000075', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Anzahl Lappen', '3-4 Lappen', 'custom', 2),
+('ssssssss-00de-4000-8000-000000000076', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Krankheitstoleranz', 'TSWV', 'custom', 3),
+('ssssssss-00de-4000-8000-000000000077', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Anbau', 'Herbst, Frühjahr / Gewächshaus, Freiland', 'custom', 4),
+('ssssssss-00de-4000-8000-000000000078', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Schale', 'Dickschalig', 'custom', 5),
+('ssssssss-00de-4000-8000-000000000079', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Farbe', 'Dunkelgrün', 'custom', 6),
+('ssssssss-00de-4000-8000-000000000080', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Botanischer Name', 'Capsicum annuum', 'custom', 7),
+('ssssssss-00de-4000-8000-000000000081', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Keimdauer (allgemeine Kultur)', '7-14 Tage (Boden 24-30°C)', 'custom', 8),
+('ssssssss-00de-4000-8000-000000000082', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Saattiefe (allgemeine Kultur)', '0,5-1 cm', 'custom', 9),
+('ssssssss-00de-4000-8000-000000000083', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Pflanzabstand (allgemeine Kultur)', 'Reihenabstand 70-90 cm, in der Reihe 40-50 cm', 'custom', 10),
+('ssssssss-00de-4000-8000-000000000084', 'pppppppp-0001-4000-8000-000000000008', 'de', 'Lichtbedarf', 'Volle Sonne', 'custom', 11);
+
+
+-- =============================================================
+-- SEED: product_images (birincil görsel — canlı ile birebir)
+-- =============================================================
+
+INSERT INTO `product_images`
+  (`id`, `product_id`, `locale`, `image_url`, `image_asset_id`, `title`, `alt`, `caption`, `display_order`, `is_active`)
+VALUES
+('16009410-0000-4000-8000-000000000001', 'pppppppp-0001-4000-8000-000000000001', 'tr', '/uploads/products/avar-rootstock-01.webp', '14909400-0000-4000-8000-000000000001', 'AVAR', 'AVAR ürün görseli', 'Resmî Vista Seeds ürün görseli.', 1, 1),
+('16009410-0000-4000-8000-000000000002', 'pppppppp-0001-4000-8000-000000000001', 'en', '/uploads/products/avar-rootstock-01.webp', '14909400-0000-4000-8000-000000000001', 'AVAR', 'AVAR product image', 'Official Vista Seeds product image.', 1, 1),
+('16009410-0000-4000-8000-000000000003', 'pppppppp-0001-4000-8000-000000000001', 'de', '/uploads/products/avar-rootstock-01.webp', '14909400-0000-4000-8000-000000000001', 'AVAR', 'AVAR Produktbild', 'Offizielles Vista-Seeds-Produktbild.', 1, 1),
+('16009410-0000-4000-8000-000000000004', 'pppppppp-0001-4000-8000-000000000002', 'tr', 'https://www.vistaseeds.com.tr/uploads/uploads/products/525C9BB8-18F9-4C2B-B5BD-0BD9E296E293.png', '15009400-0000-4000-8000-000000000001', 'LUCKY F1', 'LUCKY F1 ürün görseli', 'Resmî Vista Seeds ürün görseli.', 1, 1),
+('16009410-0000-4000-8000-000000000005', 'pppppppp-0001-4000-8000-000000000002', 'en', 'https://www.vistaseeds.com.tr/uploads/uploads/products/525C9BB8-18F9-4C2B-B5BD-0BD9E296E293.png', '15009400-0000-4000-8000-000000000001', 'LUCKY F1', 'LUCKY F1 product image', 'Official Vista Seeds product image.', 1, 1),
+('16009410-0000-4000-8000-000000000006', 'pppppppp-0001-4000-8000-000000000002', 'de', 'https://www.vistaseeds.com.tr/uploads/uploads/products/525C9BB8-18F9-4C2B-B5BD-0BD9E296E293.png', '15009400-0000-4000-8000-000000000001', 'LUCKY F1', 'LUCKY F1 Produktbild', 'Offizielles Vista-Seeds-Produktbild.', 1, 1),
+('16009410-0000-4000-8000-000000000007', 'pppppppp-0001-4000-8000-000000000003', 'tr', '/uploads/products/kizgin-f1-source-01.webp', '15009400-0000-4000-8000-000000000002', 'KIZGIN F1', 'KIZGIN F1 ürün görseli', 'Resmî Vista Seeds ürün görseli.', 1, 1),
+('16009410-0000-4000-8000-000000000008', 'pppppppp-0001-4000-8000-000000000003', 'en', '/uploads/products/kizgin-f1-source-01.webp', '15009400-0000-4000-8000-000000000002', 'KIZGIN F1', 'KIZGIN F1 product image', 'Official Vista Seeds product image.', 1, 1),
+('16009410-0000-4000-8000-000000000009', 'pppppppp-0001-4000-8000-000000000003', 'de', '/uploads/products/kizgin-f1-source-01.webp', '15009400-0000-4000-8000-000000000002', 'KIZGIN F1', 'KIZGIN F1 Produktbild', 'Offizielles Vista-Seeds-Produktbild.', 1, 1),
+('16009410-0000-4000-8000-000000000010', 'pppppppp-0001-4000-8000-000000000004', 'tr', 'https://www.vistaseeds.com.tr/uploads/uploads/products/07CF9486-7623-45AF-B851-C971E1FA5780.png', '15009400-0000-4000-8000-000000000003', 'PRESTİJ F1', 'PRESTİJ F1 ürün görseli', 'Resmî Vista Seeds ürün görseli.', 1, 1),
+('16009410-0000-4000-8000-000000000011', 'pppppppp-0001-4000-8000-000000000004', 'en', 'https://www.vistaseeds.com.tr/uploads/uploads/products/07CF9486-7623-45AF-B851-C971E1FA5780.png', '15009400-0000-4000-8000-000000000003', 'PRESTİJ F1', 'PRESTİJ F1 product image', 'Official Vista Seeds product image.', 1, 1),
+('16009410-0000-4000-8000-000000000012', 'pppppppp-0001-4000-8000-000000000004', 'de', 'https://www.vistaseeds.com.tr/uploads/uploads/products/07CF9486-7623-45AF-B851-C971E1FA5780.png', '15009400-0000-4000-8000-000000000003', 'PRESTİJ F1', 'PRESTİJ F1 Produktbild', 'Offizielles Vista-Seeds-Produktbild.', 1, 1),
+('16009410-0000-4000-8000-000000000013', 'pppppppp-0001-4000-8000-000000000005', 'tr', '/uploads/products/birlik-f1-source-01.webp', '15009400-0000-4000-8000-000000000004', 'BİRLİK F1', 'BİRLİK F1 ürün görseli', 'Resmî Vista Seeds ürün görseli.', 1, 1),
+('16009410-0000-4000-8000-000000000014', 'pppppppp-0001-4000-8000-000000000005', 'en', '/uploads/products/birlik-f1-source-01.webp', '15009400-0000-4000-8000-000000000004', 'BİRLİK F1', 'BİRLİK F1 product image', 'Official Vista Seeds product image.', 1, 1),
+('16009410-0000-4000-8000-000000000015', 'pppppppp-0001-4000-8000-000000000005', 'de', '/uploads/products/birlik-f1-source-01.webp', '15009400-0000-4000-8000-000000000004', 'BİRLİK F1', 'BİRLİK F1 Produktbild', 'Offizielles Vista-Seeds-Produktbild.', 1, 1),
+('16009410-0000-4000-8000-000000000016', 'pppppppp-0001-4000-8000-000000000006', 'tr', 'https://www.vistaseeds.com.tr/uploads/uploads/products/Ads_z_tasar_m.jpg', '15009400-0000-4000-8000-000000000005', 'CANKAN F1', 'CANKAN F1 ürün görseli', 'Resmî Vista Seeds ürün görseli.', 1, 1),
+('16009410-0000-4000-8000-000000000017', 'pppppppp-0001-4000-8000-000000000006', 'en', 'https://www.vistaseeds.com.tr/uploads/uploads/products/Ads_z_tasar_m.jpg', '15009400-0000-4000-8000-000000000005', 'CANKAN F1', 'CANKAN F1 product image', 'Official Vista Seeds product image.', 1, 1),
+('16009410-0000-4000-8000-000000000018', 'pppppppp-0001-4000-8000-000000000006', 'de', 'https://www.vistaseeds.com.tr/uploads/uploads/products/Ads_z_tasar_m.jpg', '15009400-0000-4000-8000-000000000005', 'CANKAN F1', 'CANKAN F1 Produktbild', 'Offizielles Vista-Seeds-Produktbild.', 1, 1),
+('16009410-0000-4000-8000-000000000019', 'pppppppp-0001-4000-8000-000000000007', 'tr', 'https://www.vistaseeds.com.tr/uploads/uploads/products/Ads_z_tasar_m.png', '15009400-0000-4000-8000-000000000006', 'TIRPAN F1', 'TIRPAN F1 ürün görseli', 'Resmî Vista Seeds ürün görseli.', 1, 1),
+('16009410-0000-4000-8000-000000000020', 'pppppppp-0001-4000-8000-000000000007', 'en', 'https://www.vistaseeds.com.tr/uploads/uploads/products/Ads_z_tasar_m.png', '15009400-0000-4000-8000-000000000006', 'TIRPAN F1', 'TIRPAN F1 product image', 'Official Vista Seeds product image.', 1, 1),
+('16009410-0000-4000-8000-000000000021', 'pppppppp-0001-4000-8000-000000000007', 'de', 'https://www.vistaseeds.com.tr/uploads/uploads/products/Ads_z_tasar_m.png', '15009400-0000-4000-8000-000000000006', 'TIRPAN F1', 'TIRPAN F1 Produktbild', 'Offizielles Vista-Seeds-Produktbild.', 1, 1),
+('16009410-0000-4000-8000-000000000022', 'pppppppp-0001-4000-8000-000000000008', 'tr', 'https://www.vistaseeds.com.tr/uploads/uploads/products/Untitled_design.jpg', '15009400-0000-4000-8000-000000000007', 'SARAY F1', 'SARAY F1 ürün görseli', 'Resmî Vista Seeds ürün görseli.', 1, 1),
+('16009410-0000-4000-8000-000000000023', 'pppppppp-0001-4000-8000-000000000008', 'en', 'https://www.vistaseeds.com.tr/uploads/uploads/products/Untitled_design.jpg', '15009400-0000-4000-8000-000000000007', 'SARAY F1', 'SARAY F1 product image', 'Official Vista Seeds product image.', 1, 1),
+('16009410-0000-4000-8000-000000000024', 'pppppppp-0001-4000-8000-000000000008', 'de', 'https://www.vistaseeds.com.tr/uploads/uploads/products/Untitled_design.jpg', '15009400-0000-4000-8000-000000000007', 'SARAY F1', 'SARAY F1 Produktbild', 'Offizielles Vista-Seeds-Produktbild.', 1, 1);
+
 
 -- =============================================================
 -- SEED: product_reviews — örnek yorumlar
