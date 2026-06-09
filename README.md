@@ -6,21 +6,15 @@ vistaseeds, tohumculuk odaklı kurumsal web deneyimi ve yönetim altyapısı iç
 
 ---
 
-## Canlı Erişim Notu
-
-Canlı servis `vps-vistainsaat` sunucusundadır. SSH erişimi key ile yapılır: `ssh vps-vistainsaat`.
-
----
-
 ## Ekran Görüntüleri
 
 ### Desktop — Lighthouse 96 / 100 / 100 / 100
 
-![vistaseeds Desktop](Screenshot%20from%202026-04-05%2021-34-27.png)
+![vistaseeds Desktop](docs/Screenshot%20from%202026-04-05%2021-34-27.png)
 
 ### Mobile
 
-![vistaseeds Mobile](Screenshot%20from%202026-04-05%2021-35-36.png)
+![vistaseeds Mobile](docs/Screenshot%20from%202026-04-05%2021-35-36.png)
 
 ---
 
