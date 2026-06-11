@@ -31,6 +31,7 @@ import storage from "./storage.json";
 import support from "./support.json";
 import telegram from "./telegram.json";
 import theme from "./theme.json";
+import twitter from "./twitter.json";
 import userRoles from "./user-roles.json";
 import users from "./users.json";
 
@@ -68,6 +69,7 @@ const adminMessages = {
   storage: storage,
   telegram: telegram,
   theme: theme,
+  twitter: twitter,
   userRoles: userRoles,
   users: users,
 } as const;

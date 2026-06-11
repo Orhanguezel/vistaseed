@@ -29,6 +29,7 @@ import {
   Settings,
   ShoppingBag,
   Star,
+  Twitter,
   Users,
   type LucideIcon,
 } from 'lucide-react';
@@ -141,6 +142,7 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
       { key: 'storage', url: '/admin/storage', icon: HardDrive },
       { key: 'theme', url: '/admin/theme', icon: Palette },
       { key: 'telegram', url: '/admin/telegram', icon: Send },
+      { key: 'twitter', url: '/admin/twitter', icon: Twitter },
       { key: 'audit', url: '/admin/audit', icon: MessageSquare },
       { key: 'db_admin', url: '/admin/db-admin', icon: Database },
       { key: 'cache', url: '/admin/cache', icon: Eraser },
@@ -187,6 +189,7 @@ const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   storage: 'Depolama',
   theme: 'Tema',
   telegram: 'Telegram',
+  twitter: 'Twitter / X',
   audit: 'Denetim',
   db_admin: 'Veritabanı',
   popups: 'Popup\'lar',

@@ -1,0 +1,64 @@
+{
+  "header": {
+    "title": "Twitter / X",
+    "description": "X (Twitter) hesap bağlantısını ve gönderimleri yönetin",
+    "statusEnabled": "Otomatik gönderim açık",
+    "statusDisabled": "Otomatik gönderim kapalı",
+    "credentialsOk": "Hesap bağlı",
+    "credentialsMissing": "Kimlik bilgileri eksik",
+    "verify": "Bağlantıyı Doğrula",
+    "verifying": "Doğrulanıyor...",
+    "verified": "Bağlantı doğrulandı",
+    "verifyFailed": "Doğrulama başarısız"
+  },
+  "tabs": {
+    "settings": "Ayarlar",
+    "send": "Tweet Gönder",
+    "log": "Gönderi Geçmişi"
+  },
+  "settings": {
+    "title": "Twitter / X Ayarları",
+    "enable": "Otomatik Gönderimi Etkinleştir",
+    "enableDesc": "Kapalıyken otomatik akışlar tweet atmaz; manuel gönderim çalışmaya devam eder.",
+    "credentials": {
+      "title": "API Kimlik Bilgileri (OAuth 1.0a)",
+      "desc": "X Developer Portal üzerinden alınan 4 anahtar. Yazma izni için ücretli Basic plan gerekir.",
+      "apiKey": "API Key",
+      "apiSecret": "API Key Secret",
+      "accessToken": "Access Token",
+      "accessTokenSecret": "Access Token Secret",
+      "placeholder": "••••••••"
+    },
+    "loading": "Ayarlar yükleniyor...",
+    "save": "Kaydet",
+    "saving": "Kaydediliyor...",
+    "saved": "Twitter ayarları kaydedildi",
+    "saveError": "Ayarlar kaydedilemedi"
+  },
+  "send": {
+    "title": "Manuel Tweet",
+    "description": "Bu gönderi hesabınızdan herkese açık olarak paylaşılır.",
+    "placeholder": "Ne paylaşmak istersiniz?",
+    "confirm": "Tweet herkese açık olarak yayınlanacak. Devam edilsin mi?",
+    "submit": "Tweet Gönder",
+    "sending": "Gönderiliyor...",
+    "sent": "Tweet gönderildi",
+    "failed": "Tweet gönderilemedi"
+  },
+  "log": {
+    "title": "Gönderi Geçmişi",
+    "loading": "Geçmiş yükleniyor...",
+    "empty": "Henüz gönderi yok.",
+    "refresh": "Yenile",
+    "statusSent": "Gönderildi",
+    "statusFailed": "Başarısız",
+    "source": {
+      "manual": "Manuel",
+      "test": "Test",
+      "auto": "Otomatik"
+    },
+    "viewOnX": "X'te görüntüle",
+    "prev": "Önceki",
+    "next": "Sonraki"
+  }
+}

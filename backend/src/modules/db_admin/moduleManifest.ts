@@ -23,7 +23,8 @@ export type ModuleKey =
   | 'support'
   | 'users'
   | 'offers'
-  | 'storage';
+  | 'storage'
+  | 'twitter';
 
 export type ModuleManifest = {
   /** Yalnızca bu tablolar export/import kapsamındadır */
@@ -271,6 +272,16 @@ export const VISTASEEDS_DB_MODULES: ModuleMap = {
     truncateInOrder: ['storage_assets'],
     allowSchema: false,
     note: 'Storage assets: storage_assets.',
+  },
+
+  // -------------------------------------------------------------------
+  // TWITTER (X gönderi logu)
+  // -------------------------------------------------------------------
+  twitter: {
+    tablesInOrder: ['tweets'],
+    truncateInOrder: ['tweets'],
+    allowSchema: false,
+    note: 'Twitter/X: tweets gönderi logu. Ayarlar site_settings içinde (twitter_*).',
   },
 };
 

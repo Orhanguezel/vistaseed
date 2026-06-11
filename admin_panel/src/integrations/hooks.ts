@@ -159,6 +159,14 @@ export {
 export { useTelegramWebhookSimulateMutation } from "@/integrations/endpoints/admin/telegram-webhook-endpoints";
 
 export {
+  useTwitterStatusQuery,
+  useTwitterVerifyMutation,
+  useTwitterSendMutation,
+  useTwitterListTweetsQuery,
+  useLazyTwitterListTweetsQuery,
+} from "@/integrations/endpoints/admin/twitter-admin-endpoints";
+
+export {
   useListCategoriesAdminQuery,
   useLazyListCategoriesAdminQuery,
   useGetCategoryAdminQuery,

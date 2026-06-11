@@ -1,0 +1,1 @@
+menu dil destekli degil. bunu duzeltelim.

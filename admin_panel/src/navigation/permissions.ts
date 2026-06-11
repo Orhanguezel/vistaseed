@@ -21,6 +21,7 @@ export type AdminPermissionKey =
   | 'admin.storage'
   | 'admin.theme'
   | 'admin.telegram'
+  | 'admin.twitter'
   | 'admin.audit'
   | 'admin.db_admin'
   | 'admin.popups'
@@ -50,6 +51,7 @@ export type AdminNavKey =
   | 'storage'
   | 'theme'
   | 'telegram'
+  | 'twitter'
   | 'audit'
   | 'db_admin'
   | 'popups'
@@ -81,6 +83,7 @@ const ADMIN_PERMISSION_ROLE_MAP: Record<AdminPermissionKey, PanelRole[]> = {
   'admin.storage': ADMIN_ONLY,
   'admin.theme': ADMIN_ONLY,
   'admin.telegram': ADMIN_ONLY,
+  'admin.twitter': ADMIN_ONLY,
   'admin.audit': ADMIN_ONLY,
   'admin.db_admin': ADMIN_ONLY,
   'admin.popups': ADMIN_ONLY,
@@ -116,6 +119,7 @@ const ADMIN_NAV_PERMISSION_MAP: Partial<Record<AdminNavKey, AdminPermissionKey>>
   storage: 'admin.storage',
   theme: 'admin.theme',
   telegram: 'admin.telegram',
+  twitter: 'admin.twitter',
   audit: 'admin.audit',
   db_admin: 'admin.db_admin',
   popups: 'admin.popups',
@@ -152,6 +156,7 @@ const ADMIN_PERMISSION_PATHS: Record<AdminPermissionKey, string[]> = {
   'admin.storage': ['/admin/storage'],
   'admin.theme': ['/admin/theme'],
   'admin.telegram': ['/admin/telegram'],
+  'admin.twitter': ['/admin/twitter'],
   'admin.audit': ['/admin/audit'],
   'admin.db_admin': ['/admin/db-admin'],
   'admin.popups': ['/admin/popups'],

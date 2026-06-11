@@ -815,6 +815,26 @@ export {
 } from "@/integrations/shared/telegram/index";
 
 export {
+  TWITTER_ADMIN_BASE,
+  TWEET_MAX_LENGTH,
+  TWITTER_SETTINGS_KEYS,
+  TWITTER_BOOLEAN_SETTINGS_KEYS,
+  TWITTER_CREDENTIAL_FIELDS,
+  buildTweetUrl,
+  createTwitterSettingsDefaults,
+  type TweetLogRow,
+  type TwitterCredentialFieldDef,
+  type TwitterLogListParams,
+  type TwitterLogListResp,
+  type TwitterSendBody,
+  type TwitterSendResp,
+  type TwitterSettingsKey,
+  type TwitterSettingsModel,
+  type TwitterStatusResp,
+  type TwitterVerifyResp,
+} from "@/integrations/shared/twitter";
+
+export {
   type CategoryCreatePayload,
   type CategoryDto,
   type CategoryListQueryParams,
