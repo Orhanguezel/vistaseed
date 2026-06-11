@@ -3,10 +3,19 @@ import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { env } from '@/core/env';
 import { findTwitterCalendarEvent, TWITTER_CALENDAR_EVENTS } from './calendar';
 import { buildTweetFallback, composeTweetText, trimToTweet } from './fallbacks';
-import { deriveTwitterHashtags } from './hashtags';
+import {
+  TWITTER_AGRICULTURE_TAG,
+  TWITTER_BRAND_TAG,
+  TWITTER_EXPORT_TAGS,
+  TWITTER_LOCAL_SEED_TAG,
+  TWITTER_SEED_TAG,
+  TWITTER_SIGNATURE_TAG,
+  TWITTER_VEGETABLE_SEED_TAG,
+  deriveTwitterHashtags,
+} from './hashtags';
 import { repoGetTwitterProducts, type TwitterProduct } from './repository';
 import { isoWeek } from './time';
-import { TwitterTemplate, type TwitterTweetContext } from './templates';
+import { TWITTER_SLOTS, TwitterTemplate, type TwitterTemplateSlot, type TwitterTweetContext } from './templates';
 
 type TemplatePreview = {
   id: string;
@@ -18,32 +27,10 @@ type TemplatePreview = {
   media_url: string | null;
 };
 
-const TEMPLATE_META: Record<TwitterTemplate, Omit<TemplatePreview, 'id' | 'template' | 'content' | 'media_url'>> = {
-  [TwitterTemplate.VarietyPromo]: {
-    title: 'Çeşit kartı',
-    description: 'Aktif ürün kataloğundan çeşit tanıtımı, ürün linki ve kontrollü hashtag.',
-    slot_label: '10:00',
-  },
-  [TwitterTemplate.IndustryEvent]: {
-    title: 'Sektör / fuar',
-    description: 'Tohumculuk gündemi ve fuar takvimi için marka konumlandırması.',
-    slot_label: '11:00',
-  },
-  [TwitterTemplate.NationalDay]: {
-    title: 'Milli gün',
-    description: 'Özel günlerde sade, saygılı ve tarım emeğini öne çıkaran paylaşım.',
-    slot_label: '11:00',
-  },
-  [TwitterTemplate.LocalSeedValue]: {
-    title: 'Yerli tohum değeri',
-    description: 'Yerli ıslah, üretici güveni ve marka duruşu odaklı metin.',
-    slot_label: '16:00',
-  },
-  [TwitterTemplate.AgronomyTip]: {
-    title: 'Agronomi ipucu',
-    description: 'Üreticiye pratik, iddiasız ve uygulanabilir teknik not.',
-    slot_label: '16:00',
-  },
+const DAY_LABELS: Record<TwitterTemplateSlot['dayOfWeek'], string> = {
+  3: 'Çarşamba',
+  4: 'Perşembe',
+  5: 'Cuma',
 };
 
 function siteUrl() {
@@ -54,8 +41,41 @@ function pickProduct(products: TwitterProduct[]): TwitterProduct | null {
   return products.find((product) => product.title.trim()) ?? null;
 }
 
+function pickPreferredProduct(products: TwitterProduct[], preferred?: string): TwitterProduct | null {
+  if (!preferred) return pickProduct(products);
+  const needle = preferred.toLocaleLowerCase('tr-TR');
+  return products.find((product) => product.title.toLocaleLowerCase('tr-TR').includes(needle)) ?? pickProduct(products);
+}
+
 function hashtagsFor(template: TwitterTemplate, ctx: TwitterTweetContext): string {
-  if (template === TwitterTemplate.VarietyPromo || template === TwitterTemplate.AgronomyTip) {
+  if (template === TwitterTemplate.InteractionPoll) {
+    return `${TWITTER_BRAND_TAG} ${TWITTER_LOCAL_SEED_TAG}`;
+  }
+  if (template === TwitterTemplate.InteractionQuestion) {
+    return `${TWITTER_BRAND_TAG} ${TWITTER_AGRICULTURE_TAG}`;
+  }
+  if (template === TwitterTemplate.VarietyPromo) {
+    const crop = deriveTwitterHashtags({ productTitle: ctx.product?.title })
+      .split(/\s+/)
+      .find((tag) => tag !== TWITTER_SIGNATURE_TAG && tag !== TWITTER_BRAND_TAG);
+    return [TWITTER_BRAND_TAG, TWITTER_LOCAL_SEED_TAG, TWITTER_VEGETABLE_SEED_TAG, crop]
+      .filter(Boolean)
+      .slice(0, 4)
+      .join(' ');
+  }
+  if (template === TwitterTemplate.FieldProof) {
+    return `${TWITTER_BRAND_TAG} ${TWITTER_LOCAL_SEED_TAG} ${TWITTER_SIGNATURE_TAG}`;
+  }
+  if (template === TwitterTemplate.HumanResearch) {
+    return `${TWITTER_BRAND_TAG} ${TWITTER_SIGNATURE_TAG} #ArGe`;
+  }
+  if (template === TwitterTemplate.SeedMyth) {
+    return `${TWITTER_BRAND_TAG} ${TWITTER_SEED_TAG}`;
+  }
+  if (template === TwitterTemplate.ExportVision) {
+    return TWITTER_EXPORT_TAGS;
+  }
+  if (template === TwitterTemplate.AgronomyTip) {
     return deriveTwitterHashtags({ productTitle: ctx.product?.title });
   }
   if (template === TwitterTemplate.IndustryEvent) {
@@ -67,15 +87,20 @@ function hashtagsFor(template: TwitterTemplate, ctx: TwitterTweetContext): strin
   return deriveTwitterHashtags({});
 }
 
-function previewFor(template: TwitterTemplate, ctx: TwitterTweetContext, now: Date): TemplatePreview {
+function previewFor(slot: TwitterTemplateSlot, ctx: TwitterTweetContext, now: Date): TemplatePreview {
+  const { template } = slot;
   const hashtags = hashtagsFor(template, ctx);
   const caption = trimToTweet(buildTweetFallback(template, ctx, isoWeek(now)), hashtags);
   const productImage = ctx.product?.imageUrl || null;
 
   return {
-    id: template,
+    id: slot.key,
     template,
-    ...TEMPLATE_META[template],
+    title: `${slot.pillar} — ${slot.topic}`,
+    description: slot.preferredProduct
+      ? `Tercih edilen ürün: ${slot.preferredProduct}. Bulunamazsa katalogdan uygun ürün seçilir.`
+      : 'Strateji dokümanındaki 30 günlük rotasyondan otomatik üretilir.',
+    slot_label: `${DAY_LABELS[slot.dayOfWeek]} ${String(slot.hour).padStart(2, '0')}:${String(slot.minute).padStart(2, '0')} TR`,
     content: composeTweetText(caption, hashtags),
     media_url: template === TwitterTemplate.VarietyPromo || template === TwitterTemplate.AgronomyTip
       ? productImage
@@ -87,7 +112,6 @@ async function twitterTemplatePreviews(req: FastifyRequest, reply: FastifyReply)
   try {
     const now = new Date();
     const products = await repoGetTwitterProducts(12);
-    const product = pickProduct(products);
     const currentEvent = findTwitterCalendarEvent(now);
     const fallbackEvent = TWITTER_CALENDAR_EVENTS[0] ?? null;
     const baseCtx = {
@@ -96,23 +120,20 @@ async function twitterTemplatePreviews(req: FastifyRequest, reply: FastifyReply)
       event: null,
     } satisfies TwitterTweetContext;
 
-    const items = [
-      previewFor(TwitterTemplate.VarietyPromo, {
+    const items = TWITTER_SLOTS.map((slot) => {
+      const product = pickPreferredProduct(products, slot.preferredProduct);
+      const event = slot.template === TwitterTemplate.IndustryEvent
+        ? currentEvent?.kind === 'industry_event' ? currentEvent : fallbackEvent
+        : slot.template === TwitterTemplate.NationalDay
+          ? currentEvent?.kind === 'national_day' ? currentEvent : fallbackEvent
+          : null;
+      return previewFor(slot, {
         ...baseCtx,
         product,
+        event,
         linkUrl: product?.productUrl || siteUrl(),
-      }, now),
-      previewFor(TwitterTemplate.IndustryEvent, {
-        ...baseCtx,
-        event: currentEvent?.kind === 'industry_event' ? currentEvent : fallbackEvent,
-      }, now),
-      previewFor(TwitterTemplate.NationalDay, {
-        ...baseCtx,
-        event: currentEvent?.kind === 'national_day' ? currentEvent : fallbackEvent,
-      }, now),
-      previewFor(TwitterTemplate.LocalSeedValue, baseCtx, now),
-      previewFor(TwitterTemplate.AgronomyTip, { ...baseCtx, product }, now),
-    ];
+      }, now);
+    });
 
     return reply.code(200).send({ items });
   } catch (err) {

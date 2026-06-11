@@ -1,8 +1,13 @@
 // src/modules/twitter-content/hashtags.ts
 // Kural-tabanlı hashtag — AI ÜRETMEZ. Sıra: [bağlam ≤2] + imza + marka, maks 4.
 
-export const TWITTER_BRAND_TAG = '#vistaseeds';
-export const TWITTER_SIGNATURE_TAG = '#YerliTohumVista';
+export const TWITTER_BRAND_TAG = '#VistaSeeds';
+export const TWITTER_SIGNATURE_TAG = '#TohumdaYerliGüç';
+export const TWITTER_LOCAL_SEED_TAG = '#yerlitohum';
+export const TWITTER_SEED_TAG = '#tohum';
+export const TWITTER_VEGETABLE_SEED_TAG = '#sebzetohumu';
+export const TWITTER_AGRICULTURE_TAG = '#tarim';
+export const TWITTER_EXPORT_TAGS = '#Türktohumu #ihracat #VistaSeeds';
 
 const MAX_TAGS = 4;
 const MAX_CONTEXT_TAGS = 2;

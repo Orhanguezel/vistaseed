@@ -57,7 +57,7 @@ export function startTwitterContentScheduler(): void {
   if (timer) return;
   timer = setInterval(() => void tick(), TICK_MS);
   void tick();
-  console.log('[twitter-content] scheduler basladi (5dk tick, Berlin slotlari 10:00/11:00/16:00)');
+  console.log('[twitter-content] scheduler basladi (5dk tick, Çar/Per/Cuma 17:00 TR strateji slotu)');
 }
 
 export function stopTwitterContentScheduler(): void {

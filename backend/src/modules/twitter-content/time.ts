@@ -1,11 +1,12 @@
 // src/modules/twitter-content/time.ts
 // Berlin saat dilimi yardımcıları (slot zamanlama sosyal platformla birebir)
 
-const TIME_ZONE = 'Europe/Berlin';
+const BERLIN_TIME_ZONE = 'Europe/Berlin';
+const TURKEY_TIME_ZONE = 'Europe/Istanbul';
 
-export function berlinParts(date: Date) {
+function zoneParts(date: Date, timeZone: string) {
   const parts = new Intl.DateTimeFormat('en-CA', {
-    timeZone: TIME_ZONE,
+    timeZone,
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',
@@ -23,14 +24,27 @@ export function berlinParts(date: Date) {
   };
 }
 
+export function berlinParts(date: Date) {
+  return zoneParts(date, BERLIN_TIME_ZONE);
+}
+
+export function turkeyParts(date: Date) {
+  return zoneParts(date, TURKEY_TIME_ZONE);
+}
+
 export function todayISO(date = new Date()) {
   const p = berlinParts(date);
   return `${p.year}-${String(p.month).padStart(2, '0')}-${String(p.day).padStart(2, '0')}`;
 }
 
-function getTimeZoneOffsetMinutes(date: Date) {
+export function todayTurkeyISO(date = new Date()) {
+  const p = turkeyParts(date);
+  return `${p.year}-${String(p.month).padStart(2, '0')}-${String(p.day).padStart(2, '0')}`;
+}
+
+function getTimeZoneOffsetMinutes(date: Date, timeZone: string) {
   const value =
-    new Intl.DateTimeFormat('en', { timeZone: TIME_ZONE, timeZoneName: 'shortOffset' })
+    new Intl.DateTimeFormat('en', { timeZone, timeZoneName: 'shortOffset' })
       .formatToParts(date)
       .find((part) => part.type === 'timeZoneName')?.value || 'GMT+0';
   const match = value.match(/GMT([+-])(\d{1,2})(?::?(\d{2}))?/);
@@ -43,8 +57,22 @@ function getTimeZoneOffsetMinutes(date: Date) {
 export function toBerlinSlotUtc(hour: number, minute: number, now = new Date()) {
   const parts = berlinParts(now);
   const guess = new Date(Date.UTC(parts.year, parts.month - 1, parts.day, hour, minute, 0));
-  const offset = getTimeZoneOffsetMinutes(guess);
+  const offset = getTimeZoneOffsetMinutes(guess, BERLIN_TIME_ZONE);
   return new Date(Date.UTC(parts.year, parts.month - 1, parts.day, hour, minute, 0) - offset * 60_000);
+}
+
+/** Bugünün Türkiye HH:MM anını UTC Date olarak döner. */
+export function toTurkeySlotUtc(hour: number, minute: number, now = new Date()) {
+  const parts = turkeyParts(now);
+  const guess = new Date(Date.UTC(parts.year, parts.month - 1, parts.day, hour, minute, 0));
+  const offset = getTimeZoneOffsetMinutes(guess, TURKEY_TIME_ZONE);
+  return new Date(Date.UTC(parts.year, parts.month - 1, parts.day, hour, minute, 0) - offset * 60_000);
+}
+
+/** 0=Pazar ... 6=Cumartesi, Türkiye takvimine göre. */
+export function turkeyDayOfWeek(date = new Date()) {
+  const p = turkeyParts(date);
+  return new Date(Date.UTC(p.year, p.month - 1, p.day)).getUTCDay();
 }
 
 export function isoWeek(date = new Date()) {

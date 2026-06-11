@@ -19,6 +19,21 @@ const LOCAL_SEED_VALUES = [
   '🫑 Toprağına guvenen ureticiye, islahina guvenen tohum yakisir.\nYerli tohumda deneyim ve süreklilik.',
 ];
 
+const INTERACTION_POLLS = [
+  'Sence hangisi sezonun yıldızı olacak?\n\n🔴 Kırmızı kapya\n🟢 Charliston\n🫑 Dolmalık\n\nCevabını yorumda yaz, çeşit önerimizi paylaşalım.',
+  'Domateste üretici için en kritik özellik hangisi?\n\n🍅 Tat\n📦 Raf ömrü\n🌱 Hastalık dayanımı\n\nSenin önceliğin hangisi?',
+];
+
+const HUMAN_RESEARCH = [
+  "Bir tohumun arkasında laboratuvarda yıllarca süren ıslah, deneme ve sabır var.\n\nKendi Ar-Ge'miz, kendi ıslahımız. Her tescilli çeşidin görünmeyen emeği burada başlıyor.",
+  'Bir çeşidin sahaya çıkması sadece fikirle olmaz.\n\nIslah, deneme, gözlem ve tekrar... Üreticinin güveneceği sonuç için perde arkasında uzun bir emek var.',
+];
+
+const FIELD_PROOFS = [
+  'Tarlada güçlü çıkış, üreticinin ilk güven işaretidir.\n\nHomojen gelişim ve doğru çeşit seçimi; sezonun devamındaki performans için sağlam başlangıç sağlar.',
+  'Sahada gördüğümüz her sonuç, ıslah kararlarımızı daha iyi hale getirir.\n\nTohumda güven; katalog cümlesinden değil, üreticinin tarlasındaki kanıttan doğar.',
+];
+
 /** ISO hafta numarasına göre deterministik havuz seçimi (her hafta farklı metin). */
 function pickByWeek(pool: string[], isoWeekStr: string): string {
   const week = Number(isoWeekStr.split('-W')[1] || 1);
@@ -30,6 +45,10 @@ function firstSentence(text: string, fallback: string) {
   return clean.split(/(?<=[.!?])\s+/u)[0]?.slice(0, 110).trim() || fallback;
 }
 
+function varietyTitle(title: string) {
+  return /\bf1\b/i.test(title) ? title : `${title} F1`;
+}
+
 export function buildTweetFallback(
   template: TwitterTemplate,
   ctx: TwitterTweetContext,
@@ -37,9 +56,27 @@ export function buildTweetFallback(
 ): string {
   const product = ctx.product;
 
+  if (template === TwitterTemplate.InteractionPoll) {
+    return pickByWeek(INTERACTION_POLLS, isoWeekStr);
+  }
+  if (template === TwitterTemplate.InteractionQuestion) {
+    return 'Üreticiye soruyoruz:\n\nBu sezon tohumda seni en çok ne zorladı: çıkış mı, hastalık mı, verim mi?\n\nDeneyimini paylaş; birlikte çözelim.';
+  }
   if (template === TwitterTemplate.VarietyPromo && product) {
     const detail = firstSentence(compactDescription(product), 'Katalogdaki cesitlerimizden biri.');
-    return [`✨ ${product.title}`, '', `🫑 ${detail}`, '', `Detay: ${ctx.linkUrl}`].join('\n');
+    return [`🫑 ${varietyTitle(product.title)}`, '', `🌱 ${detail}`, '', 'Tescilli yerli çeşidimiz, sahada kanıtlı.', '', `Detay: ${ctx.linkUrl}`].join('\n');
+  }
+  if (template === TwitterTemplate.HumanResearch) {
+    return pickByWeek(HUMAN_RESEARCH, isoWeekStr);
+  }
+  if (template === TwitterTemplate.FieldProof) {
+    return pickByWeek(FIELD_PROOFS, isoWeekStr);
+  }
+  if (template === TwitterTemplate.SeedMyth) {
+    return '"Tohumun hepsi aynı" mı?\n\nHayır. Sertifikalı tohum; çimlenme, homojen gelişim ve sahada öngörülebilirlik için kritik başlangıç noktasıdır.\n\nRiski azaltmanın ilk adımı doğru çeşitle başlar.';
+  }
+  if (template === TwitterTemplate.ExportVision) {
+    return 'Yerli ıslahımız sınırları aşıyor.\n\nKendi çeşitlerimizle Türk tohumunu dünyaya taşıma yolundayız.\n\nHedefimiz net: üreticiden güç alan yerli tohumu daha geniş pazarlara ulaştırmak.';
   }
   if (template === TwitterTemplate.IndustryEvent) {
     return `🌍 ${ctx.event?.title || 'Tohum sektoru'} gundemini yakindan izliyoruz.\nYerli tohum gucunu ureticiyle bulusturmak icin calisiyoruz.`;

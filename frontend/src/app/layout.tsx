@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
-import { getLocale } from "next-intl/server";
+import { getLocale, getMessages } from "next-intl/server";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { fetchSiteSettings, fetchAnalyticsConfig } from "@/lib/site-settings";
 import { getPublicApiV1, getPublicSiteOrigin } from "@/lib/runtime-config";
@@ -98,6 +98,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const locale = await getLocale();
+  const messages = await getMessages();
   const [settings, analytics] = await Promise.all([
     fetchSiteSettings(locale),
     fetchAnalyticsConfig(),
@@ -123,7 +124,7 @@ export default async function RootLayout({
       </head>
       <body suppressHydrationWarning>
         {analytics.gtmId && <GtmNoscript gtmId={analytics.gtmId} />}
-        <NextIntlClientProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider>
             {children}
           </ThemeProvider>

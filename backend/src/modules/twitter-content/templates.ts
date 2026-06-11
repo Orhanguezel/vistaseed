@@ -5,7 +5,13 @@ import type { TwitterCalendarEvent } from './calendar';
 import type { TwitterProduct } from './repository';
 
 export enum TwitterTemplate {
+  InteractionPoll = 'interaction_poll',
+  InteractionQuestion = 'interaction_question',
   VarietyPromo = 'variety_promo',
+  HumanResearch = 'human_research',
+  FieldProof = 'field_proof',
+  SeedMyth = 'seed_myth',
+  ExportVision = 'export_vision',
   IndustryEvent = 'industry_event',
   NationalDay = 'national_day',
   LocalSeedValue = 'local_seed_value',
@@ -13,10 +19,14 @@ export enum TwitterTemplate {
 }
 
 export interface TwitterTemplateSlot {
-  key: 'variety' | 'event' | 'afternoon';
+  key: string;
+  dayOfWeek: 3 | 4 | 5;
   hour: number;
   minute: number;
-  templates: TwitterTemplate[];
+  template: TwitterTemplate;
+  pillar: string;
+  topic: string;
+  preferredProduct?: string;
 }
 
 export interface TwitterTweetContext {
@@ -26,13 +36,31 @@ export interface TwitterTweetContext {
 }
 
 export const TWITTER_SLOTS: TwitterTemplateSlot[] = [
-  { key: 'variety', hour: 10, minute: 0, templates: [TwitterTemplate.VarietyPromo] },
-  { key: 'event', hour: 11, minute: 0, templates: [TwitterTemplate.IndustryEvent, TwitterTemplate.NationalDay] },
-  { key: 'afternoon', hour: 16, minute: 0, templates: [TwitterTemplate.LocalSeedValue, TwitterTemplate.AgronomyTip] },
+  { key: '01-export-manifesto', dayOfWeek: 3, hour: 17, minute: 0, template: TwitterTemplate.ExportVision, pillar: 'İhracat/yerli gurur', topic: 'Açılış/manifesto' },
+  { key: '02-kapya-charliston-poll', dayOfWeek: 4, hour: 17, minute: 0, template: TwitterTemplate.InteractionPoll, pillar: 'Etkileşim', topic: 'Kapya mı charliston mu?' },
+  { key: '03-cankan-f1', dayOfWeek: 5, hour: 17, minute: 0, template: TwitterTemplate.VarietyPromo, pillar: 'Çeşit kartı', topic: 'Cankan F1 kırmızı kapya', preferredProduct: 'Cankan' },
+  { key: '04-lab-research', dayOfWeek: 3, hour: 17, minute: 0, template: TwitterTemplate.HumanResearch, pillar: 'İnsan/Ar-Ge', topic: 'Lab ve ıslah perde arkası' },
+  { key: '05-season-challenge-question', dayOfWeek: 4, hour: 17, minute: 0, template: TwitterTemplate.InteractionQuestion, pillar: 'Etkileşim', topic: 'Bu sezon en çok hangi sorun zorladı?' },
+  { key: '06-tirpan-f1', dayOfWeek: 5, hour: 17, minute: 0, template: TwitterTemplate.VarietyPromo, pillar: 'Çeşit kartı', topic: 'Tırpan F1 kapya', preferredProduct: 'Tırpan' },
+  { key: '07-field-proof', dayOfWeek: 3, hour: 17, minute: 0, template: TwitterTemplate.FieldProof, pillar: 'Saha kanıtı', topic: 'Tarlada güçlü çıkış' },
+  { key: '08-certified-seed-myth', dayOfWeek: 4, hour: 17, minute: 0, template: TwitterTemplate.SeedMyth, pillar: 'Bilgi/efsane-yıkma', topic: 'Sertifikalı tohum neden önemli?' },
+  { key: '09-birlik-f1', dayOfWeek: 5, hour: 17, minute: 0, template: TwitterTemplate.VarietyPromo, pillar: 'Çeşit kartı', topic: 'Birlik F1 üçburun', preferredProduct: 'Birlik' },
+  { key: '10-breeding-story', dayOfWeek: 3, hour: 17, minute: 0, template: TwitterTemplate.HumanResearch, pillar: 'İnsan/Ar-Ge', topic: 'Bir çeşidin ıslah hikayesi' },
+  { key: '11-tomato-poll', dayOfWeek: 4, hour: 17, minute: 0, template: TwitterTemplate.InteractionPoll, pillar: 'Etkileşim', topic: 'Domateste tat mı raf ömrü mü?' },
+  { key: '12-export-vision', dayOfWeek: 5, hour: 17, minute: 0, template: TwitterTemplate.ExportVision, pillar: 'İhracat/vizyon', topic: 'Türk tohumunu dünyaya taşıma hedefi' },
+  { key: '13-lucky-f1', dayOfWeek: 3, hour: 17, minute: 0, template: TwitterTemplate.VarietyPromo, pillar: 'Çeşit kartı', topic: 'Lucky F1 charliston', preferredProduct: 'Lucky' },
+  { key: '14-grower-proof', dayOfWeek: 4, hour: 17, minute: 0, template: TwitterTemplate.FieldProof, pillar: 'Saha kanıtı', topic: 'Üretici görüşü / kısa video' },
+  { key: '15-saray-f1', dayOfWeek: 5, hour: 17, minute: 0, template: TwitterTemplate.VarietyPromo, pillar: 'Çeşit kartı', topic: 'Saray F1 dolmalık', preferredProduct: 'Saray' },
 ];
 
 const TEMPLATE_WEIGHTS: Record<TwitterTemplate, number> = {
+  [TwitterTemplate.InteractionPoll]: 25,
+  [TwitterTemplate.InteractionQuestion]: 25,
   [TwitterTemplate.VarietyPromo]: 40,
+  [TwitterTemplate.HumanResearch]: 20,
+  [TwitterTemplate.FieldProof]: 15,
+  [TwitterTemplate.SeedMyth]: 25,
+  [TwitterTemplate.ExportVision]: 15,
   [TwitterTemplate.IndustryEvent]: 15,
   [TwitterTemplate.NationalDay]: 15,
   [TwitterTemplate.LocalSeedValue]: 15,
@@ -82,6 +110,22 @@ export function buildTweetTopic(template: TwitterTemplate, ctx: TwitterTweetCont
     '- Placeholder URL veya yabanci dil kullanma.',
   ];
 
+  if (template === TwitterTemplate.InteractionPoll) {
+    return [
+      'Sablon: Etkilesim / anket.',
+      'Kisa bir soru sor; yorum istemeyi unutma.',
+      'Hashtag az kullanilacak, hashtag yazma.',
+      ...rules,
+    ].join('\n');
+  }
+  if (template === TwitterTemplate.InteractionQuestion) {
+    return [
+      'Sablon: Etkilesim / uretici sorusu.',
+      'Ureticinin deneyimini sor, birlikte cozum hissi ver.',
+      'Hashtag az kullanilacak, hashtag yazma.',
+      ...rules,
+    ].join('\n');
+  }
   if (template === TwitterTemplate.VarietyPromo) {
     return [
       'Sablon: Cesit Tanitimi.',
@@ -112,6 +156,38 @@ export function buildTweetTopic(template: TwitterTemplate, ctx: TwitterTweetCont
       'Sablon: Agronomi ipucu.',
       'Biber yetistiriciliginde uygulanabilir, abartisiz ve genel bir ipucu ver.',
       product ? `Baglam urunu: ${product.title}` : 'Baglam: biber ve sebze tohumu.',
+      ...rules,
+    ].join('\n');
+  }
+  if (template === TwitterTemplate.HumanResearch) {
+    return [
+      'Sablon: Insan / Ar-Ge perde arkasi.',
+      'Laboratuvar, islah ve deneme emegini anlat.',
+      'Kesin sure veya resmi iddia uydurma.',
+      ...rules,
+    ].join('\n');
+  }
+  if (template === TwitterTemplate.FieldProof) {
+    return [
+      'Sablon: Saha kaniti.',
+      'Tarla, homojen gelisim ve uretici gozlemini sade anlat.',
+      'Mevki, tarih veya verim bilgisi uydurma.',
+      ...rules,
+    ].join('\n');
+  }
+  if (template === TwitterTemplate.SeedMyth) {
+    return [
+      'Sablon: Bilgi / efsane yikma.',
+      'Sertifikali tohumun neden onemli oldugunu anlat.',
+      'Garanti, kesin verim veya oran verme.',
+      ...rules,
+    ].join('\n');
+  }
+  if (template === TwitterTemplate.ExportVision) {
+    return [
+      'Sablon: Ihracat / vizyon.',
+      'Yerli islahi dunyaya tasima hedefini abartisiz anlat.',
+      'Gerceklesmemis ulke, fuar veya satis iddiasi uydurma.',
       ...rules,
     ].join('\n');
   }
