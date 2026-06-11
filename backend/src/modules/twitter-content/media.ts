@@ -12,7 +12,6 @@ const TWITTER_MEDIA_BY_PRODUCT: Record<string, string> = {
 
 const TWITTER_MEDIA_BY_SLOT: Record<string, string> = {
   '02-kapya-charliston-poll': TWITTER_MEDIA_BY_PRODUCT.cankan!,
-  '11-tomato-poll': TWITTER_MEDIA_BY_PRODUCT.lucky!,
 };
 
 function normalize(value: string) {
