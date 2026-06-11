@@ -1,6 +1,6 @@
 // =============================================================
 // FILE: src/app/(main)/admin/(admin)/twitter/_components/twitter-log-panel.tsx
-// Tweet log panel (sent/failed history)
+// Tweet queue + log panel
 // =============================================================
 
 'use client';
@@ -9,13 +9,22 @@ import * as React from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ExternalLink, RefreshCw } from 'lucide-react';
+import { ExternalLink, RefreshCw, XCircle } from 'lucide-react';
+import { toast } from 'sonner';
 
 import { useAdminT } from '@/app/(main)/admin/_components/common/use-admin-t';
-import { useTwitterListTweetsQuery } from '@/integrations/hooks';
-import { buildTweetUrl, type TweetLogRow } from '@/integrations/shared';
+import { useTwitterCancelTweetMutation, useTwitterListTweetsQuery } from '@/integrations/hooks';
+import { buildTweetUrl, type TweetLogRow, type TweetStatus } from '@/integrations/shared';
 
 const PAGE_SIZE = 20;
+
+const STATUS_VARIANTS: Record<TweetStatus, 'default' | 'secondary' | 'destructive' | 'outline'> = {
+  sent: 'default',
+  queued: 'secondary',
+  posting: 'secondary',
+  failed: 'destructive',
+  canceled: 'outline',
+};
 
 export default function TwitterLogPanel() {
   const t = useAdminT('admin.twitter');
@@ -25,10 +34,21 @@ export default function TwitterLogPanel() {
     page,
     limit: PAGE_SIZE,
   });
+  const [cancelTweet, { isLoading: canceling }] = useTwitterCancelTweetMutation();
 
   const items = data?.items ?? [];
   const total = data?.total ?? 0;
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+
+  const handleCancel = async (id: string) => {
+    try {
+      await cancelTweet(id).unwrap();
+      toast.success(t('log.cancelDone'));
+      void refetch();
+    } catch {
+      toast.error(t('log.cancelFailed'));
+    }
+  };
 
   if (isLoading) {
     return <div className="py-8 text-sm text-muted-foreground">{t('log.loading')}</div>;
@@ -54,13 +74,21 @@ export default function TwitterLogPanel() {
             {items.map((row: TweetLogRow) => (
               <div key={row.id} className="rounded-lg border border-border p-4 space-y-2">
                 <div className="flex flex-wrap items-center gap-2">
-                  <Badge variant={row.status === 'sent' ? 'default' : 'destructive'}>
-                    {row.status === 'sent' ? t('log.statusSent') : t('log.statusFailed')}
+                  <Badge variant={STATUS_VARIANTS[row.status] ?? 'outline'}>
+                    {t(`log.status.${row.status}`)}
                   </Badge>
                   <Badge variant="outline">{t(`log.source.${row.source}`)}</Badge>
+                  {row.template ? <Badge variant="outline">{row.template}</Badge> : null}
                   <span className="text-xs text-muted-foreground">
-                    {new Date(row.created_at).toLocaleString()}
+                    {row.status === 'queued' && row.scheduled_at
+                      ? `${t('log.scheduledFor')}: ${new Date(row.scheduled_at).toLocaleString()}`
+                      : new Date(row.posted_at || row.created_at).toLocaleString()}
                   </span>
+                  {row.retry_count > 0 ? (
+                    <span className="text-xs text-muted-foreground">
+                      {t('log.retry')}: {row.retry_count}
+                    </span>
+                  ) : null}
                   {row.x_tweet_id ? (
                     <a
                       href={buildTweetUrl(row.x_tweet_id)}
@@ -71,6 +99,18 @@ export default function TwitterLogPanel() {
                       <ExternalLink className="h-3 w-3" />
                       {t('log.viewOnX')}
                     </a>
+                  ) : null}
+                  {row.status === 'queued' || row.status === 'failed' ? (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-6 px-2 text-xs text-destructive"
+                      disabled={canceling}
+                      onClick={() => void handleCancel(row.id)}
+                    >
+                      <XCircle className="h-3 w-3 mr-1" />
+                      {t('log.cancel')}
+                    </Button>
                   ) : null}
                 </div>
 

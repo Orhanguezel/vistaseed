@@ -1,0 +1,77 @@
+// src/modules/twitter-content/fallbacks.ts
+// Deterministik tweet şablonları (AI kapalı/başarısızsa ana yol budur)
+
+import { TwitterTemplate, type TwitterTweetContext, compactDescription } from './templates';
+
+const AGRONOMY_TIPS = [
+  '🫑 Biberde saglikli gelisim icin sulama dengesini koruyun; ani su stresi cicek ve meyve tutumunu zorlayabilir.',
+  '🌱 Fide dikiminden once topragi havalandirin; iyi drenaj, kok gelisiminin en buyuk destekcisidir.',
+  '🫑 Biberde dengeli gubreleme onemli: asiri azot yaprak verir, meyve tutumunu geciktirir.',
+  '🌡️ Sera havalandirmasini gun icinde kademeli yapin; ani sicaklik dususleri cicek dokumune yol acabilir.',
+  '💧 Damla sulamada sik ve az su, derin koklenme icin uzun araliklarla bol sudan genelde daha iyidir.',
+  '🌱 Tohum ekiminde derinlik kurali: tohum buyuklugunun 2-3 kati derinlik cogu sebzede yeterlidir.',
+];
+
+const LOCAL_SEED_VALUES = [
+  '🌱 Yerli tohum, guclu uretici, bereketli gelecek.\nIslah ve uretim deneyimimizi sahayla bulusturuyoruz.',
+  '🇹🇷 Yerli islah, yerli tohum: ureticimizin emegine deger katan secim.\nSahada denenmis cesitlerle yaninizdayiz.',
+  '🌱 Tohum bir mevsimlik degil, bir gelecek yatirimidir.\nYerli cesitlerimizle ureticinin yanindayiz.',
+  '🫑 Toprağına guvenen ureticiye, islahina guvenen tohum yakisir.\nYerli tohumda deneyim ve süreklilik.',
+];
+
+/** ISO hafta numarasına göre deterministik havuz seçimi (her hafta farklı metin). */
+function pickByWeek(pool: string[], isoWeekStr: string): string {
+  const week = Number(isoWeekStr.split('-W')[1] || 1);
+  return pool[week % pool.length]!;
+}
+
+function firstSentence(text: string, fallback: string) {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  return clean.split(/(?<=[.!?])\s+/u)[0]?.slice(0, 110).trim() || fallback;
+}
+
+export function buildTweetFallback(
+  template: TwitterTemplate,
+  ctx: TwitterTweetContext,
+  isoWeekStr: string,
+): string {
+  const product = ctx.product;
+
+  if (template === TwitterTemplate.VarietyPromo && product) {
+    const detail = firstSentence(compactDescription(product), 'Katalogdaki cesitlerimizden biri.');
+    return [`✨ ${product.title}`, '', `🫑 ${detail}`, '', `Detay: ${ctx.linkUrl}`].join('\n');
+  }
+  if (template === TwitterTemplate.IndustryEvent) {
+    return `🌍 ${ctx.event?.title || 'Tohum sektoru'} gundemini yakindan izliyoruz.\nYerli tohum gucunu ureticiyle bulusturmak icin calisiyoruz.`;
+  }
+  if (template === TwitterTemplate.NationalDay) {
+    return `${ctx.event?.title || 'Milli gunumuz'} kutlu olsun.\nTopraga emek veren tum ureticilerimize saygi ve minnetle.`;
+  }
+  if (template === TwitterTemplate.AgronomyTip) {
+    return pickByWeek(AGRONOMY_TIPS, isoWeekStr);
+  }
+  return pickByWeek(LOCAL_SEED_VALUES, isoWeekStr);
+}
+
+/** AI çıktısındaki satır içi hashtag'leri temizler (etiketler kurallı eklenir). */
+export function stripInlineHashtags(text: string): string {
+  return String(text || '')
+    .replace(/(^|\s)#[\p{L}0-9_]+/gu, '$1')
+    .replace(/[ \t]+\n/g, '\n')
+    .replace(/[ \t]{2,}/g, ' ')
+    .trim();
+}
+
+/** Caption'ı hashtag bütçesiyle 280'e sığdırır. */
+export function trimToTweet(text: string, hashtags?: string) {
+  const clean = text.replace(/\s+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+  const tagBudget = hashtags?.trim() ? hashtags.trim().length + 2 : 0;
+  const limit = Math.max(80, 280 - tagBudget);
+  if (clean.length <= limit) return clean;
+  return `${clean.slice(0, Math.max(0, limit - 1)).trimEnd()}…`;
+}
+
+export function composeTweetText(caption: string, hashtags: string): string {
+  const trimmed = trimToTweet(caption, hashtags);
+  return hashtags.trim() ? `${trimmed}\n\n${hashtags.trim()}` : trimmed;
+}

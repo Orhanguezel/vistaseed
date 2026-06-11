@@ -47,6 +47,15 @@ export const twitterAdminApi = baseApi.injectEndpoints({
         params: params ?? {},
       }),
     }),
+
+    /** POST /admin/twitter/tweets/:id/cancel */
+    twitterCancelTweet: b.mutation<{ ok: boolean }, string>({
+      query: (id): FetchArgs => ({
+        url: `${TWITTER_ADMIN_BASE}/tweets/${id}/cancel`,
+        method: 'POST',
+        body: {},
+      }),
+    }),
   }),
   overrideExisting: true,
 });
@@ -57,4 +66,5 @@ export const {
   useTwitterSendMutation,
   useTwitterListTweetsQuery,
   useLazyTwitterListTweetsQuery,
+  useTwitterCancelTweetMutation,
 } = twitterAdminApi;

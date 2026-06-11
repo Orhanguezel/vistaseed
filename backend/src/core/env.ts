@@ -89,6 +89,9 @@ export const env = {
   GROQ_MODEL: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
   GROQ_API_BASE: process.env.GROQ_API_BASE || 'https://api.groq.com/openai/v1',
 
+  /** Twitter içerik motoru (kuyruk + dispatcher) — runtime anahtarı site_settings.twitter_enabled */
+  TWITTER_AUTOPILOT: parseEnvBool(process.env.TWITTER_AUTOPILOT, true),
+
   // SMTP
   SMTP_HOST: process.env.SMTP_HOST || "",
   SMTP_PORT: parseEnvInt(process.env.SMTP_PORT, 465),

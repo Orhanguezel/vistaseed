@@ -1,6 +1,7 @@
 // src/index.ts
 import { createApp } from './app';
 import { env } from '@/core/env';
+import { startTwitterContentScheduler } from '@/modules/twitter-content';
 import type { FastifyInstance } from 'fastify';
 
 function checkSecurityDefaults() {
@@ -22,6 +23,8 @@ async function main() {
   const app: FastifyInstance = await createApp();
   await app.listen({ port: env.PORT, host: '0.0.0.0' });
   console.log(`API listening :${env.PORT} [${env.NODE_ENV}]`);
+
+  if (env.TWITTER_AUTOPILOT) startTwitterContentScheduler();
 }
 
 main().catch((e) => {

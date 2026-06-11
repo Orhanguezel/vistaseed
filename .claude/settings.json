@@ -122,7 +122,9 @@
       "Bash(cat modules/telegram/index.ts)",
       "Bash(ls modules/telegram/)",
       "Bash(sed -n 1,60p navigation/sidebar/sidebar-items.ts)",
-      "Bash(python3 -c \"import json;d=json.load\\(open\\('locale/tr/admin/sidebar.json'\\)\\);print\\(json.dumps\\(d,ensure_ascii=False\\)[:800]\\)\")"
+      "Bash(python3 -c \"import json;d=json.load\\(open\\('locale/tr/admin/sidebar.json'\\)\\);print\\(json.dumps\\(d,ensure_ascii=False\\)[:800]\\)\")",
+      "Bash(bun -e ' *)",
+      "Bash(echo \"build-exit: $?\")"
     ],
     "defaultMode": "bypassPermissions",
     "additionalDirectories": [

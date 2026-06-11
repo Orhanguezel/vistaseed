@@ -1,0 +1,80 @@
+// src/modules/twitter-content/hashtags.ts
+// Kural-tabanlı hashtag — AI ÜRETMEZ. Sıra: [bağlam ≤2] + imza + marka, maks 4.
+
+export const TWITTER_BRAND_TAG = '#vistaseeds';
+export const TWITTER_SIGNATURE_TAG = '#YerliTohumVista';
+
+const MAX_TAGS = 4;
+const MAX_CONTEXT_TAGS = 2;
+
+function trLower(value: string) {
+  return value.replace(/İ/g, 'i').replace(/I/g, 'ı').toLowerCase();
+}
+
+export function toTag(name: string): string | null {
+  const cleaned = trLower(name)
+    .replace(/['"()./,\-]/g, ' ')
+    .replace(/\s+/g, '')
+    .trim();
+  if (cleaned.length < 2) return null;
+  return `#${cleaned}`;
+}
+
+// Mahsul sözlüğü: ürün başlığındaki mahsulü tanır → Türkçe hashtag.
+const CROP_TAGS: Array<{ match: RegExp; tag: string }> = [
+  { match: /biber/i, tag: '#biber' },
+  { match: /domates/i, tag: '#domates' },
+  { match: /salatal[ıi]k|h[ıi]yar/i, tag: '#salatalık' },
+  { match: /patl[ıi]can/i, tag: '#patlıcan' },
+  { match: /kavun/i, tag: '#kavun' },
+  { match: /karpuz/i, tag: '#karpuz' },
+  { match: /kabak/i, tag: '#kabak' },
+  { match: /marul/i, tag: '#marul' },
+  { match: /m[ıi]s[ıi]r/i, tag: '#mısır' },
+  { match: /fasulye/i, tag: '#fasulye' },
+];
+
+export function cropTagFromTitle(title?: string | null): string | null {
+  const t = String(title ?? '');
+  for (const { match, tag } of CROP_TAGS) if (match.test(t)) return tag;
+  return null;
+}
+
+function normalizeContextTag(raw?: string | null): string | null {
+  const t = String(raw ?? '').trim();
+  if (!t) return null;
+  if (t.startsWith('#')) return t.replace(/\s+/g, '');
+  return toTag(t);
+}
+
+/**
+ * Tweet için hashtag dizisi.
+ *  - productTitle → mahsul etiketi (çeşit tanıtımı / agronomi)
+ *  - eventTag     → sektör/fuar etiketi
+ *  - dayTag       → milli gün etiketi
+ */
+export function deriveTwitterHashtags(input: {
+  productTitle?: string | null;
+  eventTag?: string | null;
+  dayTag?: string | null;
+}): string {
+  const ctx: string[] = [];
+  const crop = cropTagFromTitle(input.productTitle);
+  if (crop) ctx.push(crop);
+  const ev = normalizeContextTag(input.eventTag);
+  if (ev) ctx.push(ev);
+  const day = normalizeContextTag(input.dayTag);
+  if (day) ctx.push(day);
+
+  const all = [...ctx.slice(0, MAX_CONTEXT_TAGS), TWITTER_SIGNATURE_TAG, TWITTER_BRAND_TAG];
+
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const tag of all) {
+    const key = tag.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(tag);
+  }
+  return out.slice(0, MAX_TAGS).join(' ');
+}

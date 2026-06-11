@@ -71,18 +71,25 @@ export type TwitterSendResp = {
 };
 
 /** GET /admin/twitter/tweets */
+export type TweetStatus = 'queued' | 'posting' | 'sent' | 'failed' | 'canceled';
+
 export type TweetLogRow = {
   id: string;
   content: string;
-  status: 'sent' | 'failed';
+  status: TweetStatus;
   source: string;
+  template: string | null;
+  source_ref: string | null;
+  scheduled_at: string | null;
+  posted_at: string | null;
+  retry_count: number;
   x_tweet_id: string | null;
   error_message: string | null;
   created_at: string;
 };
 
 export type TwitterLogListParams = {
-  status?: 'sent' | 'failed';
+  status?: TweetStatus;
   page?: number;
   limit?: number;
 };

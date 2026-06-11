@@ -823,6 +823,7 @@ export {
   buildTweetUrl,
   createTwitterSettingsDefaults,
   type TweetLogRow,
+  type TweetStatus,
   type TwitterCredentialFieldDef,
   type TwitterLogListParams,
   type TwitterLogListResp,

@@ -19,7 +19,7 @@
   "settings": {
     "title": "Twitter / X Ayarları",
     "enable": "Otomatik Gönderimi Etkinleştir",
-    "enableDesc": "Kapalıyken otomatik akışlar tweet atmaz; manuel gönderim çalışmaya devam eder.",
+    "enableDesc": "Açıkken içerik motoru her gün 3 slot (10:00 çeşit, 11:00 takvim, 16:00 değer/ipucu — Berlin) planlar ve kuyruk 5 dakikada bir gönderilir. Kapalıyken yalnızca manuel gönderim çalışır.",
     "credentials": {
       "title": "API Kimlik Bilgileri (OAuth 1.0a)",
       "desc": "X Developer Portal üzerinden alınan 4 anahtar. Yazma izni için ücretli Basic plan gerekir.",
@@ -46,17 +46,27 @@
     "failed": "Tweet gönderilemedi"
   },
   "log": {
-    "title": "Gönderi Geçmişi",
+    "title": "Kuyruk ve Gönderi Geçmişi",
     "loading": "Geçmiş yükleniyor...",
     "empty": "Henüz gönderi yok.",
     "refresh": "Yenile",
-    "statusSent": "Gönderildi",
-    "statusFailed": "Başarısız",
+    "status": {
+      "sent": "Gönderildi",
+      "queued": "Kuyrukta",
+      "posting": "Gönderiliyor",
+      "failed": "Başarısız",
+      "canceled": "İptal edildi"
+    },
     "source": {
       "manual": "Manuel",
       "test": "Test",
       "auto": "Otomatik"
     },
+    "scheduledFor": "Planlanan",
+    "retry": "Deneme",
+    "cancel": "İptal",
+    "cancelDone": "Gönderi iptal edildi",
+    "cancelFailed": "İptal edilemedi",
     "viewOnX": "X'te görüntüle",
     "prev": "Önceki",
     "next": "Sonraki"
