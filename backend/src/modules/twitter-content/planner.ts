@@ -21,6 +21,7 @@ import {
   type TwitterTweetContext,
 } from './templates';
 import { buildTweetFallback, composeTweetText, trimToTweet } from './fallbacks';
+import { twitterMediaForProduct, twitterMediaForSlot } from './media';
 import { repoGetTwitterProducts, type TwitterProduct } from './repository';
 import { isoWeek, todayTurkeyISO, toTurkeySlotUtc, turkeyDayOfWeek, turkeyParts } from './time';
 
@@ -150,8 +151,11 @@ async function planSlot(slot: TwitterTemplateSlot, siteUrl: string, now: Date): 
   const hashtags = buildHashtags(template, ctx);
   const caption = trimToTweet(await buildCaption(template, ctx, now), hashtags);
   const text = composeTweetText(caption, hashtags);
+  const mediaUrl = template === TwitterTemplate.VarietyPromo && product
+    ? twitterMediaForProduct(product.title, slot.preferredProduct)
+    : twitterMediaForSlot(slot.key);
 
-  const result = await queueTweet({ text, scheduledAt, source: 'auto', template, sourceRef });
+  const result = await queueTweet({ text, scheduledAt, source: 'auto', template, sourceRef, mediaUrl });
   return result.ok ? `${slot.key}:${template}@17TR` : null;
 }
 

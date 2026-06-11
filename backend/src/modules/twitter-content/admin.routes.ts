@@ -28,6 +28,7 @@ import {
 import { repoGetTwitterProducts, type TwitterProduct } from './repository';
 import { isoWeek } from './time';
 import { TWITTER_SLOTS, TwitterTemplate, type TwitterTemplateSlot, type TwitterTweetContext } from './templates';
+import { twitterMediaForProduct, twitterMediaForSlot } from './media';
 
 type TemplatePreview = {
   id: string;
@@ -201,7 +202,9 @@ function previewFor(slot: TwitterTemplateSlot, ctx: TwitterTweetContext, now: Da
   const { template } = slot;
   const hashtags = hashtagsFor(template, ctx);
   const caption = trimToTweet(buildTweetFallback(template, ctx, isoWeek(now)), hashtags);
-  const productImage = ctx.product?.imageUrl || null;
+  const mediaUrl = template === TwitterTemplate.VarietyPromo
+    ? twitterMediaForProduct(ctx.product?.title, slot.preferredProduct) || ctx.product?.imageUrl || null
+    : twitterMediaForSlot(slot.key);
 
   return {
     id: slot.key,
@@ -212,9 +215,7 @@ function previewFor(slot: TwitterTemplateSlot, ctx: TwitterTweetContext, now: Da
       : 'Strateji dokümanındaki 30 günlük rotasyondan otomatik üretilir.',
     slot_label: `${DAY_LABELS[slot.dayOfWeek]} ${String(slot.hour).padStart(2, '0')}:${String(slot.minute).padStart(2, '0')} TR`,
     content: composeTweetText(caption, hashtags),
-    media_url: template === TwitterTemplate.VarietyPromo || template === TwitterTemplate.AgronomyTip
-      ? productImage
-      : null,
+    media_url: mediaUrl,
   };
 }
 

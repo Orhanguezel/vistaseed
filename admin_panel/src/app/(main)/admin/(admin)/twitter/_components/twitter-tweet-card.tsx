@@ -77,11 +77,11 @@ export function TwitterTweetCard({ item, mode = "log", onCancel, canceling }: Tw
 
           <p className="whitespace-pre-wrap break-words text-sm leading-6">{parsed.body || item.content}</p>
 
-          {preview?.media_url ? (
+          {(preview?.media_url || logRow?.media_url) ? (
             <div
               aria-hidden="true"
               className="h-64 w-full rounded-md border bg-center bg-cover"
-              style={{ backgroundImage: `url("${preview.media_url}")` }}
+              style={{ backgroundImage: `url("${preview?.media_url || logRow?.media_url}")` }}
             />
           ) : null}
 

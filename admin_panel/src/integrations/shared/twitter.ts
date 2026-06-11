@@ -108,6 +108,7 @@ export type TweetLogRow = {
   status: TweetStatus;
   source: string;
   template: string | null;
+  media_url: string | null;
   source_ref: string | null;
   scheduled_at: string | null;
   posted_at: string | null;
