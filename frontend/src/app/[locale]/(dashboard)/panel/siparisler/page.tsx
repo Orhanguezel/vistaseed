@@ -1,10 +1,12 @@
 // src/app/(dashboard)/panel/siparisler/page.tsx
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useOrderStore } from "@/modules/order/order.store";
 import { useAuthStore } from "@/modules/auth/auth.store";
+import { GoogleReviewsOptIn } from "@/components/widgets/GoogleReviewsOptIn";
 import { ROUTES } from "@/config/routes";
 import Link from "next/link";
 import { useLocale } from "next-intl";
@@ -13,6 +15,15 @@ import { DealerCatalogPanel } from "./dealer-catalog-panel";
 import { DealerOrderForm } from "@/modules/dealer/dealer-order-form";
 import { useDealerSharedCatalog } from "@/modules/dealer/use-dealer-shared-catalog";
 import DashboardShell from "@/components/DashboardShell";
+
+/** Kart odemesi donusunde (?payment=success&order=...) GCR anket opt-in'i tetikler. */
+function PaymentSuccessReviewOptIn() {
+  const params = useSearchParams();
+  const { user } = useAuthStore();
+  const orderId = params.get("payment") === "success" ? params.get("order") : null;
+  if (!orderId || !user?.email) return null;
+  return <GoogleReviewsOptIn orderId={orderId} email={user.email} />;
+}
 
 function DealerOrdersBlock({ locale }: { locale: string }) {
   const shared = useDealerSharedCatalog(locale);
@@ -44,6 +55,9 @@ export default function OrdersPage() {
 
   return (
     <DashboardShell>
+      <Suspense fallback={null}>
+        <PaymentSuccessReviewOptIn />
+      </Suspense>
       <div className="space-y-10">
       <header className="flex items-center justify-between pb-8 border-b border-border/10">
          <div>

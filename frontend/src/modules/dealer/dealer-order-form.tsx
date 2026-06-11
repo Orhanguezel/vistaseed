@@ -15,6 +15,8 @@ import {
 } from "@/modules/order/order.service";
 import { useOrderStore } from "@/modules/order/order.store";
 import { useDealerStore } from "@/modules/dealer/dealer.store";
+import { useAuthStore } from "@/modules/auth/auth.store";
+import { GoogleReviewsOptIn } from "@/components/widgets/GoogleReviewsOptIn";
 import { resolveImageUrl } from "@/lib/utils";
 import { ApiError } from "@/lib/api-client";
 import { IyzicoCheckoutHost } from "./iyzico-checkout-host";
@@ -56,6 +58,9 @@ export function DealerOrderForm({
   const [submitting, setSubmitting] = React.useState(false);
   const [feedback, setFeedback] = React.useState<"ok" | "err" | "bankOk" | "creditOk" | null>(null);
   const [createdOrderId, setCreatedOrderId] = React.useState<string | null>(null);
+  /** Odemesi tamamlanan siparis — GCR anket opt-in'i icin saklanir. */
+  const [paidOrderId, setPaidOrderId] = React.useState<string | null>(null);
+  const userEmail = useAuthStore((s) => s.user?.email ?? null);
   const [checkoutHtml, setCheckoutHtml] = React.useState<string | null>(null);
   const [paymentErr, setPaymentErr] = React.useState<string | null>(null);
   const [paymentBusy, setPaymentBusy] = React.useState(false);
@@ -245,6 +250,7 @@ export function DealerOrderForm({
     setPaymentBusy(true);
     try {
       await initiateOrderBankTransfer(createdOrderId);
+      setPaidOrderId(createdOrderId);
       setCreatedOrderId(null);
       setCheckoutHtml(null);
       setFeedback("bankOk");
@@ -282,6 +288,7 @@ export function DealerOrderForm({
     setPaymentBusy(true);
     try {
       await initiateOrderCreditPayment(createdOrderId);
+      setPaidOrderId(createdOrderId);
       setCreatedOrderId(null);
       setCheckoutHtml(null);
       setFeedback("creditOk");
@@ -338,6 +345,10 @@ export function DealerOrderForm({
         <div className="p-4 rounded-2xl border border-red-500/20 bg-red-500/5 text-sm font-medium text-red-600">
           {t("createError")}
         </div>
+      )}
+
+      {paidOrderId && userEmail && (feedback === "bankOk" || feedback === "creditOk") && (
+        <GoogleReviewsOptIn orderId={paidOrderId} email={userEmail} />
       )}
 
       {createdOrderId && feedback === "ok" && (
