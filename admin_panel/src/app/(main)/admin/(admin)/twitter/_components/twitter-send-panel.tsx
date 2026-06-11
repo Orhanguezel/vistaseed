@@ -6,20 +6,18 @@
 'use client';
 
 import * as React from 'react';
+import { AdminImageUploadField } from '@/app/(main)/admin/_components/common/admin-image-upload-field';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { Send } from 'lucide-react';
+import { Send, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { useAdminT } from '@/app/(main)/admin/_components/common/use-admin-t';
-import { useListAssetsAdminQuery, useTwitterSendMutation } from '@/integrations/hooks';
+import { useTwitterSendMutation } from '@/integrations/hooks';
 import { TWEET_MAX_LENGTH, buildTweetUrl, getErrorMessage } from '@/integrations/shared';
 import { TwitterTweetCard } from './twitter-tweet-card';
-
-const NO_MEDIA = '__none__';
 
 function joinTweet(body: string, hashtags: string) {
   return [body.trim(), hashtags.trim()].filter(Boolean).join('\n\n');
@@ -31,19 +29,10 @@ export default function TwitterSendPanel() {
   const [text, setText] = React.useState('');
   const [hashtags, setHashtags] = React.useState('#VistaSeeds #yerlitohum');
   const [mediaUrl, setMediaUrl] = React.useState<string | null>(null);
-  const { data: mediaData, isLoading: mediaLoading } = useListAssetsAdminQuery({
-    bucket: 'default',
-    folder: 'twitter/vistaseeds',
-    mime: 'image',
-    limit: 50,
-    sort: 'name',
-    order: 'asc',
-  });
 
   const trimmed = joinTweet(text, hashtags);
   const overLimit = trimmed.length > TWEET_MAX_LENGTH;
   const canSend = trimmed.length > 0 && !overLimit && !sending;
-  const mediaItems = mediaData?.items ?? [];
 
   const handleSend = async () => {
     if (!canSend) return;
@@ -88,24 +77,29 @@ export default function TwitterSendPanel() {
         </div>
 
         <div className="space-y-2">
-          <Label>{t('send.mediaLabel')}</Label>
-          <Select
-            value={mediaUrl || NO_MEDIA}
-            onValueChange={(value) => setMediaUrl(value === NO_MEDIA ? null : value)}
-            disabled={mediaLoading}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder={mediaLoading ? t('send.mediaLoading') : t('send.mediaPlaceholder')} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value={NO_MEDIA}>{t('send.noMedia')}</SelectItem>
-              {mediaItems.map((item) => (
-                <SelectItem key={item.id} value={item.url || `/uploads/${item.path}`}>
-                  {item.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <AdminImageUploadField
+            label={t('send.mediaLabel')}
+            helperText={t('send.mediaHelper')}
+            value={mediaUrl || ''}
+            onChange={(url) => setMediaUrl(url || null)}
+            disabled={sending}
+            folder="twitter/vistaseeds"
+            previewAspect="16x9"
+            previewObjectFit="contain"
+          />
+          {mediaUrl ? (
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="gap-2"
+              onClick={() => setMediaUrl(null)}
+              disabled={sending}
+            >
+              <Trash2 className="h-4 w-4" />
+              {t('send.clearMedia')}
+            </Button>
+          ) : null}
         </div>
 
         {trimmed ? (
