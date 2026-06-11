@@ -3,8 +3,21 @@
 
 SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-ALTER TABLE `tweets`
-  ADD COLUMN IF NOT EXISTS `media_url` TEXT NULL AFTER `template`;
+SET @twitter_media_col_exists := (
+  SELECT COUNT(*)
+  FROM INFORMATION_SCHEMA.COLUMNS
+  WHERE TABLE_SCHEMA = DATABASE()
+    AND TABLE_NAME = 'tweets'
+    AND COLUMN_NAME = 'media_url'
+);
+SET @twitter_media_sql := IF(
+  @twitter_media_col_exists = 0,
+  'ALTER TABLE `tweets` ADD COLUMN `media_url` TEXT NULL AFTER `template`',
+  'SELECT 1'
+);
+PREPARE twitter_media_stmt FROM @twitter_media_sql;
+EXECUTE twitter_media_stmt;
+DEALLOCATE PREPARE twitter_media_stmt;
 
 INSERT INTO `storage_assets`
   (`id`,`name`,`bucket`,`path`,`folder`,`mime`,`size`,`width`,`height`,`url`,`provider`,`provider_public_id`,`provider_resource_type`,`provider_format`)
