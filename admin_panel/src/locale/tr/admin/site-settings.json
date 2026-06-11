@@ -329,6 +329,7 @@
       "okShort": "✓",
       "errorShort": "✗",
       "sections": {
+        "twitter": "Twitter / X",
         "googleOAuth": "Google OAuth",
         "cloudinary": "Cloudinary",
         "analytics": "Analytics",
@@ -338,6 +339,11 @@
         "grok": "Grok"
       },
       "fields": {
+        "twitterEnabled": "Otomatik X paylaşımı",
+        "twitterApiKey": "X API Key",
+        "twitterApiSecret": "X API Key Secret",
+        "twitterAccessToken": "X Access Token",
+        "twitterAccessTokenSecret": "X Access Token Secret",
         "clientId": "Client ID",
         "clientSecret": "Client Secret",
         "cloudName": "Cloud Name",

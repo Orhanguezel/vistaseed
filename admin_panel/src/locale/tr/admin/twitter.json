@@ -6,15 +6,24 @@
     "statusDisabled": "Otomatik gönderim kapalı",
     "credentialsOk": "Hesap bağlı",
     "credentialsMissing": "Kimlik bilgileri eksik",
+    "apiSettings": "API Ayarları",
     "verify": "Bağlantıyı Doğrula",
     "verifying": "Doğrulanıyor...",
     "verified": "Bağlantı doğrulandı",
     "verifyFailed": "Doğrulama başarısız"
   },
   "tabs": {
-    "settings": "Ayarlar",
+    "templates": "Şablonlar",
     "send": "Tweet Gönder",
-    "log": "Gönderi Geçmişi"
+    "queue": "Kuyruk",
+    "history": "Geçmiş"
+  },
+  "templates": {
+    "title": "Şablon Tweetler",
+    "description": "Otomasyonun kullandığı VistaSeeds şablonlarının canlı önizlemesi. Ürün görselleri ve metinler mevcut katalogdan örneklenir.",
+    "empty": "Şablon önizlemesi üretilemedi.",
+    "previewBadge": "Önizleme",
+    "sampleTime": "örnek"
   },
   "settings": {
     "title": "Twitter / X Ayarları",
@@ -47,8 +56,12 @@
   },
   "log": {
     "title": "Kuyruk ve Gönderi Geçmişi",
+    "queueTitle": "Kuyruk Tweetleri",
+    "historyTitle": "Eski Tweetler",
     "loading": "Geçmiş yükleniyor...",
     "empty": "Henüz gönderi yok.",
+    "queueEmpty": "Kuyrukta bekleyen tweet yok.",
+    "historyEmpty": "Henüz eski tweet kaydı yok.",
     "refresh": "Yenile",
     "status": {
       "sent": "Gönderildi",

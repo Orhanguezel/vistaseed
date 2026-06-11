@@ -19,6 +19,7 @@ import { registerEcosystem } from '@/modules/ecosystem';
 import { registerSellers } from '@agro/shared-backend/modules/sellers';
 import { registerWeather } from '@/modules/weather/router';
 import { registerAdsFeeds } from '@/modules/adsFeeds';
+import { registerTwitterContentAdmin } from '@/modules/twitter-content/admin.routes';
 
 export async function registerProjectPublic(api: FastifyInstance) {
   await registerMail(api);
@@ -43,7 +44,7 @@ export async function registerProjectAdmin(adminApi: FastifyInstance) {
     registerDashboardAdmin, registerSupportAdmin, registerBlogAdmin, registerJobListingsAdmin,
     registerJobApplicationsAdmin, registerSliderAdmin, registerReviewsAdmin,
     registerPopupsAdmin, registerOffersAdmin, registerPaymentAttemptsAdmin,
-    registerWalletAdmin, registerHomeSectionsAdmin,
+    registerWalletAdmin, registerHomeSectionsAdmin, registerTwitterContentAdmin,
   ]) {
     await adminApi.register(reg);
   }
