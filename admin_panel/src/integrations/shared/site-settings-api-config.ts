@@ -7,6 +7,18 @@ export const SITE_SETTINGS_API_KEYS = [
   "twitter_api_secret",
   "twitter_access_token",
   "twitter_access_token_secret",
+  "facebook_enabled",
+  "facebook_page_id",
+  "facebook_page_access_token",
+  "instagram_enabled",
+  "instagram_business_account_id",
+  "instagram_access_token",
+  "linkedin_enabled",
+  "linkedin_organization_urn",
+  "linkedin_access_token",
+  "youtube_enabled",
+  "youtube_channel_id",
+  "youtube_access_token",
   "google_client_id",
   "google_client_secret",
   "cloudinary_cloud_name",
@@ -61,6 +73,38 @@ export const SITE_SETTINGS_API_SECTIONS: SiteSettingsApiSectionDef[] = [
       { key: "twitter_api_secret", labelKey: "twitterApiSecret", type: "password" },
       { key: "twitter_access_token", labelKey: "twitterAccessToken", type: "password" },
       { key: "twitter_access_token_secret", labelKey: "twitterAccessTokenSecret", type: "password" },
+    ],
+  },
+  {
+    titleKey: "facebook",
+    fields: [
+      { key: "facebook_enabled", labelKey: "facebookEnabled", type: "switch" },
+      { key: "facebook_page_id", labelKey: "facebookPageId" },
+      { key: "facebook_page_access_token", labelKey: "facebookPageAccessToken", type: "password" },
+    ],
+  },
+  {
+    titleKey: "instagram",
+    fields: [
+      { key: "instagram_enabled", labelKey: "instagramEnabled", type: "switch" },
+      { key: "instagram_business_account_id", labelKey: "instagramBusinessAccountId" },
+      { key: "instagram_access_token", labelKey: "instagramAccessToken", type: "password" },
+    ],
+  },
+  {
+    titleKey: "linkedin",
+    fields: [
+      { key: "linkedin_enabled", labelKey: "linkedinEnabled", type: "switch" },
+      { key: "linkedin_organization_urn", labelKey: "linkedinOrganizationUrn" },
+      { key: "linkedin_access_token", labelKey: "linkedinAccessToken", type: "password" },
+    ],
+  },
+  {
+    titleKey: "youtube",
+    fields: [
+      { key: "youtube_enabled", labelKey: "youtubeEnabled", type: "switch" },
+      { key: "youtube_channel_id", labelKey: "youtubeChannelId" },
+      { key: "youtube_access_token", labelKey: "youtubeAccessToken", type: "password" },
     ],
   },
   {
@@ -144,7 +188,7 @@ export function buildSiteSettingsApiUpdates(
 ): Array<{ key: SiteSettingsApiKey; value: SettingValue }> {
   return SITE_SETTINGS_API_KEYS.map((key) => ({
     key,
-    value: key === "twitter_enabled" ? (form[key] === "true" ? "true" : "false") : trimStr(form[key]),
+    value: key.endsWith("_enabled") ? (form[key] === "true" ? "true" : "false") : trimStr(form[key]),
   }));
 }
 

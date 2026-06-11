@@ -52,6 +52,7 @@ type XTimelineResponse = {
 };
 
 type TwitterAiDraftBody = {
+  platform?: unknown;
   topic?: unknown;
   template?: unknown;
   product_id?: unknown;
@@ -273,6 +274,7 @@ async function twitterTemplatePreviews(req: FastifyRequest, reply: FastifyReply)
 async function twitterAiDraft(req: FastifyRequest, reply: FastifyReply) {
   try {
     const body = (req.body ?? {}) as TwitterAiDraftBody;
+    const platform = String(body.platform || 'twitter').trim();
     const template = normalizeTwitterTemplate(body.template);
     const topic = String(body.topic || '').trim().slice(0, 500);
     const currentText = String(body.current_text || '').trim().slice(0, 500);
@@ -295,13 +297,14 @@ async function twitterAiDraft(req: FastifyRequest, reply: FastifyReply) {
     const aiTopic = [
       baseTopic,
       '',
+      `Platform: ${platform}.`,
       'Manuel editor istegi:',
       topic || 'VistaSeeds icin bugune uygun, sade ve guvenilir bir X tweet taslagi hazirla.',
       currentText ? `Mevcut taslak varsa bunu gelistir: ${currentText}` : '',
       '',
       'Cikti kurallari:',
       '- Yalnizca tweet govdesini yaz; hashtag yazma.',
-      '- 1-2 kisa paragraf yeterli.',
+      '- 1-2 kisa paragraf yeterli; platform sosyal medya akisina uygun kisa tut.',
       '- Emojiyi az kullan; profesyonel ve uretici odakli kal.',
       '- Urun bilgisi katalogda yoksa iddia uydurma.',
     ].filter(Boolean).join('\n');
@@ -326,6 +329,7 @@ async function twitterAiDraft(req: FastifyRequest, reply: FastifyReply) {
 
     return reply.code(200).send({
       ok: true,
+      platform,
       source,
       model,
       caption: safeCaption,

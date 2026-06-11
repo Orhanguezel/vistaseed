@@ -964,6 +964,8 @@ export {
   TWITTER_BOOLEAN_SETTINGS_KEYS,
   TWITTER_CREDENTIAL_FIELDS,
   TWITTER_SETTINGS_KEYS,
+  SOCIAL_PLATFORMS,
+  type SocialPlatform,
   type TwitterAiDraftBody,
   type TwitterAiDraftResp,
   type TweetLogRow,

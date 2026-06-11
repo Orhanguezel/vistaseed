@@ -5,6 +5,7 @@
 
 "use client";
 
+import * as React from "react";
 import { Settings, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 
@@ -14,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTwitterStatusQuery, useTwitterVerifyMutation } from "@/integrations/hooks";
-import { getErrorMessage } from "@/integrations/shared";
+import { getErrorMessage, SOCIAL_PLATFORMS, type SocialPlatform } from "@/integrations/shared";
 
 import TwitterLogPanel from "./_components/twitter-log-panel";
 import TwitterSendPanel from "./_components/twitter-send-panel";
@@ -22,6 +23,7 @@ import TwitterTemplatePanel from "./_components/twitter-template-panel";
 
 export default function TwitterAdminPage() {
   const t = useAdminT("admin.twitter");
+  const [platform, setPlatform] = React.useState<SocialPlatform>("twitter");
   const { data: status, refetch: refetchStatus } = useTwitterStatusQuery();
   const [twitterVerify, { isLoading: verifying }] = useTwitterVerifyMutation();
 
@@ -55,8 +57,26 @@ export default function TwitterAdminPage() {
                 {status?.has_credentials ? t("header.credentialsOk") : t("header.credentialsMissing")}
               </Badge>
             </div>
+            <div className="flex flex-wrap gap-2 pt-2">
+              {SOCIAL_PLATFORMS.map((item) => (
+                <Button
+                  key={item}
+                  type="button"
+                  variant={platform === item ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setPlatform(item)}
+                >
+                  {t(`platforms.${item}` as "platforms.twitter")}
+                </Button>
+              ))}
+            </div>
           </div>
-          <Button variant="outline" size="sm" onClick={handleVerify} disabled={verifying || !status?.has_credentials}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleVerify}
+            disabled={platform !== "twitter" || verifying || !status?.has_credentials}
+          >
             <ShieldCheck className="mr-2 h-4 w-4" />
             {verifying ? t("header.verifying") : t("header.verify")}
           </Button>
@@ -78,19 +98,19 @@ export default function TwitterAdminPage() {
         </TabsList>
 
         <TabsContent value="templates" className="space-y-4">
-          <TwitterTemplatePanel />
+          <TwitterTemplatePanel platform={platform} />
         </TabsContent>
 
         <TabsContent value="send" className="space-y-4">
-          <TwitterSendPanel />
+          <TwitterSendPanel platform={platform} />
         </TabsContent>
 
         <TabsContent value="queue" className="space-y-4">
-          <TwitterLogPanel scope="queue" />
+          <TwitterLogPanel scope="queue" platform={platform} />
         </TabsContent>
 
         <TabsContent value="history" className="space-y-4">
-          <TwitterLogPanel scope="history" />
+          <TwitterLogPanel scope="history" platform={platform} />
         </TabsContent>
       </Tabs>
     </div>

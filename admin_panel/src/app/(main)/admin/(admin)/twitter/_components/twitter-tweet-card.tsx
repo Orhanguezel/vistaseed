@@ -5,7 +5,7 @@ import { ExternalLink, XCircle } from "lucide-react";
 import { useAdminT } from "@/app/(main)/admin/_components/common/use-admin-t";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { buildTweetUrl, type TweetLogRow, type TweetStatus } from "@/integrations/shared";
+import { buildTweetUrl, type SocialPlatform, type TweetLogRow, type TweetStatus } from "@/integrations/shared";
 
 const STATUS_VARIANTS: Record<TweetStatus, "default" | "secondary" | "destructive" | "outline"> = {
   sent: "default",
@@ -17,6 +17,7 @@ const STATUS_VARIANTS: Record<TweetStatus, "default" | "secondary" | "destructiv
 
 type PreviewLike = {
   id: string;
+  platform?: SocialPlatform;
   content: string;
   template?: string | null;
   title?: string;
@@ -49,6 +50,7 @@ export function TwitterTweetCard({ item, mode = "log", onCancel, canceling }: Tw
   const logRow: TweetLogRow | null = isLog ? item : null;
   const preview: PreviewLike | null = isLog ? null : item;
   const template = item.template || (logRow?.source ?? null);
+  const platform = item.platform || logRow?.platform || "twitter";
   const displayTime = logRow
     ? logRow.status === "queued" && logRow.scheduled_at
       ? `${t("log.scheduledFor")}: ${new Date(logRow.scheduled_at).toLocaleString()}`
@@ -72,6 +74,7 @@ export function TwitterTweetCard({ item, mode = "log", onCancel, canceling }: Tw
             ) : (
               <Badge variant="outline">{t("templates.previewBadge")}</Badge>
             )}
+            <Badge variant="secondary">{t(`platforms.${platform}` as "platforms.twitter")}</Badge>
             {template ? <Badge variant="outline">{template}</Badge> : null}
           </div>
 
@@ -93,7 +96,7 @@ export function TwitterTweetCard({ item, mode = "log", onCancel, canceling }: Tw
                 {t("log.retry")}: {logRow.retry_count}
               </span>
             ) : null}
-            {logRow?.x_tweet_id ? (
+            {logRow?.x_tweet_id && platform === "twitter" ? (
               <a
                 href={buildTweetUrl(logRow.x_tweet_id)}
                 target="_blank"
@@ -103,6 +106,11 @@ export function TwitterTweetCard({ item, mode = "log", onCancel, canceling }: Tw
                 <ExternalLink className="h-3 w-3" />
                 {t("log.viewOnX")}
               </a>
+            ) : null}
+            {logRow?.external_post_id && platform !== "twitter" ? (
+              <span className="text-muted-foreground text-xs">
+                {t("log.externalPostId")}: {logRow.external_post_id}
+              </span>
             ) : null}
             {mode === "log" && logRow && (logRow.status === "queued" || logRow.status === "failed") ? (
               <Button

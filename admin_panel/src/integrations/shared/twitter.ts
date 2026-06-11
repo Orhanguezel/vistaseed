@@ -7,6 +7,9 @@ export const TWITTER_ADMIN_BASE = "/admin/twitter";
 
 export const TWEET_MAX_LENGTH = 280;
 
+export const SOCIAL_PLATFORMS = ["twitter", "facebook", "instagram", "linkedin", "youtube"] as const;
+export type SocialPlatform = (typeof SOCIAL_PLATFORMS)[number];
+
 /** site_settings içindeki Twitter anahtarları (BE: modules/twitter/settings.ts) */
 export const TWITTER_SETTINGS_KEYS = [
   "twitter_enabled",
@@ -53,6 +56,7 @@ export type TwitterStatusResp = {
 /** GET /admin/twitter/templates */
 export type TwitterTemplatePreview = {
   id: string;
+  platform?: SocialPlatform;
   title: string;
   description: string;
   slot_label: string;
@@ -91,6 +95,7 @@ export type TwitterSyncHistoryResp = {
 
 /** POST /admin/twitter/ai-draft */
 export type TwitterAiDraftBody = {
+  platform?: SocialPlatform;
   topic?: string;
   template?: string;
   product_id?: string | null;
@@ -99,6 +104,7 @@ export type TwitterAiDraftBody = {
 
 export type TwitterAiDraftResp = {
   ok: boolean;
+  platform?: SocialPlatform;
   source: "ai" | "fallback";
   model: string;
   caption: string;
@@ -110,6 +116,7 @@ export type TwitterAiDraftResp = {
 /** POST /admin/twitter/send */
 export type TwitterSendBody = {
   text: string;
+  platform?: SocialPlatform;
   media_url?: string | null;
 };
 
@@ -123,6 +130,7 @@ export type TweetStatus = "queued" | "posting" | "sent" | "failed" | "canceled";
 
 export type TweetLogRow = {
   id: string;
+  platform: SocialPlatform;
   content: string;
   status: TweetStatus;
   source: string;
@@ -133,11 +141,13 @@ export type TweetLogRow = {
   posted_at: string | null;
   retry_count: number;
   x_tweet_id: string | null;
+  external_post_id: string | null;
   error_message: string | null;
   created_at: string;
 };
 
 export type TwitterLogListParams = {
+  platform?: SocialPlatform;
   status?: TweetStatus;
   page?: number;
   limit?: number;

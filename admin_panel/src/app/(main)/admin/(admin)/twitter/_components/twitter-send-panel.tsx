@@ -17,7 +17,7 @@ import { toast } from 'sonner';
 
 import { useAdminT } from '@/app/(main)/admin/_components/common/use-admin-t';
 import { useListProductsAdminQuery, useTwitterAiDraftMutation, useTwitterSendMutation } from '@/integrations/hooks';
-import { TWEET_MAX_LENGTH, buildTweetUrl, getErrorMessage } from '@/integrations/shared';
+import { TWEET_MAX_LENGTH, buildTweetUrl, getErrorMessage, type SocialPlatform } from '@/integrations/shared';
 import { TwitterTweetCard } from './twitter-tweet-card';
 
 const AUTO_PRODUCT = '__auto__';
@@ -38,7 +38,11 @@ function joinTweet(body: string, hashtags: string) {
   return [body.trim(), hashtags.trim()].filter(Boolean).join('\n\n');
 }
 
-export default function TwitterSendPanel() {
+type TwitterSendPanelProps = {
+  platform: SocialPlatform;
+};
+
+export default function TwitterSendPanel({ platform }: TwitterSendPanelProps) {
   const t = useAdminT('admin.twitter');
   const [twitterSend, { isLoading: sending }] = useTwitterSendMutation();
   const [twitterAiDraft, { isLoading: aiLoading }] = useTwitterAiDraftMutation();
@@ -64,7 +68,7 @@ export default function TwitterSendPanel() {
     if (!window.confirm(t('send.confirm'))) return;
 
     try {
-      const res = await twitterSend({ text: trimmed, media_url: mediaUrl }).unwrap();
+      const res = await twitterSend({ text: trimmed, platform, media_url: mediaUrl }).unwrap();
       toast.success(`${t('send.sent')} — ${buildTweetUrl(res.tweet_id)}`);
       setText('');
       setMediaUrl(null);
@@ -76,6 +80,7 @@ export default function TwitterSendPanel() {
   const handleAiDraft = async () => {
     try {
       const res = await twitterAiDraft({
+        platform,
         template: aiTemplate,
         product_id: aiProductId === AUTO_PRODUCT ? null : aiProductId,
         topic: aiTopic,
@@ -105,7 +110,9 @@ export default function TwitterSendPanel() {
                 <Sparkles className="h-4 w-4 text-primary" />
                 {t('send.ai.title')}
               </div>
-              <p className="mt-1 text-xs text-muted-foreground">{t('send.ai.description')}</p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                {t('send.ai.description', { platform: t(`platforms.${platform}` as 'platforms.twitter') })}
+              </p>
             </div>
             <Button type="button" variant="outline" size="sm" onClick={handleAiDraft} disabled={aiLoading || sending}>
               {aiLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Sparkles className="mr-2 h-4 w-4" />}

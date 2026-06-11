@@ -11,7 +11,7 @@ import {
   useTwitterListTweetsQuery,
   useTwitterSyncHistoryMutation,
 } from "@/integrations/hooks";
-import type { TweetLogRow, TweetStatus } from "@/integrations/shared";
+import type { SocialPlatform, TweetLogRow, TweetStatus } from "@/integrations/shared";
 
 import { TwitterTweetCard } from "./twitter-tweet-card";
 
@@ -19,6 +19,7 @@ const LIMIT = 50;
 
 type TwitterLogPanelProps = {
   scope: "queue" | "history";
+  platform: SocialPlatform;
 };
 
 function byNewest(a: TweetLogRow, b: TweetLogRow) {
@@ -27,12 +28,12 @@ function byNewest(a: TweetLogRow, b: TweetLogRow) {
   return bTime - aTime;
 }
 
-function useRows(statuses: TweetStatus[]) {
-  const queued = useTwitterListTweetsQuery({ status: "queued", limit: LIMIT });
-  const posting = useTwitterListTweetsQuery({ status: "posting", limit: LIMIT });
-  const sent = useTwitterListTweetsQuery({ status: "sent", limit: LIMIT });
-  const failed = useTwitterListTweetsQuery({ status: "failed", limit: LIMIT });
-  const canceled = useTwitterListTweetsQuery({ status: "canceled", limit: LIMIT });
+function useRows(platform: SocialPlatform, statuses: TweetStatus[]) {
+  const queued = useTwitterListTweetsQuery({ platform, status: "queued", limit: LIMIT });
+  const posting = useTwitterListTweetsQuery({ platform, status: "posting", limit: LIMIT });
+  const sent = useTwitterListTweetsQuery({ platform, status: "sent", limit: LIMIT });
+  const failed = useTwitterListTweetsQuery({ platform, status: "failed", limit: LIMIT });
+  const canceled = useTwitterListTweetsQuery({ platform, status: "canceled", limit: LIMIT });
 
   const queries = { queued, posting, sent, failed, canceled };
   const active = statuses.map((status) => queries[status]);
@@ -46,10 +47,10 @@ function useRows(statuses: TweetStatus[]) {
   };
 }
 
-export default function TwitterLogPanel({ scope }: TwitterLogPanelProps) {
+export default function TwitterLogPanel({ scope, platform }: TwitterLogPanelProps) {
   const t = useAdminT("admin.twitter");
   const statuses: TweetStatus[] = scope === "queue" ? ["queued", "posting"] : ["sent", "failed", "canceled"];
-  const { rows, isLoading, isFetching, refetch } = useRows(statuses);
+  const { rows, isLoading, isFetching, refetch } = useRows(platform, statuses);
   const [cancelTweet, { isLoading: canceling }] = useTwitterCancelTweetMutation();
   const [syncHistory, { isLoading: syncing }] = useTwitterSyncHistoryMutation();
 

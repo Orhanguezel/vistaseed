@@ -1,7 +1,7 @@
 {
   "header": {
-    "title": "Twitter / X",
-    "description": "X (Twitter) hesap bağlantısını ve gönderimleri yönetin",
+    "title": "Sosyal Yayın Merkezi",
+    "description": "X, Facebook, Instagram, LinkedIn ve YouTube taslaklarını, kuyruğunu ve geçmişini aynı çizgide yönetin",
     "statusEnabled": "Otomatik gönderim açık",
     "statusDisabled": "Otomatik gönderim kapalı",
     "credentialsOk": "Hesap bağlı",
@@ -11,6 +11,13 @@
     "verifying": "Doğrulanıyor...",
     "verified": "Bağlantı doğrulandı",
     "verifyFailed": "Doğrulama başarısız"
+  },
+  "platforms": {
+    "twitter": "X / Twitter",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "youtube": "YouTube"
   },
   "tabs": {
     "templates": "Şablonlar",
@@ -56,7 +63,7 @@
     "previewTime": "şimdi",
     "ai": {
       "title": "AI Tweet Yardımı",
-      "description": "VistaSeeds tonuna göre 280 karakter sınırına uygun, iddiasız ve üretici odaklı taslak hazırlar.",
+      "description": "{platform} için VistaSeeds tonuna uygun, iddiasız ve üretici odaklı taslak hazırlar.",
       "templateLabel": "İçerik tipi",
       "productLabel": "Ürün bağlamı",
       "autoProduct": "Otomatik seç",
@@ -117,6 +124,7 @@
     "cancelDone": "Gönderi iptal edildi",
     "cancelFailed": "İptal edilemedi",
     "viewOnX": "X'te görüntüle",
+    "externalPostId": "Platform ID",
     "prev": "Önceki",
     "next": "Sonraki"
   }

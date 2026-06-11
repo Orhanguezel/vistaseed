@@ -4,10 +4,15 @@ import { useAdminT } from "@/app/(main)/admin/_components/common/use-admin-t";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTwitterTemplatePreviewsQuery } from "@/integrations/hooks";
+import type { SocialPlatform } from "@/integrations/shared";
 
 import { TwitterTweetCard } from "./twitter-tweet-card";
 
-export default function TwitterTemplatePanel() {
+type TwitterTemplatePanelProps = {
+  platform: SocialPlatform;
+};
+
+export default function TwitterTemplatePanel({ platform }: TwitterTemplatePanelProps) {
   const t = useAdminT("admin.twitter");
   const { data, isLoading } = useTwitterTemplatePreviewsQuery();
   const items = data?.items ?? [];
@@ -34,7 +39,7 @@ export default function TwitterTemplatePanel() {
                   <h3 className="font-medium text-sm">{item.title}</h3>
                   <p className="text-muted-foreground text-xs">{item.description}</p>
                 </div>
-                <TwitterTweetCard item={item} mode="preview" />
+                <TwitterTweetCard item={{ ...item, platform }} mode="preview" />
               </div>
             ))}
           </div>
