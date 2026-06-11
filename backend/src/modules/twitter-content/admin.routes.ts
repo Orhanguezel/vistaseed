@@ -14,7 +14,7 @@ import {
   type TwitterOAuth1Creds,
 } from '@agro/shared-backend/modules/twitter';
 import { findTwitterCalendarEvent, TWITTER_CALENDAR_EVENTS } from './calendar';
-import { buildTweetFallback, composeTweetText, trimToTweet } from './fallbacks';
+import { buildTweetFallback, composeTweetText, stripInlineHashtags, trimToTweet } from './fallbacks';
 import {
   TWITTER_AGRICULTURE_TAG,
   TWITTER_BRAND_TAG,
@@ -27,7 +27,8 @@ import {
 } from './hashtags';
 import { repoGetTwitterProducts, type TwitterProduct } from './repository';
 import { isoWeek } from './time';
-import { TWITTER_SLOTS, TwitterTemplate, type TwitterTemplateSlot, type TwitterTweetContext } from './templates';
+import { generateTweetCaption } from './ai';
+import { buildTweetTopic, TWITTER_SLOTS, TwitterTemplate, type TwitterTemplateSlot, type TwitterTweetContext } from './templates';
 import { twitterMediaForProduct, twitterMediaForSlot } from './media';
 
 type TemplatePreview = {
@@ -48,6 +49,13 @@ type XTimelineTweet = {
 
 type XTimelineResponse = {
   data?: XTimelineTweet[];
+};
+
+type TwitterAiDraftBody = {
+  topic?: unknown;
+  template?: unknown;
+  product_id?: unknown;
+  current_text?: unknown;
 };
 
 const DAY_LABELS: Record<TwitterTemplateSlot['dayOfWeek'], string> = {
@@ -158,6 +166,12 @@ function pickPreferredProduct(products: TwitterProduct[], preferred?: string): T
   return products.find((product) => product.title.toLocaleLowerCase('tr-TR').includes(needle)) ?? pickProduct(products);
 }
 
+function normalizeTwitterTemplate(value: unknown): TwitterTemplate {
+  const raw = String(value || '').trim();
+  if (Object.values(TwitterTemplate).includes(raw as TwitterTemplate)) return raw as TwitterTemplate;
+  return TwitterTemplate.LocalSeedValue;
+}
+
 function hashtagsFor(template: TwitterTemplate, ctx: TwitterTweetContext): string {
   if (template === TwitterTemplate.InteractionPoll) {
     return `${TWITTER_BRAND_TAG} ${TWITTER_LOCAL_SEED_TAG}`;
@@ -256,7 +270,78 @@ async function twitterTemplatePreviews(req: FastifyRequest, reply: FastifyReply)
   }
 }
 
+async function twitterAiDraft(req: FastifyRequest, reply: FastifyReply) {
+  try {
+    const body = (req.body ?? {}) as TwitterAiDraftBody;
+    const template = normalizeTwitterTemplate(body.template);
+    const topic = String(body.topic || '').trim().slice(0, 500);
+    const currentText = String(body.current_text || '').trim().slice(0, 500);
+    const productId = String(body.product_id || '').trim();
+    const products = await repoGetTwitterProducts(50);
+    const product = productId
+      ? products.find((item) => item.id === productId) ?? null
+      : template === TwitterTemplate.VarietyPromo || template === TwitterTemplate.AgronomyTip
+        ? pickProduct(products)
+        : null;
+    const event = findTwitterCalendarEvent(new Date());
+    const ctx = {
+      product,
+      event,
+      linkUrl: product?.productUrl || siteUrl(),
+      strategyTopic: topic || undefined,
+    } satisfies TwitterTweetContext;
+    const hashtags = hashtagsFor(template, ctx);
+    const baseTopic = buildTweetTopic(template, ctx);
+    const aiTopic = [
+      baseTopic,
+      '',
+      'Manuel editor istegi:',
+      topic || 'VistaSeeds icin bugune uygun, sade ve guvenilir bir X tweet taslagi hazirla.',
+      currentText ? `Mevcut taslak varsa bunu gelistir: ${currentText}` : '',
+      '',
+      'Cikti kurallari:',
+      '- Yalnizca tweet govdesini yaz; hashtag yazma.',
+      '- 1-2 kisa paragraf yeterli.',
+      '- Emojiyi az kullan; profesyonel ve uretici odakli kal.',
+      '- Urun bilgisi katalogda yoksa iddia uydurma.',
+    ].filter(Boolean).join('\n');
+
+    let caption: string;
+    let model = 'fallback';
+    let source: 'ai' | 'fallback' = 'ai';
+    try {
+      const ai = await generateTweetCaption(aiTopic);
+      caption = stripInlineHashtags(ai.caption);
+      model = ai.model;
+    } catch (err) {
+      source = 'fallback';
+      caption = buildTweetFallback(template, ctx, isoWeek(new Date()));
+      req.log.warn({ err: err instanceof Error ? err.message : String(err) }, 'twitter_ai_draft_fallback');
+    }
+
+    const safeCaption = trimToTweet(caption, hashtags);
+    const mediaUrl = template === TwitterTemplate.VarietyPromo
+      ? twitterMediaForProduct(product?.title, undefined) || product?.imageUrl || null
+      : null;
+
+    return reply.code(200).send({
+      ok: true,
+      source,
+      model,
+      caption: safeCaption,
+      hashtags,
+      text: composeTweetText(safeCaption, hashtags),
+      media_url: mediaUrl,
+    });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    req.log.error({ err: message }, 'twitter_ai_draft_failed');
+    return reply.code(500).send({ ok: false, error: 'twitter_ai_draft_failed', message });
+  }
+}
+
 export async function registerTwitterContentAdmin(app: FastifyInstance) {
   app.get('/twitter/templates', twitterTemplatePreviews);
+  app.post('/twitter/ai-draft', twitterAiDraft);
   app.post('/twitter/sync-history', syncTwitterHistory);
 }

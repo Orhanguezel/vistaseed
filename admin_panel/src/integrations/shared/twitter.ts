@@ -89,6 +89,24 @@ export type TwitterSyncHistoryResp = {
   message?: string;
 };
 
+/** POST /admin/twitter/ai-draft */
+export type TwitterAiDraftBody = {
+  topic?: string;
+  template?: string;
+  product_id?: string | null;
+  current_text?: string;
+};
+
+export type TwitterAiDraftResp = {
+  ok: boolean;
+  source: "ai" | "fallback";
+  model: string;
+  caption: string;
+  hashtags: string;
+  text: string;
+  media_url: string | null;
+};
+
 /** POST /admin/twitter/send */
 export type TwitterSendBody = {
   text: string;

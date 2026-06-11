@@ -7,6 +7,8 @@ import type { FetchArgs } from "@reduxjs/toolkit/query";
 
 import { baseApi } from "@/integrations/base-api";
 import type {
+  TwitterAiDraftBody,
+  TwitterAiDraftResp,
   TwitterLogListParams,
   TwitterLogListResp,
   TwitterSendBody,
@@ -48,6 +50,15 @@ export const twitterAdminApi = baseApi.injectEndpoints({
       }),
     }),
 
+    /** POST /admin/twitter/ai-draft */
+    twitterAiDraft: b.mutation<TwitterAiDraftResp, TwitterAiDraftBody>({
+      query: (body): FetchArgs => ({
+        url: `${TWITTER_ADMIN_BASE}/ai-draft`,
+        method: "POST",
+        body,
+      }),
+    }),
+
     /** POST /admin/twitter/send */
     twitterSend: b.mutation<TwitterSendResp, TwitterSendBody>({
       query: (body): FetchArgs => ({
@@ -82,6 +93,7 @@ export const {
   useTwitterTemplatePreviewsQuery,
   useTwitterVerifyMutation,
   useTwitterSyncHistoryMutation,
+  useTwitterAiDraftMutation,
   useTwitterSendMutation,
   useTwitterListTweetsQuery,
   useLazyTwitterListTweetsQuery,
