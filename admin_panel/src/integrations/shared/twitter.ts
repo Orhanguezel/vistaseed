@@ -92,6 +92,7 @@ export type TwitterSyncHistoryResp = {
 /** POST /admin/twitter/send */
 export type TwitterSendBody = {
   text: string;
+  media_url?: string | null;
 };
 
 export type TwitterSendResp = {
