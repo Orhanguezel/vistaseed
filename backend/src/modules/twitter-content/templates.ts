@@ -33,6 +33,8 @@ export interface TwitterTweetContext {
   product?: TwitterProduct | null;
   event?: TwitterCalendarEvent | null;
   linkUrl: string;
+  strategySlotKey?: string;
+  strategyTopic?: string;
 }
 
 export const TWITTER_SLOTS: TwitterTemplateSlot[] = [

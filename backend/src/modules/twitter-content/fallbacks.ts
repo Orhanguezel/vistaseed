@@ -34,6 +34,10 @@ const FIELD_PROOFS = [
   'Sahada gördüğümüz her sonuç, ıslah kararlarımızı daha iyi hale getirir.\n\nTohumda güven; katalog cümlesinden değil, üreticinin tarlasındaki kanıttan doğar.',
 ];
 
+function textForSlot(ctx: TwitterTweetContext, bySlot: Record<string, string>, fallback: string) {
+  return (ctx.strategySlotKey && bySlot[ctx.strategySlotKey]) || fallback;
+}
+
 /** ISO hafta numarasına göre deterministik havuz seçimi (her hafta farklı metin). */
 function pickByWeek(pool: string[], isoWeekStr: string): string {
   const week = Number(isoWeekStr.split('-W')[1] || 1);
@@ -57,7 +61,10 @@ export function buildTweetFallback(
   const product = ctx.product;
 
   if (template === TwitterTemplate.InteractionPoll) {
-    return pickByWeek(INTERACTION_POLLS, isoWeekStr);
+    return textForSlot(ctx, {
+      '02-kapya-charliston-poll': INTERACTION_POLLS[0]!,
+      '11-tomato-poll': INTERACTION_POLLS[1]!,
+    }, pickByWeek(INTERACTION_POLLS, isoWeekStr));
   }
   if (template === TwitterTemplate.InteractionQuestion) {
     return 'Üreticiye soruyoruz:\n\nBu sezon tohumda seni en çok ne zorladı: çıkış mı, hastalık mı, verim mi?\n\nDeneyimini paylaş; birlikte çözelim.';
@@ -67,16 +74,25 @@ export function buildTweetFallback(
     return [`🫑 ${varietyTitle(product.title)}`, '', `🌱 ${detail}`, '', 'Tescilli yerli çeşidimiz, sahada kanıtlı.', '', `Detay: ${ctx.linkUrl}`].join('\n');
   }
   if (template === TwitterTemplate.HumanResearch) {
-    return pickByWeek(HUMAN_RESEARCH, isoWeekStr);
+    return textForSlot(ctx, {
+      '04-lab-research': HUMAN_RESEARCH[0]!,
+      '10-breeding-story': HUMAN_RESEARCH[1]!,
+    }, pickByWeek(HUMAN_RESEARCH, isoWeekStr));
   }
   if (template === TwitterTemplate.FieldProof) {
-    return pickByWeek(FIELD_PROOFS, isoWeekStr);
+    return textForSlot(ctx, {
+      '07-field-proof': FIELD_PROOFS[0]!,
+      '14-grower-proof': 'Kısa saha gözlemi:\n\nÜreticinin tarlasında güçlü çıkış, homojen gelişim ve doğru çeşit seçimi sezonun güvenini artırır.\n\nHer saha sonucu, yerli ıslah yolculuğumuzda bize yeni veri sağlar.',
+    }, pickByWeek(FIELD_PROOFS, isoWeekStr));
   }
   if (template === TwitterTemplate.SeedMyth) {
     return '"Tohumun hepsi aynı" mı?\n\nHayır. Sertifikalı tohum; çimlenme, homojen gelişim ve sahada öngörülebilirlik için kritik başlangıç noktasıdır.\n\nRiski azaltmanın ilk adımı doğru çeşitle başlar.';
   }
   if (template === TwitterTemplate.ExportVision) {
-    return 'Yerli ıslahımız sınırları aşıyor.\n\nKendi çeşitlerimizle Türk tohumunu dünyaya taşıma yolundayız.\n\nHedefimiz net: üreticiden güç alan yerli tohumu daha geniş pazarlara ulaştırmak.';
+    return textForSlot(ctx, {
+      '01-export-manifesto': 'Tescilli yerli ıslah, kendi üretim gücü ve sahadan gelen güven...\n\nVista Seeds olarak hedefimiz net: Türk tohumunu daha güçlü, daha görünür ve daha rekabetçi biçimde dünyaya taşımak.',
+      '12-export-vision': 'Yerli ıslahımız sınırları aşıyor.\n\nKendi çeşitlerimizle Türk tohumunu dünyaya taşıma yolundayız.\n\nHedefimiz net: üreticiden güç alan yerli tohumu daha geniş pazarlara ulaştırmak.',
+    }, 'Yerli ıslahımız sınırları aşıyor.\n\nKendi çeşitlerimizle Türk tohumunu dünyaya taşıma yolundayız.\n\nHedefimiz net: üreticiden güç alan yerli tohumu daha geniş pazarlara ulaştırmak.');
   }
   if (template === TwitterTemplate.IndustryEvent) {
     return `🌍 ${ctx.event?.title || 'Tohum sektoru'} gundemini yakindan izliyoruz.\nYerli tohum gucunu ureticiyle bulusturmak icin calisiyoruz.`;

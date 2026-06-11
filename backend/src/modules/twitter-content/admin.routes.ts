@@ -132,6 +132,8 @@ async function twitterTemplatePreviews(req: FastifyRequest, reply: FastifyReply)
         product,
         event,
         linkUrl: product?.productUrl || siteUrl(),
+        strategySlotKey: slot.key,
+        strategyTopic: slot.topic,
       }, now);
     });
 

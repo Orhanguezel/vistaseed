@@ -144,6 +144,8 @@ async function planSlot(slot: TwitterTemplateSlot, siteUrl: string, now: Date): 
     product,
     event,
     linkUrl: template === TwitterTemplate.VarietyPromo && product ? product.productUrl : siteUrl,
+    strategySlotKey: slot.key,
+    strategyTopic: slot.topic,
   };
   const hashtags = buildHashtags(template, ctx);
   const caption = trimToTweet(await buildCaption(template, ctx, now), hashtags);
