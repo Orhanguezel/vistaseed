@@ -292,6 +292,7 @@ export {
   useTwitterListTweetsQuery,
   useTwitterSendMutation,
   useTwitterStatusQuery,
+  useTwitterSyncHistoryMutation,
   useTwitterTemplatePreviewsQuery,
   useTwitterVerifyMutation,
 } from "@/integrations/endpoints/admin/twitter-admin-endpoints";

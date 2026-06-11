@@ -63,6 +63,10 @@
     "queueEmpty": "Kuyrukta bekleyen tweet yok.",
     "historyEmpty": "Henüz eski tweet kaydı yok.",
     "refresh": "Yenile",
+    "syncHistory": "X’ten Senkronla",
+    "syncing": "Senkronlanıyor...",
+    "syncDone": "X geçmişi güncellendi: {imported} yeni, {skipped} mevcut kayıt.",
+    "syncFailed": "X geçmişi senkronlanamadı",
     "status": {
       "sent": "Gönderildi",
       "queued": "Kuyrukta",

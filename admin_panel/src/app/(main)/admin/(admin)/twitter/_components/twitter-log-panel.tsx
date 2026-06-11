@@ -1,12 +1,16 @@
 "use client";
 
-import { RefreshCw } from "lucide-react";
+import { DownloadCloud, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/use-admin-t";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useTwitterCancelTweetMutation, useTwitterListTweetsQuery } from "@/integrations/hooks";
+import {
+  useTwitterCancelTweetMutation,
+  useTwitterListTweetsQuery,
+  useTwitterSyncHistoryMutation,
+} from "@/integrations/hooks";
 import type { TweetLogRow, TweetStatus } from "@/integrations/shared";
 
 import { TwitterTweetCard } from "./twitter-tweet-card";
@@ -47,6 +51,7 @@ export default function TwitterLogPanel({ scope }: TwitterLogPanelProps) {
   const statuses: TweetStatus[] = scope === "queue" ? ["queued", "posting"] : ["sent", "failed", "canceled"];
   const { rows, isLoading, isFetching, refetch } = useRows(statuses);
   const [cancelTweet, { isLoading: canceling }] = useTwitterCancelTweetMutation();
+  const [syncHistory, { isLoading: syncing }] = useTwitterSyncHistoryMutation();
 
   const handleCancel = async (id: string) => {
     try {
@@ -58,16 +63,34 @@ export default function TwitterLogPanel({ scope }: TwitterLogPanelProps) {
     }
   };
 
+  const handleSyncHistory = async () => {
+    try {
+      const res = await syncHistory().unwrap();
+      toast.success(t("log.syncDone", { imported: res.imported, skipped: res.skipped }));
+      refetch();
+    } catch {
+      toast.error(t("log.syncFailed"));
+    }
+  };
+
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between gap-4">
         <CardTitle>
           {scope === "queue" ? t("log.queueTitle") : t("log.historyTitle")} ({rows.length})
         </CardTitle>
-        <Button variant="outline" size="sm" onClick={refetch} disabled={isFetching}>
-          <RefreshCw className="mr-2 h-4 w-4" />
-          {t("log.refresh")}
-        </Button>
+        <div className="flex flex-wrap items-center gap-2">
+          {scope === "history" ? (
+            <Button variant="outline" size="sm" onClick={handleSyncHistory} disabled={syncing}>
+              <DownloadCloud className="mr-2 h-4 w-4" />
+              {syncing ? t("log.syncing") : t("log.syncHistory")}
+            </Button>
+          ) : null}
+          <Button variant="outline" size="sm" onClick={refetch} disabled={isFetching}>
+            <RefreshCw className="mr-2 h-4 w-4" />
+            {t("log.refresh")}
+          </Button>
+        </div>
       </CardHeader>
 
       <CardContent>

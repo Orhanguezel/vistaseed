@@ -11,6 +11,7 @@ import type {
   TwitterLogListResp,
   TwitterSendBody,
   TwitterSendResp,
+  TwitterSyncHistoryResp,
   TwitterStatusResp,
   TwitterTemplatePreviewResp,
   TwitterVerifyResp,
@@ -33,6 +34,15 @@ export const twitterAdminApi = baseApi.injectEndpoints({
     twitterVerify: b.mutation<TwitterVerifyResp, void>({
       query: (): FetchArgs => ({
         url: `${TWITTER_ADMIN_BASE}/verify`,
+        method: "POST",
+        body: {},
+      }),
+    }),
+
+    /** POST /admin/twitter/sync-history */
+    twitterSyncHistory: b.mutation<TwitterSyncHistoryResp, void>({
+      query: (): FetchArgs => ({
+        url: `${TWITTER_ADMIN_BASE}/sync-history`,
         method: "POST",
         body: {},
       }),
@@ -71,6 +81,7 @@ export const {
   useTwitterStatusQuery,
   useTwitterTemplatePreviewsQuery,
   useTwitterVerifyMutation,
+  useTwitterSyncHistoryMutation,
   useTwitterSendMutation,
   useTwitterListTweetsQuery,
   useLazyTwitterListTweetsQuery,

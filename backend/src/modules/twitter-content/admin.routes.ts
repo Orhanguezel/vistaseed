@@ -1,6 +1,18 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
+import { randomUUID } from 'crypto';
+import { eq, or } from 'drizzle-orm';
 
 import { env } from '@/core/env';
+import { db } from '@/db/client';
+import {
+  buildTwitterOAuth1Header,
+  getTwitterSettings,
+  hasTwitterCredentials,
+  twitterGetMe,
+  repoInsertTweet,
+  tweets,
+  type TwitterOAuth1Creds,
+} from '@agro/shared-backend/modules/twitter';
 import { findTwitterCalendarEvent, TWITTER_CALENDAR_EVENTS } from './calendar';
 import { buildTweetFallback, composeTweetText, trimToTweet } from './fallbacks';
 import {
@@ -27,6 +39,16 @@ type TemplatePreview = {
   media_url: string | null;
 };
 
+type XTimelineTweet = {
+  id: string;
+  text: string;
+  created_at?: string;
+};
+
+type XTimelineResponse = {
+  data?: XTimelineTweet[];
+};
+
 const DAY_LABELS: Record<TwitterTemplateSlot['dayOfWeek'], string> = {
   3: 'Çarşamba',
   4: 'Perşembe',
@@ -35,6 +57,94 @@ const DAY_LABELS: Record<TwitterTemplateSlot['dayOfWeek'], string> = {
 
 function siteUrl() {
   return env.FRONTEND_URL.replace(/\/$/, '');
+}
+
+function toCreds(settings: Awaited<ReturnType<typeof getTwitterSettings>>): TwitterOAuth1Creds {
+  return {
+    apiKey: settings.apiKey,
+    apiSecret: settings.apiSecret,
+    accessToken: settings.accessToken,
+    accessTokenSecret: settings.accessTokenSecret,
+  };
+}
+
+async function twitterGetUserTweets(creds: TwitterOAuth1Creds, userId: string, limit: number) {
+  const url = new URL(`https://api.twitter.com/2/users/${encodeURIComponent(userId)}/tweets`);
+  url.searchParams.set('max_results', String(Math.min(Math.max(limit, 5), 100)));
+  url.searchParams.set('tweet.fields', 'created_at');
+  url.searchParams.set('exclude', 'retweets,replies');
+
+  const signatureUrl = `${url.origin}${url.pathname}`;
+  const authHeader = buildTwitterOAuth1Header(
+    'GET',
+    signatureUrl,
+    creds,
+    Object.fromEntries(url.searchParams.entries()),
+  );
+
+  const res = await fetch(url, { headers: { Authorization: authHeader } });
+  const data = (await res.json().catch(() => null)) as XTimelineResponse | { detail?: string; title?: string } | null;
+
+  if (!res.ok) {
+    const detail = data && 'detail' in data ? data.detail : null;
+    const title = data && 'title' in data ? data.title : null;
+    throw new Error(`X API ${res.status}: ${detail || title || res.statusText}`);
+  }
+
+  return (data as XTimelineResponse | null)?.data ?? [];
+}
+
+async function tweetExistsByXId(tweetId: string) {
+  const sourceRef = `vistaseeds-x-import-${tweetId}`;
+  const rows = await db
+    .select({ id: tweets.id })
+    .from(tweets)
+    .where(or(eq(tweets.x_tweet_id, tweetId), eq(tweets.source_ref, sourceRef)))
+    .limit(1);
+  return rows.length > 0;
+}
+
+async function syncTwitterHistory(req: FastifyRequest, reply: FastifyReply) {
+  try {
+    const settings = await getTwitterSettings();
+    if (!hasTwitterCredentials(settings)) {
+      return reply.code(400).send({ ok: false, error: 'twitter_credentials_missing' });
+    }
+
+    const creds = toCreds(settings);
+    const account = await twitterGetMe(creds);
+    const remoteTweets = await twitterGetUserTweets(creds, account.id, 30);
+
+    let imported = 0;
+    let skipped = 0;
+    for (const item of remoteTweets) {
+      if (!item.id || !item.text?.trim()) continue;
+      if (await tweetExistsByXId(item.id)) {
+        skipped += 1;
+        continue;
+      }
+
+      const postedAt = item.created_at ? new Date(item.created_at) : new Date();
+      await repoInsertTweet({
+        id: randomUUID(),
+        content: item.text,
+        status: 'sent',
+        source: 'x_import',
+        template: null,
+        source_ref: `vistaseeds-x-import-${item.id}`,
+        x_tweet_id: item.id,
+        posted_at: postedAt,
+        created_at: new Date(),
+      });
+      imported += 1;
+    }
+
+    return reply.code(200).send({ ok: true, account, imported, skipped, total: remoteTweets.length });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    req.log.error({ err: message }, 'twitter_history_sync_failed');
+    return reply.code(500).send({ ok: false, error: 'twitter_history_sync_failed', message });
+  }
 }
 
 function pickProduct(products: TwitterProduct[]): TwitterProduct | null {
@@ -147,4 +257,5 @@ async function twitterTemplatePreviews(req: FastifyRequest, reply: FastifyReply)
 
 export async function registerTwitterContentAdmin(app: FastifyInstance) {
   app.get('/twitter/templates', twitterTemplatePreviews);
+  app.post('/twitter/sync-history', syncTwitterHistory);
 }

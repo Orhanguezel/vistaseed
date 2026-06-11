@@ -974,6 +974,7 @@ export {
   type TwitterSettingsKey,
   type TwitterSettingsModel,
   type TwitterStatusResp,
+  type TwitterSyncHistoryResp,
   type TwitterTemplatePreview,
   type TwitterTemplatePreviewResp,
   type TwitterVerifyResp,

@@ -75,6 +75,20 @@ export type TwitterVerifyResp = {
   };
 };
 
+export type TwitterSyncHistoryResp = {
+  ok: boolean;
+  imported: number;
+  skipped: number;
+  total: number;
+  account?: {
+    id: string;
+    name: string;
+    username: string;
+  };
+  error?: string;
+  message?: string;
+};
+
 /** POST /admin/twitter/send */
 export type TwitterSendBody = {
   text: string;
