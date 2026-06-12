@@ -82,6 +82,10 @@ export type GoogleAdsCampaignRow = {
   average_cpc_micros: number;
   cost_micros: number;
   conversions: number;
+  conversions_value: number;
+  bidding_strategy_type: string;
+  target_cpa_micros: number;
+  target_roas: number;
 };
 
 export type GoogleAdsCampaignsResp = {
@@ -96,6 +100,23 @@ export function microsToUnit(micros: number): string {
 
 export function formatCtr(ctr: number): string {
   return `%${(ctr * 100).toLocaleString('tr-TR', { maximumFractionDigits: 2 })}`;
+}
+
+/** CPA = maliyet / dönüşüm (para birimi). Dönüşüm yoksa "—". */
+export function formatCpa(costMicros: number, conversions: number): string {
+  if (!conversions) return '—';
+  return microsToUnit(costMicros / conversions);
+}
+
+/** ROAS = dönüşüm değeri / maliyet (×kat). Maliyet yoksa "—". */
+export function formatRoas(conversionsValue: number, costMicros: number): string {
+  if (!costMicros) return '—';
+  const roas = conversionsValue / (costMicros / 1_000_000);
+  return `×${roas.toLocaleString('tr-TR', { maximumFractionDigits: 2 })}`;
+}
+
+export function formatNumber(v: number): string {
+  return v.toLocaleString('tr-TR', { maximumFractionDigits: 2 });
 }
 
 /** POST /admin/google-ads/campaigns/:id/status */
@@ -164,6 +185,33 @@ export type GoogleAdsConversionAction = {
   name: string;
   status: string;
   type: string;
+  category: string;
+  primary: boolean;
+  counting_type: string;
+  default_value: number;
+};
+
+export const ADS_CONV_CATEGORY_LABELS: Record<string, string> = {
+  PURCHASE: "Satın Alma",
+  LEAD: "Potansiyel Müşteri",
+  REQUEST_QUOTE: "Teklif İsteği",
+  CONTACT: "İletişim",
+  SUBMIT_LEAD_FORM: "Form Gönderimi",
+  SIGN_UP: "Kayıt",
+  QUALIFIED_LEAD: "Nitelikli Müşteri",
+  CONVERTED_LEAD: "Dönüşen Müşteri",
+  GET_DIRECTIONS: "Yol Tarifi",
+  ENGAGEMENT: "Etkileşim",
+  PAGE_VIEW: "Sayfa Görüntüleme",
+  DOWNLOAD: "İndirme",
+  ADD_TO_CART: "Sepete Ekleme",
+  BEGIN_CHECKOUT: "Ödemeye Başlama",
+  PHONE_CALL_LEAD: "Telefon Araması",
+};
+
+export const ADS_COUNTING_LABELS: Record<string, string> = {
+  ONE_PER_CLICK: "Tıklama başına 1 (lead)",
+  MANY_PER_CLICK: "Tıklama başına çok (satış)",
 };
 
 export type GoogleAdsTermRow = {
@@ -177,6 +225,7 @@ export type GoogleAdsTermRow = {
   ctr: number;
   cost_micros: number;
   conversions: number;
+  conversions_value: number;
 };
 
 export type GoogleAdsDeviceRow = {
@@ -225,6 +274,77 @@ export type GoogleAdsKeywordStatusResp = {
   resource_name: string;
   status: string;
 };
+
+/* ---------------- teklif stratejisi ---------------- */
+
+export const ADS_BIDDING_LABELS: Record<string, string> = {
+  MAXIMIZE_CONVERSIONS: "Maks. Dönüşüm",
+  MAXIMIZE_CONVERSION_VALUE: "Maks. Dönüşüm Değeri",
+  TARGET_CPA: "Hedef EBM",
+  TARGET_ROAS: "Hedef ROAS",
+  TARGET_SPEND: "Tıklamaları Artır",
+  MANUAL_CPC: "Manuel TBM",
+};
+
+export type GoogleAdsBiddingStrategy = "MAXIMIZE_CONVERSIONS" | "MAXIMIZE_CONVERSION_VALUE";
+
+export type GoogleAdsBiddingArgs = {
+  id: string;
+  strategy: GoogleAdsBiddingStrategy;
+  target_cpa?: number;
+  target_roas?: number;
+};
+export type GoogleAdsBiddingResp = { ok: boolean; campaign_id: string; strategy: string };
+
+/* ---------------- kelime ekleme ---------------- */
+
+export type GoogleAdsMatchType = "BROAD" | "PHRASE" | "EXACT";
+
+export type GoogleAdsAdGroup = {
+  id: string;
+  name: string;
+  status: string;
+  campaign: string;
+};
+export type GoogleAdsAdGroupsResp = { items: GoogleAdsAdGroup[] };
+
+export type GoogleAdsNegativeKeywordArgs = {
+  campaign_id: string;
+  text: string;
+  match_type: GoogleAdsMatchType;
+};
+export type GoogleAdsKeywordAddArgs = {
+  ad_group_id: string;
+  text: string;
+  match_type: GoogleAdsMatchType;
+};
+export type GoogleAdsKeywordMutationResp = { ok: boolean };
+
+/* ---------------- raporlama ---------------- */
+
+export type GoogleAdsTotals = {
+  impressions: number;
+  clicks: number;
+  cost_micros: number;
+  conversions: number;
+  conversions_value: number;
+};
+export type GoogleAdsReportCampaign = GoogleAdsTotals & { name: string };
+
+export type GoogleAdsReportResp = {
+  range: GoogleAdsDateRange;
+  current: GoogleAdsTotals;
+  previous: GoogleAdsTotals;
+  current_dates: { start: string; end: string };
+  previous_dates: { start: string; end: string };
+  campaigns: GoogleAdsReportCampaign[];
+};
+
+/** Önceki döneme göre yüzde değişim (önceki 0 ise null). */
+export function pctDelta(cur: number, prev: number): number | null {
+  if (!prev) return null;
+  return ((cur - prev) / prev) * 100;
+}
 
 /* ---------------- PMax öğe grubu öğeleri (metin/görsel/video) ---------------- */
 

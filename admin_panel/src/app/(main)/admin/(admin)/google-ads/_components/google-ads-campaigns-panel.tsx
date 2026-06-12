@@ -16,17 +16,23 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import {
   useGoogleAdsCampaignsQuery,
+  useGoogleAdsSetBiddingMutation,
   useGoogleAdsSetBudgetMutation,
   useGoogleAdsSetStatusMutation,
 } from '@/integrations/hooks';
 import {
+  ADS_BIDDING_LABELS,
   ADS_CHANNEL_LABELS,
   ADS_STATUS_LABELS,
   GOOGLE_ADS_DATE_RANGES,
   adsLabel,
+  formatCpa,
   formatCtr,
+  formatNumber,
+  formatRoas,
   getErrorMessage,
   microsToUnit,
+  type GoogleAdsBiddingStrategy,
   type GoogleAdsCampaignRow,
   type GoogleAdsDateRange,
 } from '@/integrations/shared';
@@ -45,8 +51,40 @@ export default function GoogleAdsCampaignsPanel({ hasCredentials }: Props) {
   );
   const [setStatus, { isLoading: statusSaving }] = useGoogleAdsSetStatusMutation();
   const [setBudget, { isLoading: budgetSaving }] = useGoogleAdsSetBudgetMutation();
+  const [setBidding, { isLoading: biddingSaving }] = useGoogleAdsSetBiddingMutation();
   const items = data?.items ?? [];
-  const mutating = statusSaving || budgetSaving;
+  const mutating = statusSaving || budgetSaving || biddingSaving;
+
+  const handleEditBidding = async (row: GoogleAdsCampaignRow) => {
+    const choice = window.prompt(
+      `${t('campaigns.biddingPrompt')}\n\n${row.name}\n1 = ${ADS_BIDDING_LABELS.MAXIMIZE_CONVERSIONS}\n2 = ${ADS_BIDDING_LABELS.MAXIMIZE_CONVERSION_VALUE}`,
+      '1',
+    );
+    if (choice !== '1' && choice !== '2') return;
+    const strategy: GoogleAdsBiddingStrategy =
+      choice === '1' ? 'MAXIMIZE_CONVERSIONS' : 'MAXIMIZE_CONVERSION_VALUE';
+    const promptKey = choice === '1' ? 'campaigns.targetCpaPrompt' : 'campaigns.targetRoasPrompt';
+    const raw = window.prompt(t(promptKey), '');
+    if (raw === null) return;
+    const trimmed = raw.trim();
+    const value = trimmed ? Number(trimmed.replace(',', '.')) : undefined;
+    if (trimmed && (!Number.isFinite(value) || (value as number) <= 0)) {
+      toast.error(t('campaigns.budgetInvalid'));
+      return;
+    }
+    try {
+      await setBidding({
+        id: row.id,
+        strategy,
+        target_cpa: choice === '1' ? value : undefined,
+        target_roas: choice === '2' ? value : undefined,
+      }).unwrap();
+      toast.success(t('campaigns.biddingSaved'));
+      void refetch();
+    } catch (err) {
+      toast.error(`${t('campaigns.actionFailed')}: ${getErrorMessage(err)}`);
+    }
+  };
 
   const handleToggleStatus = async (row: GoogleAdsCampaignRow) => {
     const next = row.status === 'ENABLED' ? 'PAUSED' : 'ENABLED';
@@ -127,6 +165,10 @@ export default function GoogleAdsCampaignsPanel({ hasCredentials }: Props) {
                   <th className="py-2 pr-3 text-right">{t('campaigns.columns.avgCpc')}</th>
                   <th className="py-2 pr-3 text-right">{t('campaigns.columns.cost')}</th>
                   <th className="py-2 pr-3 text-right">{t('campaigns.columns.conversions')}</th>
+                  <th className="py-2 pr-3 text-right">{t('campaigns.columns.cpa')}</th>
+                  <th className="py-2 pr-3 text-right">{t('campaigns.columns.convValue')}</th>
+                  <th className="py-2 pr-3 text-right">{t('campaigns.columns.roas')}</th>
+                  <th className="py-2 pr-3">{t('campaigns.columns.bidding')}</th>
                   <th className="py-2 text-right">{t('campaigns.columns.actions')}</th>
                 </tr>
               </thead>
@@ -163,7 +205,30 @@ export default function GoogleAdsCampaignsPanel({ hasCredentials }: Props) {
                     <td className="py-2 pr-3 text-right">{formatCtr(row.ctr)}</td>
                     <td className="py-2 pr-3 text-right">{microsToUnit(row.average_cpc_micros)}</td>
                     <td className="py-2 pr-3 text-right">{microsToUnit(row.cost_micros)}</td>
-                    <td className="py-2 pr-3 text-right">{row.conversions.toLocaleString('tr-TR')}</td>
+                    <td className="py-2 pr-3 text-right">{formatNumber(row.conversions)}</td>
+                    <td className="py-2 pr-3 text-right">{formatCpa(row.cost_micros, row.conversions)}</td>
+                    <td className="py-2 pr-3 text-right">{formatNumber(row.conversions_value)}</td>
+                    <td className="py-2 pr-3 text-right">{formatRoas(row.conversions_value, row.cost_micros)}</td>
+                    <td className="py-2 pr-3">
+                      <span className="inline-flex items-center gap-1">
+                        <span className="text-xs">
+                          {adsLabel(ADS_BIDDING_LABELS, row.bidding_strategy_type)}
+                          {row.target_cpa_micros ? ` · EBM ${microsToUnit(row.target_cpa_micros)}` : ''}
+                          {row.target_roas ? ` · ×${formatNumber(row.target_roas)}` : ''}
+                        </span>
+                        {row.status !== 'REMOVED' && (row.channel_type === 'PERFORMANCE_MAX' || row.channel_type === 'SEARCH' || row.channel_type === 'SHOPPING' || row.channel_type === 'DISPLAY') ? (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-6 w-6 p-0"
+                            disabled={mutating}
+                            onClick={() => void handleEditBidding(row)}
+                          >
+                            <Pencil className="h-3 w-3" />
+                          </Button>
+                        ) : null}
+                      </span>
+                    </td>
                     <td className="py-2 text-right">
                       {row.status === 'ENABLED' || row.status === 'PAUSED' ? (
                         <Button

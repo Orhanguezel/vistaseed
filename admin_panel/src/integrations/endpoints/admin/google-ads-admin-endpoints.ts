@@ -7,6 +7,13 @@ import type { FetchArgs } from "@reduxjs/toolkit/query";
 
 import { baseApi } from "@/integrations/base-api";
 import type {
+  GoogleAdsAdGroupsResp,
+  GoogleAdsBiddingArgs,
+  GoogleAdsBiddingResp,
+  GoogleAdsKeywordAddArgs,
+  GoogleAdsKeywordMutationResp,
+  GoogleAdsNegativeKeywordArgs,
+  GoogleAdsReportResp,
   GoogleAdsAssetGroupsResp,
   GoogleAdsAssetsResp,
   GoogleAdsAssetMutationResp,
@@ -89,6 +96,35 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
       }),
     }),
 
+    /** POST /admin/google-ads/campaigns/:id/bidding */
+    googleAdsSetBidding: b.mutation<GoogleAdsBiddingResp, GoogleAdsBiddingArgs>({
+      query: ({ id, ...body }): FetchArgs => ({
+        url: `${GOOGLE_ADS_ADMIN_BASE}/campaigns/${id}/bidding`,
+        method: "POST",
+        body,
+      }),
+    }),
+
+    /** GET /admin/google-ads/report?range= */
+    googleAdsReport: b.query<GoogleAdsReportResp, { range?: GoogleAdsDateRange } | void>({
+      query: (params): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/report`, params: params ?? {} }),
+    }),
+
+    /** GET /admin/google-ads/campaigns/:id/ad-groups */
+    googleAdsAdGroups: b.query<GoogleAdsAdGroupsResp, { id: string }>({
+      query: ({ id }): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/campaigns/${id}/ad-groups` }),
+    }),
+
+    /** POST /admin/google-ads/keywords/negative */
+    googleAdsAddNegativeKeyword: b.mutation<GoogleAdsKeywordMutationResp, GoogleAdsNegativeKeywordArgs>({
+      query: (body): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/keywords/negative`, method: "POST", body }),
+    }),
+
+    /** POST /admin/google-ads/keywords/add */
+    googleAdsAddKeyword: b.mutation<GoogleAdsKeywordMutationResp, GoogleAdsKeywordAddArgs>({
+      query: (body): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/keywords/add`, method: "POST", body }),
+    }),
+
     /** GET /admin/google-ads/asset-groups */
     googleAdsAssetGroups: b.query<GoogleAdsAssetGroupsResp, void>({
       query: (): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups` }),
@@ -161,6 +197,11 @@ export const {
   useGoogleAdsSetBudgetMutation,
   useGoogleAdsInsightsQuery,
   useGoogleAdsKeywordStatusMutation,
+  useGoogleAdsSetBiddingMutation,
+  useGoogleAdsReportQuery,
+  useLazyGoogleAdsAdGroupsQuery,
+  useGoogleAdsAddNegativeKeywordMutation,
+  useGoogleAdsAddKeywordMutation,
   useGoogleAdsAssetGroupsQuery,
   useGoogleAdsAssetGroupAssetsQuery,
   useGoogleAdsUploadAssetMutation,

@@ -20,17 +20,23 @@ import {
   useGoogleAdsKeywordStatusMutation,
 } from '@/integrations/hooks';
 import {
+  ADS_CONV_CATEGORY_LABELS,
+  ADS_COUNTING_LABELS,
   ADS_DEVICE_LABELS,
   ADS_MATCH_TYPE_LABELS,
   ADS_RECOMMENDATION_LABELS,
   ADS_STATUS_LABELS,
   adsLabel,
+  formatCpa,
   formatCtr,
+  formatRoas,
   getErrorMessage,
   microsToUnit,
   type GoogleAdsDateRange,
   type GoogleAdsTermRow,
 } from '@/integrations/shared';
+
+import GoogleAdsKeywordManager from './google-ads-keyword-manager';
 
 const ALL_CAMPAIGNS = '__all__';
 
@@ -58,6 +64,8 @@ function TermTable({ rows, showMatchType, t, onToggle, toggling }: {
             <th className="py-1.5 pr-3 text-right">{t('insights.columns.ctr')}</th>
             <th className="py-1.5 pr-3 text-right">{t('insights.columns.cost')}</th>
             <th className="py-1.5 pr-3 text-right">{t('insights.columns.conversions')}</th>
+            <th className="py-1.5 pr-3 text-right">{t('campaigns.columns.cpa')}</th>
+            <th className="py-1.5 pr-3 text-right">{t('campaigns.columns.roas')}</th>
             {onToggle ? <th className="py-1.5 text-right">{t('insights.columns.actions')}</th> : null}
           </tr>
         </thead>
@@ -80,6 +88,8 @@ function TermTable({ rows, showMatchType, t, onToggle, toggling }: {
               <td className="py-1.5 pr-3 text-right">{formatCtr(row.ctr)}</td>
               <td className="py-1.5 pr-3 text-right">{microsToUnit(row.cost_micros)}</td>
               <td className="py-1.5 pr-3 text-right">{row.conversions.toLocaleString('tr-TR')}</td>
+              <td className="py-1.5 pr-3 text-right">{formatCpa(row.cost_micros, row.conversions)}</td>
+              <td className="py-1.5 pr-3 text-right">{formatRoas(row.conversions_value, row.cost_micros)}</td>
               {onToggle ? (
                 <td className="py-1.5 text-right">
                   {row.resource_name && (row.status === 'ENABLED' || row.status === 'PAUSED') ? (
@@ -209,11 +219,24 @@ export default function GoogleAdsInsightsPanel({ hasCredentials, range }: Props)
           <CardTitle>{t('insights.conversionActions')}</CardTitle>
           <CardDescription>{t('insights.conversionActionsDesc')}</CardDescription>
         </CardHeader>
-        <CardContent className="flex flex-wrap gap-2">
+        <CardContent className="space-y-2">
           {(data?.conversion_actions ?? []).map((action, idx) => (
-            <Badge key={idx} variant={action.status === 'ENABLED' ? 'default' : 'outline'}>
-              {action.name} — {adsLabel(ADS_STATUS_LABELS, action.status)}
-            </Badge>
+            <div key={idx} className="flex flex-wrap items-center gap-2 rounded-md border border-border p-2 text-sm">
+              <span className="font-medium">{action.name}</span>
+              <Badge variant={action.status === 'ENABLED' ? 'default' : 'outline'}>
+                {adsLabel(ADS_STATUS_LABELS, action.status)}
+              </Badge>
+              <Badge variant={action.primary ? 'default' : 'secondary'}>
+                {action.primary ? t('insights.primary') : t('insights.secondary')}
+              </Badge>
+              {action.category ? (
+                <Badge variant="outline">{adsLabel(ADS_CONV_CATEGORY_LABELS, action.category)}</Badge>
+              ) : null}
+              <span className="text-muted-foreground text-xs">{adsLabel(ADS_COUNTING_LABELS, action.counting_type)}</span>
+              {action.default_value ? (
+                <span className="text-muted-foreground text-xs">{t('insights.defaultValue')}: {action.default_value}</span>
+              ) : null}
+            </div>
           ))}
         </CardContent>
       </Card>
@@ -255,6 +278,14 @@ export default function GoogleAdsInsightsPanel({ hasCredentials, range }: Props)
           )}
         </CardContent>
       </Card>
+
+      {campaignId !== ALL_CAMPAIGNS && !isPmaxSelected ? (
+        <GoogleAdsKeywordManager
+          campaignId={campaignId}
+          campaignName={selectedCampaign?.name ?? ''}
+          onChanged={() => void refetch()}
+        />
+      ) : null}
 
       <Card>
         <CardHeader>
