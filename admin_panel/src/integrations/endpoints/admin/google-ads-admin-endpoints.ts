@@ -8,11 +8,13 @@ import type { FetchArgs } from "@reduxjs/toolkit/query";
 import { baseApi } from "@/integrations/base-api";
 import type {
   GoogleAdsAssetGroupsResp,
-  GoogleAdsAssetImagesResp,
+  GoogleAdsAssetsResp,
+  GoogleAdsAssetMutationResp,
   GoogleAdsAssetRemoveBody,
   GoogleAdsAssetRemoveResp,
   GoogleAdsAssetUploadArgs,
-  GoogleAdsAssetUploadResp,
+  GoogleAdsAssetTextArgs,
+  GoogleAdsAssetVideoArgs,
   GoogleAdsCampaignsResp,
   GoogleAdsDateRange,
   GoogleAdsInsightsResp,
@@ -91,13 +93,13 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
       query: (): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups` }),
     }),
 
-    /** GET /admin/google-ads/asset-groups/:id/images */
-    googleAdsAssetImages: b.query<GoogleAdsAssetImagesResp, { id: string }>({
-      query: ({ id }): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/${id}/images` }),
+    /** GET /admin/google-ads/asset-groups/:id/assets */
+    googleAdsAssetGroupAssets: b.query<GoogleAdsAssetsResp, { id: string }>({
+      query: ({ id }): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/${id}/assets` }),
     }),
 
     /** POST /admin/google-ads/asset-groups/:id/images (multipart) */
-    googleAdsUploadAsset: b.mutation<GoogleAdsAssetUploadResp, GoogleAdsAssetUploadArgs>({
+    googleAdsUploadAsset: b.mutation<GoogleAdsAssetMutationResp, GoogleAdsAssetUploadArgs>({
       query: ({ assetGroupId, fieldType, file }): FetchArgs => {
         const form = new FormData();
         form.append("file", file);
@@ -110,10 +112,28 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
       },
     }),
 
-    /** POST /admin/google-ads/asset-groups/images/remove */
+    /** POST /admin/google-ads/asset-groups/:id/text */
+    googleAdsAddText: b.mutation<GoogleAdsAssetMutationResp, GoogleAdsAssetTextArgs>({
+      query: ({ assetGroupId, fieldType, text }): FetchArgs => ({
+        url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/${assetGroupId}/text`,
+        method: "POST",
+        body: { field_type: fieldType, text },
+      }),
+    }),
+
+    /** POST /admin/google-ads/asset-groups/:id/video */
+    googleAdsAddVideo: b.mutation<GoogleAdsAssetMutationResp, GoogleAdsAssetVideoArgs>({
+      query: ({ assetGroupId, youtube }): FetchArgs => ({
+        url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/${assetGroupId}/video`,
+        method: "POST",
+        body: { youtube },
+      }),
+    }),
+
+    /** POST /admin/google-ads/asset-groups/assets/remove */
     googleAdsRemoveAsset: b.mutation<GoogleAdsAssetRemoveResp, GoogleAdsAssetRemoveBody>({
       query: (body): FetchArgs => ({
-        url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/images/remove`,
+        url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/assets/remove`,
         method: "POST",
         body,
       }),
@@ -132,7 +152,9 @@ export const {
   useGoogleAdsInsightsQuery,
   useGoogleAdsKeywordStatusMutation,
   useGoogleAdsAssetGroupsQuery,
-  useGoogleAdsAssetImagesQuery,
+  useGoogleAdsAssetGroupAssetsQuery,
   useGoogleAdsUploadAssetMutation,
+  useGoogleAdsAddTextMutation,
+  useGoogleAdsAddVideoMutation,
   useGoogleAdsRemoveAssetMutation,
 } = googleAdsAdminApi;

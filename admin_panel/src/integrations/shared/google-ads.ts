@@ -226,23 +226,74 @@ export type GoogleAdsKeywordStatusResp = {
   status: string;
 };
 
-/* ---------------- PMax öğe grubu görselleri ---------------- */
+/* ---------------- PMax öğe grubu öğeleri (metin/görsel/video) ---------------- */
 
 export const GOOGLE_ADS_IMAGE_FIELD_TYPES = [
   "MARKETING_IMAGE",
   "SQUARE_MARKETING_IMAGE",
   "PORTRAIT_MARKETING_IMAGE",
+  "LOGO",
+  "LANDSCAPE_LOGO",
 ] as const;
 export type GoogleAdsImageFieldType = (typeof GOOGLE_ADS_IMAGE_FIELD_TYPES)[number];
 
-/** Field type → TR etiket + önerilen oran/boyut (kullanıcıya gösterilir) */
-export const ADS_IMAGE_FIELD_TYPE_LABELS: Record<string, string> = {
-  MARKETING_IMAGE: "Yatay (1.91:1)",
-  SQUARE_MARKETING_IMAGE: "Kare (1:1)",
-  PORTRAIT_MARKETING_IMAGE: "Dikey (4:5)",
+export const GOOGLE_ADS_TEXT_FIELD_TYPES = [
+  "HEADLINE",
+  "LONG_HEADLINE",
+  "DESCRIPTION",
+  "BUSINESS_NAME",
+] as const;
+export type GoogleAdsTextFieldType = (typeof GOOGLE_ADS_TEXT_FIELD_TYPES)[number];
+
+export type GoogleAdsAssetKind = "text" | "image" | "video";
+
+/** Field type → TR etiket */
+export const ADS_FIELD_TYPE_LABELS: Record<string, string> = {
+  HEADLINE: "Başlık",
+  LONG_HEADLINE: "Uzun Başlık",
+  DESCRIPTION: "Açıklama",
+  BUSINESS_NAME: "İşletme Adı",
+  MARKETING_IMAGE: "Yatay Görsel (1.91:1)",
+  SQUARE_MARKETING_IMAGE: "Kare Görsel (1:1)",
+  PORTRAIT_MARKETING_IMAGE: "Dikey Görsel (4:5)",
   LOGO: "Logo (1:1)",
   LANDSCAPE_LOGO: "Yatay Logo (4:1)",
+  YOUTUBE_VIDEO: "Video (YouTube)",
 };
+
+/** Reklam gücü → TR etiket */
+export const ADS_STRENGTH_LABELS: Record<string, string> = {
+  PENDING: "Hesaplanıyor",
+  POOR: "Zayıf",
+  AVERAGE: "Ortalama",
+  GOOD: "İyi",
+  EXCELLENT: "Mükemmel",
+  UNSPECIFIED: "Belirsiz",
+  UNKNOWN: "Bilinmiyor",
+};
+
+/** Öğe türü tanımları — panel bölümleri ve limitler bundan türetilir.
+ *  max: Google üst sınırı, target: sağlıklı sayı (rozet ✓ eşiği), maxLen: metin karakter limiti */
+export type GoogleAdsFieldDescriptor = {
+  fieldType: string;
+  kind: GoogleAdsAssetKind;
+  max: number;
+  target: number;
+  maxLen?: number;
+};
+
+export const GOOGLE_ADS_FIELD_DESCRIPTORS: GoogleAdsFieldDescriptor[] = [
+  { fieldType: "HEADLINE", kind: "text", max: 15, target: 11, maxLen: 30 },
+  { fieldType: "LONG_HEADLINE", kind: "text", max: 5, target: 5, maxLen: 90 },
+  { fieldType: "DESCRIPTION", kind: "text", max: 5, target: 4, maxLen: 90 },
+  { fieldType: "BUSINESS_NAME", kind: "text", max: 1, target: 1, maxLen: 25 },
+  { fieldType: "MARKETING_IMAGE", kind: "image", max: 20, target: 3 },
+  { fieldType: "SQUARE_MARKETING_IMAGE", kind: "image", max: 20, target: 3 },
+  { fieldType: "PORTRAIT_MARKETING_IMAGE", kind: "image", max: 20, target: 1 },
+  { fieldType: "LOGO", kind: "image", max: 5, target: 1 },
+  { fieldType: "LANDSCAPE_LOGO", kind: "image", max: 5, target: 1 },
+  { fieldType: "YOUTUBE_VIDEO", kind: "video", max: 5, target: 1 },
+];
 
 export type GoogleAdsAssetGroup = {
   id: string;
@@ -258,22 +309,31 @@ export type GoogleAdsAssetGroupsResp = { items: GoogleAdsAssetGroup[] };
 export type GoogleAdsAssetItem = {
   resource_name: string;
   field_type: string;
+  kind: "text" | "image" | "video" | "other";
   asset_id: string;
   name: string;
+  text: string;
   image_url: string;
+  video_id: string;
   width: number;
   height: number;
 };
 
-export type GoogleAdsAssetImagesResp = { items: GoogleAdsAssetItem[] };
+export type GoogleAdsAssetsResp = { items: GoogleAdsAssetItem[] };
 
 export type GoogleAdsAssetUploadArgs = {
   assetGroupId: string;
   fieldType: GoogleAdsImageFieldType;
   file: File;
 };
+export type GoogleAdsAssetTextArgs = {
+  assetGroupId: string;
+  fieldType: GoogleAdsTextFieldType;
+  text: string;
+};
+export type GoogleAdsAssetVideoArgs = { assetGroupId: string; youtube: string };
 
-export type GoogleAdsAssetUploadResp = {
+export type GoogleAdsAssetMutationResp = {
   ok: boolean;
   asset: string;
   asset_group_asset: string;
@@ -281,21 +341,3 @@ export type GoogleAdsAssetUploadResp = {
 
 export type GoogleAdsAssetRemoveBody = { resource_name: string };
 export type GoogleAdsAssetRemoveResp = { ok: boolean; resource_name: string };
-
-/** Reklam gücü → TR etiket */
-export const ADS_STRENGTH_LABELS: Record<string, string> = {
-  PENDING: "Hesaplanıyor",
-  POOR: "Zayıf",
-  AVERAGE: "Ortalama",
-  GOOD: "İyi",
-  EXCELLENT: "Mükemmel",
-  UNSPECIFIED: "Belirsiz",
-  UNKNOWN: "Bilinmiyor",
-};
-
-/** PMax için önerilen minimum sayılar — eksikse kullanıcı uyarılır */
-export const ADS_IMAGE_FIELD_TYPE_MIN: Record<string, number> = {
-  MARKETING_IMAGE: 3,
-  SQUARE_MARKETING_IMAGE: 3,
-  PORTRAIT_MARKETING_IMAGE: 1,
-};
