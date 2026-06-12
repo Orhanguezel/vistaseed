@@ -64,12 +64,12 @@ export function GtmNoscript({ gtmId }: { gtmId: string }) {
 export default function Analytics({ ga4Id, gtmId }: AnalyticsProps) {
   if (!ga4Id && !gtmId) return null;
 
-  if (gtmId) {
-    return <GoogleTagManager gtmId={gtmId} />;
-  }
-
+  // GTM ve GA4 birlikte yüklenir: GTM container'a GA4 etiketi eklenmemis olsa
+  // bile GA4 (G-...) dogrudan config alip veri toplar. Cift sayim olmaz cunku
+  // GTM icinde ayni ID'li GA4 etiketi tanimli degil.
   return (
     <>
+      {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
       {ga4Id ? <GoogleAnalytics ga4Id={ga4Id} /> : null}
     </>
   );
