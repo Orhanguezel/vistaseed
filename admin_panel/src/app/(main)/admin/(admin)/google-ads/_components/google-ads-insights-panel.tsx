@@ -122,6 +122,9 @@ export default function GoogleAdsInsightsPanel({ hasCredentials, range }: Props)
   );
   const [setKeywordStatus, { isLoading: toggling }] = useGoogleAdsKeywordStatusMutation();
 
+  const selectedCampaign = (campaignData?.items ?? []).find((c) => c.id === campaignId);
+  const isPmaxSelected = selectedCampaign?.channel_type === 'PERFORMANCE_MAX';
+
   const handleToggleKeyword = async (row: GoogleAdsTermRow) => {
     if (!row.resource_name) return;
     const next = row.status === 'ENABLED' ? 'PAUSED' : 'ENABLED';
@@ -196,7 +199,13 @@ export default function GoogleAdsInsightsPanel({ hasCredentials, range }: Props)
           <CardDescription>{t('insights.searchTermsDesc')}</CardDescription>
         </CardHeader>
         <CardContent>
-          <TermTable rows={data?.search_terms ?? []} t={t} />
+          {isPmaxSelected ? (
+            <p className="py-4 text-muted-foreground text-sm">{t('insights.pmaxNoTerms')}</p>
+          ) : (data?.search_terms ?? []).length === 0 ? (
+            <p className="py-4 text-muted-foreground text-sm">{t('insights.emptyTable')}</p>
+          ) : (
+            <TermTable rows={data?.search_terms ?? []} t={t} />
+          )}
         </CardContent>
       </Card>
 
@@ -206,13 +215,19 @@ export default function GoogleAdsInsightsPanel({ hasCredentials, range }: Props)
           <CardDescription>{t('insights.keywordsDesc')}</CardDescription>
         </CardHeader>
         <CardContent>
-          <TermTable
-            rows={data?.keywords ?? []}
-            showMatchType
-            t={t}
-            onToggle={(row) => void handleToggleKeyword(row)}
-            toggling={toggling}
-          />
+          {isPmaxSelected ? (
+            <p className="py-4 text-muted-foreground text-sm">{t('insights.pmaxNoKeywords')}</p>
+          ) : (data?.keywords ?? []).length === 0 ? (
+            <p className="py-4 text-muted-foreground text-sm">{t('insights.emptyTable')}</p>
+          ) : (
+            <TermTable
+              rows={data?.keywords ?? []}
+              showMatchType
+              t={t}
+              onToggle={(row) => void handleToggleKeyword(row)}
+              toggling={toggling}
+            />
+          )}
         </CardContent>
       </Card>
 
