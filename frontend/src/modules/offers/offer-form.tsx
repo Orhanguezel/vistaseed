@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { fireAdsConversion } from "@/lib/ads-conversion";
 import { Send, CheckCircle2, ChevronRight, Building2, User, Mail, Phone, MapPin, Package, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -64,6 +65,7 @@ export function OfferForm() {
       });
 
       if (!res.ok) throw new Error(t("errors.submit"));
+      fireAdsConversion("quote");
       setSuccess(true);
     } catch (err: any) {
       setError(err.message || t("errors.unexpected"));

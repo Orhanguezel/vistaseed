@@ -19,6 +19,20 @@ export function GoogleAnalytics({ ga4Id }: { ga4Id: string }) {
   );
 }
 
+export function GoogleAdsTag({ awId, conversions }: { awId: string; conversions: Record<string, string> }) {
+  return (
+    <>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${awId}`}
+        strategy="afterInteractive"
+      />
+      <Script id="ads-tag-init" strategy="afterInteractive">
+        {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=window.gtag||gtag;gtag('js',new Date());gtag('config','${awId}');window.__adsConversions=${JSON.stringify(conversions)};`}
+      </Script>
+    </>
+  );
+}
+
 export function GoogleTagManager({ gtmId }: { gtmId: string }) {
   return (
     <script

@@ -340,16 +340,20 @@ export interface CustomPageData {
 }
 
 export interface AnalyticsConfig {
+  adsTagId: string | null;
+  adsConversionQuote: string | null;
   ga4Id: string | null;
   gtmId: string | null;
 }
 
 export async function fetchAnalyticsConfig(): Promise<AnalyticsConfig> {
-  const result: AnalyticsConfig = { ga4Id: null, gtmId: null };
+  const result: AnalyticsConfig = { ga4Id: null, gtmId: null, adsTagId: null, adsConversionQuote: null };
   try {
-    const [ga4Res, gtmRes] = await Promise.all([
+    const [ga4Res, gtmRes, adsRes, adsQuoteRes] = await Promise.all([
       fetch(`${getApiV1()}/site_settings/ga4_measurement_id`, { next: { revalidate: 300 } }),
       fetch(`${getApiV1()}/site_settings/gtm_container_id`, { next: { revalidate: 300 } }),
+      fetch(`${getApiV1()}/site_settings/google_ads_tag_id`, { next: { revalidate: 300 } }),
+      fetch(`${getApiV1()}/site_settings/google_ads_conversion_quote`, { next: { revalidate: 300 } }),
     ]);
     if (ga4Res.ok) {
       const row = await ga4Res.json();
@@ -360,6 +364,16 @@ export async function fetchAnalyticsConfig(): Promise<AnalyticsConfig> {
       const row = await gtmRes.json();
       const v = typeof row?.value === "string" ? row.value.trim() : "";
       if (v) result.gtmId = v;
+    }
+    if (adsRes.ok) {
+      const row = await adsRes.json();
+      const v = typeof row?.value === "string" ? row.value.trim() : "";
+      if (v) result.adsTagId = v;
+    }
+    if (adsQuoteRes.ok) {
+      const row = await adsQuoteRes.json();
+      const v = typeof row?.value === "string" ? row.value.trim() : "";
+      if (v) result.adsConversionQuote = v;
     }
   } catch { /* analytics fetch failure is non-critical */ }
   return result;

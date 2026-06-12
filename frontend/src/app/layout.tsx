@@ -5,7 +5,7 @@ import { getLocale, getMessages } from "next-intl/server";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { fetchSiteSettings, fetchAnalyticsConfig } from "@/lib/site-settings";
 import { getPublicApiV1, getPublicSiteOrigin } from "@/lib/runtime-config";
-import Analytics, { GtmNoscript } from "@/components/seo/Analytics";
+import Analytics, { GoogleAdsTag, GtmNoscript } from "@/components/seo/Analytics";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -121,6 +121,12 @@ export default async function RootLayout({
       <head>
         <meta name="google-site-verification" content={GOOGLE_SITE_VERIFICATION} />
         <Analytics ga4Id={analytics.ga4Id} gtmId={analytics.gtmId} />
+        {analytics.adsTagId ? (
+          <GoogleAdsTag
+            awId={analytics.adsTagId}
+            conversions={analytics.adsConversionQuote ? { quote: analytics.adsConversionQuote } : {}}
+          />
+        ) : null}
       </head>
       <body suppressHydrationWarning>
         {analytics.gtmId && <GtmNoscript gtmId={analytics.gtmId} />}

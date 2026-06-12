@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { ROUTES } from "@/config/routes";
 import { submitBulkOffer, type BulkOfferOrgType } from "@/modules/bulk-sales/submit-bulk-offer";
+import { fireAdsConversion } from "@/lib/ads-conversion";
 import { toLocalizedPath } from "@/i18n/routing";
 
 const ORG_TYPES: BulkOfferOrgType[] = [
@@ -71,6 +72,7 @@ export default function TopluSatisClient() {
       setConsentTerms(false);
       setConsentMarketing(false);
       setWebsite("");
+      fireAdsConversion("quote");
       setDone(t("success"));
     } catch {
       setError(t("error"));
