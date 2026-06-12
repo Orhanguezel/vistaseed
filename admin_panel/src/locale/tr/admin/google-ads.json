@@ -51,7 +51,27 @@
   },
   "tabs": {
     "campaigns": "Kampanyalar",
-    "insights": "Analiz"
+    "insights": "Analiz",
+    "assets": "Görseller"
+  },
+  "assets": {
+    "title": "PMax Öğe Grubu Görselleri",
+    "description": "Maks. Performans öğe gruplarına görsel ekleyin/çıkarın. Yüklenen görsel seçilen orana otomatik kırpılır — ayrı tasarım gerekmez.",
+    "selectGroup": "Öğe grubu seçin",
+    "adStrength": "Reklam Gücü",
+    "fieldType": "Görsel Türü",
+    "upload": "Yükle",
+    "uploading": "Yükleniyor...",
+    "uploaded": "Görsel yüklendi ve öğe grubuna eklendi",
+    "uploadFailed": "Yükleme başarısız",
+    "cropNote": "Yatay 1.91:1, kare 1:1, dikey 4:5 oranına merkezden otomatik kırpılır. PNG/JPG/WebP desteklenir.",
+    "remove": "Kaldır",
+    "removeConfirm": "Bu görsel öğe grubundan kaldırılacak. Devam edilsin mi?",
+    "removed": "Görsel kaldırıldı",
+    "removeFailed": "Kaldırma başarısız",
+    "loading": "Görseller yükleniyor...",
+    "empty": "Bu öğe grubunda görsel yok.",
+    "noCredentials": "Önce Site Ayarları > API sekmesinden Google Ads kimlik bilgilerini girin."
   },
   "insights": {
     "loading": "Analiz yükleniyor...",

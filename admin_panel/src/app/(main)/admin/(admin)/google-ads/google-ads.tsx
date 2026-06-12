@@ -19,6 +19,7 @@ import { getErrorMessage } from '@/integrations/shared';
 
 import GoogleAdsCampaignsPanel from './_components/google-ads-campaigns-panel';
 import GoogleAdsInsightsPanel from './_components/google-ads-insights-panel';
+import GoogleAdsAssetsPanel from './_components/google-ads-assets-panel';
 
 export default function GoogleAdsAdminPage() {
   const t = useAdminT('admin.googleAds');
@@ -78,6 +79,7 @@ export default function GoogleAdsAdminPage() {
         <TabsList>
           <TabsTrigger value="campaigns">{t('tabs.campaigns')}</TabsTrigger>
           <TabsTrigger value="insights">{t('tabs.insights')}</TabsTrigger>
+          <TabsTrigger value="assets">{t('tabs.assets')}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="campaigns" className="space-y-4">
@@ -86,6 +88,10 @@ export default function GoogleAdsAdminPage() {
 
         <TabsContent value="insights" className="space-y-4">
           <GoogleAdsInsightsPanel hasCredentials={Boolean(status?.has_credentials)} range="LAST_30_DAYS" />
+        </TabsContent>
+
+        <TabsContent value="assets" className="space-y-4">
+          <GoogleAdsAssetsPanel hasCredentials={Boolean(status?.has_credentials)} />
         </TabsContent>
       </Tabs>
     </div>

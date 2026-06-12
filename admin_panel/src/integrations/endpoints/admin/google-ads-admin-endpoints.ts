@@ -7,6 +7,12 @@ import type { FetchArgs } from "@reduxjs/toolkit/query";
 
 import { baseApi } from "@/integrations/base-api";
 import type {
+  GoogleAdsAssetGroupsResp,
+  GoogleAdsAssetImagesResp,
+  GoogleAdsAssetRemoveBody,
+  GoogleAdsAssetRemoveResp,
+  GoogleAdsAssetUploadArgs,
+  GoogleAdsAssetUploadResp,
   GoogleAdsCampaignsResp,
   GoogleAdsDateRange,
   GoogleAdsInsightsResp,
@@ -79,6 +85,39 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
         body,
       }),
     }),
+
+    /** GET /admin/google-ads/asset-groups */
+    googleAdsAssetGroups: b.query<GoogleAdsAssetGroupsResp, void>({
+      query: (): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups` }),
+    }),
+
+    /** GET /admin/google-ads/asset-groups/:id/images */
+    googleAdsAssetImages: b.query<GoogleAdsAssetImagesResp, { id: string }>({
+      query: ({ id }): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/${id}/images` }),
+    }),
+
+    /** POST /admin/google-ads/asset-groups/:id/images (multipart) */
+    googleAdsUploadAsset: b.mutation<GoogleAdsAssetUploadResp, GoogleAdsAssetUploadArgs>({
+      query: ({ assetGroupId, fieldType, file }): FetchArgs => {
+        const form = new FormData();
+        form.append("file", file);
+        return {
+          url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/${assetGroupId}/images`,
+          method: "POST",
+          params: { field_type: fieldType },
+          body: form,
+        };
+      },
+    }),
+
+    /** POST /admin/google-ads/asset-groups/images/remove */
+    googleAdsRemoveAsset: b.mutation<GoogleAdsAssetRemoveResp, GoogleAdsAssetRemoveBody>({
+      query: (body): FetchArgs => ({
+        url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/images/remove`,
+        method: "POST",
+        body,
+      }),
+    }),
   }),
   overrideExisting: true,
 });
@@ -92,4 +131,8 @@ export const {
   useGoogleAdsSetBudgetMutation,
   useGoogleAdsInsightsQuery,
   useGoogleAdsKeywordStatusMutation,
+  useGoogleAdsAssetGroupsQuery,
+  useGoogleAdsAssetImagesQuery,
+  useGoogleAdsUploadAssetMutation,
+  useGoogleAdsRemoveAssetMutation,
 } = googleAdsAdminApi;

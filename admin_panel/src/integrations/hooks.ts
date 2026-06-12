@@ -308,6 +308,10 @@ export {
   useGoogleAdsSetBudgetMutation,
   useGoogleAdsInsightsQuery,
   useGoogleAdsKeywordStatusMutation,
+  useGoogleAdsAssetGroupsQuery,
+  useGoogleAdsAssetImagesQuery,
+  useGoogleAdsUploadAssetMutation,
+  useGoogleAdsRemoveAssetMutation,
 } from "@/integrations/endpoints/admin/google-ads-admin-endpoints";
 export {
   useAdminGetQuery,
