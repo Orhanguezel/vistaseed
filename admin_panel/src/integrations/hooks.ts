@@ -307,6 +307,7 @@ export {
   useGoogleAdsSetStatusMutation,
   useGoogleAdsSetBudgetMutation,
   useGoogleAdsInsightsQuery,
+  useGoogleAdsKeywordStatusMutation,
 } from "@/integrations/endpoints/admin/google-ads-admin-endpoints";
 export {
   useAdminGetQuery,

@@ -6,32 +6,44 @@
 'use client';
 
 import * as React from 'react';
-import { AlertTriangle } from 'lucide-react';
+import { AlertTriangle, Pause, Play } from 'lucide-react';
+import { toast } from 'sonner';
 
 import { useAdminT } from '@/app/(main)/admin/_components/common/use-admin-t';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useGoogleAdsInsightsQuery } from '@/integrations/hooks';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  useGoogleAdsCampaignsQuery,
+  useGoogleAdsInsightsQuery,
+  useGoogleAdsKeywordStatusMutation,
+} from '@/integrations/hooks';
 import {
   ADS_DEVICE_LABELS,
   ADS_MATCH_TYPE_LABELS,
   ADS_STATUS_LABELS,
   adsLabel,
   formatCtr,
+  getErrorMessage,
   microsToUnit,
   type GoogleAdsDateRange,
   type GoogleAdsTermRow,
 } from '@/integrations/shared';
+
+const ALL_CAMPAIGNS = '__all__';
 
 type Props = {
   hasCredentials: boolean;
   range: GoogleAdsDateRange;
 };
 
-function TermTable({ rows, showMatchType, t }: {
+function TermTable({ rows, showMatchType, t, onToggle, toggling }: {
   rows: GoogleAdsTermRow[];
   showMatchType?: boolean;
   t: (key: string) => string;
+  onToggle?: (row: GoogleAdsTermRow) => void;
+  toggling?: boolean;
 }) {
   return (
     <div className="overflow-x-auto">
@@ -44,7 +56,8 @@ function TermTable({ rows, showMatchType, t }: {
             <th className="py-1.5 pr-3 text-right">{t('insights.columns.clicks')}</th>
             <th className="py-1.5 pr-3 text-right">{t('insights.columns.ctr')}</th>
             <th className="py-1.5 pr-3 text-right">{t('insights.columns.cost')}</th>
-            <th className="py-1.5 text-right">{t('insights.columns.conversions')}</th>
+            <th className="py-1.5 pr-3 text-right">{t('insights.columns.conversions')}</th>
+            {onToggle ? <th className="py-1.5 text-right">{t('insights.columns.actions')}</th> : null}
           </tr>
         </thead>
         <tbody>
@@ -53,14 +66,44 @@ function TermTable({ rows, showMatchType, t }: {
               <td className="py-1.5 pr-3 font-medium">{row.term}</td>
               {showMatchType ? (
                 <td className="py-1.5 pr-3">
-                  <Badge variant="outline">{adsLabel(ADS_MATCH_TYPE_LABELS, row.match_type || '')}</Badge>
+                  <span className="inline-flex items-center gap-1">
+                    <Badge variant="outline">{adsLabel(ADS_MATCH_TYPE_LABELS, row.match_type || '')}</Badge>
+                    {row.status && row.status !== 'ENABLED' ? (
+                      <Badge variant="secondary">{adsLabel(ADS_STATUS_LABELS, row.status)}</Badge>
+                    ) : null}
+                  </span>
                 </td>
               ) : null}
               <td className="py-1.5 pr-3 text-muted-foreground text-xs">{row.campaign}</td>
               <td className="py-1.5 pr-3 text-right">{row.clicks.toLocaleString('tr-TR')}</td>
               <td className="py-1.5 pr-3 text-right">{formatCtr(row.ctr)}</td>
               <td className="py-1.5 pr-3 text-right">{microsToUnit(row.cost_micros)}</td>
-              <td className="py-1.5 text-right">{row.conversions.toLocaleString('tr-TR')}</td>
+              <td className="py-1.5 pr-3 text-right">{row.conversions.toLocaleString('tr-TR')}</td>
+              {onToggle ? (
+                <td className="py-1.5 text-right">
+                  {row.resource_name && (row.status === 'ENABLED' || row.status === 'PAUSED') ? (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-6 px-2 text-xs"
+                      disabled={toggling}
+                      onClick={() => onToggle(row)}
+                    >
+                      {row.status === 'ENABLED' ? (
+                        <>
+                          <Pause className="mr-1 h-3 w-3" />
+                          {t('insights.pauseKeyword')}
+                        </>
+                      ) : (
+                        <>
+                          <Play className="mr-1 h-3 w-3" />
+                          {t('insights.enableKeyword')}
+                        </>
+                      )}
+                    </Button>
+                  ) : null}
+                </td>
+              ) : null}
             </tr>
           ))}
         </tbody>
@@ -71,7 +114,27 @@ function TermTable({ rows, showMatchType, t }: {
 
 export default function GoogleAdsInsightsPanel({ hasCredentials, range }: Props) {
   const t = useAdminT('admin.googleAds');
-  const { data, isLoading } = useGoogleAdsInsightsQuery({ range }, { skip: !hasCredentials });
+  const [campaignId, setCampaignId] = React.useState<string>(ALL_CAMPAIGNS);
+  const { data: campaignData } = useGoogleAdsCampaignsQuery({ range }, { skip: !hasCredentials });
+  const { data, isLoading, refetch } = useGoogleAdsInsightsQuery(
+    { range, ...(campaignId !== ALL_CAMPAIGNS ? { campaign_id: campaignId } : {}) },
+    { skip: !hasCredentials },
+  );
+  const [setKeywordStatus, { isLoading: toggling }] = useGoogleAdsKeywordStatusMutation();
+
+  const handleToggleKeyword = async (row: GoogleAdsTermRow) => {
+    if (!row.resource_name) return;
+    const next = row.status === 'ENABLED' ? 'PAUSED' : 'ENABLED';
+    const confirmKey = next === 'PAUSED' ? 'insights.confirmPauseKeyword' : 'insights.confirmEnableKeyword';
+    if (!window.confirm(`${t(confirmKey)}\n\n"${row.term}" — ${row.campaign}`)) return;
+    try {
+      await setKeywordStatus({ resource_name: row.resource_name, status: next }).unwrap();
+      toast.success(t(next === 'PAUSED' ? 'insights.keywordPaused' : 'insights.keywordEnabled'));
+      void refetch();
+    } catch (err) {
+      toast.error(`${t('campaigns.actionFailed')}: ${getErrorMessage(err)}`);
+    }
+  };
 
   if (!hasCredentials) {
     return <p className="py-6 text-muted-foreground text-sm">{t('campaigns.needCredentials')}</p>;
@@ -85,6 +148,22 @@ export default function GoogleAdsInsightsPanel({ hasCredentials, range }: Props)
 
   return (
     <div className="space-y-4">
+      <div className="flex justify-end">
+        <Select value={campaignId} onValueChange={setCampaignId}>
+          <SelectTrigger className="w-72">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value={ALL_CAMPAIGNS}>{t('insights.allCampaigns')}</SelectItem>
+            {(campaignData?.items ?? []).map((c) => (
+              <SelectItem key={c.id} value={c.id}>
+                {c.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
       {totalConversions === 0 ? (
         <Card className="border-destructive/50">
           <CardHeader className="flex flex-row items-center gap-3">
@@ -127,7 +206,13 @@ export default function GoogleAdsInsightsPanel({ hasCredentials, range }: Props)
           <CardDescription>{t('insights.keywordsDesc')}</CardDescription>
         </CardHeader>
         <CardContent>
-          <TermTable rows={data?.keywords ?? []} showMatchType t={t} />
+          <TermTable
+            rows={data?.keywords ?? []}
+            showMatchType
+            t={t}
+            onToggle={(row) => void handleToggleKeyword(row)}
+            toggling={toggling}
+          />
         </CardContent>
       </Card>
 

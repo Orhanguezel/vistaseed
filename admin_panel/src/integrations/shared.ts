@@ -1021,6 +1021,8 @@ export {
   type GoogleAdsTermRow,
   type GoogleAdsDeviceRow,
   type GoogleAdsInsightsResp,
+  type GoogleAdsKeywordStatusBody,
+  type GoogleAdsKeywordStatusResp,
 } from "@/integrations/shared/google-ads";
 export {
   ADMIN_USERS_ALL_ROLES,

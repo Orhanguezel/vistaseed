@@ -10,6 +10,8 @@ import type {
   GoogleAdsCampaignsResp,
   GoogleAdsDateRange,
   GoogleAdsInsightsResp,
+  GoogleAdsKeywordStatusBody,
+  GoogleAdsKeywordStatusResp,
   GoogleAdsSetBudgetBody,
   GoogleAdsSetBudgetResp,
   GoogleAdsSetStatusBody,
@@ -43,11 +45,20 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
       }),
     }),
 
-    /** GET /admin/google-ads/insights?range= */
-    googleAdsInsights: b.query<GoogleAdsInsightsResp, { range?: GoogleAdsDateRange } | void>({
+    /** GET /admin/google-ads/insights?range=&campaign_id= */
+    googleAdsInsights: b.query<GoogleAdsInsightsResp, { range?: GoogleAdsDateRange; campaign_id?: string } | void>({
       query: (params): FetchArgs => ({
         url: `${GOOGLE_ADS_ADMIN_BASE}/insights`,
         params: params ?? {},
+      }),
+    }),
+
+    /** POST /admin/google-ads/keywords/status */
+    googleAdsKeywordStatus: b.mutation<GoogleAdsKeywordStatusResp, GoogleAdsKeywordStatusBody>({
+      query: (body): FetchArgs => ({
+        url: `${GOOGLE_ADS_ADMIN_BASE}/keywords/status`,
+        method: "POST",
+        body,
       }),
     }),
 
@@ -80,4 +91,5 @@ export const {
   useGoogleAdsSetStatusMutation,
   useGoogleAdsSetBudgetMutation,
   useGoogleAdsInsightsQuery,
+  useGoogleAdsKeywordStatusMutation,
 } = googleAdsAdminApi;

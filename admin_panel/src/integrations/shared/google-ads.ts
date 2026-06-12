@@ -169,6 +169,8 @@ export type GoogleAdsConversionAction = {
 export type GoogleAdsTermRow = {
   term: string;
   match_type?: string;
+  resource_name?: string;
+  status?: string;
   campaign: string;
   clicks: number;
   impressions: number;
@@ -191,4 +193,16 @@ export type GoogleAdsInsightsResp = {
   keywords: GoogleAdsTermRow[];
   devices: GoogleAdsDeviceRow[];
   range: GoogleAdsDateRange;
+};
+
+/** POST /admin/google-ads/keywords/status */
+export type GoogleAdsKeywordStatusBody = {
+  resource_name: string;
+  status: "ENABLED" | "PAUSED";
+};
+
+export type GoogleAdsKeywordStatusResp = {
+  ok: boolean;
+  resource_name: string;
+  status: string;
 };

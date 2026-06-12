@@ -72,7 +72,15 @@
       "ctr": "CTR",
       "cost": "Maliyet",
       "conversions": "Dönüşüm",
-      "device": "Cihaz"
-    }
+      "device": "Cihaz",
+      "actions": "İşlem"
+    },
+    "allCampaigns": "Tüm kampanyalar",
+    "pauseKeyword": "Duraklat",
+    "enableKeyword": "Başlat",
+    "keywordPaused": "Anahtar kelime duraklatıldı",
+    "keywordEnabled": "Anahtar kelime başlatıldı",
+    "confirmPauseKeyword": "Bu anahtar kelime DURAKLATILACAK — bu sorgudan gösterim alınmaz. Devam edilsin mi?",
+    "confirmEnableKeyword": "Bu anahtar kelime BAŞLATILACAK — harcama yeniden başlar. Devam edilsin mi?"
   }
 }
