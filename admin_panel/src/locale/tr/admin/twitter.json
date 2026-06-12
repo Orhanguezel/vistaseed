@@ -23,7 +23,8 @@
     "templates": "Şablonlar",
     "send": "Tweet Gönder",
     "queue": "Kuyruk",
-    "history": "Geçmiş"
+    "history": "Geçmiş",
+    "plan": "Plan"
   },
   "templates": {
     "title": "Şablon Tweetler",
@@ -91,7 +92,11 @@
     "submit": "Tweet Gönder",
     "sending": "Gönderiliyor...",
     "sent": "Tweet gönderildi",
-    "failed": "Tweet gönderilemedi"
+    "failed": "Tweet gönderilemedi",
+    "storyToggle": "Story olarak paylaş",
+    "storyToggleDesc": "Story yalnızca görsel yayınlar; metin ve hashtag gösterilmez.",
+    "storyDefaultText": "Story",
+    "mediaRequired": "görsel zorunlu"
   },
   "log": {
     "title": "Kuyruk ve Gönderi Geçmişi",
@@ -127,5 +132,28 @@
     "externalPostId": "Platform ID",
     "prev": "Önceki",
     "next": "Sonraki"
+  },
+  "plan": {
+    "title": "İçerik Planı",
+    "loading": "Plan yükleniyor...",
+    "empty": "Bu platform için plan tanımlı değil.",
+    "story": "Story",
+    "mediaRequired": "Görsel zorunlu",
+    "days": {
+      "mon": "Pazartesi",
+      "tue": "Salı",
+      "wed": "Çarşamba",
+      "thu": "Perşembe",
+      "fri": "Cuma",
+      "sat": "Cumartesi",
+      "sun": "Pazar"
+    },
+    "description": {
+      "twitter": "15 maddelik strateji döngüsü — Çar/Per/Cuma 17:00 (TR). Seed: 182.",
+      "facebook": "Haftalık 3 slot: uzun metin + link + görsel. Seed: 183.",
+      "instagram": "Görsel öncelikli 3 post + Cuma story. Her gönderide görsel zorunlu. Seed: 184.",
+      "linkedin": "Kurumsal ton, haftalık 2 slot. Seed: 185.",
+      "youtube": "YouTube için içerik planı henüz tanımlı değil (video gerektirir)."
+    }
   }
 }

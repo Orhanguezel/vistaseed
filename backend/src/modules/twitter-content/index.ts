@@ -2,7 +2,11 @@
 // External module surface for twitter-content. Keep explicit; no export *.
 
 export { startTwitterContentScheduler, stopTwitterContentScheduler } from './scheduler';
-export { buildTwitterQueueForToday } from './planner';
+export { buildSocialQueueForToday, buildTwitterQueueForToday } from './planner';
+export { loadTodaysSlots } from './plan-source';
+export type { PlanSlot } from './plan-source';
+export { formatSocialText } from './format';
+export { buildTwitterSlotHashtags } from './planner-hashtags';
 
 export {
   TWITTER_SLOTS,

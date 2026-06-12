@@ -982,7 +982,33 @@ export {
   type TwitterTemplatePreview,
   type TwitterTemplatePreviewResp,
   type TwitterVerifyResp,
+  PLATFORM_SEND_CONFIG,
+  PLAN_DAY_KEYS,
+  planDayKey,
+  type PlatformSendConfig,
+  type PostFormat,
+  type TwitterPlanRow,
+  type TwitterPlansResp,
 } from "@/integrations/shared/twitter";
+
+export {
+  GOOGLE_ADS_ADMIN_BASE,
+  GOOGLE_ADS_SETTINGS_KEYS,
+  GOOGLE_ADS_BOOLEAN_SETTINGS_KEYS,
+  GOOGLE_ADS_CREDENTIAL_FIELDS,
+  GOOGLE_ADS_DATE_RANGES,
+  createGoogleAdsSettingsDefaults,
+  formatCtr,
+  microsToUnit,
+  type GoogleAdsCampaignRow,
+  type GoogleAdsCampaignsResp,
+  type GoogleAdsCredentialFieldDef,
+  type GoogleAdsDateRange,
+  type GoogleAdsSettingsKey,
+  type GoogleAdsSettingsModel,
+  type GoogleAdsStatusResp,
+  type GoogleAdsVerifyResp,
+} from "@/integrations/shared/google-ads";
 export {
   ADMIN_USERS_ALL_ROLES,
   ADMIN_USERS_BASE,

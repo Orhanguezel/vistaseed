@@ -124,7 +124,10 @@
       "Bash(sed -n 1,60p navigation/sidebar/sidebar-items.ts)",
       "Bash(python3 -c \"import json;d=json.load\\(open\\('locale/tr/admin/sidebar.json'\\)\\);print\\(json.dumps\\(d,ensure_ascii=False\\)[:800]\\)\")",
       "Bash(bun -e ' *)",
-      "Bash(echo \"build-exit: $?\")"
+      "Bash(echo \"build-exit: $?\")",
+      "Bash(echo \"exit: $?\")",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('src/locale/tr/admin/sidebar.json'\\)\\); print\\('twitter' in d['items'], 'google_ads' in d['items']\\)\")",
+      "Bash(echo \"panel-tsc: $?\")"
     ],
     "defaultMode": "bypassPermissions",
     "additionalDirectories": [

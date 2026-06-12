@@ -58,6 +58,36 @@ function normalizeContextTag(raw?: string | null): string | null {
  *  - eventTag     → sektör/fuar etiketi
  *  - dayTag       → milli gün etiketi
  */
+/**
+ * Instagram hashtag bloğu — X'ten farklı: ~10 etiket, keşfet odaklı.
+ * Sıra: mahsul + sabit havuz; dedup, maks 12.
+ */
+export function deriveInstagramHashtags(productTitle?: string | null): string {
+  const pool = [
+    cropTagFromTitle(productTitle),
+    '#VistaSeeds',
+    '#yerlitohum',
+    '#tohum',
+    '#sebzetohumu',
+    '#tarım',
+    '#çiftçi',
+    '#sera',
+    '#fide',
+    '#üretici',
+    '#tohumculuk',
+  ].filter(Boolean) as string[];
+
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const tag of pool) {
+    const key = tag.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(tag);
+  }
+  return out.slice(0, 12).join(' ');
+}
+
 export function deriveTwitterHashtags(input: {
   productTitle?: string | null;
   eventTag?: string | null;

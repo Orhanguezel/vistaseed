@@ -29,3 +29,11 @@ export function twitterMediaForProduct(title?: string | null, preferred?: string
 export function twitterMediaForSlot(slotKey: string): string | null {
   return TWITTER_MEDIA_BY_SLOT[slotKey] ?? null;
 }
+
+/**
+ * Görsel zorunlu platformlar (IG) için son çare marka görseli —
+ * ürün kartlarından ilki.
+ */
+export function socialMediaFallback(): string {
+  return TWITTER_MEDIA_BY_PRODUCT.cankan!;
+}

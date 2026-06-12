@@ -118,6 +118,7 @@ export type TwitterSendBody = {
   text: string;
   platform?: SocialPlatform;
   media_url?: string | null;
+  post_format?: "post" | "story";
 };
 
 export type TwitterSendResp = {
@@ -162,4 +163,51 @@ export type TwitterLogListResp = {
 
 export function buildTweetUrl(xTweetId: string): string {
   return `https://x.com/i/web/status/${xTweetId}`;
+}
+
+/** Platform karakteri — gönderim formu bu konfigle şekillenir */
+export type PlatformSendConfig = {
+  maxLength: number;
+  mediaRequired: boolean;
+  supportsStory: boolean;
+  supportsLink: boolean;
+  defaultTags: string;
+};
+
+export const PLATFORM_SEND_CONFIG: Record<SocialPlatform, PlatformSendConfig> = {
+  twitter: { maxLength: 280, mediaRequired: false, supportsStory: false, supportsLink: true, defaultTags: "#VistaSeeds #yerlitohum" },
+  facebook: { maxLength: 5000, mediaRequired: false, supportsStory: false, supportsLink: true, defaultTags: "#VistaSeeds #yerlitohum" },
+  instagram: { maxLength: 2200, mediaRequired: true, supportsStory: true, supportsLink: false, defaultTags: "#VistaSeeds #yerlitohum #tohum #sebzetohumu #tarım #çiftçi #sera #fide #üretici #tohumculuk" },
+  linkedin: { maxLength: 3000, mediaRequired: false, supportsStory: false, supportsLink: true, defaultTags: "#VistaSeeds #tohum #tarım #ihracat" },
+  youtube: { maxLength: 5000, mediaRequired: true, supportsStory: false, supportsLink: true, defaultTags: "" },
+};
+
+export type PostFormat = "post" | "story";
+
+/** GET /admin/twitter/plans */
+export type TwitterPlanRow = {
+  id: string;
+  platform: SocialPlatform;
+  slot_key: string;
+  day_of_week: number;
+  hour: number;
+  minute: number;
+  template: string;
+  pillar: string | null;
+  topic: string | null;
+  preferred_product: string | null;
+  post_format: PostFormat;
+  media_required: number;
+  is_active: number;
+  order_index: number;
+};
+
+export type TwitterPlansResp = {
+  items: TwitterPlanRow[];
+};
+
+export const PLAN_DAY_KEYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] as const;
+
+export function planDayKey(dayOfWeek: number): (typeof PLAN_DAY_KEYS)[number] {
+  return PLAN_DAY_KEYS[(dayOfWeek - 1 + 7) % 7] ?? "mon";
 }

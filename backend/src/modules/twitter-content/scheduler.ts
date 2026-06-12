@@ -3,14 +3,14 @@
 // İçerik kurulumu twitter_enabled'a bağlı; dispatch her aktif platformu işler.
 
 import {
-  getTwitterSettings,
+  listEnabledQueuePlatforms,
   processSocialQueueOnce,
   repoGetTwitterSettingsMap,
   repoSetTwitterSetting,
 } from '@agro/shared-backend/modules/twitter';
 
 import { env } from '@/core/env';
-import { buildTwitterQueueForToday } from './planner';
+import { buildSocialQueueForToday } from './planner';
 import { berlinParts, todayISO } from './time';
 
 const TICK_MS = 5 * 60_000;
@@ -23,11 +23,15 @@ let running = false;
 async function buildIfNeeded(now: Date): Promise<void> {
   if (berlinParts(now).hour < BUILD_AFTER_HOUR) return;
 
+  // Aktif platform yoksa işaret koymadan çık — gün içinde açılırsa plan yine kurulsun
+  const platforms = await listEnabledQueuePlatforms();
+  if (!platforms.length) return;
+
   const today = todayISO(now);
   const map = await repoGetTwitterSettingsMap([BUILT_FOR_KEY]);
   if (map.get(BUILT_FOR_KEY) === today) return;
 
-  const queued = await buildTwitterQueueForToday(env.FRONTEND_URL, now);
+  const queued = await buildSocialQueueForToday(env.FRONTEND_URL, now);
   await repoSetTwitterSetting(BUILT_FOR_KEY, today);
   if (queued.length) console.log(`[twitter-content] kuyruga eklendi: ${queued.join(', ')}`);
 }
@@ -38,9 +42,8 @@ async function tick(): Promise<void> {
   try {
     const now = new Date();
 
-    // İçerik motoru (X şablonları) twitter_enabled anahtarına bağlı
-    const settings = await getTwitterSettings();
-    if (settings.enabled) await buildIfNeeded(now);
+    // Plan kurulumu aktif platformlara göre (buildIfNeeded içinde kontrol edilir)
+    await buildIfNeeded(now);
 
     // Dispatcher tüm aktif platformların kuyruğunu işler (FB/IG/LinkedIn dahil)
     const result = await processSocialQueueOnce();

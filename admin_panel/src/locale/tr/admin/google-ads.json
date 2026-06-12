@@ -1,0 +1,64 @@
+{
+  "header": {
+    "title": "Google Ads",
+    "description": "Kampanya performansını izleyin; bağlantı ayarlarını yönetin",
+    "credentialsOk": "Hesap bağlı",
+    "credentialsMissing": "Kimlik bilgileri eksik",
+    "verify": "Bağlantıyı Doğrula",
+    "verifying": "Doğrulanıyor...",
+    "verified": "Bağlantı doğrulandı",
+    "verifyFailed": "Doğrulama başarısız",
+    "accounts": "hesap"
+  },
+  "tabs": {
+    "campaigns": "Kampanyalar",
+    "settings": "Ayarlar"
+  },
+  "campaigns": {
+    "title": "Kampanya Performansı",
+    "loading": "Kampanyalar yükleniyor...",
+    "empty": "Seçilen aralıkta kampanya verisi yok.",
+    "refresh": "Yenile",
+    "needCredentials": "Önce Ayarlar sekmesinden Google Ads kimlik bilgilerini girin.",
+    "ranges": {
+      "TODAY": "Bugün",
+      "YESTERDAY": "Dün",
+      "LAST_7_DAYS": "Son 7 gün",
+      "LAST_30_DAYS": "Son 30 gün",
+      "THIS_MONTH": "Bu ay",
+      "LAST_MONTH": "Geçen ay"
+    },
+    "columns": {
+      "name": "Kampanya",
+      "status": "Durum",
+      "budget": "Günlük Bütçe",
+      "impressions": "Gösterim",
+      "clicks": "Tıklama",
+      "ctr": "CTR",
+      "avgCpc": "Ort. TBM",
+      "cost": "Maliyet",
+      "conversions": "Dönüşüm"
+    }
+  },
+  "settings": {
+    "title": "Google Ads Bağlantı Ayarları",
+    "enable": "Google Ads Entegrasyonunu Etkinleştir",
+    "enableDesc": "Raporlama bağlantısını açar; kampanyalara yazma işlemi yapılmaz.",
+    "credentials": {
+      "title": "API Kimlik Bilgileri",
+      "desc": "Developer token MCC hesabından alınır; OAuth2 client + refresh token Google Cloud Console üzerinden oluşturulur.",
+      "developerToken": "Developer Token",
+      "clientId": "OAuth Client ID",
+      "clientSecret": "OAuth Client Secret",
+      "refreshToken": "Refresh Token",
+      "customerId": "Müşteri ID (reklam hesabı)",
+      "loginCustomerId": "MCC Müşteri ID (opsiyonel)",
+      "placeholder": "••••••••"
+    },
+    "loading": "Ayarlar yükleniyor...",
+    "save": "Kaydet",
+    "saving": "Kaydediliyor...",
+    "saved": "Google Ads ayarları kaydedildi",
+    "saveError": "Ayarlar kaydedilemedi"
+  }
+}

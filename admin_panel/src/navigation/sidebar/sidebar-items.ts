@@ -4,6 +4,7 @@
 // =============================================================
 
 import {
+  BarChart3,
   BookOpen,
   Briefcase,
   Contact2,
@@ -143,6 +144,7 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
       { key: 'theme', url: '/admin/theme', icon: Palette },
       { key: 'telegram', url: '/admin/telegram', icon: Send },
       { key: 'twitter', url: '/admin/twitter', icon: Twitter },
+      { key: 'google_ads', url: '/admin/google-ads', icon: BarChart3 },
       { key: 'audit', url: '/admin/audit', icon: MessageSquare },
       { key: 'db_admin', url: '/admin/db-admin', icon: Database },
       { key: 'cache', url: '/admin/cache', icon: Eraser },
@@ -190,6 +192,7 @@ const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   theme: 'Tema',
   telegram: 'Telegram',
   twitter: 'Twitter / X',
+  google_ads: 'Google Ads',
   audit: 'Denetim',
   db_admin: 'Veritabanı',
   popups: 'Popup\'lar',

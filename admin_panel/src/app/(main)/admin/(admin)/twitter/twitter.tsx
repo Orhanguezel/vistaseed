@@ -18,6 +18,7 @@ import { useTwitterStatusQuery, useTwitterVerifyMutation } from "@/integrations/
 import { getErrorMessage, SOCIAL_PLATFORMS, type SocialPlatform } from "@/integrations/shared";
 
 import TwitterLogPanel from "./_components/twitter-log-panel";
+import TwitterPlanPanel from "./_components/twitter-plan-panel";
 import TwitterSendPanel from "./_components/twitter-send-panel";
 import TwitterTemplatePanel from "./_components/twitter-template-panel";
 
@@ -90,13 +91,18 @@ export default function TwitterAdminPage() {
         </CardHeader>
       </Card>
 
-      <Tabs defaultValue="templates" className="w-full">
+      <Tabs defaultValue="plan" className="w-full">
         <TabsList>
+          <TabsTrigger value="plan">{t("tabs.plan")}</TabsTrigger>
           <TabsTrigger value="templates">{t("tabs.templates")}</TabsTrigger>
           <TabsTrigger value="send">{t("tabs.send")}</TabsTrigger>
           <TabsTrigger value="queue">{t("tabs.queue")}</TabsTrigger>
           <TabsTrigger value="history">{t("tabs.history")}</TabsTrigger>
         </TabsList>
+
+        <TabsContent value="plan" className="space-y-4">
+          <TwitterPlanPanel platform={platform} />
+        </TabsContent>
 
         <TabsContent value="templates" className="space-y-4">
           <TwitterTemplatePanel platform={platform} />

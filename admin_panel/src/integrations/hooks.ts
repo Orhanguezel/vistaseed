@@ -290,6 +290,7 @@ export {
   useLazyTwitterListTweetsQuery,
   useTwitterAiDraftMutation,
   useTwitterCancelTweetMutation,
+  useTwitterPlansQuery,
   useTwitterListTweetsQuery,
   useTwitterSendMutation,
   useTwitterStatusQuery,
@@ -297,6 +298,13 @@ export {
   useTwitterTemplatePreviewsQuery,
   useTwitterVerifyMutation,
 } from "@/integrations/endpoints/admin/twitter-admin-endpoints";
+
+export {
+  useGoogleAdsStatusQuery,
+  useGoogleAdsVerifyMutation,
+  useGoogleAdsCampaignsQuery,
+  useLazyGoogleAdsCampaignsQuery,
+} from "@/integrations/endpoints/admin/google-ads-admin-endpoints";
 export {
   useAdminGetQuery,
   useAdminListQuery,

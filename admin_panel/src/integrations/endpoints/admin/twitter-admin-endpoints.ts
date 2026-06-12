@@ -8,6 +8,7 @@ import type { FetchArgs } from "@reduxjs/toolkit/query";
 import { baseApi } from "@/integrations/base-api";
 import type {
   SocialPlatform,
+  TwitterPlansResp,
   TwitterAiDraftBody,
   TwitterAiDraftResp,
   TwitterLogListParams,
@@ -80,6 +81,14 @@ export const twitterAdminApi = baseApi.injectEndpoints({
       }),
     }),
 
+    /** GET /admin/twitter/plans?platform= */
+    twitterPlans: b.query<TwitterPlansResp, { platform?: SocialPlatform } | void>({
+      query: (params): FetchArgs => ({
+        url: `${TWITTER_ADMIN_BASE}/plans`,
+        params: params ?? {},
+      }),
+    }),
+
     /** POST /admin/twitter/tweets/:id/cancel */
     twitterCancelTweet: b.mutation<{ ok: boolean }, string>({
       query: (id): FetchArgs => ({
@@ -100,6 +109,7 @@ export const {
   useTwitterAiDraftMutation,
   useTwitterSendMutation,
   useTwitterListTweetsQuery,
+  useTwitterPlansQuery,
   useLazyTwitterListTweetsQuery,
   useTwitterCancelTweetMutation,
 } = twitterAdminApi;

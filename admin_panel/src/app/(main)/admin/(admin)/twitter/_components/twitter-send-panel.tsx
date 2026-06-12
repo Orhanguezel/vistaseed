@@ -11,13 +11,20 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 import { Loader2, Send, Sparkles, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { useAdminT } from '@/app/(main)/admin/_components/common/use-admin-t';
 import { useListProductsAdminQuery, useTwitterAiDraftMutation, useTwitterSendMutation } from '@/integrations/hooks';
-import { TWEET_MAX_LENGTH, buildTweetUrl, getErrorMessage, type SocialPlatform } from '@/integrations/shared';
+import {
+  PLATFORM_SEND_CONFIG,
+  buildTweetUrl,
+  getErrorMessage,
+  type PostFormat,
+  type SocialPlatform,
+} from '@/integrations/shared';
 import { TwitterTweetCard } from './twitter-tweet-card';
 
 const AUTO_PRODUCT = '__auto__';
@@ -52,24 +59,40 @@ export default function TwitterSendPanel({ platform }: TwitterSendPanelProps) {
     locale: 'tr',
     limit: 50,
   });
+  const cfg = PLATFORM_SEND_CONFIG[platform];
   const [text, setText] = React.useState('');
-  const [hashtags, setHashtags] = React.useState('#VistaSeeds #yerlitohum');
+  const [hashtags, setHashtags] = React.useState(cfg.defaultTags);
   const [mediaUrl, setMediaUrl] = React.useState<string | null>(null);
+  const [postFormat, setPostFormat] = React.useState<PostFormat>('post');
+
+  // Platform değişince o platformun karakterine sıfırla
+  React.useEffect(() => {
+    setHashtags(PLATFORM_SEND_CONFIG[platform].defaultTags);
+    setPostFormat('post');
+  }, [platform]);
   const [aiTemplate, setAiTemplate] = React.useState<(typeof AI_TEMPLATE_OPTIONS)[number]>('local_seed_value');
   const [aiProductId, setAiProductId] = React.useState(AUTO_PRODUCT);
   const [aiTopic, setAiTopic] = React.useState('');
 
-  const trimmed = joinTweet(text, hashtags);
-  const overLimit = trimmed.length > TWEET_MAX_LENGTH;
-  const canSend = trimmed.length > 0 && !overLimit && !sending;
+  const isStory = postFormat === 'story';
+  const trimmed = isStory ? text.trim() : joinTweet(text, hashtags);
+  const overLimit = trimmed.length > cfg.maxLength;
+  const mediaMissing = cfg.mediaRequired && !mediaUrl;
+  const canSend = (isStory ? Boolean(mediaUrl) : trimmed.length > 0) && !overLimit && !mediaMissing && !sending;
 
   const handleSend = async () => {
     if (!canSend) return;
     if (!window.confirm(t('send.confirm'))) return;
 
     try {
-      const res = await twitterSend({ text: trimmed, platform, media_url: mediaUrl }).unwrap();
-      toast.success(`${t('send.sent')} — ${buildTweetUrl(res.tweet_id)}`);
+      const res = await twitterSend({
+        text: isStory ? (trimmed || t('send.storyDefaultText')) : trimmed,
+        platform,
+        media_url: mediaUrl,
+        post_format: postFormat,
+      }).unwrap();
+      const ref = platform === 'twitter' ? buildTweetUrl(res.tweet_id) : res.tweet_id;
+      toast.success(`${t('send.sent')} — ${ref}`);
       setText('');
       setMediaUrl(null);
     } catch (err) {
@@ -171,6 +194,16 @@ export default function TwitterSendPanel({ platform }: TwitterSendPanelProps) {
           </div>
         </div>
 
+        {cfg.supportsStory ? (
+          <div className="flex items-center justify-between gap-3 rounded-lg border border-border p-3">
+            <div className="space-y-1">
+              <Label className="font-medium">{t('send.storyToggle')}</Label>
+              <p className="text-muted-foreground text-xs">{t('send.storyToggleDesc')}</p>
+            </div>
+            <Switch checked={isStory} onCheckedChange={(v: boolean) => setPostFormat(v ? 'story' : 'post')} />
+          </div>
+        ) : null}
+
         <div className="space-y-2">
           <Label>{t('send.bodyLabel')}</Label>
           <Textarea
@@ -233,9 +266,10 @@ export default function TwitterSendPanel({ platform }: TwitterSendPanelProps) {
 
         <div className="flex items-center justify-between gap-3">
           <span
-            className={`text-xs ${overLimit ? 'text-destructive' : 'text-muted-foreground'}`}
+            className={`text-xs ${overLimit || mediaMissing ? 'text-destructive' : 'text-muted-foreground'}`}
           >
-            {trimmed.length} / {TWEET_MAX_LENGTH}
+            {trimmed.length} / {cfg.maxLength}
+            {mediaMissing ? ` — ${t('send.mediaRequired')}` : ''}
           </span>
 
           <Button onClick={handleSend} disabled={!canSend} className="gap-2">
