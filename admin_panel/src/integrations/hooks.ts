@@ -312,6 +312,7 @@ export {
   useGoogleAdsReportQuery,
   useGoogleAdsAccountsQuery,
   useGoogleAdsProductsQuery,
+  useGoogleAdsConversionHealthQuery,
   useLazyGoogleAdsAdGroupsQuery,
   useGoogleAdsAddNegativeKeywordMutation,
   useGoogleAdsAddKeywordMutation,

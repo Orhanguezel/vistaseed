@@ -379,6 +379,44 @@ export type GoogleAdsProductsResp = { items: GoogleAdsProductRow[]; range: Googl
 /** Hesap seçici ortak query parçası — boş string gönderme. */
 export type GoogleAdsCustomerArg = { customer_id?: string };
 
+/* ---------------- dönüşüm sağlığı / izleme ---------------- */
+
+export type GoogleAdsConversionStat = {
+  name: string;
+  origin: string;
+  category: string;
+  status: string;
+  primary: boolean;
+  conversions: number;
+  all_conversions: number;
+};
+
+export type GoogleAdsConversionHealthResp = {
+  range: GoogleAdsDateRange;
+  clicks: number;
+  conversions: number;
+  all_conversions: number;
+  website_conversions: number;
+  website_all_conversions: number;
+  verdict: 'OK' | 'WEBSITE_ZERO' | 'LOW_TRAFFIC';
+  actions: GoogleAdsConversionStat[];
+};
+
+export const ADS_CONV_ORIGIN_LABELS: Record<string, string> = {
+  WEBSITE: 'Web (etiket)',
+  GOOGLE_HOSTED: 'Google otomatik',
+  APP: 'Uygulama',
+  CALL_FROM_ADS: 'Reklamdan arama',
+  STORE: 'Mağaza',
+  YOUTUBE_HOSTED: 'YouTube',
+};
+
+export const ADS_CONV_VERDICT: Record<string, { label: string; tone: 'ok' | 'warn' | 'info' }> = {
+  OK: { label: 'Web dönüşümleri kaydediliyor', tone: 'ok' },
+  WEBSITE_ZERO: { label: 'Trafik var ama web formu dönüşümü 0 — etiket/teslimi kontrol et', tone: 'warn' },
+  LOW_TRAFFIC: { label: 'Dönüşüm için yeterli tıklama birikmedi', tone: 'info' },
+};
+
 /* ---------------- PMax öğe grubu öğeleri (metin/görsel/video) ---------------- */
 
 export const GOOGLE_ADS_IMAGE_FIELD_TYPES = [

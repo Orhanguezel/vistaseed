@@ -9,6 +9,7 @@ import { baseApi } from "@/integrations/base-api";
 import type {
   GoogleAdsAccountsResp,
   GoogleAdsProductsResp,
+  GoogleAdsConversionHealthResp,
   GoogleAdsAdGroupsResp,
   GoogleAdsBiddingArgs,
   GoogleAdsBiddingResp,
@@ -106,6 +107,11 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
     /** GET /admin/google-ads/products?range=&customer_id= */
     googleAdsProducts: b.query<GoogleAdsProductsResp, { range?: GoogleAdsDateRange; customer_id?: string } | void>({
       query: (params): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/products`, params: params ?? {} }),
+    }),
+
+    /** GET /admin/google-ads/conversion-health?range=&customer_id= */
+    googleAdsConversionHealth: b.query<GoogleAdsConversionHealthResp, { range?: GoogleAdsDateRange; customer_id?: string } | void>({
+      query: (params): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/conversion-health`, params: params ?? {} }),
     }),
 
     /** POST /admin/google-ads/campaigns/:id/bidding */
@@ -219,6 +225,7 @@ export const {
   useGoogleAdsReportQuery,
   useGoogleAdsAccountsQuery,
   useGoogleAdsProductsQuery,
+  useGoogleAdsConversionHealthQuery,
   useLazyGoogleAdsAdGroupsQuery,
   useGoogleAdsAddNegativeKeywordMutation,
   useGoogleAdsAddKeywordMutation,

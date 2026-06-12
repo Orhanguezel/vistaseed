@@ -121,6 +121,21 @@
     "removeFailed": "Kaldırma başarısız",
     "noCredentials": "Önce Site Ayarları > API sekmesinden Google Ads kimlik bilgilerini girin."
   },
+  "health": {
+    "title": "Dönüşüm Sağlığı (gerçek veri)",
+    "clicks": "Tıklama",
+    "websiteConv": "Web formu dönüşümü",
+    "counted": "Sayılan (bidding)",
+    "allConv": "Tüm dönüşümler",
+    "note": "\"Sayılan\" = teklif stratejisinin optimize ettiği birincil dönüşüm. \"Web (etiket)\" senin formundan; \"Google otomatik\" = yol tarifi/etkileşim gibi yumuşak aksiyonlar (sayılmaz, normaldir). Sahte dönüşüm üretilmez — burada yalnızca gerçek olaylar görünür.",
+    "columns": {
+      "action": "Aksiyon",
+      "origin": "Kaynak",
+      "primary": "Kategori",
+      "counted": "Sayılan",
+      "all": "Tüm"
+    }
+  },
   "insights": {
     "loading": "Analiz yükleniyor...",
     "noConversionsTitle": "Dönüşüm verisi yok",
