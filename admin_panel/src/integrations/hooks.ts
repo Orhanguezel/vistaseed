@@ -304,6 +304,8 @@ export {
   useGoogleAdsVerifyMutation,
   useGoogleAdsCampaignsQuery,
   useLazyGoogleAdsCampaignsQuery,
+  useGoogleAdsSetStatusMutation,
+  useGoogleAdsSetBudgetMutation,
 } from "@/integrations/endpoints/admin/google-ads-admin-endpoints";
 export {
   useAdminGetQuery,

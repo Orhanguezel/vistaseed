@@ -1008,6 +1008,10 @@ export {
   type GoogleAdsSettingsModel,
   type GoogleAdsStatusResp,
   type GoogleAdsVerifyResp,
+  type GoogleAdsSetStatusBody,
+  type GoogleAdsSetStatusResp,
+  type GoogleAdsSetBudgetBody,
+  type GoogleAdsSetBudgetResp,
 } from "@/integrations/shared/google-ads";
 export {
   ADMIN_USERS_ALL_ROLES,

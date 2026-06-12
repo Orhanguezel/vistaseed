@@ -6,18 +6,25 @@
 'use client';
 
 import * as React from 'react';
-import { RefreshCw } from 'lucide-react';
+import { Pause, Pencil, Play, RefreshCw } from 'lucide-react';
+import { toast } from 'sonner';
 
 import { useAdminT } from '@/app/(main)/admin/_components/common/use-admin-t';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { useGoogleAdsCampaignsQuery } from '@/integrations/hooks';
+import {
+  useGoogleAdsCampaignsQuery,
+  useGoogleAdsSetBudgetMutation,
+  useGoogleAdsSetStatusMutation,
+} from '@/integrations/hooks';
 import {
   GOOGLE_ADS_DATE_RANGES,
   formatCtr,
+  getErrorMessage,
   microsToUnit,
+  type GoogleAdsCampaignRow,
   type GoogleAdsDateRange,
 } from '@/integrations/shared';
 
@@ -33,7 +40,42 @@ export default function GoogleAdsCampaignsPanel({ hasCredentials }: Props) {
     { range },
     { skip: !hasCredentials },
   );
+  const [setStatus, { isLoading: statusSaving }] = useGoogleAdsSetStatusMutation();
+  const [setBudget, { isLoading: budgetSaving }] = useGoogleAdsSetBudgetMutation();
   const items = data?.items ?? [];
+  const mutating = statusSaving || budgetSaving;
+
+  const handleToggleStatus = async (row: GoogleAdsCampaignRow) => {
+    const next = row.status === 'ENABLED' ? 'PAUSED' : 'ENABLED';
+    const confirmKey = next === 'PAUSED' ? 'campaigns.confirmPause' : 'campaigns.confirmEnable';
+    if (!window.confirm(`${t(confirmKey)}\n\n${row.name}`)) return;
+    try {
+      await setStatus({ id: row.id, status: next }).unwrap();
+      toast.success(t(next === 'PAUSED' ? 'campaigns.paused' : 'campaigns.enabled'));
+      void refetch();
+    } catch (err) {
+      toast.error(`${t('campaigns.actionFailed')}: ${getErrorMessage(err)}`);
+    }
+  };
+
+  const handleEditBudget = async (row: GoogleAdsCampaignRow) => {
+    const current = (row.budget_micros / 1_000_000).toFixed(2);
+    const input = window.prompt(`${t('campaigns.budgetPrompt')}\n\n${row.name}`, current);
+    if (input === null) return;
+    const amount = Number(String(input).replace(',', '.'));
+    if (!Number.isFinite(amount) || amount <= 0) {
+      toast.error(t('campaigns.budgetInvalid'));
+      return;
+    }
+    if (!window.confirm(`${t('campaigns.confirmBudget')} ${amount.toLocaleString('tr-TR')}`)) return;
+    try {
+      await setBudget({ budget_id: row.budget_id, amount }).unwrap();
+      toast.success(t('campaigns.budgetSaved'));
+      void refetch();
+    } catch (err) {
+      toast.error(`${t('campaigns.actionFailed')}: ${getErrorMessage(err)}`);
+    }
+  };
 
   if (!hasCredentials) {
     return <p className="py-6 text-muted-foreground text-sm">{t('campaigns.needCredentials')}</p>;
@@ -81,7 +123,8 @@ export default function GoogleAdsCampaignsPanel({ hasCredentials }: Props) {
                   <th className="py-2 pr-3 text-right">{t('campaigns.columns.ctr')}</th>
                   <th className="py-2 pr-3 text-right">{t('campaigns.columns.avgCpc')}</th>
                   <th className="py-2 pr-3 text-right">{t('campaigns.columns.cost')}</th>
-                  <th className="py-2 text-right">{t('campaigns.columns.conversions')}</th>
+                  <th className="py-2 pr-3 text-right">{t('campaigns.columns.conversions')}</th>
+                  <th className="py-2 text-right">{t('campaigns.columns.actions')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -96,13 +139,50 @@ export default function GoogleAdsCampaignsPanel({ hasCredentials }: Props) {
                         {row.status}
                       </Badge>
                     </td>
-                    <td className="py-2 pr-3 text-right">{microsToUnit(row.budget_micros)}</td>
+                    <td className="py-2 pr-3 text-right">
+                      <span className="inline-flex items-center gap-1">
+                        {microsToUnit(row.budget_micros)}
+                        {row.budget_id && row.status !== 'REMOVED' ? (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-6 w-6 p-0"
+                            disabled={mutating}
+                            onClick={() => void handleEditBudget(row)}
+                          >
+                            <Pencil className="h-3 w-3" />
+                          </Button>
+                        ) : null}
+                      </span>
+                    </td>
                     <td className="py-2 pr-3 text-right">{row.impressions.toLocaleString('tr-TR')}</td>
                     <td className="py-2 pr-3 text-right">{row.clicks.toLocaleString('tr-TR')}</td>
                     <td className="py-2 pr-3 text-right">{formatCtr(row.ctr)}</td>
                     <td className="py-2 pr-3 text-right">{microsToUnit(row.average_cpc_micros)}</td>
                     <td className="py-2 pr-3 text-right">{microsToUnit(row.cost_micros)}</td>
-                    <td className="py-2 text-right">{row.conversions.toLocaleString('tr-TR')}</td>
+                    <td className="py-2 pr-3 text-right">{row.conversions.toLocaleString('tr-TR')}</td>
+                    <td className="py-2 text-right">
+                      {row.status === 'ENABLED' || row.status === 'PAUSED' ? (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          disabled={mutating}
+                          onClick={() => void handleToggleStatus(row)}
+                        >
+                          {row.status === 'ENABLED' ? (
+                            <>
+                              <Pause className="mr-1 h-3 w-3" />
+                              {t('campaigns.pause')}
+                            </>
+                          ) : (
+                            <>
+                              <Play className="mr-1 h-3 w-3" />
+                              {t('campaigns.enable')}
+                            </>
+                          )}
+                        </Button>
+                      ) : null}
+                    </td>
                   </tr>
                 ))}
               </tbody>

@@ -74,6 +74,7 @@ export type GoogleAdsCampaignRow = {
   name: string;
   status: string;
   channel_type: string;
+  budget_id: string;
   budget_micros: number;
   impressions: number;
   clicks: number;
@@ -96,3 +97,27 @@ export function microsToUnit(micros: number): string {
 export function formatCtr(ctr: number): string {
   return `%${(ctr * 100).toLocaleString('tr-TR', { maximumFractionDigits: 2 })}`;
 }
+
+/** POST /admin/google-ads/campaigns/:id/status */
+export type GoogleAdsSetStatusBody = {
+  id: string;
+  status: "ENABLED" | "PAUSED";
+};
+
+export type GoogleAdsSetStatusResp = {
+  ok: boolean;
+  campaign_id: string;
+  status: string;
+};
+
+/** POST /admin/google-ads/campaigns/budget */
+export type GoogleAdsSetBudgetBody = {
+  budget_id: string;
+  amount: number;
+};
+
+export type GoogleAdsSetBudgetResp = {
+  ok: boolean;
+  budget_id: string;
+  amount_micros: number;
+};

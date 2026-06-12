@@ -9,6 +9,10 @@ import { baseApi } from "@/integrations/base-api";
 import type {
   GoogleAdsCampaignsResp,
   GoogleAdsDateRange,
+  GoogleAdsSetBudgetBody,
+  GoogleAdsSetBudgetResp,
+  GoogleAdsSetStatusBody,
+  GoogleAdsSetStatusResp,
   GoogleAdsStatusResp,
   GoogleAdsVerifyResp,
 } from "@/integrations/shared";
@@ -37,6 +41,24 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
         params: params ?? {},
       }),
     }),
+
+    /** POST /admin/google-ads/campaigns/:id/status */
+    googleAdsSetStatus: b.mutation<GoogleAdsSetStatusResp, GoogleAdsSetStatusBody>({
+      query: ({ id, status }): FetchArgs => ({
+        url: `${GOOGLE_ADS_ADMIN_BASE}/campaigns/${id}/status`,
+        method: "POST",
+        body: { status },
+      }),
+    }),
+
+    /** POST /admin/google-ads/campaigns/budget */
+    googleAdsSetBudget: b.mutation<GoogleAdsSetBudgetResp, GoogleAdsSetBudgetBody>({
+      query: (body): FetchArgs => ({
+        url: `${GOOGLE_ADS_ADMIN_BASE}/campaigns/budget`,
+        method: "POST",
+        body,
+      }),
+    }),
   }),
   overrideExisting: true,
 });
@@ -46,4 +68,6 @@ export const {
   useGoogleAdsVerifyMutation,
   useGoogleAdsCampaignsQuery,
   useLazyGoogleAdsCampaignsQuery,
+  useGoogleAdsSetStatusMutation,
+  useGoogleAdsSetBudgetMutation,
 } = googleAdsAdminApi;

@@ -34,7 +34,19 @@
       "ctr": "CTR",
       "avgCpc": "Ort. TBM",
       "cost": "Maliyet",
-      "conversions": "Dönüşüm"
-    }
+      "conversions": "Dönüşüm",
+      "actions": "İşlem"
+    },
+    "pause": "Duraklat",
+    "enable": "Başlat",
+    "paused": "Kampanya duraklatıldı",
+    "enabled": "Kampanya başlatıldı",
+    "confirmPause": "Bu kampanya DURAKLATILACAK — reklamlar yayından kalkar. Devam edilsin mi?",
+    "confirmEnable": "Bu kampanya BAŞLATILACAK — reklamlar yayına girer ve harcama başlar. Devam edilsin mi?",
+    "budgetPrompt": "Yeni günlük bütçe (hesabın para biriminde):",
+    "budgetInvalid": "Geçersiz bütçe değeri",
+    "confirmBudget": "Günlük bütçe şu değere güncellenecek:",
+    "budgetSaved": "Günlük bütçe güncellendi",
+    "actionFailed": "İşlem başarısız"
   }
 }
