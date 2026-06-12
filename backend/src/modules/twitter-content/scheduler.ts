@@ -1,10 +1,10 @@
 // src/modules/twitter-content/scheduler.ts
-// 5 dakikalık tick: günlük kuyruk kurulumu + dispatcher.
-// twitter_enabled=false ise hiçbir şey yapmaz (panel anahtarı tek otorite).
+// 5 dakikalık tick: günlük kuyruk kurulumu + çok-platformlu dispatcher.
+// İçerik kurulumu twitter_enabled'a bağlı; dispatch her aktif platformu işler.
 
 import {
   getTwitterSettings,
-  processTwitterQueueOnce,
+  processSocialQueueOnce,
   repoGetTwitterSettingsMap,
   repoSetTwitterSetting,
 } from '@agro/shared-backend/modules/twitter';
@@ -36,15 +36,16 @@ async function tick(): Promise<void> {
   if (running) return;
   running = true;
   try {
-    const settings = await getTwitterSettings();
-    if (!settings.enabled) return;
-
     const now = new Date();
-    await buildIfNeeded(now);
 
-    const result = await processTwitterQueueOnce();
+    // İçerik motoru (X şablonları) twitter_enabled anahtarına bağlı
+    const settings = await getTwitterSettings();
+    if (settings.enabled) await buildIfNeeded(now);
+
+    // Dispatcher tüm aktif platformların kuyruğunu işler (FB/IG/LinkedIn dahil)
+    const result = await processSocialQueueOnce();
     if (result.processed) {
-      console.log(`[twitter-content] dispatch id=${result.id} status=${result.status}`);
+      console.log(`[twitter-content] dispatch platform=${result.platform} id=${result.id} status=${result.status}`);
     }
   } catch (err) {
     console.error('[twitter-content] tick hatasi', err);

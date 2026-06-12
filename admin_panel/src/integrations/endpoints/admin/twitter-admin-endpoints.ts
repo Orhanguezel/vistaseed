@@ -7,6 +7,7 @@ import type { FetchArgs } from "@reduxjs/toolkit/query";
 
 import { baseApi } from "@/integrations/base-api";
 import type {
+  SocialPlatform,
   TwitterAiDraftBody,
   TwitterAiDraftResp,
   TwitterLogListParams,
@@ -22,9 +23,12 @@ import { TWITTER_ADMIN_BASE } from "@/integrations/shared";
 
 export const twitterAdminApi = baseApi.injectEndpoints({
   endpoints: (b) => ({
-    /** GET /admin/twitter/status */
-    twitterStatus: b.query<TwitterStatusResp, void>({
-      query: (): FetchArgs => ({ url: `${TWITTER_ADMIN_BASE}/status` }),
+    /** GET /admin/twitter/status?platform= */
+    twitterStatus: b.query<TwitterStatusResp, { platform?: SocialPlatform } | void>({
+      query: (params): FetchArgs => ({
+        url: `${TWITTER_ADMIN_BASE}/status`,
+        params: params ?? {},
+      }),
     }),
 
     /** GET /admin/twitter/templates */
@@ -33,11 +37,11 @@ export const twitterAdminApi = baseApi.injectEndpoints({
     }),
 
     /** POST /admin/twitter/verify */
-    twitterVerify: b.mutation<TwitterVerifyResp, void>({
-      query: (): FetchArgs => ({
+    twitterVerify: b.mutation<TwitterVerifyResp, { platform?: SocialPlatform } | void>({
+      query: (body): FetchArgs => ({
         url: `${TWITTER_ADMIN_BASE}/verify`,
         method: "POST",
-        body: {},
+        body: body ?? {},
       }),
     }),
 

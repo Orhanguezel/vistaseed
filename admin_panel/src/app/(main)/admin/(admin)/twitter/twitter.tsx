@@ -24,14 +24,15 @@ import TwitterTemplatePanel from "./_components/twitter-template-panel";
 export default function TwitterAdminPage() {
   const t = useAdminT("admin.twitter");
   const [platform, setPlatform] = React.useState<SocialPlatform>("twitter");
-  const { data: status, refetch: refetchStatus } = useTwitterStatusQuery();
+  const { data: status, refetch: refetchStatus } = useTwitterStatusQuery({ platform });
   const [twitterVerify, { isLoading: verifying }] = useTwitterVerifyMutation();
 
   const handleVerify = async () => {
     try {
-      const res = await twitterVerify().unwrap();
+      const res = await twitterVerify({ platform }).unwrap();
       if (res.ok && res.account) {
-        toast.success(`${t("header.verified")}: @${res.account.username}`);
+        const label = res.account.username || res.account.name;
+        toast.success(`${t("header.verified")}: ${platform === "twitter" ? "@" : ""}${label}`);
       } else {
         toast.error(t("header.verifyFailed"));
       }
@@ -75,7 +76,7 @@ export default function TwitterAdminPage() {
             variant="outline"
             size="sm"
             onClick={handleVerify}
-            disabled={platform !== "twitter" || verifying || !status?.has_credentials}
+            disabled={verifying || !status?.has_credentials}
           >
             <ShieldCheck className="mr-2 h-4 w-4" />
             {verifying ? t("header.verifying") : t("header.verify")}
