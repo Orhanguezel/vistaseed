@@ -23,6 +23,7 @@ export type AdminPermissionKey =
   | 'admin.telegram'
   | 'admin.twitter'
   | 'admin.google_ads'
+  | 'admin.search_console'
   | 'admin.audit'
   | 'admin.db_admin'
   | 'admin.popups'
@@ -54,6 +55,7 @@ export type AdminNavKey =
   | 'telegram'
   | 'twitter'
   | 'google_ads'
+  | 'search_console'
   | 'audit'
   | 'db_admin'
   | 'popups'
@@ -87,6 +89,7 @@ const ADMIN_PERMISSION_ROLE_MAP: Record<AdminPermissionKey, PanelRole[]> = {
   'admin.telegram': ADMIN_ONLY,
   'admin.twitter': ADMIN_ONLY,
   'admin.google_ads': ADMIN_ONLY,
+  'admin.search_console': ADMIN_ONLY,
   'admin.audit': ADMIN_ONLY,
   'admin.db_admin': ADMIN_ONLY,
   'admin.popups': ADMIN_ONLY,
@@ -124,6 +127,7 @@ const ADMIN_NAV_PERMISSION_MAP: Partial<Record<AdminNavKey, AdminPermissionKey>>
   telegram: 'admin.telegram',
   twitter: 'admin.twitter',
   google_ads: 'admin.google_ads',
+  search_console: 'admin.search_console',
   audit: 'admin.audit',
   db_admin: 'admin.db_admin',
   popups: 'admin.popups',
@@ -162,6 +166,7 @@ const ADMIN_PERMISSION_PATHS: Record<AdminPermissionKey, string[]> = {
   'admin.telegram': ['/admin/telegram'],
   'admin.twitter': ['/admin/twitter'],
   'admin.google_ads': ['/admin/google-ads'],
+  'admin.search_console': ['/admin/search-console'],
   'admin.audit': ['/admin/audit'],
   'admin.db_admin': ['/admin/db-admin'],
   'admin.popups': ['/admin/popups'],

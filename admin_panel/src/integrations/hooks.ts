@@ -327,6 +327,13 @@ export {
   useGoogleAdsRemoveAssetMutation,
 } from "@/integrations/endpoints/admin/google-ads-admin-endpoints";
 export {
+  useGscStatusQuery,
+  useGscSitesQuery,
+  useGscOverviewQuery,
+  useGscSitemapsQuery,
+  useGscInspectMutation,
+} from "@/integrations/endpoints/admin/search-console-admin-endpoints";
+export {
   useAdminGetQuery,
   useAdminListQuery,
   useAdminRemoveUserMutation,

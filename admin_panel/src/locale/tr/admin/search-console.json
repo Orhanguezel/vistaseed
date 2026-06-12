@@ -1,0 +1,41 @@
+{
+  "title": "Search Console",
+  "description": "Arama performansı, sorgular, sayfalar, sitemap ve indexleme durumu",
+  "connected": "Bağlı",
+  "disconnected": "Bağlı değil",
+  "selectSite": "Site seçin",
+  "cards": {
+    "clicks": "Tıklama",
+    "impressions": "Gösterim",
+    "ctr": "CTR",
+    "position": "Ort. Pozisyon"
+  },
+  "queries": "En Çok Tıklanan Sorgular",
+  "pages": "En Çok Tıklanan Sayfalar",
+  "cols": {
+    "query": "Sorgu",
+    "page": "Sayfa",
+    "clicks": "Tıklama",
+    "impressions": "Gösterim",
+    "ctr": "CTR",
+    "position": "Pozisyon"
+  },
+  "empty": "Seçilen dönemde veri yok.",
+  "inspect": {
+    "title": "URL İnceleme / Indexleme",
+    "description": "Bir URL'nin Google'da indexli olup olmadığını kontrol et",
+    "placeholder": "https://www.vistaseeds.com.tr/...",
+    "check": "Kontrol Et",
+    "checking": "Kontrol ediliyor...",
+    "failed": "İnceleme başarısız",
+    "coverage": "Kapsam",
+    "lastCrawl": "Son tarama"
+  },
+  "sitemaps": "Site Haritaları",
+  "sm": {
+    "errors": "hata",
+    "warnings": "uyarı",
+    "ok": "Sorunsuz",
+    "empty": "Kayıtlı site haritası yok."
+  }
+}

@@ -33,6 +33,7 @@ import {
   Twitter,
   Users,
   type LucideIcon,
+  Search,
 } from 'lucide-react';
 import type { TranslateFn } from '@/i18n/translation-utils';
 import { getAdminNavRoles } from '@/navigation/permissions';
@@ -145,6 +146,7 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
       { key: 'telegram', url: '/admin/telegram', icon: Send },
       { key: 'twitter', url: '/admin/twitter', icon: Twitter },
       { key: 'google_ads', url: '/admin/google-ads', icon: BarChart3 },
+      { key: 'search_console', url: '/admin/search-console', icon: Search },
       { key: 'audit', url: '/admin/audit', icon: MessageSquare },
       { key: 'db_admin', url: '/admin/db-admin', icon: Database },
       { key: 'cache', url: '/admin/cache', icon: Eraser },
@@ -193,6 +195,7 @@ const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   telegram: 'Telegram',
   twitter: 'Twitter / X',
   google_ads: 'Google Ads',
+  search_console: 'Search Console',
   audit: 'Denetim',
   db_admin: 'Veritabanı',
   popups: 'Popup\'lar',

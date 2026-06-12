@@ -1077,6 +1077,26 @@ export {
   type GoogleAdsAssetRemoveResp,
 } from "@/integrations/shared/google-ads";
 export {
+  SEARCH_CONSOLE_ADMIN_BASE,
+  GSC_RANGES,
+  GSC_RANGE_LABELS,
+  GSC_VERDICT_LABELS,
+  formatGscCtr,
+  formatGscPosition,
+  formatGscNumber,
+  type GscRange,
+  type GscSite,
+  type GscRow,
+  type GscTotals,
+  type GscSitemap,
+  type GscStatusResp,
+  type GscSitesResp,
+  type GscOverviewResp,
+  type GscSitemapsResp,
+  type GscInspectResp,
+  type GscInspectArgs,
+} from "@/integrations/shared/search-console";
+export {
   ADMIN_USERS_ALL_ROLES,
   ADMIN_USERS_BASE,
   ADMIN_USERS_DEFAULT_LIMIT,

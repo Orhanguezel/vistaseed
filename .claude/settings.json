@@ -133,7 +133,14 @@
       "Bash(sed -n 105,125p src/integrations/shared/site-settings-api-config.ts)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"https://panel.vistaseeds.com.tr/admin/google-ads\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" \"https://www.vistaseeds.com.tr/api/v1/admin/google-ads/conversion-health\")",
-      "Bash(grep -rln \"CREATE TABLE.*offers\\\\|\\\\`offers\\\\`\" sql/)"
+      "Bash(grep -rln \"CREATE TABLE.*offers\\\\|\\\\`offers\\\\`\" sql/)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}\\\\n' __TRACKED_VAR__/offline/status)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}\\\\n' -X POST __TRACKED_VAR__/offline/upload -d '{}')",
+      "Bash(curl -s \"https://www.vistaseeds.com.tr/tr?gclid=TEST123\")",
+      "Bash(curl -s \"https://www.vistaseeds.com.tr/api/v1/site_settings/google_ads_refresh_token\")",
+      "Bash(curl -s \"https://www.vistaseeds.com.tr/api/v1/site_settings/ga4_measurement_id\")",
+      "Bash(sed -n '126,140p' packages/shared-backend/modules/siteSettings/helpers/service.ts)",
+      "Bash(sed -n '140,200p' projects/vistaseeds/admin_panel/src/navigation/sidebar/sidebar-items.ts)"
     ],
     "defaultMode": "bypassPermissions",
     "additionalDirectories": [
