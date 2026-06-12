@@ -1,5 +1,12 @@
 # AGENTS.md — vistaseeds
 
+## 🔔 CODEX AKTİF GÖREV (2026-06-12)
+
+> **Codex → Search Console modülünü genişlet:** [`CODEX-GSC-MODULU-GENISLETME.md`](CODEX-GSC-MODULU-GENISLETME.md)
+> İndexleme analizi (hangi içerik indexli/değil + düzeltme önerileri), zaman serisi grafikler, cihaz/ülke kırılımı, sayfa→sorgu drill-down, sitemap gönder/sil. Detaylı checklist o dosyada.
+>
+> **Sahiplik/çakışma:** Claude paralelde GA4 / Meta CAPI / GTM / rotasyon modüllerini yazıyor. Codex SADECE `searchConsole` backend modülü + `/admin/search-console` panel sayfası + GSC locale dosyasına dokunur. Paylaşımlı barrel'lara (`integrations/shared.ts`, `hooks.ts`, `sidebar-items.ts`, `permissions.ts`, `_shared/google-oauth.ts`) yalnızca KENDİ satırını ekler, mevcut satırları değiştirmez/silmez.
+
 ## Proje Özeti
 
 vistaseeds, tohumculuk ve tarım odaklı kurumsal web sitesi projesidir. Kökte public site (`frontend/`), yönetim paneli (`admin_panel/`) ve Fastify backend (`backend/`) birlikte yer alır.
