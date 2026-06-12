@@ -22,6 +22,7 @@ import {
 import {
   ADS_DEVICE_LABELS,
   ADS_MATCH_TYPE_LABELS,
+  ADS_RECOMMENDATION_LABELS,
   ADS_STATUS_LABELS,
   adsLabel,
   formatCtr,
@@ -178,6 +179,30 @@ export default function GoogleAdsInsightsPanel({ hasCredentials, range }: Props)
           </CardHeader>
         </Card>
       ) : null}
+
+      <Card>
+        <CardHeader>
+          <CardTitle>{t('insights.recommendations')}</CardTitle>
+          <CardDescription>{t('insights.recommendationsDesc')}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          {(data?.recommendations ?? []).length === 0 ? (
+            <p className="text-muted-foreground text-sm">{t('insights.noRecommendations')}</p>
+          ) : (
+            <div className="space-y-2">
+              {(data?.recommendations ?? []).map((rec, idx) => (
+                <div key={idx} className="flex flex-wrap items-center gap-2 rounded-lg border border-border p-3 text-sm">
+                  <span className="font-medium">
+                    {ADS_RECOMMENDATION_LABELS[rec.type] ?? rec.type}
+                  </span>
+                  {rec.campaign ? <Badge variant="outline">{rec.campaign}</Badge> : null}
+                  {rec.dismissed ? <Badge variant="secondary">{t('insights.dismissed')}</Badge> : null}
+                </div>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       <Card>
         <CardHeader>

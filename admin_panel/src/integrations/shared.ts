@@ -1021,6 +1021,8 @@ export {
   type GoogleAdsTermRow,
   type GoogleAdsDeviceRow,
   type GoogleAdsInsightsResp,
+  type GoogleAdsRecommendationRow,
+  ADS_RECOMMENDATION_LABELS,
   type GoogleAdsKeywordStatusBody,
   type GoogleAdsKeywordStatusResp,
 } from "@/integrations/shared/google-ads";

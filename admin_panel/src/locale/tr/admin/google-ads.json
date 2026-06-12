@@ -84,6 +84,10 @@
     "confirmEnableKeyword": "Bu anahtar kelime BAŞLATILACAK — harcama yeniden başlar. Devam edilsin mi?",
     "pmaxNoTerms": "Maks. Performans kampanyalarında klasik arama terimi raporu bulunmaz — Google hedeflemeyi ürün feed'i ve reklam öğeleri üzerinden otomatik yapar.",
     "pmaxNoKeywords": "Maks. Performans kampanyalarında anahtar kelime kavramı yoktur; bu tablo yalnızca Arama kampanyaları için doludur (BereketFide, Haldefiyat).",
-    "emptyTable": "Seçilen dönemde veri yok."
+    "emptyTable": "Seçilen dönemde veri yok.",
+    "recommendations": "Google Önerileri",
+    "recommendationsDesc": "Google'ın hesap için ürettiği otomatik öneriler — dönüşüm verisi biriktikçe çoğalır",
+    "noRecommendations": "Şu an bekleyen öneri yok.",
+    "dismissed": "Kapatılmış"
   }
 }

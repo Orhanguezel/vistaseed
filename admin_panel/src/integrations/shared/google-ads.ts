@@ -187,7 +187,26 @@ export type GoogleAdsDeviceRow = {
   conversions: number;
 };
 
+export type GoogleAdsRecommendationRow = {
+  type: string;
+  dismissed: boolean;
+  campaign: string;
+};
+
+export const ADS_RECOMMENDATION_LABELS: Record<string, string> = {
+  IMPROVE_PERFORMANCE_MAX_AD_STRENGTH: "Maks. Performans reklam gücünü iyileştir (başlık/açıklama/görsel ekle)",
+  CAMPAIGN_BUDGET: "Kampanya bütçesini artır",
+  KEYWORD: "Yeni anahtar kelime ekle",
+  TARGET_CPA_OPT_IN: "Hedef EBM teklif stratejisine geç",
+  MAXIMIZE_CONVERSIONS_OPT_IN: "Dönüşümleri en üst düzeye çıkar stratejisine geç",
+  ENHANCED_CPC_OPT_IN: "Geliştirilmiş TBM'ye geç",
+  RESPONSIVE_SEARCH_AD: "Yeni duyarlı arama reklamı ekle",
+  SITELINK_ASSET: "Site bağlantısı öğesi ekle",
+  CALLOUT_ASSET: "Açıklama metni öğesi ekle",
+};
+
 export type GoogleAdsInsightsResp = {
+  recommendations: GoogleAdsRecommendationRow[];
   conversion_actions: GoogleAdsConversionAction[];
   search_terms: GoogleAdsTermRow[];
   keywords: GoogleAdsTermRow[];
