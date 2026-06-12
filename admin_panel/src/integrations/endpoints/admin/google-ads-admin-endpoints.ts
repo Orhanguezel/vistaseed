@@ -10,6 +10,8 @@ import type {
   GoogleAdsAccountsResp,
   GoogleAdsProductsResp,
   GoogleAdsConversionHealthResp,
+  GoogleAdsOfflineStatus,
+  GoogleAdsOfflineUploadResp,
   GoogleAdsAdGroupsResp,
   GoogleAdsBiddingArgs,
   GoogleAdsBiddingResp,
@@ -112,6 +114,16 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
     /** GET /admin/google-ads/conversion-health?range=&customer_id= */
     googleAdsConversionHealth: b.query<GoogleAdsConversionHealthResp, { range?: GoogleAdsDateRange; customer_id?: string } | void>({
       query: (params): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/conversion-health`, params: params ?? {} }),
+    }),
+
+    /** GET /admin/google-ads/offline/status */
+    googleAdsOfflineStatus: b.query<GoogleAdsOfflineStatus, void>({
+      query: (): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/offline/status` }),
+    }),
+
+    /** POST /admin/google-ads/offline/upload */
+    googleAdsOfflineUpload: b.mutation<GoogleAdsOfflineUploadResp, { customer_id?: string } | void>({
+      query: (body): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/offline/upload`, method: "POST", body: body ?? {} }),
     }),
 
     /** POST /admin/google-ads/campaigns/:id/bidding */
@@ -226,6 +238,8 @@ export const {
   useGoogleAdsAccountsQuery,
   useGoogleAdsProductsQuery,
   useGoogleAdsConversionHealthQuery,
+  useGoogleAdsOfflineStatusQuery,
+  useGoogleAdsOfflineUploadMutation,
   useLazyGoogleAdsAdGroupsQuery,
   useGoogleAdsAddNegativeKeywordMutation,
   useGoogleAdsAddKeywordMutation,

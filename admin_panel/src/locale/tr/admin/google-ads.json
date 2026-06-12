@@ -121,6 +121,21 @@
     "removeFailed": "Kaldırma başarısız",
     "noCredentials": "Önce Site Ayarları > API sekmesinden Google Ads kimlik bilgilerini girin."
   },
+  "offline": {
+    "title": "Offline Dönüşüm Import (gerçek teklifler)",
+    "description": "Reklamdan gelen (gclid'li) gerçek teklif talepleri Google Ads'e \"sayılan\" dönüşüm olarak yüklenir. Sahte veri yok — her satır DB'deki gerçek bir teklif.",
+    "withGclid": "Reklamdan gelen teklif",
+    "uploaded": "Yüklendi",
+    "pending": "Bekleyen",
+    "ready": "Yüklemeye hazır",
+    "note": "Google tıklamayı işleyene kadar teklifler ~2 saat bekletilir. \"Yüklemeye hazır\" olanları şimdi yükleyebilir veya bekleyebilirsin (otomatik tekrar denenir).",
+    "uploadNow": "Bekleyenleri Yükle",
+    "uploading": "Yükleniyor...",
+    "uploadedToast": "dönüşüm Google Ads'e yüklendi",
+    "nothingReady": "Şu an yüklemeye hazır teklif yok",
+    "partial": "Bazıları yüklendi",
+    "uploadFailed": "Yükleme başarısız"
+  },
   "health": {
     "title": "Dönüşüm Sağlığı (gerçek veri)",
     "clicks": "Tıklama",

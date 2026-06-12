@@ -1028,6 +1028,8 @@ export {
   type GoogleAdsConversionHealthResp,
   ADS_CONV_ORIGIN_LABELS,
   ADS_CONV_VERDICT,
+  type GoogleAdsOfflineStatus,
+  type GoogleAdsOfflineUploadResp,
   type GoogleAdsCampaignRow,
   type GoogleAdsCampaignsResp,
   type GoogleAdsCredentialFieldDef,

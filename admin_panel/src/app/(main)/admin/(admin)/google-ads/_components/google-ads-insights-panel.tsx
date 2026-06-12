@@ -38,6 +38,7 @@ import {
 
 import GoogleAdsKeywordManager from './google-ads-keyword-manager';
 import GoogleAdsConversionHealth from './google-ads-conversion-health';
+import GoogleAdsOfflinePanel from './google-ads-offline-panel';
 
 const ALL_CAMPAIGNS = '__all__';
 
@@ -183,6 +184,8 @@ export default function GoogleAdsInsightsPanel({ hasCredentials, range, customer
       </div>
 
       <GoogleAdsConversionHealth hasCredentials={hasCredentials} range={range} customerId={cid} />
+
+      <GoogleAdsOfflinePanel hasCredentials={hasCredentials} customerId={cid} />
 
       {totalConversions === 0 ? (
         <Card className="border-destructive/50">

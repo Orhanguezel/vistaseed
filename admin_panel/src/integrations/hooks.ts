@@ -313,6 +313,8 @@ export {
   useGoogleAdsAccountsQuery,
   useGoogleAdsProductsQuery,
   useGoogleAdsConversionHealthQuery,
+  useGoogleAdsOfflineStatusQuery,
+  useGoogleAdsOfflineUploadMutation,
   useLazyGoogleAdsAdGroupsQuery,
   useGoogleAdsAddNegativeKeywordMutation,
   useGoogleAdsAddKeywordMutation,

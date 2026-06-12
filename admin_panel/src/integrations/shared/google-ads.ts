@@ -411,6 +411,23 @@ export const ADS_CONV_ORIGIN_LABELS: Record<string, string> = {
   YOUTUBE_HOSTED: 'YouTube',
 };
 
+export type GoogleAdsOfflineStatus = {
+  with_gclid: number;
+  uploaded: number;
+  pending: number;
+  ready: number;
+};
+
+export type GoogleAdsOfflineUploadResp = {
+  action: string;
+  received: number;
+  uploaded: number;
+  failed: number;
+  errors: string[];
+  uploaded_refs: string[];
+  status: GoogleAdsOfflineStatus;
+};
+
 export const ADS_CONV_VERDICT: Record<string, { label: string; tone: 'ok' | 'warn' | 'info' }> = {
   OK: { label: 'Web dönüşümleri kaydediliyor', tone: 'ok' },
   WEBSITE_ZERO: { label: 'Trafik var ama web formu dönüşümü 0 — etiket/teslimi kontrol et', tone: 'warn' },

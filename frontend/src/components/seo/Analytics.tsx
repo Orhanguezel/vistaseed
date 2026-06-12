@@ -27,7 +27,7 @@ export function GoogleAdsTag({ awId, conversions }: { awId: string; conversions:
         strategy="afterInteractive"
       />
       <Script id="ads-tag-init" strategy="afterInteractive">
-        {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=window.gtag||gtag;gtag('js',new Date());gtag('config','${awId}');window.__adsConversions=${JSON.stringify(conversions)};`}
+        {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=window.gtag||gtag;gtag('js',new Date());gtag('config','${awId}');window.__adsConversions=${JSON.stringify(conversions)};(function(){try{var p=new URLSearchParams(location.search);var k=['gclid','gbraid','wbraid'];for(var i=0;i<k.length;i++){var v=p.get(k[i]);if(v){document.cookie='_vs_gclid='+encodeURIComponent(JSON.stringify({id:v,source:k[i],at:Date.now()}))+'; Max-Age=7776000; Path=/; SameSite=Lax';break;}}}catch(e){}})();`}
       </Script>
     </>
   );

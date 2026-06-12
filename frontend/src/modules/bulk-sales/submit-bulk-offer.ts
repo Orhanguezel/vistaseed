@@ -1,5 +1,6 @@
 import { apiPost } from "@/lib/api-client";
 import { API } from "@/config/api-endpoints";
+import { getStoredGclid } from "@/lib/gclid";
 
 export type BulkOfferOrgType =
   | "cooperative"
@@ -24,8 +25,12 @@ export interface BulkOfferFormPayload {
   region?: string;
   estimated_volume?: string;
   website?: string;
+  gclid?: string;
+  gclid_source?: "gclid" | "gbraid" | "wbraid";
 }
 
 export function submitBulkOffer(payload: BulkOfferFormPayload) {
-  return apiPost<{ success: boolean; id: string }>(API.offers.publicCreate, payload);
+  const g = getStoredGclid();
+  const enriched = g ? { ...payload, gclid: g.id, gclid_source: g.source } : payload;
+  return apiPost<{ success: boolean; id: string }>(API.offers.publicCreate, enriched);
 }

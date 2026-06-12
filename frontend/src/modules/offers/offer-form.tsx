@@ -3,6 +3,7 @@
 import * as React from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { fireAdsConversion } from "@/lib/ads-conversion";
+import { getStoredGclid } from "@/lib/gclid";
 import { Send, CheckCircle2, ChevronRight, Building2, User, Mail, Phone, MapPin, Package, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -55,6 +56,10 @@ export function OfferForm() {
         consent_terms: true as const,
         consent_marketing: false,
         website: "",
+        ...(() => {
+          const g = getStoredGclid();
+          return g ? { gclid: g.id, gclid_source: g.source } : {};
+        })(),
       };
 
       const res = await fetch(`${BASE_URL}${API.offers.publicCreate}`, {
