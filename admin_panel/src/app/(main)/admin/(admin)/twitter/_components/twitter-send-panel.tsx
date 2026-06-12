@@ -121,7 +121,7 @@ export default function TwitterSendPanel({ platform }: TwitterSendPanelProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{t('send.title')}</CardTitle>
+        <CardTitle>{t(`send.title.${platform}` as 'send.title.twitter')}</CardTitle>
         <CardDescription>{t('send.description')}</CardDescription>
       </CardHeader>
 
@@ -131,7 +131,7 @@ export default function TwitterSendPanel({ platform }: TwitterSendPanelProps) {
             <div>
               <div className="flex items-center gap-2 text-sm font-semibold">
                 <Sparkles className="h-4 w-4 text-primary" />
-                {t('send.ai.title')}
+                {t(`send.ai.title.${platform}` as 'send.ai.title.twitter')}
               </div>
               <p className="mt-1 text-xs text-muted-foreground">
                 {t('send.ai.description', { platform: t(`platforms.${platform}` as 'platforms.twitter') })}
@@ -205,7 +205,7 @@ export default function TwitterSendPanel({ platform }: TwitterSendPanelProps) {
         ) : null}
 
         <div className="space-y-2">
-          <Label>{t('send.bodyLabel')}</Label>
+          <Label>{t(`send.bodyLabel.${platform}` as 'send.bodyLabel.twitter')}</Label>
           <Textarea
             rows={6}
             value={text}

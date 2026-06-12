@@ -66,9 +66,21 @@
     "saveError": "Ayarlar kaydedilemedi"
   },
   "send": {
-    "title": "Manuel Tweet",
+    "title": {
+      "twitter": "Manuel Tweet",
+      "facebook": "Manuel Facebook Gönderisi",
+      "instagram": "Manuel Instagram Gönderisi",
+      "linkedin": "Manuel LinkedIn Gönderisi",
+      "youtube": "Manuel YouTube Gönderisi"
+    },
     "description": "Bu gönderi hesabınızdan herkese açık olarak paylaşılır.",
-    "bodyLabel": "Tweet Metni",
+    "bodyLabel": {
+      "twitter": "Tweet Metni",
+      "facebook": "Gönderi Metni",
+      "instagram": "Gönderi Metni (caption)",
+      "linkedin": "Gönderi Metni",
+      "youtube": "Açıklama Metni"
+    },
     "hashtagsLabel": "Hashtagler",
     "mediaLabel": "Görsel",
     "mediaHelper": "Bilgisayarınızdan yükleyin veya medya kütüphanesinden seçin.",
@@ -76,7 +88,13 @@
     "previewTitle": "Manuel tweet önizleme",
     "previewTime": "şimdi",
     "ai": {
-      "title": "AI Tweet Yardımı",
+      "title": {
+        "twitter": "AI Tweet Yardımı",
+        "facebook": "AI Gönderi Yardımı",
+        "instagram": "AI Gönderi Yardımı",
+        "linkedin": "AI Gönderi Yardımı",
+        "youtube": "AI Gönderi Yardımı"
+      },
       "description": "{platform} için VistaSeeds tonuna uygun, iddiasız ve üretici odaklı taslak hazırlar.",
       "templateLabel": "İçerik tipi",
       "productLabel": "Ürün bağlamı",
