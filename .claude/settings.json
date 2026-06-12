@@ -128,7 +128,9 @@
       "Bash(echo \"exit: $?\")",
       "Bash(python3 -c \"import json; d=json.load\\(open\\('src/locale/tr/admin/sidebar.json'\\)\\); print\\('twitter' in d['items'], 'google_ads' in d['items']\\)\")",
       "Bash(echo \"panel-tsc: $?\")",
-      "Bash(echo \"tsc: $?\")"
+      "Bash(echo \"tsc: $?\")",
+      "Bash(sed -n 1,66p src/integrations/shared/site-settings-api-config.ts)",
+      "Bash(sed -n 105,125p src/integrations/shared/site-settings-api-config.ts)"
     ],
     "defaultMode": "bypassPermissions",
     "additionalDirectories": [

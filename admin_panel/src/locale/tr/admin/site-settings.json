@@ -340,7 +340,8 @@
         "groq": "Groq",
         "openai": "OpenAI",
         "anthropic": "Anthropic",
-        "grok": "Grok"
+        "grok": "Grok",
+        "googleAds": "Google Ads"
       },
       "fields": {
         "twitterEnabled": "Otomatik X paylaşımı",
@@ -369,7 +370,14 @@
         "unsignedPreset": "Unsigned Preset",
         "gtmContainerId": "GTM Container ID",
         "ga4MeasurementId": "GA4 Measurement ID",
-        "model": "Model"
+        "model": "Model",
+        "googleAdsEnabled": "Google Ads entegrasyonu (salt okunur rapor)",
+        "googleAdsDeveloperToken": "Developer Token (MCC)",
+        "googleAdsClientId": "OAuth Client ID",
+        "googleAdsClientSecret": "OAuth Client Secret",
+        "googleAdsRefreshToken": "Refresh Token",
+        "googleAdsCustomerId": "Müşteri ID (reklam hesabı)",
+        "googleAdsLoginCustomerId": "MCC Müşteri ID (opsiyonel)"
       },
       "placeholders": {
         "providerOrder": "groq,openai,anthropic,grok",
@@ -380,7 +388,8 @@
         "groqModel": "llama-3.3-70b-versatile",
         "openaiModel": "gpt-4o-mini",
         "anthropicModel": "claude-3-5-haiku-latest",
-        "grokModel": "grok-2-latest"
+        "grokModel": "grok-2-latest",
+        "googleAdsCustomerId": "1234567890 (tiresiz)"
       }
     }
   },

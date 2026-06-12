@@ -8,18 +8,15 @@
     "verifying": "Doğrulanıyor...",
     "verified": "Bağlantı doğrulandı",
     "verifyFailed": "Doğrulama başarısız",
-    "accounts": "hesap"
-  },
-  "tabs": {
-    "campaigns": "Kampanyalar",
-    "settings": "Ayarlar"
+    "accounts": "hesap",
+    "apiSettings": "API Ayarları"
   },
   "campaigns": {
     "title": "Kampanya Performansı",
     "loading": "Kampanyalar yükleniyor...",
     "empty": "Seçilen aralıkta kampanya verisi yok.",
     "refresh": "Yenile",
-    "needCredentials": "Önce Ayarlar sekmesinden Google Ads kimlik bilgilerini girin.",
+    "needCredentials": "Önce Site Ayarları > API sekmesinden Google Ads kimlik bilgilerini girin.",
     "ranges": {
       "TODAY": "Bugün",
       "YESTERDAY": "Dün",
@@ -39,26 +36,5 @@
       "cost": "Maliyet",
       "conversions": "Dönüşüm"
     }
-  },
-  "settings": {
-    "title": "Google Ads Bağlantı Ayarları",
-    "enable": "Google Ads Entegrasyonunu Etkinleştir",
-    "enableDesc": "Raporlama bağlantısını açar; kampanyalara yazma işlemi yapılmaz.",
-    "credentials": {
-      "title": "API Kimlik Bilgileri",
-      "desc": "Developer token MCC hesabından alınır; OAuth2 client + refresh token Google Cloud Console üzerinden oluşturulur.",
-      "developerToken": "Developer Token",
-      "clientId": "OAuth Client ID",
-      "clientSecret": "OAuth Client Secret",
-      "refreshToken": "Refresh Token",
-      "customerId": "Müşteri ID (reklam hesabı)",
-      "loginCustomerId": "MCC Müşteri ID (opsiyonel)",
-      "placeholder": "••••••••"
-    },
-    "loading": "Ayarlar yükleniyor...",
-    "save": "Kaydet",
-    "saving": "Kaydediliyor...",
-    "saved": "Google Ads ayarları kaydedildi",
-    "saveError": "Ayarlar kaydedilemedi"
   }
 }
