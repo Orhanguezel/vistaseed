@@ -311,6 +311,7 @@ export {
   useGoogleAdsAssetGroupsQuery,
   useGoogleAdsAssetGroupAssetsQuery,
   useGoogleAdsUploadAssetMutation,
+  useGoogleAdsUploadAssetUrlMutation,
   useGoogleAdsAddTextMutation,
   useGoogleAdsAddVideoMutation,
   useGoogleAdsRemoveAssetMutation,

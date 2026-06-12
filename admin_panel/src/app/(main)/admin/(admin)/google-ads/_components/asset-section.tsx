@@ -1,23 +1,26 @@
 // =============================================================
 // FILE: src/app/(main)/admin/(admin)/google-ads/_components/asset-section.tsx
 // PMax öğe türü bölümü — metin/görsel/video ekle-listele-sil (descriptor bazlı)
+// Görsel: ortak AdminImageUploadField (Yükle + Kütüphane) → seçilen URL Ads'e gider
 // =============================================================
 
 'use client';
 
 import * as React from 'react';
-import { Plus, Trash2, Upload } from 'lucide-react';
+import { Plus, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { useAdminT } from '@/app/(main)/admin/_components/common/use-admin-t';
+import { AdminImageUploadField } from '@/components/common/admin-image-upload-field';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { resolveMediaUrl } from '@/lib/media-url';
 import {
   useGoogleAdsAddTextMutation,
   useGoogleAdsAddVideoMutation,
   useGoogleAdsRemoveAssetMutation,
-  useGoogleAdsUploadAssetMutation,
+  useGoogleAdsUploadAssetUrlMutation,
 } from '@/integrations/hooks';
 import {
   ADS_FIELD_TYPE_LABELS,
@@ -39,12 +42,11 @@ type Props = {
 export default function AssetSection({ descriptor, assetGroupId, items, onChanged }: Props) {
   const t = useAdminT('admin.googleAds');
   const [text, setText] = React.useState('');
-  const [file, setFile] = React.useState<File | null>(null);
   const [youtube, setYoutube] = React.useState('');
 
   const [addText, { isLoading: addingText }] = useGoogleAdsAddTextMutation();
   const [addVideo, { isLoading: addingVideo }] = useGoogleAdsAddVideoMutation();
-  const [uploadAsset, { isLoading: uploading }] = useGoogleAdsUploadAssetMutation();
+  const [uploadUrl, { isLoading: uploading }] = useGoogleAdsUploadAssetUrlMutation();
   const [removeAsset, { isLoading: removing }] = useGoogleAdsRemoveAssetMutation();
 
   const full = items.length >= descriptor.max;
@@ -56,7 +58,6 @@ export default function AssetSection({ descriptor, assetGroupId, items, onChange
       await fn();
       toast.success(t(okMsg));
       setText('');
-      setFile(null);
       setYoutube('');
       onChanged();
     } catch (err) {
@@ -148,28 +149,26 @@ export default function AssetSection({ descriptor, assetGroupId, items, onChange
           </Button>
         </div>
       ) : descriptor.kind === 'image' ? (
-        <div className="flex items-center gap-2">
-          <input
-            type="file"
-            accept="image/png,image/jpeg,image/webp"
-            onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-            className="text-xs file:mr-2 file:rounded file:border file:border-border file:bg-muted file:px-2 file:py-1"
-          />
-          <Button
-            size="sm"
-            disabled={busy || !file}
-            onClick={() =>
-              file &&
-              run(
-                () => uploadAsset({ assetGroupId, fieldType: descriptor.fieldType as GoogleAdsImageFieldType, file }).unwrap(),
-                'assets.uploaded',
-                'assets.uploadFailed',
-              )
-            }
-          >
-            <Upload className="h-4 w-4" />
-          </Button>
-        </div>
+        <AdminImageUploadField
+          label={t('assets.addImage')}
+          helperText={t('assets.cropNote')}
+          folder="google-ads"
+          value=""
+          disabled={busy}
+          previewAspect="1x1"
+          onChange={(url) =>
+            run(
+              () =>
+                uploadUrl({
+                  assetGroupId,
+                  fieldType: descriptor.fieldType as GoogleAdsImageFieldType,
+                  url: resolveMediaUrl(url),
+                }).unwrap(),
+              'assets.uploaded',
+              'assets.uploadFailed',
+            )
+          }
+        />
       ) : (
         <div className="flex items-center gap-2">
           <Input

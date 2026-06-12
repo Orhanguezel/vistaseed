@@ -326,6 +326,11 @@ export type GoogleAdsAssetUploadArgs = {
   fieldType: GoogleAdsImageFieldType;
   file: File;
 };
+export type GoogleAdsAssetUrlArgs = {
+  assetGroupId: string;
+  fieldType: GoogleAdsImageFieldType;
+  url: string;
+};
 export type GoogleAdsAssetTextArgs = {
   assetGroupId: string;
   fieldType: GoogleAdsTextFieldType;

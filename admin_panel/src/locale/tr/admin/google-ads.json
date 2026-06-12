@@ -64,6 +64,8 @@
     "groupVideo": "Video",
     "textPlaceholder": "Yeni metin ekle…",
     "youtubePlaceholder": "YouTube URL veya video kimliği",
+    "addImage": "Görsel Ekle / Kütüphaneden Seç",
+    "cropNote": "Seçilen orana otomatik getirilir (görseller kırpılır, logolar bozulmadan yerleştirilir).",
     "added": "Öğe eklendi",
     "addFailed": "Ekleme başarısız",
     "uploaded": "Görsel yüklendi ve eklendi",

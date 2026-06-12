@@ -13,6 +13,7 @@ import type {
   GoogleAdsAssetRemoveBody,
   GoogleAdsAssetRemoveResp,
   GoogleAdsAssetUploadArgs,
+  GoogleAdsAssetUrlArgs,
   GoogleAdsAssetTextArgs,
   GoogleAdsAssetVideoArgs,
   GoogleAdsCampaignsResp,
@@ -112,6 +113,15 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
       },
     }),
 
+    /** POST /admin/google-ads/asset-groups/:id/image-url (kütüphane/galeri URL'i) */
+    googleAdsUploadAssetUrl: b.mutation<GoogleAdsAssetMutationResp, GoogleAdsAssetUrlArgs>({
+      query: ({ assetGroupId, fieldType, url }): FetchArgs => ({
+        url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/${assetGroupId}/image-url`,
+        method: "POST",
+        body: { field_type: fieldType, url },
+      }),
+    }),
+
     /** POST /admin/google-ads/asset-groups/:id/text */
     googleAdsAddText: b.mutation<GoogleAdsAssetMutationResp, GoogleAdsAssetTextArgs>({
       query: ({ assetGroupId, fieldType, text }): FetchArgs => ({
@@ -154,6 +164,7 @@ export const {
   useGoogleAdsAssetGroupsQuery,
   useGoogleAdsAssetGroupAssetsQuery,
   useGoogleAdsUploadAssetMutation,
+  useGoogleAdsUploadAssetUrlMutation,
   useGoogleAdsAddTextMutation,
   useGoogleAdsAddVideoMutation,
   useGoogleAdsRemoveAssetMutation,

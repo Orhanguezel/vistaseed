@@ -1039,6 +1039,7 @@ export {
   type GoogleAdsAssetItem,
   type GoogleAdsAssetsResp,
   type GoogleAdsAssetUploadArgs,
+  type GoogleAdsAssetUrlArgs,
   type GoogleAdsAssetTextArgs,
   type GoogleAdsAssetVideoArgs,
   type GoogleAdsAssetMutationResp,
