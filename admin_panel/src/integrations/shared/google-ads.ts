@@ -123,6 +123,7 @@ export function formatNumber(v: number): string {
 export type GoogleAdsSetStatusBody = {
   id: string;
   status: "ENABLED" | "PAUSED";
+  customer_id?: string;
 };
 
 export type GoogleAdsSetStatusResp = {
@@ -135,6 +136,7 @@ export type GoogleAdsSetStatusResp = {
 export type GoogleAdsSetBudgetBody = {
   budget_id: string;
   amount: number;
+  customer_id?: string;
 };
 
 export type GoogleAdsSetBudgetResp = {
@@ -267,6 +269,7 @@ export type GoogleAdsInsightsResp = {
 export type GoogleAdsKeywordStatusBody = {
   resource_name: string;
   status: "ENABLED" | "PAUSED";
+  customer_id?: string;
 };
 
 export type GoogleAdsKeywordStatusResp = {
@@ -293,6 +296,7 @@ export type GoogleAdsBiddingArgs = {
   strategy: GoogleAdsBiddingStrategy;
   target_cpa?: number;
   target_roas?: number;
+  customer_id?: string;
 };
 export type GoogleAdsBiddingResp = { ok: boolean; campaign_id: string; strategy: string };
 
@@ -312,11 +316,13 @@ export type GoogleAdsNegativeKeywordArgs = {
   campaign_id: string;
   text: string;
   match_type: GoogleAdsMatchType;
+  customer_id?: string;
 };
 export type GoogleAdsKeywordAddArgs = {
   ad_group_id: string;
   text: string;
   match_type: GoogleAdsMatchType;
+  customer_id?: string;
 };
 export type GoogleAdsKeywordMutationResp = { ok: boolean };
 
@@ -345,6 +351,33 @@ export function pctDelta(cur: number, prev: number): number | null {
   if (!prev) return null;
   return ((cur - prev) / prev) * 100;
 }
+
+/* ---------------- çoklu hesap + ürün (Shopping) ---------------- */
+
+export type GoogleAdsAccount = {
+  id: string;
+  name: string;
+  currency: string;
+  aw_id: string;
+  manager: boolean;
+  is_default: boolean;
+};
+export type GoogleAdsAccountsResp = { items: GoogleAdsAccount[] };
+
+export type GoogleAdsProductRow = {
+  item_id: string;
+  title: string;
+  campaign: string;
+  impressions: number;
+  clicks: number;
+  cost_micros: number;
+  conversions: number;
+  conversions_value: number;
+};
+export type GoogleAdsProductsResp = { items: GoogleAdsProductRow[]; range: GoogleAdsDateRange };
+
+/** Hesap seçici ortak query parçası — boş string gönderme. */
+export type GoogleAdsCustomerArg = { customer_id?: string };
 
 /* ---------------- PMax öğe grubu öğeleri (metin/görsel/video) ---------------- */
 
@@ -445,18 +478,21 @@ export type GoogleAdsAssetUploadArgs = {
   assetGroupId: string;
   fieldType: GoogleAdsImageFieldType;
   file: File;
+  customer_id?: string;
 };
 export type GoogleAdsAssetUrlArgs = {
   assetGroupId: string;
   fieldType: GoogleAdsImageFieldType;
   url: string;
+  customer_id?: string;
 };
 export type GoogleAdsAssetTextArgs = {
   assetGroupId: string;
   fieldType: GoogleAdsTextFieldType;
   text: string;
+  customer_id?: string;
 };
-export type GoogleAdsAssetVideoArgs = { assetGroupId: string; youtube: string };
+export type GoogleAdsAssetVideoArgs = { assetGroupId: string; youtube: string; customer_id?: string };
 
 export type GoogleAdsAssetMutationResp = {
   ok: boolean;
@@ -464,5 +500,5 @@ export type GoogleAdsAssetMutationResp = {
   asset_group_asset: string;
 };
 
-export type GoogleAdsAssetRemoveBody = { resource_name: string };
+export type GoogleAdsAssetRemoveBody = { resource_name: string; customer_id?: string };
 export type GoogleAdsAssetRemoveResp = { ok: boolean; resource_name: string };

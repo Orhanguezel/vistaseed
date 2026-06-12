@@ -7,6 +7,8 @@ import type { FetchArgs } from "@reduxjs/toolkit/query";
 
 import { baseApi } from "@/integrations/base-api";
 import type {
+  GoogleAdsAccountsResp,
+  GoogleAdsProductsResp,
   GoogleAdsAdGroupsResp,
   GoogleAdsBiddingArgs,
   GoogleAdsBiddingResp,
@@ -54,7 +56,7 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
     }),
 
     /** GET /admin/google-ads/campaigns?range= */
-    googleAdsCampaigns: b.query<GoogleAdsCampaignsResp, { range?: GoogleAdsDateRange } | void>({
+    googleAdsCampaigns: b.query<GoogleAdsCampaignsResp, { range?: GoogleAdsDateRange; customer_id?: string } | void>({
       query: (params): FetchArgs => ({
         url: `${GOOGLE_ADS_ADMIN_BASE}/campaigns`,
         params: params ?? {},
@@ -62,7 +64,7 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
     }),
 
     /** GET /admin/google-ads/insights?range=&campaign_id= */
-    googleAdsInsights: b.query<GoogleAdsInsightsResp, { range?: GoogleAdsDateRange; campaign_id?: string } | void>({
+    googleAdsInsights: b.query<GoogleAdsInsightsResp, { range?: GoogleAdsDateRange; campaign_id?: string; customer_id?: string } | void>({
       query: (params): FetchArgs => ({
         url: `${GOOGLE_ADS_ADMIN_BASE}/insights`,
         params: params ?? {},
@@ -80,10 +82,10 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
 
     /** POST /admin/google-ads/campaigns/:id/status */
     googleAdsSetStatus: b.mutation<GoogleAdsSetStatusResp, GoogleAdsSetStatusBody>({
-      query: ({ id, status }): FetchArgs => ({
+      query: ({ id, ...body }): FetchArgs => ({
         url: `${GOOGLE_ADS_ADMIN_BASE}/campaigns/${id}/status`,
         method: "POST",
-        body: { status },
+        body,
       }),
     }),
 
@@ -96,6 +98,16 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
       }),
     }),
 
+    /** GET /admin/google-ads/accounts */
+    googleAdsAccounts: b.query<GoogleAdsAccountsResp, void>({
+      query: (): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/accounts` }),
+    }),
+
+    /** GET /admin/google-ads/products?range=&customer_id= */
+    googleAdsProducts: b.query<GoogleAdsProductsResp, { range?: GoogleAdsDateRange; customer_id?: string } | void>({
+      query: (params): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/products`, params: params ?? {} }),
+    }),
+
     /** POST /admin/google-ads/campaigns/:id/bidding */
     googleAdsSetBidding: b.mutation<GoogleAdsBiddingResp, GoogleAdsBiddingArgs>({
       query: ({ id, ...body }): FetchArgs => ({
@@ -106,13 +118,16 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
     }),
 
     /** GET /admin/google-ads/report?range= */
-    googleAdsReport: b.query<GoogleAdsReportResp, { range?: GoogleAdsDateRange } | void>({
+    googleAdsReport: b.query<GoogleAdsReportResp, { range?: GoogleAdsDateRange; customer_id?: string } | void>({
       query: (params): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/report`, params: params ?? {} }),
     }),
 
     /** GET /admin/google-ads/campaigns/:id/ad-groups */
-    googleAdsAdGroups: b.query<GoogleAdsAdGroupsResp, { id: string }>({
-      query: ({ id }): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/campaigns/${id}/ad-groups` }),
+    googleAdsAdGroups: b.query<GoogleAdsAdGroupsResp, { id: string; customer_id?: string }>({
+      query: ({ id, ...params }): FetchArgs => ({
+        url: `${GOOGLE_ADS_ADMIN_BASE}/campaigns/${id}/ad-groups`,
+        params,
+      }),
     }),
 
     /** POST /admin/google-ads/keywords/negative */
@@ -126,24 +141,27 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
     }),
 
     /** GET /admin/google-ads/asset-groups */
-    googleAdsAssetGroups: b.query<GoogleAdsAssetGroupsResp, void>({
-      query: (): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups` }),
+    googleAdsAssetGroups: b.query<GoogleAdsAssetGroupsResp, { customer_id?: string } | void>({
+      query: (params): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups`, params: params ?? {} }),
     }),
 
     /** GET /admin/google-ads/asset-groups/:id/assets */
-    googleAdsAssetGroupAssets: b.query<GoogleAdsAssetsResp, { id: string }>({
-      query: ({ id }): FetchArgs => ({ url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/${id}/assets` }),
+    googleAdsAssetGroupAssets: b.query<GoogleAdsAssetsResp, { id: string; customer_id?: string }>({
+      query: ({ id, ...params }): FetchArgs => ({
+        url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/${id}/assets`,
+        params,
+      }),
     }),
 
     /** POST /admin/google-ads/asset-groups/:id/images (multipart) */
     googleAdsUploadAsset: b.mutation<GoogleAdsAssetMutationResp, GoogleAdsAssetUploadArgs>({
-      query: ({ assetGroupId, fieldType, file }): FetchArgs => {
+      query: ({ assetGroupId, fieldType, file, customer_id }): FetchArgs => {
         const form = new FormData();
         form.append("file", file);
         return {
           url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/${assetGroupId}/images`,
           method: "POST",
-          params: { field_type: fieldType },
+          params: customer_id ? { field_type: fieldType, customer_id } : { field_type: fieldType },
           body: form,
         };
       },
@@ -151,28 +169,28 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
 
     /** POST /admin/google-ads/asset-groups/:id/image-url (kütüphane/galeri URL'i) */
     googleAdsUploadAssetUrl: b.mutation<GoogleAdsAssetMutationResp, GoogleAdsAssetUrlArgs>({
-      query: ({ assetGroupId, fieldType, url }): FetchArgs => ({
+      query: ({ assetGroupId, fieldType, url, customer_id }): FetchArgs => ({
         url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/${assetGroupId}/image-url`,
         method: "POST",
-        body: { field_type: fieldType, url },
+        body: { field_type: fieldType, url, ...(customer_id ? { customer_id } : {}) },
       }),
     }),
 
     /** POST /admin/google-ads/asset-groups/:id/text */
     googleAdsAddText: b.mutation<GoogleAdsAssetMutationResp, GoogleAdsAssetTextArgs>({
-      query: ({ assetGroupId, fieldType, text }): FetchArgs => ({
+      query: ({ assetGroupId, fieldType, text, customer_id }): FetchArgs => ({
         url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/${assetGroupId}/text`,
         method: "POST",
-        body: { field_type: fieldType, text },
+        body: { field_type: fieldType, text, ...(customer_id ? { customer_id } : {}) },
       }),
     }),
 
     /** POST /admin/google-ads/asset-groups/:id/video */
     googleAdsAddVideo: b.mutation<GoogleAdsAssetMutationResp, GoogleAdsAssetVideoArgs>({
-      query: ({ assetGroupId, youtube }): FetchArgs => ({
+      query: ({ assetGroupId, youtube, customer_id }): FetchArgs => ({
         url: `${GOOGLE_ADS_ADMIN_BASE}/asset-groups/${assetGroupId}/video`,
         method: "POST",
-        body: { youtube },
+        body: { youtube, ...(customer_id ? { customer_id } : {}) },
       }),
     }),
 
@@ -199,6 +217,8 @@ export const {
   useGoogleAdsKeywordStatusMutation,
   useGoogleAdsSetBiddingMutation,
   useGoogleAdsReportQuery,
+  useGoogleAdsAccountsQuery,
+  useGoogleAdsProductsQuery,
   useLazyGoogleAdsAdGroupsQuery,
   useGoogleAdsAddNegativeKeywordMutation,
   useGoogleAdsAddKeywordMutation,

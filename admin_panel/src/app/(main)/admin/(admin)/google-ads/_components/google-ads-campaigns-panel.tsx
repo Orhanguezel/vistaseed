@@ -39,14 +39,16 @@ import {
 
 type Props = {
   hasCredentials: boolean;
+  customerId?: string;
 };
 
-export default function GoogleAdsCampaignsPanel({ hasCredentials }: Props) {
+export default function GoogleAdsCampaignsPanel({ hasCredentials, customerId }: Props) {
   const t = useAdminT('admin.googleAds');
   const [range, setRange] = React.useState<GoogleAdsDateRange>('LAST_30_DAYS');
+  const cid = customerId || undefined;
 
   const { data, isLoading, isFetching, refetch } = useGoogleAdsCampaignsQuery(
-    { range },
+    { range, customer_id: cid },
     { skip: !hasCredentials },
   );
   const [setStatus, { isLoading: statusSaving }] = useGoogleAdsSetStatusMutation();
@@ -78,6 +80,7 @@ export default function GoogleAdsCampaignsPanel({ hasCredentials }: Props) {
         strategy,
         target_cpa: choice === '1' ? value : undefined,
         target_roas: choice === '2' ? value : undefined,
+        customer_id: cid,
       }).unwrap();
       toast.success(t('campaigns.biddingSaved'));
       void refetch();
@@ -91,7 +94,7 @@ export default function GoogleAdsCampaignsPanel({ hasCredentials }: Props) {
     const confirmKey = next === 'PAUSED' ? 'campaigns.confirmPause' : 'campaigns.confirmEnable';
     if (!window.confirm(`${t(confirmKey)}\n\n${row.name}`)) return;
     try {
-      await setStatus({ id: row.id, status: next }).unwrap();
+      await setStatus({ id: row.id, status: next, customer_id: cid }).unwrap();
       toast.success(t(next === 'PAUSED' ? 'campaigns.paused' : 'campaigns.enabled'));
       void refetch();
     } catch (err) {
@@ -110,7 +113,7 @@ export default function GoogleAdsCampaignsPanel({ hasCredentials }: Props) {
     }
     if (!window.confirm(`${t('campaigns.confirmBudget')} ${amount.toLocaleString('tr-TR')}`)) return;
     try {
-      await setBudget({ budget_id: row.budget_id, amount }).unwrap();
+      await setBudget({ budget_id: row.budget_id, amount, customer_id: cid }).unwrap();
       toast.success(t('campaigns.budgetSaved'));
       void refetch();
     } catch (err) {

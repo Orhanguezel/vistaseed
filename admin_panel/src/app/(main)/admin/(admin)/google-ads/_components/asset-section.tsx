@@ -35,11 +35,12 @@ import {
 type Props = {
   descriptor: GoogleAdsFieldDescriptor;
   assetGroupId: string;
+  customerId?: string;
   items: GoogleAdsAssetItem[];
   onChanged: () => void;
 };
 
-export default function AssetSection({ descriptor, assetGroupId, items, onChanged }: Props) {
+export default function AssetSection({ descriptor, assetGroupId, customerId, items, onChanged }: Props) {
   const t = useAdminT('admin.googleAds');
   const [text, setText] = React.useState('');
   const [youtube, setYoutube] = React.useState('');
@@ -67,7 +68,7 @@ export default function AssetSection({ descriptor, assetGroupId, items, onChange
 
   const onRemove = (resourceName: string) =>
     window.confirm(t('assets.removeConfirm')) &&
-    run(() => removeAsset({ resource_name: resourceName }).unwrap(), 'assets.removed', 'assets.removeFailed');
+    run(() => removeAsset({ resource_name: resourceName, customer_id: customerId }).unwrap(), 'assets.removed', 'assets.removeFailed');
 
   return (
     <div className="space-y-2 rounded-md border border-border p-3">
@@ -139,7 +140,7 @@ export default function AssetSection({ descriptor, assetGroupId, items, onChange
             disabled={busy || !text.trim()}
             onClick={() =>
               run(
-                () => addText({ assetGroupId, fieldType: descriptor.fieldType as GoogleAdsTextFieldType, text: text.trim() }).unwrap(),
+                () => addText({ assetGroupId, fieldType: descriptor.fieldType as GoogleAdsTextFieldType, text: text.trim(), customer_id: customerId }).unwrap(),
                 'assets.added',
                 'assets.addFailed',
               )
@@ -163,6 +164,7 @@ export default function AssetSection({ descriptor, assetGroupId, items, onChange
                   assetGroupId,
                   fieldType: descriptor.fieldType as GoogleAdsImageFieldType,
                   url: resolveMediaUrl(url),
+                  customer_id: customerId,
                 }).unwrap(),
               'assets.uploaded',
               'assets.uploadFailed',
@@ -180,7 +182,7 @@ export default function AssetSection({ descriptor, assetGroupId, items, onChange
           <Button
             size="sm"
             disabled={busy || !youtube.trim()}
-            onClick={() => run(() => addVideo({ assetGroupId, youtube: youtube.trim() }).unwrap(), 'assets.added', 'assets.addFailed')}
+            onClick={() => run(() => addVideo({ assetGroupId, youtube: youtube.trim(), customer_id: customerId }).unwrap(), 'assets.added', 'assets.addFailed')}
           >
             <Plus className="h-4 w-4" />
           </Button>

@@ -310,6 +310,8 @@ export {
   useGoogleAdsKeywordStatusMutation,
   useGoogleAdsSetBiddingMutation,
   useGoogleAdsReportQuery,
+  useGoogleAdsAccountsQuery,
+  useGoogleAdsProductsQuery,
   useLazyGoogleAdsAdGroupsQuery,
   useGoogleAdsAddNegativeKeywordMutation,
   useGoogleAdsAddKeywordMutation,

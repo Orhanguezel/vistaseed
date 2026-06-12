@@ -21,7 +21,7 @@ import {
 
 import AssetSection from './asset-section';
 
-type Props = { hasCredentials: boolean };
+type Props = { hasCredentials: boolean; customerId?: string };
 
 const STRENGTH_VARIANT: Record<string, 'default' | 'secondary' | 'destructive' | 'outline'> = {
   EXCELLENT: 'default',
@@ -37,17 +37,19 @@ const KIND_GROUPS: { kind: GoogleAdsAssetKind; titleKey: string }[] = [
   { kind: 'video', titleKey: 'assets.groupVideo' },
 ];
 
-export default function GoogleAdsAssetsPanel({ hasCredentials }: Props) {
+export default function GoogleAdsAssetsPanel({ hasCredentials, customerId }: Props) {
   const t = useAdminT('admin.googleAds');
-  const { data: groups } = useGoogleAdsAssetGroupsQuery(undefined, { skip: !hasCredentials });
+  const cid = customerId || undefined;
+  const { data: groups } = useGoogleAdsAssetGroupsQuery({ customer_id: cid }, { skip: !hasCredentials });
   const [groupId, setGroupId] = React.useState<string>('');
+  React.useEffect(() => { setGroupId(''); }, [customerId]);
 
   const items = groups?.items ?? [];
   const activeId = groupId || items[0]?.id || '';
   const activeGroup = items.find((g) => g.id === activeId);
 
   const { data: assetsResp, refetch } = useGoogleAdsAssetGroupAssetsQuery(
-    { id: activeId },
+    { id: activeId, customer_id: cid },
     { skip: !hasCredentials || !activeId },
   );
   const assets = React.useMemo(() => assetsResp?.items ?? [], [assetsResp]);
@@ -89,6 +91,7 @@ export default function GoogleAdsAssetsPanel({ hasCredentials }: Props) {
                     key={d.fieldType}
                     descriptor={d}
                     assetGroupId={activeId}
+                    customerId={cid}
                     items={assets.filter((a) => a.field_type === d.fieldType)}
                     onChanged={() => void refetch()}
                   />

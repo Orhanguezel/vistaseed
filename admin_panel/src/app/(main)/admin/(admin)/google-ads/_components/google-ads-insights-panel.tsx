@@ -43,6 +43,7 @@ const ALL_CAMPAIGNS = '__all__';
 type Props = {
   hasCredentials: boolean;
   range: GoogleAdsDateRange;
+  customerId?: string;
 };
 
 function TermTable({ rows, showMatchType, t, onToggle, toggling }: {
@@ -123,14 +124,16 @@ function TermTable({ rows, showMatchType, t, onToggle, toggling }: {
   );
 }
 
-export default function GoogleAdsInsightsPanel({ hasCredentials, range }: Props) {
+export default function GoogleAdsInsightsPanel({ hasCredentials, range, customerId }: Props) {
   const t = useAdminT('admin.googleAds');
   const [campaignId, setCampaignId] = React.useState<string>(ALL_CAMPAIGNS);
-  const { data: campaignData } = useGoogleAdsCampaignsQuery({ range }, { skip: !hasCredentials });
+  const cid = customerId || undefined;
+  const { data: campaignData } = useGoogleAdsCampaignsQuery({ range, customer_id: cid }, { skip: !hasCredentials });
   const { data, isLoading, refetch } = useGoogleAdsInsightsQuery(
-    { range, ...(campaignId !== ALL_CAMPAIGNS ? { campaign_id: campaignId } : {}) },
+    { range, customer_id: cid, ...(campaignId !== ALL_CAMPAIGNS ? { campaign_id: campaignId } : {}) },
     { skip: !hasCredentials },
   );
+  React.useEffect(() => { setCampaignId(ALL_CAMPAIGNS); }, [customerId]);
   const [setKeywordStatus, { isLoading: toggling }] = useGoogleAdsKeywordStatusMutation();
 
   const selectedCampaign = (campaignData?.items ?? []).find((c) => c.id === campaignId);
@@ -142,7 +145,7 @@ export default function GoogleAdsInsightsPanel({ hasCredentials, range }: Props)
     const confirmKey = next === 'PAUSED' ? 'insights.confirmPauseKeyword' : 'insights.confirmEnableKeyword';
     if (!window.confirm(`${t(confirmKey)}\n\n"${row.term}" — ${row.campaign}`)) return;
     try {
-      await setKeywordStatus({ resource_name: row.resource_name, status: next }).unwrap();
+      await setKeywordStatus({ resource_name: row.resource_name, status: next, customer_id: cid }).unwrap();
       toast.success(t(next === 'PAUSED' ? 'insights.keywordPaused' : 'insights.keywordEnabled'));
       void refetch();
     } catch (err) {
@@ -283,6 +286,7 @@ export default function GoogleAdsInsightsPanel({ hasCredentials, range }: Props)
         <GoogleAdsKeywordManager
           campaignId={campaignId}
           campaignName={selectedCampaign?.name ?? ''}
+          customerId={cid}
           onChanged={() => void refetch()}
         />
       ) : null}

@@ -9,7 +9,9 @@
     "verified": "Bağlantı doğrulandı",
     "verifyFailed": "Doğrulama başarısız",
     "accounts": "hesap",
-    "apiSettings": "API Ayarları"
+    "apiSettings": "API Ayarları",
+    "selectAccount": "Hesap seçin",
+    "mcc": "MCC"
   },
   "campaigns": {
     "title": "Kampanya Performansı",
@@ -61,7 +63,16 @@
     "campaigns": "Kampanyalar",
     "insights": "Analiz",
     "report": "Rapor",
+    "products": "Ürünler",
     "assets": "Görseller"
+  },
+  "products": {
+    "title": "Ürün Performansı",
+    "description": "Shopping / Maks. Performans ürün feed'i performansı (Merchant Center bağlı hesaplarda dolu gelir).",
+    "empty": "Bu hesapta ürün feed'i verisi yok. Ürün performansı için hesaba Merchant Center bağlanmalı ve Shopping/PMax kampanyası ürün feed'i kullanmalı.",
+    "columns": {
+      "product": "Ürün"
+    }
   },
   "keywords": {
     "title": "Kelime Yönetimi",

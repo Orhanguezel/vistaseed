@@ -25,7 +25,7 @@ import {
   type GoogleAdsTotals,
 } from '@/integrations/shared';
 
-type Props = { hasCredentials: boolean };
+type Props = { hasCredentials: boolean; customerId?: string };
 
 function Delta({ cur, prev, goodWhenUp }: { cur: number; prev: number; goodWhenUp: boolean }) {
   const d = pctDelta(cur, prev);
@@ -74,10 +74,13 @@ function exportCsv(report: GoogleAdsReportResp) {
   URL.revokeObjectURL(url);
 }
 
-export default function GoogleAdsReportPanel({ hasCredentials }: Props) {
+export default function GoogleAdsReportPanel({ hasCredentials, customerId }: Props) {
   const t = useAdminT('admin.googleAds');
   const [range, setRange] = React.useState<GoogleAdsDateRange>('LAST_30_DAYS');
-  const { data, isFetching } = useGoogleAdsReportQuery({ range }, { skip: !hasCredentials });
+  const { data, isFetching } = useGoogleAdsReportQuery(
+    { range, customer_id: customerId || undefined },
+    { skip: !hasCredentials },
+  );
 
   if (!hasCredentials) {
     return <Card><CardContent className="py-6 text-muted-foreground text-sm">{t('campaigns.needCredentials')}</CardContent></Card>;

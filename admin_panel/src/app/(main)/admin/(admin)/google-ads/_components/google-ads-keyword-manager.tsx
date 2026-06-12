@@ -26,7 +26,7 @@ import {
   type GoogleAdsMatchType,
 } from '@/integrations/shared';
 
-type Props = { campaignId: string; campaignName: string; onChanged: () => void };
+type Props = { campaignId: string; campaignName: string; customerId?: string; onChanged: () => void };
 
 const MATCH_TYPES: GoogleAdsMatchType[] = ['BROAD', 'PHRASE', 'EXACT'];
 
@@ -43,7 +43,7 @@ function MatchSelect({ value, onChange }: { value: GoogleAdsMatchType; onChange:
   );
 }
 
-export default function GoogleAdsKeywordManager({ campaignId, campaignName, onChanged }: Props) {
+export default function GoogleAdsKeywordManager({ campaignId, campaignName, customerId, onChanged }: Props) {
   const t = useAdminT('admin.googleAds');
   const [negText, setNegText] = React.useState('');
   const [negMatch, setNegMatch] = React.useState<GoogleAdsMatchType>('PHRASE');
@@ -57,8 +57,8 @@ export default function GoogleAdsKeywordManager({ campaignId, campaignName, onCh
 
   React.useEffect(() => {
     setAdGroupId('');
-    void loadAdGroups({ id: campaignId });
-  }, [campaignId, loadAdGroups]);
+    void loadAdGroups({ id: campaignId, customer_id: customerId });
+  }, [campaignId, customerId, loadAdGroups]);
 
   const groups = adGroups?.items ?? [];
   const activeAg = adGroupId || groups[0]?.id || '';
@@ -92,7 +92,7 @@ export default function GoogleAdsKeywordManager({ campaignId, campaignName, onCh
               disabled={addingNeg || !negText.trim()}
               onClick={() =>
                 run(
-                  () => addNegative({ campaign_id: campaignId, text: negText.trim(), match_type: negMatch }).unwrap(),
+                  () => addNegative({ campaign_id: campaignId, text: negText.trim(), match_type: negMatch, customer_id: customerId }).unwrap(),
                   'keywords.negativeAdded',
                   () => setNegText(''),
                 )
@@ -125,7 +125,7 @@ export default function GoogleAdsKeywordManager({ campaignId, campaignName, onCh
                 disabled={addingPos || !posText.trim() || !activeAg}
                 onClick={() =>
                   run(
-                    () => addKeyword({ ad_group_id: activeAg, text: posText.trim(), match_type: posMatch }).unwrap(),
+                    () => addKeyword({ ad_group_id: activeAg, text: posText.trim(), match_type: posMatch, customer_id: customerId }).unwrap(),
                     'keywords.positiveAdded',
                     () => setPosText(''),
                   )
