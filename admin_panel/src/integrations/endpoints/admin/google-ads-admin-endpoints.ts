@@ -9,6 +9,7 @@ import { baseApi } from "@/integrations/base-api";
 import type {
   GoogleAdsCampaignsResp,
   GoogleAdsDateRange,
+  GoogleAdsInsightsResp,
   GoogleAdsSetBudgetBody,
   GoogleAdsSetBudgetResp,
   GoogleAdsSetStatusBody,
@@ -42,6 +43,14 @@ export const googleAdsAdminApi = baseApi.injectEndpoints({
       }),
     }),
 
+    /** GET /admin/google-ads/insights?range= */
+    googleAdsInsights: b.query<GoogleAdsInsightsResp, { range?: GoogleAdsDateRange } | void>({
+      query: (params): FetchArgs => ({
+        url: `${GOOGLE_ADS_ADMIN_BASE}/insights`,
+        params: params ?? {},
+      }),
+    }),
+
     /** POST /admin/google-ads/campaigns/:id/status */
     googleAdsSetStatus: b.mutation<GoogleAdsSetStatusResp, GoogleAdsSetStatusBody>({
       query: ({ id, status }): FetchArgs => ({
@@ -70,4 +79,5 @@ export const {
   useLazyGoogleAdsCampaignsQuery,
   useGoogleAdsSetStatusMutation,
   useGoogleAdsSetBudgetMutation,
+  useGoogleAdsInsightsQuery,
 } = googleAdsAdminApi;

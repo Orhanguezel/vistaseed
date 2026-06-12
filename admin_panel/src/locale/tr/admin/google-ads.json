@@ -48,5 +48,31 @@
     "confirmBudget": "Günlük bütçe şu değere güncellenecek:",
     "budgetSaved": "Günlük bütçe güncellendi",
     "actionFailed": "İşlem başarısız"
+  },
+  "tabs": {
+    "campaigns": "Kampanyalar",
+    "insights": "Analiz"
+  },
+  "insights": {
+    "loading": "Analiz yükleniyor...",
+    "noConversionsTitle": "Dönüşüm verisi yok",
+    "noConversionsDesc": "Seçili dönemde hiçbir kampanyada dönüşüm kaydedilmedi. Dönüşüm takibi (etiket/GA4 bağlantısı) kontrol edilmeden bütçe optimizasyonu sağlıklı yapılamaz.",
+    "conversionActions": "Dönüşüm Aksiyonları",
+    "conversionActionsDesc": "Hesapta tanımlı dönüşüm hedefleri ve durumları",
+    "searchTerms": "En Maliyetli Arama Terimleri",
+    "searchTermsDesc": "Kullanıcıların gerçekte aradığı sorgular — alakasız olanlar negatif kelime adayıdır",
+    "keywords": "En Maliyetli Anahtar Kelimeler",
+    "keywordsDesc": "Hedeflenen kelimeler ve eşleme türleri — düşük CTR + yüksek maliyet kombinasyonu gözden geçirilmeli",
+    "devices": "Cihaz Dağılımı",
+    "columns": {
+      "term": "Terim",
+      "matchType": "Eşleme",
+      "campaign": "Kampanya",
+      "clicks": "Tıklama",
+      "ctr": "CTR",
+      "cost": "Maliyet",
+      "conversions": "Dönüşüm",
+      "device": "Cihaz"
+    }
   }
 }

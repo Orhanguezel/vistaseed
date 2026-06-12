@@ -121,3 +121,74 @@ export type GoogleAdsSetBudgetResp = {
   budget_id: string;
   amount_micros: number;
 };
+
+/** Durum/kanal etiketleri (TR) — bilinmeyen değer ham haliyle gösterilir */
+export const ADS_STATUS_LABELS: Record<string, string> = {
+  ENABLED: "Etkin",
+  PAUSED: "Duraklatıldı",
+  REMOVED: "Kaldırıldı",
+  HIDDEN: "Gizli",
+  UNKNOWN: "Bilinmiyor",
+};
+
+export const ADS_CHANNEL_LABELS: Record<string, string> = {
+  SEARCH: "Arama",
+  PERFORMANCE_MAX: "Maks. Performans",
+  DISPLAY: "Görüntülü",
+  VIDEO: "Video",
+  SHOPPING: "Alışveriş",
+  DEMAND_GEN: "Talep Yaratma",
+  MULTI_CHANNEL: "Çoklu Kanal",
+};
+
+export const ADS_DEVICE_LABELS: Record<string, string> = {
+  MOBILE: "Mobil",
+  DESKTOP: "Masaüstü",
+  TABLET: "Tablet",
+  CONNECTED_TV: "TV",
+  OTHER: "Diğer",
+};
+
+export const ADS_MATCH_TYPE_LABELS: Record<string, string> = {
+  BROAD: "Geniş",
+  PHRASE: "Sıralı",
+  EXACT: "Tam",
+};
+
+export function adsLabel(map: Record<string, string>, value: string): string {
+  return map[value] ?? value;
+}
+
+/** GET /admin/google-ads/insights */
+export type GoogleAdsConversionAction = {
+  name: string;
+  status: string;
+  type: string;
+};
+
+export type GoogleAdsTermRow = {
+  term: string;
+  match_type?: string;
+  campaign: string;
+  clicks: number;
+  impressions: number;
+  ctr: number;
+  cost_micros: number;
+  conversions: number;
+};
+
+export type GoogleAdsDeviceRow = {
+  campaign: string;
+  device: string;
+  clicks: number;
+  cost_micros: number;
+  conversions: number;
+};
+
+export type GoogleAdsInsightsResp = {
+  conversion_actions: GoogleAdsConversionAction[];
+  search_terms: GoogleAdsTermRow[];
+  keywords: GoogleAdsTermRow[];
+  devices: GoogleAdsDeviceRow[];
+  range: GoogleAdsDateRange;
+};

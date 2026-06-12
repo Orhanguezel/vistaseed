@@ -13,10 +13,12 @@ import { useAdminT } from '@/app/(main)/admin/_components/common/use-admin-t';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useGoogleAdsStatusQuery, useGoogleAdsVerifyMutation } from '@/integrations/hooks';
 import { getErrorMessage } from '@/integrations/shared';
 
 import GoogleAdsCampaignsPanel from './_components/google-ads-campaigns-panel';
+import GoogleAdsInsightsPanel from './_components/google-ads-insights-panel';
 
 export default function GoogleAdsAdminPage() {
   const t = useAdminT('admin.googleAds');
@@ -72,7 +74,20 @@ export default function GoogleAdsAdminPage() {
         </CardHeader>
       </Card>
 
-      <GoogleAdsCampaignsPanel hasCredentials={Boolean(status?.has_credentials)} />
+      <Tabs defaultValue="campaigns" className="w-full">
+        <TabsList>
+          <TabsTrigger value="campaigns">{t('tabs.campaigns')}</TabsTrigger>
+          <TabsTrigger value="insights">{t('tabs.insights')}</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="campaigns" className="space-y-4">
+          <GoogleAdsCampaignsPanel hasCredentials={Boolean(status?.has_credentials)} />
+        </TabsContent>
+
+        <TabsContent value="insights" className="space-y-4">
+          <GoogleAdsInsightsPanel hasCredentials={Boolean(status?.has_credentials)} range="LAST_30_DAYS" />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

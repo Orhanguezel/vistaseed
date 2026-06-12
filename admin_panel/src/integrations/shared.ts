@@ -1012,6 +1012,15 @@ export {
   type GoogleAdsSetStatusResp,
   type GoogleAdsSetBudgetBody,
   type GoogleAdsSetBudgetResp,
+  ADS_STATUS_LABELS,
+  ADS_CHANNEL_LABELS,
+  ADS_DEVICE_LABELS,
+  ADS_MATCH_TYPE_LABELS,
+  adsLabel,
+  type GoogleAdsConversionAction,
+  type GoogleAdsTermRow,
+  type GoogleAdsDeviceRow,
+  type GoogleAdsInsightsResp,
 } from "@/integrations/shared/google-ads";
 export {
   ADMIN_USERS_ALL_ROLES,

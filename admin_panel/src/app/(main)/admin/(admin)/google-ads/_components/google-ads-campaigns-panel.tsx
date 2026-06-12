@@ -20,7 +20,10 @@ import {
   useGoogleAdsSetStatusMutation,
 } from '@/integrations/hooks';
 import {
+  ADS_CHANNEL_LABELS,
+  ADS_STATUS_LABELS,
   GOOGLE_ADS_DATE_RANGES,
+  adsLabel,
   formatCtr,
   getErrorMessage,
   microsToUnit,
@@ -132,11 +135,11 @@ export default function GoogleAdsCampaignsPanel({ hasCredentials }: Props) {
                   <tr key={row.id} className="border-border/60 border-b">
                     <td className="py-2 pr-3">
                       <div className="font-medium">{row.name}</div>
-                      <div className="text-muted-foreground text-xs">{row.channel_type}</div>
+                      <div className="text-muted-foreground text-xs">{adsLabel(ADS_CHANNEL_LABELS, row.channel_type)}</div>
                     </td>
                     <td className="py-2 pr-3">
                       <Badge variant={row.status === 'ENABLED' ? 'default' : 'secondary'}>
-                        {row.status}
+                        {adsLabel(ADS_STATUS_LABELS, row.status)}
                       </Badge>
                     </td>
                     <td className="py-2 pr-3 text-right">
