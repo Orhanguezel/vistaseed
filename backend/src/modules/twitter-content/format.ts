@@ -15,6 +15,14 @@ export type SocialFormatInput = {
 
 const LINKEDIN_TAGS = '#VistaSeeds #tohum #tarım #ihracat';
 
+/** Manuel/AI taslakları için platform varsayılan etiketleri (twitter şablon bazlı seçer). */
+export function platformDefaultHashtags(platform: SocialPlatform, productTitle?: string | null): string {
+  if (platform === 'instagram') return deriveInstagramHashtags(productTitle);
+  if (platform === 'facebook') return `${TWITTER_BRAND_TAG} ${TWITTER_LOCAL_SEED_TAG}`;
+  if (platform === 'linkedin') return LINKEDIN_TAGS;
+  return '';
+}
+
 /**
  * Platform karakterleri:
  *  - twitter : 280 sınırı, az hashtag (mevcut X davranışı)

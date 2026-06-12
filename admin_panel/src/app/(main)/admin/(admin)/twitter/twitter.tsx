@@ -95,7 +95,7 @@ export default function TwitterAdminPage() {
         <TabsList>
           <TabsTrigger value="plan">{t("tabs.plan")}</TabsTrigger>
           <TabsTrigger value="templates">{t("tabs.templates")}</TabsTrigger>
-          <TabsTrigger value="send">{t("tabs.send")}</TabsTrigger>
+          <TabsTrigger value="send">{platform === "twitter" ? t("tabs.send") : t("tabs.sendGeneric")}</TabsTrigger>
           <TabsTrigger value="queue">{t("tabs.queue")}</TabsTrigger>
           <TabsTrigger value="history">{t("tabs.history")}</TabsTrigger>
         </TabsList>

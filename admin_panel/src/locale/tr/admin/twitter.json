@@ -24,11 +24,24 @@
     "send": "Tweet Gönder",
     "queue": "Kuyruk",
     "history": "Geçmiş",
-    "plan": "Plan"
+    "plan": "Plan",
+    "sendGeneric": "Gönderi Oluştur"
   },
   "templates": {
-    "title": "Şablon Tweetler",
-    "description": "Otomasyonun kullandığı VistaSeeds şablonlarının canlı önizlemesi. Ürün görselleri ve metinler mevcut katalogdan örneklenir.",
+    "title": {
+      "twitter": "Şablon Tweetler",
+      "facebook": "Şablon Facebook Gönderileri",
+      "instagram": "Şablon Instagram Gönderileri",
+      "linkedin": "Şablon LinkedIn Gönderileri",
+      "youtube": "YouTube Şablonları"
+    },
+    "description": {
+      "twitter": "X stratejisindeki 15 slotun canlı önizlemesi — 280 karakter, az hashtag. Ürün görselleri ve metinler katalogdan örneklenir.",
+      "facebook": "Facebook planındaki slotların önizlemesi — uzun metin, görünür link ve görsel. İçerik katalogdan örneklenir.",
+      "instagram": "Instagram planındaki slotların önizlemesi — görsel zorunlu, caption'da link yok, keşfet için hashtag bloğu. Cuma slotu Story olarak yayınlanır.",
+      "linkedin": "LinkedIn planındaki slotların önizlemesi — kurumsal ton, az etiket, sektör/vizyon ağırlıklı.",
+      "youtube": "YouTube için içerik planı henüz tanımlı değil (video gerektirir)."
+    },
     "empty": "Şablon önizlemesi üretilemedi.",
     "previewBadge": "Önizleme",
     "sampleTime": "örnek"

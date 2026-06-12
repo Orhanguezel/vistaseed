@@ -68,6 +68,12 @@ function cycleSlotForToday(slots: PlanSlot[], now: Date): PlanSlot | null {
   return slots[publishIndex % slots.length] ?? null;
 }
 
+/** Platformun TÜM aktif plan slotları (önizleme/paneller için). */
+export async function loadPlanSlots(platform: SocialPlatform): Promise<PlanSlot[]> {
+  const rows = await repoListContentPlans(platform);
+  return rows.map(toSlot);
+}
+
 /** Platformun bugün yayınlanacak slotları. */
 export async function loadTodaysSlots(platform: SocialPlatform, now: Date): Promise<PlanSlot[]> {
   const rows = await repoListContentPlans(platform);

@@ -32,9 +32,12 @@ export const twitterAdminApi = baseApi.injectEndpoints({
       }),
     }),
 
-    /** GET /admin/twitter/templates */
-    twitterTemplatePreviews: b.query<TwitterTemplatePreviewResp, void>({
-      query: (): FetchArgs => ({ url: `${TWITTER_ADMIN_BASE}/templates` }),
+    /** GET /admin/twitter/templates?platform= */
+    twitterTemplatePreviews: b.query<TwitterTemplatePreviewResp, { platform?: SocialPlatform } | void>({
+      query: (params): FetchArgs => ({
+        url: `${TWITTER_ADMIN_BASE}/templates`,
+        params: params ?? {},
+      }),
     }),
 
     /** POST /admin/twitter/verify */

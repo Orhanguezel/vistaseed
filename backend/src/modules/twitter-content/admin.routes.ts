@@ -11,9 +11,13 @@ import {
   twitterGetMe,
   repoInsertTweet,
   tweets,
+  type SocialPlatform,
   type TwitterOAuth1Creds,
 } from '@agro/shared-backend/modules/twitter';
 import { findTwitterCalendarEvent, TWITTER_CALENDAR_EVENTS } from './calendar';
+import { formatSocialText, platformDefaultHashtags } from './format';
+import { loadPlanSlots, type PlanSlot } from './plan-source';
+import { buildTwitterSlotHashtags } from './planner-hashtags';
 import { buildTweetFallback, composeTweetText, stripInlineHashtags, trimToTweet } from './fallbacks';
 import {
   TWITTER_AGRICULTURE_TAG,
@@ -29,14 +33,16 @@ import { repoGetTwitterProducts, type TwitterProduct } from './repository';
 import { isoWeek } from './time';
 import { generateTweetCaption } from './ai';
 import { buildTweetTopic, TWITTER_SLOTS, TwitterTemplate, type TwitterTemplateSlot, type TwitterTweetContext } from './templates';
-import { twitterMediaForProduct, twitterMediaForSlot } from './media';
+import { socialMediaFallback, twitterMediaForProduct, twitterMediaForSlot } from './media';
 
 type TemplatePreview = {
   id: string;
+  platform: SocialPlatform;
   title: string;
   description: string;
   slot_label: string;
-  template: TwitterTemplate;
+  template: string;
+  post_format: string;
   content: string;
   media_url: string | null;
 };
@@ -59,10 +65,22 @@ type TwitterAiDraftBody = {
   current_text?: unknown;
 };
 
-const DAY_LABELS: Record<TwitterTemplateSlot['dayOfWeek'], string> = {
+const DAY_LABELS: Record<number, string> = {
+  1: 'Pazartesi',
+  2: 'Salı',
   3: 'Çarşamba',
   4: 'Perşembe',
   5: 'Cuma',
+  6: 'Cumartesi',
+  7: 'Pazar',
+};
+
+const PLATFORM_PREVIEW_NOTE: Record<SocialPlatform, string> = {
+  twitter: '15 maddelik strateji döngüsünden otomatik üretilir (280 karakter, az hashtag).',
+  facebook: 'Facebook planından üretilir: uzun metin + görünür link + görsel.',
+  instagram: 'Instagram planından üretilir: görsel zorunlu, link yok, hashtag bloğu.',
+  linkedin: 'LinkedIn planından üretilir: kurumsal ton, az etiket.',
+  youtube: 'YouTube için içerik planı henüz tanımlı değil.',
 };
 
 function siteUrl() {
@@ -173,88 +191,68 @@ function normalizeTwitterTemplate(value: unknown): TwitterTemplate {
   return TwitterTemplate.LocalSeedValue;
 }
 
-function hashtagsFor(template: TwitterTemplate, ctx: TwitterTweetContext): string {
-  if (template === TwitterTemplate.InteractionPoll) {
-    return `${TWITTER_BRAND_TAG} ${TWITTER_LOCAL_SEED_TAG}`;
-  }
-  if (template === TwitterTemplate.InteractionQuestion) {
-    return `${TWITTER_BRAND_TAG} ${TWITTER_AGRICULTURE_TAG}`;
-  }
-  if (template === TwitterTemplate.VarietyPromo) {
-    const crop = deriveTwitterHashtags({ productTitle: ctx.product?.title })
-      .split(/\s+/)
-      .find((tag) => tag !== TWITTER_SIGNATURE_TAG && tag !== TWITTER_BRAND_TAG);
-    return [TWITTER_BRAND_TAG, TWITTER_LOCAL_SEED_TAG, TWITTER_VEGETABLE_SEED_TAG, crop]
-      .filter(Boolean)
-      .slice(0, 4)
-      .join(' ');
-  }
-  if (template === TwitterTemplate.FieldProof) {
-    return `${TWITTER_BRAND_TAG} ${TWITTER_LOCAL_SEED_TAG} ${TWITTER_SIGNATURE_TAG}`;
-  }
-  if (template === TwitterTemplate.HumanResearch) {
-    return `${TWITTER_BRAND_TAG} ${TWITTER_SIGNATURE_TAG} #ArGe`;
-  }
-  if (template === TwitterTemplate.SeedMyth) {
-    return `${TWITTER_BRAND_TAG} ${TWITTER_SEED_TAG}`;
-  }
-  if (template === TwitterTemplate.ExportVision) {
-    return TWITTER_EXPORT_TAGS;
-  }
-  if (template === TwitterTemplate.AgronomyTip) {
-    return deriveTwitterHashtags({ productTitle: ctx.product?.title });
-  }
-  if (template === TwitterTemplate.IndustryEvent) {
-    return deriveTwitterHashtags({ eventTag: ctx.event?.eventTag });
-  }
-  if (template === TwitterTemplate.NationalDay) {
-    return deriveTwitterHashtags({ dayTag: ctx.event?.dayTag });
-  }
-  return deriveTwitterHashtags({});
-}
+const hashtagsFor = buildTwitterSlotHashtags;
 
-function previewFor(slot: TwitterTemplateSlot, ctx: TwitterTweetContext, now: Date): TemplatePreview {
-  const { template } = slot;
-  const hashtags = hashtagsFor(template, ctx);
-  const caption = trimToTweet(buildTweetFallback(template, ctx, isoWeek(now)), hashtags);
-  const mediaUrl = template === TwitterTemplate.VarietyPromo
+function previewFor(platform: SocialPlatform, slot: PlanSlot, ctx: TwitterTweetContext, now: Date): TemplatePreview {
+  const template = slot.template as TwitterTemplate;
+  const caption = buildTweetFallback(template, ctx, isoWeek(now));
+
+  let content: string;
+  if (platform === 'twitter') {
+    const hashtags = hashtagsFor(template, ctx);
+    content = composeTweetText(trimToTweet(caption, hashtags), hashtags);
+  } else {
+    content = formatSocialText(platform, {
+      caption,
+      hashtags: '',
+      linkUrl: ctx.linkUrl,
+      productTitle: ctx.product?.title,
+      postFormat: slot.postFormat,
+    });
+  }
+
+  const productMedia = template === TwitterTemplate.VarietyPromo
     ? twitterMediaForProduct(ctx.product?.title, slot.preferredProduct) || ctx.product?.imageUrl || null
     : twitterMediaForSlot(slot.key);
+  const mediaUrl = productMedia ?? (slot.mediaRequired ? socialMediaFallback() : null);
 
   return {
     id: slot.key,
+    platform,
     template,
+    post_format: slot.postFormat,
     title: `${slot.pillar} — ${slot.topic}`,
     description: slot.preferredProduct
       ? `Tercih edilen ürün: ${slot.preferredProduct}. Bulunamazsa katalogdan uygun ürün seçilir.`
-      : 'Strateji dokümanındaki 30 günlük rotasyondan otomatik üretilir.',
-    slot_label: `${DAY_LABELS[slot.dayOfWeek]} ${String(slot.hour).padStart(2, '0')}:${String(slot.minute).padStart(2, '0')} TR`,
-    content: composeTweetText(caption, hashtags),
+      : PLATFORM_PREVIEW_NOTE[platform],
+    slot_label: `${DAY_LABELS[slot.dayOfWeek] ?? ''} ${String(slot.hour).padStart(2, '0')}:${String(slot.minute).padStart(2, '0')} TR`,
+    content,
     media_url: mediaUrl,
   };
 }
 
 async function twitterTemplatePreviews(req: FastifyRequest, reply: FastifyReply) {
   try {
+    const platformRaw = String((req.query as Record<string, unknown> | null)?.platform || 'twitter');
+    const platform = (['twitter', 'facebook', 'instagram', 'linkedin', 'youtube'].includes(platformRaw)
+      ? platformRaw
+      : 'twitter') as SocialPlatform;
+
     const now = new Date();
+    const slots = await loadPlanSlots(platform);
     const products = await repoGetTwitterProducts(12);
     const currentEvent = findTwitterCalendarEvent(now);
     const fallbackEvent = TWITTER_CALENDAR_EVENTS[0] ?? null;
-    const baseCtx = {
-      linkUrl: siteUrl(),
-      product: null,
-      event: null,
-    } satisfies TwitterTweetContext;
 
-    const items = TWITTER_SLOTS.map((slot) => {
+    const items = slots.map((slot) => {
+      const template = slot.template as TwitterTemplate;
       const product = pickPreferredProduct(products, slot.preferredProduct);
-      const event = slot.template === TwitterTemplate.IndustryEvent
+      const event = template === TwitterTemplate.IndustryEvent
         ? currentEvent?.kind === 'industry_event' ? currentEvent : fallbackEvent
-        : slot.template === TwitterTemplate.NationalDay
+        : template === TwitterTemplate.NationalDay
           ? currentEvent?.kind === 'national_day' ? currentEvent : fallbackEvent
           : null;
-      return previewFor(slot, {
-        ...baseCtx,
+      return previewFor(platform, slot, {
         product,
         event,
         linkUrl: product?.productUrl || siteUrl(),
@@ -263,7 +261,7 @@ async function twitterTemplatePreviews(req: FastifyRequest, reply: FastifyReply)
       }, now);
     });
 
-    return reply.code(200).send({ items });
+    return reply.code(200).send({ items, platform });
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     req.log.error({ err: message }, 'twitter_template_previews_failed');
@@ -292,7 +290,12 @@ async function twitterAiDraft(req: FastifyRequest, reply: FastifyReply) {
       linkUrl: product?.productUrl || siteUrl(),
       strategyTopic: topic || undefined,
     } satisfies TwitterTweetContext;
-    const hashtags = hashtagsFor(template, ctx);
+    const platformKey = (['twitter', 'facebook', 'instagram', 'linkedin', 'youtube'].includes(platform)
+      ? platform
+      : 'twitter') as SocialPlatform;
+    const hashtags = platformKey === 'twitter'
+      ? hashtagsFor(template, ctx)
+      : platformDefaultHashtags(platformKey, product?.title);
     const baseTopic = buildTweetTopic(template, ctx);
     const aiTopic = [
       baseTopic,
@@ -303,8 +306,12 @@ async function twitterAiDraft(req: FastifyRequest, reply: FastifyReply) {
       currentText ? `Mevcut taslak varsa bunu gelistir: ${currentText}` : '',
       '',
       'Cikti kurallari:',
-      '- Yalnizca tweet govdesini yaz; hashtag yazma.',
-      '- 1-2 kisa paragraf yeterli; platform sosyal medya akisina uygun kisa tut.',
+      '- Yalnizca govde metnini yaz; hashtag yazma.',
+      platformKey === 'twitter'
+        ? '- 280 karakteri asma; 1-2 kisa cumle yeterli.'
+        : platformKey === 'linkedin'
+          ? '- Kurumsal ve profesyonel ton; 2-3 paragraf olabilir.'
+          : '- 2-3 kisa paragraf olabilir; samimi ama abartisiz.',
       '- Emojiyi az kullan; profesyonel ve uretici odakli kal.',
       '- Urun bilgisi katalogda yoksa iddia uydurma.',
     ].filter(Boolean).join('\n');
@@ -322,7 +329,7 @@ async function twitterAiDraft(req: FastifyRequest, reply: FastifyReply) {
       req.log.warn({ err: err instanceof Error ? err.message : String(err) }, 'twitter_ai_draft_fallback');
     }
 
-    const safeCaption = trimToTweet(caption, hashtags);
+    const safeCaption = platformKey === 'twitter' ? trimToTweet(caption, hashtags) : caption.trim();
     const mediaUrl = template === TwitterTemplate.VarietyPromo
       ? twitterMediaForProduct(product?.title, undefined) || product?.imageUrl || null
       : null;

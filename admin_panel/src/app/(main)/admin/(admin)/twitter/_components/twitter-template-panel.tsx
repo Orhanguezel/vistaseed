@@ -14,14 +14,14 @@ type TwitterTemplatePanelProps = {
 
 export default function TwitterTemplatePanel({ platform }: TwitterTemplatePanelProps) {
   const t = useAdminT("admin.twitter");
-  const { data, isLoading } = useTwitterTemplatePreviewsQuery();
+  const { data, isLoading } = useTwitterTemplatePreviewsQuery({ platform });
   const items = data?.items ?? [];
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{t("templates.title")}</CardTitle>
-        <CardDescription>{t("templates.description")}</CardDescription>
+        <CardTitle>{t(`templates.title.${platform}` as "templates.title.twitter")}</CardTitle>
+        <CardDescription>{t(`templates.description.${platform}` as "templates.description.twitter")}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         {isLoading ? (

@@ -127,7 +127,8 @@
       "Bash(echo \"build-exit: $?\")",
       "Bash(echo \"exit: $?\")",
       "Bash(python3 -c \"import json; d=json.load\\(open\\('src/locale/tr/admin/sidebar.json'\\)\\); print\\('twitter' in d['items'], 'google_ads' in d['items']\\)\")",
-      "Bash(echo \"panel-tsc: $?\")"
+      "Bash(echo \"panel-tsc: $?\")",
+      "Bash(echo \"tsc: $?\")"
     ],
     "defaultMode": "bypassPermissions",
     "additionalDirectories": [

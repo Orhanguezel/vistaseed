@@ -61,6 +61,7 @@ export type TwitterTemplatePreview = {
   description: string;
   slot_label: string;
   template: string;
+  post_format?: string;
   content: string;
   media_url: string | null;
 };

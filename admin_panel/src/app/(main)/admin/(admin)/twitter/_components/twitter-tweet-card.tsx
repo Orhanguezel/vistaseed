@@ -67,7 +67,9 @@ export function TwitterTweetCard({ item, mode = "log", onCancel, canceling }: Tw
           <div className="flex flex-wrap items-center gap-2">
             <div className="min-w-0">
               <span className="font-medium">Vista Seeds</span>
-              <span className="ml-1 text-muted-foreground text-xs">@VistaSeeds · {displayTime}</span>
+              <span className="ml-1 text-muted-foreground text-xs">
+                {platform === "twitter" ? "@VistaSeeds" : t(`platforms.${platform}` as "platforms.twitter")} · {displayTime}
+              </span>
             </div>
             {logRow ? (
               <Badge variant={STATUS_VARIANTS[logRow.status] ?? "outline"}>{t(`log.status.${logRow.status}`)}</Badge>
