@@ -16,17 +16,21 @@ export function GoogleConnectCallback() {
   const [exchange] = useGoogleConnectExchangeMutation();
   const [state, setState] = React.useState<'loading' | 'success' | 'error'>('loading');
   const [message, setMessage] = React.useState(t('callbackProcessing'));
+  const startedRef = React.useRef(false);
 
   React.useEffect(() => {
+    if (startedRef.current) return;
     const code = params.get('code');
     const oauthState = params.get('state') ?? undefined;
     const error = params.get('error');
     if (error) {
+      startedRef.current = true;
       setState('error');
       setMessage(error);
       return;
     }
     if (!code || !redirect?.callback_uri) return;
+    startedRef.current = true;
     exchange({ code, state: oauthState, redirect_uri: redirect.callback_uri }).unwrap()
       .then(() => {
         setState('success');
