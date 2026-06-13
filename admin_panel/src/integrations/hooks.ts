@@ -345,6 +345,11 @@ export {
   useGtmPublishMutation,
 } from "@/integrations/endpoints/admin/gtm-admin-endpoints";
 export {
+  useMetaStatusQuery,
+  useMetaSaveMutation,
+  useMetaTestMutation,
+} from "@/integrations/endpoints/admin/meta-admin-endpoints";
+export {
   useGoogleConnectStatusQuery,
   useLazyGoogleConnectAuthUrlQuery,
   useGoogleConnectExchangeMutation,

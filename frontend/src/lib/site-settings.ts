@@ -344,17 +344,24 @@ export interface AnalyticsConfig {
   adsConversionQuote: string | null;
   ga4Id: string | null;
   gtmId: string | null;
+  metaPixelId: string | null;
 }
 
 export async function fetchAnalyticsConfig(): Promise<AnalyticsConfig> {
-  const result: AnalyticsConfig = { ga4Id: null, gtmId: null, adsTagId: null, adsConversionQuote: null };
+  const result: AnalyticsConfig = { ga4Id: null, gtmId: null, adsTagId: null, adsConversionQuote: null, metaPixelId: null };
   try {
-    const [ga4Res, gtmRes, adsRes, adsQuoteRes] = await Promise.all([
+    const [ga4Res, gtmRes, adsRes, adsQuoteRes, metaRes] = await Promise.all([
       fetch(`${getApiV1()}/site_settings/ga4_measurement_id`, { next: { revalidate: 300 } }),
       fetch(`${getApiV1()}/site_settings/gtm_container_id`, { next: { revalidate: 300 } }),
       fetch(`${getApiV1()}/site_settings/google_ads_tag_id`, { next: { revalidate: 300 } }),
       fetch(`${getApiV1()}/site_settings/google_ads_conversion_quote`, { next: { revalidate: 300 } }),
+      fetch(`${getApiV1()}/site_settings/meta_pixel_id`, { next: { revalidate: 300 } }),
     ]);
+    if (metaRes.ok) {
+      const row = await metaRes.json();
+      const v = typeof row?.value === "string" ? row.value.trim() : "";
+      if (v) result.metaPixelId = v;
+    }
     if (ga4Res.ok) {
       const row = await ga4Res.json();
       const v = typeof row?.value === "string" ? row.value.trim() : "";

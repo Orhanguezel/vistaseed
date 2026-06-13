@@ -1117,6 +1117,12 @@ export {
   type GtmPublishResp,
 } from "@/integrations/shared/gtm";
 export {
+  META_ADMIN_BASE,
+  type MetaStatusResp,
+  type MetaSaveArgs,
+  type MetaTestResp,
+} from "@/integrations/shared/meta";
+export {
   GOOGLE_CONNECT_ADMIN_BASE,
   GOOGLE_SERVICE_LABELS,
   type GoogleConnectStatusResp,

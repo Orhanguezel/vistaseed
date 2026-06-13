@@ -25,6 +25,7 @@ export type AdminPermissionKey =
   | 'admin.google_ads'
   | 'admin.search_console'
   | 'admin.gtm'
+  | 'admin.meta'
   | 'admin.google_connect'
   | 'admin.ga4'
   | 'admin.audit'
@@ -60,6 +61,7 @@ export type AdminNavKey =
   | 'google_ads'
   | 'search_console'
   | 'gtm'
+  | 'meta'
   | 'google_connect'
   | 'ga4'
   | 'audit'
@@ -97,6 +99,7 @@ const ADMIN_PERMISSION_ROLE_MAP: Record<AdminPermissionKey, PanelRole[]> = {
   'admin.google_ads': ADMIN_ONLY,
   'admin.search_console': ADMIN_ONLY,
   'admin.gtm': ADMIN_ONLY,
+  'admin.meta': ADMIN_ONLY,
   'admin.google_connect': ADMIN_ONLY,
   'admin.ga4': ADMIN_ONLY,
   'admin.audit': ADMIN_ONLY,
@@ -138,6 +141,7 @@ const ADMIN_NAV_PERMISSION_MAP: Partial<Record<AdminNavKey, AdminPermissionKey>>
   google_ads: 'admin.google_ads',
   search_console: 'admin.search_console',
   gtm: 'admin.gtm',
+  meta: 'admin.meta',
   google_connect: 'admin.google_connect',
   ga4: 'admin.ga4',
   audit: 'admin.audit',
@@ -180,6 +184,7 @@ const ADMIN_PERMISSION_PATHS: Record<AdminPermissionKey, string[]> = {
   'admin.google_ads': ['/admin/google-ads'],
   'admin.search_console': ['/admin/search-console'],
   'admin.gtm': ['/admin/gtm'],
+  'admin.meta': ['/admin/meta'],
   'admin.google_connect': ['/admin/google-connect'],
   'admin.ga4': ['/admin/ga4'],
   'admin.audit': ['/admin/audit'],

@@ -4,6 +4,7 @@ import * as React from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { fireAdsConversion } from "@/lib/ads-conversion";
 import { getStoredGclid } from "@/lib/gclid";
+import { newMetaEventId, fireMetaLead, getFbCookies } from "@/lib/meta";
 import { Send, CheckCircle2, ChevronRight, Building2, User, Mail, Phone, MapPin, Package, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -36,6 +37,7 @@ export function OfferForm() {
     setError(null);
 
     try {
+      const metaEventId = newMetaEventId();
       const messageBlock = [
         form.category && `${t("payload.categoryLabel")}: ${form.category}`,
         form.quantity && `${t("payload.quantityLabel")}: ${form.quantity}`,
@@ -60,6 +62,10 @@ export function OfferForm() {
           const g = getStoredGclid();
           return g ? { gclid: g.id, gclid_source: g.source } : {};
         })(),
+        ...(() => {
+          const fb = getFbCookies();
+          return { meta_event_id: metaEventId, ...(fb.fbp ? { fbp: fb.fbp } : {}), ...(fb.fbc ? { fbc: fb.fbc } : {}) };
+        })(),
       };
 
       const res = await fetch(`${BASE_URL}${API.offers.publicCreate}`, {
@@ -71,6 +77,7 @@ export function OfferForm() {
 
       if (!res.ok) throw new Error(t("errors.submit"));
       fireAdsConversion("quote");
+      fireMetaLead(metaEventId);
       setSuccess(true);
     } catch (err: any) {
       setError(err.message || t("errors.unexpected"));

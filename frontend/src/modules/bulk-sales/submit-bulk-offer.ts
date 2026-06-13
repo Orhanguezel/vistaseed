@@ -1,6 +1,7 @@
 import { apiPost } from "@/lib/api-client";
 import { API } from "@/config/api-endpoints";
 import { getStoredGclid } from "@/lib/gclid";
+import { newMetaEventId, fireMetaLead, getFbCookies } from "@/lib/meta";
 
 export type BulkOfferOrgType =
   | "cooperative"
@@ -27,10 +28,24 @@ export interface BulkOfferFormPayload {
   website?: string;
   gclid?: string;
   gclid_source?: "gclid" | "gbraid" | "wbraid";
+  meta_event_id?: string;
+  fbp?: string;
+  fbc?: string;
 }
 
 export function submitBulkOffer(payload: BulkOfferFormPayload) {
   const g = getStoredGclid();
-  const enriched = g ? { ...payload, gclid: g.id, gclid_source: g.source } : payload;
-  return apiPost<{ success: boolean; id: string }>(API.offers.publicCreate, enriched);
+  const fb = getFbCookies();
+  const metaEventId = newMetaEventId();
+  const enriched: BulkOfferFormPayload = {
+    ...payload,
+    ...(g ? { gclid: g.id, gclid_source: g.source } : {}),
+    meta_event_id: metaEventId,
+    ...(fb.fbp ? { fbp: fb.fbp } : {}),
+    ...(fb.fbc ? { fbc: fb.fbc } : {}),
+  };
+  return apiPost<{ success: boolean; id: string }>(API.offers.publicCreate, enriched).then((r) => {
+    fireMetaLead(metaEventId);
+    return r;
+  });
 }
