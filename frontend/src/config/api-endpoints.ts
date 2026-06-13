@@ -6,11 +6,11 @@ export const API = {
     compare:    `${V1}/products/compare`,
     detail:     (slug: string) => `${V1}/products/${slug}`,
     categories: `${V1}/categories`,
-    specs:      `${V1}/product_specs`,
-    reviews:    `${V1}/product_reviews`,
-    faqs:       `${V1}/product_faqs`,
-    faqSubmit:  `${V1}/product_faqs/submit`,
-    reviewSubmit: `${V1}/product_reviews/submit`,
+    specs:      `${V1}/products/specs`,
+    reviews:    `${V1}/products/reviews`,
+    faqs:       `${V1}/products/faqs`,
+    faqSubmit:  `${V1}/products/faqs/submit`,
+    reviewSubmit: `${V1}/products/reviews/submit`,
   },
 
   siteSettings: {
