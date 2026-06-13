@@ -10,6 +10,7 @@ import { registerNotifications } from '@agro/shared-backend/modules/notification
 import { registerAudit, registerAuditAdmin, registerAuditStream } from '@agro/shared-backend/modules/audit';
 import { registerAnalyticsAdmin } from '@agro/shared-backend/modules/analytics';
 import { registerContacts, registerContactsAdmin } from '@agro/shared-backend/modules/contact';
+import { registerRedirects, registerRedirectsAdmin } from '@agro/shared-backend/modules/redirects';
 import { registerCustomPages, registerCustomPagesAdmin } from '@agro/shared-backend/modules/customPages';
 import { registerCategories, registerCategoriesAdmin } from '@agro/shared-backend/modules/categories';
 import { registerTheme, registerThemeAdmin } from '@agro/shared-backend/modules/theme';
@@ -46,6 +47,7 @@ export async function registerSharedPublic(api: FastifyInstance) {
   await registerNotifications(api);
   await registerAudit(api);
   await registerContacts(api);
+  await registerRedirects(api);
   await registerCustomPages(api);
   await registerTheme(api);
   await registerTelegram(api);
@@ -62,7 +64,7 @@ export async function registerSharedPublic(api: FastifyInstance) {
 export async function registerSharedAdmin(adminApi: FastifyInstance) {
   for (const reg of [
     registerSiteSettingsAdmin, registerUserAdmin, registerStorageAdmin,
-    registerContactsAdmin, registerCustomPagesAdmin, registerCategoriesAdmin,
+    registerContactsAdmin, registerRedirectsAdmin, registerCustomPagesAdmin, registerCategoriesAdmin,
     registerThemeAdmin, registerEmailTemplatesAdmin, registerAuditAdmin,
     registerAnalyticsAdmin, registerAuditStream, registerTelegramAdmin, registerTwitterAdmin, registerGoogleAdsAdmin, registerSearchConsoleAdmin, registerGa4Admin, registerGtmAdmin, registerGoogleConnectAdmin, registerMetaAdmin, registerProductsAdmin,
     registerGalleryAdmin, registerReferencesAdmin, registerLibraryAdmin,
