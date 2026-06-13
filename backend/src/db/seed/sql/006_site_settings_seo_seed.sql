@@ -22,7 +22,7 @@ ON DUPLICATE KEY UPDATE
    SEO CORE
    ============================================================= */
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
-  (UUID(), 'public_base_url', '*', '"http://localhost:3000"'),
+  (UUID(), 'public_base_url', '*', '"https://www.vistaseeds.com.tr"'),
   (UUID(), 'site_title',      '*', '"{{SITE_NAME}}"'),
   (UUID(), 'company_brand',   '*', '{"name":"{{SITE_NAME}}","shortName":"{{SITE_NAME}}"}'),
   (UUID(), 'socials',         '*', '{"instagram":"","facebook":""}')

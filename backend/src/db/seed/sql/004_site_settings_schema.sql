@@ -130,7 +130,7 @@ INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 INSERT INTO `site_settings` (`id`,`key`,`locale`,`value`) VALUES
 (UUID(), 'seo_defaults', '*',
  '{"canonicalBase":"http://localhost:3000","siteName":"{{SITE_NAME}}","description":"{{SITE_NAME}} kurumsal web sitesi.","ogLocale":"tr_TR","author":"{{SITE_NAME}}","themeColor":"#F97316","twitterCard":"summary_large_image","robots":"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1","googlebot":"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}'),
-(UUID(), 'public_base_url',  '*', '"http://localhost:3000"'),
+(UUID(), 'public_base_url',  '*', '"https://www.vistaseeds.com.tr"'),
 (UUID(), 'site_title',       '*', '"{{SITE_NAME}}"'),
 (UUID(), 'company_brand',    '*', '{"name":"{{SITE_NAME}}","shortName":"{{SITE_NAME}}"}'),
 (UUID(), 'socials',          '*', '{"instagram":"","facebook":"","twitter":""}'),
