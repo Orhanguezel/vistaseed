@@ -85,7 +85,21 @@ export default function GtmPage() {
       </Card>
 
       {empty ? (
-        <Card><CardContent className="py-4 text-muted-foreground text-sm">{t('emptyContainer')}</CardContent></Card>
+        <Card className="border-emerald-500/40">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm">{t('intentionalTitle')}</CardTitle>
+            <CardDescription>{t('intentionalBody')}</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <div className="font-medium text-xs text-muted-foreground uppercase tracking-wide">{t('directTitle')}</div>
+            <ul className="space-y-1 text-sm">
+              <li className="flex items-center gap-2"><Badge variant="default">GA4</Badge>{t('directGa4')}</li>
+              <li className="flex items-center gap-2"><Badge variant="default">Ads</Badge>{t('directAds')}</li>
+              <li className="flex items-center gap-2"><Badge variant="secondary">Meta</Badge>{t('directMeta')}</li>
+            </ul>
+            <p className="text-muted-foreground text-xs">{t('directNote')}</p>
+          </CardContent>
+        </Card>
       ) : null}
 
       <Card>
