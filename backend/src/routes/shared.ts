@@ -19,6 +19,7 @@ import { registerGoogleAdsAdmin } from '@agro/shared-backend/modules/googleAds';
 import { registerSearchConsoleAdmin } from '@agro/shared-backend/modules/searchConsole';
 import { registerGa4Admin } from '@agro/shared-backend/modules/ga4';
 import { registerGtmAdmin } from '@agro/shared-backend/modules/gtm';
+import { registerGoogleConnectAdmin } from '@agro/shared-backend/modules/googleConnect';
 import { registerEmailTemplatesAdmin } from '@agro/shared-backend/modules/emailTemplates/admin.routes';
 import { registerProducts } from '@agro/shared-backend/modules/products/router';
 import { registerProductsAdmin } from '@agro/shared-backend/modules/products/admin.routes';
@@ -62,7 +63,7 @@ export async function registerSharedAdmin(adminApi: FastifyInstance) {
     registerSiteSettingsAdmin, registerUserAdmin, registerStorageAdmin,
     registerContactsAdmin, registerCustomPagesAdmin, registerCategoriesAdmin,
     registerThemeAdmin, registerEmailTemplatesAdmin, registerAuditAdmin,
-    registerAnalyticsAdmin, registerAuditStream, registerTelegramAdmin, registerTwitterAdmin, registerGoogleAdsAdmin, registerSearchConsoleAdmin, registerGa4Admin, registerGtmAdmin, registerProductsAdmin,
+    registerAnalyticsAdmin, registerAuditStream, registerTelegramAdmin, registerTwitterAdmin, registerGoogleAdsAdmin, registerSearchConsoleAdmin, registerGa4Admin, registerGtmAdmin, registerGoogleConnectAdmin, registerProductsAdmin,
     registerGalleryAdmin, registerReferencesAdmin, registerLibraryAdmin,
     registerOrdersAdmin, registerDealerFinanceAdmin,
   ]) {

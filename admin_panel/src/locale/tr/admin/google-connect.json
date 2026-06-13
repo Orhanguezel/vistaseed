@@ -1,0 +1,19 @@
+{
+  "title": "Google Bağlantısı",
+  "description": "Ads, GA4, Tag Manager ve Search Console için tek Google yetkisini yönet/yenile",
+  "connected": "Bağlı",
+  "disconnected": "Bağlı değil",
+  "services": "Servisler",
+  "scopes": "Yetkiler (scope)",
+  "reconnect": "Yeniden Bağlan / Yenile",
+  "opening": "Açılıyor...",
+  "step1": "1) \"Yeniden Bağlan\"a bas → açılan Google sayfasında izin ver (orhanguzell@gmail.com).",
+  "step2": "2) Yönlendirilen sayfadaki adres çubuğundan veya OAuth Playground'dan \"code\" değerini kopyala.",
+  "step3": "3) Kodu aşağıya yapıştır ve \"Token'ı Kaydet\"e bas.",
+  "codePlaceholder": "Yetkilendirme kodu (4/0A...)",
+  "save": "Token'ı Kaydet",
+  "saving": "Kaydediliyor...",
+  "saved": "Yeni token kaydedildi — tüm Google modülleri bu token'ı kullanır.",
+  "failed": "İşlem başarısız",
+  "note": "Bu işlem client secret rotasyonundan sonra veya token süresi dolduğunda kullanılır. Yeni token site ayarlarına yazılır; Ads/GA4/GTM/GSC anında yeni token'a geçer."
+}

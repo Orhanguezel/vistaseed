@@ -345,8 +345,16 @@ export {
   useGtmPublishMutation,
 } from "@/integrations/endpoints/admin/gtm-admin-endpoints";
 export {
+  useGoogleConnectStatusQuery,
+  useLazyGoogleConnectAuthUrlQuery,
+  useGoogleConnectExchangeMutation,
+} from "@/integrations/endpoints/admin/google-connect-admin-endpoints";
+export {
   useGa4StatusQuery,
   useGa4OverviewQuery,
+  useGa4ReportQuery,
+  useGa4RealtimeQuery,
+  useGa4ConfigQuery,
   useGa4KeyEventsQuery,
   useGa4CreateKeyEventMutation,
   useGa4DeleteKeyEventMutation,

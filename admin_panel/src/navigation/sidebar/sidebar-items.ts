@@ -36,6 +36,7 @@ import {
   Search,
   Activity,
   Tag,
+  Link2,
 } from 'lucide-react';
 import type { TranslateFn } from '@/i18n/translation-utils';
 import { getAdminNavRoles } from '@/navigation/permissions';
@@ -150,6 +151,7 @@ export const adminNavConfig: AdminNavConfigGroup[] = [
       { key: 'google_ads', url: '/admin/google-ads', icon: BarChart3 },
       { key: 'search_console', url: '/admin/search-console', icon: Search },
       { key: 'gtm', url: '/admin/gtm', icon: Tag },
+      { key: 'google_connect', url: '/admin/google-connect', icon: Link2 },
       { key: 'ga4', url: '/admin/ga4', icon: Activity },
       { key: 'audit', url: '/admin/audit', icon: MessageSquare },
       { key: 'db_admin', url: '/admin/db-admin', icon: Database },
@@ -201,6 +203,7 @@ const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   google_ads: 'Google Ads',
   search_console: 'Search Console',
   gtm: 'Tag Manager',
+  google_connect: 'Google Bağlantısı',
   ga4: 'GA4 Analytics',
   audit: 'Denetim',
   db_admin: 'Veritabanı',
