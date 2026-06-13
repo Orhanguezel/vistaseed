@@ -2,12 +2,13 @@
 
 ## 🔔 CODEX AKTİF GÖREV (2026-06-12)
 
-> ✅ **Search Console genişletme TAMAMLANDI** (Codex, canlı) — [`CODEX-GSC-MODULU-GENISLETME.md`](CODEX-GSC-MODULU-GENISLETME.md)
+> ✅ **Search Console genişletme** (canlı) — [`CODEX-GSC-MODULU-GENISLETME.md`](CODEX-GSC-MODULU-GENISLETME.md)
+> ✅ **GA4 derinleştirme** (canlı) — [`CODEX-GA4-MODULU-DERINLESTIRME.md`](CODEX-GA4-MODULU-DERINLESTIRME.md)
 >
-> 🟢 **YENİ GÖREV → GA4 Analytics derinleştir:** [`CODEX-GA4-MODULU-DERINLESTIRME.md`](CODEX-GA4-MODULU-DERINLESTIRME.md)
-> Gerçek zamanlı, edinme/etkileşim/coğrafya, dönem karşılaştırma, olay tablosu, data stream/custom dimension/audience ayarları, GA4↔Ads import durumu. Sekmeli panel. Detay o dosyada.
+> 🟢 **YENİ GÖREV → Rotasyon (Google Bağlantısı) modülünü tamamla:** [`CODEX-ROTASYON-MODULU-TAMAMLAMA.md`](CODEX-ROTASYON-MODULU-TAMAMLAMA.md)
+> In-panel callback (manuel kod yapıştırmayı kaldır), token sağlığı + servis testi, bağlantıyı kes + revoke, client secret rotasyon akışı. Temel sürüm canlı; detaylar o dosyada.
 >
-> **Sahiplik/çakışma:** Claude paralelde **GTM + rotasyon** modüllerini yazıyor. Codex SADECE `ga4` backend modülü + `/admin/ga4` panel sayfası + GA4 locale'ine dokunur. Paylaşımlı barrel'lara (`integrations/shared.ts`, `hooks.ts`, `sidebar-items.ts`, `permissions.ts`, `admin-ui.ts`, `locale/tr/admin/index.ts`, `_shared/google-oauth.ts`) yalnızca KENDİ satırını ekler; başka modülün (GTM/rotasyon/GSC) satırlarını değiştirmez/silmez.
+> **Sahiplik/çakışma:** Claude paralelde **Meta Pixel + CAPI** yazıyor. Codex SADECE `googleConnect` backend modülü + `/admin/google-connect` panel sayfası + google-connect locale'ine dokunur. Paylaşımlı barrel'lara (`integrations/shared.ts`, `hooks.ts`, `sidebar-items.ts`, `permissions.ts`, `admin-ui.ts`, `locale/tr/admin/index.ts`, `_shared/google-oauth.ts`) yalnızca KENDİ satırını ekler; başka modülün (Meta/GA4/GTM/GSC) satırlarına dokunmaz.
 
 ## Proje Özeti
 
