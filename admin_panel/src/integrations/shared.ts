@@ -1125,10 +1125,15 @@ export {
 export {
   GOOGLE_CONNECT_ADMIN_BASE,
   GOOGLE_SERVICE_LABELS,
+  type GoogleServiceKey,
+  type GoogleServiceHealth,
   type GoogleConnectStatusResp,
   type GoogleAuthUrlResp,
   type GoogleExchangeResp,
   type GoogleExchangeArgs,
+  type GoogleRedirectResp,
+  type GoogleDisconnectResp,
+  type GoogleCredentialsArgs,
 } from "@/integrations/shared/google-connect";
 export {
   GA4_ADMIN_BASE,

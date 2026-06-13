@@ -351,8 +351,11 @@ export {
 } from "@/integrations/endpoints/admin/meta-admin-endpoints";
 export {
   useGoogleConnectStatusQuery,
+  useGoogleConnectRedirectQuery,
   useLazyGoogleConnectAuthUrlQuery,
   useGoogleConnectExchangeMutation,
+  useGoogleConnectDisconnectMutation,
+  useGoogleConnectCredentialsMutation,
 } from "@/integrations/endpoints/admin/google-connect-admin-endpoints";
 export {
   useGa4StatusQuery,
