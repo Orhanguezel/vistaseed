@@ -57,9 +57,10 @@ function buildLocaleAlternates(locale: string, pathname: string): { canonical: s
 /**
  * Backend'den sayfa SEO verisini çek.
  */
-export async function fetchPageSeo(pageKey: string): Promise<PageSeoData | null> {
+export async function fetchPageSeo(pageKey: string, locale?: string): Promise<PageSeoData | null> {
   try {
-    const res = await fetch(`${API_V1}/site_settings/page-seo/${pageKey}`, {
+    const qs = locale ? `?locale=${encodeURIComponent(locale)}` : "";
+    const res = await fetch(`${API_V1}/site_settings/page-seo/${pageKey}${qs}`, {
       next: { revalidate: 300 },
     });
     if (!res.ok) return null;
@@ -138,7 +139,7 @@ export async function getPageMetadata(
   overrides?: MetadataOverrides,
 ): Promise<Metadata> {
   const resolvedLocale = overrides?.locale ?? await getRequestLocale();
-  const seo = await fetchPageSeo(pageKey);
+  const seo = await fetchPageSeo(pageKey, resolvedLocale);
   return buildMetadata(seo, {
     ...overrides,
     locale: resolvedLocale,

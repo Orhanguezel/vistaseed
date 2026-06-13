@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { skipToken } from '@reduxjs/toolkit/query';
-import { Search } from 'lucide-react';
+import { ExternalLink, Search } from 'lucide-react';
 import { toast } from 'sonner';
 import { useAdminT } from '@/app/(main)/admin/_components/common/use-admin-t';
 import { Badge } from '@/components/ui/badge';
@@ -86,11 +86,21 @@ export default function SearchConsolePage() {
           {page ? <Card><CardHeader><CardTitle className="text-sm">{t('drill.title')}</CardTitle><CardDescription>{page}</CardDescription></CardHeader><CardContent><RowTable rows={drill?.items ?? []} t={t} head={t('cols.query')} /></CardContent></Card> : null}
           <Card><CardHeader><CardTitle className="text-sm">{t('inspect.title')}</CardTitle><CardDescription>{t('inspect.description')}</CardDescription></CardHeader>
             <CardContent className="space-y-3">
-              <div className="flex items-center gap-2"><Input value={inspectUrl} onChange={(e) => setInspectUrl(e.target.value)} placeholder={t('inspect.placeholder')} className="h-9 text-sm" />
-                <Button size="sm" onClick={handleInspect} disabled={inspecting || !inspectUrl.trim()}><Search className="mr-2 h-4 w-4" />{inspecting ? t('inspect.checking') : t('inspect.check')}</Button></div>
+              <div className="flex flex-wrap items-center gap-2"><Input value={inspectUrl} onChange={(e) => setInspectUrl(e.target.value)} placeholder={t('inspect.placeholder')} className="h-9 flex-1 text-sm" />
+                <Button size="sm" onClick={handleInspect} disabled={inspecting || !inspectUrl.trim()}><Search className="mr-2 h-4 w-4" />{inspecting ? t('inspect.checking') : t('inspect.check')}</Button>
+                <Button size="sm" variant="outline" disabled={!inspectUrl.trim()} asChild>
+                  <a
+                    href={`https://search.google.com/search-console/inspect?resource_id=${encodeURIComponent(activeSite)}&id=${encodeURIComponent(inspectUrl.trim())}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink className="mr-2 h-4 w-4" />{t('inspect.requestIndex')}
+                  </a>
+                </Button></div>
               {inspectRes ? <div className="flex flex-wrap gap-2"><Badge variant={inspectRes.verdict === 'PASS' ? 'default' : 'secondary'}>{adsLabel(GSC_VERDICT_LABELS, inspectRes.verdict)}</Badge>
                 <Badge variant="outline">{t('inspect.coverage')}: {inspectRes.coverage || '-'}</Badge>
                 <Badge variant="outline">{t('inspect.lastCrawl')}: {inspectRes.last_crawl ? new Date(inspectRes.last_crawl).toLocaleDateString('tr-TR') : '-'}</Badge></div> : null}
+              <p className="text-muted-foreground text-xs">{t('inspect.requestIndexNote')}</p>
             </CardContent></Card>
         </TabsContent>
         <TabsContent value="sitemaps"><SitemapTab items={sm?.items ?? []} site={activeSite} t={t} /></TabsContent>

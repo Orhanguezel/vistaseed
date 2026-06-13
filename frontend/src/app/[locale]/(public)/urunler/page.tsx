@@ -97,7 +97,7 @@ async function buildProductsMetadata(
   searchParams: Record<string, string | string[] | undefined>,
 ): Promise<Metadata> {
   const [baseMetadata, categories, t] = await Promise.all([
-    getPageMetadata("products", {
+    getPageMetadata("urunler", {
       locale,
       pathname: "/urunler",
     }),
