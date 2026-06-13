@@ -1123,6 +1123,14 @@ export {
   type MetaTestResp,
 } from "@/integrations/shared/meta";
 export {
+  REDIRECTS_ADMIN_BASE,
+  type RedirectType,
+  type RedirectDto,
+  type RedirectCreatePayload,
+  type RedirectUpdatePayload,
+  type RedirectListParams,
+} from "@/integrations/shared/redirects";
+export {
   GOOGLE_CONNECT_ADMIN_BASE,
   GOOGLE_SERVICE_LABELS,
   type GoogleServiceKey,

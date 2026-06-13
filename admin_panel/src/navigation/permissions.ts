@@ -27,6 +27,7 @@ export type AdminPermissionKey =
   | 'admin.gtm'
   | 'admin.meta'
   | 'admin.google_connect'
+  | 'admin.redirects'
   | 'admin.ga4'
   | 'admin.audit'
   | 'admin.db_admin'
@@ -63,6 +64,7 @@ export type AdminNavKey =
   | 'gtm'
   | 'meta'
   | 'google_connect'
+  | 'redirects'
   | 'ga4'
   | 'audit'
   | 'db_admin'
@@ -101,6 +103,7 @@ const ADMIN_PERMISSION_ROLE_MAP: Record<AdminPermissionKey, PanelRole[]> = {
   'admin.gtm': ADMIN_ONLY,
   'admin.meta': ADMIN_ONLY,
   'admin.google_connect': ADMIN_ONLY,
+  'admin.redirects': ADMIN_ONLY,
   'admin.ga4': ADMIN_ONLY,
   'admin.audit': ADMIN_ONLY,
   'admin.db_admin': ADMIN_ONLY,
@@ -143,6 +146,7 @@ const ADMIN_NAV_PERMISSION_MAP: Partial<Record<AdminNavKey, AdminPermissionKey>>
   gtm: 'admin.gtm',
   meta: 'admin.meta',
   google_connect: 'admin.google_connect',
+  redirects: 'admin.redirects',
   ga4: 'admin.ga4',
   audit: 'admin.audit',
   db_admin: 'admin.db_admin',
@@ -186,6 +190,7 @@ const ADMIN_PERMISSION_PATHS: Record<AdminPermissionKey, string[]> = {
   'admin.gtm': ['/admin/gtm'],
   'admin.meta': ['/admin/meta'],
   'admin.google_connect': ['/admin/google-connect'],
+  'admin.redirects': ['/admin/redirects'],
   'admin.ga4': ['/admin/ga4'],
   'admin.audit': ['/admin/audit'],
   'admin.db_admin': ['/admin/db-admin'],

@@ -350,6 +350,12 @@ export {
   useMetaTestMutation,
 } from "@/integrations/endpoints/admin/meta-admin-endpoints";
 export {
+  useListRedirectsAdminQuery,
+  useCreateRedirectAdminMutation,
+  useUpdateRedirectAdminMutation,
+  useDeleteRedirectAdminMutation,
+} from "@/integrations/endpoints/admin/redirects-admin-endpoints";
+export {
   useGoogleConnectStatusQuery,
   useGoogleConnectRedirectQuery,
   useLazyGoogleConnectAuthUrlQuery,

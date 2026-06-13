@@ -17,6 +17,7 @@ import searchConsole from "./search-console.json";
 import gtm from "./gtm.json";
 import meta from "./meta.json";
 import googleConnect from "./google-connect.json";
+import redirects from "./redirects.json";
 import ga4 from "./ga4.json";
 import homeLayout from "./home-layout.json";
 import homepageContent from "./homepage-content.json";
@@ -61,6 +62,7 @@ const adminMessages = {
   gtm: gtm,
   meta: meta,
   googleConnect: googleConnect,
+  redirects: redirects,
   ga4: ga4,
   "home-layout": homeLayout,
   "homepage-content": homepageContent,
