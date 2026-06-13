@@ -1109,6 +1109,14 @@ export {
   type GscIndexRefreshArgs,
 } from "@/integrations/shared/search-console";
 export {
+  GTM_ADMIN_BASE,
+  type GtmItem,
+  type GtmContainer,
+  type GtmStatusResp,
+  type GtmOverviewResp,
+  type GtmPublishResp,
+} from "@/integrations/shared/gtm";
+export {
   GA4_ADMIN_BASE,
   GA4_RANGES,
   GA4_RANGE_LABELS,

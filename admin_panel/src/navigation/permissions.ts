@@ -24,6 +24,7 @@ export type AdminPermissionKey =
   | 'admin.twitter'
   | 'admin.google_ads'
   | 'admin.search_console'
+  | 'admin.gtm'
   | 'admin.ga4'
   | 'admin.audit'
   | 'admin.db_admin'
@@ -57,6 +58,7 @@ export type AdminNavKey =
   | 'twitter'
   | 'google_ads'
   | 'search_console'
+  | 'gtm'
   | 'ga4'
   | 'audit'
   | 'db_admin'
@@ -92,6 +94,7 @@ const ADMIN_PERMISSION_ROLE_MAP: Record<AdminPermissionKey, PanelRole[]> = {
   'admin.twitter': ADMIN_ONLY,
   'admin.google_ads': ADMIN_ONLY,
   'admin.search_console': ADMIN_ONLY,
+  'admin.gtm': ADMIN_ONLY,
   'admin.ga4': ADMIN_ONLY,
   'admin.audit': ADMIN_ONLY,
   'admin.db_admin': ADMIN_ONLY,
@@ -131,6 +134,7 @@ const ADMIN_NAV_PERMISSION_MAP: Partial<Record<AdminNavKey, AdminPermissionKey>>
   twitter: 'admin.twitter',
   google_ads: 'admin.google_ads',
   search_console: 'admin.search_console',
+  gtm: 'admin.gtm',
   ga4: 'admin.ga4',
   audit: 'admin.audit',
   db_admin: 'admin.db_admin',
@@ -171,6 +175,7 @@ const ADMIN_PERMISSION_PATHS: Record<AdminPermissionKey, string[]> = {
   'admin.twitter': ['/admin/twitter'],
   'admin.google_ads': ['/admin/google-ads'],
   'admin.search_console': ['/admin/search-console'],
+  'admin.gtm': ['/admin/gtm'],
   'admin.ga4': ['/admin/ga4'],
   'admin.audit': ['/admin/audit'],
   'admin.db_admin': ['/admin/db-admin'],

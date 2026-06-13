@@ -340,6 +340,11 @@ export {
   useGscIndexRefreshMutation,
 } from "@/integrations/endpoints/admin/search-console-admin-endpoints";
 export {
+  useGtmStatusQuery,
+  useGtmOverviewQuery,
+  useGtmPublishMutation,
+} from "@/integrations/endpoints/admin/gtm-admin-endpoints";
+export {
   useGa4StatusQuery,
   useGa4OverviewQuery,
   useGa4KeyEventsQuery,
