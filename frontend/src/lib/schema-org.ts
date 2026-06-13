@@ -106,8 +106,9 @@ export function buildProductJsonLd(input: {
   additionalProperties?: { name: string; value: string }[];
 }) {
   const availability = `https://schema.org/${input.inStock === false ? "OutOfStock" : "InStock"}`;
-  // Google "offers/review/aggregateRating belirtilmelidir" hatasını önlemek için her ürüne offer ekle.
-  // Fiyat varsa fiyatlı offer, yoksa teklif modeli için fiyatsız (availability + url) offer.
+  // Teklif (fiyatsız) modeli: fiyat yoksa "offers" HİÇ eklenmez. Fiyatsız Offer,
+  // Google Merchant listings'te "price alanı eksik" hatası üretir (schema.org/Offer price ister).
+  // Fiyat varsa geçerli fiyatlı offer eklenir.
   const offers = input.price && input.price > 0
     ? {
         "@type": "Offer",
@@ -116,12 +117,7 @@ export function buildProductJsonLd(input: {
         availability,
         url: input.pageUrl,
       }
-    : {
-        "@type": "Offer",
-        priceCurrency: input.currency ?? "TRY",
-        availability,
-        url: input.pageUrl,
-      };
+    : null;
   return {
     name: input.name,
     ...(input.description && { description: input.description }),
@@ -139,7 +135,7 @@ export function buildProductJsonLd(input: {
     },
     ...(input.category && { category: input.category }),
     ...(input.tags?.length && { keywords: input.tags.join(", ") }),
-    offers,
+    ...(offers && { offers }),
     ...(input.ratingValue && input.reviewCount
       ? {
           aggregateRating: {

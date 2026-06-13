@@ -44,7 +44,7 @@ describe("schema-org helpers", () => {
     expect(schema.keywords).toContain("hibrit");
   });
 
-  it("emits a price-less offer when no price is provided", () => {
+  it("omits offers entirely when no price is provided (teklif/quote model)", () => {
     const schema = buildProductJsonLd({
       name: "Quote Only F1",
       pageUrl: "https://example.com/tr/urunler/quote-only-f1",
@@ -52,12 +52,8 @@ describe("schema-org helpers", () => {
       inStock: false,
     });
 
-    expect(schema.offers).toEqual({
-      "@type": "Offer",
-      priceCurrency: "TRY",
-      availability: "https://schema.org/OutOfStock",
-      url: "https://example.com/tr/urunler/quote-only-f1",
-    });
+    // Fiyatsız Offer Merchant listings'te "price eksik" hatası verir -> hiç eklenmez.
+    expect(schema.offers).toBeUndefined();
     expect(schema.aggregateRating).toBeUndefined();
   });
 
