@@ -15,7 +15,7 @@ interface LocalePageProps {
 export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "References.list" });
-  return getPageMetadata("references", {
+  return getPageMetadata("referanslar", {
     locale,
     pathname: "/referanslar",
     title: t("title"),

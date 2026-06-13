@@ -15,7 +15,7 @@ interface LocalePageProps {
 export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Library.knowledgeBase" });
-  return getPageMetadata("knowledge-base", {
+  return getPageMetadata("bilgi-bankasi", {
     locale,
     pathname: "/bilgi-bankasi",
     title: t("title"),

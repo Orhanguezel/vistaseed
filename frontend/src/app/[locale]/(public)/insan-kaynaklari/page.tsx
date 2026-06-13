@@ -13,7 +13,7 @@ interface LocalePageProps {
 
 export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
   const { locale } = await params;
-  return getPageMetadata("hr", {
+  return getPageMetadata("insan-kaynaklari", {
     locale,
     pathname: "/insan-kaynaklari",
   });

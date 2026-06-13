@@ -12,7 +12,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "DealersNetwork" });
-  const base = await getPageMetadata("dealers-network", {
+  const base = await getPageMetadata("bayi-agi", {
     locale,
     pathname: "/bayi-agi",
   });

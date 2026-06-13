@@ -104,7 +104,9 @@ export function buildMetadata(
   const alternates = locale && pathname ? buildLocaleAlternates(locale, pathname) : overrides?.alternates;
 
   const meta: Metadata = {
-    ...(title && { title }),
+    // page-seo başlığı markayı zaten içeriyor; kök layout title.template'inin
+    // "| Vista Seeds" ekini tekrar eklememesi için absolute kullan (çiftlenmeyi önler).
+    ...(title && { title: { absolute: title } }),
     ...(description && { description }),
     ...(keywords && { keywords }),
     ...(robots && { robots }),

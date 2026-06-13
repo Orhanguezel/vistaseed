@@ -11,7 +11,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Compare" });
-  const base = await getPageMetadata("compare", {
+  const base = await getPageMetadata("karsilastirma", {
     locale,
     pathname: "/karsilastirma",
   });
