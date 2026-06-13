@@ -330,9 +330,22 @@ export {
   useGscStatusQuery,
   useGscSitesQuery,
   useGscOverviewQuery,
+  useGscAnalyticsQuery,
+  useGscPageQueriesQuery,
   useGscSitemapsQuery,
+  useGscSubmitSitemapMutation,
+  useGscDeleteSitemapMutation,
   useGscInspectMutation,
+  useGscIndexQuery,
+  useGscIndexRefreshMutation,
 } from "@/integrations/endpoints/admin/search-console-admin-endpoints";
+export {
+  useGa4StatusQuery,
+  useGa4OverviewQuery,
+  useGa4KeyEventsQuery,
+  useGa4CreateKeyEventMutation,
+  useGa4DeleteKeyEventMutation,
+} from "@/integrations/endpoints/admin/ga4-admin-endpoints";
 export {
   useAdminGetQuery,
   useAdminListQuery,

@@ -14,6 +14,7 @@ import faqs from "./faqs.json";
 import gallery from "./gallery.json";
 import googleAds from "./google-ads.json";
 import searchConsole from "./search-console.json";
+import ga4 from "./ga4.json";
 import homeLayout from "./home-layout.json";
 import homepageContent from "./homepage-content.json";
 import jobApplications from "./job-applications.json";
@@ -54,6 +55,7 @@ const adminMessages = {
   gallery: gallery,
   googleAds: googleAds,
   searchConsole: searchConsole,
+  ga4: ga4,
   "home-layout": homeLayout,
   "homepage-content": homepageContent,
   "job-applications": jobApplications,

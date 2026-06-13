@@ -4,14 +4,35 @@
   "connected": "Bağlı",
   "disconnected": "Bağlı değil",
   "selectSite": "Site seçin",
+  "tabs": {
+    "overview": "Özet",
+    "index": "İndexleme",
+    "queries": "Sorgular/Sayfalar",
+    "sitemaps": "Sitemap"
+  },
+  "types": {
+    "web": "Web",
+    "image": "Görsel",
+    "video": "Video",
+    "news": "Haber"
+  },
   "cards": {
     "clicks": "Tıklama",
     "impressions": "Gösterim",
     "ctr": "CTR",
     "position": "Ort. Pozisyon"
   },
+  "charts": {
+    "series": "Zaman Serisi",
+    "clicksImpressions": "Tıklama / Gösterim",
+    "devices": "Cihaz Kırılımı",
+    "countries": "Ülke Kırılımı"
+  },
   "queries": "En Çok Tıklanan Sorgular",
   "pages": "En Çok Tıklanan Sayfalar",
+  "drill": {
+    "title": "Sayfa Sorguları"
+  },
   "cols": {
     "query": "Sorgu",
     "page": "Sayfa",
@@ -21,6 +42,23 @@
     "position": "Pozisyon"
   },
   "empty": "Seçilen dönemde veri yok.",
+  "index": {
+    "all": "Tümü",
+    "indexed": "İndexli",
+    "notIndexed": "İndexsiz",
+    "issue": "Sorunlu",
+    "unknown": "Bilinmiyor",
+    "url": "URL",
+    "status": "Durum",
+    "lastCrawl": "Son tarama",
+    "recommendation": "Düzeltme önerisi",
+    "refresh": "Yeniden Tara",
+    "refreshing": "Taranıyor...",
+    "refreshed": "{count} URL kontrol edildi.",
+    "failed": "Indexleme analizi başarısız",
+    "empty": "Henüz index cache kaydı yok. Yeniden tara ile ilk analizi başlatın.",
+    "help": "Indexsiz URL'lerde canonical, noindex, robots.txt, sitemap güncelliği, iç link ve içerik kalitesini birlikte kontrol edin. Genel URL'ler için Indexing API yerine GSC'deki URL Inspection ekranından manuel istek daha güvenlidir."
+  },
   "inspect": {
     "title": "URL İnceleme / Indexleme",
     "description": "Bir URL'nin Google'da indexli olup olmadığını kontrol et",
@@ -33,6 +71,11 @@
   },
   "sitemaps": "Site Haritaları",
   "sm": {
+    "placeholder": "https://www.vistaseeds.com.tr/sitemap.xml",
+    "submit": "Gönder",
+    "submitted": "Sitemap gönderildi.",
+    "deleted": "Sitemap silindi.",
+    "failed": "Sitemap işlemi başarısız",
     "errors": "hata",
     "warnings": "uyarı",
     "ok": "Sorunsuz",

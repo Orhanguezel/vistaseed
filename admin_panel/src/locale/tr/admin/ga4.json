@@ -1,0 +1,29 @@
+{
+  "title": "GA4 Analytics",
+  "description": "Kullanıcı/oturum/dönüşüm raporları ve anahtar olay (key event) yönetimi",
+  "connected": "Bağlı",
+  "disconnected": "Bağlı değil",
+  "cards": {
+    "users": "Kullanıcı",
+    "sessions": "Oturum",
+    "views": "Görüntüleme",
+    "conversions": "Dönüşüm"
+  },
+  "channels": "Kanallar",
+  "devices": "Cihazlar",
+  "pages": "En Çok Görüntülenen Sayfalar",
+  "empty": "Veri yok.",
+  "ke": {
+    "title": "Anahtar Olaylar (Dönüşümler)",
+    "description": "Bir olayı dönüşüm (anahtar olay) olarak işaretle veya kaldır. Olay adını gir (ör. generate_lead).",
+    "placeholder": "olay_adi",
+    "add": "Ekle",
+    "added": "Anahtar olay eklendi",
+    "remove": "Kaldır",
+    "removeConfirm": "Bu anahtar olay (dönüşüm) işareti kaldırılacak. Devam edilsin mi?",
+    "removed": "Anahtar olay kaldırıldı",
+    "failed": "İşlem başarısız",
+    "custom": "Özel",
+    "empty": "Tanımlı anahtar olay yok."
+  }
+}
