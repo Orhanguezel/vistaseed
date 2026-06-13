@@ -2,10 +2,12 @@
 
 ## 🔔 CODEX AKTİF GÖREV (2026-06-12)
 
-> **Codex → Search Console modülünü genişlet:** [`CODEX-GSC-MODULU-GENISLETME.md`](CODEX-GSC-MODULU-GENISLETME.md)
-> İndexleme analizi (hangi içerik indexli/değil + düzeltme önerileri), zaman serisi grafikler, cihaz/ülke kırılımı, sayfa→sorgu drill-down, sitemap gönder/sil. Detaylı checklist o dosyada.
+> ✅ **Search Console genişletme TAMAMLANDI** (Codex, canlı) — [`CODEX-GSC-MODULU-GENISLETME.md`](CODEX-GSC-MODULU-GENISLETME.md)
 >
-> **Sahiplik/çakışma:** Claude paralelde GA4 / Meta CAPI / GTM / rotasyon modüllerini yazıyor. Codex SADECE `searchConsole` backend modülü + `/admin/search-console` panel sayfası + GSC locale dosyasına dokunur. Paylaşımlı barrel'lara (`integrations/shared.ts`, `hooks.ts`, `sidebar-items.ts`, `permissions.ts`, `_shared/google-oauth.ts`) yalnızca KENDİ satırını ekler, mevcut satırları değiştirmez/silmez.
+> 🟢 **YENİ GÖREV → GA4 Analytics derinleştir:** [`CODEX-GA4-MODULU-DERINLESTIRME.md`](CODEX-GA4-MODULU-DERINLESTIRME.md)
+> Gerçek zamanlı, edinme/etkileşim/coğrafya, dönem karşılaştırma, olay tablosu, data stream/custom dimension/audience ayarları, GA4↔Ads import durumu. Sekmeli panel. Detay o dosyada.
+>
+> **Sahiplik/çakışma:** Claude paralelde **GTM + rotasyon** modüllerini yazıyor. Codex SADECE `ga4` backend modülü + `/admin/ga4` panel sayfası + GA4 locale'ine dokunur. Paylaşımlı barrel'lara (`integrations/shared.ts`, `hooks.ts`, `sidebar-items.ts`, `permissions.ts`, `admin-ui.ts`, `locale/tr/admin/index.ts`, `_shared/google-oauth.ts`) yalnızca KENDİ satırını ekler; başka modülün (GTM/rotasyon/GSC) satırlarını değiştirmez/silmez.
 
 ## Proje Özeti
 
