@@ -125,7 +125,8 @@ export default function AdminAuditClient() {
   const status = sp.get('status') ?? '';
   const from = sp.get('from') ?? '';
   const to = sp.get('to') ?? '';
-  const onlyAdmin = normalizeAdminAuditBoolLike(sp.get('only_admin'));
+  // Admin trafigi analize HIC dahil edilmez (backend de selfTrafficCond ile her zaman disliyor).
+  const onlyAdmin = false;
   const includeInternal = normalizeAdminAuditBoolLike(sp.get('include_internal'));
   const realOnlyParam = includeInternal ? 0 : 1;
 
@@ -811,15 +812,6 @@ export default function AdminAuditClient() {
                     </Select>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <Label className="flex items-center gap-2">
-                    <span>{t('common.onlyAdmin')}</span>
-                  </Label>
-                  <div className="flex items-center gap-2">
-                    <Switch checked={onlyAdminFlag} onCheckedChange={setOnlyAdminFlag} />
-                    <span className="text-sm text-muted-foreground">{t('common.adminRequests')}</span>
-                  </div>
-                </div>
 
                 <div className="md:col-span-3 flex flex-wrap items-center gap-2">
                   <Button type="submit">
@@ -1135,13 +1127,6 @@ export default function AdminAuditClient() {
                     onChange={(e) => setPathPrefixText(e.target.value)}
                     placeholder={t('metrics.placeholders.pathPrefix')}
                   />
-                </div>
-                <div className="space-y-2">
-                  <Label>{t('common.onlyAdmin')}</Label>
-                  <div className="flex items-center gap-2">
-                    <Switch checked={onlyAdminFlag} onCheckedChange={setOnlyAdminFlag} />
-                    <span className="text-sm text-muted-foreground">{t('common.adminRequests')}</span>
-                  </div>
                 </div>
 
                 <div className="md:col-span-3 flex flex-wrap items-center gap-2">
