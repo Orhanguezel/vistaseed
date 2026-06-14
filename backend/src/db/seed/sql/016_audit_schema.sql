@@ -18,6 +18,8 @@ CREATE TABLE IF NOT EXISTS `audit_request_logs` (
   `referer`          LONGTEXT        DEFAULT NULL,
   `user_id`          VARCHAR(64)     DEFAULT NULL,
   `is_admin`         INT             NOT NULL DEFAULT 0,
+  `is_bot`           TINYINT         NOT NULL DEFAULT 0,
+  `is_internal`      TINYINT         NOT NULL DEFAULT 0,
   `country`          VARCHAR(8)      DEFAULT NULL,
   `city`             VARCHAR(64)     DEFAULT NULL,
   `error_message`    VARCHAR(512)    DEFAULT NULL,
@@ -36,6 +38,8 @@ CREATE TABLE IF NOT EXISTS `audit_request_logs` (
   KEY `audit_request_logs_ip_idx`      (`ip`),
   KEY `audit_request_logs_status_idx`  (`status_code`),
   KEY `audit_request_logs_method_idx`  (`method`),
+  KEY `audit_request_logs_bot_idx`     (`is_bot`),
+  KEY `audit_request_logs_internal_idx` (`is_internal`),
   KEY `audit_request_logs_gclid_idx`     (`gclid`),
   KEY `audit_request_logs_utm_source_idx` (`utm_source`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

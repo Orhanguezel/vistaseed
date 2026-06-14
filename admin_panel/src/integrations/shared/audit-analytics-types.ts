@@ -3,6 +3,8 @@
 // Web-analytics DTOs (shared analytics module response shapes).
 // =============================================================
 
+import type { BoolLike } from '@/integrations/shared/common';
+
 export const ANALYTICS_ADMIN_BASE = 'admin/analytics';
 
 export type AnalyticsRange = '7d' | '30d';
@@ -131,6 +133,7 @@ export interface AnalyticsHeatmapResponseDto {
 
 export type AnalyticsRangeQueryParams = {
   range?: AnalyticsRange;
+  real_only?: BoolLike;
 };
 
 export type AuditGeoTrafficKind = 'all' | 'human' | 'bot';
@@ -152,4 +155,5 @@ export interface AuditGeoCitiesResponseDto {
 export type AuditGeoCitiesQueryParams = {
   days?: number;
   traffic?: AuditGeoTrafficKind;
+  real_only?: BoolLike;
 };

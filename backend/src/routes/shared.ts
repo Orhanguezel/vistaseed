@@ -62,11 +62,30 @@ export async function registerSharedPublic(api: FastifyInstance) {
 }
 
 export async function registerSharedAdmin(adminApi: FastifyInstance) {
+  const registerVistaSeedsAnalyticsAdmin = (api: FastifyInstance) =>
+    registerAnalyticsAdmin(api, {
+      intentPaths: [
+        '/tr/toplu-satis',
+        '/tr/iletisim',
+        '/tr/bayi-girisi',
+        '/tr/urunler',
+        '/en/bulk-sales',
+        '/en/contact',
+        '/de/grosshandel',
+        '/de/kontakt',
+      ],
+      funnelSteps: [
+        { key: 'bulk_sales', path: '/tr/toplu-satis' },
+        { key: 'contact', path: '/tr/iletisim' },
+        { key: 'dealer_login', path: '/tr/bayi-girisi' },
+      ],
+    });
+
   for (const reg of [
     registerSiteSettingsAdmin, registerUserAdmin, registerStorageAdmin,
     registerContactsAdmin, registerRedirectsAdmin, registerCustomPagesAdmin, registerCategoriesAdmin,
     registerThemeAdmin, registerEmailTemplatesAdmin, registerAuditAdmin,
-    registerAnalyticsAdmin, registerAuditStream, registerTelegramAdmin, registerTwitterAdmin, registerGoogleAdsAdmin, registerSearchConsoleAdmin, registerGa4Admin, registerGtmAdmin, registerGoogleConnectAdmin, registerMetaAdmin, registerProductsAdmin,
+    registerVistaSeedsAnalyticsAdmin, registerAuditStream, registerTelegramAdmin, registerTwitterAdmin, registerGoogleAdsAdmin, registerSearchConsoleAdmin, registerGa4Admin, registerGtmAdmin, registerGoogleConnectAdmin, registerMetaAdmin, registerProductsAdmin,
     registerGalleryAdmin, registerReferencesAdmin, registerLibraryAdmin,
     registerOrdersAdmin, registerDealerFinanceAdmin,
   ]) {

@@ -59,6 +59,7 @@ export type AuditRequestLogsListQueryParams = {
   ip?: string;
 
   only_admin?: BoolLike;
+  real_only?: BoolLike;
 
   created_from?: string; // "2025-12-24 10:00:00.000" gibi
   created_to?: string;
@@ -75,6 +76,7 @@ export type AuditAuthEventsListQueryParams = {
   user_id?: string;
   email?: string;
   ip?: string;
+  real_only?: BoolLike;
 
   created_from?: string;
   created_to?: string;
@@ -95,6 +97,7 @@ export type AuditAuthEventsListQueryParams = {
 export type AuditMetricsDailyQueryParams = {
   days?: number; // default 14
   only_admin?: BoolLike;
+  real_only?: BoolLike;
   path_prefix?: string;
 };
 
@@ -143,6 +146,7 @@ export function coerceAuditList<T>(raw: unknown): AuditListResponse<T> {
 export type AuditGeoStatsQueryParams = {
   days?: number;
   only_admin?: BoolLike;
+  real_only?: BoolLike;
   source?: 'requests' | 'auth';
 };
 

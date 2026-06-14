@@ -7,6 +7,29 @@ const RSS_IMPORT_FEEDS = parseEnvList(process.env.RSS_IMPORT_FEEDS);
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 const CORS_LIST = parseEnvList(process.env.CORS_ORIGIN);
 const CORS_ORIGIN = CORS_LIST.length ? CORS_LIST : [FRONTEND_URL];
+const DEFAULT_ANALYTICS_INTERNAL_IP_PREFIXES = [
+  '127.',
+  '::1',
+  '::ffff:127.',
+  '10.',
+  '192.168.',
+  '172.16.',
+  '172.17.',
+  '172.18.',
+  '172.19.',
+  '172.20.',
+  '172.21.',
+  '172.22.',
+  '172.23.',
+  '172.24.',
+  '172.25.',
+  '172.26.',
+  '172.27.',
+  '172.28.',
+  '172.29.',
+  '172.30.',
+  '172.31.',
+];
 
 const RAW_STORAGE_DRIVER = (process.env.STORAGE_DRIVER || 'cloudinary').toLowerCase();
 const STORAGE_DRIVER = (RAW_STORAGE_DRIVER === 'local' ? 'local' : 'cloudinary') as
@@ -66,6 +89,13 @@ export const env = {
   ALLOW_TEMP_LOGIN: process.env.ALLOW_TEMP_LOGIN || '',
   TEMP_PASSWORD: process.env.TEMP_PASSWORD || '',
   AUTH_ADMIN_EMAILS: process.env.AUTH_ADMIN_EMAILS || '',
+
+  // Audit / analytics traffic quality
+  AUDIT_EXCLUDE_IPS: parseEnvList(process.env.AUDIT_EXCLUDE_IPS),
+  ANALYTICS_INTERNAL_IP_PREFIXES: parseEnvList(process.env.ANALYTICS_INTERNAL_IP_PREFIXES).length
+    ? parseEnvList(process.env.ANALYTICS_INTERNAL_IP_PREFIXES)
+    : DEFAULT_ANALYTICS_INTERNAL_IP_PREFIXES,
+  ANALYTICS_OWNER_USER_IDS: parseEnvList(process.env.ANALYTICS_OWNER_USER_IDS),
 
   // CORS
   CORS_ORIGIN,

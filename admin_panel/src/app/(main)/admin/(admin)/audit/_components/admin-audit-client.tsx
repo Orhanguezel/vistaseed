@@ -126,6 +126,8 @@ export default function AdminAuditClient() {
   const from = sp.get('from') ?? '';
   const to = sp.get('to') ?? '';
   const onlyAdmin = normalizeAdminAuditBoolLike(sp.get('only_admin'));
+  const includeInternal = normalizeAdminAuditBoolLike(sp.get('include_internal'));
+  const realOnlyParam = includeInternal ? 0 : 1;
 
   const reqUserId = sp.get('req_user_id') ?? '';
   const reqIp = sp.get('req_ip') ?? '';
@@ -203,6 +205,7 @@ export default function AdminAuditClient() {
       from,
       to,
       only_admin: onlyAdmin ? '1' : '',
+      include_internal: includeInternal ? '1' : '',
       req_user_id: reqUserId,
       req_ip: reqIp,
       sort,
@@ -230,6 +233,7 @@ export default function AdminAuditClient() {
       from: merged.from || undefined,
       to: merged.to || undefined,
       only_admin: merged.only_admin || undefined,
+      include_internal: merged.include_internal || undefined,
       req_user_id: merged.req_user_id || undefined,
       req_ip: merged.req_ip || undefined,
       sort: merged.sort !== 'created_at' ? merged.sort : undefined,
@@ -373,6 +377,7 @@ export default function AdminAuditClient() {
       user_id: reqUserId || undefined,
       ip: reqIp || undefined,
       only_admin: onlyAdmin ? 1 : undefined,
+      real_only: realOnlyParam,
       created_from: from || undefined,
       created_to: to || undefined,
       sort: sort as 'created_at' | 'response_time_ms' | 'status_code',
@@ -380,7 +385,7 @@ export default function AdminAuditClient() {
       limit,
       offset,
     };
-  }, [q, method, status, reqUserId, reqIp, onlyAdmin, from, to, sort, orderDir, limit, offset]);
+  }, [q, method, status, reqUserId, reqIp, onlyAdmin, realOnlyParam, from, to, sort, orderDir, limit, offset]);
 
   const authParams = React.useMemo(() => {
     const ev = event && event !== ALL ? event : undefined;
@@ -391,21 +396,23 @@ export default function AdminAuditClient() {
       ip: ip || undefined,
       created_from: from || undefined,
       created_to: to || undefined,
+      real_only: realOnlyParam,
       sort: 'created_at' as const,
       orderDir: 'desc' as const,
       limit,
       offset,
     };
-  }, [event, email, user_id, ip, from, to, limit, offset]);
+  }, [event, email, user_id, ip, from, to, realOnlyParam, limit, offset]);
 
   const metricsParams = React.useMemo(() => {
     const d = toNonNegativeInt(days, 14) || 14;
     return {
       days: d,
       only_admin: onlyAdmin ? 1 : undefined,
+      real_only: realOnlyParam,
       path_prefix: path_prefix || undefined,
     };
-  }, [days, onlyAdmin, path_prefix]);
+  }, [days, onlyAdmin, realOnlyParam, path_prefix]);
 
   const reqQ = useListAuditRequestLogsAdminQuery(
     tab === 'requests' ? (reqParams as any) : (undefined as any),
@@ -427,9 +434,10 @@ export default function AdminAuditClient() {
     return {
       days: d,
       only_admin: onlyAdmin ? 1 : undefined,
+      real_only: realOnlyParam,
       source: 'requests' as const,
     };
-  }, [days, onlyAdmin]);
+  }, [days, onlyAdmin, realOnlyParam]);
 
   const geoQ = useGetAuditGeoStatsAdminQuery(
     tab === 'map' ? (geoParams as any) : (undefined as any),
@@ -437,42 +445,42 @@ export default function AdminAuditClient() {
   ) as any;
 
   const geoCitiesQ = useGetAuditGeoCitiesAdminQuery(
-    tab === 'map' ? ({ days: geoParams.days, traffic: geoTraffic } as any) : (undefined as any),
+    tab === 'map' ? ({ days: geoParams.days, traffic: geoTraffic, real_only: realOnlyParam } as any) : (undefined as any),
     { skip: tab !== 'map', refetchOnFocus: true } as any,
   ) as any;
 
   const overviewQ = useGetAnalyticsOverviewAdminQuery(
-    tab === 'general' || tab === 'device' ? ({ range } as any) : (undefined as any),
+    tab === 'general' || tab === 'device' ? ({ range, real_only: realOnlyParam } as any) : (undefined as any),
     { skip: tab !== 'general' && tab !== 'device', refetchOnFocus: true } as any,
   ) as any;
 
   const retentionQ = useGetAnalyticsRetentionAdminQuery(
-    tab === 'general' ? ({ range } as any) : (undefined as any),
+    tab === 'general' ? ({ range, real_only: realOnlyParam } as any) : (undefined as any),
     { skip: tab !== 'general', refetchOnFocus: true } as any,
   ) as any;
 
   const adsQ = useGetAnalyticsAdsAttributionAdminQuery(
-    tab === 'ads' ? ({ range } as any) : (undefined as any),
+    tab === 'ads' ? ({ range, real_only: realOnlyParam } as any) : (undefined as any),
     { skip: tab !== 'ads', refetchOnFocus: true } as any,
   ) as any;
 
   const adsDailyQ = useGetAnalyticsAdsDailyAdminQuery(
-    tab === 'ads' ? ({ range } as any) : (undefined as any),
+    tab === 'ads' ? ({ range, real_only: realOnlyParam } as any) : (undefined as any),
     { skip: tab !== 'ads', refetchOnFocus: true } as any,
   ) as any;
 
   const funnelQ = useGetAnalyticsFunnelAdminQuery(
-    tab === 'ads' ? ({ range } as any) : (undefined as any),
+    tab === 'ads' ? ({ range, real_only: realOnlyParam } as any) : (undefined as any),
     { skip: tab !== 'ads', refetchOnFocus: true } as any,
   ) as any;
 
   const deviceDailyQ = useGetAnalyticsDeviceDailyAdminQuery(
-    tab === 'device' ? ({ range } as any) : (undefined as any),
+    tab === 'device' ? ({ range, real_only: realOnlyParam } as any) : (undefined as any),
     { skip: tab !== 'device', refetchOnFocus: true } as any,
   ) as any;
 
   const heatmapQ = useGetAnalyticsHeatmapAdminQuery(
-    tab === 'device' ? ({ range } as any) : (undefined as any),
+    tab === 'device' ? ({ range, real_only: realOnlyParam } as any) : (undefined as any),
     { skip: tab !== 'device', refetchOnFocus: true } as any,
   ) as any;
 
@@ -588,6 +596,13 @@ export default function AdminAuditClient() {
           <p className="text-sm text-muted-foreground">{t('header.description')}</p>
         </div>
         <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 rounded-md border px-3 py-2">
+            <Switch
+              checked={includeInternal}
+              onCheckedChange={(checked) => apply({ include_internal: checked ? '1' : '', offset: 0 })}
+            />
+            <span className="text-sm text-muted-foreground">{t('common.includeInternalTraffic')}</span>
+          </div>
           <Button variant="outline" onClick={onRefresh} disabled={anyLoading}>
             <RefreshCcw className="mr-2 h-4 w-4" />
             {t('refresh')}
