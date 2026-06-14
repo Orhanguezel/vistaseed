@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import BackToTopWidgetClient from "@/components/widgets/BackToTopWidgetClient";
+import PageviewBeacon from "@/components/PageviewBeacon";
 import FrostWarningWidgetClient from "@/components/widgets/FrostWarningWidgetClient";
 import { ROUTES } from "@/config/routes";
 import { appLocales, type AppLocale } from "@/i18n/routing";
@@ -81,6 +82,7 @@ export default async function LocaleLayout({
 
   return (
     <div className="flex min-h-screen flex-col">
+      <PageviewBeacon />
       <FrostWarningWidgetClient />
       <BackToTopWidgetClient />
       <JsonLd data={organizationSchema} />
