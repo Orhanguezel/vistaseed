@@ -1,7 +1,7 @@
 // src/index.ts
 import { createApp } from './app';
 import { env } from '@/core/env';
-import { startTwitterContentScheduler } from '@/modules/twitter-content';
+import { startTwitterContentScheduler } from '@agro/shared-backend/modules/twitter-content';
 import type { FastifyInstance } from 'fastify';
 
 function checkSecurityDefaults() {
