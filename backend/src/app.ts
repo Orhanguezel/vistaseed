@@ -6,7 +6,7 @@ import multipart from '@fastify/multipart';
 import rateLimit from '@fastify/rate-limit';
 import fastifyStatic from '@fastify/static';
 import type { FastifyStaticOptions } from '@fastify/static';
-import type { FastifyInstance } from 'fastify';
+import type { FastifyInstance, FastifyRequest } from 'fastify';
 
 import authPlugin from './plugins/authPlugin';
 import mysqlPlugin from '@/plugins/mysql';
@@ -28,11 +28,31 @@ const setUploadSeoHeaders: NonNullable<FastifyStaticOptions['setHeaders']> = (re
   }
 };
 
+function firstHeader(value: string | string[] | undefined): string {
+  return Array.isArray(value) ? value[0] ?? '' : value ?? '';
+}
+
+function isLoopbackIp(ip?: string): boolean {
+  return ip === '127.0.0.1' || ip === '::1' || ip === '::ffff:127.0.0.1';
+}
+
+function rateLimitKey(req: FastifyRequest): string {
+  return firstHeader(req.headers['cf-connecting-ip']) || req.ip;
+}
+
+function isInternalBuildRequest(req: FastifyRequest): boolean {
+  const token = process.env.INTERNAL_BUILD_TOKEN || '';
+  if (token && firstHeader(req.headers['x-internal-build']) === token) return true;
+  const forwarded = firstHeader(req.headers['x-forwarded-for']);
+  const cloudflareIp = firstHeader(req.headers['cf-connecting-ip']);
+  return isLoopbackIp(req.ip) && !forwarded && !cloudflareIp;
+}
+
 export async function createApp() {
   const { default: buildFastify } =
     (await import('fastify')) as unknown as { default: typeof import('fastify').default };
 
-  const app = buildFastify({ logger: loggerConfig }) as FastifyInstance;
+  const app = buildFastify({ logger: loggerConfig, trustProxy: true }) as FastifyInstance;
 
   // ── Plugins ────────────────────────────────────────────────────────────────
   await app.register(cors, {
@@ -66,12 +86,10 @@ export async function createApp() {
   await app.register(rateLimit, {
     max: 100,
     timeWindow: '1 minute',
-    allowList: (req: { url?: string; ip?: string }) => {
+    keyGenerator: rateLimitKey,
+    allowList: (req: FastifyRequest) => {
       const url = req.url || '';
-      const ip = (req as { ip?: string }).ip ?? '';
-      // Localhost build-time fetches are never rate-limited
-      if (ip === '127.0.0.1' || ip === '::1' || ip === '::ffff:127.0.0.1') return true;
-      return url.startsWith(uploadsPrefix);
+      return url.startsWith(uploadsPrefix) || isInternalBuildRequest(req);
     },
   });
 

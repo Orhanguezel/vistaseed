@@ -31,6 +31,55 @@ SET @sql := IF(@idx = 0,
   'SELECT 1');
 PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
 
+SET @col := (SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS
+  WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'audit_request_logs' AND COLUMN_NAME = 'gclid');
+SET @sql := IF(@col = 0,
+  'ALTER TABLE `audit_request_logs` ADD COLUMN `gclid` VARCHAR(255) NULL AFTER `request_body`',
+  'SELECT 1');
+PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+
+SET @col := (SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS
+  WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'audit_request_logs' AND COLUMN_NAME = 'utm_source');
+SET @sql := IF(@col = 0,
+  'ALTER TABLE `audit_request_logs` ADD COLUMN `utm_source` VARCHAR(255) NULL AFTER `gclid`',
+  'SELECT 1');
+PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+
+SET @col := (SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS
+  WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'audit_request_logs' AND COLUMN_NAME = 'utm_medium');
+SET @sql := IF(@col = 0,
+  'ALTER TABLE `audit_request_logs` ADD COLUMN `utm_medium` VARCHAR(255) NULL AFTER `utm_source`',
+  'SELECT 1');
+PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+
+SET @col := (SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS
+  WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'audit_request_logs' AND COLUMN_NAME = 'utm_campaign');
+SET @sql := IF(@col = 0,
+  'ALTER TABLE `audit_request_logs` ADD COLUMN `utm_campaign` VARCHAR(255) NULL AFTER `utm_medium`',
+  'SELECT 1');
+PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+
+SET @col := (SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS
+  WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'audit_request_logs' AND COLUMN_NAME = 'utm_content');
+SET @sql := IF(@col = 0,
+  'ALTER TABLE `audit_request_logs` ADD COLUMN `utm_content` VARCHAR(255) NULL AFTER `utm_campaign`',
+  'SELECT 1');
+PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+
+SET @idx := (SELECT COUNT(*) FROM INFORMATION_SCHEMA.STATISTICS
+  WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'audit_request_logs' AND INDEX_NAME = 'audit_request_logs_gclid_idx');
+SET @sql := IF(@idx = 0,
+  'ALTER TABLE `audit_request_logs` ADD KEY `audit_request_logs_gclid_idx` (`gclid`)',
+  'SELECT 1');
+PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+
+SET @idx := (SELECT COUNT(*) FROM INFORMATION_SCHEMA.STATISTICS
+  WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'audit_request_logs' AND INDEX_NAME = 'audit_request_logs_utm_source_idx');
+SET @sql := IF(@idx = 0,
+  'ALTER TABLE `audit_request_logs` ADD KEY `audit_request_logs_utm_source_idx` (`utm_source`)',
+  'SELECT 1');
+PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+
 UPDATE `audit_request_logs`
 SET
   `is_bot` = CASE

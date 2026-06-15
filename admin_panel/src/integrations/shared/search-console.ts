@@ -43,6 +43,12 @@ export type GscQueryArgs = { range?: GscRange; type?: GscSearchType; site_url?: 
 export type GscSitemapMutationArgs = { feedpath: string; site_url?: string };
 export type GscIndexResp = { items: GscIndexItem[]; summary: Record<GscIndexCategory, number> };
 export type GscIndexRefreshArgs = { site_url?: string; force?: boolean; limit?: number };
+export type GscIndexRefreshResp = {
+  checked: number;
+  skipped: number;
+  totalUrls?: number;
+  items: GscIndexItem[];
+};
 
 export function formatGscCtr(ctr: number): string {
   return `%${(ctr * 100).toLocaleString('tr-TR', { maximumFractionDigits: 1 })}`;

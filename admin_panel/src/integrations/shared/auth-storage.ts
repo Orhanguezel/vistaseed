@@ -9,6 +9,7 @@ export const AUTH_SKIP_REAUTH_PATHS = [
   '/auth/google/start',
   '/auth/token/refresh',
   '/auth/logout',
+  '/admin/google-connect/exchange',
 ] as const;
 
 export const AUTH_SKIP_REAUTH = new Set<string>(AUTH_SKIP_REAUTH_PATHS);

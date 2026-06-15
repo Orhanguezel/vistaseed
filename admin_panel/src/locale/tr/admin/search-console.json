@@ -54,7 +54,7 @@
     "recommendation": "Düzeltme önerisi",
     "refresh": "Yeniden Tara",
     "refreshing": "Taranıyor...",
-    "refreshed": "{count} URL kontrol edildi.",
+    "refreshed": "{count} URL kontrol edildi, {skipped} güncel kayıt atlandı. Toplam URL: {total}.",
     "failed": "Indexleme analizi başarısız",
     "empty": "Henüz index cache kaydı yok. Yeniden tara ile ilk analizi başlatın.",
     "help": "Indexsiz URL'lerde canonical, noindex, robots.txt, sitemap güncelliği, iç link ve içerik kalitesini birlikte kontrol edin. Genel URL'ler için Indexing API yerine GSC'deki URL Inspection ekranından manuel istek daha güvenlidir."

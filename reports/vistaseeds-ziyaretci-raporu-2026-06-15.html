@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <title>VistaSeeds Ziyaretçi ve Kampanya İkinci Dönem Raporu</title>
+  <style>
+    @page { size: A4; margin: 18mm 16mm; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: #17231c;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      line-height: 1.45;
+      background: #fff;
+    }
+    .cover {
+      border-bottom: 3px solid #1f8f4d;
+      padding-bottom: 18px;
+      margin-bottom: 20px;
+    }
+    .eyebrow {
+      color: #1f8f4d;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    h1 { margin: 0 0 10px; font-size: 26px; line-height: 1.15; color: #0f3b22; }
+    h2 { margin: 22px 0 10px; font-size: 17px; color: #0f3b22; border-bottom: 1px solid #d8e5dc; padding-bottom: 5px; }
+    h3 { margin: 14px 0 8px; font-size: 13px; color: #1b4d31; }
+    .meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+    .meta div, .note, .metric, .callout { border: 1px solid #d8e5dc; border-radius: 8px; padding: 10px 12px; background: #f7fbf8; }
+    .meta strong, .metric strong { display: block; color: #5b6b61; font-size: 10px; text-transform: uppercase; margin-bottom: 3px; }
+    .summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 12px 0 18px; }
+    .metric span { display: block; font-size: 20px; color: #103d25; font-weight: 700; }
+    table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; }
+    th, td { border: 1px solid #dce7df; padding: 7px 8px; text-align: left; vertical-align: top; }
+    th { background: #eaf5ee; color: #123c25; font-size: 11px; }
+    tr:nth-child(even) td { background: #fafdfb; }
+    .chart { margin: 10px 0 18px; border: 1px solid #d8e5dc; border-radius: 8px; padding: 12px; }
+    .bar-row { display: grid; grid-template-columns: 70px 1fr 48px; gap: 10px; align-items: center; margin: 7px 0; }
+    .bar-track { height: 14px; background: #edf3ef; border-radius: 999px; overflow: hidden; }
+    .bar { height: 100%; background: linear-gradient(90deg, #1f8f4d, #64b777); border-radius: 999px; }
+    .bar.paid { background: linear-gradient(90deg, #c2410c, #f59e0b); }
+    .muted { color: #627369; }
+    .good { color: #14733b; font-weight: 700; }
+    .warn { color: #a46200; font-weight: 700; }
+    .bad { color: #a01b1b; font-weight: 700; }
+    .delta-up { color: #14733b; font-weight: 700; }
+    .delta-down { color: #a01b1b; font-weight: 700; }
+    ul { margin: 8px 0 12px 18px; padding: 0; }
+    li { margin: 4px 0; }
+    .callout { background: #fff9ea; border-color: #efd38e; margin: 12px 0; }
+    .callout.green { background: #ecfaf1; border-color: #8ed3a8; }
+    .callout.red { background: #fdecec; border-color: #e7a3a3; }
+    .footer { margin-top: 26px; padding-top: 10px; border-top: 1px solid #d8e5dc; color: #6a7a70; font-size: 10px; }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <div class="eyebrow">VistaSeeds Dijital Ekosistem · Bölüm 3</div>
+    <h1>Ziyaretçi ve Kampanya İkinci Dönem Raporu</h1>
+    <p class="muted">
+      Bu rapor, 1 Haziran 2026 ile 15 Haziran 2026 arasındaki 15 günlük dönemi kapsar.
+      18-25 Mayıs İlk Hafta Raporu'nun devamıdır; kampanyanın ilk aydaki olgunlaşmasını ölçer.
+      Veri kaynağı: VistaSeeds canlı nginx erişim logları. Filtreleme: bot, statik dosya, API, _rsc, GTM debug, widget veri uçları, SSR self-call hariç. Sadece 200 ve 304 yanıtları temiz sayfa görüntüleme sayılır.
+      <strong>Not:</strong> Site bu dönemde Cloudflare arkasına alındığı için nginx artık gerçek ziyaretçi IP'si yerine Cloudflare uç (edge) IP'si kaydediyor; bu nedenle bu raporda metrikler IP yerine <strong>sayfa görüntüleme ve gclid</strong> sayımlarına dayandırılmıştır (bkz. Metodoloji Notu).
+    </p>
+    <div class="meta">
+      <div><strong>Rapor tarihi</strong>15 Haziran 2026</div>
+      <div><strong>Kapsam</strong>1-15 Haziran 2026 (15 gün)</div>
+      <div><strong>Alan adı</strong>www.vistaseeds.com.tr</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Yönetici Özeti</h2>
+    <div class="summary">
+      <div class="metric"><strong>Toplam temiz sayfa görüntüleme</strong><span>3,365</span>15 gün</div>
+      <div class="metric"><strong>Teklif sayfası ziyareti</strong><span>1,292</span>/tr/teklif-al</div>
+      <div class="metric"><strong>Paid Ads (gclid) inişi</strong><span>1,315</span>3 kampanya, 1 baskın</div>
+      <div class="metric"><strong>Günlük ort. görüntüleme</strong><span>224</span>ilk hafta 118 → ×1.9</div>
+    </div>
+    <div class="callout green">
+      <strong class="good">Kampanya ölçeklendi.</strong>
+      İlk hafta (18-25 Mayıs) günlük ortalama <strong>118 sayfa görüntüleme</strong> ve <strong>~45 gclid</strong> seviyesindeydi.
+      Bu dönemde günlük ortalama <strong>224 görüntüleme (×1.9)</strong> ve <strong>~88 gclid (×2.0)</strong> seviyesine çıktı.
+      Pik gün <strong>9 Haziran</strong> oldu: 695 görüntüleme, 444 gclid inişi, 440 teklif sayfası ziyareti.
+      <code>/tr/teklif-al</code> dönem boyunca sitenin <strong>açık ara en çok görüntülenen sayfası</strong> olmayı sürdürdü.
+    </div>
+    <p>Önemli ek bulgular:</p>
+    <ul>
+      <li>Instagram trafiği belirgin büyüdü: referrer <strong>234 ziyaret</strong>, <code>utm_source=ig</code> <strong>58</strong> (ilk hafta 15 idi) — <strong class="delta-up">×3.9</strong>.</li>
+      <li><strong>AI arama trafiği başladı (GEO kazanımı):</strong> ChatGPT'den <strong>25</strong> (hem referrer hem <code>utm_source=chatgpt.com</code>), Perplexity'den <strong>9</strong> ziyaret kaydedildi.</li>
+      <li>Paid kampanya tek bir ID'de konsolide oldu: <code>23643860570</code> dönem gclid trafiğinin <strong>~%99'unu</strong> taşıyor (ilk haftada 3 kampanya dengeli dağılmıştı).</li>
+      <li>25 Mayıs'ta eklenen <code>/urun/ → /urunler/</code> redirect'i çalıştı: eski tekil URL 404 deseni (50+ adet) bu dönemde <strong>tamamen kayboldu</strong>.</li>
+      <li><strong class="bad">13 Haziran olayı:</strong> Google OAuth bağlama uç noktasında (<code>/api/v1/admin/google-connect/exchange</code>) tek saatte <strong>~522.000 istek / 507.000 HTTP 500</strong> üreten bir tekrar-deneme (retry-loop) seli yaşandı; aynı gün tespit edilip temizlendi. Detay aşağıda.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Günlük Ziyaretçi Grafiği (1-15 Haziran)</h2>
+    <div class="chart">
+      <div class="bar-row"><strong>01 Haz</strong><div class="bar-track"><div class="bar" style="width:23.5%"></div></div><span>163</span></div>
+      <div class="bar-row"><strong>02 Haz</strong><div class="bar-track"><div class="bar" style="width:23.7%"></div></div><span>165</span></div>
+      <div class="bar-row"><strong>03 Haz</strong><div class="bar-track"><div class="bar" style="width:42.6%"></div></div><span>296</span></div>
+      <div class="bar-row"><strong>04 Haz</strong><div class="bar-track"><div class="bar" style="width:18.4%"></div></div><span>128</span></div>
+      <div class="bar-row"><strong>05 Haz</strong><div class="bar-track"><div class="bar" style="width:11.2%"></div></div><span>78</span></div>
+      <div class="bar-row"><strong>06 Haz</strong><div class="bar-track"><div class="bar" style="width:32.5%"></div></div><span>226</span></div>
+      <div class="bar-row"><strong>07 Haz</strong><div class="bar-track"><div class="bar" style="width:18.0%"></div></div><span>125</span></div>
+      <div class="bar-row"><strong>08 Haz</strong><div class="bar-track"><div class="bar" style="width:58.0%"></div></div><span>403</span></div>
+      <div class="bar-row"><strong>09 Haz</strong><div class="bar-track"><div class="bar" style="width:100%"></div></div><span>695</span></div>
+      <div class="bar-row"><strong>10 Haz</strong><div class="bar-track"><div class="bar" style="width:29.8%"></div></div><span>207</span></div>
+      <div class="bar-row"><strong>11 Haz</strong><div class="bar-track"><div class="bar" style="width:19.1%"></div></div><span>133</span></div>
+      <div class="bar-row"><strong>12 Haz</strong><div class="bar-track"><div class="bar" style="width:27.1%"></div></div><span>188</span></div>
+      <div class="bar-row"><strong>13 Haz</strong><div class="bar-track"><div class="bar" style="width:48.3%"></div></div><span>336</span></div>
+      <div class="bar-row"><strong>14 Haz</strong><div class="bar-track"><div class="bar" style="width:12.5%"></div></div><span>87</span></div>
+      <div class="bar-row"><strong>15 Haz</strong><div class="bar-track"><div class="bar" style="width:19.4%"></div></div><span>135</span></div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Tarih</th>
+          <th>Sayfa görüntüleme</th>
+          <th>CF uç IP*</th>
+          <th>Teklif sayfası</th>
+          <th>Paid (gclid)</th>
+          <th>Bot isteği</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>01 Haziran 2026</td><td>163</td><td>67</td><td>11</td><td>11</td><td>72</td></tr>
+        <tr><td>02 Haziran 2026</td><td>165</td><td>58</td><td>7</td><td>7</td><td>78</td></tr>
+        <tr><td>03 Haziran 2026</td><td>296</td><td>102</td><td>3</td><td>4</td><td>193</td></tr>
+        <tr><td>04 Haziran 2026</td><td>128</td><td>78</td><td>3</td><td>3</td><td>919</td></tr>
+        <tr><td>05 Haziran 2026</td><td>78</td><td>59</td><td>3</td><td>3</td><td>169</td></tr>
+        <tr><td>06 Haziran 2026</td><td>226</td><td>77</td><td>148</td><td>151</td><td>153</td></tr>
+        <tr><td>07 Haziran 2026</td><td>125</td><td>73</td><td>57</td><td>56</td><td>123</td></tr>
+        <tr><td>08 Haziran 2026</td><td>403</td><td>105</td><td>288</td><td>299</td><td>146</td></tr>
+        <tr><td>09 Haziran 2026</td><td><strong>695</strong></td><td>203</td><td>440</td><td><strong>444</strong></td><td>229</td></tr>
+        <tr><td>10 Haziran 2026</td><td>207</td><td>108</td><td>112</td><td>115</td><td>206</td></tr>
+        <tr><td>11 Haziran 2026</td><td>133</td><td>87</td><td>30</td><td>30</td><td>410</td></tr>
+        <tr><td>12 Haziran 2026</td><td>188</td><td>114</td><td>28</td><td>30</td><td>437</td></tr>
+        <tr><td>13 Haziran 2026</td><td>336</td><td>112</td><td>68</td><td>69</td><td>450</td></tr>
+        <tr><td>14 Haziran 2026</td><td>87</td><td>68</td><td>14</td><td>15</td><td>302</td></tr>
+        <tr><td>15 Haziran 2026</td><td>135</td><td>60</td><td>80</td><td>78</td><td>133</td></tr>
+        <tr style="font-weight:700;background:#eaf5ee;"><td>15 gün toplam</td><td>3,365</td><td>3,432*</td><td>1,292</td><td>1,315</td><td>4,020</td></tr>
+      </tbody>
+    </table>
+    <p class="muted" style="font-size:10.5px;margin-top:4px;">
+      * Site Cloudflare arkasında olduğu için bu sütun <strong>gerçek ziyaretçi sayısı değil, Cloudflare uç sunucu IP sayısıdır</strong> ve gerçek tekil ziyaretçiyi olduğundan az gösterir (birçok ziyaretçi aynı uç IP'yi paylaşır). Güvenilir büyüme göstergeleri sayfa görüntüleme, teklif ve gclid sütunlarıdır. 13 Haziran bot rakamı OAuth seli (§ Teknik Sağlık) hariç tutularak hesaplanmıştır.
+    </p>
+  </section>
+
+  <section>
+    <h2>Trafik ve Sayfa Performansı</h2>
+
+    <h3>En çok görüntülenen sayfalar (1-15 Haziran)</h3>
+    <table>
+      <thead><tr><th>Sıra</th><th>Sayfa</th><th>Görüntüleme</th><th>Not</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><code>/tr/teklif-al</code></td><td><strong>1,292</strong></td><td>Kampanya hedef sayfası — açık ara birinci</td></tr>
+        <tr><td>2</td><td><code>/tr</code></td><td>637</td><td>Ana sayfa</td></tr>
+        <tr><td>3</td><td><code>/tr/urunler</code></td><td>265</td><td>Ürün keşfi</td></tr>
+        <tr><td>4</td><td><code>/tr/hakkimizda</code></td><td>134</td><td>Kurumsal güven</td></tr>
+        <tr><td>5</td><td><code>/tr/iletisim</code></td><td>98</td><td>İletişim niyeti</td></tr>
+        <tr><td>6</td><td><code>/tr/sss</code></td><td>67</td><td>Sık sorulan sorular</td></tr>
+        <tr><td>7</td><td><code>/tr/urunler/lucky-f1</code></td><td>27</td><td>Ürün detayı</td></tr>
+        <tr><td>8</td><td><code>/tr/urunler/prestij-f1</code></td><td>23</td><td>Ürün detayı</td></tr>
+        <tr><td>9</td><td><code>/tr/urunler/saray-f1</code></td><td>21</td><td>Ürün detayı</td></tr>
+        <tr><td>10</td><td><code>/tr/urunler/tirpan-f1</code></td><td>21</td><td>Ürün detayı</td></tr>
+        <tr><td>11</td><td><code>/en</code></td><td>21</td><td>EN ana sayfa (yurtdışı ilgi)</td></tr>
+        <tr><td>12</td><td><code>/tr/toplu-satis</code></td><td>15</td><td>B2B sayfası</td></tr>
+        <tr><td>13</td><td><code>/tr/urunler/kizgin-f1</code></td><td>15</td><td>Ürün detayı</td></tr>
+        <tr><td>14</td><td><code>/tr/urunler/avar</code></td><td>13</td><td>Ürün detayı</td></tr>
+        <tr><td>15</td><td><code>/de</code></td><td>13</td><td>DE ana sayfa</td></tr>
+        <tr><td>16</td><td><code>/tr/bilgi-bankasi/kurumsal-bilgi-akisi-rehberi</code></td><td>11</td><td>İçerik / blog tipi (yeni)</td></tr>
+        <tr><td>17</td><td><code>/tr/bayi-girisi</code></td><td>10</td><td>Bayi girişi</td></tr>
+        <tr><td>18</td><td><code>/tr/referanslar/vista-prestige</code></td><td>9</td><td>Referans</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Trafik kaynakları (referrer + UTM sinyalleri)</h3>
+    <table>
+      <thead><tr><th>Kaynak sinyali</th><th>Ziyaret</th><th>Önceki dönem (18-25 May)</th><th>Yorum</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Paid Ads (gclid)</strong></td><td><strong>1,315</strong></td><td>358</td><td>Birincil kanal — günlük ort. ×2.0</td></tr>
+        <tr><td>Direkt / boş referrer</td><td>2,303</td><td>526</td><td>Referrer gizliliği + reklam tıkları (çoğu gclid ile birlikte)</td></tr>
+        <tr><td>Instagram (referrer)</td><td>234</td><td>15</td><td>Belirgin büyüme — bio link aktif</td></tr>
+        <tr><td>Bing (organik)</td><td>119</td><td>-</td><td>Yeni organik kaynak</td></tr>
+        <tr><td>Google referrer (organik)</td><td>62</td><td>266</td><td>Referrer aktarımı azaldı (gizlilik); gerçek organik GSC'den ölçülmeli</td></tr>
+        <tr><td>LinkedIn</td><td>52</td><td>-</td><td>Yeni</td></tr>
+        <tr><td>Yandex</td><td>43</td><td>-</td><td>Organik</td></tr>
+        <tr><td><strong>ChatGPT (AI arama)</strong></td><td><strong>25</strong></td><td>0</td><td>GEO kazanımı — AI cevaplarında atıf</td></tr>
+        <tr><td>Twitter / X (t.co)</td><td>37</td><td>-</td><td>Sosyal</td></tr>
+        <tr><td><strong>Perplexity (AI arama)</strong></td><td><strong>9</strong></td><td>0</td><td>GEO kazanımı</td></tr>
+      </tbody>
+    </table>
+
+    <h3>UTM kampanya etiketleri</h3>
+    <table>
+      <thead><tr><th>Etiket</th><th>Sayı</th><th>Yorum</th></tr></thead>
+      <tbody>
+        <tr><td><code>utm_source=ig</code></td><td>58</td><td>Instagram bio link (ilk hafta 15 → ×3.9)</td></tr>
+        <tr><td><code>utm_source=chatgpt.com</code></td><td>25</td><td>ChatGPT atıf trafiği</td></tr>
+        <tr><td><code>utm_campaign=*</code></td><td>0</td><td>⚠ Hâlâ tanımlı değil — Google Ads otomatik etiketleme (gclid) kullanılıyor</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Paid Ads (Google Ads) Detayı</h2>
+    <div class="chart">
+      <div class="bar-row"><strong>01 Haz</strong><div class="bar-track"><div class="bar paid" style="width:2.5%"></div></div><span>11</span></div>
+      <div class="bar-row"><strong>02 Haz</strong><div class="bar-track"><div class="bar paid" style="width:1.6%"></div></div><span>7</span></div>
+      <div class="bar-row"><strong>03 Haz</strong><div class="bar-track"><div class="bar paid" style="width:0.9%"></div></div><span>4</span></div>
+      <div class="bar-row"><strong>04 Haz</strong><div class="bar-track"><div class="bar paid" style="width:0.7%"></div></div><span>3</span></div>
+      <div class="bar-row"><strong>05 Haz</strong><div class="bar-track"><div class="bar paid" style="width:0.7%"></div></div><span>3</span></div>
+      <div class="bar-row"><strong>06 Haz</strong><div class="bar-track"><div class="bar paid" style="width:34.0%"></div></div><span>151</span></div>
+      <div class="bar-row"><strong>07 Haz</strong><div class="bar-track"><div class="bar paid" style="width:12.6%"></div></div><span>56</span></div>
+      <div class="bar-row"><strong>08 Haz</strong><div class="bar-track"><div class="bar paid" style="width:67.3%"></div></div><span>299</span></div>
+      <div class="bar-row"><strong>09 Haz</strong><div class="bar-track"><div class="bar paid" style="width:100%"></div></div><span>444</span></div>
+      <div class="bar-row"><strong>10 Haz</strong><div class="bar-track"><div class="bar paid" style="width:25.9%"></div></div><span>115</span></div>
+      <div class="bar-row"><strong>11 Haz</strong><div class="bar-track"><div class="bar paid" style="width:6.8%"></div></div><span>30</span></div>
+      <div class="bar-row"><strong>12 Haz</strong><div class="bar-track"><div class="bar paid" style="width:6.8%"></div></div><span>30</span></div>
+      <div class="bar-row"><strong>13 Haz</strong><div class="bar-track"><div class="bar paid" style="width:15.5%"></div></div><span>69</span></div>
+      <div class="bar-row"><strong>14 Haz</strong><div class="bar-track"><div class="bar paid" style="width:3.4%"></div></div><span>15</span></div>
+      <div class="bar-row"><strong>15 Haz</strong><div class="bar-track"><div class="bar paid" style="width:17.6%"></div></div><span>78</span></div>
+    </div>
+    <p>
+      Gözlenen baskın kampanya ID'si (<code>gad_campaignid</code>): <code>23643860570</code> (1.306 iniş, ~%99).
+      İlk haftadaki diğer kampanyalar (<code>23858139584</code>, <code>23862644545</code>) bu dönemde neredeyse durdu;
+      bütçe tek kampanyada toplanmış görünüyor. <code>23862644575</code>, <code>23942372545</code>, <code>21984227742</code> gibi tekil ID'ler 1-3 iniş ile marjinal.
+    </p>
+    <div class="callout">
+      <strong class="warn">Dağılım dikkat:</strong> Paid trafik son derece dalgalı (3 → 444 → 15 gclid/gün). Hafta sonu/akşam bütçe duraklamaları ve 6-9 Haziran arası yoğun harcama görülüyor.
+      Maliyet verimliliği (CTR, BPC, dönüşüm) yalnızca Google Ads paneli verisiyle değerlendirilebilir; log verisi tıklama maliyetini göstermez.
+    </div>
+  </section>
+
+  <section>
+    <h2>Önceki Dönemle Karşılaştırma (günlük ortalama)</h2>
+    <p class="muted" style="margin-top:0;">Dönem uzunlukları farklı olduğu için (8 gün vs 15 gün) karşılaştırma günlük ortalama üzerinden yapılmıştır.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Metrik (günlük ort.)</th>
+          <th>18-25 Mayıs (ilk hafta)</th>
+          <th>1-15 Haziran (ikinci dönem)</th>
+          <th>Değişim</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Temiz sayfa görüntüleme</td><td>118</td><td>224</td><td class="delta-up">×1.9</td></tr>
+        <tr><td><strong>/tr/teklif-al görüntüleme</strong></td><td>47</td><td><strong>86</strong></td><td class="delta-up">×1.85</td></tr>
+        <tr><td><strong>Paid Ads (gclid) inişi</strong></td><td>45</td><td><strong>88</strong></td><td class="delta-up"><strong>×2.0</strong></td></tr>
+        <tr><td>Instagram (referrer + UTM, toplam)</td><td>15</td><td>292</td><td class="delta-up">güçlü artış</td></tr>
+        <tr><td>AI arama (ChatGPT + Perplexity)</td><td>0</td><td>34</td><td class="delta-up">yeni kanal</td></tr>
+        <tr><td>Teknik sağlık (5xx, sel hariç)</td><td>%0.3</td><td>%0.1</td><td class="delta-up">iyileşti</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Metodoloji Notu — Cloudflare</h2>
+    <div class="callout">
+      <strong class="warn">Ölçüm değişti.</strong>
+      25 Mayıs raporunda en çok istek atan IP'ler gerçek TR ISP ve Google IP'leriydi. Bu dönemde tüm istemci IP'leri
+      Cloudflare uç bloklarına (172.64-71, 104.16-31, 162.158-159, 108.162, 141.101) ait. Yani site Cloudflare proxy (turuncu bulut) arkasına alınmış
+      ve nginx <code>real_ip</code> / <code>CF-Connecting-IP</code> geri-çözümü yapılandırılmamış.
+    </div>
+    <ul>
+      <li><strong>Etkisi:</strong> "Tekil IP" artık gerçek ziyaretçi değil, Cloudflare uç sunucusu sayar; gerçek tekil ziyaretçi olduğundan az görünür. gclid başına IP oranının 1.2'den 3-5'e çıkması da bundandır (gerçek davranış değişimi değil).</li>
+      <li><strong>Güvenilir kalan metrikler:</strong> sayfa görüntüleme, teklif sayfası, gclid sayıları (her istek loglanmaya devam ediyor).</li>
+      <li><strong>Öneri 1:</strong> nginx'e Cloudflare <code>set_real_ip_from</code> + <code>real_ip_header CF-Connecting-IP</code> ekle — log tekrar gerçek ziyaretçi IP'sini gösterir.</li>
+      <li><strong>Öneri 2 (kalıcı çözüm):</strong> Ziyaretçi ölçümünü log yerine bu dönemde devreye alınan <strong>pageview beacon</strong> / GA4 üzerinden yap — bot/ön-bellek/Cloudflare gürültüsünden bağımsız, gerçek oturum bazlı.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Teknik Sağlık Notları</h2>
+    <div class="callout green">
+      <strong class="good">Site sağlığı iyi.</strong>
+      OAuth seli hariç tutulduğunda dönem boyunca: <strong>2xx %78.4</strong>, <strong>3xx %8.8</strong>, <strong>4xx %12.7</strong> (büyük çoğunluğu saldırı probe'ları), <strong>5xx %0.1</strong> (32.502 istek tabanında 39 adet — mükemmel).
+    </div>
+    <div class="callout red">
+      <strong class="bad">13 Haziran OAuth tekrar-deneme seli (kapatıldı).</strong>
+      13 Haziran 03:00 UTC civarında <code>/api/v1/admin/google-connect/exchange</code> uç noktasına tek saatte <strong>~522.000 istek</strong> geldi;
+      bunların <strong>507.828'i HTTP 500</strong>, 10.856'sı 204, 1.850'si 502 döndü. Kaynak 2 Cloudflare uç IP'si (172.70.220.3, 172.71.160.140).
+      Bu, Google bağlama akışındaki bir <strong>sonsuz tekrar-deneme döngüsü</strong> (geçersiz/expired auth code üzerine durmadan retry) idi. Aynı gün tespit edilip temizlendi
+      (<code>reports/audit-spike-2026-06-13-cleanup.sql</code>); 14-15 Haziran'da tekrarı yok.
+    </div>
+    <h3>Çözülmüş</h3>
+    <ul>
+      <li><strong>Eski <code>/tr/urun/&lt;slug&gt;</code> 404 deseni kayboldu</strong> — 25 Mayıs'ta eklenen <code>/urun/ → /urunler/</code> redirect'i çalışıyor (ilk raporda 50+ adet 404 vardı, bu dönem top 4xx listesinde yok).</li>
+    </ul>
+    <h3>Henüz çözülmemiş</h3>
+    <ul>
+      <li><strong>Saldırı probe trafiği sürüyor:</strong> top 4xx'in çoğu <code>/.env*</code> (40+), <code>/.git/config</code> (28), <code>/*.php</code> (test/info/phpinfo/xmlrpc, 50+) probe'ları. 25 Mayıs'ta önerilen <strong>nginx erken bloklama kuralları (return 444) hâlâ eklenmedi</strong>. Cloudflare WAF kuralı da bu işi görür.</li>
+      <li><strong>OAuth uç noktasına koruma yok:</strong> <code>google-connect/exchange</code> için rate-limit + devre kesici (circuit breaker) eklenmeli; aynı code ile tekrar denemede kısa devre yapılmalı (13 Haziran selinin tekrarını önler).</li>
+      <li><strong>Cloudflare real_ip</strong> yapılandırması eksik (yukarıda).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Sonraki Takip Planı</h2>
+    <ul>
+      <li><strong>Acil:</strong> <code>google-connect/exchange</code> için rate-limit + retry kısa devresi (13 Haziran selinin kök nedeni).</li>
+      <li><strong>Acil:</strong> Cloudflare WAF / nginx <code>return 444</code> ile <code>.env</code>, <code>.git</code>, <code>.php</code>, <code>wp-*</code>, <code>xmlrpc</code> probe bloklaması.</li>
+      <li>nginx'e Cloudflare <code>real_ip</code> geri-çözümü ekle — gelecek raporlarda gerçek ziyaretçi IP'si ölçülsün.</li>
+      <li>Ziyaretçi ölçümünü pageview beacon / GA4'e taşı; log raporu teknik sağlık + bot/SEO için kalsın.</li>
+      <li>Google Ads panelinden gösterim, tıklama, BPC ve dönüşüm metriklerini çek — 6-9 Haziran harcama yoğunluğunun maliyet verimliliğini doğrula.</li>
+      <li><code>utm_campaign</code> hâlâ tanımsız — Google Ads URL şablonlarına <code>{campaignid}</code> bazlı UTM ekle.</li>
+      <li>AI arama (ChatGPT/Perplexity) atıflarını izlemeye al — GEO çalışmasının ilk meyveleri görünüyor.</li>
+      <li><strong>30 Haziran 2026:</strong> Bir sonraki dönem raporu (16-30 Haziran) + GSC doğrulama sonuçları.</li>
+    </ul>
+  </section>
+
+  <div class="footer">
+    Rapor kaynağı: VistaSeeds canlı nginx erişim logları, 1-15 Haziran 2026 (15 gün; 26-31 Mayıs log rotasyonundan düşmüştür).
+    Filtreleme: bot, statik dosya, API çağrıları, /_next, /uploads, /storage, /favicon, /sitemap, /weather-widget-api, /noise.png, /.well-known, _rsc=,
+    gtm_latency, SSR self-call (187.124.166.65) ve 2xx-3xx olmayan yanıtlar hariç tutulmuştur. Tüm istemci IP'leri Cloudflare uç IP'sidir (bkz. Metodoloji Notu).
+    Önceki rapor: vistaseeds-ziyaretci-raporu-2026-05-25.pdf
+  </div>
+</body>
+</html>

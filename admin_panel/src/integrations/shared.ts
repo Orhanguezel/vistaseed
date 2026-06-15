@@ -1107,6 +1107,7 @@ export {
   type GscSitemapMutationArgs,
   type GscIndexResp,
   type GscIndexRefreshArgs,
+  type GscIndexRefreshResp,
 } from "@/integrations/shared/search-console";
 export {
   GTM_ADMIN_BASE,

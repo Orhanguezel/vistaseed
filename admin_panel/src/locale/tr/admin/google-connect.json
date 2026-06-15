@@ -38,5 +38,7 @@
   "callbackTitle": "Google bağlantısı tamamlanıyor",
   "callbackDescription": "Yetkilendirme kodu güvenli şekilde backend'e gönderiliyor.",
   "callbackProcessing": "Google kodu işleniyor...",
-  "callbackSuccess": "Bağlantı tamamlandı. Panele dönülüyor..."
+  "callbackSuccess": "Bağlantı tamamlandı. Panele dönülüyor...",
+  "callbackAlreadyAttempted": "Bu yetkilendirme kodu daha önce işlendi. Yeni bağlantı akışı başlatın.",
+  "retryConnect": "Yeniden bağlan"
 }

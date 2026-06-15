@@ -21,8 +21,13 @@ export function IndexTab({ site, t }: { site?: string; t: T }) {
 
   const runRefresh = async () => {
     try {
-      const res = await refresh({ site_url: site, limit: 25 }).unwrap();
-      toast.success(t('index.refreshed').replace('{count}', String(res.checked)));
+      const res = await refresh({ site_url: site, limit: 100 }).unwrap();
+      toast.success(
+        t('index.refreshed')
+          .replace('{count}', String(res.checked))
+          .replace('{skipped}', String(res.skipped ?? 0))
+          .replace('{total}', String(res.totalUrls ?? res.items.length)),
+      );
     } catch (err) {
       toast.error(`${t('index.failed')}: ${getErrorMessage(err)}`);
     }

@@ -10,6 +10,7 @@ import type {
   GscInspectResp,
   GscAnalyticsResp,
   GscIndexRefreshArgs,
+  GscIndexRefreshResp,
   GscIndexResp,
   GscOverviewResp,
   GscPageQueriesResp,
@@ -58,7 +59,7 @@ export const searchConsoleAdminApi = baseApi.injectEndpoints({
       query: (): FetchArgs => ({ url: `${SEARCH_CONSOLE_ADMIN_BASE}/index` }),
       providesTags: ['Settings'],
     }),
-    gscIndexRefresh: b.mutation<{ checked: number; skipped: number; items: GscIndexResp['items'] }, GscIndexRefreshArgs>({
+    gscIndexRefresh: b.mutation<GscIndexRefreshResp, GscIndexRefreshArgs>({
       query: (body): FetchArgs => ({ url: `${SEARCH_CONSOLE_ADMIN_BASE}/index/refresh`, method: "POST", body }),
       invalidatesTags: ['Settings'],
     }),
