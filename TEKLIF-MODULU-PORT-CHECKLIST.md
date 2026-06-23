@@ -1,5 +1,20 @@
 # Teklif (Offer) Modülü — Bereketfide → Vistaseeds Port Checklist
 
+> ## ✅ TAMAMLANDI (2026-06-23) — CANLIDA
+> Tüm görevler uygulandı, build edildi ve deploy edildi.
+> - Commit'ler: packages `2e2d071`, vistaseed `3587829`.
+> - Backend ucu doğrulandı: `POST /api/v1/admin/offers/:id/direct-email` → **401** (kayıtlı), health 200.
+> - 4 yeni durum enum'da (backend+admin), status select otomatik gösteriyor, tr etiketleri eklendi.
+> - Admin'de "Doğrudan E-posta" butonu (RTK mutation) + gönderilen yanıtlar `admin_notes`'ta görünür.
+> - **Önemli fark:** vistaseeds backend shared'i build-time'da derler (bereketfide gibi runtime-dist değil)
+>   → deploy'da `cd projects/vistaseeds/backend && bun run build` + `pm2 restart vistaseed-backend` ŞART.
+> - i18n borcu: "Doğrudan E-posta" modal metinleri hardcoded TR (admin-only). İstenirse t() anahtarına çevrilebilir.
+> - Tüm `vistaseed-backend/frontend/admin-panel` online.
+>
+> _Aşağıdaki adımlar referans/denetim içindir._
+
+---
+
 Amaç: Bereketfide'de eklenen **teklif yanıt yetenekleri**ni Vistaseeds'e taşımak.
 Yeni yetenekler: müşteriye **serbest metin "Doğrudan E-posta"** (PDF gerektirmez), gönderilen
 yanıtın `admin_notes`'a otomatik loglanması, **4 ek sipariş/sevk durumu**, ve admin panelde
