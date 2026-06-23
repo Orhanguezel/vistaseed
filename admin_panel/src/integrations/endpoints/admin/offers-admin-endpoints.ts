@@ -88,6 +88,21 @@ export const offersAdminApi = baseApi.injectEndpoints({
         { type: "Offer" as const, id },
       ],
     }),
+
+    sendOfferDirectEmailAdmin: b.mutation<
+      { ok: boolean; message?: string },
+      { id: string; body: { subject?: string; message: string } }
+    >({
+      query: ({ id, body }) => ({
+        url: `${B}/${encodeURIComponent(id)}/direct-email`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: (_r, _e, { id }) => [
+        { type: "Offers" as const, id: "LIST" },
+        { type: "Offer" as const, id },
+      ],
+    }),
   }),
   overrideExisting: false,
 });
@@ -101,4 +116,5 @@ export const {
   useGenerateOfferPdfAdminMutation,
   useSendOfferEmailAdminMutation,
   useSendOfferAdminMutation,
+  useSendOfferDirectEmailAdminMutation,
 } = offersAdminApi;

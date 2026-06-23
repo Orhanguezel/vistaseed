@@ -174,6 +174,7 @@ export {
   useGetOfferAdminQuery,
   useListOffersAdminQuery,
   useSendOfferAdminMutation,
+  useSendOfferDirectEmailAdminMutation,
   useSendOfferEmailAdminMutation,
   useUpdateOfferAdminMutation,
 } from "@/integrations/endpoints/admin/offers-admin-endpoints";

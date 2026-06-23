@@ -87,6 +87,10 @@
     "quoted": "Teklif Hazır",
     "sent": "Gönderildi",
     "accepted": "Onaylandı",
+    "in_production": "Üretimde",
+    "ready_for_shipping": "Sevke Hazır",
+    "shipped": "Sevk Edildi",
+    "delivered": "Teslim Edildi",
     "rejected": "Reddedildi",
     "cancelled": "İptal"
   },

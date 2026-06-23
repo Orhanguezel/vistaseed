@@ -22,6 +22,7 @@ import {
   useGetOfferAdminQuery,
   useListProductsAdminQuery,
   useSendOfferAdminMutation,
+  useSendOfferDirectEmailAdminMutation,
   useSendOfferEmailAdminMutation,
   useUpdateOfferAdminMutation,
 } from "@/integrations/hooks";
@@ -165,6 +166,7 @@ export default function OfferDetailClient({ id }: Props) {
                 <Mail className="mr-1 h-4 w-4" />
                 {t("actions.sendEmail")}
               </Button>
+              <OfferDirectEmailButton offerId={id} email={formData.email} disabled={isBusy} />
               <Button variant="outline" size="sm" onClick={handleSendAll} disabled={isBusy}>
                 <Send className="mr-1 h-4 w-4" />
                 {t("actions.sendAll")}
@@ -441,6 +443,82 @@ export default function OfferDetailClient({ id }: Props) {
           </Card>
         </TabsContent>
       </Tabs>
+    </div>
+  );
+}
+
+function OfferDirectEmailButton({ offerId, email, disabled }: { offerId: string; email: string; disabled: boolean }) {
+  const [sendDirect, { isLoading }] = useSendOfferDirectEmailAdminMutation();
+  const [open, setOpen] = React.useState(false);
+  const [subject, setSubject] = React.useState("");
+  const [message, setMessage] = React.useState("");
+
+  const handleSend = async () => {
+    if (!email) {
+      toast.error("Müşteri e-postası gerekli");
+      return;
+    }
+    if (!message.trim()) {
+      toast.error("Mesaj boş olamaz");
+      return;
+    }
+    try {
+      const res = await sendDirect({
+        id: offerId,
+        body: { subject: subject.trim() || undefined, message: message.trim() },
+      }).unwrap();
+      toast.success(res?.message || "E-posta gönderildi");
+      setOpen(false);
+      setSubject("");
+      setMessage("");
+    } catch (err: unknown) {
+      const e = err as { data?: { error?: { message?: string } } };
+      toast.error(e?.data?.error?.message || "Gönderim hatası");
+    }
+  };
+
+  if (!open) {
+    return (
+      <Button variant="outline" size="sm" onClick={() => setOpen(true)} disabled={disabled || !email}>
+        <Mail className="mr-1 h-4 w-4" />
+        Doğrudan E-posta
+      </Button>
+    );
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+      <div className="w-full max-w-md space-y-3 rounded-lg border bg-background p-4 shadow-lg">
+        <h3 className="font-medium text-sm">Müşteriye E-posta Gönder</h3>
+        <p className="text-muted-foreground text-xs">Alıcı: {email}</p>
+        <div className="space-y-1.5">
+          <Label className="text-muted-foreground text-xs">Konu (opsiyonel)</Label>
+          <Input
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+            placeholder="Teklif Talebiniz Hk."
+            disabled={isLoading}
+          />
+        </div>
+        <div className="space-y-1.5">
+          <Label className="text-muted-foreground text-xs">Mesaj *</Label>
+          <Textarea
+            rows={5}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Müşteriye iletmek istediğiniz mesaj..."
+            disabled={isLoading}
+          />
+        </div>
+        <div className="flex justify-end gap-2">
+          <Button variant="outline" size="sm" onClick={() => setOpen(false)} disabled={isLoading}>
+            İptal
+          </Button>
+          <Button size="sm" onClick={handleSend} disabled={isLoading || !message.trim()}>
+            {isLoading ? "Gönderiliyor..." : "Gönder"}
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

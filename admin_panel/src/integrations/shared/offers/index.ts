@@ -1,5 +1,5 @@
 export const OFFERS_ADMIN_BASE = "/admin/offers";
-export const OFFER_STATUSES = ["new", "in_review", "quoted", "sent", "accepted", "rejected", "cancelled"] as const;
+export const OFFER_STATUSES = ["new", "in_review", "quoted", "sent", "accepted", "in_production", "ready_for_shipping", "shipped", "delivered", "rejected", "cancelled"] as const;
 
 export type OfferStatus = (typeof OFFER_STATUSES)[number];
 
