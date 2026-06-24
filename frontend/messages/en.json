@@ -439,7 +439,7 @@
         }
       },
       "ctaPanel": {
-        "title": "Request a quote now",
+        "title": "Place your order now",
         "subtitle": "Pricing tailored to your organization"
       },
       "profile": {
@@ -853,14 +853,14 @@
   },
   "Offers": {
     "meta": {
-      "title": "Request a quote — bulk sales",
-      "description": "Corporate projects and bulk seed purchases: request a tailored quote from our team."
+      "title": "Place an order — bulk sales",
+      "description": "Corporate projects and bulk seed purchases: send an order request to our team."
     },
     "title": "Bulk sales and corporate requests",
     "description": "For large-scale agricultural projects or dealer pre-applications, please complete the form.",
     "success": "Your request has been received. Our team will contact you shortly.",
     "createAnother": "Create a new request",
-    "responseNote": "Your request will be reviewed by our specialist teams and we will respond within 24 hours.",
+    "responseNote": "Your order request will be reviewed by our specialist teams and we will respond within 24 hours.",
     "errors": {
       "submit": "Something went wrong.",
       "unexpected": "An unexpected error occurred."
@@ -869,7 +869,7 @@
       "categoryLabel": "Category",
       "quantityLabel": "Quantity",
       "locationLabel": "Location",
-      "customerFallback": "Quote request",
+      "customerFallback": "Order request",
       "detailFallback": "details"
     },
     "support": {
@@ -884,7 +884,7 @@
       "quantity": "Estimated quantity",
       "location": "Project location (city)",
       "message": "Request details",
-      "submit": "Send quote request",
+      "submit": "Send order request",
       "submitting": "Sending...",
       "placeholder": {
         "companyName": "e.g. Example Seed Co.",

@@ -439,7 +439,7 @@
         }
       },
       "ctaPanel": {
-        "title": "Jetzt Angebot anfordern",
+        "title": "Jetzt Bestellung aufgeben",
         "subtitle": "Individuelle Konditionen fur Ihr Unternehmen"
       },
       "profile": {
@@ -853,14 +853,14 @@
   },
   "Offers": {
     "meta": {
-      "title": "Angebot anfordern — Grossverkauf",
-      "description": "Kurzprojekte und Mengenabnahme: Fordern Sie ein individuelles Angebot bei unserem Team an."
+      "title": "Bestellung aufgeben — Grossverkauf",
+      "description": "Kurzprojekte und Mengenabnahme: Senden Sie eine Bestellanfrage an unser Team."
     },
     "title": "Grossverkauf und Firmenanfragen",
     "description": "Fuer grosse landwirtschaftliche Projekte oder Haendler-Voranfragen fuellen Sie bitte das Formular aus.",
     "success": "Ihre Anfrage wurde empfangen. Unser Team meldet sich in Kuerze.",
     "createAnother": "Neue Anfrage erstellen",
-    "responseNote": "Ihre Anfrage wird von unserem Fachteam geprueft und innerhalb von 24 Stunden beantwortet.",
+    "responseNote": "Ihre Bestellanfrage wird von unserem Fachteam geprueft und innerhalb von 24 Stunden beantwortet.",
     "errors": {
       "submit": "Es ist ein Fehler aufgetreten.",
       "unexpected": "Ein unerwarteter Fehler ist aufgetreten."
@@ -869,7 +869,7 @@
       "categoryLabel": "Kategorie",
       "quantityLabel": "Menge",
       "locationLabel": "Standort",
-      "customerFallback": "Angebotsanfrage",
+      "customerFallback": "Bestellanfrage",
       "detailFallback": "details"
     },
     "support": {
@@ -884,7 +884,7 @@
       "quantity": "Geschaetzte Menge",
       "location": "Projektstandort (Stadt)",
       "message": "Details zur Anfrage",
-      "submit": "Angebotsanfrage senden",
+      "submit": "Bestellanfrage senden",
       "submitting": "Wird gesendet...",
       "placeholder": {
         "companyName": "z. B. Muster Saatgut GmbH",

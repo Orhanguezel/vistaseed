@@ -439,7 +439,7 @@
         }
       },
       "ctaPanel": {
-        "title": "Hemen teklif alın",
+        "title": "Hemen sipariş verin",
         "subtitle": "Şirketinize özel fiyatlandırma"
       },
       "profile": {
@@ -853,14 +853,14 @@
   },
   "Offers": {
     "meta": {
-      "title": "Teklif Al - Toplu Satış",
-      "description": "Kurumsal projeleriniz ve toplu tohum alımlarınız için size özel teklif oluşturalım."
+      "title": "Sipariş Ver - Toplu Satış",
+      "description": "Kurumsal projeleriniz ve toplu tohum alımlarınız için sipariş talebinizi birlikte oluşturalım."
     },
     "title": "Toplu Satış ve Kurumsal Talepler",
     "description": "Büyük ölçekli tarımsal projeler veya bayilik ön talepleri için lütfen formu doldurun.",
     "success": "Talebiniz başarıyla iletilmiştir. Ekibimiz sizinle en kısa sürede iletişime geçecek.",
     "createAnother": "Yeni talep oluştur",
-    "responseNote": "Talebiniz uzman ekiplerimiz tarafından incelenerek 24 saat içinde size dönüş yapılacaktır.",
+    "responseNote": "Sipariş talebiniz uzman ekiplerimiz tarafından incelenerek 24 saat içinde size dönüş yapılacaktır.",
     "errors": {
       "submit": "Ops! Bir hata oluştu.",
       "unexpected": "Beklenmedik bir hata oluştu."
@@ -869,7 +869,7 @@
       "categoryLabel": "Kategori",
       "quantityLabel": "Miktar",
       "locationLabel": "Lokasyon",
-      "customerFallback": "Teklif talebi",
+      "customerFallback": "Sipariş talebi",
       "detailFallback": "detay"
     },
     "support": {
@@ -884,7 +884,7 @@
       "quantity": "Tahmini Miktar",
       "location": "Proje Lokasyonu (Şehir)",
       "message": "Talep Detayları",
-      "submit": "Teklif Talebi Gönder",
+      "submit": "Sipariş Talebi Gönder",
       "submitting": "Gönderiliyor...",
       "placeholder": {
         "companyName": "Örn. Aras Tohumculuk",

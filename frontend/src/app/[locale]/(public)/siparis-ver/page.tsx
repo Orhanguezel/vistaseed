@@ -13,14 +13,14 @@ type Props = {
 
 const pageContent = {
   tr: {
-    metaTitle: "Sebze Tohumu Teklifi Al",
+    metaTitle: "Sebze Tohumu Siparişi Ver",
     metaDescription:
-      "Biber, domates ve profesyonel sebze tohumu talepleriniz için Vista Seeds ekibinden ürün odaklı teklif alın.",
+      "Biber, domates ve profesyonel sebze tohumu talepleriniz için Vista Seeds ekibine ürün odaklı sipariş talebi gönderin.",
     eyebrow: "Profesyonel sebze tohumu tedariği",
-    introTitle: "Vista Seeds teklif sayfası hangi talepler için uygundur?",
+    introTitle: "Vista Seeds sipariş sayfası hangi talepler için uygundur?",
     intro:
-      "Bu sayfa, sera işletmeleri, üreticiler, bayiler, kooperatifler ve kurumsal tedarik ekipleri için sebze tohumu talebini doğru ürün grubuna bağlamak amacıyla hazırlanmıştır. Talebiniz yalnızca fiyat istemi olarak değil; ürün tipi, yetiştirme bölgesi, sezon, tahmini hacim ve teknik ihtiyaçlar birlikte değerlendirilerek ele alınır.",
-    productTitle: "Teklif verebildiğimiz ana ürün grupları",
+      "Bu sayfa, sera işletmeleri, üreticiler, bayiler, kooperatifler ve kurumsal tedarik ekipleri için sebze tohumu sipariş talebini doğru ürün grubuna bağlamak amacıyla hazırlanmıştır. Talebiniz yalnızca fiyat istemi olarak değil; ürün tipi, yetiştirme bölgesi, sezon, tahmini hacim ve teknik ihtiyaçlar birlikte değerlendirilerek ele alınır.",
+    productTitle: "Sipariş verebileceğiniz ana ürün grupları",
     products: [
       {
         title: "Biber tohumları",
@@ -35,36 +35,36 @@ const pageContent = {
         text: "Hastalık toleransı, soğuk performansı, raf ömrü ve pazar beklentisi gibi kriterler üzerinden uygun çeşit önerisi hazırlanır.",
       },
     ],
-    processTitle: "Teklif süreci nasıl ilerler?",
+    processTitle: "Sipariş süreci nasıl ilerler?",
     process: [
       "Formdaki ürün, miktar, şehir ve kullanım amacını inceleriz.",
       "Talebi mevcut ürün portföyü ve sezon uygunluğu ile eşleştiririz.",
       "Gerekirse teknik ekip ürün tipi, tolerans ve yetiştirme koşulları için ek bilgi ister.",
-      "Size ürün önerisi, tedarik notu ve ticari teklif bilgisi ile dönüş yapılır.",
+      "Size ürün önerisi, tedarik notu ve siparişe uygun fiyat bilgisi ile dönüş yapılır.",
     ],
     trustTitle: "Neden Vista Seeds?",
     detailTitle: "Tohum seçimi, fiyat ve teknik uygunluk aynı akışta değerlendirilir.",
     detailText:
-      "Reklam kampanyasından gelen kullanıcılar bu sayfada doğrudan form doldurabilir, ürün kataloğuna geçebilir veya iletişim kanallarından ek bilgi alabilir. Böylece teklif talebi tek bir boş form yerine ürün ve kurum bilgisiyle desteklenen açık bir karar sayfasına dönüşür.",
+      "Reklam kampanyasından gelen kullanıcılar bu sayfada doğrudan form doldurabilir, ürün kataloğuna geçebilir veya iletişim kanallarından ek bilgi alabilir. Böylece sipariş talebi tek bir boş form yerine ürün ve kurum bilgisiyle desteklenen açık bir karar sayfasına dönüşür.",
     trust: [
       "Tohum portföyü profesyonel üretici ve bayi ihtiyaçlarına göre kurgulanır.",
       "Ürün sayfalarında çeşit tipi, tolerans, kullanım alanı ve pazar avantajı açıkça belirtilir.",
       "Aksu / Antalya merkezli operasyon, saha bilgisi ve üretici geri bildirimleriyle desteklenir.",
-      "Teklif talepleri ürün kataloğu, bayi ağı ve iletişim kanallarıyla aynı sistem içinde takip edilir.",
+      "Sipariş talepleri ürün kataloğu, bayi ağı ve iletişim kanallarıyla aynı sistem içinde takip edilir.",
     ],
-    faqTitle: "Teklif öncesi sık sorulanlar",
+    faqTitle: "Sipariş öncesi sık sorulanlar",
     faqs: [
       {
-        q: "Teklif almak için kesin miktar belirtmek zorunda mıyım?",
+        q: "Sipariş vermek için kesin miktar belirtmek zorunda mıyım?",
         a: "Hayır. Tahmini adet, kilogram veya üretim alanı bilgisini paylaşmanız yeterlidir. Net hacim daha sonra ekiple birlikte kesinleştirilebilir.",
       },
       {
-        q: "Sadece tek ürün için mi teklif alabilirim?",
-        a: "Tek ürün, ürün grubu veya sezonluk toplu ihtiyaç için talep gönderebilirsiniz. Mesaj alanına çeşit, bölge ve ekim zamanı bilgisini eklemeniz değerlendirmeyi hızlandırır.",
+        q: "Sadece tek ürün için mi sipariş talebi gönderebilirim?",
+        a: "Tek ürün, ürün grubu veya sezonluk toplu ihtiyaç için sipariş talebi gönderebilirsiniz. Mesaj alanına çeşit, bölge ve ekim zamanı bilgisini eklemeniz değerlendirmeyi hızlandırır.",
       },
       {
-        q: "Teklif formu reklam kampanyası için ana hedef sayfa olabilir mi?",
-        a: "Evet. Sayfa ürün grupları, süreç, şirket bilgisi, iç bağlantılar ve iletişim seçenekleriyle birlikte kurumsal teklif hedefi olarak kullanılmak üzere düzenlenmiştir.",
+        q: "Sipariş formu reklam kampanyası için ana hedef sayfa olabilir mi?",
+        a: "Evet. Sayfa ürün grupları, süreç, şirket bilgisi, iç bağlantılar ve iletişim seçenekleriyle birlikte kurumsal sipariş hedefi olarak kullanılmak üzere düzenlenmiştir.",
       },
     ],
     linksTitle: "Talebinizi netleştirmek için",
@@ -76,14 +76,14 @@ const pageContent = {
     ],
   },
   en: {
-    metaTitle: "Request a Vegetable Seed Quote",
+    metaTitle: "Place a Vegetable Seed Order",
     metaDescription:
-      "Request a product-focused quote from Vista Seeds for pepper, tomato and professional vegetable seed supply.",
+      "Send a product-focused order request to Vista Seeds for pepper, tomato and professional vegetable seed supply.",
     eyebrow: "Professional vegetable seed supply",
-    introTitle: "What kind of requests is this quote page built for?",
+    introTitle: "What kind of requests is this order page built for?",
     intro:
-      "This page is prepared for greenhouse businesses, growers, dealers, cooperatives and corporate supply teams that need a clear seed quotation flow. Requests are reviewed together with product type, growing region, season, estimated volume and technical requirements.",
-    productTitle: "Main product groups for quotation",
+      "This page is prepared for greenhouse businesses, growers, dealers, cooperatives and corporate supply teams that need a clear seed order flow. Requests are reviewed together with product type, growing region, season, estimated volume and technical requirements.",
+    productTitle: "Main product groups for orders",
     products: [
       {
         title: "Pepper seeds",
@@ -98,36 +98,36 @@ const pageContent = {
         text: "Disease tolerance, cold performance, shelf life and market expectations are considered when preparing product recommendations.",
       },
     ],
-    processTitle: "How the quote process works",
+    processTitle: "How the order process works",
     process: [
       "We review product, quantity, city and intended use from the form.",
       "We match the request with the current portfolio and seasonal availability.",
       "If needed, the technical team asks for more detail on product type, tolerance and growing conditions.",
-      "We return with product recommendation, supply notes and commercial quote information.",
+      "We return with product recommendation, supply notes and order-ready pricing information.",
     ],
     trustTitle: "Why Vista Seeds?",
     detailTitle: "Seed selection, pricing and technical fit are evaluated in one flow.",
     detailText:
-      "Visitors arriving from ads can submit the form directly, review the product catalog or use contact channels for additional information. The quote request is supported by product and company context rather than a standalone empty form.",
+      "Visitors arriving from ads can submit the form directly, review the product catalog or use contact channels for additional information. The order request is supported by product and company context rather than a standalone empty form.",
     trust: [
       "The seed portfolio is shaped around professional grower and dealer needs.",
       "Product pages describe variety type, tolerance, use case and market advantage clearly.",
       "The Aksu / Antalya based operation is supported by field knowledge and grower feedback.",
-      "Quote requests are tracked in the same system as the product catalog, dealer network and contact channels.",
+      "Order requests are tracked in the same system as the product catalog, dealer network and contact channels.",
     ],
-    faqTitle: "Common questions before requesting a quote",
+    faqTitle: "Common questions before placing an order",
     faqs: [
       {
         q: "Do I need to know the exact quantity?",
         a: "No. An estimated unit, kilogram or production area is enough. The final volume can be clarified with the team later.",
       },
       {
-        q: "Can I request a quote for more than one product?",
+        q: "Can I place an order request for more than one product?",
         a: "Yes. You can request a single product, a product group or a seasonal bulk need. Adding variety, region and planting period details speeds up evaluation.",
       },
       {
-        q: "Can this quote page be used as the main ads landing page?",
-        a: "Yes. The page now includes product groups, process details, company context, internal links and contact options for a corporate quotation campaign.",
+        q: "Can this order page be used as the main ads landing page?",
+        a: "Yes. The page now includes product groups, process details, company context, internal links and contact options for a corporate order campaign.",
       },
     ],
     linksTitle: "Helpful next steps",
@@ -139,14 +139,14 @@ const pageContent = {
     ],
   },
   de: {
-    metaTitle: "Gemüsesaatgut-Angebot anfragen",
+    metaTitle: "Gemüsesaatgut-Bestellung aufgeben",
     metaDescription:
-      "Fordern Sie ein produktbezogenes Angebot von Vista Seeds für Paprika-, Tomaten- und professionelles Gemüsesaatgut an.",
+      "Senden Sie eine produktbezogene Bestellanfrage an Vista Seeds für Paprika-, Tomaten- und professionelles Gemüsesaatgut.",
     eyebrow: "Professionelle Versorgung mit Gemüsesaatgut",
-    introTitle: "Für welche Anfragen ist diese Angebotsseite gedacht?",
+    introTitle: "Für welche Anfragen ist diese Bestellseite gedacht?",
     intro:
-      "Diese Seite richtet sich an Gewächshausbetriebe, Erzeuger, Händler, Kooperativen und Einkaufsteams, die Saatgutangebote strukturiert anfragen möchten. Produktart, Anbauregion, Saison, geschätztes Volumen und technische Anforderungen werden gemeinsam bewertet.",
-    productTitle: "Wichtige Produktgruppen für Angebote",
+      "Diese Seite richtet sich an Gewächshausbetriebe, Erzeuger, Händler, Kooperativen und Einkaufsteams, die Saatgutbestellungen strukturiert anfragen möchten. Produktart, Anbauregion, Saison, geschätztes Volumen und technische Anforderungen werden gemeinsam bewertet.",
+    productTitle: "Wichtige Produktgruppen für Bestellungen",
     products: [
       {
         title: "Paprikasaatgut",
@@ -161,36 +161,36 @@ const pageContent = {
         text: "Krankheitstoleranz, Kälteleistung, Haltbarkeit und Markterwartungen fließen in die Produktempfehlung ein.",
       },
     ],
-    processTitle: "So läuft der Angebotsprozess",
+    processTitle: "So läuft der Bestellprozess",
     process: [
       "Wir prüfen Produkt, Menge, Stadt und Einsatzzweck aus dem Formular.",
       "Die Anfrage wird mit Portfolio und saisonaler Verfügbarkeit abgeglichen.",
       "Bei Bedarf fragt das technische Team weitere Details zu Sorte, Toleranz und Bedingungen ab.",
-      "Sie erhalten Produktempfehlung, Lieferhinweise und Angebotsinformationen.",
+      "Sie erhalten Produktempfehlung, Lieferhinweise und bestellfertige Preisinformationen.",
     ],
     trustTitle: "Warum Vista Seeds?",
     detailTitle: "Saatgutauswahl, Preis und technische Eignung werden gemeinsam bewertet.",
     detailText:
-      "Besucher aus Anzeigen können das Formular direkt senden, den Produktkatalog prüfen oder zusätzliche Informationen über die Kontaktkanäle anfordern. Die Angebotsanfrage wird durch Produkt- und Unternehmenskontext unterstützt.",
+      "Besucher aus Anzeigen können das Formular direkt senden, den Produktkatalog prüfen oder zusätzliche Informationen über die Kontaktkanäle anfordern. Die Bestellanfrage wird durch Produkt- und Unternehmenskontext unterstützt.",
     trust: [
       "Das Saatgutportfolio ist auf professionelle Erzeuger und Händler ausgerichtet.",
       "Produktseiten zeigen Sortentyp, Toleranz, Einsatzbereich und Marktvorteile transparent.",
       "Der Standort Aksu / Antalya wird durch Feldwissen und Erzeugerfeedback unterstützt.",
-      "Angebotsanfragen werden mit Produktkatalog, Händlernetz und Kontaktkanälen im selben System verfolgt.",
+      "Bestellanfragen werden mit Produktkatalog, Händlernetz und Kontaktkanälen im selben System verfolgt.",
     ],
-    faqTitle: "Häufige Fragen vor der Anfrage",
+    faqTitle: "Häufige Fragen vor der Bestellung",
     faqs: [
       {
         q: "Muss ich die genaue Menge kennen?",
         a: "Nein. Eine Schätzung in Stück, Kilogramm oder Produktionsfläche reicht aus. Das finale Volumen kann später geklärt werden.",
       },
       {
-        q: "Kann ich mehrere Produkte anfragen?",
+        q: "Kann ich mehrere Produkte bestellen?",
         a: "Ja. Einzelprodukte, Produktgruppen oder saisonale Sammelbedarfe sind möglich. Sorte, Region und Pflanzzeit helfen bei der Bewertung.",
       },
       {
         q: "Kann diese Seite als Ads-Zielseite verwendet werden?",
-        a: "Ja. Die Seite enthält Produktgruppen, Prozessdetails, Unternehmenskontext, interne Links und Kontaktoptionen für eine Angebotskampagne.",
+        a: "Ja. Die Seite enthält Produktgruppen, Prozessdetails, Unternehmenskontext, interne Links und Kontaktoptionen für eine Bestellkampagne.",
       },
     ],
     linksTitle: "Nächste hilfreiche Schritte",
