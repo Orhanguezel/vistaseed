@@ -71,9 +71,14 @@ export default function OfferDetailClient({ id }: Props) {
   const previewUrl = React.useMemo(() => {
     const value = formData.pdf_url.trim();
     if (!value) return "";
-    if (value.startsWith("http://") || value.startsWith("https://")) return value;
-    return buildUploadUrl(value.startsWith("/") ? value : `/${value}`);
-  }, [formData.pdf_url]);
+    const base =
+      value.startsWith("http://") || value.startsWith("https://")
+        ? value
+        : buildUploadUrl(value.startsWith("/") ? value : `/${value}`);
+    // CF/tarayıcı cache'ini kır: her yeniden üretimde updated_at değişir → taze PDF.
+    const stamp = data?.updated_at ? `?v=${encodeURIComponent(data.updated_at)}` : "";
+    return `${base}${stamp}`;
+  }, [formData.pdf_url, data?.updated_at]);
 
   React.useEffect(() => {
     if (!data || isNew) return;
