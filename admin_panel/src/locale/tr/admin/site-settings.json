@@ -497,7 +497,7 @@
       "blog": "Blog",
       "hakkimizda": "Hakkımızda",
       "iletisim": "İletişim",
-      "teklif": "Teklif",
+      "teklif": "Sipariş",
       "kataloglar": "Kataloglar",
       "legal_privacy": "Gizlilik Politikası",
       "legal_terms": "Kullanım Koşulları"
@@ -695,7 +695,7 @@
         "news": "Haberler",
         "about": "Hakkımızda",
         "contact": "İletişim",
-        "offer": "Teklif",
+        "offer": "Sipariş",
         "privacy": "Gizlilik Politikası",
         "terms": "Kullanım Koşulları"
       }

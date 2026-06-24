@@ -196,7 +196,7 @@ const FALLBACK_TITLES: Record<AdminNavItemKey, string> = {
   job_applications: 'Başvurular',
   contacts: 'İletişim Mesajları',
   email_templates: 'E-posta Şablonları',
-  offers: 'Teklifler',
+  offers: 'Siparişler',
   payment_attempts: 'Ödeme Denemeleri',
   users: 'Kullanıcılar',
   site_settings: 'Site Ayarları',

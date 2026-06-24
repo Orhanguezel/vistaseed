@@ -1,7 +1,7 @@
 {
   "header": {
-    "title": "Teklifler",
-    "description": "Müşteri teklif kayıtlarını, doküman üretimini ve e-posta gönderimini tek panelden yönetin."
+    "title": "Siparişler",
+    "description": "Müşteri sipariş kayıtlarını, doküman üretimini ve e-posta gönderimini tek panelden yönetin."
   },
   "tabs": {
     "list": "Liste",
@@ -13,7 +13,7 @@
   "actions": {
     "back": "Listeye Dön",
     "refresh": "Yenile",
-    "create": "Yeni Teklif",
+    "create": "Yeni Sipariş",
     "edit": "Düzenle",
     "delete": "Sil",
     "save": "Kaydet",
@@ -22,11 +22,11 @@
     "sendAll": "Üret ve Gönder"
   },
   "filters": {
-    "searchPlaceholder": "Teklif no, müşteri, e-posta ara",
+    "searchPlaceholder": "Sipariş no, müşteri, e-posta ara",
     "statusAll": "Tüm Durumlar"
   },
   "table": {
-    "offerNo": "Teklif No",
+    "offerNo": "Sipariş No",
     "customer": "Müşteri",
     "status": "Durum",
     "locale": "Dil",
@@ -35,12 +35,12 @@
     "actions": "İşlemler"
   },
   "list": {
-    "loading": "Teklifler yükleniyor...",
-    "empty": "Henüz teklif kaydı yok."
+    "loading": "Siparişler yükleniyor...",
+    "empty": "Henüz sipariş kaydı yok."
   },
   "detail": {
-    "newTitle": "Yeni Teklif",
-    "editTitle": "Teklifi Düzenle",
+    "newTitle": "Yeni Sipariş",
+    "editTitle": "Siparişi Düzenle",
     "customerTitle": "Müşteri ve Talep Bilgileri",
     "pricingTitle": "Durum ve Tutarlar",
     "metaTitle": "Ek Bilgiler ve Doküman",
@@ -48,11 +48,11 @@
     "previewTitle": "Doküman Önizleme",
     "previewEmpty": "Henüz doküman üretilmedi. Önce \"Doküman Üret\" aksiyonunu kullanın.",
     "previewPath": "Üretim Yolu",
-    "previewHelp": "Üretilen teklif dosyası PDF olarak /uploads/offers klasörüne yazılır.",
+    "previewHelp": "Üretilen sipariş dosyası PDF olarak /uploads/offers klasörüne yazılır.",
     "openPreview": "Yeni Sekmede Aç"
   },
   "form": {
-    "offerNo": "Teklif No",
+    "offerNo": "Sipariş No",
     "status": "Durum",
     "source": "Kaynak",
     "locale": "Dil",
@@ -84,7 +84,7 @@
   "statuses": {
     "new": "Yeni",
     "in_review": "İncelemede",
-    "quoted": "Teklif Hazır",
+    "quoted": "Fiyat Verildi",
     "sent": "Gönderildi",
     "accepted": "Onaylandı",
     "in_production": "Üretimde",
@@ -95,16 +95,16 @@
     "cancelled": "İptal"
   },
   "messages": {
-    "refreshing": "Teklifler yenileniyor...",
+    "refreshing": "Siparişler yenileniyor...",
     "requiredError": "Müşteri adı ve e-posta zorunludur.",
     "jsonError": "Form JSON alanı geçerli değil.",
-    "created": "Teklif oluşturuldu.",
-    "updated": "Teklif güncellendi.",
-    "deleted": "Teklif silindi.",
-    "pdfGenerated": "Teklif dokümanı üretildi.",
-    "emailSent": "Teklif e-postası gönderildi.",
-    "sendCompleted": "Teklif dokümanı üretildi ve e-posta gönderildi.",
-    "confirmDelete": "\"{title}\" teklifini silmek istediğinize emin misiniz?",
+    "created": "Sipariş oluşturuldu.",
+    "updated": "Sipariş güncellendi.",
+    "deleted": "Sipariş silindi.",
+    "pdfGenerated": "Sipariş dokümanı üretildi.",
+    "emailSent": "Sipariş e-postası gönderildi.",
+    "sendCompleted": "Sipariş dokümanı üretildi ve e-posta gönderildi.",
+    "confirmDelete": "\"{title}\" siparişini silmek istediğinize emin misiniz?",
     "errorPrefix": "Hata"
   }
 }

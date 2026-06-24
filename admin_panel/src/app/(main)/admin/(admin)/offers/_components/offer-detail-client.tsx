@@ -496,7 +496,7 @@ function OfferDirectEmailButton({ offerId, email, disabled }: { offerId: string;
           <Input
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
-            placeholder="Teklif Talebiniz Hk."
+            placeholder="Siparişiniz Hk."
             disabled={isLoading}
           />
         </div>
