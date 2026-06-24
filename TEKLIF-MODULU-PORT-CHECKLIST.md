@@ -175,7 +175,18 @@ yanıtın `admin_notes`'a otomatik loglanması, **4 ek sipariş/sevk durumu**, v
 
 # PART 2 — "Sipariş Ver" CTA + Teklif → Sipariş Yeniden Adlandırma
 
-> Hazırlayan: Claude (mimar). Tarih: 2026-06-24. **Durum: PLANLANDI — uygulanmadı.**
+> ## ✅ TAMAMLANDI & CANLIDA (2026-06-24)
+> - Kod: G1–G5 uygulandı (commit'ler `ab27155`, `c860d8b`, `ecbeab2`, `b66e212`), push edildi.
+> - Deploy: `vps-vistainsaat` → pull + frontend/admin `bun run build` + `pm2 restart`. Backend dokunulmadı (restart yok).
+> - **G2 — 301 redirect:** `url_redirects` tablosuna 4 kural eklendi (`/tr|/en|/de/teklif-al` + bare → `/siparis-ver`). Origin + Cloudflare'da **301** doğrulandı (cf-cache-status: DYNAMIC).
+> - Doğrulama: `/XX/siparis-ver` 200; eski `/XX/teklif-al` 301; sitemap 12× siparis-ver (teklif-al yok); home'da "Sipariş Ver" CTA render. `bun test` 13/13.
+> - G7 (backend mail) gereksiz çıktı (template'te "teklif" yok). page-seo key `"teklif-al"` kasıtlı korundu (DB SEO içeriği).
+>
+> _Aşağısı referans/denetim içindir._
+
+---
+
+> Hazırlayan: Claude (mimar). Tarih: 2026-06-24.
 > Part 1 (yukarısı) tamamlanmış backend feature port'udur. Part 2 ayrı bir iştir:
 > müşteriye görünen dili **"Teklif" → "Sipariş"** yapmak ve siteye **"Sipariş Ver" CTA**'ları eklemek.
 
