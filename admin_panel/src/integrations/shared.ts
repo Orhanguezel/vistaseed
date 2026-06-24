@@ -500,6 +500,7 @@ export {
   buildOffersListQueryParams,
   computeOfferItemsTotal,
   createEmptyOfferDetailForm,
+  deriveOfferPricing,
   EMPTY_OFFER_BILLING,
   EMPTY_OFFER_LINE_ITEM,
   lineTotal,

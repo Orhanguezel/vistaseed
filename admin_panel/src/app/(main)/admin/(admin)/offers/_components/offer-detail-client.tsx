@@ -30,6 +30,7 @@ import {
   buildOfferPayload,
   computeOfferItemsTotal,
   createEmptyOfferDetailForm,
+  deriveOfferPricing,
   EMPTY_OFFER_LINE_ITEM,
   lineTotal,
   mapOfferToDetailForm,
@@ -62,6 +63,11 @@ export default function OfferDetailClient({ id }: Props) {
   const [formData, setFormData] = React.useState<OfferDetailFormState>(() => createEmptyOfferDetailForm());
   const [activeTab, setActiveTab] = React.useState<OfferDetailTabKey>("customer");
   const orderTotal = React.useMemo(() => computeOfferItemsTotal(formData.items), [formData.items]);
+  const pricing = React.useMemo(
+    () => deriveOfferPricing(formData.net_total, formData.vat_rate, formData.shipping_total),
+    [formData.net_total, formData.vat_rate, formData.shipping_total],
+  );
+  const money2 = (value: number | null) => (value == null ? "" : value.toFixed(2));
   const previewUrl = React.useMemo(() => {
     const value = formData.pdf_url.trim();
     if (!value) return "";
@@ -81,10 +87,11 @@ export default function OfferDetailClient({ id }: Props) {
   const syncItems = (items: OfferLineItem[]) => {
     const recalculatedItems = recalcItemTotals(items);
     const total = computeOfferItemsTotal(recalculatedItems);
+    // Net Tutar kalemlerden otomatik; KDV/Genel Toplam türetilir (read-only).
     setFormData((prev) => ({
       ...prev,
       items: recalculatedItems,
-      gross_total: total == null ? prev.gross_total : total.toFixed(2),
+      net_total: total == null ? prev.net_total : total.toFixed(2),
     }));
   };
 
@@ -502,7 +509,7 @@ export default function OfferDetailClient({ id }: Props) {
                 </div>
                 <div className="space-y-2">
                   <Label>{t("form.vatTotal")}</Label>
-                  <Input value={formData.vat_total} onChange={(e) => handleChange("vat_total", e.target.value)} />
+                  <Input value={money2(pricing.vat)} readOnly tabIndex={-1} className="bg-muted/50" />
                 </div>
                 <div className="space-y-2">
                   <Label>{t("form.shippingTotal")}</Label>
@@ -516,7 +523,7 @@ export default function OfferDetailClient({ id }: Props) {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>{t("form.grossTotal")}</Label>
-                  <Input value={formData.gross_total} onChange={(e) => handleChange("gross_total", e.target.value)} />
+                  <Input value={money2(pricing.gross)} readOnly tabIndex={-1} className="bg-muted/50 font-semibold" />
                 </div>
                 <div className="grid grid-cols-2 gap-4 pt-6">
                   <div className="flex items-center gap-2">

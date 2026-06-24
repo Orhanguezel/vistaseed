@@ -273,6 +273,16 @@ export function computeOfferItemsTotal(items: OfferLineItem[]): number | null {
   return totals.reduce((sum, value) => sum + value, 0);
 }
 
+// KDV hariç model: net (items'tan ya da elle) → KDV = net×oran → genel = net+KDV+kargo.
+export function deriveOfferPricing(netStr: string, vatRateStr: string, shippingStr: string) {
+  const net = parseFlexibleNumber(netStr);
+  const rate = parseFlexibleNumber(vatRateStr);
+  const shipping = parseFlexibleNumber(shippingStr);
+  const vat = net != null && rate != null ? (net * rate) / 100 : null;
+  const gross = net != null ? net + (vat ?? 0) + (shipping ?? 0) : null;
+  return { net, vat, gross };
+}
+
 export function recalcItemTotals(items: OfferLineItem[]): OfferLineItem[] {
   return items.map((item) => {
     const quantity = parseFlexibleNumber(item.miktar);
@@ -336,6 +346,10 @@ export function mapOfferToDetailForm(dto: OfferDto): OfferDetailFormState {
   const formData = toRecord(dto.form_data_parsed ?? dto.form_data ?? {});
   const extraFormData = omitStructuredFormData(formData);
   const itemsRaw = Array.isArray(formData.items) ? formData.items : [];
+  const items = itemsRaw.map(mapLineItem);
+  // Net Tutar kalemlerden türetilir (kalem varsa); yoksa DTO değeri.
+  const itemsTotal = computeOfferItemsTotal(items);
+  const netTotal = itemsTotal != null ? itemsTotal.toFixed(2) : toStr(dto.net_total);
 
   return {
     source: toStr(dto.source || "vistaseeds"),
@@ -350,7 +364,7 @@ export function mapOfferToDetailForm(dto: OfferDto): OfferDetailFormState {
     product_id: toStr(dto.product_id),
     service_id: toStr(dto.service_id),
     billing: mapBilling(formData.billing, dto),
-    items: itemsRaw.map(mapLineItem),
+    items,
     aciklama: toStr(formData.aciklama),
     siparisAlan: toStr(formData.siparisAlan),
     form_data_text: JSON.stringify(extraFormData, null, 2),
@@ -358,7 +372,7 @@ export function mapOfferToDetailForm(dto: OfferDto): OfferDetailFormState {
     consent_terms: toBool(dto.consent_terms),
     status: dto.status || "new",
     currency: toStr(dto.currency || "TRY"),
-    net_total: toStr(dto.net_total),
+    net_total: netTotal,
     vat_rate: toStr(dto.vat_rate),
     vat_total: toStr(dto.vat_total),
     shipping_total: toStr(dto.shipping_total),
@@ -383,7 +397,7 @@ export function buildOfferPayload(formData: OfferDetailFormState): OfferCreatePa
   }
 
   const cleanedItems = formData.items.map(cleanLineItem).filter((item) => !isEmptyLineItem(item));
-  const itemsTotal = computeOfferItemsTotal(cleanedItems);
+  const pricing = deriveOfferPricing(formData.net_total, formData.vat_rate, formData.shipping_total);
   const mergedFormData: Record<string, unknown> = {
     ...parsedFormData,
     billing: {
@@ -419,11 +433,11 @@ export function buildOfferPayload(formData: OfferDetailFormState): OfferCreatePa
     consent_terms: formData.consent_terms,
     status: formData.status,
     currency: formData.currency.trim() || "TRY",
-    net_total: toNumberOrNull(formData.net_total),
+    net_total: pricing.net,
     vat_rate: toNumberOrNull(formData.vat_rate),
-    vat_total: toNumberOrNull(formData.vat_total),
+    vat_total: pricing.vat,
     shipping_total: toNumberOrNull(formData.shipping_total),
-    gross_total: itemsTotal ?? toNumberOrNull(formData.gross_total),
+    gross_total: pricing.gross,
     offer_no: formData.offer_no.trim() || null,
     valid_until: formData.valid_until.trim() || null,
     admin_notes: formData.admin_notes.trim() || null,
