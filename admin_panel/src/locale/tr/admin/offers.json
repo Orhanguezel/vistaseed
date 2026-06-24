@@ -6,6 +6,7 @@
   "tabs": {
     "list": "Liste",
     "customer": "Müşteri",
+    "orderForm": "Sipariş Formu",
     "pricing": "Fiyatlama",
     "meta": "Meta",
     "json": "JSON"
@@ -17,8 +18,8 @@
     "edit": "Düzenle",
     "delete": "Sil",
     "save": "Kaydet",
-    "generatePdf": "Doküman Üret",
-    "sendEmail": "E-posta Gönder",
+    "generatePdf": "Önizle (Üret)",
+    "sendEmail": "Gönder",
     "sendAll": "Üret ve Gönder"
   },
   "filters": {
@@ -44,12 +45,13 @@
     "customerTitle": "Müşteri ve Talep Bilgileri",
     "pricingTitle": "Durum ve Tutarlar",
     "metaTitle": "Ek Bilgiler ve Doküman",
-    "jsonTitle": "Form JSON Verisi",
+    "jsonTitle": "Ekstra Form JSON Verisi",
     "previewTitle": "Doküman Önizleme",
     "previewEmpty": "Henüz doküman üretilmedi. Önce \"Doküman Üret\" aksiyonunu kullanın.",
     "previewPath": "Üretim Yolu",
     "previewHelp": "Üretilen sipariş dosyası PDF olarak /uploads/offers klasörüne yazılır.",
-    "openPreview": "Yeni Sekmede Aç"
+    "openPreview": "Yeni Sekmede Aç",
+    "jsonHelp": "Yapısal sipariş formu alanları ayrı sekmeden yönetilir. Bu alan yalnızca ekstra/gelişmiş JSON verileri içindir."
   },
   "form": {
     "offerNo": "Sipariş No",
@@ -81,6 +83,54 @@
     "consentTerms": "Koşullar onayı",
     "formData": "Form Verisi JSON"
   },
+  "orderForm": {
+    "billingTitle": "Fatura ve Müşteri Bilgileri",
+    "itemsTitle": "Ürün Satırları",
+    "addItem": "Satır Ekle",
+    "removeItem": "Satır Sil",
+    "emptyItems": "Henüz ürün satırı eklenmedi.",
+    "aciklama": "Açıklama",
+    "siparisAlan": "Sipariş Alan",
+    "orderTotal": "Sipariş Toplamı",
+    "billing": {
+      "ticariAd": "Ticari Ad",
+      "vergiDairesi": "Vergi Dairesi",
+      "vergiNo": "Vergi No",
+      "mersisNo": "MERSİS No",
+      "telFax": "Tel / Fax",
+      "gsm": "GSM",
+      "eposta": "E-posta",
+      "adres": "Adres",
+      "sevkAdresi": "Sevk Adresi"
+    },
+    "items": {
+      "urun": "Ürün",
+      "formulasyon": "Formülasyon",
+      "ambalaj": "Ambalaj",
+      "miktar": "Miktar",
+      "birim": "Birim",
+      "birimFiyat": "Birim Fiyat",
+      "toplam": "Toplam",
+      "vadeGun": "Vade (gün)",
+      "odemeTarihi": "Ödeme Tarihi"
+    }
+  },
+  "directEmail": {
+    "button": "Doğrudan E-posta",
+    "title": "Müşteriye E-posta Gönder",
+    "recipient": "Alıcı: {email}",
+    "subject": "Konu (opsiyonel)",
+    "subjectPlaceholder": "Siparişiniz Hk.",
+    "message": "Mesaj *",
+    "messagePlaceholder": "Müşteriye iletmek istediğiniz mesaj...",
+    "cancel": "İptal",
+    "send": "Gönder",
+    "sending": "Gönderiliyor...",
+    "sent": "E-posta gönderildi",
+    "sendError": "Gönderim hatası",
+    "emailRequired": "Müşteri e-postası gerekli",
+    "messageRequired": "Mesaj boş olamaz"
+  },
   "statuses": {
     "new": "Yeni",
     "in_review": "İncelemede",
@@ -104,6 +154,7 @@
     "pdfGenerated": "Sipariş dokümanı üretildi.",
     "emailSent": "Sipariş e-postası gönderildi.",
     "sendCompleted": "Sipariş dokümanı üretildi ve e-posta gönderildi.",
+    "previewBeforeSend": "Göndermeden önce dokümanı üretip önizleyin.",
     "confirmDelete": "\"{title}\" siparişini silmek istediğinize emin misiniz?",
     "errorPrefix": "Hata"
   }

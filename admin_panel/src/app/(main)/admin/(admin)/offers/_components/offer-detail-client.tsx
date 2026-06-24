@@ -4,7 +4,7 @@ import * as React from "react";
 
 import { useRouter } from "next/navigation";
 
-import { ArrowLeft, FileText, Mail, Save, Send, Trash2 } from "lucide-react";
+import { ArrowLeft, FileText, Mail, Plus, Save, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 import { useAdminT } from "@/app/(main)/admin/_components/common/use-admin-t";
@@ -15,24 +15,30 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
+import { buildUploadUrl } from "@/lib/media-url";
 import {
   useCreateOfferAdminMutation,
   useDeleteOfferAdminMutation,
   useGenerateOfferPdfAdminMutation,
   useGetOfferAdminQuery,
   useListProductsAdminQuery,
-  useSendOfferAdminMutation,
   useSendOfferDirectEmailAdminMutation,
   useSendOfferEmailAdminMutation,
   useUpdateOfferAdminMutation,
 } from "@/integrations/hooks";
 import {
   buildOfferPayload,
+  computeOfferItemsTotal,
   createEmptyOfferDetailForm,
+  EMPTY_OFFER_LINE_ITEM,
+  lineTotal,
   mapOfferToDetailForm,
   OFFER_STATUSES,
+  recalcItemTotals,
+  type OfferBilling,
   type OfferDetailFormState,
   type OfferDetailTabKey,
+  type OfferLineItem,
 } from "@/integrations/shared";
 
 interface Props {
@@ -52,15 +58,15 @@ export default function OfferDetailClient({ id }: Props) {
   const [deleteOffer, { isLoading: isDeleting }] = useDeleteOfferAdminMutation();
   const [generatePdf, { isLoading: isGeneratingPdf }] = useGenerateOfferPdfAdminMutation();
   const [sendEmail, { isLoading: isSendingEmail }] = useSendOfferEmailAdminMutation();
-  const [sendOffer, { isLoading: isSendingOffer }] = useSendOfferAdminMutation();
 
   const [formData, setFormData] = React.useState<OfferDetailFormState>(() => createEmptyOfferDetailForm());
   const [activeTab, setActiveTab] = React.useState<OfferDetailTabKey>("customer");
+  const orderTotal = React.useMemo(() => computeOfferItemsTotal(formData.items), [formData.items]);
   const previewUrl = React.useMemo(() => {
     const value = formData.pdf_url.trim();
     if (!value) return "";
     if (value.startsWith("http://") || value.startsWith("https://")) return value;
-    return `http://localhost:8083${value.startsWith("/") ? value : `/${value}`}`;
+    return buildUploadUrl(value.startsWith("/") ? value : `/${value}`);
   }, [formData.pdf_url]);
 
   React.useEffect(() => {
@@ -70,6 +76,35 @@ export default function OfferDetailClient({ id }: Props) {
 
   const handleChange = (field: keyof OfferDetailFormState, value: boolean | string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const syncItems = (items: OfferLineItem[]) => {
+    const recalculatedItems = recalcItemTotals(items);
+    const total = computeOfferItemsTotal(recalculatedItems);
+    setFormData((prev) => ({
+      ...prev,
+      items: recalculatedItems,
+      gross_total: total == null ? prev.gross_total : total.toFixed(2),
+    }));
+  };
+
+  const handleBillingChange = (field: keyof OfferBilling, value: string) => {
+    setFormData((prev) => ({ ...prev, billing: { ...prev.billing, [field]: value } }));
+  };
+
+  const handleItemChange = (index: number, field: keyof OfferLineItem, value: string) => {
+    const next = formData.items.map((item, itemIndex) => (
+      itemIndex === index ? { ...item, [field]: value } : item
+    ));
+    syncItems(next);
+  };
+
+  const handleAddItem = () => {
+    syncItems([...formData.items, { ...EMPTY_OFFER_LINE_ITEM }]);
+  };
+
+  const handleRemoveItem = (index: number) => {
+    syncItems(formData.items.filter((_item, itemIndex) => itemIndex !== index));
   };
 
   const handleSubmit = async () => {
@@ -123,6 +158,12 @@ export default function OfferDetailClient({ id }: Props) {
   };
 
   const handleSendEmail = async () => {
+    if (!formData.pdf_url.trim()) {
+      toast.error(t("messages.previewBeforeSend"));
+      setActiveTab("meta");
+      return;
+    }
+
     try {
       const row = await sendEmail({ id }).unwrap();
       setFormData(mapOfferToDetailForm(row));
@@ -132,18 +173,8 @@ export default function OfferDetailClient({ id }: Props) {
     }
   };
 
-  const handleSendAll = async () => {
-    try {
-      const row = await sendOffer({ id }).unwrap();
-      setFormData(mapOfferToDetailForm(row));
-      toast.success(t("messages.sendCompleted"));
-    } catch (error) {
-      toast.error(`${t("messages.errorPrefix")}: ${error}`);
-    }
-  };
-
   const isSaving = isCreating || isUpdating;
-  const isBusy = isSaving || isFetching || isGeneratingPdf || isSendingEmail || isSendingOffer;
+  const isBusy = isSaving || isFetching || isGeneratingPdf || isSendingEmail;
 
   return (
     <div className="space-y-6">
@@ -167,10 +198,6 @@ export default function OfferDetailClient({ id }: Props) {
                 {t("actions.sendEmail")}
               </Button>
               <OfferDirectEmailButton offerId={id} email={formData.email} disabled={isBusy} />
-              <Button variant="outline" size="sm" onClick={handleSendAll} disabled={isBusy}>
-                <Send className="mr-1 h-4 w-4" />
-                {t("actions.sendAll")}
-              </Button>
               <Button variant="outline" size="sm" onClick={handleDelete} disabled={isBusy || isDeleting}>
                 <Trash2 className="mr-1 h-4 w-4" />
                 {t("actions.delete")}
@@ -187,6 +214,7 @@ export default function OfferDetailClient({ id }: Props) {
       <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as OfferDetailTabKey)}>
         <TabsList>
           <TabsTrigger value="customer">{t("tabs.customer")}</TabsTrigger>
+          <TabsTrigger value="orderForm">{t("tabs.orderForm")}</TabsTrigger>
           <TabsTrigger value="pricing">{t("tabs.pricing")}</TabsTrigger>
           <TabsTrigger value="meta">{t("tabs.meta")}</TabsTrigger>
           <TabsTrigger value="json">{t("tabs.json")}</TabsTrigger>
@@ -285,6 +313,157 @@ export default function OfferDetailClient({ id }: Props) {
               </div>
             </CardContent>
           </Card>
+        </TabsContent>
+
+        <TabsContent value="orderForm">
+          <div className="space-y-4">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">{t("orderForm.billingTitle")}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+                  <div className="space-y-2">
+                    <Label>{t("orderForm.billing.ticariAd")}</Label>
+                    <Input value={formData.billing.ticariAd} onChange={(e) => handleBillingChange("ticariAd", e.target.value)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>{t("orderForm.billing.vergiDairesi")}</Label>
+                    <Input value={formData.billing.vergiDairesi} onChange={(e) => handleBillingChange("vergiDairesi", e.target.value)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>{t("orderForm.billing.vergiNo")}</Label>
+                    <Input value={formData.billing.vergiNo} onChange={(e) => handleBillingChange("vergiNo", e.target.value)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>{t("orderForm.billing.mersisNo")}</Label>
+                    <Input value={formData.billing.mersisNo} onChange={(e) => handleBillingChange("mersisNo", e.target.value)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>{t("orderForm.billing.telFax")}</Label>
+                    <Input value={formData.billing.telFax} onChange={(e) => handleBillingChange("telFax", e.target.value)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>{t("orderForm.billing.gsm")}</Label>
+                    <Input value={formData.billing.gsm} onChange={(e) => handleBillingChange("gsm", e.target.value)} />
+                  </div>
+                  <div className="space-y-2 xl:col-span-3">
+                    <Label>{t("orderForm.billing.eposta")}</Label>
+                    <Input value={formData.billing.eposta} onChange={(e) => handleBillingChange("eposta", e.target.value)} />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label>{t("orderForm.billing.adres")}</Label>
+                    <Textarea rows={4} value={formData.billing.adres} onChange={(e) => handleBillingChange("adres", e.target.value)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>{t("orderForm.billing.sevkAdresi")}</Label>
+                    <Textarea rows={4} value={formData.billing.sevkAdresi} onChange={(e) => handleBillingChange("sevkAdresi", e.target.value)} />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle className="text-base">{t("orderForm.itemsTitle")}</CardTitle>
+                <Button type="button" variant="outline" size="sm" onClick={handleAddItem}>
+                  <Plus className="h-4 w-4" />
+                  {t("orderForm.addItem")}
+                </Button>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="overflow-x-auto rounded-md border">
+                  <table className="w-full min-w-[1120px] border-collapse text-sm">
+                    <thead className="bg-muted/60 text-muted-foreground">
+                      <tr>
+                        <th className="px-3 py-2 text-left font-medium">{t("orderForm.items.urun")}</th>
+                        <th className="px-3 py-2 text-left font-medium">{t("orderForm.items.formulasyon")}</th>
+                        <th className="px-3 py-2 text-left font-medium">{t("orderForm.items.ambalaj")}</th>
+                        <th className="px-3 py-2 text-left font-medium">{t("orderForm.items.miktar")}</th>
+                        <th className="px-3 py-2 text-left font-medium">{t("orderForm.items.birim")}</th>
+                        <th className="px-3 py-2 text-left font-medium">{t("orderForm.items.birimFiyat")}</th>
+                        <th className="px-3 py-2 text-left font-medium">{t("orderForm.items.toplam")}</th>
+                        <th className="px-3 py-2 text-left font-medium">{t("orderForm.items.vadeGun")}</th>
+                        <th className="px-3 py-2 text-left font-medium">{t("orderForm.items.odemeTarihi")}</th>
+                        <th className="w-16 px-3 py-2 text-right font-medium">{t("table.actions")}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {formData.items.length === 0 ? (
+                        <tr>
+                          <td colSpan={10} className="px-3 py-8 text-center text-muted-foreground">
+                            {t("orderForm.emptyItems")}
+                          </td>
+                        </tr>
+                      ) : (
+                        formData.items.map((item, index) => {
+                          const itemTotal = lineTotal(item);
+                          return (
+                            <tr key={index} className="border-t">
+                              <td className="p-2">
+                                <Input value={item.urun} onChange={(e) => handleItemChange(index, "urun", e.target.value)} />
+                              </td>
+                              <td className="p-2">
+                                <Input value={item.formulasyon} onChange={(e) => handleItemChange(index, "formulasyon", e.target.value)} />
+                              </td>
+                              <td className="p-2">
+                                <Input value={item.ambalaj} onChange={(e) => handleItemChange(index, "ambalaj", e.target.value)} />
+                              </td>
+                              <td className="p-2">
+                                <Input inputMode="decimal" value={item.miktar} onChange={(e) => handleItemChange(index, "miktar", e.target.value)} />
+                              </td>
+                              <td className="p-2">
+                                <Input value={item.birim} onChange={(e) => handleItemChange(index, "birim", e.target.value)} />
+                              </td>
+                              <td className="p-2">
+                                <Input inputMode="decimal" value={item.birimFiyat} onChange={(e) => handleItemChange(index, "birimFiyat", e.target.value)} />
+                              </td>
+                              <td className="p-2">
+                                <Input value={itemTotal == null ? "" : itemTotal.toFixed(2)} readOnly className="bg-muted/40" />
+                              </td>
+                              <td className="p-2">
+                                <Input inputMode="numeric" value={item.vadeGun} onChange={(e) => handleItemChange(index, "vadeGun", e.target.value)} />
+                              </td>
+                              <td className="p-2">
+                                <Input value={item.odemeTarihi} onChange={(e) => handleItemChange(index, "odemeTarihi", e.target.value)} />
+                              </td>
+                              <td className="p-2 text-right">
+                                <Button type="button" variant="ghost" size="icon-sm" onClick={() => handleRemoveItem(index)} aria-label={t("orderForm.removeItem")}>
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
+                              </td>
+                            </tr>
+                          );
+                        })
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label>{t("orderForm.aciklama")}</Label>
+                    <Textarea rows={5} value={formData.aciklama} onChange={(e) => handleChange("aciklama", e.target.value)} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>{t("orderForm.siparisAlan")}</Label>
+                    <Input value={formData.siparisAlan} onChange={(e) => handleChange("siparisAlan", e.target.value)} />
+                    <div className="rounded-lg border bg-muted/40 p-4">
+                      <div className="text-muted-foreground text-xs font-medium uppercase tracking-wide">
+                        {t("orderForm.orderTotal")}
+                      </div>
+                      <div className="mt-1 text-2xl font-semibold">
+                        {orderTotal == null ? "-" : `${orderTotal.toFixed(2)} ${formData.currency || "TRY"}`}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </TabsContent>
 
         <TabsContent value="pricing">
@@ -434,6 +613,7 @@ export default function OfferDetailClient({ id }: Props) {
             </CardHeader>
             <CardContent className="space-y-2">
               <Label>{t("form.formData")}</Label>
+              <p className="text-muted-foreground text-sm">{t("detail.jsonHelp")}</p>
               <Textarea
                 rows={18}
                 value={formData.form_data_text}
@@ -448,6 +628,7 @@ export default function OfferDetailClient({ id }: Props) {
 }
 
 function OfferDirectEmailButton({ offerId, email, disabled }: { offerId: string; email: string; disabled: boolean }) {
+  const t = useAdminT("admin.offers");
   const [sendDirect, { isLoading }] = useSendOfferDirectEmailAdminMutation();
   const [open, setOpen] = React.useState(false);
   const [subject, setSubject] = React.useState("");
@@ -455,11 +636,11 @@ function OfferDirectEmailButton({ offerId, email, disabled }: { offerId: string;
 
   const handleSend = async () => {
     if (!email) {
-      toast.error("Müşteri e-postası gerekli");
+      toast.error(t("directEmail.emailRequired"));
       return;
     }
     if (!message.trim()) {
-      toast.error("Mesaj boş olamaz");
+      toast.error(t("directEmail.messageRequired"));
       return;
     }
     try {
@@ -467,13 +648,13 @@ function OfferDirectEmailButton({ offerId, email, disabled }: { offerId: string;
         id: offerId,
         body: { subject: subject.trim() || undefined, message: message.trim() },
       }).unwrap();
-      toast.success(res?.message || "E-posta gönderildi");
+      toast.success(res?.message || t("directEmail.sent"));
       setOpen(false);
       setSubject("");
       setMessage("");
     } catch (err: unknown) {
       const e = err as { data?: { error?: { message?: string } } };
-      toast.error(e?.data?.error?.message || "Gönderim hatası");
+      toast.error(e?.data?.error?.message || t("directEmail.sendError"));
     }
   };
 
@@ -481,7 +662,7 @@ function OfferDirectEmailButton({ offerId, email, disabled }: { offerId: string;
     return (
       <Button variant="outline" size="sm" onClick={() => setOpen(true)} disabled={disabled || !email}>
         <Mail className="mr-1 h-4 w-4" />
-        Doğrudan E-posta
+        {t("directEmail.button")}
       </Button>
     );
   }
@@ -489,33 +670,33 @@ function OfferDirectEmailButton({ offerId, email, disabled }: { offerId: string;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="w-full max-w-md space-y-3 rounded-lg border bg-background p-4 shadow-lg">
-        <h3 className="font-medium text-sm">Müşteriye E-posta Gönder</h3>
-        <p className="text-muted-foreground text-xs">Alıcı: {email}</p>
+        <h3 className="font-medium text-sm">{t("directEmail.title")}</h3>
+        <p className="text-muted-foreground text-xs">{t("directEmail.recipient", { email })}</p>
         <div className="space-y-1.5">
-          <Label className="text-muted-foreground text-xs">Konu (opsiyonel)</Label>
+          <Label className="text-muted-foreground text-xs">{t("directEmail.subject")}</Label>
           <Input
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
-            placeholder="Siparişiniz Hk."
+            placeholder={t("directEmail.subjectPlaceholder")}
             disabled={isLoading}
           />
         </div>
         <div className="space-y-1.5">
-          <Label className="text-muted-foreground text-xs">Mesaj *</Label>
+          <Label className="text-muted-foreground text-xs">{t("directEmail.message")}</Label>
           <Textarea
             rows={5}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Müşteriye iletmek istediğiniz mesaj..."
+            placeholder={t("directEmail.messagePlaceholder")}
             disabled={isLoading}
           />
         </div>
         <div className="flex justify-end gap-2">
           <Button variant="outline" size="sm" onClick={() => setOpen(false)} disabled={isLoading}>
-            İptal
+            {t("directEmail.cancel")}
           </Button>
           <Button size="sm" onClick={handleSend} disabled={isLoading || !message.trim()}>
-            {isLoading ? "Gönderiliyor..." : "Gönder"}
+            {isLoading ? t("directEmail.sending") : t("directEmail.send")}
           </Button>
         </div>
       </div>

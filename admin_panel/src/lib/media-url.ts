@@ -56,3 +56,4 @@ export const resolveMediaUrl = (raw: string | null | undefined): string => {
   return s;
 };
 
+export const buildUploadUrl = (path: string | null | undefined): string => resolveMediaUrl(path);

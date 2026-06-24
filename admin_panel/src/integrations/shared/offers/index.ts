@@ -85,7 +85,31 @@ export type OfferCreatePayload = {
 
 export type OfferUpdatePayload = Partial<OfferCreatePayload>;
 
-export type OfferDetailTabKey = "customer" | "pricing" | "meta" | "json";
+export type OfferBilling = {
+  ticariAd: string;
+  vergiDairesi: string;
+  vergiNo: string;
+  mersisNo: string;
+  telFax: string;
+  gsm: string;
+  eposta: string;
+  adres: string;
+  sevkAdresi: string;
+};
+
+export type OfferLineItem = {
+  urun: string;
+  formulasyon: string;
+  ambalaj: string;
+  birim: string;
+  odemeTarihi: string;
+  miktar: string;
+  birimFiyat: string;
+  toplam: string;
+  vadeGun: string;
+};
+
+export type OfferDetailTabKey = "customer" | "orderForm" | "pricing" | "meta" | "json";
 
 export type OfferDetailFormState = {
   source: string;
@@ -99,6 +123,10 @@ export type OfferDetailFormState = {
   message: string;
   product_id: string;
   service_id: string;
+  billing: OfferBilling;
+  items: OfferLineItem[];
+  aciklama: string;
+  siparisAlan: string;
   form_data_text: string;
   consent_marketing: boolean;
   consent_terms: boolean;
@@ -117,6 +145,32 @@ export type OfferDetailFormState = {
   email_sent_at: string;
 };
 
+const STRUCTURED_FORM_DATA_KEYS = new Set(["billing", "items", "aciklama", "siparisAlan"]);
+
+export const EMPTY_OFFER_BILLING: OfferBilling = {
+  ticariAd: "",
+  vergiDairesi: "",
+  vergiNo: "",
+  mersisNo: "",
+  telFax: "",
+  gsm: "",
+  eposta: "",
+  adres: "",
+  sevkAdresi: "",
+};
+
+export const EMPTY_OFFER_LINE_ITEM: OfferLineItem = {
+  urun: "",
+  formulasyon: "",
+  ambalaj: "",
+  birim: "",
+  odemeTarihi: "",
+  miktar: "",
+  birimFiyat: "",
+  toplam: "",
+  vadeGun: "",
+};
+
 function toStr(value: unknown): string {
   return typeof value === "string" ? value : value == null ? "" : String(value);
 }
@@ -128,8 +182,106 @@ function toBool(value: unknown): boolean {
 function toNumberOrNull(value: string): number | null {
   const raw = value.trim();
   if (!raw) return null;
-  const num = Number(raw);
+  const num = Number(raw.replace(",", "."));
   return Number.isFinite(num) ? num : null;
+}
+
+function toRecord(value: unknown): Record<string, unknown> {
+  return value && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : {};
+}
+
+function toNumericString(value: unknown): string {
+  if (typeof value === "number" && Number.isFinite(value)) return String(value);
+  return toStr(value);
+}
+
+function mapBilling(value: unknown): OfferBilling {
+  const row = toRecord(value);
+  return {
+    ticariAd: toStr(row.ticariAd),
+    vergiDairesi: toStr(row.vergiDairesi),
+    vergiNo: toStr(row.vergiNo),
+    mersisNo: toStr(row.mersisNo),
+    telFax: toStr(row.telFax),
+    gsm: toStr(row.gsm),
+    eposta: toStr(row.eposta),
+    adres: toStr(row.adres),
+    sevkAdresi: toStr(row.sevkAdresi),
+  };
+}
+
+function mapLineItem(value: unknown): OfferLineItem {
+  const row = toRecord(value);
+  return {
+    urun: toStr(row.urun),
+    formulasyon: toStr(row.formulasyon),
+    ambalaj: toStr(row.ambalaj),
+    birim: toStr(row.birim),
+    odemeTarihi: toStr(row.odemeTarihi),
+    miktar: toNumericString(row.miktar),
+    birimFiyat: toNumericString(row.birimFiyat),
+    toplam: toNumericString(row.toplam),
+    vadeGun: toNumericString(row.vadeGun),
+  };
+}
+
+function omitStructuredFormData(formData: Record<string, unknown>): Record<string, unknown> {
+  return Object.fromEntries(Object.entries(formData).filter(([key]) => !STRUCTURED_FORM_DATA_KEYS.has(key)));
+}
+
+function isEmptyLineItem(item: OfferLineItem): boolean {
+  return Object.values(item).every((value) => !String(value ?? "").trim());
+}
+
+function cleanLineItem(item: OfferLineItem): OfferLineItem {
+  return {
+    urun: item.urun.trim(),
+    formulasyon: item.formulasyon.trim(),
+    ambalaj: item.ambalaj.trim(),
+    birim: item.birim.trim(),
+    odemeTarihi: item.odemeTarihi.trim(),
+    miktar: item.miktar.trim(),
+    birimFiyat: item.birimFiyat.trim(),
+    toplam: item.toplam.trim(),
+    vadeGun: item.vadeGun.trim(),
+  };
+}
+
+function parseFlexibleNumber(value: unknown): number | null {
+  if (typeof value === "number") return Number.isFinite(value) ? value : null;
+  if (typeof value !== "string") return null;
+  const normalized = value.trim().replace(/\s/g, "").replace(",", ".");
+  if (!normalized) return null;
+  const num = Number(normalized);
+  return Number.isFinite(num) ? num : null;
+}
+
+export function lineTotal(item: Pick<OfferLineItem, "miktar" | "birimFiyat" | "toplam">): number | null {
+  const explicitTotal = parseFlexibleNumber(item.toplam);
+  if (explicitTotal != null) return explicitTotal;
+
+  const quantity = parseFlexibleNumber(item.miktar);
+  const unitPrice = parseFlexibleNumber(item.birimFiyat);
+  if (quantity == null || unitPrice == null) return null;
+  return quantity * unitPrice;
+}
+
+export function computeOfferItemsTotal(items: OfferLineItem[]): number | null {
+  const totals = items.map(lineTotal).filter((value): value is number => value != null);
+  if (!totals.length) return null;
+  return totals.reduce((sum, value) => sum + value, 0);
+}
+
+export function recalcItemTotals(items: OfferLineItem[]): OfferLineItem[] {
+  return items.map((item) => {
+    const quantity = parseFlexibleNumber(item.miktar);
+    const unitPrice = parseFlexibleNumber(item.birimFiyat);
+    const computed = quantity != null && unitPrice != null ? quantity * unitPrice : null;
+    return {
+      ...item,
+      toplam: computed == null ? item.toplam : computed.toFixed(2),
+    };
+  });
 }
 
 export function buildOffersListQueryParams(opts: { q?: string; status?: OfferStatus | "" }): OfferListQueryParams {
@@ -156,11 +308,15 @@ export function createEmptyOfferDetailForm(): OfferDetailFormState {
     message: "",
     product_id: "",
     service_id: "",
+    billing: { ...EMPTY_OFFER_BILLING },
+    items: [],
+    aciklama: "",
+    siparisAlan: "",
     form_data_text: "{}",
     consent_marketing: false,
     consent_terms: false,
     status: "new",
-    currency: "EUR",
+    currency: "TRY",
     net_total: "",
     vat_rate: "",
     vat_total: "",
@@ -176,7 +332,9 @@ export function createEmptyOfferDetailForm(): OfferDetailFormState {
 }
 
 export function mapOfferToDetailForm(dto: OfferDto): OfferDetailFormState {
-  const formData = dto.form_data_parsed ?? dto.form_data ?? {};
+  const formData = toRecord(dto.form_data_parsed ?? dto.form_data ?? {});
+  const extraFormData = omitStructuredFormData(formData);
+  const itemsRaw = Array.isArray(formData.items) ? formData.items : [];
 
   return {
     source: toStr(dto.source || "vistaseeds"),
@@ -190,11 +348,15 @@ export function mapOfferToDetailForm(dto: OfferDto): OfferDetailFormState {
     message: toStr(dto.message),
     product_id: toStr(dto.product_id),
     service_id: toStr(dto.service_id),
-    form_data_text: JSON.stringify(formData, null, 2),
+    billing: mapBilling(formData.billing),
+    items: itemsRaw.map(mapLineItem),
+    aciklama: toStr(formData.aciklama),
+    siparisAlan: toStr(formData.siparisAlan),
+    form_data_text: JSON.stringify(extraFormData, null, 2),
     consent_marketing: toBool(dto.consent_marketing),
     consent_terms: toBool(dto.consent_terms),
     status: dto.status || "new",
-    currency: toStr(dto.currency || "EUR"),
+    currency: toStr(dto.currency || "TRY"),
     net_total: toStr(dto.net_total),
     vat_rate: toStr(dto.vat_rate),
     vat_total: toStr(dto.vat_total),
@@ -219,6 +381,26 @@ export function buildOfferPayload(formData: OfferDetailFormState): OfferCreatePa
     parsedFormData = {};
   }
 
+  const cleanedItems = formData.items.map(cleanLineItem).filter((item) => !isEmptyLineItem(item));
+  const itemsTotal = computeOfferItemsTotal(cleanedItems);
+  const mergedFormData: Record<string, unknown> = {
+    ...parsedFormData,
+    billing: {
+      ticariAd: formData.billing.ticariAd.trim(),
+      vergiDairesi: formData.billing.vergiDairesi.trim(),
+      vergiNo: formData.billing.vergiNo.trim(),
+      mersisNo: formData.billing.mersisNo.trim(),
+      telFax: formData.billing.telFax.trim(),
+      gsm: formData.billing.gsm.trim(),
+      eposta: formData.billing.eposta.trim(),
+      adres: formData.billing.adres.trim(),
+      sevkAdresi: formData.billing.sevkAdresi.trim(),
+    },
+    items: cleanedItems,
+    aciklama: formData.aciklama.trim(),
+    siparisAlan: formData.siparisAlan.trim(),
+  };
+
   return {
     source: formData.source.trim() || "vistaseeds",
     locale: formData.locale.trim() || null,
@@ -231,16 +413,16 @@ export function buildOfferPayload(formData: OfferDetailFormState): OfferCreatePa
     message: formData.message.trim() || null,
     product_id: formData.product_id.trim() || null,
     service_id: formData.service_id.trim() || null,
-    form_data: parsedFormData,
+    form_data: mergedFormData,
     consent_marketing: formData.consent_marketing,
     consent_terms: formData.consent_terms,
     status: formData.status,
-    currency: formData.currency.trim() || "EUR",
+    currency: formData.currency.trim() || "TRY",
     net_total: toNumberOrNull(formData.net_total),
     vat_rate: toNumberOrNull(formData.vat_rate),
     vat_total: toNumberOrNull(formData.vat_total),
     shipping_total: toNumberOrNull(formData.shipping_total),
-    gross_total: toNumberOrNull(formData.gross_total),
+    gross_total: itemsTotal ?? toNumberOrNull(formData.gross_total),
     offer_no: formData.offer_no.trim() || null,
     valid_until: formData.valid_until.trim() || null,
     admin_notes: formData.admin_notes.trim() || null,
