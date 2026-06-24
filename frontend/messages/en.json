@@ -27,6 +27,9 @@
       "send": "Send",
       "loading": "Loading..."
     },
+    "cta": {
+      "placeOrder": "Place Order"
+    },
     "footer": {
       "corporate": "Corporate",
       "support": "Support",
@@ -92,9 +95,9 @@
       "ctaLabel": "View All Questions"
     },
     "cta": {
-      "eyebrow": "JOIN US",
-      "title": "Let's Grow Together",
-      "description": "We are ready to be your professional solution partner across every step from production to supply.",
+      "eyebrow": "ORDER",
+      "title": "Plan your seed needs with our team",
+      "description": "Share the product, quantity and growing region; our team will review your order request with the right variety and supply notes.",
       "ctaLabel": "Contact Us Now"
     },
     "plantingGuide": {

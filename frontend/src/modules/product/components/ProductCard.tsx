@@ -9,6 +9,7 @@ import { ROUTES } from "@/config/routes";
 import { getLocaleFromPathname, toLocalizedPath } from "@/i18n/routing";
 import { addCompareSlug, getCompareSlugs, removeCompareSlug } from "@/lib/compare-storage";
 import { resolveImageUrl } from "@/lib/utils";
+import { OrderCtaButton } from "@/modules/offers/order-cta-button";
 import type { Product } from "../product.type";
 
 interface Props {
@@ -120,6 +121,8 @@ export default function ProductCard({ product, selected = false, onToggleCompare
       </Link>
 
       <div className="mt-6 flex w-full flex-col gap-3">
+        <OrderCtaButton variant="ghost" size="sm" productSlug={product.slug} className="w-full" />
+
         <button
           type="button"
           onClick={handleToggleCompare}

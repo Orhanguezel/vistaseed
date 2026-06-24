@@ -18,14 +18,15 @@ export default function CtaSection({
   title,
   description,
   ctaLabel,
-  ctaHref = ROUTES.static.contact,
+  ctaHref = ROUTES.static.request_offer,
 }: CtaProps) {
   const t = useTranslations("Sections.cta");
+  const tCta = useTranslations("Common.cta");
   const pathname = usePathname();
   const locale = getLocaleFromPathname(pathname);
   const resolvedTitle = title ?? t("title");
   const resolvedDescription = description ?? t("description");
-  const resolvedCtaLabel = ctaLabel ?? t("ctaLabel");
+  const resolvedCtaLabel = ctaLabel ?? tCta("placeOrder");
 
   return (
     <section className="relative w-full bg-background py-24 md:py-32 overflow-hidden">

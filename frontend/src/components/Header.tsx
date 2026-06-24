@@ -12,6 +12,7 @@ import { API } from "@/config/api-endpoints";
 import { ROUTES } from "@/config/routes";
 import { getLocaleFromPathname, toLocalizedPath } from "@/i18n/routing";
 import { resolveClientApiBase, resolveImageUrl } from "@/lib/utils";
+import { OrderCtaButton } from "@/modules/offers/order-cta-button";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -487,6 +488,8 @@ export default function Header({
 
           {/* Right: Search + Theme + Hamburger */}
           <div className="flex items-center gap-2">
+            <OrderCtaButton size="sm" className="hidden lg:inline-flex whitespace-nowrap rounded-full px-4 py-2.5" />
+
             {/* Search toggle */}
             <button
               type="button"
@@ -664,6 +667,8 @@ export default function Header({
             ))}
 
             <div className="mt-8 pt-8 border-t border-border/50">
+              <OrderCtaButton className="mb-4 w-full rounded-2xl" onClick={() => setMobileOpen(false)} />
+
               <form onSubmit={handleSearchSubmit} className="relative">
                 <input
                   type="text"

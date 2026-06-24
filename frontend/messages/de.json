@@ -27,6 +27,9 @@
       "send": "Senden",
       "loading": "Wird geladen..."
     },
+    "cta": {
+      "placeOrder": "Bestellen"
+    },
     "footer": {
       "corporate": "Unternehmen",
       "support": "Support",
@@ -92,9 +95,9 @@
       "ctaLabel": "Alle Fragen ansehen"
     },
     "cta": {
-      "eyebrow": "MACH MIT",
-      "title": "Gemeinsam wachsen",
-      "description": "Von der Produktion bis zur Lieferung stehen wir Ihnen in allen Prozessen als professioneller Losungspartner zur Seite.",
+      "eyebrow": "BESTELLUNG",
+      "title": "Planen Sie Ihren Saatgutbedarf mit unserem Team",
+      "description": "Teilen Sie Produkt, Menge und Anbauregion mit; unser Team prueft Ihre Bestellanfrage mit passender Sorte und Lieferhinweisen.",
       "ctaLabel": "Jetzt Kontakt aufnehmen"
     },
     "plantingGuide": {

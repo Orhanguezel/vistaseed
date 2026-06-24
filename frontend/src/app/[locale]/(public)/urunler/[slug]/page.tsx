@@ -17,6 +17,7 @@ import ProductImageGallery from "@/modules/product/components/ProductImageGaller
 import ProductReviews from "@/modules/product/components/ProductReviews";
 import FaqQuestionForm from "@/modules/product/components/FaqQuestionForm";
 import ReviewForm from "@/modules/product/components/ReviewForm";
+import { OrderCtaButton } from "@/modules/offers/order-cta-button";
 import { Sprout, ShieldCheck, Thermometer, Calendar, Layers, Leaf } from "lucide-react";
 import { fetchSiteSettings } from "@/lib/site-settings";
 import { fetchReferenceHighlights, resolveEcosystemImage, resolveEcosystemReferencePath, type EcosystemReferenceItem } from "@/modules/ecosystem/ecosystem-content";
@@ -850,12 +851,12 @@ export default async function ProductDetailPage({ params }: Props) {
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Link
-                  href={toLocalizedPath(ROUTES.static.contact, currentLocale)}
-                  className="flex items-center justify-center px-8 py-5 bg-white text-slate-900 font-black uppercase tracking-widest text-[11px] rounded-2xl hover:bg-brand hover:text-white transition-all shadow-xl"
-                >
-                  {messages.detail.cta}
-                </Link>
+                <OrderCtaButton
+                  variant="light"
+                  size="lg"
+                  productSlug={product.slug}
+                  className="w-full rounded-2xl"
+                />
                 <AddToCompareButton productSlug={product.slug} className="w-full !rounded-2xl !py-5 !bg-white/5 !border-white/10 !text-white hover:!bg-white/10" />
               </div>
             </div>

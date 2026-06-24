@@ -27,6 +27,9 @@
       "send": "Gönder",
       "loading": "Yükleniyor..."
     },
+    "cta": {
+      "placeOrder": "Sipariş Ver"
+    },
     "footer": {
       "corporate": "Kurumsal",
       "support": "Destek",
@@ -92,9 +95,9 @@
       "ctaLabel": "Tüm Soruları Gör"
     },
     "cta": {
-      "eyebrow": "BİZE KATILIN",
-      "title": "İşbirliği ile Büyüyelim",
-      "description": "Üretimden tedariğe kadar tüm süreçlerde profesyonel çözüm ortağınız olmaya hazırız.",
+      "eyebrow": "SİPARİŞ",
+      "title": "Tohum ihtiyacınızı birlikte planlayalım",
+      "description": "Ürün, miktar ve üretim bölgenizi paylaşın; ekibimiz sipariş talebinizi doğru çeşit ve tedarik bilgisiyle değerlendirsin.",
       "ctaLabel": "Hemen İletişime Geçin"
     },
     "plantingGuide": {

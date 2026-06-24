@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
-import { Headset, Sparkles, MapPin, Mail, Phone } from "lucide-react";
+import { Headset, Sparkles, Mail, Phone, ShoppingCart } from "lucide-react";
 import { ROUTES } from "@/config/routes";
 import { toLocalizedPath, type AppLocale } from "@/i18n/routing";
 
@@ -75,6 +75,7 @@ export default async function Footer({
   contactPhone = "",
 }: FooterProps) {
   const t = await getTranslations({ locale, namespace: "Footer" });
+  const tCta = await getTranslations({ locale, namespace: "Common.cta" });
   const cols = columns && columns.length > 0 ? columns : [];
   const currentYear = new Date().getFullYear();
   const hasSocial = socialFacebook || socialInstagram || socialTwitter || socialLinkedin || socialYoutube;
@@ -159,6 +160,14 @@ export default async function Footer({
               <p className="text-white/60 text-sm leading-relaxed mb-8 max-w-sm">
                 {siteSubtitle || "Üretimden tedariğe kadar uzanan modern tarım ekosistemiyle dijital dönüşümünüze ortak oluyoruz."}
               </p>
+
+              <Link
+                href={localize(ROUTES.static.request_offer)}
+                className="mb-8 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-3 text-xs font-black uppercase tracking-widest text-white shadow-lg shadow-brand/20 transition-all hover:bg-brand-dark"
+              >
+                <ShoppingCart className="h-4 w-4" />
+                {tCta("placeOrder")}
+              </Link>
               
               <div className="space-y-4">
                 {contactEmail && (
