@@ -195,16 +195,17 @@ function toNumericString(value: unknown): string {
   return toStr(value);
 }
 
-function mapBilling(value: unknown): OfferBilling {
+// billing form_data'da boşsa müşterinin gönderdiği üst-seviye alanlardan ön-doldur.
+function mapBilling(value: unknown, dto?: OfferDto): OfferBilling {
   const row = toRecord(value);
   return {
-    ticariAd: toStr(row.ticariAd),
+    ticariAd: toStr(row.ticariAd) || toStr(dto?.company_name) || toStr(dto?.customer_name),
     vergiDairesi: toStr(row.vergiDairesi),
     vergiNo: toStr(row.vergiNo),
     mersisNo: toStr(row.mersisNo),
-    telFax: toStr(row.telFax),
+    telFax: toStr(row.telFax) || toStr(dto?.phone),
     gsm: toStr(row.gsm),
-    eposta: toStr(row.eposta),
+    eposta: toStr(row.eposta) || toStr(dto?.email),
     adres: toStr(row.adres),
     sevkAdresi: toStr(row.sevkAdresi),
   };
@@ -348,7 +349,7 @@ export function mapOfferToDetailForm(dto: OfferDto): OfferDetailFormState {
     message: toStr(dto.message),
     product_id: toStr(dto.product_id),
     service_id: toStr(dto.service_id),
-    billing: mapBilling(formData.billing),
+    billing: mapBilling(formData.billing, dto),
     items: itemsRaw.map(mapLineItem),
     aciklama: toStr(formData.aciklama),
     siparisAlan: toStr(formData.siparisAlan),

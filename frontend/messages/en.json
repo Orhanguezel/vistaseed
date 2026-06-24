@@ -903,6 +903,22 @@
         "Field": "Field seeds",
         "Hybrid": "Hybrid selections",
         "Other": "Other"
+      },
+      "billing": {
+        "title": "Billing Details",
+        "optional": "Optional — fill if known, speeds up your order",
+        "vergiDairesi": "Tax Office",
+        "vergiNo": "Tax No",
+        "mersisNo": "MERSIS No",
+        "adres": "Address",
+        "sevkAdresi": "Shipping Address",
+        "placeholder": {
+          "vergiDairesi": "e.g. Seydikemer",
+          "vergiNo": "e.g. 1234567890",
+          "mersisNo": "e.g. 0123 4567 8901 0001",
+          "adres": "Your billing address",
+          "sevkAdresi": "Leave empty to match address"
+        }
       }
     },
     "trust": {

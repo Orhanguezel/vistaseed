@@ -903,6 +903,22 @@
         "Field": "Feldsaatgut",
         "Hybrid": "Hybridselektionen",
         "Other": "Sonstiges"
+      },
+      "billing": {
+        "title": "Rechnungsdaten",
+        "optional": "Optional — bei Bekanntheit ausfüllen, beschleunigt Ihre Bestellung",
+        "vergiDairesi": "Finanzamt",
+        "vergiNo": "Steuernummer",
+        "mersisNo": "MERSIS-Nr.",
+        "adres": "Adresse",
+        "sevkAdresi": "Lieferadresse",
+        "placeholder": {
+          "vergiDairesi": "z. B. Seydikemer",
+          "vergiNo": "z. B. 1234567890",
+          "mersisNo": "z. B. 0123 4567 8901 0001",
+          "adres": "Ihre Rechnungsadresse",
+          "sevkAdresi": "Leer lassen = wie Adresse"
+        }
       }
     },
     "trust": {

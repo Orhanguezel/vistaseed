@@ -903,6 +903,22 @@
         "Field": "Tarla Tohumları",
         "Hybrid": "Hibrit Seleksiyonlar",
         "Other": "Diğer"
+      },
+      "billing": {
+        "title": "Fatura Bilgileri",
+        "optional": "Opsiyonel — biliyorsanız doldurun, siparişinizi hızlandırır",
+        "vergiDairesi": "Vergi Dairesi",
+        "vergiNo": "Vergi No",
+        "mersisNo": "MERSİS No",
+        "adres": "Adres",
+        "sevkAdresi": "Sevk Adresi",
+        "placeholder": {
+          "vergiDairesi": "Örn. Seydikemer",
+          "vergiNo": "Örn. 1234567890",
+          "mersisNo": "Örn. 0123 4567 8901 0001",
+          "adres": "Fatura adresiniz",
+          "sevkAdresi": "Boş bırakırsanız adres ile aynı kabul edilir"
+        }
       }
     },
     "trust": {

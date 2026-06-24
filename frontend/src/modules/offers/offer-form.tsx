@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { fireAdsConversion } from "@/lib/ads-conversion";
 import { getStoredGclid } from "@/lib/gclid";
 import { newMetaEventId, fireMetaLead, getFbCookies } from "@/lib/meta";
-import { Send, CheckCircle2, ChevronRight, Building2, User, Mail, Phone, MapPin, Package, MessageSquare } from "lucide-react";
+import { Send, CheckCircle2, ChevronRight, Building2, User, Mail, Phone, MapPin, Package, MessageSquare, FileText } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { API } from "@/config/api-endpoints";
@@ -29,6 +29,11 @@ export function OfferForm() {
     quantity: "",
     location: "",
     message: "",
+    vergiDairesi: "",
+    vergiNo: "",
+    mersisNo: "",
+    adres: "",
+    sevkAdresi: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -58,6 +63,16 @@ export function OfferForm() {
         consent_terms: true as const,
         consent_marketing: false,
         website: "",
+        ...(() => {
+          const billing = {
+            vergiDairesi: form.vergiDairesi.trim(),
+            vergiNo: form.vergiNo.trim(),
+            mersisNo: form.mersisNo.trim(),
+            adres: form.adres.trim(),
+            sevkAdresi: form.sevkAdresi.trim(),
+          };
+          return Object.values(billing).some(Boolean) ? { billing } : {};
+        })(),
         ...(() => {
           const g = getStoredGclid();
           return g ? { gclid: g.id, gclid_source: g.source } : {};
@@ -246,6 +261,59 @@ export function OfferForm() {
               placeholder={t("form.placeholder.message")}
               className="w-full rounded-2xl border border-border-soft bg-surface p-4 text-sm focus:ring-2 focus:ring-brand/20 outline-none transition-all resize-none"
             />
+          </div>
+
+          <div className="rounded-2xl border border-border-soft bg-surface-alt/40 p-5 space-y-5">
+            <div className="space-y-1">
+              <h4 className="text-sm font-bold flex items-center gap-2">
+                <FileText className="h-4 w-4 text-brand/60" />
+                {t("form.billing.title")}
+              </h4>
+              <p className="text-xs text-muted-foreground">{t("form.billing.optional")}</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Input
+                value={form.vergiDairesi}
+                onChange={(e) => setForm(f => ({ ...f, vergiDairesi: e.target.value }))}
+                placeholder={t("form.billing.placeholder.vergiDairesi")}
+                aria-label={t("form.billing.vergiDairesi")}
+                className="rounded-xl py-5 border-border-soft focus:ring-brand/20 transition-all"
+              />
+              <Input
+                value={form.vergiNo}
+                onChange={(e) => setForm(f => ({ ...f, vergiNo: e.target.value }))}
+                placeholder={t("form.billing.placeholder.vergiNo")}
+                aria-label={t("form.billing.vergiNo")}
+                className="rounded-xl py-5 border-border-soft focus:ring-brand/20 transition-all"
+              />
+              <Input
+                value={form.mersisNo}
+                onChange={(e) => setForm(f => ({ ...f, mersisNo: e.target.value }))}
+                placeholder={t("form.billing.placeholder.mersisNo")}
+                aria-label={t("form.billing.mersisNo")}
+                className="rounded-xl py-5 border-border-soft focus:ring-brand/20 transition-all"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <textarea
+                rows={2}
+                value={form.adres}
+                onChange={(e) => setForm(f => ({ ...f, adres: e.target.value }))}
+                placeholder={t("form.billing.placeholder.adres")}
+                aria-label={t("form.billing.adres")}
+                className="w-full rounded-xl border border-border-soft bg-surface p-3 text-sm focus:ring-2 focus:ring-brand/20 outline-none transition-all resize-none"
+              />
+              <textarea
+                rows={2}
+                value={form.sevkAdresi}
+                onChange={(e) => setForm(f => ({ ...f, sevkAdresi: e.target.value }))}
+                placeholder={t("form.billing.placeholder.sevkAdresi")}
+                aria-label={t("form.billing.sevkAdresi")}
+                className="w-full rounded-xl border border-border-soft bg-surface p-3 text-sm focus:ring-2 focus:ring-brand/20 outline-none transition-all resize-none"
+              />
+            </div>
           </div>
 
           {error && (
