@@ -45,12 +45,12 @@ describe("seo alternates", () => {
   });
 
   it("builds localized alternates for the offer request page", () => {
-    const alternates = getLocaleAlternates("tr", "/teklif-al");
+    const alternates = getLocaleAlternates("tr", "/siparis-ver");
 
-    expect(alternates.canonical).toContain("/tr/teklif-al");
-    expect(alternates.languages.en).toContain("/en/teklif-al");
-    expect(alternates.languages.de).toContain("/de/teklif-al");
-    expect(alternates.languages["x-default"]).toContain("/tr/teklif-al");
+    expect(alternates.canonical).toContain("/tr/siparis-ver");
+    expect(alternates.languages.en).toContain("/en/siparis-ver");
+    expect(alternates.languages.de).toContain("/de/siparis-ver");
+    expect(alternates.languages["x-default"]).toContain("/tr/siparis-ver");
   });
 
   it("builds localized alternates for the references page", () => {

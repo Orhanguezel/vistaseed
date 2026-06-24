@@ -66,7 +66,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/karsilastirma", changeFrequency: "monthly" as const, priority: 0.55 },
     { path: "/bayi-agi", changeFrequency: "monthly" as const, priority: 0.55 },
     { path: "/toplu-satis", changeFrequency: "monthly" as const, priority: 0.55 },
-    { path: "/teklif-al", changeFrequency: "monthly" as const, priority: 0.8 },
+    { path: "/siparis-ver", changeFrequency: "monthly" as const, priority: 0.8 },
     { path: "/sss", changeFrequency: "monthly" as const, priority: 0.6 },
     { path: "/iletisim", changeFrequency: "monthly" as const, priority: 0.5 },
     { path: "/gizlilik-politikasi", changeFrequency: "yearly" as const, priority: 0.3 },

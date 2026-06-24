@@ -206,7 +206,7 @@ const pageContent = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const content = pageContent[locale as keyof typeof pageContent] ?? pageContent.tr;
-  const base = await getPageMetadata("teklif-al", { locale, pathname: "/teklif-al" });
+  const base = await getPageMetadata("teklif-al", { locale, pathname: "/siparis-ver" });
   return {
     ...base,
     title: content.metaTitle,

@@ -10,7 +10,7 @@ describe("i18n routing", () => {
 
   it("prefixes default-locale public paths", () => {
     expect(toLocalizedPath("/urunler", defaultLocale)).toBe("/tr/urunler");
-    expect(toLocalizedPath("/teklif-al", defaultLocale)).toBe("/tr/teklif-al");
+    expect(toLocalizedPath("/siparis-ver", defaultLocale)).toBe("/tr/siparis-ver");
   });
 
   it("localizes known public paths", () => {
@@ -22,7 +22,7 @@ describe("i18n routing", () => {
     expect(toLocalizedPath("/bayi-agi", "en")).toBe("/en/bayi-agi");
     expect(toLocalizedPath("/toplu-satis", "en")).toBe("/en/toplu-satis");
     expect(toLocalizedPath("/toplu-satis", "de")).toBe("/de/toplu-satis");
-    expect(toLocalizedPath("/teklif-al", "en")).toBe("/en/teklif-al");
-    expect(toLocalizedPath("/teklif-al", "de")).toBe("/de/teklif-al");
+    expect(toLocalizedPath("/siparis-ver", "en")).toBe("/en/siparis-ver");
+    expect(toLocalizedPath("/siparis-ver", "de")).toBe("/de/siparis-ver");
   });
 });
