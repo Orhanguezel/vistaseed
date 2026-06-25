@@ -38,9 +38,18 @@ Mevcut alanlar: firma, email, telefon, kategori, miktar, lokasyon (+ fatura). So
 - Dönüşüm: `frontend/src/lib/ads-conversion.ts` (`fireAdsConversion`)
 - Analytics: `frontend/src/components/seo/Analytics.tsx` + `src/app/layout.tsx` (`conversions` objesi)
 
-## Deploy sonrası — ekosistem tarafı (Claude Code)
-- [ ] WhatsApp Ads conversion action (702 hesabı, REQUEST_QUOTE/CONTACT) + `site_settings.google_ads_conversion_whatsapp`
-- [ ] `whatsapp_click` → GA4 key event (property 538246354)
-- [ ] Dönüşüm akışını doğrula (form + WhatsApp ayrı sayılsın, çift sayım olmasın)
+## Deploy sonrası — ekosistem tarafı (Claude Code) ✅ TAMAMLANDI (2026-06-25)
+- [x] **WhatsApp Ads conversion action** oluşturuldu: 702 hesabı, "WhatsApp Sipariş" (id **7661504359**, WEBPAGE/CONTACT, primary, ONE_PER_CLICK). gtag label: **`AW-18007572524/GXeHCOeOpcUcEKyA14pD`**.
+- [x] `site_settings.google_ads_conversion_whatsapp` = `AW-18007572524/GXeHCOeOpcUcEKyA14pD` → seed `187_google_ads_conversion_settings.sql`'e eklendi + yerel DB yazıldı.
+- [x] `whatsapp_click` → **GA4 key event** (property 538246354, ONCE_PER_SESSION).
+- [x] **Çift sayım YOK doğrulandı:** quote (REQUEST_QUOTE, form) ve whatsapp (CONTACT, buton) ayrı action + ayrı label + ayrı tetikleyici.
+
+> ⚠ **CANLI (VPS) DB'ye uygula** — site canlıda bu değeri okuyana kadar WhatsApp tıklaması Ads'e gitmez (GA4'e gider). whatsapp_number gibi VPS site_settings'e:
+> ```sql
+> INSERT INTO site_settings (id,`key`,locale,value,created_at,updated_at)
+> SELECT UUID(),'google_ads_conversion_whatsapp','*','AW-18007572524/GXeHCOeOpcUcEKyA14pD',NOW(),NOW()
+> WHERE NOT EXISTS (SELECT 1 FROM site_settings WHERE `key`='google_ads_conversion_whatsapp' AND locale='*');
+> ```
+> Script (ekosistem): `backend/scripts/vistaseeds-whatsapp-conv.ts`
 
 İlgili: ekosistem `yapilacak-isler/vistaseeds/02-google-ads-kampanya.md`.

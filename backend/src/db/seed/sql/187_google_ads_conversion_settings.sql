@@ -15,3 +15,10 @@ SELECT UUID(), 'google_ads_conversion_quote', '*', 'AW-18007572524/UlZ9CO7Glq8cE
 WHERE NOT EXISTS (
   SELECT 1 FROM `site_settings` WHERE `key` = 'google_ads_conversion_quote' AND `locale` = '*'
 );
+
+-- WhatsApp Siparis donusumu (2026-06-25) — Ads action id 7661504359
+INSERT INTO `site_settings` (`id`, `key`, `locale`, `value`, `created_at`, `updated_at`)
+SELECT UUID(), 'google_ads_conversion_whatsapp', '*', 'AW-18007572524/GXeHCOeOpcUcEKyA14pD', NOW(), NOW()
+WHERE NOT EXISTS (
+  SELECT 1 FROM `site_settings` WHERE `key` = 'google_ads_conversion_whatsapp' AND `locale` = '*'
+);
