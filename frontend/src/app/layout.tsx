@@ -125,7 +125,10 @@ export default async function RootLayout({
         {analytics.adsTagId ? (
           <GoogleAdsTag
             awId={analytics.adsTagId}
-            conversions={analytics.adsConversionQuote ? { quote: analytics.adsConversionQuote } : {}}
+            conversions={{
+              ...(analytics.adsConversionQuote ? { quote: analytics.adsConversionQuote } : {}),
+              ...(analytics.adsConversionWhatsapp ? { whatsapp: analytics.adsConversionWhatsapp } : {}),
+            }}
           />
         ) : null}
       </head>

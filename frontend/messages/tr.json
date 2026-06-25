@@ -443,7 +443,9 @@
       },
       "ctaPanel": {
         "title": "Hemen sipariş verin",
-        "subtitle": "Şirketinize özel fiyatlandırma"
+        "subtitle": "Şirketinize özel fiyatlandırma",
+        "whatsapp": "WhatsApp ile Sipariş Ver",
+        "whatsappPrefill": "Merhaba, {product} ürünü için sipariş vermek istiyorum."
       },
       "profile": {
         "eyebrow": "Tarımsal profil",
@@ -927,7 +929,22 @@
       "item2": "Teknik Destek ve Danışmanlık",
       "item3": "Esnek Ödeme Seçenekleri",
       "item4": "Türkiye Genelinde Hızlı Lojistik"
-    }
+    },
+    "whatsapp": {
+      "button": "WhatsApp ile Sipariş Ver",
+      "prefill": "Merhaba, Vista Seeds'ten tohum siparişi vermek istiyorum."
+    },
+    "steps": {
+      "contactTitle": "1. Adım — İletişim bilgileriniz",
+      "contactHint": "Sadece bu alanlar yeterli — talebinizi hemen gönderebilirsiniz.",
+      "detailsTitle": "2. Adım — Sipariş detayları",
+      "detailsHint": "Opsiyonel. Boş bırakırsanız ekibimiz sizinle iletişime geçerek tamamlar.",
+      "continue": "Detay ekle",
+      "back": "Geri",
+      "or": "veya formu doldurun"
+    },
+    "urgency": "Sezon stoğu sınırlı — hızlı dönüş için talebinizi bugün iletin.",
+    "callNow": "Hemen ara"
   },
   "Support": {
     "badge": "Destek Merkezi",

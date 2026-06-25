@@ -342,19 +342,21 @@ export interface CustomPageData {
 export interface AnalyticsConfig {
   adsTagId: string | null;
   adsConversionQuote: string | null;
+  adsConversionWhatsapp: string | null;
   ga4Id: string | null;
   gtmId: string | null;
   metaPixelId: string | null;
 }
 
 export async function fetchAnalyticsConfig(): Promise<AnalyticsConfig> {
-  const result: AnalyticsConfig = { ga4Id: null, gtmId: null, adsTagId: null, adsConversionQuote: null, metaPixelId: null };
+  const result: AnalyticsConfig = { ga4Id: null, gtmId: null, adsTagId: null, adsConversionQuote: null, adsConversionWhatsapp: null, metaPixelId: null };
   try {
-    const [ga4Res, gtmRes, adsRes, adsQuoteRes, metaRes] = await Promise.all([
+    const [ga4Res, gtmRes, adsRes, adsQuoteRes, adsWhatsappRes, metaRes] = await Promise.all([
       fetch(`${getApiV1()}/site_settings/ga4_measurement_id`, { next: { revalidate: 300 } }),
       fetch(`${getApiV1()}/site_settings/gtm_container_id`, { next: { revalidate: 300 } }),
       fetch(`${getApiV1()}/site_settings/google_ads_tag_id`, { next: { revalidate: 300 } }),
       fetch(`${getApiV1()}/site_settings/google_ads_conversion_quote`, { next: { revalidate: 300 } }),
+      fetch(`${getApiV1()}/site_settings/google_ads_conversion_whatsapp`, { next: { revalidate: 300 } }),
       fetch(`${getApiV1()}/site_settings/meta_pixel_id`, { next: { revalidate: 300 } }),
     ]);
     if (metaRes.ok) {
@@ -381,6 +383,11 @@ export async function fetchAnalyticsConfig(): Promise<AnalyticsConfig> {
       const row = await adsQuoteRes.json();
       const v = typeof row?.value === "string" ? row.value.trim() : "";
       if (v) result.adsConversionQuote = v;
+    }
+    if (adsWhatsappRes.ok) {
+      const row = await adsWhatsappRes.json();
+      const v = typeof row?.value === "string" ? row.value.trim() : "";
+      if (v) result.adsConversionWhatsapp = v;
     }
   } catch { /* analytics fetch failure is non-critical */ }
   return result;

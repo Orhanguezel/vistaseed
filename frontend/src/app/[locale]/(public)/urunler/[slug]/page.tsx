@@ -18,6 +18,7 @@ import ProductReviews from "@/modules/product/components/ProductReviews";
 import FaqQuestionForm from "@/modules/product/components/FaqQuestionForm";
 import ReviewForm from "@/modules/product/components/ReviewForm";
 import { OrderCtaButton } from "@/modules/offers/order-cta-button";
+import { WhatsAppOrderButton } from "@/modules/offers/whatsapp-order-button";
 import { Sprout, ShieldCheck, Thermometer, Calendar, Layers, Leaf } from "lucide-react";
 import { fetchSiteSettings } from "@/lib/site-settings";
 import { fetchReferenceHighlights, resolveEcosystemImage, resolveEcosystemReferencePath, type EcosystemReferenceItem } from "@/modules/ecosystem/ecosystem-content";
@@ -100,6 +101,8 @@ type ProductDetailMessages = {
   ctaPanel: {
     title: string;
     subtitle: string;
+    whatsapp: string;
+    whatsappPrefill: string;
   };
   specCategories: Record<ProductSpec["category"], string>;
   specGroups: {
@@ -570,6 +573,8 @@ export default async function ProductDetailPage({ params }: Props) {
     ctaPanel: {
       title: t("detail.ctaPanel.title"),
       subtitle: t("detail.ctaPanel.subtitle"),
+      whatsapp: t("detail.ctaPanel.whatsapp"),
+      whatsappPrefill: t("detail.ctaPanel.whatsappPrefill"),
     },
     specCategories: {
       physical: t("specCategories.physical"),
@@ -859,6 +864,17 @@ export default async function ProductDetailPage({ params }: Props) {
                 />
                 <AddToCompareButton productSlug={product.slug} className="w-full !rounded-2xl !py-5 !bg-white/5 !border-white/10 !text-white hover:!bg-white/10" />
               </div>
+
+              {settings.whatsapp_number ? (
+                <WhatsAppOrderButton
+                  phone={settings.whatsapp_number}
+                  message={messages.ctaPanel.whatsappPrefill.replace("{product}", product.title)}
+                  label={messages.ctaPanel.whatsapp}
+                  variant="primary"
+                  size="lg"
+                  className="w-full rounded-2xl"
+                />
+              ) : null}
             </div>
 
             {/* FAQ Question Form */}

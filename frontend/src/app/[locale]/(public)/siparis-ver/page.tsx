@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, FlaskConical, Leaf, PackageCheck, ShieldCheck, Sprout, Truck } from "lucide-react";
+import { ArrowRight, CheckCircle2, FlaskConical, Leaf, PackageCheck, Phone, ShieldCheck, Sprout, Truck, Zap } from "lucide-react";
 import { OfferForm } from "@/modules/offers/offer-form";
+import { WhatsAppOrderButton } from "@/modules/offers/whatsapp-order-button";
 import { getPageMetadata } from "@/lib/seo";
+import { fetchSiteSettings } from "@/lib/site-settings";
 import { toLocalizedPath } from "@/i18n/routing";
 import { ROUTES } from "@/config/routes";
 
@@ -219,6 +221,12 @@ export default async function OfferPage({ params }: Props) {
   setRequestLocale(locale);
   const content = pageContent[locale as keyof typeof pageContent] ?? pageContent.tr;
   const productHref = toLocalizedPath(ROUTES.products.list, locale);
+  const [settings, tOffers] = await Promise.all([
+    fetchSiteSettings(locale),
+    getTranslations({ locale, namespace: "Offers" }),
+  ]);
+  const phone = settings.contact_phone?.trim() || "";
+  const telHref = phone ? `tel:${phone.replace(/[^\d+]/g, "")}` : "";
 
   return (
     <main className="surface-page">
@@ -236,6 +244,31 @@ export default async function OfferPage({ params }: Props) {
               {content.introTitle}
             </h1>
             <p className="max-w-2xl text-base leading-8 text-white/78 md:text-lg">{content.intro}</p>
+
+            <div className="inline-flex items-center gap-2 rounded-full bg-brand/15 px-4 py-2 text-sm font-bold text-brand ring-1 ring-brand/30">
+              <Zap className="h-4 w-4" />
+              {tOffers("urgency")}
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3">
+              <WhatsAppOrderButton
+                phone={settings.whatsapp_number}
+                message={tOffers("whatsapp.prefill")}
+                label={tOffers("whatsapp.button")}
+                variant="primary"
+                size="lg"
+              />
+              {telHref ? (
+                <a
+                  href={telHref}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-bold text-white transition hover:border-white hover:bg-white hover:text-navy"
+                >
+                  <Phone className="h-4 w-4" />
+                  {tOffers("callNow")} · {phone}
+                </a>
+              ) : null}
+            </div>
+
             <div className="flex flex-wrap gap-3 pt-2">
               {content.links.map((link) => (
                 <Link
@@ -254,7 +287,7 @@ export default async function OfferPage({ params }: Props) {
 
       <section className="px-6 py-12 md:py-16">
         <div className="mx-auto max-w-7xl">
-          <OfferForm />
+          <OfferForm whatsappPhone={settings.whatsapp_number} />
         </div>
       </section>
 

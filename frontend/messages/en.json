@@ -443,7 +443,9 @@
       },
       "ctaPanel": {
         "title": "Place your order now",
-        "subtitle": "Pricing tailored to your organization"
+        "subtitle": "Pricing tailored to your organization",
+        "whatsapp": "Order via WhatsApp",
+        "whatsappPrefill": "Hello, I'd like to place an order for {product}."
       },
       "profile": {
         "eyebrow": "Agricultural profile",
@@ -927,7 +929,22 @@
       "item2": "Technical support and advisory",
       "item3": "Flexible payment options",
       "item4": "Fast logistics across Turkey"
-    }
+    },
+    "whatsapp": {
+      "button": "Order via WhatsApp",
+      "prefill": "Hello, I'd like to place a seed order with Vista Seeds."
+    },
+    "steps": {
+      "contactTitle": "Step 1 — Your contact details",
+      "contactHint": "These fields are enough — you can send your request right away.",
+      "detailsTitle": "Step 2 — Order details",
+      "detailsHint": "Optional. If left empty, our team will reach out to complete it.",
+      "continue": "Add details",
+      "back": "Back",
+      "or": "or fill the form"
+    },
+    "urgency": "Seasonal stock is limited — send your request today for a fast reply.",
+    "callNow": "Call now"
   },
   "Support": {
     "badge": "Support Center",

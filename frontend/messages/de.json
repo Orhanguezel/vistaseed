@@ -443,7 +443,9 @@
       },
       "ctaPanel": {
         "title": "Jetzt Bestellung aufgeben",
-        "subtitle": "Individuelle Konditionen fur Ihr Unternehmen"
+        "subtitle": "Individuelle Konditionen fur Ihr Unternehmen",
+        "whatsapp": "Per WhatsApp bestellen",
+        "whatsappPrefill": "Hallo, ich möchte {product} bestellen."
       },
       "profile": {
         "eyebrow": "Agrarprofil",
@@ -927,7 +929,22 @@
       "item2": "Technische Beratung und Support",
       "item3": "Flexible Zahlungsoptionen",
       "item4": "Schnelle Logistik in der Turkei"
-    }
+    },
+    "whatsapp": {
+      "button": "Per WhatsApp bestellen",
+      "prefill": "Hallo, ich möchte eine Saatgutbestellung bei Vista Seeds aufgeben."
+    },
+    "steps": {
+      "contactTitle": "Schritt 1 — Ihre Kontaktdaten",
+      "contactHint": "Diese Felder genügen — Sie können Ihre Anfrage sofort senden.",
+      "detailsTitle": "Schritt 2 — Bestelldetails",
+      "detailsHint": "Optional. Bleibt es leer, meldet sich unser Team zur Vervollständigung.",
+      "continue": "Details hinzufügen",
+      "back": "Zurück",
+      "or": "oder Formular ausfüllen"
+    },
+    "urgency": "Saisonbestand ist begrenzt — senden Sie Ihre Anfrage heute für eine schnelle Antwort.",
+    "callNow": "Jetzt anrufen"
   },
   "Support": {
     "badge": "Support Center",
