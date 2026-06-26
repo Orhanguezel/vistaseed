@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { appLocales, toLocalizedPath } from "@/i18n/routing";
+import { appLocales, defaultLocale, toLocalizedPath } from "@/i18n/routing";
 import { getPublicApiV1, getPublicSiteOrigin } from "@/lib/runtime-config";
 
 const SITE_URL = getPublicSiteOrigin();
@@ -16,10 +16,9 @@ interface BlogSitemapItem {
 }
 
 async function fetchBlogPostsForSitemap(): Promise<BlogSitemapItem[]> {
-  const primaryLocale = appLocales[0] ?? "tr";
   try {
     const res = await fetch(
-      `${API_V1}/blog?limit=50&page=1&locale=${encodeURIComponent(primaryLocale)}`,
+      `${API_V1}/blog?limit=50&page=1&locale=${encodeURIComponent(defaultLocale)}`,
       { next: { revalidate: 3600 } },
     );
     if (!res.ok) return [];
@@ -34,11 +33,23 @@ async function fetchBlogPostsForSitemap(): Promise<BlogSitemapItem[]> {
   }
 }
 
-async function fetchActiveProducts(): Promise<ProductSitemapItem[]> {
-  const primaryLocale = appLocales[0] ?? "tr";
-
+async function fetchCategoriesForSitemap(): Promise<{ slug: string }[]> {
   try {
-    const res = await fetch(`${API_V1}/products?limit=500&is_active=true&locale=${encodeURIComponent(primaryLocale)}`, {
+    const res = await fetch(`${API_V1}/categories?locale=${encodeURIComponent(defaultLocale)}`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    const rows = Array.isArray(data) ? data : data.data ?? [];
+    return rows.filter((c: { slug?: string }) => c.slug).map((c: { slug: string }) => ({ slug: c.slug }));
+  } catch {
+    return [];
+  }
+}
+
+async function fetchActiveProducts(): Promise<ProductSitemapItem[]> {
+  try {
+    const res = await fetch(`${API_V1}/products?limit=500&is_active=true&locale=${encodeURIComponent(defaultLocale)}`, {
       next: { revalidate: 3600 },
     });
     if (!res.ok) return [];
@@ -55,6 +66,7 @@ async function fetchActiveProducts(): Promise<ProductSitemapItem[]> {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await fetchActiveProducts();
   const blogPosts = await fetchBlogPostsForSitemap();
+  const categories = await fetchCategoriesForSitemap();
   const now = new Date().toISOString().split("T")[0];
 
   const publicPages = [
@@ -89,14 +101,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
 
   const blogPages: MetadataRoute.Sitemap = blogPosts.flatMap((p) =>
-    appLocales.map((locale) => ({
+    [defaultLocale].map((locale) => ({
       url: `${SITE_URL}${toLocalizedPath(`/blog/${p.slug}`, locale)}`,
       lastModified: p.updated_at ? new Date(p.updated_at) : now,
       changeFrequency: "weekly" as const,
       priority: 0.6,
       alternates: {
         languages: Object.fromEntries(
-          appLocales.map((altLocale) => [altLocale, `${SITE_URL}${toLocalizedPath(`/blog/${p.slug}`, altLocale)}`]),
+          [defaultLocale].map((altLocale) => [altLocale, `${SITE_URL}${toLocalizedPath(`/blog/${p.slug}`, altLocale)}`]),
         ),
       },
     })),
@@ -116,5 +128,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   );
 
-  return [...staticPages, ...blogPages, ...productPages];
+  const categoryPages: MetadataRoute.Sitemap = categories.flatMap((c) =>
+    [defaultLocale].map((locale) => ({
+      url: `${SITE_URL}${toLocalizedPath(`/urunler/kategori/${c.slug}`, locale)}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.75,
+      alternates: {
+        languages: Object.fromEntries(
+          [defaultLocale].map((altLocale) => [altLocale, `${SITE_URL}${toLocalizedPath(`/urunler/kategori/${c.slug}`, altLocale)}`]),
+        ),
+      },
+    })),
+  );
+
+  return [...staticPages, ...blogPages, ...productPages, ...categoryPages];
 }

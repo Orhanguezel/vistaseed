@@ -2,6 +2,15 @@
 
 > Tarih: 2026-06-25 · Amaç: "biber tohumu" Shopping karuseline girmek + reklam tıklamasını siparişe çevirmek
 > Strateji bağlamı: `VISTASEEDS-BIBER-TOHUMU-1-SIRA-STRATEJI-2026-06-25.md` (E maddesi = bu plan)
+>
+> ## ⚠️ KARAR (2026-06-26): Bu plan SÜPERSEDE edildi — perakende AYRI DOMENE taşındı
+> **Perakende/B2C artık `agrodukkan.com`'da** (ayrı Next.js projesi, dropshipping, GA4 `G-V6M90WF480`, sepet+checkout).
+> Dolayısıyla **vistaseeds.com.tr B2B/teklif modeli kalır** ve bu vistaseeds-retail planı **donduruldu**.
+> - Google Shopping/Merchant + "biber tohumu Shopping karuseli" hedefi → **agrodukkan'ın işi** (bu doküman değil).
+> - vistaseeds retail yeteneği flag-arkası brief'i (`CODEX-BRIEF-retail-faz1.md`, `retail_enabled=false`) **muhtemelen gereksiz** — perakende ihtiyacı agrodukkan'da karşılanıyor. İstenirse referans/yedek olarak kalır.
+> - agrodukkan canlı açıkları (Shopping önkoşulu, tasarım WIP): ürün fiyatları ₺0, Product schema yok, OG yok. Bkz hafıza: `vistaseeds_retail_split_to_agrodukkan`.
+>
+> _(Aşağıdaki orijinal vistaseeds-retail fazları tarihsel referans olarak bırakıldı.)_
 
 ## ✅ Mevcut altyapı (sıfırdan kurmuyoruz — ~%80 hazır)
 | Bileşen | Durum | Konum |
@@ -22,12 +31,12 @@
 
 ## FAZLI PLAN
 
-### FAZ 1 — Retail vitrin + sepet + ödeme (FRONTEND, Codex) ⚡ öncelik
-- [ ] `publicProductJson` price strip'i kaldır VEYA retail flag (`site_settings.retail_enabled`) ile fiyatı public'e aç (backend, küçük).
-- [ ] Ürün sayfasında **fiyat + "Sepete Ekle"** göster (quote formunun yanında ya da yerine). Mevcut `modules/order` (iyzico) sepet/checkout akışına bağla.
-- [ ] Sepet + checkout sayfaları (bereketfide `urunler`/`bayi-odeme` + vistaseeds `modules/order` referans).
-- [ ] "Sipariş Ver/Teklif" (B2B/toptan) butonu KALSIN — **hibrit**: perakende sepet + toptan teklif yan yana.
-- **Sonuç:** "biber tohumu" reklamı → fiyatlı ürün + sepet → soğuk retail alıcı doğrudan satın alır (quote formu sürtünmesi biter).
+### FAZ 1 — Retail vitrin + sepet + ödeme (FRONTEND, Codex) — FLAG-GATED, default KAPALI
+> ✅ **Brief hazır → `CODEX-BRIEF-retail-faz1.md`** (FIX R1-R3). Karar gereği `retail_enabled=false` teslim → teklif modeli canlıda korunur.
+- [ ] (R1) `retail_enabled` flag → true ise `publicProductJson` fiyatı public'e açar; **false (default) ise mevcut price strip** (bugün değişmez).
+- [ ] (R2) Ürün sayfasında flag true ise **fiyat + "Sepete Ekle"**; false ise mevcut teklif/WhatsApp akışı. "Sipariş Ver/Teklif" her iki modda KALIR (hibrit).
+- [ ] (R3) Sepet + checkout (flag-gated, iyzico `modules/order`; bereketfide referans). Flag false → route'lar gizli.
+- **Sonuç:** Yetenek koda hazır + KAPALI. Sahip "aç" derse: reklam → fiyatlı ürün + sepet. Bugün: teklif modeli aynen.
 
 ### FAZ 2 — GA4 e-ticaret ölçümü (FRONTEND + ekosistem)
 - [ ] gtag/dataLayer ecommerce event'leri: `view_item`, `add_to_cart`, `begin_checkout`, `purchase` (value + items).
@@ -58,6 +67,6 @@ Bütçe artışı onaylandı. Dağıtım:
 - **Antigravity:** vitrin/sepet UI görsel doğrulama.
 
 ## Sıradaki Claude Code aksiyonu
-1. Faz 1 için Codex brief'i yaz (publicProductJson + ürün vitrin fiyat/sepet + order akışı bağlama).
-2. Faz 3 Merchant Center + Shopping kampanya planı (ekosistem tarafı, ben yaparım).
+1. [x] Faz 1 Codex brief → ✅ `CODEX-BRIEF-retail-faz1.md` (flag-gated, default kapalı).
+2. [ ] Faz 3 Merchant Center + Shopping → **BEKLEMEDE** (retail flag açılana kadar; karar gereği teklif modeli aktif).
 İlgili: `ekosistem-sosyal-medya/yapilacak-isler/vistaseeds/`.

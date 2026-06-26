@@ -6,6 +6,7 @@ interface JsonLdProps {
     | "Article"
     | "Product"
     | "BreadcrumbList"
+    | "ItemList"
     | "FAQPage";
   data: Record<string, unknown>;
 }

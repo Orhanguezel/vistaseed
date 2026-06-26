@@ -30,21 +30,21 @@
 
 ### A · ÖNKOŞUL — Dönüşüm akışı (yoksa tepe = para yakmak)
 2.459 reklam tıklaması → 0 sipariş. Tepeye çıkıp daha çok tık almak, dönüşüm olmadan **daha hızlı bütçe yakar**. ÖNCE:
-- [ ] WhatsApp sipariş butonu + form kısaltma → bkz `VISTASEEDS-SIPARIS-DONUSUM-BRIEF-2026-06-25.md`
-- **Bu olmadan tepe stratejisi açılmamalı.**
+- [x] WhatsApp sipariş butonu + form kısaltma → ✅ canlı (commit `5921f5a` "WhatsApp ile siparis + 2 adimli form + aciliyet", `7d86f61` dönüşüm etiketi). Tepe stratejisi artık açılabilir.
 
 ### B · HIZLI — Search reklamı tepeye taşı (dönüşüm fix sonrası)
 - [ ] **Teklif stratejisi → "Hedef Gösterim Payı: Sayfanın mutlak en üstü"**, hedef %60-80 (şu an mutlak-tepe %10). Bu doğrudan "1. reklam" demektir.
 - [ ] **Bütçe artır** (bütçe-kayıp %31 → daha çok gösterim). Dönüşüm gelmeye başlayınca kademeli.
 - [ ] **Kalite puanı (rank-kayıp %44'ün kökü):** ✅ final URL düzeltildi (redirect kalktı), ✅ negatif+odak yapıldı, ✅ jenerik kelime duraklatıldı. Kalan: landing/form (A maddesi) QS'i daha da yükseltir → CPC düşer, tepe ucuzlar.
-- [ ] **Kelime genişlet (biber):** kapya/çarliston/sivri/dolmalık/acı + "F1 biber tohumu", "hibrit biber tohumu", "[şehir] biber tohumu", yarış+marka ("arzuman biber tohumu" — dikkatli).
+- [x] **Kelime genişlet (biber):** ✅ change-set hazır → `VISTASEEDS-ADS-BIBER-KEYWORD-CHANGESET-2026-06-26.md` (çeşit ad group'ları + negatif liste + eşleme stratejisi + rakip kelime notu). Uygulama: sahip onayı sonrası Ads panelinden.
 - **NOT:** Bu kanalda 1. olmak = en doğrudan ve hızlı yol. Saha reklamıyla da sinerji (marka bilinirliği → marka araması → daha ucuz dönüşüm).
 
 ### C · ORTA — SEO (kalıcı organik görünürlük, 1-3 ay)
-Ürün sayfaları var ama sıralanmıyor. Kazanmak için:
-- [ ] **`/tr/biber-tohumu` kategori sayfası içerik zenginleştir:** 800+ kelime özgün içerik (çeşitler, ekim, F1/hibrit, bölge/sezon, sık sorular). Rakipler (zengarden/e-fidancim) bunu yapıyor.
-- [ ] **Product/ItemList JSON-LD schema** (her biber çeşidi için ad/açıklama/görsel; fiyat yoksa `offers` yerine `availability`/marka). `lib/schema-org.ts` mevcut — biber ürünlerine uygula.
-- [ ] **Dahili linkleme:** anasayfa + blog + ekim-rehberi → /biber-tohumu. Biber çeşit sayfaları arası link.
+> ✅ **Tam brief hazır → `CODEX-BRIEF-seo-biber-icerik.md`** (FIX C1-C5). Aşağıdaki maddeler o brief'te detaylandı.
+> Mimari bulgu: dedike `/biber-tohumu` route'u YOK — kategori "Biber Çeşitleri" slug `biber-cesitleri` var ama `/urunler?category=` filtresi **noindex**. Brief yeni indexlenebilir landing açıyor: `/urunler/kategori/biber-cesitleri`.
+- [x] **Kategori landing + içerik** → ✅ UYGULANDI (Claude): `/urunler/kategori/[slug]` indexlenebilir route + ~850 kelime içerik (customPages seed `194_*`, gerçek çeşit verisi). tsc+build temiz.
+- [x] **ItemList/Breadcrumb JSON-LD** → ✅ UYGULANDI: landing'de ItemList+Breadcrumb; fiyatsız (Offer yok). Ürün detay zaten Product+Breadcrumb+FAQ üretiyor.
+- [x] **Dahili linkleme (kısmi)** → ✅ ürün listesi→kategori landing + landing→/siparis-ver CTA + sitemap kategori landing'leri. Kalan: blog + ekim-rehberi→landing (içerik güncellemesi).
 - [ ] **İçerik/blog:** "biber tohumu nasıl ekilir", "F1 vs ata biber tohumu", "en verimli biber çeşitleri" (SERP'te bu sorgular + video var).
 - [ ] **GSC:** sitemap'te biber sayfaları, indexleme talebi; başlık/H1/meta = "Biber Tohumu Çeşitleri | F1 Hibrit | VistaSeeds".
 - [ ] Backlink/otorite: sektör dizinleri, referanslar, GBP (Google Business Profile).
@@ -56,7 +56,8 @@
 
 ### E · KARAR — Google Shopping (perakende?)
 SERP'in en büyük alanı Shopping. Girmek için **perakende ürün + fiyat** gerekir.
-- [ ] **İş kararı:** VistaSeeds perakende paket (fiyatlı, sepetli) satacak mı? Evet ise → Merchant Center feed + Shopping kampanyası (en büyük görünürlük sıçraması). Hayır (sadece B2B/teklif) ise → Shopping atlanır, B+C+D'ye odaklanılır.
+- [x] **İş kararı (2026-06-26): TEKLİF modeli kalsın.** Perakende AÇILMAYACAK → Shopping/Merchant ATLANIR. Odak: **B (reklam tepe) + C (SEO içerik+schema) + D (video/GEO)**.
+  - Retail yeteneği yine de flag-arkası hazırlanıyor (`CODEX-BRIEF-retail-faz1.md`, `retail_enabled=false` default) → ileride sahip "aç" derse tek flag ile açılır; bugün public değişmez.
 
 ---
 
@@ -71,7 +72,8 @@ SERP'in en büyük alanı Shopping. Girmek için **perakende ürün + fiyat** ge
 **"Organik 1. sıra"yı tek başına bu hafta vaat etmek gerçekçi değil; ama reklam tepesi + dönüşüm fix ile bu hafta sayfanın en üstünde olabiliriz ve sipariş alabiliriz.**
 
 ## Ekosistem tarafı (Claude Code yapacak — onayla)
-- [ ] B: Hedef Gösterim Payı (mutlak tepe) + bütçe (onay gerekir — spend kararı)
-- [ ] B: biber kelime genişletme (change-set)
-- [ ] C: schema/meta önerileri (kod brief)
+- [ ] B: Hedef Gösterim Payı (mutlak tepe) + bütçe → **spend kararı, sahip onayı bekliyor** (change-set'e dahil değil).
+- [x] B: biber kelime genişletme → ✅ `VISTASEEDS-ADS-BIBER-KEYWORD-CHANGESET-2026-06-26.md` (onay sonrası uygula).
+- [x] C: schema/meta + içerik kod brief → ✅ `CODEX-BRIEF-seo-biber-icerik.md` (Codex implement edecek).
+- [x] E kararı: teklif modeli → retail flag-arkası brief → ✅ `CODEX-BRIEF-retail-faz1.md` (default kapalı).
 İlgili: `ekosistem-sosyal-medya/yapilacak-isler/vistaseeds/`.

@@ -8,6 +8,9 @@
 > 🟢 **YENİ GÖREV → Rotasyon (Google Bağlantısı) modülünü tamamla:** [`CODEX-ROTASYON-MODULU-TAMAMLAMA.md`](CODEX-ROTASYON-MODULU-TAMAMLAMA.md)
 > In-panel callback (manuel kod yapıştırmayı kaldır), token sağlığı + servis testi, bağlantıyı kes + revoke, client secret rotasyon akışı. Temel sürüm canlı; detaylar o dosyada.
 >
+> 🔴 **YENİ GÖREV → SEO/İndexleme düzeltmeleri (frontend):** [`CODEX-BRIEF-seo-indexleme.md`](CODEX-BRIEF-seo-indexleme.md)
+> GSC derin tarama (2026-06-26): 14 indexlenmeyen. FIX 1 sitemap noindex/soft-404 temizliği (`app/sitemap.ts`), FIX 2 `/[locale]/urunler` Soft 404 → locale fallback (`urunler/page.tsx`), **FIX 4 `/tr/siparis-ver` "URL unknown to Google" → noindex değil + iç link (dönüşüm sayfası!)**. FIX 3 de/en içerik stratejisi (blog+ürün detay noindex) = sahip kararı bekliyor.
+>
 > **Sahiplik/çakışma:** Claude paralelde **Meta Pixel + CAPI** yazıyor. Codex SADECE `googleConnect` backend modülü + `/admin/google-connect` panel sayfası + google-connect locale'ine dokunur. Paylaşımlı barrel'lara (`integrations/shared.ts`, `hooks.ts`, `sidebar-items.ts`, `permissions.ts`, `admin-ui.ts`, `locale/tr/admin/index.ts`, `_shared/google-oauth.ts`) yalnızca KENDİ satırını ekler; başka modülün (Meta/GA4/GTM/GSC) satırlarına dokunmaz.
 
 ## Proje Özeti

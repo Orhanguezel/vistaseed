@@ -43,6 +43,8 @@ export interface ProductCategory {
   slug: string;
   image_url?: string | null;
   description?: string | null;
+  meta_title?: string | null;
+  meta_description?: string | null;
 }
 
 export interface ProductSpec {

@@ -7,7 +7,7 @@ import { API } from "@/config/api-endpoints";
 import { getServerApiOrigin } from "@/lib/runtime-config";
 import { buildMetadata } from "@/lib/seo";
 import { resolveImageUrl } from "@/lib/utils";
-import { toLocalizedPath } from "@/i18n/routing";
+import { defaultLocale, toLocalizedPath } from "@/i18n/routing";
 import type { Product, ProductSpec, ProductReview, ProductFaq } from "@/modules/product/product.type";
 import JsonLd from "@/components/seo/JsonLd";
 import { LibraryKnowledgeLinks } from "@/modules/library/components/library-knowledge-links";
@@ -137,19 +137,33 @@ async function fetchList<T>(url: string): Promise<T[]> {
 }
 
 async function getProduct(slug: string, locale: string): Promise<Product | null> {
-  return fetchSingle<Product>(`${BASE_URL}${API.products.detail(slug)}?locale=${encodeURIComponent(locale)}`);
+  const product = await fetchSingle<Product>(`${BASE_URL}${API.products.detail(slug)}?locale=${encodeURIComponent(locale)}`);
+  if (product || locale === defaultLocale) return product;
+  return fetchSingle<Product>(`${BASE_URL}${API.products.detail(slug)}?locale=${encodeURIComponent(defaultLocale)}`);
+}
+
+async function fetchSpecs(productId: string, locale: string): Promise<ProductSpec[]> {
+  return fetchList<ProductSpec>(`${BASE_URL}${API.products.specs}?product_id=${productId}&locale=${encodeURIComponent(locale)}`);
 }
 
 async function getSpecs(productId: string, locale: string): Promise<ProductSpec[]> {
-  return fetchList<ProductSpec>(`${BASE_URL}${API.products.specs}?product_id=${productId}&locale=${encodeURIComponent(locale)}`);
+  const specs = await fetchSpecs(productId, locale);
+  if (specs.length > 0 || locale === defaultLocale) return specs;
+  return fetchSpecs(productId, defaultLocale);
 }
 
 async function getReviews(productId: string): Promise<ProductReview[]> {
   return fetchList<ProductReview>(`${BASE_URL}${API.products.reviews}?product_id=${productId}`);
 }
 
-async function getFaqs(productId: string, locale: string): Promise<ProductFaq[]> {
+async function fetchFaqs(productId: string, locale: string): Promise<ProductFaq[]> {
   return fetchList<ProductFaq>(`${BASE_URL}${API.products.faqs}?product_id=${productId}&locale=${encodeURIComponent(locale)}`);
+}
+
+async function getFaqs(productId: string, locale: string): Promise<ProductFaq[]> {
+  const faqs = await fetchFaqs(productId, locale);
+  if (faqs.length > 0 || locale === defaultLocale) return faqs;
+  return fetchFaqs(productId, defaultLocale);
 }
 
 /* ── Stars SVG ──────────────────────────────────────────────── */

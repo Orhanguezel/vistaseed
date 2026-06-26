@@ -1,9 +1,11 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { getPageMetadata } from "@/lib/seo";
 import { API } from "@/config/api-endpoints";
 import { getServerApiOrigin } from "@/lib/runtime-config";
+import { defaultLocale, toLocalizedPath } from "@/i18n/routing";
 import ProductFilters from "@/modules/product/components/ProductFilters";
 import { applyProductFilters, findCategoryName } from "@/modules/product/product-filters";
 import type { Product, ProductCategory } from "@/modules/product/product.type";
@@ -33,7 +35,8 @@ export async function generateMetadata({ params, searchParams }: LocalePageProps
 }
 
 const BASE_URL = getServerApiOrigin();
-async function getProducts(locale: string): Promise<Product[]> {
+
+async function fetchProducts(locale: string): Promise<Product[]> {
   try {
     const res = await fetch(`${BASE_URL}${API.products.list}?is_active=true&locale=${locale}&sort=order_num&order=asc`, {
       next: { revalidate: 300 },
@@ -46,7 +49,13 @@ async function getProducts(locale: string): Promise<Product[]> {
   }
 }
 
-async function getCategories(locale: string): Promise<ProductCategory[]> {
+async function getProducts(locale: string): Promise<Product[]> {
+  const products = await fetchProducts(locale);
+  if (products.length > 0 || locale === defaultLocale) return products;
+  return fetchProducts(defaultLocale);
+}
+
+async function fetchCategories(locale: string): Promise<ProductCategory[]> {
   try {
     const res = await fetch(`${BASE_URL}${API.products.categories}?locale=${locale}`, {
       next: { revalidate: 300 },
@@ -57,6 +66,12 @@ async function getCategories(locale: string): Promise<ProductCategory[]> {
   } catch {
     return [];
   }
+}
+
+async function getCategories(locale: string): Promise<ProductCategory[]> {
+  const categories = await fetchCategories(locale);
+  if (categories.length > 0 || locale === defaultLocale) return categories;
+  return fetchCategories(defaultLocale);
 }
 
 function buildActiveFilterLabels(
@@ -175,6 +190,20 @@ export default async function ProductsPage({ params, searchParams }: LocalePageP
           <h1 className="text-4xl font-black tracking-tighter text-foreground">{t("title")}</h1>
           <p className="mt-3 max-w-3xl text-base leading-relaxed text-muted-foreground">{introText}</p>
         </div>
+
+        {categories.length > 0 && (
+          <nav aria-label={selectedCategoryName ?? t("allCategories")} className="mb-8 flex flex-wrap gap-2">
+            {categories.map((category) => (
+              <Link
+                key={category.id}
+                href={toLocalizedPath(`/urunler/kategori/${category.slug}`, locale)}
+                className="rounded-full border border-border-soft px-4 py-2 text-sm font-semibold text-foreground transition hover:border-brand hover:text-brand"
+              >
+                {category.name}
+              </Link>
+            ))}
+          </nav>
+        )}
 
         <Suspense>
           <ProductFilters
