@@ -9,7 +9,7 @@ SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 INSERT INTO `custom_pages` (`id`, `module_key`, `is_published`, `display_order`)
 VALUES
-  ('cccccccc-cccc-4ccc-8ccc-cccategorybi1', 'kategori-seo', 1, 50)
+  ('cccccccc-cccc-4ccc-8ccc-ccccategory1', 'kategori-seo', 1, 50)
 ON DUPLICATE KEY UPDATE
   `module_key` = VALUES(`module_key`),
   `is_published` = VALUES(`is_published`),
@@ -19,7 +19,7 @@ INSERT INTO `custom_pages_i18n`
   (`page_id`, `locale`, `title`, `slug`, `content`, `summary`, `meta_title`, `meta_description`)
 VALUES
   (
-    'cccccccc-cccc-4ccc-8ccc-cccategorybi1',
+    'cccccccc-cccc-4ccc-8ccc-ccccategory1',
     'tr',
     'Biber Tohumu Cesitleri',
     'kategori-biber-cesitleri',
