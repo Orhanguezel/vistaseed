@@ -109,15 +109,12 @@ const nextConfig: NextConfig = {
       { source: "/sitemap_index.xml", destination: "/sitemap.xml", permanent: true },
       { source: "/sitemap-0.xml", destination: "/sitemap.xml", permanent: true },
 
-      // Eski kategori URL pattern'leri → query string (Google 404 kaynağı)
-      {
-        source: "/:locale(tr|en|de)/urunler/kategori/:slug",
-        destination: "/:locale/urunler?category=:slug",
-        permanent: true,
-      },
+      // NOT: /:locale/urunler/kategori/:slug artık gerçek indexlenebilir kategori
+      // landing route'udur (redirect KALDIRILDI). Kısa legacy /kategori/:slug ise
+      // yeni landing'e yönlendirilir (noindex filtre yerine SEO uyumlu sayfa).
       {
         source: "/:locale(tr|en|de)/kategori/:slug",
-        destination: "/:locale/urunler?category=:slug",
+        destination: "/:locale/urunler/kategori/:slug",
         permanent: true,
       },
       {
