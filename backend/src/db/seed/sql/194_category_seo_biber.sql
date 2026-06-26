@@ -29,6 +29,7 @@ VALUES
     'F1 hibrit biber tohumu cesitleri: kapya, carliston, aci kil, dolma ve kahvaltilik. TSWV toleransli, sera ve acik tarlaya uygun profesyonel tohumlar. Vista Seeds.'
   )
 ON DUPLICATE KEY UPDATE
+  `slug` = VALUES(`slug`),
   `title` = VALUES(`title`),
   `content` = VALUES(`content`),
   `summary` = VALUES(`summary`),
